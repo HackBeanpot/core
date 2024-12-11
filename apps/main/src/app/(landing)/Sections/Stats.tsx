@@ -37,7 +37,7 @@ export function Box({
   children: React.ReactNode;
 }): React.ReactNode {
   return (
-    <div className="m-12 rounded-lg w-full max-w-[25vw] text-center text-[#474747] flex flex-col justify-center bg-[#FBFBFB]">
+    <div className="m-12 rounded-lg w-full max-w-[25vw] text-center text-[#474747] flex flex-col justify-center bg-[#FBFBFB] shadow-lg">
       {children}
     </div>
   );
