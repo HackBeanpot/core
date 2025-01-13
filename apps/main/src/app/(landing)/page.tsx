@@ -1,5 +1,6 @@
 import { Section } from "@repo/ui";
 import { Stats } from "./Sections";
+import { FAQSection } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
 
@@ -8,6 +9,7 @@ export default function Page(): JSX.Element {
     <main className="flex flex-col items-center min-h-screen">
       <NavBar />
       <Stats />
+      <FAQSection />
       <Section
         name="about"
         background={<>about</>}

@@ -21,6 +21,10 @@ const config: Omit<Config, "content"> = {
       fontFamily: {
         "GT-Walsheim-Regular": ['"GT-Walsheim-Regular"'],
         "big-shoulder-display": ['"Big Shoulders Display"', "cursive"],
+        "Wilden-Regular": ['"Wilden-Regular"'],
+      },
+      transitionProperty: {
+        "max-height": "max-height",
       },
     },
     colors,
