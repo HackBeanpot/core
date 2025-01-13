@@ -125,7 +125,7 @@ const Teams = () => {
     return (
       <div className="w-full h-full overflow-hidden flex flex-col justify-between">
         <TeamsTopSquiggle className="w-[110vw] -mt-48 -ml-[5vw]" />
-        <TeamsMiddleSquiggle className="w-[130vw] -ml-[10vw]" />
+        <TeamsMiddleSquiggle className="w-[110vw] -ml-[10vw]" />
         <TeamsBottomSquiggle className="w-[110vw] -ml-[5vw]" />
       </div>
     );

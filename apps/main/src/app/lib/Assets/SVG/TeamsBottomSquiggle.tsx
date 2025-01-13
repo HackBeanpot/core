@@ -6,6 +6,7 @@ const TeamsBottomSquiggle = (props: React.SVGProps<SVGSVGElement>) => {
       {...props}
       viewBox="0 0 1512 546"
       fill="none"
+      preserveAspectRatio="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
