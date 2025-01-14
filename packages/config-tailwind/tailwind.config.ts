@@ -19,8 +19,10 @@ const config: Omit<Config, "content"> = {
         popAndShrink: popAndShrink.animation,
       },
       fontFamily: {
-        "GT-Walsheim-Regular": ['"GT-Walsheim-Regular"'],
-        "Big-Shoulders-Display": ['"Big-Shoulders-Display"', "cursive"],
+        "GT-Walsheim-Regular": ["'GT-Walsheim-Regular'"],
+        "GT-Walsheim-Bold": ["'GT-Walsheim-Bold'"],
+        "Big-Shoulders-Display": ["'Big-Shoulders-Display'"],
+        "Wilden-Regular": ["'Wilden-Regular'"],
       },
       borderRadius: {
         arrow: "31.5px",
