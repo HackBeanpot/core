@@ -10,7 +10,7 @@ const background = (
 
 const content = (
   <div className="flex flex-col p-10 space-y-5 mt-20 font-GT-Walsheim-Regular">
-    <h1 className="text-5xl font-bold text-white mb-20 flex justify-center font-Wilden-Regular">
+    <h1 className="text-6xl font-bold text-white mb-20 flex justify-center font-Wilden-Regular">
       FAQs
     </h1>
 
