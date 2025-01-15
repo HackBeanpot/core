@@ -11,6 +11,13 @@
         src: url('./lib/Assets/fonts/GT-Walsheim-Regular.woff') format('woff2');
     }
     @font-face {
+        font-family: 'GT-Walsheim-Bold';
+        font-style: bold;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./lib/Assets/fonts/GT-Walsheim-Bold.woff') format('woff2');
+      }
+    @font-face {
         font-family: 'Wilden-Regular';
         font-style: normal;
         font-weight: 400;

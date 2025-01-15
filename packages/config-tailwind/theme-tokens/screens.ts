@@ -4,6 +4,7 @@ export type ScreenToken = {
 
 const screens = {
   mobile: "640px",
+  tablet: "768px",
 };
 
 export default screens;

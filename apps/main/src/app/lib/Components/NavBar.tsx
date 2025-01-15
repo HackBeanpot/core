@@ -46,7 +46,7 @@ const NavBar = () => {
 
   return (
     <div className="sticky top-0 z-[31] w-full">
-      <div className="w-full bg-white flex flex-row w-full h-full justify-between align-middle drop-shadow-xl">
+      <div className="bg-white flex flex-row w-full h-full justify-between align-middle drop-shadow-xl">
         {/* TODO: Figure out scrolling to top smoothly*/}
         <LocalLink href={"/"} className={"px-0"}>
           <HomeIcon />

@@ -4,13 +4,18 @@ import { Section, FAQDropdown } from "@repo/ui";
 
 const background = (
   <div className="w-full h-full overflow-hidden">
-    <Image alt="FAQsBackground" src="/faq_background.png" fill />
+    <Image
+      alt="FAQsBackground"
+      src="/faq_background.png"
+      fill
+      className="object-cover"
+    />
   </div>
 );
 
 const content = (
-  <div className="flex flex-col p-10 space-y-5 mt-20 font-GT-Walsheim-Regular">
-    <h1 className="text-6xl font-bold text-white mb-20 flex justify-center font-Wilden-Regular">
+  <div className="flex flex-col p-28 space-y-5 font-GT-Walsheim-Regular">
+    <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular">
       FAQs
     </h1>
 
