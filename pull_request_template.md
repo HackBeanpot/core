@@ -1,7 +1,8 @@
 # <Summary line - One sentence describing your intended set of changes>
 
 ## 🎫 Issue #<bug number>.
-## 🎨 Figma Link <optional>: 
+
+## 🎨 Figma Link <optional>:
 
 ### ▶ Changelist:
 
