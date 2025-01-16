@@ -20,8 +20,10 @@ const config: Omit<Config, "content"> = {
       },
       fontFamily: {
         "GT-Walsheim-Regular": ['"GT-Walsheim-Regular"'],
+        "GT-Walsheim-Bold": ["'GT-Walsheim-Bold'"],
         "Big-Shoulders-Display": ['"Big-Shoulders-Display"'],
         Wilden: ['"Wilden"'],
+        "Wilden-Regular": ["'Wilden-Regular'"],
       },
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",
