@@ -47,7 +47,7 @@ export default function Landing(): JSX.Element {
             height={40}
           />
         </ExternalLink>
-        <ExternalLink href="team@hackbeanpot.com">
+        <ExternalLink href="mailto:team@hackbeanpot.com">
           <Image alt="EmailLogo" src="/email_logo.png" width={40} height={40} />
         </ExternalLink>
       </div>
