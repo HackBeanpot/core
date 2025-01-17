@@ -5,27 +5,29 @@ import ExternalLink from "../../lib/Components/ExternalLink";
 
 export default function Landing(): JSX.Element {
   const background = (
-    <div className="w-full h-full overflow-hidden pointer-events-none">
+    <div className="w-full h-full overflow-hidden pointer-events-none relative">
       <Image alt="ProjectsBackground" src="/landing_background.png" fill />
     </div>
   );
 
   const content = (
     <div className="relative w-full h-full flex flex-col justify-center items-center gap-4">
-      <div className="flex flex-col items-center">
+      <div className="absolute top-[25%]">
         <Image
-          alt="LisencePlate"
+          alt="LicensePlate"
           src="/lisence_plate.png"
           width={400}
           height={200}
-          className="w-[35vw] h-auto max-w-[600px] min-w-[150px]"
+          className="w-[35vw] h-auto max-w-[700px] min-w-[300px]"
         />
+      </div>
+      <div className="absolute bottom-[15%]">
         <Image
           alt="Bus"
           src="/bus.png"
           width={400}
           height={200}
-          className="w-[35vw] h-auto max-w-[600px] min-w-[200px] mt-20"
+          className="w-[35vw] h-auto max-w-[700px] min-w-[300px]"
         />
       </div>
       <div className="absolute top-5 right-5 flex gap-2">
