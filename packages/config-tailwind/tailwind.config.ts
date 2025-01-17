@@ -20,7 +20,18 @@ const config: Omit<Config, "content"> = {
       },
       fontFamily: {
         "GT-Walsheim-Regular": ['"GT-Walsheim-Regular"'],
-        "Big-Shoulders-Display": ['"Big-Shoulders-Display"', "cursive"],
+        "big-shoulder-display": ['"Big-Shoulders-Display"', "cursive"],
+        "Wilden-Regular": ['"Wilden-Regular"'],
+      },
+      transitionProperty: {
+        "max-height": "max-height",
+        "GT-Walsheim-Regular": ["'GT-Walsheim-Regular'"],
+        "GT-Walsheim-Bold": ["'GT-Walsheim-Bold'"],
+        "Big-Shoulders-Display": ["'Big-Shoulders-Display'"],
+        "Wilden-Regular": ["'Wilden-Regular'"],
+      },
+      borderRadius: {
+        arrow: "31.5px",
       },
     },
     colors,
