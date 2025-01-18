@@ -1,7 +1,7 @@
 "use client";
 
 // Imports
-import React, { useState } from "react";
+import React from "react";
 
 // Components
 import { Section, TitleBox } from "@repo/ui";
@@ -24,8 +24,8 @@ export function CalendarEvent({
   return (
     <div className="flex justify-center items-center">
       <TitleBox
-        topColor={"[#EFAB57]"}
-        bottomColor={"white"}
+        topColor="orange"
+        bottomColor="white"
         topComponent={
           <div className="p-1">
             <p className="text-center text-white text-xl mb-[-4px]">{month}</p>
@@ -80,47 +80,15 @@ export function CalendarEvents({
 }
 
 export function CalendarSection(): React.ReactNode {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleNext = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
-  };
-
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold text-center text-[#B2A0C2] p-8">
+      <h1 className="text-3xl font-bold text-center text-[#B2A0C2] p-8 font-GT-Walsheim-Bold mb-3">
         EVENTS CALENDAR
       </h1>
-      <CalendarEvents calendarEvents={events} page={currentPage} />
-      <div className="absolute top-1/2 left-4 transform -translate-y-1/2 z-2">
-        <button
-          onClick={handlePrev}
-          className="bg-gray-800 text-white p-4 rounded-full border border-black"
-        >
-          Prev
-        </button>
-      </div>
-
-      <div className="absolute top-1/2 right-4 transform -translate-y-1/2 z-2">
-        <button
-          onClick={handleNext}
-          disabled={currentPage * 6 >= events.length}
-          className="bg-gray-800 text-white p-4 rounded-full border border-black"
-        >
-          Next
-        </button>
-      </div>
+      <CalendarEvents calendarEvents={events} page={1} />
     </div>
   );
 }
-
-// const background = <div className="w-full h-full bg-[#423350]" />;
 
 const events: CalendarEventProps[] = [
   {

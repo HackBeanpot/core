@@ -15,12 +15,12 @@ type TitleBoxProps = {
 const TitleBox = ({
   hasLine = false,
   lineColor = "black",
-  topColor = "[#EFAB57]",
+  topColor = "orange",
   bottomColor = "white",
   topComponent,
   bottomComponent,
-  width = "w-[15rem]",
-  height = "h-[15rem]",
+  width = "w-60",
+  height = "h-60",
 }: TitleBoxProps): React.ReactElement => {
   return (
     <div className={`rounded-lg ${width} ${height} flex flex-col`}>
