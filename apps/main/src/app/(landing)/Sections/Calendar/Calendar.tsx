@@ -28,16 +28,22 @@ export function CalendarEvent({
         bottomColor="white"
         topComponent={
           <div className="p-1">
-            <p className="text-center text-white text-xl mb-[-4px]">{month}</p>
-            <p className="text-center text-white text-2xl">{date}</p>
+            <p className="text-center text-white text-xl mb-[-4px] font-GT-Walsheim-Regular">
+              {month}
+            </p>
+            <p className="text-center text-white text-3xl font-GT-Walsheim-Regular">
+              {date}
+            </p>
           </div>
         }
         bottomComponent={
           <div className="p-4">
-            <p className="text-center text-gray-500 text-sm mb-1">
+            <p className="text-center text-[#A6A6A6] text-sm mb-1 font-GT-Walsheim-Regular">
               {dayAndTime}
             </p>
-            <p className="text-center text-black font-semibold">{eventName}</p>
+            <p className="text-center text-[#4D4D4D] text-lg font-semibold font-GT-Walsheim-Regular">
+              {eventName}
+            </p>
           </div>
         }
         height="h-[12rem]"
@@ -57,6 +63,7 @@ export function CalendarEvents({
   calendarEvents,
   page,
 }: CalendarEventsProps): React.ReactNode {
+  // TODO: Pagination
   const eventsPerPage = 6;
   const startIndex = (page - 1) * eventsPerPage;
   const displayedEvents = calendarEvents.slice(
@@ -79,10 +86,11 @@ export function CalendarEvents({
   );
 }
 
+// Calendar Section Component
 export function CalendarSection(): React.ReactNode {
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold text-center text-[#B2A0C2] p-8 font-GT-Walsheim-Bold mb-3">
+      <h1 className="text-6xl font-bold text-center text-[#B2A0C2] p-8 mt-6 mb-3 font-Wilden-Regular">
         EVENTS CALENDAR
       </h1>
       <CalendarEvents calendarEvents={events} page={1} />
@@ -90,6 +98,7 @@ export function CalendarSection(): React.ReactNode {
   );
 }
 
+// Calendar Events Data
 const events: CalendarEventProps[] = [
   {
     month: "OCT",
@@ -159,15 +168,13 @@ const events: CalendarEventProps[] = [
   },
 ];
 
-const content = <CalendarSection />;
-
 export default function Calendar(): React.ReactNode {
   return (
     <Section
       name={"calendar"}
       background={<CalendarBackground />}
-      content={content}
-      height={75}
+      content={<CalendarSection />}
+      height={85}
     />
   );
 }

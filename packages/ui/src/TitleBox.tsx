@@ -15,7 +15,7 @@ type TitleBoxProps = {
 const TitleBox = ({
   hasLine = false,
   lineColor = "black",
-  topColor = "orange",
+  topColor = "white",
   bottomColor = "white",
   topComponent,
   bottomComponent,
