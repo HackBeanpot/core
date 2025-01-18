@@ -1,5 +1,3 @@
-"use client";
-
 // Imports
 import React from "react";
 
