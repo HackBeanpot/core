@@ -1,19 +1,14 @@
-import { Section } from "@repo/ui";
 import { Footer, NavBar } from "../lib/Components";
-import TeamsBackground from "./background";
-import TeamsContent from "./content";
 import React from "react";
+import Teams from "./Sections/Teams";
+import Landing from "./Sections/Landing";
 
 export default function Page(): JSX.Element {
   return (
     <main className="flex flex-col items-center min-h-screen">
       <NavBar />
-      <Section
-        name={"teams"}
-        background={<TeamsBackground />}
-        content={<TeamsContent />}
-        height={300}
-      />
+      <Landing />
+      <Teams />
       <Footer />
     </main>
   );
