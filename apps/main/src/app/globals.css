@@ -4,31 +4,39 @@
 
 @layer base {
   @font-face {
-    font-family: 'Wilden';
+    font-family: "Wilden";
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('./lib/Assets/fonts/Wilden.otf') format('opentype');
+    src: url("./lib/Assets/fonts/Wilden.otf") format("opentype");
   }
   @font-face {
-    font-family: 'GT-Walsheim-Regular';
+    font-family: "GT-Walsheim-Regular";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('./lib/Assets/fonts/GT-Walsheim-Regular.woff') format('woff2');
+    src: url("./lib/Assets/fonts/GT-Walsheim-Regular.woff") format("woff2");
   }
   @font-face {
-    font-family: 'GT-Walsheim-Bold';
+    font-family: "GT-Walsheim-Bold";
     font-style: bold;
     font-weight: 700;
     font-display: swap;
-    src: url('./lib/Assets/fonts/GT-Walsheim-Bold.woff') format('woff2');
+    src: url("./lib/Assets/fonts/GT-Walsheim-Bold.woff") format("woff2");
   }
   @font-face {
-    font-family: 'Big-Shoulders-Display';
+    font-family: "Wilden-Regular";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('./lib/Assets/fonts/BigShouldersDisplay-Regular.ttf') format('ttf');
+    src: url("./lib/Assets/fonts/Wilden-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Big-Shoulders-Display";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./lib/Assets/fonts/BigShouldersDisplay-Regular.ttf")
+      format("truetype");
   }
 }

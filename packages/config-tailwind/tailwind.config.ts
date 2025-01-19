@@ -19,11 +19,14 @@ const config: Omit<Config, "content"> = {
         popAndShrink: popAndShrink.animation,
       },
       fontFamily: {
-        "GT-Walsheim-Regular": ['"GT-Walsheim-Regular"'],
+        "GT-Walsheim-Regular": ["'GT-Walsheim-Regular'"],
         "GT-Walsheim-Bold": ["'GT-Walsheim-Bold'"],
         "Big-Shoulders-Display": ['"Big-Shoulders-Display"'],
         Wilden: ['"Wilden"'],
         "Wilden-Regular": ["'Wilden-Regular'"],
+      },
+      transitionProperty: {
+        "max-height": "max-height",
       },
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",
