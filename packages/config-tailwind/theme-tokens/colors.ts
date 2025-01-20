@@ -12,6 +12,8 @@ const colors = {
   },
   grapePurple: "#6D5881",
   beige: "#F3E7D7",
+  granolaLite: "#F2E6D7",
+  vineGreenLite: "#02877F",
   leafGreen: "#6B9D8F",
   darkPurple: "#625074",
   darkBeige: "#C6B6A9",
