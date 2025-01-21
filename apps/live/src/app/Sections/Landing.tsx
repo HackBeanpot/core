@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import { Section } from "@repo/ui";
 import Image from "next/image";
 import TimeRemainingSign from "../components/TimeRemainingSign";
+import { useIsMobile } from "@repo/util";
 
 export default function Landing(): JSX.Element {
+  const isMobile = useIsMobile();
+
   const background = (
     <div className="w-full h-full overflow-hidden pointer-events-none relative">
       <Image alt="ProjectsBackground" src="/landing_live_background.png" fill />
@@ -20,18 +25,29 @@ export default function Landing(): JSX.Element {
           ROADTRIP!
         </p>
       </div>
-      <div className="absolute top-[15vh] right-[0%]">
+      <div
+        className={`absolute right-[0] ${
+          isMobile ? "top-[25vh]" : "top-[15vh]"
+        }`}
+      >
         <TimeRemainingSign target={new Date("02/20/2025 9:00:00")} />
       </div>
-      <div className="flex justify-center mt-[5%]">
-        <Image
-          alt="Van"
-          src="/van.png"
-          width={400}
-          height={200}
-          className="w-[32vw] h-auto max-w-[700px] min-w-[100px]"
-        />
+      <div className="relative w-full h-full">
+        <div
+          className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
+            isMobile ? "top-[80%]" : "top-[60%]"
+          }`}
+        >
+          <Image
+            alt="Van"
+            src="/van.png"
+            width={400}
+            height={200}
+            className="w-[400px] h-auto"
+          />
+        </div>
       </div>
+
       <div className="absolute bottom-0 left-0 w-full flex flex-row justify-between">
         <div>
           <Image

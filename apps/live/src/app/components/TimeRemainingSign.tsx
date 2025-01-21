@@ -2,11 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useIsMobile } from "@repo/util";
 
 const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,7 +38,11 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center">
-      <div className="w-[30vw] max-w-[500px] relative">
+      <div
+        className={`max-w-[500px] relative ${
+          isMobile ? "w-[50vw]" : "w-[30vw]"
+        }`}
+      >
         <Image
           alt="Time Remaining Sign"
           src="/time_remaining.png"
@@ -44,7 +50,13 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
           width={500}
           height={250}
         />
-        <div className="absolute top-[30%] left-0 right-[7%] flex items-baseline justify-center text-center px-10 text-white text-[clamp(0.2rem,3vw,3rem)]">
+        <div
+          className={`absolute top-[30%] left-0 right-[7%] flex items-baseline justify-center text-center px-10 text-white ${
+            isMobile
+              ? "text-[clamp(1.2rem,3vw,4rem)]"
+              : "text-[clamp(0.2rem,3vw,3rem)]"
+          }`}
+        >
           <div className="flex flex-col items-center">
             <p className="font-bold">{days}</p>
             <p className="text-[clamp(0.2rem,1vw,1rem)]">days</p>
@@ -61,7 +73,13 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
           </div>
         </div>
         <div className="absolute right-[4%] top-[86%] w-full flex items-center justify-center -translate-y-1/2">
-          <p className="text-[clamp(0.3rem,1vw,1.1rem)] text-center flex">
+          <p
+            className={`text-center flex ${
+              isMobile
+                ? "text-[clamp(0.5rem,1vw,1.1rem)]"
+                : "text-[clamp(0.3rem,1vw,1.1rem)]"
+            }`}
+          >
             SHARE WITH YOUR FRIENDS
             <svg
               xmlns="http://www.w3.org/2000/svg"
