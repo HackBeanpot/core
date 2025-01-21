@@ -51,7 +51,7 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
           height={250}
         />
         <div
-          className={`absolute top-[30%] left-0 right-[7%] flex items-baseline justify-center text-center px-10 text-white ${
+          className={`absolute top-[30%] left-0 right-[7%] flex items-baseline justify-center text-center px-10 text-white font-GT-Walsheim-Regular ${
             isMobile
               ? "text-[clamp(1.2rem,3vw,4rem)]"
               : "text-[clamp(0.2rem,3vw,3rem)]"
@@ -59,25 +59,25 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
         >
           <div className="flex flex-col items-center">
             <p className="font-bold">{days}</p>
-            <p className="text-[clamp(0.2rem,1vw,1rem)]">days</p>
+            <p className="text-[clamp(0.4rem,1vw,1rem)] ">days</p>
           </div>
           <p className="mx-2 text-[clamp(0.2rem,2vw,2rem)]">:</p>
           <div className="flex flex-col items-center">
             <p className="font-bold">{hours}</p>
-            <p className="text-[clamp(0.2rem,1vw,1rem)]">hours</p>
+            <p className="text-[clamp(0.4rem,1vw,1rem)]">hours</p>
           </div>
           <p className="mx-2 text-[clamp(0.2rem,2vw,2rem)]">:</p>
           <div className="flex flex-col items-center">
             <p className="font-bold">{minutes}</p>
-            <p className="text-[clamp(0.2rem,1vw,1rem)]">minutes</p>
+            <p className="text-[clamp(0.4rem,1vw,1rem)]">minutes</p>
           </div>
         </div>
-        <div className="absolute right-[4%] top-[86%] w-full flex items-center justify-center -translate-y-1/2">
+        <div className="absolute right-[4%] top-[86%] w-full flex items-center justify-center -translate-y-1/2 font-GT-Walsheim-Regular">
           <p
             className={`text-center flex ${
               isMobile
-                ? "text-[clamp(0.5rem,1vw,1.1rem)]"
-                : "text-[clamp(0.3rem,1vw,1.1rem)]"
+                ? "text-[clamp(0.5rem,1vw,1.2rem)]"
+                : "text-[clamp(0.3rem,1.2vw,1rem)]"
             }`}
           >
             SHARE WITH YOUR FRIENDS

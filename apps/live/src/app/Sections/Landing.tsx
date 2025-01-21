@@ -18,10 +18,10 @@ export default function Landing(): JSX.Element {
   const content = (
     <div className="relative w-full h-full flex flex-col justify-between p-20 items-center">
       <div className="text-center mt-[5%]">
-        <h3 className="text-[clamp(0.9rem,2vw,3rem)] text-center font-semibold text-white mb-5 font-GT-Walsheim-Light-Trial">
+        <h3 className="text-[clamp(0.9rem,2vw,3rem)] text-center text-white font-GT-Walsheim-Regular">
           Buckle up! We&apos;re going on a...
         </h3>
-        <p className="text-[clamp(2.5rem,6vw,5rem)] text-granolaLite font-bold font-Wilden-Regular">
+        <p className="text-[clamp(3rem,7vw,7rem)] text-granolaLite font-bold font-Wilden">
           ROADTRIP!
         </p>
       </div>
@@ -47,27 +47,28 @@ export default function Landing(): JSX.Element {
           />
         </div>
       </div>
-
-      <div className="absolute bottom-0 left-0 w-full flex flex-row justify-between">
-        <div>
-          <Image
-            alt="Fern"
-            src="/fern.png"
-            width={400}
-            height={200}
-            className="w-[20vw] h-auto max-w-[700px] min-w-[100px] scale-x-[-1]"
-          />
+      {!isMobile && (
+        <div className="absolute bottom-0 left-0 w-full flex flex-row justify-between">
+          <div>
+            <Image
+              alt="Fern"
+              src="/fern.png"
+              width={400}
+              height={200}
+              className="w-[20vw] h-auto max-w-[550px] min-w-[100px] scale-x-[-1]"
+            />
+          </div>
+          <div>
+            <Image
+              alt="Fern"
+              src="/fern.png"
+              width={400}
+              height={200}
+              className="w-[20vw] h-auto max-w-[550px] min-w-[100px]"
+            />
+          </div>
         </div>
-        <div>
-          <Image
-            alt="Fern"
-            src="/fern.png"
-            width={400}
-            height={200}
-            className="w-[20vw] h-auto max-w-[700px] min-w-[100px]"
-          />
-        </div>
-      </div>
+      )}
     </div>
   );
 
