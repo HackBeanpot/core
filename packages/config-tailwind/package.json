@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./tailwind.config.ts"
+    ".": "./tailwind.config.ts",
+    "./tokens": "./theme-tokens/index.ts"
   },
   "devDependencies": {
     "@repo/typescript-config": "*",

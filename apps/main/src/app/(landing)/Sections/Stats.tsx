@@ -1,20 +1,19 @@
 import React from "react";
 import { Section } from "@repo/ui";
-
 const background = <div className="w-full h-full bg-[#BEACD0]" />;
 
 const content = (
-  <div className="w-full h-full flex flex-row gap-2 justify-center content-center">
+  <div className="w-full h-full flex flex-row gap-1 justify-center content-center text-xl tablet:text-3xl">
     <Box>
-      <p className="text-6xl font-semibold mb-2">{"10+"}</p>
+      <p className="text-4xl tablet:text-8xl font-medium mb-2">{"10+"}</p>
       <p>{"years of HackBeanpot"}</p>
     </Box>
     <Box>
-      <p className="text-6xl font-semibold mb-2">{"10+"}</p>
+      <p className="text-4xl tablet:text-8xl font-medium mb-2">{"10+"}</p>
       <p>{"sponsors each year"}</p>
     </Box>
     <Box>
-      <p className="text-6xl font-semibold mb-2">{"800+"}</p>
+      <p className="text-4xl tablet:text-8xl font-medium mb-2">{"800+"}</p>
       <p>{"beans and counting"}</p>
     </Box>
   </div>
@@ -37,7 +36,7 @@ export function Box({
   children: React.ReactNode;
 }): React.ReactNode {
   return (
-    <div className="m-12 rounded-lg w-full max-w-[25vw] text-center text-[#474747] flex flex-col justify-center bg-[#FBFBFB]">
+    <div className="m-[2%] rounded-lg w-full max-w-[25vw] text-center text-[#474747] flex flex-col justify-center bg-[#FBFBFB] shadow-lg">
       {children}
     </div>
   );
