@@ -6,7 +6,12 @@ import clsx from "clsx";
 
 // Components
 import { ArrowButton, Section, TitleBox } from "@repo/ui";
+
+// Images
 import CalendarBackground from "./CalendarBackground";
+import RockVariant2 from "../../../lib/Assets/SVG/Rocks/RockVariant2";
+import RockVariant3 from "../../../lib/Assets/SVG/Rocks/RockVariant3";
+import RockVariant4 from "../../../lib/Assets/SVG/Rocks/RockVariant4";
 
 // Calendar Events Data
 const events: CalendarEventProps[] = [
@@ -248,10 +253,29 @@ export function CalendarSection(): React.ReactNode {
   );
 }
 
+const foreground = [
+  {
+    // RockVariant3
+    item: <RockVariant3 />,
+    coordinate: { x: 82, y: 0 },
+  },
+  {
+    // RockVariant4
+    item: <RockVariant4 />,
+    coordinate: { x: 90, y: 3 },
+  },
+  {
+    // RockVariant2
+    item: <RockVariant2 />,
+    coordinate: { x: 89, y: -11 },
+  },
+];
+
 export default function Calendar(): React.ReactNode {
   return (
     <Section
       name={"calendar"}
+      foreground={foreground}
       background={<CalendarBackground />}
       content={<CalendarSection />}
       height={85}
