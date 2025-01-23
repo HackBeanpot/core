@@ -19,8 +19,8 @@ const TitleBox = ({
   bottomColor = "white",
   topComponent,
   bottomComponent,
-  width = "w-60",
-  height = "h-60",
+  width = "min-w-[200px]",
+  height = "min-h-[200px]",
 }: TitleBoxProps): React.ReactElement => {
   return (
     <div className={`rounded-lg ${width} ${height} flex flex-col`}>

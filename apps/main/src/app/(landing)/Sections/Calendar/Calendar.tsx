@@ -5,6 +5,76 @@ import React from "react";
 import { Section, TitleBox } from "@repo/ui";
 import CalendarBackground from "./CalendarBackground";
 
+// Calendar Events Data
+const events: CalendarEventProps[] = [
+  {
+    month: "OCT",
+    date: "05",
+    dayAndTime: "Thursday, 9 - 10pm",
+    eventName: "Introduction to Web Development",
+  },
+  {
+    month: "OCT",
+    date: "05",
+    dayAndTime: "Thursday, 9 - 10pm",
+    eventName: "Introduction to Web Development",
+  },
+  {
+    month: "OCT",
+    date: "05",
+    dayAndTime: "Thursday, 9 - 10pm",
+    eventName: "Introduction to Web Development",
+  },
+  {
+    month: "OCT",
+    date: "05",
+    dayAndTime: "Thursday, 9 - 10pm",
+    eventName: "Introduction to Web Development",
+  },
+  {
+    month: "OCT",
+    date: "09",
+    dayAndTime: "Monday, 5 - 6pm",
+    eventName: "Databases for Developers",
+  },
+  {
+    month: "OCT",
+    date: "10",
+    dayAndTime: "Tuesday, 4 - 5pm",
+    eventName: "Intro to Git and Version Control",
+  },
+  {
+    month: "OCT",
+    date: "11",
+    dayAndTime: "Wednesday, 3 - 4pm",
+    eventName: "Full Stack Development Overview",
+  },
+  {
+    month: "OCT",
+    date: "12",
+    dayAndTime: "Thursday, 9 - 10pm",
+    eventName: "Introduction to Web Development",
+  },
+  {
+    month: "OCT",
+    date: "10",
+    dayAndTime: "Tuesday, 4 - 5pm",
+    eventName: "Intro to Git and Version Control",
+  },
+  {
+    month: "OCT",
+    date: "11",
+    dayAndTime: "Wednesday, 3 - 4pm",
+    eventName: "Full Stack Development Overview",
+  },
+  {
+    month: "OCT",
+    date: "12",
+    dayAndTime: "Thursday, 9 - 10pm",
+    eventName: "Introduction to Web Development",
+  },
+];
+
 // Calendar Event Component
 type CalendarEventProps = {
   month: string;
@@ -95,76 +165,6 @@ export function CalendarSection(): React.ReactNode {
     </div>
   );
 }
-
-// Calendar Events Data
-const events: CalendarEventProps[] = [
-  {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
-  },
-  {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
-  },
-  {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
-  },
-  {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
-  },
-  {
-    month: "OCT",
-    date: "09",
-    dayAndTime: "Monday, 5 - 6pm",
-    eventName: "Databases for Developers",
-  },
-  {
-    month: "OCT",
-    date: "10",
-    dayAndTime: "Tuesday, 4 - 5pm",
-    eventName: "Intro to Git and Version Control",
-  },
-  {
-    month: "OCT",
-    date: "11",
-    dayAndTime: "Wednesday, 3 - 4pm",
-    eventName: "Full Stack Development Overview",
-  },
-  {
-    month: "OCT",
-    date: "12",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
-  },
-  {
-    month: "OCT",
-    date: "10",
-    dayAndTime: "Tuesday, 4 - 5pm",
-    eventName: "Intro to Git and Version Control",
-  },
-  {
-    month: "OCT",
-    date: "11",
-    dayAndTime: "Wednesday, 3 - 4pm",
-    eventName: "Full Stack Development Overview",
-  },
-  {
-    month: "OCT",
-    date: "12",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
-  },
-];
 
 export default function Calendar(): React.ReactNode {
   return (
