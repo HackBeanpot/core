@@ -5,24 +5,22 @@ import KeynotePhoto from "../../lib/Assets/SVG/KeynotePhoto";
 const background = <div className="w-full h-full bg-cream" />;
 
 const content = (
-  <div className="flex h-full items-center">
-    <div className="max-w-[83vw] mx-auto my-auto flex gap-10">
-      <div className="w-[40vw]">
-        <SpeakerPhoto />
-        <SpeakerDetails />
-      </div>
+  <div className="h-full items-center max-w-[80vw] mx-auto my-auto flex gap-5">
+    <div className="w-[45vw]">
+      <SpeakerPhoto />
+      <SpeakerDetails />
+    </div>
 
-      <div className="w-[60vw]">
-        <StreetSign streetName="KEYNOTE" suffix="SPEAKER" />
-        <SpeakerAbout />
-      </div>
+    <div className="w-[55vw]">
+      <StreetSign streetName="KEYNOTE" suffix="SPEAKER" />
+      <SpeakerAbout />
     </div>
   </div>
 );
 
 function SpeakerPhoto(): JSX.Element {
   return (
-    <div className="bg-white rounded-md inline-block p-4 pb-20">
+    <div className="bg-white rounded-md inline-block p-4 pb-20 shadow-lg mb-5">
       <KeynotePhoto className="w-70 h-auto" />
     </div>
   );
@@ -31,8 +29,8 @@ function SpeakerPhoto(): JSX.Element {
 function SpeakerDetails(): JSX.Element {
   return (
     <div className="mt-4 font-GT-Walsheim-Regular">
-      <h2 className="text-xl font-bold mb-2">Rati Thanawala</h2>
-      <p className="text-sm text-gray-700">
+      <p className="text-[33.6px] font-bold mb-2">Rati Thanawala</p>
+      <p className="text-[26.25px] text-lightBrown">
         2018 Advanced Leadership Fellow, Harvard University | Founder,
         Leadership Academy for Women of Color in Tech
       </p>
@@ -42,13 +40,13 @@ function SpeakerDetails(): JSX.Element {
 
 function SpeakerAbout(): JSX.Element {
   return (
-    <p className="text-sm font-GT-Walsheim-Regular mt-8">
-      <strong>Dr. Thanawala </strong>is a 2018 Advanced Leadership Fellow at
-      Harvard and holds a Ph.D. in Computer Science from Yale. With 39 years in
-      the tech industry, including 17 as Vice President at Bell Labs, she
-      pioneered new communications technologies and founded Bell Labs
-      Consulting. She also held executive roles in software development and
-      product management at AT&T and Nokia.
+    <p className="text-[26.25px] font-GT-Walsheim-Regular mt-8">
+      <span className="font-GT-Walsheim-Bold">Dr. Thanawala </span>is a 2018
+      Advanced Leadership Fellow at Harvard and holds a Ph.D. in Computer
+      Science from Yale. With 39 years in the tech industry, including 17 as
+      Vice President at Bell Labs, she pioneered new communications technologies
+      and founded Bell Labs Consulting. She also held executive roles in
+      software development and product management at AT&T and Nokia.
       <br />
       <br />
       She received a grant from the Women of Color in Computing Collaborative,
@@ -66,7 +64,7 @@ export default function Keynote(): React.ReactNode {
       name={"keynote"}
       background={background}
       content={content}
-      height={70}
+      height={100}
     />
   );
 }

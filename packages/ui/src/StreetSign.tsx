@@ -10,13 +10,11 @@ export default function StreetSign({
   suffix,
 }: StreetSignProps): React.ReactNode {
   return (
-    <div className="flex justify-start items-center">
-      <div className="relative inline-flex items-center bg-[#02877F] text-white border-2 border-white rounded-lg px-4 py-2 transform -rotate-2">
-        <p className="text-3xl font-Big-Shoulders-Display">{streetName}</p>
-        <p className="text-2xl font-Big-Shoulders-Display ml-2 mb-1">
-          {suffix}
-        </p>
-      </div>
+    <div className="relative inline-flex items-center bg-[#02877F] text-white border-4 border-white rounded-3xl px-8 transform -rotate-3 shadow-lg">
+      <p className="text-[71.27px] font-Big-Shoulders-Display">{streetName}</p>
+      <p className="text-[30.33px] font-Big-Shoulders-Display ml-3 mb-8">
+        {suffix}
+      </p>
     </div>
   );
 }
