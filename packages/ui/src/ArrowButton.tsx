@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import clsx from "clsx";
 
 type ArrowButtonStyleKey = "purpleButton" | "greenButton" | "beigeButton";
 type ArrowType = "left" | "right";
@@ -27,19 +28,25 @@ interface ArrowButtonProps {
   direction: ArrowType;
   arrowButtonColor: ArrowButtonStyleKey;
   onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  className?: string;
 }
 
 export default function ArrowButton({
   direction,
   arrowButtonColor,
   onClick,
+  className = "",
 }: ArrowButtonProps) {
   const { arrowColor, bgColor, topBorder } = ArrowButtonType[arrowButtonColor];
+
   return (
     <>
       <button
         onClick={onClick}
-        className={`relative rounded-arrow w-24 h-24 ${bgColor} ${topBorder} border-t-4`}
+        className={clsx(
+          `rounded-arrow w-24 h-24 ${bgColor} ${topBorder} border-t-4`,
+          className,
+        )}
       >
         {direction === "left" ? (
           <LeftArrow arrowColor={arrowColor} />

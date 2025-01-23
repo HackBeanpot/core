@@ -1,8 +1,11 @@
+"use client";
+
 // Imports
-import React from "react";
+import React, { useState } from "react";
+import clsx from "clsx";
 
 // Components
-import { Section, TitleBox } from "@repo/ui";
+import { ArrowButton, Section, TitleBox } from "@repo/ui";
 import CalendarBackground from "./CalendarBackground";
 
 // Calendar Events Data
@@ -59,7 +62,7 @@ const events: CalendarEventProps[] = [
     month: "OCT",
     date: "10",
     dayAndTime: "Tuesday, 4 - 5pm",
-    eventName: "Intro to Git and Version Control",
+    eventName: "React.js Workshop",
   },
   {
     month: "OCT",
@@ -71,7 +74,25 @@ const events: CalendarEventProps[] = [
     month: "OCT",
     date: "12",
     dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    eventName: "Introduction to Data Science",
+  },
+  {
+    month: "NOV",
+    date: "22",
+    dayAndTime: "Monday, 10am - 12pm",
+    eventName: "React.js Workshop",
+  },
+  {
+    month: "DEC",
+    date: "5",
+    dayAndTime: "Friday, 1 - 2pm",
+    eventName: "Introduction to Data Science",
+  },
+  {
+    month: "JAN",
+    date: "18",
+    dayAndTime: "Tuesday, 2 - 3pm",
+    eventName: "JavaScript Deep Dive",
   },
 ];
 
@@ -131,7 +152,7 @@ export function CalendarEvents({
   calendarEvents,
   page,
 }: CalendarEventsProps): React.ReactNode {
-  // TODO: Pagination
+  // TODO: Make eventsPerPage dynamic
   const eventsPerPage = 6;
   const startIndex = (page - 1) * eventsPerPage;
   const displayedEvents = calendarEvents.slice(
@@ -154,14 +175,75 @@ export function CalendarEvents({
   );
 }
 
+// Pagination Dots Component
+// TODO: Move to own file?
+type PaginationDotsProps = {
+  currentPage: number;
+  totalPages: number;
+};
+
+const PaginationDots: React.FC<PaginationDotsProps> = ({
+  currentPage,
+  totalPages,
+}) => {
+  return (
+    <div className="flex justify-center items-center space-x-2 mt-4">
+      {Array.from({ length: totalPages }, (_, index) => (
+        <div
+          key={index}
+          className={clsx(
+            "w-4 h-4 rounded-full cursor-pointer",
+            currentPage === index + 1
+              ? "bg-orange" // Highlight current page
+              : "bg-orange opacity-40",
+          )}
+        />
+      ))}
+    </div>
+  );
+};
+
 // Calendar Section Component
 export function CalendarSection(): React.ReactNode {
+  const [page, setPage] = useState(1); // 1 index pagination
+
+  const maxPages = Math.ceil(events.length / 6);
+
+  function onClickLeftArrow() {
+    setPage((prevPage) => {
+      const newPage = prevPage > 1 ? prevPage - 1 : 1;
+      return newPage;
+    });
+  }
+
+  function onClickRightArrow() {
+    setPage((prevPage) => {
+      const newPage = prevPage < maxPages ? prevPage + 1 : maxPages;
+      return newPage;
+    });
+  }
+
   return (
     <div className="flex flex-col items-center justify-center">
       <h1 className="text-6xl font-bold text-center text-[#B2A0C2] p-8 mt-6 mb-3 font-Wilden-Regular">
         EVENTS CALENDAR
       </h1>
-      <CalendarEvents calendarEvents={events} page={1} />
+      <ArrowButton
+        direction="left"
+        arrowButtonColor="purpleButton"
+        onClick={onClickLeftArrow}
+        className="absolute left-5 top-1/2 transform -translate-y-1/2 z-2"
+      />
+      <ArrowButton
+        direction="right"
+        arrowButtonColor="purpleButton"
+        onClick={onClickRightArrow}
+        className="absolute right-5 top-1/2 transform -translate-y-1/2 z-2"
+      />
+      <CalendarEvents calendarEvents={events} page={page} />
+      <div className="absolute bottom-7 w-full">
+        <PaginationDots currentPage={page} totalPages={maxPages} />
+      </div>
     </div>
   );
 }
