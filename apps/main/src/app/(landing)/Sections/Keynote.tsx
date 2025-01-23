@@ -22,8 +22,8 @@ const content = (
 
 function SpeakerPhoto(): JSX.Element {
   return (
-    <div className="bg-white rounded-md inline-block p-4">
-      <KeynotePhoto className="w-40 h-auto mb-" />
+    <div className="bg-white rounded-md inline-block p-4 pb-20">
+      <KeynotePhoto className="w-70 h-auto" />
     </div>
   );
 }
