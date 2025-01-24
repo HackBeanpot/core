@@ -11,3 +11,12 @@
 html {
     scroll-behavior: smooth;
 }
+
+.button {
+  width: 112px;
+  height: 30px;
+  background-color: #000000;
+  border: 2px solid #000000;
+  border-radius: 61px;
+  color: #FFFFFF;
+}
