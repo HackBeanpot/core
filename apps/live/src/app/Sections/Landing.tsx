@@ -43,7 +43,7 @@ export default function Landing(): JSX.Element {
             src="/van.png"
             width={400}
             height={200}
-            className="w-[25vw] max-w-[350px] h-[25vh] max-h-[300px] object-contain"
+            className="w-[40vw] max-w-[600px] h-[40vh] max-h-[500px] object-contain"
           />
         </div>
       </div>
