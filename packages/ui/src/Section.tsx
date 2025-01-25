@@ -29,7 +29,7 @@ export default function Section({
   const sectionHeight = `${height}vh`;
 
   return (
-    <div id={name} style={{ height: sectionHeight, width: "100vw" }}>
+    <div id={name} style={{ height: sectionHeight }} className="w-screen">
       <div
         style={{ height: sectionHeight }}
         className={`absolute z-0 w-screen`}

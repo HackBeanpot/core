@@ -50,22 +50,28 @@ export default function FAQDropdown({
   return (
     <div
       onClick={toggleAccordion}
-      className={`relative flex justify-center rounded-lg w-3/5 bg-[#FBFBFB] text-[#3F3F3F] grid grid-cols-[95%_5%] place-content-around py-5 px-5 transition-max-height duration-300 h-auto font-GT-Walsheim-Regular ${isOpen ? "max-h-screen" : "max-h-80"}`}
+      className={`transition-transform duration-300 transform scale-100 hover:scale-[102%] relative cursor-pointer justify-center rounded-lg w-3/5 bg-[#FBFBFB] text-[#3F3F3F] grid grid-cols-[95%_5%] place-content-around py-5 px-5 font-GT-Walsheim-Regular ${isOpen ? "max-h-screen" : "max-h-80"}`}
     >
       <div className="w-5/6">
         <p className="text-lg">{dropdownQuestion}</p>
       </div>
 
       <div
-        className={`w-6 h-6 self-center place-self-end transition-transform duration-500 transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+        className={`w-6 h-6 self-center place-self-end transition-transform duration-500 transform ${isOpen ? "rotate-180" : "rotate-0"} `}
       >
         {isOpen ? minusSign : plusSign}
       </div>
       {isOpen && (
-        <div className="w-auto col-span-2 border-t border-[#CFCFCF] flex items-center justify-center m-2"></div>
-      )}
-      {isOpen && (
-        <p className="text-lg col-span-2 break-all">{dropdownAnswer}</p>
+        <>
+          <div
+            className={`${isOpen ? "" : "hidden"} w-auto col-span-2 border-t border-[#CFCFCF] flex items-center justify-center m-2`}
+          ></div>
+          <p
+            className={`${isOpen ? "" : "hidden"} text-lg col-span-2 break-all`}
+          >
+            {dropdownAnswer}
+          </p>
+        </>
       )}
     </div>
   );
