@@ -17,7 +17,7 @@ export default function Landing(): JSX.Element {
 
   const content = (
     <div className="relative w-full h-full flex flex-col justify-between p-20 items-center">
-      <div className="text-center mt-[5%]">
+      <div className="text-center">
         <h3 className="text-[clamp(0.9rem,2vw,3rem)] text-center text-white font-GT-Walsheim-Regular">
           Buckle up! We&apos;re going on a...
         </h3>
@@ -43,7 +43,7 @@ export default function Landing(): JSX.Element {
             src="/van.png"
             width={400}
             height={200}
-            className="w-[40vw] max-w-[600px] h-[40vh] max-h-[500px] object-contain"
+            className="w-[40vw] max-w-[600px] h-[35vh] max-h-[500px] object-contain"
           />
         </div>
       </div>
