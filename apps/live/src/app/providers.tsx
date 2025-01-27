@@ -1,6 +1,6 @@
 "use client";
 
-import { useIsMobile } from "@repo/util";
+import useIsMobile from "@repo/util/hooks/useIsMobile";
 import React, { createContext } from "react";
 
 export const MobileContext = createContext({ isMobile: false });

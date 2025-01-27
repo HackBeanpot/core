@@ -5,8 +5,9 @@
     "dist"
   ],
   "exports": {
-    ".": "./src/index.ts",
-    "./hooks": "./src/hooks/index.ts"
+    "./hooks/*": "./src/hooks/*.ts",
+    "./types": "./src/types.ts",
+    "./functions": "./src/functions/*.ts"
   },
   "license": "MIT",
   "scripts": {

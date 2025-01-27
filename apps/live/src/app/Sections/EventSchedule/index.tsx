@@ -1,6 +1,6 @@
 import React from "react";
 import { Section } from "@repo/ui";
-import EventScheduleRoad from "../lib/Assets/SVG/EventScheduleRoad";
+import EventScheduleRoad from "../../lib/Assets/SVG/EventScheduleRoad";
 
 const EventScheduleBackground = () => {
   return (
@@ -10,7 +10,7 @@ const EventScheduleBackground = () => {
   );
 };
 
-const EventScheduleContent = () => {
+const EventScheduleContent = async () => {
   return (
     <div className="p-24">
       <p className="text-[clamp(3rem,7vw,7rem)] text-granolaLite font-bold font-Wilden">

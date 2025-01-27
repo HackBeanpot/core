@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-
-export type Size = {
-  width: number | undefined;
-  height: number | undefined;
-};
+import { Size } from "../types";
 
 function useWindowSize() {
   const [windowSize, setWindowSize] = useState<Size>({
