@@ -1,6 +1,7 @@
 import React from "react";
 import { Section } from "@repo/ui";
 import EventScheduleRoad from "../../lib/Assets/SVG/EventScheduleRoad";
+import EventScheduleTabs from "./EventScheduleTabs";
 
 const EventScheduleBackground = () => {
   return (
@@ -16,6 +17,7 @@ const EventScheduleContent = async () => {
       <p className="text-[clamp(3rem,7vw,7rem)] text-granolaLite font-bold font-Wilden">
         Event Schedule
       </p>
+      <EventScheduleTabs />
     </div>
   );
 };

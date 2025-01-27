@@ -20,3 +20,8 @@ export type Size = {
   width: number | undefined;
   height: number | undefined;
 };
+
+export type LoadableData<T> = {
+  data: T;
+  loading: boolean;
+};
