@@ -5,7 +5,9 @@
     "dist"
   ],
   "exports": {
+    ".": "./src/index.ts",
     "./hooks/*": "./src/hooks/*.ts",
+    "./fonts": "./src/fonts/fonts.css",
     "./types": "./src/types.ts",
     "./functions": "./src/functions/*.ts"
   },
