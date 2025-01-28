@@ -2,6 +2,7 @@ const colors = {
   transparent: "transparent",
   white: "#FBFBFB",
   orange: "#F5AE55",
+  tomato: "#EC765A",
   green: "#84AF67",
   "light-yellow": "#FFD198",
   black: "#000000",
@@ -16,6 +17,7 @@ const colors = {
   vineGreenLite: "#02877F",
   leafGreen: "#6B9D8F",
   darkPurple: "#625074",
+  darkerPurple: "#423350",
   darkBeige: "#C6B6A9",
   darkGreen: "#4C7764",
 };
