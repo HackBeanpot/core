@@ -4,7 +4,7 @@ import React from "react";
 import { Section } from "@repo/ui";
 import Image from "next/image";
 import TimeRemainingSign from "../components/TimeRemainingSign";
-import { useIsMobile } from "@repo/util";
+import useIsMobile from "@repo/util/hooks/useIsMobile";
 
 export default function Landing(): JSX.Element {
   const isMobile = useIsMobile();
