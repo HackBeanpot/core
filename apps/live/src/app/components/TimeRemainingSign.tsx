@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useIsMobile } from "@repo/util";
+import useIsMobile from "@repo/util/hooks/useIsMobile";
 
 const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
   const [days, setDays] = useState(0);
