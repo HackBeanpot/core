@@ -175,7 +175,7 @@ const EventScheduleTabs = () => {
                     const startTime = toTime(start_time, false);
                     const endTime = toTime(end_time, true);
                     const dropdownQuestion = (
-                      <div className="grid grid-cols-[2fr_5fr_2fr] gap-20 items-center w-full">
+                      <div className="grid grid-cols-[2fr_5fr_3fr] gap-20 items-center w-full">
                         <div>
                           <p className="text-xl font-bold">{`${startTime} - ${endTime}`}</p>
                           <div className="flex items-center gap-1">
@@ -197,7 +197,7 @@ const EventScheduleTabs = () => {
                           </div>
                         </div>
                         {difficulty && (
-                          <div className="rounded-full bg-green py-1 px-4 ml-auto">
+                          <div className="rounded-full bg-green py-1 px-4 ml-auto ">
                             {difficulty}
                           </div>
                         )}
