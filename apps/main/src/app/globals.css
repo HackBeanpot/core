@@ -18,6 +18,13 @@
         src: url('./lib/Assets/fonts/GT-Walsheim-Bold.woff') format('woff2');
       }
     @font-face {
+        font-family: 'GT-Walsheim-Pro-Regular';
+        font-style: normal; 
+        font-weight: 500; 
+        font-display: swap; 
+        src: url('./lib/Assets/fonts/GT-Walsheim-Pro-Regular.otf') format('opentype');
+    }
+    @font-face {
         font-family: 'Wilden-Regular';
         font-style: normal;
         font-weight: 400;

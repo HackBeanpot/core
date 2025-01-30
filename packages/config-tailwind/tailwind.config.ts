@@ -20,6 +20,7 @@ const config: Omit<Config, "content"> = {
       },
       fontFamily: {
         "GT-Walsheim-Regular": ['"GT-Walsheim-Regular"'],
+        "GT-Walsheim-Pro-Reular": ['"GT-Walsheim-Pro-Regular'],
         "big-shoulder-display": ['"Big-Shoulders-Display"', "cursive"],
         "Wilden-Regular": ['"Wilden-Regular"'],
       },

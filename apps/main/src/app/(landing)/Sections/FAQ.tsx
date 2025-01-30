@@ -6,7 +6,7 @@ const background = (
   <div className="w-full h-full overflow-hidden">
     <Image
       alt="FAQsBackground"
-      src="/faq_background.png"
+      src="/faq_background.svg"
       fill
       className="object-cover"
     />
@@ -90,7 +90,7 @@ export default function FAQSection(): React.ReactNode {
       name={"faqs"}
       background={background}
       content={content}
-      height={250}
+      height={175}
     />
   );
 }
