@@ -1,11 +1,15 @@
 "use client";
 
 // Imports
-import React, { useState } from "react";
+import React, { useRef, useState, forwardRef } from "react";
 import clsx from "clsx";
 
 // Components
 import { ArrowButton, Section, TitleBox } from "@repo/ui";
+
+// Hooks
+import useWindowSize from "@repo/util/hooks/useWindowSize";
+import useContentHeight from "@repo/util/hooks/useContentHeight";
 
 // Images
 import CalendarBackground from "./CalendarBackground";
@@ -101,6 +105,15 @@ const events: CalendarEventProps[] = [
   },
 ];
 
+// Determine number of columns based on window width
+const getGridColumns = (width: number) => {
+  if (width < 600) return 1; // Mobile
+  if (width < 900) return 2;
+  if (width < 2100) return 3; // Standard desktops
+  if (width < 2700) return 4;
+  return 5; // Large desktops
+};
+
 // Calendar Event Component
 type CalendarEventProps = {
   month: string;
@@ -157,8 +170,12 @@ export function CalendarEvents({
   calendarEvents,
   page,
 }: CalendarEventsProps): React.ReactNode {
-  // TODO: Make eventsPerPage dynamic
-  const eventsPerPage = 6;
+  const windowSize = useWindowSize();
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  const columns = getGridColumns(windowSize.width || 0);
+  const eventsPerPage = columns * 2;
+
   const startIndex = (page - 1) * eventsPerPage;
   const displayedEvents = calendarEvents.slice(
     startIndex,
@@ -166,7 +183,11 @@ export function CalendarEvents({
   );
 
   return (
-    <div className="grid grid-cols-3 gap-10 sm:grid-cols-1 max-w-screen-lg mx-auto px-8">
+    <div
+      ref={gridRef}
+      className="grid gap-10"
+      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+    >
       {displayedEvents.map((event, index) => (
         <CalendarEvent
           key={index}
@@ -181,7 +202,6 @@ export function CalendarEvents({
 }
 
 // Pagination Dots Component
-// TODO: Move to own file?
 type PaginationDotsProps = {
   currentPage: number;
   totalPages: number;
@@ -209,10 +229,13 @@ const PaginationDots: React.FC<PaginationDotsProps> = ({
 };
 
 // Calendar Section Component
-export function CalendarSection(): React.ReactNode {
+export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
   const [page, setPage] = useState(1); // 1 index pagination
 
-  const maxPages = Math.ceil(events.length / 6);
+  const windowSize = useWindowSize();
+  const columns = getGridColumns(windowSize.width || 0);
+  const eventsPerPage = columns * 2;
+  const maxPages = Math.ceil(events.length / eventsPerPage);
 
   function onClickLeftArrow() {
     setPage((prevPage) => {
@@ -229,7 +252,7 @@ export function CalendarSection(): React.ReactNode {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center" ref={ref}>
       <h1 className="text-6xl font-bold text-center text-[#B2A0C2] p-8 mt-6 mb-3 font-Wilden-Regular">
         EVENTS CALENDAR
       </h1>
@@ -251,7 +274,9 @@ export function CalendarSection(): React.ReactNode {
       </div>
     </div>
   );
-}
+});
+
+CalendarSection.displayName = "CalendarSection";
 
 const foreground = [
   {
@@ -272,13 +297,19 @@ const foreground = [
 ];
 
 export default function Calendar(): React.ReactNode {
+  const ref = useRef<HTMLDivElement>(null);
+  const { height: windowHeight } = useWindowSize();
+  const [contentHeight] = useContentHeight(ref);
+
+  const height = windowHeight ? (contentHeight / windowHeight) * 100 + 8 : 85;
+
   return (
     <Section
       name={"calendar"}
       foreground={foreground}
       background={<CalendarBackground />}
-      content={<CalendarSection />}
-      height={85}
+      content={<CalendarSection ref={ref} />}
+      height={height}
     />
   );
 }
