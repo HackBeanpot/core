@@ -1,72 +1,82 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { Section } from "@repo/ui";
 import Image from "next/image";
+import useContentHeight from "@repo/util/hooks/useContentHeight";
+import useWindowSize from "@repo/util/hooks/useWindowSize";
 const background = <div className="w-full h-full bg-[#0F786E]" />;
 
-const content = (
-  <div>
-    <div className="mt-[5.2%] ml-[9%]">
-      <p className="text-[clamp(2rem,7vw,7rem)] text-sandyBeach font-bold font-Wilden">
-        RESOURCES
-      </p>
-    </div>
-
-    <div className="tablet:text-2xl font-semibold flex flex-wrap justify-center gap-16">
-      <TicketCard>
-        <p className="text-[clamp(1.5rem,1vw,1rem)]">
-          {"Beginner Resource Guide"}
-        </p>
-      </TicketCard>
-
-      <TicketCard>
-        <p className="text-[clamp(1.5rem,1vw,1rem)]">
-          {"Hacker Welcome Guide"}
-        </p>
-      </TicketCard>
-
-      <TicketCard>
-        <p className="text-[clamp(1.5rem,1vw,1rem)]">{"Project Demo Guide"}</p>
-      </TicketCard>
-
-      <TicketCard>
-        <p className="text-[clamp(1.5rem,1vw,1rem)]">
-          {"Judging Process Guide"}
-        </p>
-      </TicketCard>
-    </div>
-
-    <div className="relative">
-      <Image
-        alt="Buildings"
-        src="/resources_buildings.svg"
-        height={100}
-        width={600}
-        className="absolute top-44 left-0 w-full h-auto"
-      />
-    </div>
-  </div>
-);
-
 export default function Resources(): React.ReactNode {
+  const ref = useRef<HTMLDivElement>(null);
+  const { height: windowHeight } = useWindowSize();
+  const [contentHeight] = useContentHeight(ref);
+
+  const height = windowHeight ? (contentHeight / windowHeight) * 100 + 46 : 85;
+  const content = (
+    <div ref={ref}>
+      <div className="mt-[5.2%] ml-[9%]">
+        <p className="text-[clamp(2rem,7vw,7rem)] text-sandyBeach font-bold font-Wilden">
+          RESOURCES
+        </p>
+      </div>
+
+      <div className="tablet:text-2xl font-semibold flex flex-wrap justify-center gap-16">
+        <TicketCard onClick={() => {}}>
+          <p className="text-[clamp(1.5rem,1vw,1rem)]">
+            {"Beginner Resource Guide"}
+          </p>
+        </TicketCard>
+
+        <TicketCard>
+          <p className="text-[clamp(1.5rem,1vw,1rem)]">
+            {"Hacker Welcome Guide"}
+          </p>
+        </TicketCard>
+
+        <TicketCard>
+          <p className="text-[clamp(1.5rem,1vw,1rem)]">
+            {"Project Demo Guide"}
+          </p>
+        </TicketCard>
+
+        <TicketCard>
+          <p className="text-[clamp(1.5rem,1vw,1rem)]">
+            {"Judging Process Guide"}
+          </p>
+        </TicketCard>
+      </div>
+      <div className="relative">
+        <Image
+          alt="Buildings"
+          src="/resources_buildings.svg"
+          height={100}
+          width={600}
+          className="absolute top-44 left-0 w-full h-auto"
+        />
+      </div>
+    </div>
+  );
+
   return (
     <Section
       name={"resources"}
       background={background}
       content={content}
-      height={150.5}
+      height={height}
     />
   );
 }
 
 export function TicketCard({
   children,
+  onClick,
 }: {
   children: React.ReactNode;
+  onClick?: () => void;
 }): React.ReactNode {
   return (
-    <div className="relative">
+    <div onClick={onClick} className="relative cursor-pointer">
       <Image
         alt="TicketCard"
         src="/resources_card.svg"
