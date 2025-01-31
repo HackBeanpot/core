@@ -6,6 +6,7 @@ const colors = {
   green: "#84AF67",
   "light-yellow": "#FFD198",
   black: "#000000",
+  cream: "#F3E7D7",
   text: {
     light: "#FFFFFF",
     DEFAULT: "#474747",
@@ -20,6 +21,7 @@ const colors = {
   darkerPurple: "#423350",
   darkBeige: "#C6B6A9",
   darkGreen: "#4C7764",
+  lightBrown: "#A9967D",
 };
 
 export default colors;
