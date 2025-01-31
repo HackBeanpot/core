@@ -29,7 +29,7 @@ export default function Section({
   const sectionHeight = `${height}vh`;
 
   return (
-    <div id={name} style={{ height: sectionHeight, width: "100vw" }}>
+    <div id={name} style={{ height: sectionHeight }} className="w-screen">
       <div
         style={{ height: sectionHeight }}
         className={`absolute z-0 w-screen`}
@@ -49,7 +49,7 @@ export default function Section({
         {foregroundItems?.map(({ item, coordinate }) => (
           <div
             key={`${coordinate.x}-${coordinate.y}-${item.toString()}`}
-            style={{ left: `${coordinate.x}vw`, top: `${coordinate.y}vh` }}
+            style={{ left: `${coordinate.x}%`, top: `${coordinate.y}%` }}
             className={`absolute z-21`}
           >
             {item}
