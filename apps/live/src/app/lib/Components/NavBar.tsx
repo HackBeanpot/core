@@ -23,8 +23,8 @@ const NavBar = () => {
           <Link href={"#mentors"} className="text-xl flex items-center px-5">
             Mentors
           </Link>
-          <Link href={"#resourcse"} className="text-xl flex items-center px-5">
-            Resourcse
+          <Link href={"#resources"} className="text-xl flex items-center px-5">
+            Resources
           </Link>
           <Link href={"#team"} className="text-xl flex items-center px-5">
             Team
