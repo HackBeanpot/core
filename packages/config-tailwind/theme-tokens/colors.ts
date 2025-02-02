@@ -2,8 +2,10 @@ const colors = {
   transparent: "transparent",
   white: "#FBFBFB",
   orange: "#F5AE55",
-  green: "#84AF67",
+  offWhite: "#FFF8EF",
+  green: "#84AF66",
   "light-yellow": "#FFD198",
+  forestGreen: "#628948",
   black: "#000000",
   text: {
     light: "#FFFFFF",
@@ -18,6 +20,7 @@ const colors = {
   darkPurple: "#625074",
   darkBeige: "#C6B6A9",
   darkGreen: "#4C7764",
+  brown: "#744228",
 };
 
 export default colors;
