@@ -15,6 +15,8 @@ const colors = {
   beige: "#F3E7D7",
   granolaLite: "#F2E6D7",
   sandyBeach: "#FFC780",
+  seaFoam: "#0F786E",
+  darkSeaFoam: "#083D3A",
   vineGreenLite: "#02877F",
   leafGreen: "#6B9D8F",
   darkPurple: "#625074",

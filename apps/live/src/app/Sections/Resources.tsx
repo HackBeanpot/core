@@ -5,7 +5,7 @@ import { Section } from "@repo/ui";
 import Image from "next/image";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
-const background = <div className="w-full h-full bg-[#0F786E]" />;
+const background = <div className="w-full h-full bg-seaFoam" />;
 
 export default function Resources(): React.ReactNode {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,27 +23,16 @@ export default function Resources(): React.ReactNode {
 
       <div className="tablet:text-2xl font-semibold flex flex-wrap justify-center gap-16">
         <TicketCard onClick={() => {}}>
-          <p className="text-[clamp(1.5rem,1vw,1rem)]">
-            {"Beginner Resource Guide"}
-          </p>
+          <p>{"Beginner Resource Guide"}</p>
         </TicketCard>
-
         <TicketCard>
-          <p className="text-[clamp(1.5rem,1vw,1rem)]">
-            {"Hacker Welcome Guide"}
-          </p>
+          <p>{"Hacker Welcome Guide"}</p>
         </TicketCard>
-
         <TicketCard>
-          <p className="text-[clamp(1.5rem,1vw,1rem)]">
-            {"Project Demo Guide"}
-          </p>
+          <p>{"Project Demo Guide"}</p>
         </TicketCard>
-
         <TicketCard>
-          <p className="text-[clamp(1.5rem,1vw,1rem)]">
-            {"Judging Process Guide"}
-          </p>
+          <p>{"Judging Process Guide"}</p>
         </TicketCard>
       </div>
       <div className="relative">
@@ -94,7 +83,7 @@ export function TicketCard({
         />
       </div>
 
-      <div className="absolute right-[49%] top-[70%] items-center justify-center -translate-y-1/2 w-full max-w-[5vw] text-[#083D3A] flex flex-col">
+      <div className="absolute right-[49%] top-[70%] items-center justify-center -translate-y-1/2 w-full max-w-[5vw] text-darkSeaFoam flex flex-col text-[clamp(1.5rem,1vw,1rem)]">
         {children}
       </div>
     </div>
