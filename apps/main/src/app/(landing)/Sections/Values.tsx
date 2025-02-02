@@ -1,9 +1,7 @@
 "use client";
 
 import React from "react";
-import { Section } from "@repo/ui";
-import { ExplorationIcon, GrowthIcon } from "../../lib/Assets/SVG";
-import CommunityIcon from "../../lib/Assets/SVG/Icons/CommunityIcon";
+import { CommunityIcon, ExplorationIcon, GrowthIcon, Section } from "@repo/ui";
 import RockVariant1 from "../../lib/Assets/SVG/Rocks/RockVariant1";
 import RockVariant2 from "../../lib/Assets/SVG/Rocks/RockVariant2";
 import RockVariant3 from "../../lib/Assets/SVG/Rocks/RockVariant3";
