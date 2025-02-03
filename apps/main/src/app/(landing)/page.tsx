@@ -2,6 +2,7 @@ import { Section } from "@repo/ui";
 import { Stats, Values, FAQSection, Landing, Keynote } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
+import About from "./Sections/About";
 
 export default function Page(): JSX.Element {
   return (
@@ -9,7 +10,7 @@ export default function Page(): JSX.Element {
       <NavBar />
       <Landing />
       <Stats />
-      <Section name="about" background={<></>} content={<></>} height={70} />
+      <About />
       <Values />
       <Keynote />
       <Section
