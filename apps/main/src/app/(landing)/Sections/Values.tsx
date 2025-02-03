@@ -18,7 +18,7 @@ const background = (
 
 const ValuesIntroContent = (
   <div className="mx-auto font-Wilden">
-    <p className="text-4xl tablet:text-6xl text-[#F3E7D7] sm:text-[#EC765A] whitespace-pre-line">
+    <p className="text-4xl tablet:text-8xl text-[#F3E7D7] sm:text-[#EC765A] whitespace-pre-line">
       {"WHAT \n HACKBEANPOT \n IS ALL ABOUT"}
     </p>
   </div>
@@ -87,26 +87,28 @@ const content = (
   </div>
 );
 
+const rocks = (
+  <div className="flex">
+    <div className="mt-[-2.5rem]">
+      <RockVariant1 />
+    </div>
+    <div className="ml-8">
+      <RockVariant4 />
+    </div>
+    <div className="ml-[-9rem] mt-[-7rem]">
+      <RockVariant2 />
+    </div>
+    <div className="ml-5 mt-[-4rem]">
+      <RockVariant3 />
+    </div>
+  </div>
+);
+
 const foreground = [
   {
-    // RockVariant1
-    item: <RockVariant1 />,
-    coordinate: { x: 0, y: 80 },
-  },
-  {
-    // RockVariant2
-    item: <RockVariant2 />,
-    coordinate: { x: 5, y: 68.5 },
-  },
-  {
-    // RockVariant3
-    item: <RockVariant3 />,
-    coordinate: { x: 13, y: 75.5 },
-  },
-  {
-    // RockVariant4
-    item: <RockVariant4 />,
-    coordinate: { x: 7, y: 85 },
+    // Rocks
+    item: rocks,
+    coordinate: { x: 0, y: 100 },
   },
 ];
 
