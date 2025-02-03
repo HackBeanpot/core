@@ -29,7 +29,7 @@ export default function Road() {
         />
       </g>
       <defs>
-        <filter
+        {/* <filter
           id="filter0_i_60_1511"
           x="-382.573"
           y="-999.026"
@@ -62,7 +62,7 @@ export default function Road() {
             in2="shape"
             result="effect1_innerShadow_60_1511"
           />
-        </filter>
+        </filter> */}
       </defs>
     </svg>
   );
