@@ -93,22 +93,22 @@ const foreground = [
   {
     // RockVariant1
     item: <RockVariant1 />,
-    coordinate: { x: 0, y: 80 },
+    coordinate: { x: 0, y: 95 },
   },
   {
     // RockVariant2
     item: <RockVariant2 />,
-    coordinate: { x: 5, y: 68.5 },
+    coordinate: { x: 5, y: 83.5 },
   },
   {
     // RockVariant3
     item: <RockVariant3 />,
-    coordinate: { x: 13, y: 75.5 },
+    coordinate: { x: 13, y: 90.5 },
   },
   {
     // RockVariant4
     item: <RockVariant4 />,
-    coordinate: { x: 7, y: 85 },
+    coordinate: { x: 7, y: 100 },
   },
 ];
 
