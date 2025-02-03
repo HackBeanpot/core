@@ -5,7 +5,13 @@ import { Section } from "@repo/ui";
 import Image from "next/image";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
-const background = <div className="w-full h-full bg-seaFoam" />;
+import ResourcesBackground from "../lib/Assets/SVG/ResourcesBackground";
+
+const background = (
+  <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+    <ResourcesBackground />
+  </div>
+);
 
 export default function Resources(): React.ReactNode {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,15 +40,6 @@ export default function Resources(): React.ReactNode {
         <TicketCard>
           <p>{"Judging Process Guide"}</p>
         </TicketCard>
-      </div>
-      <div className="relative">
-        <Image
-          alt="Buildings"
-          src="/resources_buildings.svg"
-          height={100}
-          width={600}
-          className="absolute top-44 left-0 w-full h-auto"
-        />
       </div>
     </div>
   );
