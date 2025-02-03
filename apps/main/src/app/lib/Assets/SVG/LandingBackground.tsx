@@ -2,7 +2,12 @@ import React from "react";
 
 const LandingBackground = () => {
   return (
-    <svg viewBox="0 0 1512 559" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      viewBox="0 0 1512 559"
+      fill="none"
+      preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <rect
         x="26.2505"
         y="60.9988"

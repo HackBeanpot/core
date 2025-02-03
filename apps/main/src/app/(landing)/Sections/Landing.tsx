@@ -9,7 +9,7 @@ import Bus from "../../lib/Assets/SVG/RoadAssets/Bus";
 
 export default function Landing(): JSX.Element {
   const background = (
-    <div className="w-full h-full bg-cover bg-[#F9EAD1] overflow-hidden">
+    <div className="w-full h-full bg-[#F9EAD1] overflow-hidden">
       <LandingBackground />
     </div>
   );
@@ -49,33 +49,24 @@ export default function Landing(): JSX.Element {
     </div>
   );
 
+  const roadSetup = (
+    <div className="w-full h-full">
+      <div className="relative w-[100vw] mb-[-9px]">
+        <Guardrail />
+      </div>
+      <div className="relative w-[100vw]">
+        <Road />
+      </div>
+      <div className="absolute w-[40vw] left-1/2 top-[12%] transform -translate-x-1/2 -translate-y-1/2">
+        <Bus />
+      </div>
+    </div>
+  );
+
   const foreground = [
     {
-      // GuardRail
-      item: (
-        <div className="w-[100vw]">
-          <Guardrail />
-        </div>
-      ),
-      coordinate: { x: 0, y: 62 },
-    },
-    {
-      // Road
-      item: (
-        <div className="w-[100vw]">
-          <Road />
-        </div>
-      ),
-      coordinate: { x: 0, y: 80 },
-    },
-    {
-      // Bus
-      item: (
-        <div className="w-[35vw]">
-          <Bus />
-        </div>
-      ),
-      coordinate: { x: 32, y: 46 },
+      item: roadSetup,
+      coordinate: { x: 0, y: 60 },
     },
   ];
 
