@@ -62,7 +62,7 @@ const Footer = () => {
       name="footer"
       background={FooterBackground}
       content={FooterContent}
-      height={40}
+      height={60}
     />
   );
 };
