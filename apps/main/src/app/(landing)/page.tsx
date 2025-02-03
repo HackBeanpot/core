@@ -1,5 +1,5 @@
 import { Section } from "@repo/ui";
-import { Stats, Values, FAQSection, Landing, Keynote } from "./Sections";
+import { Stats, Values, FAQSection, Landing, Keynote, Calendar } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
 
@@ -9,6 +9,7 @@ export default function Page(): JSX.Element {
       <NavBar />
       <Landing />
       <Stats />
+      <Calendar />
       <FAQSection />
       <Section
         name="about"

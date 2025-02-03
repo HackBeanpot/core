@@ -46,7 +46,6 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
         <Image
           alt="Time Remaining Sign"
           src="/time_remaining.png"
-          layout="responsive"
           width={500}
           height={250}
         />
