@@ -1,5 +1,5 @@
 import { Section } from "@repo/ui";
-import { Stats, Values, FAQSection, Landing, Keynote } from "./Sections";
+import { Stats, Values, FAQSection, Landing, Keynote, Calendar } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
 import About from "./Sections/About";
@@ -13,12 +13,7 @@ export default function Page(): JSX.Element {
       <About />
       <Values />
       <Keynote />
-      <Section
-        name="events calendar"
-        background={<></>}
-        content={<></>}
-        height={70}
-      />
+      <Calendar />
       <Section
         name="testimonals"
         background={<></>}

@@ -38,7 +38,7 @@ const EventScheduleContent = async () => {
 const EventSchedule = () => {
   return (
     <Section
-      name="Event Schedule"
+      name="schedule"
       background={<EventScheduleBackground />}
       content={<EventScheduleContent />}
       height={180}

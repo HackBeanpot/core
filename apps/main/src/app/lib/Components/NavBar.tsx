@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { HomeIcon } from "../Assets/SVG";
 import LocalLink from "./LocalLink";
+import { HomeIcon } from "@repo/ui";
 
 const NavBar = () => {
   return (
