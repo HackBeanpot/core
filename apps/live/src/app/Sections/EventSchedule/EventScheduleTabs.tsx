@@ -85,7 +85,7 @@ const Tab = ({ date, onClick, active }: TabProps) => {
     <div
       key={date + "-tab"}
       onClick={onClick}
-      className={`pt-5 flex w-[3vw] h-full justify-center ${raised} rounded-l-2xl cursor-pointer text-white`}
+      className={`pt-5 flex w-[3vw] h-full justify-center ${raised} rounded-l-2xl cursor-pointer text-white hover:bg-grapePurple`}
     >
       {date.toLocaleDateString("en-us", { weekday: "short" })}
       <br />
@@ -96,31 +96,38 @@ const Tab = ({ date, onClick, active }: TabProps) => {
 };
 
 const EventScheduleTabs = () => {
-  const [data, setData] = useState<AirtableData>({ records: [] });
+  const [data, setData] = useState<AirtableData | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("/api/airtable");
-      const jsonData: AirtableData = await res.json();
-      setData(jsonData);
+  async function getScheduleData() {
+    setLoading(true);
+    const res = await fetch("/api/airtable");
+
+    const status = res.status;
+
+    if (status == 200) {
+      setData(await res.json());
     }
-    fetchData();
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    getScheduleData();
   }, []);
 
-  const { records } = data;
+  const eventsByDate =
+    data?.records.reduce((acc, record) => {
+      const eventDate = new Date(record.fields.start_time);
+      const uniqueEventDate = removeHoursFromDate(eventDate);
+      if (!acc[uniqueEventDate.toISOString()]) {
+        acc[uniqueEventDate.toISOString()] = [];
+      }
+      acc[uniqueEventDate.toISOString()].push(record);
+      return acc;
+    }, {} as EventByDate) || null;
 
-  const eventsByDate: EventByDate = records.reduce((acc, record) => {
-    const eventDate = new Date(record.fields.start_time);
-    const uniqueEventDate = removeHoursFromDate(eventDate);
-    if (!acc[uniqueEventDate.toISOString()]) {
-      acc[uniqueEventDate.toISOString()] = [];
-    }
-    acc[uniqueEventDate.toISOString()].push(record);
-    return acc;
-  }, {} as EventByDate);
-
-  const datesSorted = Object.keys(eventsByDate).sort((a, b) => {
+  const datesSorted = Object.keys(eventsByDate || {}).sort((a, b) => {
     const dateA = new Date(a);
     const dateB = new Date(b);
     return dateA.getTime() - dateB.getTime();
@@ -143,8 +150,13 @@ const EventScheduleTabs = () => {
         })}
       </div>
       <div className="flex flex-col flex-1 bg-grapePurple w-full p-6 rounded-r-2xl gap-5 max-h-full">
-        {!data.records.length && <div className="text-white">Loading...</div>}
-        {!!data.records.length && (
+        {loading && <div className="text-white">Loading...</div>}
+        {!loading && !data && (
+          <button className="text-white" onClick={getScheduleData}>
+            Reload
+          </button>
+        )}
+        {!!data && (
           <>
             <p className="px-6 text-4xl text-white">
               {new Date(datesSorted[selectedTab]).toLocaleDateString("en-US", {
@@ -155,63 +167,64 @@ const EventScheduleTabs = () => {
             </p>
             <div className="flex flex-col overflow-y-auto px-6 overflow-x-hidden">
               <div className="flex flex-col w-full gap-3">
-                {eventsByDate[datesSorted[selectedTab]]
-                  .sort((a, b) => {
-                    const dateA = new Date(a.fields.start_time);
-                    const dateB = new Date(b.fields.start_time);
-                    return dateA.getTime() - dateB.getTime();
-                  })
-                  .map((events) => {
-                    const { fields } = events;
-                    const {
-                      end_time,
-                      eventLocation,
-                      start_time,
-                      tags,
-                      difficulty,
-                      description,
-                      eventName,
-                    } = fields;
-                    const startTime = toTime(start_time, false);
-                    const endTime = toTime(end_time, true);
-                    const dropdownQuestion = (
-                      <div className="grid grid-cols-[2fr_5fr_3fr] gap-20 items-center w-full">
-                        <div>
-                          <p className="text-xl font-bold">{`${startTime} - ${endTime}`}</p>
-                          <div className="flex items-center gap-1">
-                            <LocationDot /> {eventLocation}
+                {eventsByDate &&
+                  eventsByDate[datesSorted[selectedTab]]
+                    .sort((a, b) => {
+                      const dateA = new Date(a.fields.start_time);
+                      const dateB = new Date(b.fields.start_time);
+                      return dateA.getTime() - dateB.getTime();
+                    })
+                    .map((events) => {
+                      const { fields } = events;
+                      const {
+                        end_time,
+                        eventLocation,
+                        start_time,
+                        tags,
+                        difficulty,
+                        description,
+                        eventName,
+                      } = fields;
+                      const startTime = toTime(start_time, false);
+                      const endTime = toTime(end_time, true);
+                      const dropdownQuestion = (
+                        <div className="grid grid-cols-[2fr_5fr_3fr] gap-20 items-center w-full">
+                          <div>
+                            <p className="text-xl font-bold">{`${startTime} - ${endTime}`}</p>
+                            <div className="flex items-center gap-1">
+                              <LocationDot /> {eventLocation}
+                            </div>
                           </div>
+                          <div>
+                            <div className="text-sm font-light text-tomato">
+                              {tags}
+                            </div>
+                            <div className="flex gap-5">
+                              <p className="text-2xl font-bold">{eventName}</p>
+                              {isHappeningNow(start_time, end_time) && (
+                                <HappeningNow />
+                              )}
+                              {isHappeningNow(start_time, end_time) && (
+                                <HappeningNow />
+                              )}
+                            </div>
+                          </div>
+                          {difficulty && (
+                            <div className="rounded-full bg-green py-1 px-4 ml-auto ">
+                              {difficulty}
+                            </div>
+                          )}
                         </div>
-                        <div>
-                          <div className="text-sm font-light text-tomato">
-                            {tags}
-                          </div>
-                          <div className="flex gap-5">
-                            <p className="text-2xl font-bold">{eventName}</p>
-                            {isHappeningNow(start_time, end_time) && (
-                              <HappeningNow />
-                            )}
-                            {isHappeningNow(start_time, end_time) && (
-                              <HappeningNow />
-                            )}
-                          </div>
-                        </div>
-                        {difficulty && (
-                          <div className="rounded-full bg-green py-1 px-4 ml-auto ">
-                            {difficulty}
-                          </div>
-                        )}
-                      </div>
-                    );
-                    return (
-                      <FAQDropdown
-                        key={JSON.stringify(fields)}
-                        dropdownQuestion={dropdownQuestion}
-                        dropdownAnswer={description}
-                        iconType="Chevron"
-                      />
-                    );
-                  })}
+                      );
+                      return (
+                        <FAQDropdown
+                          key={JSON.stringify(fields)}
+                          dropdownQuestion={dropdownQuestion}
+                          dropdownAnswer={description}
+                          iconType="Chevron"
+                        />
+                      );
+                    })}
               </div>
             </div>
           </>

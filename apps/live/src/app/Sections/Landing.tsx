@@ -17,7 +17,7 @@ export default function Landing(): JSX.Element {
 
   const content = (
     <div className="relative w-full h-full flex flex-col justify-between p-20 items-center">
-      <div className="text-center">
+      <div className="text-center z-50">
         <h3 className="text-[clamp(0.9rem,2vw,3rem)] text-center text-white font-GT-Walsheim-Regular">
           Buckle up! We&apos;re going on a...
         </h3>
@@ -26,9 +26,7 @@ export default function Landing(): JSX.Element {
         </p>
       </div>
       <div
-        className={`absolute right-[0] ${
-          isMobile ? "top-[25vh]" : "top-[15vh]"
-        }`}
+        className={`absolute right-[0] ${isMobile ? "top-[25vh]" : "top-[15vh]"} z-50`}
       >
         <TimeRemainingSign target={new Date("02/20/2025 9:00:00")} />
       </div>
@@ -74,7 +72,7 @@ export default function Landing(): JSX.Element {
 
   return (
     <Section
-      name={"Landing"}
+      name={"landing"}
       background={background}
       content={content}
       height={70}
