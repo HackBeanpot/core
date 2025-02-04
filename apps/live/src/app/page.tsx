@@ -13,7 +13,6 @@ export default function Page(): JSX.Element {
       <EventSchedule />
       <Resources />
       <Footer />
-
     </main>
   );
 }
