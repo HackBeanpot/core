@@ -63,9 +63,13 @@ const MentorsTable = () => {
           ))}
         </select>
 
-        <button className="rounded-[1vw] h-8 px-2 bg-[#647ACE] text-white w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]">Available</button>
+        <button className="rounded-[1vw] h-8 px-2 bg-[#647ACE] text-white w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]">
+          Available
+        </button>
 
-        <button className="rounded-[1vw] h-8 px-2 bg-[#647ACE] text-white w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]">Virtual</button>
+        <button className="rounded-[1vw] h-8 px-2 bg-[#647ACE] text-white w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]">
+          Virtual
+        </button>
       </div>
 
       <div className="grid grid-cols-5 grid-rows-2 gap-4">
