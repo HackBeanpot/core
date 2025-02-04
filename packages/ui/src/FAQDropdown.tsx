@@ -73,7 +73,7 @@ export default function FAQDropdown({
       className={`w-full transition-transform duration-300 transform scale-100 hover:scale-[102%] relative cursor-pointer justify-center rounded-lg bg-[#FBFBFB] text-[#3F3F3F] grid grid-cols-[95%_5%] place-content-around py-5 px-5 font-GT-Walsheim-Regular ${isOpen ? "max-h-screen" : "max-h-80"}`}
     >
       <div>
-        <p className="text-lg">{dropdownQuestion}</p>
+        <div className="text-lg">{dropdownQuestion}</div>
       </div>
 
       <div

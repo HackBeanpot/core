@@ -1,4 +1,5 @@
 import "./globals.css";
+import "../../../../packages/util/src/fonts/fonts.css";
 import "@repo/ui/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -8,8 +9,8 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Live Site",
-  description: "The Live Website for the Hackbeanpot Nonprofit Organization",
+  title: "Hackbeanpot - Live Site",
+  description: "The live site for HackBeanpot 2025! Have fun hacking! 🚀",
 };
 
 export default function RootLayout({
