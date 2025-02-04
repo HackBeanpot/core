@@ -29,8 +29,8 @@ function SpeakerPhoto(): JSX.Element {
 function SpeakerDetails(): JSX.Element {
   return (
     <div className="mt-4 font-GT-Walsheim-Regular">
-      <p className="text-[33.6px] font-bold mb-2">Rati Thanawala</p>
-      <p className="text-[26.25px] text-lightBrown">
+      <p className="text-[1.75vw] font-bold mb-2">Rati Thanawala</p>
+      <p className="text-[1.75vw] text-lightBrown">
         2018 Advanced Leadership Fellow, Harvard University | Founder,
         Leadership Academy for Women of Color in Tech
       </p>
@@ -40,7 +40,7 @@ function SpeakerDetails(): JSX.Element {
 
 function SpeakerAbout(): JSX.Element {
   return (
-    <p className="text-[26.25px] font-GT-Walsheim-Regular mt-8">
+    <p className="text-[1.8vw] font-GT-Walsheim-Regular mt-8">
       <span className="font-GT-Walsheim-Bold">Dr. Thanawala </span>is a 2018
       Advanced Leadership Fellow at Harvard and holds a Ph.D. in Computer
       Science from Yale. With 39 years in the tech industry, including 17 as
@@ -64,7 +64,7 @@ export default function Keynote(): React.ReactNode {
       name={"keynote"}
       background={background}
       content={content}
-      height={100}
+      height={120}
     />
   );
 }

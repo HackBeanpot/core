@@ -2,32 +2,27 @@ import React from "react";
 import { Section } from "@repo/ui";
 import Image from "next/image";
 import ExternalLink from "../../lib/Components/ExternalLink";
+import LandingBackground from "../../lib/Assets/SVG/LandingBackground";
+import Guardrail from "../../lib/Assets/SVG/RoadAssets/Guardrail";
+import Road from "../../lib/Assets/SVG/RoadAssets/Road";
+import Bus from "../../lib/Assets/SVG/RoadAssets/Bus";
 
 export default function Landing(): JSX.Element {
   const background = (
-    <div className="w-full h-full overflow-hidden pointer-events-none relative">
-      <Image alt="ProjectsBackground" src="/landing_background.png" fill />
+    <div className="w-full h-full bg-[#F9EAD1] overflow-hidden">
+      <LandingBackground />
     </div>
   );
 
   const content = (
     <div className="relative w-full h-full flex flex-col justify-center items-center gap-4">
-      <div className="absolute top-[25%]">
+      <div className="absolute top-14">
         <Image
           alt="LicensePlate"
-          src="/lisence_plate.png"
+          src="/license_plate.png"
           width={400}
           height={200}
-          className="w-[35vw] h-auto max-w-[700px] min-w-[300px]"
-        />
-      </div>
-      <div className="absolute bottom-[15%]">
-        <Image
-          alt="Bus"
-          src="/bus.png"
-          width={400}
-          height={200}
-          className="w-[35vw] h-auto max-w-[700px] min-w-[300px]"
+          className="w-[30vw] h-auto max-w-[700px] min-w-[300px]"
         />
       </div>
       <div className="absolute top-5 right-5 flex gap-2">
@@ -54,11 +49,33 @@ export default function Landing(): JSX.Element {
     </div>
   );
 
+  const roadSetup = (
+    <div className="w-full h-full">
+      <div className="relative w-[100vw] mb-[-9px]">
+        <Guardrail />
+      </div>
+      <div className="relative w-[100vw]">
+        <Road />
+      </div>
+      <div className="absolute w-[40vw] left-1/2 top-[12%] transform -translate-x-1/2 -translate-y-1/2">
+        <Bus />
+      </div>
+    </div>
+  );
+
+  const foreground = [
+    {
+      item: roadSetup,
+      coordinate: { x: 0, y: 60 },
+    },
+  ];
+
   return (
     <Section
       name={"Landing"}
       background={background}
       content={content}
+      foreground={foreground}
       height={70}
     />
   );

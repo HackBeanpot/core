@@ -9,8 +9,9 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Main Site",
-  description: "The Main Website for the Hackbeanpot Nonprofit Organization",
+  title: "HackBeanpot",
+  description:
+    "All things HackBeanpot, a 5013c non-profit hackathon for undergraduates in Boston and surrounding areas.",
 };
 
 export default function RootLayout({
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="en" className="w-screen overflow-x-hidden bg-light-yellow">
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
