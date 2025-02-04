@@ -1,5 +1,12 @@
 import { Section } from "@repo/ui";
-import { Stats, Values, FAQSection, Landing, Keynote, Calendar } from "./Sections";
+import {
+  Stats,
+  Values,
+  FAQSection,
+  Landing,
+  Keynote,
+  Calendar,
+} from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
 
