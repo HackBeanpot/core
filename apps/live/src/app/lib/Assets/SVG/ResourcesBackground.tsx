@@ -3,8 +3,8 @@ import React from "react";
 export default function ResourcesBackground() {
   return (
     <svg
-      width="1512"
-      height="839"
+      className="w-full h-full"
+      preserveAspectRatio="none"
       viewBox="0 0 1512 839"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
