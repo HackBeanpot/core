@@ -6,7 +6,7 @@ import MentorSection from "./Sections/Mentors";
 import Resources from "./Sections/Resources";
 import NavBar from "./lib/Components/NavBar";
 import Footer from "./lib/Components/Footer";
-        
+
 export default function Page(): JSX.Element {
   return (
     <main className="flex flex-col items-center">
@@ -16,7 +16,6 @@ export default function Page(): JSX.Element {
       <MentorSection />
       <Resources />
       <Footer />
-
     </main>
   );
 }

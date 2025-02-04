@@ -19,9 +19,9 @@ const MentorSectionBackground = () => {
 const MentorSectionContent = async () => {
   return (
     <div className="py-24 px-48">
-      <h1 className="text-[clamp(3rem,7vw,7rem)] text-[#546ECD] font-bold font-Wilden shadow-md">
+      <p className="text-[clamp(3rem,7vw,7rem)] text-[#546ECD] font-bold font-Wilden drop-shadow-lg">
         Our Mentors
-      </h1>
+      </p>
       <p className="font-GT-Walsheim-Regular text-[#333333]">
         Need expert advice? Our mentors are here to help! Filter by shift,
         virtual status, expertise, or company to find the right support. Connect

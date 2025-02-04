@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 export type AirtableImage = {
   id: string;
@@ -41,52 +42,44 @@ const MentorsTable = () => {
   }, []);
 
   const { records } = data;
-  console.log(records[0]);
+  const onLoadingComplete = React.useRef(null);
+
+  console.log(JSON.stringify(data, null, 2));
   return (
     <div>
       {/* buttons */}
-      <div className="flex flex-row gap-4">
-        <select className="rounded-md border-2 border-[#eaeaea]">
-          <option value="" selected disabled hidden>
-            Company
+      <div className="flex flex-row gap-4 font-GT-Walsheim-Regular py-4">
+        <select className="rounded-[1vw] border-2 border-[#eaeaea] select-none h-8 px-2">
+          <option value="default" selected disabled hidden>
+            Expertise
           </option>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+          {records.map((record, index) => (
+            <option
+              key={index}
+              style={{ whiteSpace: "normal", overflowWrap: "break-word" }}
+            >
+              {record.fields.company}
+            </option>
+          ))}
         </select>
 
-        <div className="w-48">
-          <select className="rounded-md border-2 border-[#eaeaea] select-none w-full">
-            {" "}
-            act
-            <option value="All" selected>
-              All
-            </option>
-            {records.map((record, index) => (
-              <option
-                key={index}
-                style={{ whiteSpace: "normal", overflowWrap: "break-word" }}
-              >
-                {record.fields.company}
-              </option>
-            ))}
-          </select>
-        </div>
+        <button className="rounded-[1vw] h-8 px-2 bg-[#647ACE] text-white w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]">Available</button>
 
-        <button>Available</button>
-
-        <button>Virtual</button>
+        <button className="rounded-[1vw] h-8 px-2 bg-[#647ACE] text-white w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]">Virtual</button>
       </div>
 
-      <div className="grid grid-cols-5 grid-rows-2 gap-4 p-4">
+      <div className="grid grid-cols-5 grid-rows-2 gap-4">
         {records.map((record, index) => (
           <div
             key={index}
             className="aspect-square flex flex-col items-center justify-center p-2 rounded-lg "
           >
             <div className="w-full pb-[100%] relative overflow-hidden rounded-lg">
-              <img
+              <Image
+                ref={onLoadingComplete}
                 src={record.fields.image[0].url}
+                height={record.fields.image[0].height}
+                width={record.fields.image[0].width}
                 alt={record.id}
                 className="absolute inset-0 w-full h-full object-cover rounded-lg"
               />
