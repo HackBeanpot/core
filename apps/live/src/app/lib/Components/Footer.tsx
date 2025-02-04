@@ -1,8 +1,7 @@
 "use client";
 
 import { Section } from "@repo/ui";
-import ExternalLink from "./ExternalLink";
-import LocalLink from "./LocalLink";
+import Link from "next/link";
 import React, { ChangeEvent, useState } from "react";
 
 const Footer = () => {
@@ -18,19 +17,19 @@ const Footer = () => {
     <div className="grid w-full h-full grid-cols-[1fr_1fr_1.1fr] px-[25vw] text-xl text-black font-GT-Walsheim-Regular">
       <div className="w-full flex flex-col pt-[7vh] gap-4">
         <div>SOCIALS</div>
-        <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
+        <Link href="https://www.instagram.com/hackbeanpot/?hl=en">
           Instagram
-        </ExternalLink>
-        <ExternalLink href="https://www.linkedin.com/company/hackbeanpot-inc">
+        </Link>
+        <Link href="https://www.linkedin.com/company/hackbeanpot-inc">
           LinkedIn
-        </ExternalLink>
+        </Link>
       </div>
       <div className="w-full flex flex-col pt-[7vh] gap-4">
         <div>ABOUT</div>
-        <LocalLink href={"#about"}>About Hackbeanpot</LocalLink>
-        <LocalLink href={"#projects"}>Projects</LocalLink>
-        <LocalLink href={"#sponsors"}>Sponsors</LocalLink>
-        <LocalLink href={"#team"}>Team</LocalLink>
+        <Link href={"https://hackbeanpot.com/#about"}>About Hackbeanpot</Link>
+        <Link href={"https://hackbeanpot.com/#projects"}>Projects</Link>
+        <Link href={"https://hackbeanpot.com/#sponsors"}>Sponsors</Link>
+        <Link href={"https://hackbeanpot.com/#team"}>Team</Link>
       </div>
       <div className="flex flex-col w-full pt-[7vh] gap-4 items-start">
         <div className="text-3xl">Stay up-to-date with HBP!</div>
@@ -63,7 +62,7 @@ const Footer = () => {
       name="footer"
       background={FooterBackground}
       content={FooterContent}
-      height={45}
+      height={60}
     />
   );
 };

@@ -1,15 +1,10 @@
 import React from "react";
-import Image from "next/image";
 import { Section, FAQDropdown } from "@repo/ui";
+import FAQBackground from "../../lib/Assets/SVG/FAQBackground";
 
 const background = (
-  <div className="w-full h-full overflow-hidden">
-    <Image
-      alt="FAQsBackground"
-      src="/faq_background.png"
-      fill
-      className="object-cover"
-    />
+  <div className="w-full h-full bg-cover overflow-hidden">
+    <FAQBackground />
   </div>
 );
 
@@ -90,7 +85,7 @@ export default function FAQSection(): React.ReactNode {
       name={"faqs"}
       background={background}
       content={content}
-      height={250}
+      height={190}
     />
   );
 }
