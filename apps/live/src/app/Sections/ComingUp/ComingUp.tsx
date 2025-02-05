@@ -1,11 +1,19 @@
 "use client";
 
-// 
-import React, { useEffect, useState } from "react";
+// Imports
+import React, { useEffect, useState, useRef, forwardRef } from "react";
+
+// Components
 import ComingUpEvent from "./ComingUpEvent";
 import { Section } from "@repo/ui";
 import ComingUpBackground from "../../lib/Assets/SVG/ComingUpBackground";
+
+// Utils
 import removeHoursFromDate from "@util/functions/removeHoursfromDate";
+
+// Hooks
+import useWindowSize from "@repo/util/hooks/useWindowSize";
+import useContentHeight from "@repo/util/hooks/useContentHeight";
 
 export type AirtableRecord = {
   id: string;
@@ -68,7 +76,7 @@ const getEventStatus = (startTime: string, endTime: string): string => {
   return "COMING UP!";
 };
 
-const ComingUpContent = () => {
+const ComingUpContent = forwardRef<HTMLDivElement>((_, ref) => {
   const [data, setData] = useState<AirtableData | null>(null);
 
   async function getScheduleData() {
@@ -112,15 +120,13 @@ const ComingUpContent = () => {
     })
     .slice(0, 3);
 
-    console.log(upcomingEvents)
-
   return (
-    <div>
+    <div ref={ref}>
       <h1 className="flex justify-center text-[clamp(3rem,6vw,7rem)] text-[#045954] font-Wilden pt-[3rem]">
         COMING UP!
       </h1>
       <div
-        className={`gap-16 flex items-center justify-center flex-wrap w-full h-full content-center pr-[10rem] pl-[10rem] pt-[5rem]`}
+        className={`gap-16 flex items-center justify-center flex-wrap w-full h-full content-center pr-[10rem] pl-[10rem] pt-[5rem] pb-[5rem]`}
       >
         {/* if there are no upcoming events or if its null, show no events */}
         {upcomingEvents.length == 0 || upcomingEvents == undefined ? (
@@ -149,15 +155,21 @@ const ComingUpContent = () => {
       </div>
     </div>
   );
-};
+});
 
 const ComingUp = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { height: windowHeight } = useWindowSize();
+  const [contentHeight] = useContentHeight(ref);
+
+  const height = windowHeight ? (contentHeight / windowHeight) * 100 + 10 : 110;
+
   return (
     <Section
-      name={"calendar"}
+      name={"Coming Up"}
       background={<ComingUpBackground />}
-      content={<ComingUpContent />}
-      height={110}
+      content={<ComingUpContent ref={ref} />}
+      height={height}
     />
   );
 };
