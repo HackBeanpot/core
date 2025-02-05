@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Wilden";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("./Wilden.otf") format("opentype");
+  }
+  @font-face {
+    font-family: "GT-Walsheim-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./GT-Walsheim-Regular.woff") format("woff2");
+  }
+  @font-face {
+    font-family: "GT-Walsheim-Bold";
+    font-style: bold;
+    font-weight: 700;
+    font-display: swap;
+    src: url("./GT-Walsheim-Bold.woff") format("woff2");
+  }
+  @font-face {
+    font-family: "Wilden-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./Wilden-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Big-Shoulders-Display";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./BigShouldersDisplay-Regular.ttf")
+      format("truetype");
+  }
+}
