@@ -36,6 +36,9 @@ const config: Omit<Config, "content"> = {
       borderRadius: {
         arrow: "31.5px",
       },
+      borderWidth: {
+        6: "6px",
+      },
     },
     colors,
     screens,

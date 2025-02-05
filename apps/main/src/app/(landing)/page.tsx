@@ -1,37 +1,35 @@
 import { Section } from "@repo/ui";
-import { Stats, Values, FAQSection, Landing, Apply } from "./Sections";
+import {
+  Stats,
+  Values,
+  FAQSection,
+  Landing,
+  Keynote,
+  Calendar,
+  Apply
+} from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
+import About from "./Sections/About";
 
 export default function Page(): JSX.Element {
   return (
-    <main className="flex flex-col items-center min-h-screen">
+    <main className="flex flex-col items-center min-h-screen bg-light-yellow">
       <NavBar />
       <Landing />
       <Apply />
       <Stats />
-      <FAQSection />
-      <Section
-        name="about"
-        background={<>about</>}
-        content={<></>}
-        height={70}
-      />
+      <About />
       <Values />
-      <Section name="projects" background={<></>} content={<></>} height={70} />
+      <Keynote />
+      <Calendar />
       <Section
-        name="sponsors"
-        background={<>sponsors</>}
+        name="testimonals"
+        background={<></>}
         content={<></>}
         height={70}
       />
-      <Section name="team" background={<>team</>} content={<></>} height={70} />
-      <Section
-        name="sponsor-us"
-        background={<>sponsor us</>}
-        content={<></>}
-        height={70}
-      />
+      <FAQSection />
       <Footer />
     </main>
   );

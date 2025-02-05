@@ -1,15 +1,10 @@
 import React from "react";
-import Image from "next/image";
 import { Section, FAQDropdown } from "@repo/ui";
+import FAQBackground from "../../lib/Assets/SVG/FAQBackground";
 
 const background = (
-  <div className="w-full h-full overflow-hidden">
-    <Image
-      alt="FAQsBackground"
-      src="/faq_background.png"
-      fill
-      className="object-cover"
-    />
+  <div className="w-full h-full bg-cover overflow-hidden">
+    <FAQBackground />
   </div>
 );
 
@@ -23,20 +18,20 @@ const content = (
       <h3 className="text-2xl font-semibold text-white">Time and Location</h3>
     </div>
 
-    <div className="flex justify-center">
+    <div className="flex justify-center w-3/5 self-center">
       <FAQDropdown
         dropdownQuestion="When and where is HackBeanpot 2025?"
         dropdownAnswer="Location TBD!"
       />
     </div>
 
-    <div className="flex justify-center">
+    <div className="flex justify-center w-3/5 self-center">
       <FAQDropdown
         dropdownQuestion="Will HackBeanpot 2025 be in-person or online?"
         dropdownAnswer="In person!"
       />
     </div>
-    <div className="flex justify-center">
+    <div className="flex justify-center w-3/5 self-center">
       <FAQDropdown
         dropdownQuestion="How long is the event?"
         dropdownAnswer="long time."
@@ -49,7 +44,7 @@ const content = (
       </h3>
     </div>
 
-    <div className="flex justify-center">
+    <div className="flex justify-center w-3/5 self-center">
       <FAQDropdown
         dropdownQuestion="How do I apply to attend HackBeanpot?"
         dropdownAnswer="Fill out the application here!"
@@ -62,20 +57,20 @@ const content = (
       </h3>
     </div>
 
-    <div className="flex justify-center">
+    <div className="flex justify-center w-3/5 self-center">
       <FAQDropdown
         dropdownQuestion="What kind of projects can I work on?"
         dropdownAnswer="..."
       />
     </div>
 
-    <div className="flex justify-center">
+    <div className="flex justify-center w-3/5 self-center">
       <FAQDropdown
         dropdownQuestion="How do I find a team?"
         dropdownAnswer="..."
       />
     </div>
-    <div className="flex justify-center">
+    <div className="flex justify-center w-3/5 self-center">
       <FAQDropdown
         dropdownQuestion="What prizes are there this year?"
         dropdownAnswer="We will be releasing more information about our prizes soon!"
@@ -90,7 +85,7 @@ export default function FAQSection(): React.ReactNode {
       name={"faqs"}
       background={background}
       content={content}
-      height={250}
+      height={190}
     />
   );
 }
