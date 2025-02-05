@@ -11,23 +11,27 @@ const OurTeamContent = async () => {
     <div className="py-24 px-48 font-GT-Walsheim-Regular">
       <p className="text-[clamp(3rem,7vw,7rem)] text-seaFoam font-bold font-Wilden drop-shadow-lg">
         Our Team
-          </p>
-        <p className="px-2">Need a hand? Our team is here to support you throughout the hackathon! If you have questions, need guidance, or just want to brainstorm, don’t hesitate to reach out. We’re just a ping away and ready to help make your hackathon experience as smooth and successful as possible!</p>
-        <OurTeamGrid/>
+      </p>
+      <p className="px-2">
+        Need a hand? Our team is here to support you throughout the hackathon!
+        If you have questions, need guidance, or just want to brainstorm, don’t
+        hesitate to reach out. We’re just a ping away and ready to help make
+        your hackathon experience as smooth and successful as possible!
+      </p>
+      <OurTeamGrid />
     </div>
   );
 };
 
 const OurTeam = () => {
-    return (
-        <Section
-            name="ourteam"
-            background={<OurTeamBackground />}
-            content={<OurTeamContent />}
-            height={180}
-        />
-
-    )
-}
+  return (
+    <Section
+      name="ourteam"
+      background={<OurTeamBackground />}
+      content={<OurTeamContent />}
+      height={115}
+    />
+  );
+};
 
 export default OurTeam;
