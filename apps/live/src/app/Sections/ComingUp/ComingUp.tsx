@@ -28,43 +28,48 @@ type EventByDate = {
   [date: string]: AirtableRecord[];
 };
 
-// const toTime = (time: string, showAmPm: boolean): string => {
-//   const date = new Date(time);
+const toTime = (time: string, showAmPm: boolean): string => {
+  const date = new Date(time);
 
-//   if (showAmPm) {
-//     return date.toLocaleTimeString("en-us", {
-//       hour: "numeric",
-//       minute: "2-digit",
-//       hour12: true,
-//     });
-//   }
+  if (showAmPm) {
+    return date.toLocaleTimeString("en-us", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+  }
 
-//   let hours = date.getHours();
-//   const minutes = date.getMinutes().toString().padStart(2, "0");
+  let hours = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, "0");
 
-//   // Convert to 12-hour format
-//   hours = hours % 12;
-//   hours = hours ? hours : 12; // the hour '0' should be '12'
+  // Convert to 12-hour format
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
 
-//   // Combine hours and minutes
-//   const timeString = `${hours}:${minutes}`;
+  // Combine hours and minutes
+  const timeString = `${hours}:${minutes}`;
 
-//   return timeString;
-// };
+  return timeString;
+};
 
-// const isHappeningNow = (startTime: string, endTime: string): boolean => {
-//   const now = new Date();
-//   const startDate = new Date(startTime);
-//   const endDate = new Date(endTime);
-//   return startDate <= now && now <= endDate;
-// };
+const getEventStatus = (startTime: string, endTime: string): string => {
+  const now = new Date();
+  const startDate = new Date(startTime);
+  const endDate = new Date(endTime);
+  const timeDiff = startDate.getTime() - now.getTime(); //difference in milliseconds
+
+  if (startDate <= now && now <= endDate) {
+    return "NOW!";
+  } else if (timeDiff > 0 && timeDiff <= 60 * 60 * 1000) { //60 min × 60 sec × 1000 ms
+    return "IN 1 HOUR!";
+  }
+  return "COMING UP!";
+};
 
 const ComingUpContent = () => {
   const [data, setData] = useState<AirtableData | null>(null);
-  //const [loading, setLoading] = useState<boolean>(false);
 
   async function getScheduleData() {
-    //setLoading(true);
     const res = await fetch("/api/airtable");
 
     const status = res.status;
@@ -72,7 +77,6 @@ const ComingUpContent = () => {
     if (status == 200) {
       setData(await res.json());
     }
-    //setLoading(false);
   }
 
   useEffect(() => {
@@ -97,14 +101,15 @@ const ComingUpContent = () => {
   });
 
   const upcomingEvents = datesSorted
-    .flatMap((date) => eventsByDate?.[date] || []) // Flatten all events into a single array
+    .flatMap((date) => eventsByDate?.[date] || [])
     .filter((event) => {
       const now = new Date();
       const startTime = new Date(event.fields.start_time);
       const endTime = new Date(event.fields.end_time);
-      return startTime >= now || (startTime <= now && now <= endTime); // Include events that are happening now
+      return startTime >= now || (startTime <= now && now <= endTime);
     })
     .slice(0, 3);
+
 
   return (
     <div>
@@ -112,8 +117,9 @@ const ComingUpContent = () => {
         COMING UP!
       </h1>
       <div
-        className={`flex items-center ${upcomingEvents.length == 0 ? "justify-center" : "justify-between"} w-full h-full content-center pr-[10rem] pl-[10rem] pt-[5rem]`}
+        className={`gap-16 flex items-center ${upcomingEvents.length == 0 ? "justify-center" : "justify-between"} flex-wrap w-full h-full content-center pr-[10rem] pl-[10rem] pt-[5rem]`}
       >
+        {/* if there are no upcoming events or if its null, show no events */}
         {upcomingEvents.length == 0 || upcomingEvents == undefined ? (
           <div>
             <ComingUpEvent
@@ -127,15 +133,10 @@ const ComingUpContent = () => {
           upcomingEvents.map((event) => (
             <ComingUpEvent
               key={event.id}
-              title={"NOW"}
+              title={getEventStatus(event.fields.start_time, event.fields.end_time)}
               subtitle={event.fields.eventName}
-              deadline={event.fields.end_time}
+              deadline={`${toTime(event.fields.start_time, true)} to ${toTime(event.fields.end_time, true)}`}
               description={event.fields.description}
-              // key={idx}
-              // title={'NOW'}
-              // subtitle={'subtitle'}
-              // deadline={'deadline'}
-              // description={'description'}
             />
           ))
         )}
@@ -150,7 +151,7 @@ const ComingUp = () => {
       name={"calendar"}
       background={<ComingUpBackground />}
       content={<ComingUpContent />}
-      height={100}
+      height={110}
     />
   );
 };
