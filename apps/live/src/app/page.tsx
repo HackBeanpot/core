@@ -5,9 +5,8 @@ import HitTheRoad from "./Sections/HitTheRoad";
 import Resources from "./Sections/Resources";
 import NavBar from "./lib/Components/NavBar";
 import Footer from "./lib/Components/Footer";
-import OurTeam from "./Sections/OurTeam"
+import OurTeam from "./Sections/OurTeam";
 
-        
 export default function Page(): JSX.Element {
   return (
     <main className="flex flex-col items-center">
