@@ -2,7 +2,7 @@
 
 import isTimeRange from "@util/functions/isTimeRange";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 
 const date = new Date();
 
@@ -84,7 +84,7 @@ const MentorsTable = () => {
               key={index}
               style={{ whiteSpace: "normal", overflowWrap: "break-word" }}
             >
-              {record.fields.company}
+              {record.fields.Name}
             </option>
           ))}
         </select>
