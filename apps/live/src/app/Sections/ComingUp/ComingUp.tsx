@@ -60,7 +60,8 @@ const getEventStatus = (startTime: string, endTime: string): string => {
 
   if (startDate <= now && now <= endDate) {
     return "NOW!";
-  } else if (timeDiff > 0 && timeDiff <= 60 * 60 * 1000) { //60 min × 60 sec × 1000 ms
+  } else if (timeDiff > 0 && timeDiff <= 60 * 60 * 1000) {
+    //60 min × 60 sec × 1000 ms
     return "IN 1 HOUR!";
   }
   return "COMING UP!";
@@ -110,7 +111,6 @@ const ComingUpContent = () => {
     })
     .slice(0, 3);
 
-
   return (
     <div>
       <h1 className="flex justify-center text-[clamp(3rem,6vw,7rem)] text-[#045954] font-Wilden pt-[3rem]">
@@ -133,7 +133,10 @@ const ComingUpContent = () => {
           upcomingEvents.map((event) => (
             <ComingUpEvent
               key={event.id}
-              title={getEventStatus(event.fields.start_time, event.fields.end_time)}
+              title={getEventStatus(
+                event.fields.start_time,
+                event.fields.end_time,
+              )}
               subtitle={event.fields.eventName}
               deadline={`${toTime(event.fields.start_time, true)} to ${toTime(event.fields.end_time, true)}`}
               description={event.fields.description}
