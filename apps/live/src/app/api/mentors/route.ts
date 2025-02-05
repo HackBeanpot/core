@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 
 const BASE_URL = "https://api.airtable.com/v0";
-const TABLE_NAME = "mentors";
+const TABLE_NAME = "2025mentors";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
