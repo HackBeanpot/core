@@ -1,5 +1,6 @@
 "use client";
 
+// 
 import React, { useEffect, useState } from "react";
 import ComingUpEvent from "./ComingUpEvent";
 import { Section } from "@repo/ui";
@@ -111,13 +112,15 @@ const ComingUpContent = () => {
     })
     .slice(0, 3);
 
+    console.log(upcomingEvents)
+
   return (
     <div>
       <h1 className="flex justify-center text-[clamp(3rem,6vw,7rem)] text-[#045954] font-Wilden pt-[3rem]">
         COMING UP!
       </h1>
       <div
-        className={`gap-16 flex items-center ${upcomingEvents.length == 0 ? "justify-center" : "justify-between"} flex-wrap w-full h-full content-center pr-[10rem] pl-[10rem] pt-[5rem]`}
+        className={`gap-16 flex items-center justify-center flex-wrap w-full h-full content-center pr-[10rem] pl-[10rem] pt-[5rem]`}
       >
         {/* if there are no upcoming events or if its null, show no events */}
         {upcomingEvents.length == 0 || upcomingEvents == undefined ? (
