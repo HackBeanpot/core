@@ -1,6 +1,7 @@
 import React from "react";
 import Landing from "./Sections/Landing";
 import EventSchedule from "./Sections/EventSchedule";
+import OurTeamBackground from "./Sections/OurTeamBackground";
 import HitTheRoad from "./Sections/HitTheRoad";
 import Resources from "./Sections/Resources";
 import NavBar from "./lib/Components/NavBar";
@@ -17,6 +18,7 @@ export default function Page(): JSX.Element {
       <EventSchedule />
       <Resources />
       <OurTeam />
+      <OurTeamBackground />
       <Footer />
     </main>
   );
