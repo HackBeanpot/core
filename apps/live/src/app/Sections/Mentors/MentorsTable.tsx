@@ -2,6 +2,7 @@
 
 import isTimeRange from "@util/functions/isTimeRange";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 const date = new Date();
 
@@ -69,31 +70,28 @@ const MentorsTable = () => {
   }, [activeFilter]);
 
   const { records } = data;
-
+  console.log(records[0]);
   return (
     <div>
       {/* buttons */}
-      <div className="flex flex-row gap-4">
-        <select
-          className="rounded-md border-2 border-[#eaeaea]"
-          onChange={(e) => {
-            const value = e.target.value as FilterableSkill;
-            if (activeFilter.skills.has(value)) {
-              activeFilter.skills.delete(value);
-            } else {
-              activeFilter.skills.add(value);
-            }
-          }}
-        >
-          <option value={""} selected disabled hidden>
-            Company
+      <div className="flex flex-row gap-4 font-GT-Walsheim-Regular py-4">
+        <select className="rounded-[1vw] border-2 border-[#eaeaea] select-none h-8 px-2">
+          <option value="default" selected disabled hidden>
+            Expertise
           </option>
-          <option value="REACT"> React </option>
-          <option value="POSTGRES"> Postgres </option>
-          <option value="PYTHON"> Python </option>
+          {records.map((record, index) => (
+            <option
+              key={index}
+              style={{ whiteSpace: "normal", overflowWrap: "break-word" }}
+            >
+              {record.fields.company}
+            </option>
+          ))}
         </select>
 
-        <button>Available</button>
+        <button className="rounded-[1vw] h-8 px-2 bg-[#647ACE] text-white w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]">
+          Available
+        </button>
 
         <button
           className="rounded-[1vw] h-8 px-2 bg-[#647ACE] text-white w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]"
