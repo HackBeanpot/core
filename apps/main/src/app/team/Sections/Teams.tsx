@@ -65,7 +65,7 @@ const teams = {
     { name: "Lucas Dunker", src: "/headshots/tech/lucas.png" },
     { name: "Crystal Zhang", src: "/headshots/tech/crystal.png" },
     { name: "Aretha Chen", src: "/headshots/tech/aretha.png" },
-    { name: "Alina Gonzales", src: "/headshots/tech/alina.png" },
+    { name: "Alina Gonzalez", src: "/headshots/tech/alina.png" },
     { name: "Alexander Chen", src: "/headshots/tech/alexander.png" },
     { name: "Yumiko Chow", src: "/headshots/tech/yumiko.png" },
   ],
