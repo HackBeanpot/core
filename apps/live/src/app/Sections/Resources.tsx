@@ -51,7 +51,7 @@ export default function Resources(): React.ReactNode {
         <TicketCard
           onClick={() => {
             window.open(
-              "https://docs.google.com/document/d/1Dv8U1G4lTaPD1e_f5du5skj2cxPo2AiNqXFUiYvddJY/edit?usp=sharing",
+              "https://docs.google.com/document/d/1JLBsSnUCa7nx5HBpUAV52qTS4-IIsyqkaUPuSXqI8cA/edit?usp=sharing",
               "_blank",
             );
           }}
