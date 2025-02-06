@@ -8,7 +8,7 @@ import Resources from "./Sections/Resources";
 import NavBar from "./lib/Components/NavBar";
 import Footer from "./lib/Components/Footer";
 import ComingUp from "./Sections/ComingUp/ComingUp";
-import OurTeam from "./Sections/OurTeam"
+import OurTeam from "./Sections/OurTeam";
 
 export default function Page(): JSX.Element {
   return (
