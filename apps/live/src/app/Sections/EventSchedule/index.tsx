@@ -41,7 +41,7 @@ const EventSchedule = () => {
       name="schedule"
       background={<EventScheduleBackground />}
       content={<EventScheduleContent />}
-      height={180}
+      height={150}
     />
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import Landing from "./Sections/Landing";
 import EventSchedule from "./Sections/EventSchedule";
+import MentorSection from "./Sections/Mentors";
 import OurTeamBackground from "./Sections/OurTeamBackground";
 import HitTheRoad from "./Sections/HitTheRoad";
 import Resources from "./Sections/Resources";
@@ -16,6 +17,7 @@ export default function Page(): JSX.Element {
       <Landing />
       <HitTheRoad />
       <EventSchedule />
+      <MentorSection />
       <Resources />
       <OurTeam />
       <OurTeamBackground />

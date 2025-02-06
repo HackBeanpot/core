@@ -8,7 +8,7 @@ export default function OurTeamBackground(): JSX.Element {
   const background = <div className="w-full h-full bg-cream" />;
 
   const content = (
-    <div className="relative w-full h-full flex flex-col justify-between p-20 items-center">
+    <div className="w-full h-full flex flex-col justify-between p-20 items-center">
       <Hills />
     </div>
   );
