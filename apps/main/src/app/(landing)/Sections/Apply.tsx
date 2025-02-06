@@ -7,7 +7,6 @@ import useIsMobile from "@util/hooks/useIsMobile";
 import ApplyLeftLog from "../../lib/Assets/SVG/ApplyAssets/ApplyLeftLog";
 import ApplyRightLog from "../../lib/Assets/SVG/ApplyAssets/ApplyRightLog";
 
-
 const Apply = () => {
   const isMobile = useIsMobile();
 
@@ -42,13 +41,13 @@ const Apply = () => {
         </div>
       ) : (
         <div className="h-full w-full">
-           <div className="relative top-20">
+          <div className="relative top-20">
             <ApplyLeftLog />
-           </div>
+          </div>
 
-           <div className="absolute top-20 right-0">
+          <div className="absolute top-20 right-0">
             <ApplyRightLog />
-           </div>
+          </div>
           <div className="relative flex flex-col bottom-72 justify-center text-center items-center">
             <div className="relative m-auto w-3/6 flex justify-center text-center items-center text-2xl pb-7 font-GT-Walsheim-Regular">
               <p>
