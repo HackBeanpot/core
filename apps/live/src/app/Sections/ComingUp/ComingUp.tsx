@@ -111,15 +111,19 @@ const ComingUpContent = forwardRef<HTMLDivElement>((_, ref) => {
   });
 
   const upcomingEvents = datesSorted
-  .flatMap((date) => eventsByDate?.[date] || [])
-  .filter((event) => {
-    const now = new Date();
-    const startTime = new Date(event.fields.start_time);
-    const endTime = new Date(event.fields.end_time);
-    return startTime >= now || (startTime <= now && now <= endTime);
-  })
-  .sort((a, b) => new Date(a.fields.start_time).getTime() - new Date(b.fields.start_time).getTime()) // Sort by start time
-  .slice(0, 3);
+    .flatMap((date) => eventsByDate?.[date] || [])
+    .filter((event) => {
+      const now = new Date();
+      const startTime = new Date(event.fields.start_time);
+      const endTime = new Date(event.fields.end_time);
+      return startTime >= now || (startTime <= now && now <= endTime);
+    })
+    .sort(
+      (a, b) =>
+        new Date(a.fields.start_time).getTime() -
+        new Date(b.fields.start_time).getTime(),
+    ) // Sort by start time
+    .slice(0, 3);
 
   return (
     <div ref={ref}>
