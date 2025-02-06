@@ -6,6 +6,7 @@ import {
   Landing,
   Keynote,
   Calendar,
+  Apply,
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
@@ -16,6 +17,7 @@ export default function Page(): JSX.Element {
     <main className="flex flex-col items-center min-h-screen bg-light-yellow">
       <NavBar />
       <Landing />
+      <Apply />
       <Stats />
       <About />
       <Values />
