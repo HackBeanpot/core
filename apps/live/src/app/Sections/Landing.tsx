@@ -28,7 +28,7 @@ export default function Landing(): JSX.Element {
       <div
         className={`absolute right-[0] ${isMobile ? "top-[25vh]" : "top-[15vh]"} z-50`}
       >
-        <TimeRemainingSign target={new Date("02/20/2025 9:00:00")} />
+        <TimeRemainingSign target={new Date("02/9/2025 9:00:00")} />
       </div>
       <div className="relative w-full h-full">
         <div
