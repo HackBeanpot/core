@@ -4,5 +4,7 @@ export { default as StreetSign } from "./StreetSign";
 export { default as LinkedInLogo } from "./LinkedInLogo";
 export { default as ArrowButton } from "./ArrowButton";
 export { default as TitleBox } from "./TitleBox";
+export { default as Carousel } from "./Carousel";
+export { default as PassportCard } from "./PassportCard";
 export type { ForegroundItems, Coordinate } from "./Section";
 export * from "./Icons";

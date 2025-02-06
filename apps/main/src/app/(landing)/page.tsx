@@ -1,4 +1,3 @@
-import { Section } from "@repo/ui";
 import {
   Stats,
   Values,
@@ -6,6 +5,7 @@ import {
   Landing,
   Keynote,
   Calendar,
+  Testimonials
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
@@ -21,12 +21,7 @@ export default function Page(): JSX.Element {
       <Values />
       <Keynote />
       <Calendar />
-      <Section
-        name="testimonals"
-        background={<></>}
-        content={<></>}
-        height={70}
-      />
+      <Testimonials/>
       <FAQSection />
       <Footer />
     </main>
