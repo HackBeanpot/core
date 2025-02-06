@@ -64,7 +64,7 @@ const MentorSection = () => {
     );
   };
   
-  const MentorSectionContent = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
+  const MentorSectionContent = React.forwardRef<HTMLDivElement>((_, ref) => {
     return (
       <div className="py-24 px-48" ref={ref}>
         <p className="text-[clamp(3rem,7vw,7rem)] text-[#546ECD] font-bold font-Wilden drop-shadow-lg">
@@ -80,6 +80,8 @@ const MentorSection = () => {
       </div>
     );
   });
+
+  MentorSectionContent.displayName = "MentorSectionContent";
 
   return (
     <Section
