@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import removeHoursFromDate from "../../../../../../packages/util/src/functions/removeHoursfromDate";
 import { FAQDropdown } from "@repo/ui";
 import LocationDot from "../../lib/Assets/SVG/LocationDot";
+import removeHoursFromDate from "@util/functions/removeHoursfromDate";
 
 const HappeningNow = () => (
   <div className="text-green flex items-center gap-2">
