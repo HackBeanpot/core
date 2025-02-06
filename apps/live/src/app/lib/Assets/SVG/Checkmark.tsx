@@ -1,3 +1,4 @@
+import React from "react"
 export default function Checkmark() {
     return <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
         width="10px" height="10px" viewBox="0 0 45.701 45.7" xmlSpace="preserve"

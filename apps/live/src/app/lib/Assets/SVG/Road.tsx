@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Road() {
   return (
-    <svg viewBox="0 0 1512 979" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className="h-full w-full" viewBox="0 0 1512 979" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <mask
         id="mask0_60_1511"
         maskUnits="userSpaceOnUse"
@@ -29,7 +29,7 @@ export default function Road() {
         />
       </g>
       <defs>
-        {/* <filter
+        <filter
           id="filter0_i_60_1511"
           x="-382.573"
           y="-999.026"
@@ -62,7 +62,7 @@ export default function Road() {
             in2="shape"
             result="effect1_innerShadow_60_1511"
           />
-        </filter> */}
+        </filter>
       </defs>
     </svg>
   );

@@ -35,7 +35,7 @@ const MentorsTable = ({ data }: MentorTableProps) => {
     );
   }, [virtualFilter, availabilityFilter, skillsFilter]);
 
-  let { records } = data;
+  const { records } = data;
 
   const uniqueSkills = new Set<string>(records.map((record) => record.fields.Expertise).flat().map((skill) => skill.trim().toUpperCase()));
 
@@ -69,7 +69,7 @@ const MentorsTable = ({ data }: MentorTableProps) => {
                   {!skillsFilter.length && (<Checkmark />)}
                 </button>
                 {[...uniqueSkills].map((skill) => (
-                  <div>
+                  <div key={`${skill}-dropdown-option`}>
                     <button
                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center justify-between"
                       role="menuitem"

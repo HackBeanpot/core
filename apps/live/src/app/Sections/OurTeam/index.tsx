@@ -17,7 +17,7 @@ const OurTeam = () => {
     return <div className="bg-granolaLite h-full"></div>;
   };
   
-  const OurTeamContent = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
+  const OurTeamContent = React.forwardRef<HTMLDivElement>((_, ref) => {
     return (
       <div ref={ref} className="py-24 px-48 font-GT-Walsheim-Regular">
         <p className="text-[clamp(3rem,7vw,7rem)] text-seaFoam font-bold font-Wilden drop-shadow-lg">
@@ -33,6 +33,9 @@ const OurTeam = () => {
       </div>
     );
   });
+
+  OurTeamContent.displayName = "OurTeamContent";
+
 
   return (
     <Section
