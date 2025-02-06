@@ -27,10 +27,7 @@ export default function PassportCard({
 }: PassportCardProps): React.ReactNode {
   return (
     <div className="flex justify-center items-center w-full font-GT-Walsheim-Pro-Regular font-bold">
-      <div className="bg-[#DDC6A8] h-4/6 rounded-3xl w-2/5 drop-shadow-md absolute top-[18%]"></div>
-
-      <div className="bg-white h-4/6 rounded-3xl w-2/5 absolute top-[16%] drop-shadow-md grid grid-rows-[49.5%_1%_49.5%] space-x-2">
-        {/* top half of card*/}
+      <div className="bg-white h-4/6 rounded-3xl w-1/4 absolute top-[16%] shadow-[0_15px_0px_-5px_rgba(221,198,168,1)] grid grid-rows-[49.5%_1%_49.5%] space-x-2">
         <div className="flex flex-shrink items-center w-full ml-[5%]">
           <div className="grid grid-rows-[30%_70%]">
             <div className="flex items-center space-x-2 mb-[10%]">
@@ -39,38 +36,35 @@ export default function PassportCard({
                 src={"/passport_icon.svg"}
                 width={50}
                 height={100}
-                className=""
               />
               <h1 className="text-xl ">PASSPORT</h1>
             </div>
-
             <Image
               alt={firstName + lastName + id}
               src={image}
-              width={100}
-              height={175}
-              className=""
+              width={120}
+              height={195}
+              className="max-w-full h-auto object-contain"
             />
           </div>
-
-          {/* the passport info */}
-
-          <div className="flex flex-shrink mr-[5%] mt-[10%] w-3/5 grid grid-cols-2 ">
-            <p className="text-xs text-[#B1B1B2] mt-[5%]">First name</p>
-            <p className="text-xs text-[#B1B1B2] mt-[5%]">Passport No.</p>
-            <h2>{firstName.toUpperCase()}</h2>
-            <h2>{passportNumber}</h2> {/* change this to something else */}
-            <p className="text-xs text-[#B1B1B2] mt-[5%]">Last name</p>
-            <p className="text-xs text-[#B1B1B2] mt-[5%]">Major</p>
-            <h2>{lastName.toUpperCase()}</h2>
-            <h2>{major}</h2>
-            <p className="text-xs text-[#B1B1B2] mt-[-10%]">Year</p>
-            <p></p>
-            <h2>{year}</h2>
+          <div className="flex flex-shrink mr-[5%] mt-[10%] w-3/5 justify-between">
+            <div className="flex flex-col">
+              <p className="text-xs text-[#B1B1B2] mt-[5%]">First name</p>
+              <h2>{firstName.toUpperCase()}</h2>
+              <p className="text-xs text-[#B1B1B2] mt-[5%]">Last name</p>
+              <h2>{lastName.toUpperCase()}</h2>
+              <p className="text-xs text-[#B1B1B2] mt-[5%]">Year</p>
+              <h2>{year}</h2>
+            </div>
+            <div className="flex flex-col">
+              <p className="text-xs text-[#B1B1B2] mt-[5%]">Passport No.</p>
+              <h2>{passportNumber}</h2>{" "}
+              <p className="text-xs text-[#B1B1B2] mt-[5%]">Major</p>
+              <h2>{major}</h2>
+            </div>
           </div>
         </div>
 
-        {/* middle separator  */}
         <div>
           {!isSponsor && (
             <div className="absolute top-[50%] left-1/2 transform -translate-x-1/2 w-full h-0.5 bg-[#DDC6A8]"></div>

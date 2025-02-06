@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
-import { Section, Carousel, StreetSign } from "@repo/ui";
+import { Section, StreetSign, ArrowButton, Carousel } from "@repo/ui";
+import { PaginationDots } from "./Calendar/Calendar";
 
 const background = (
   <div>
@@ -13,7 +16,18 @@ const background = (
   </div>
 );
 
-const people = [
+type person = {
+  id: number;
+  passportNumber: string;
+  firstName: string;
+  lastName: string;
+  major: string;
+  year: string;
+  quote: string;
+  image: string;
+  isSponsor: boolean;
+};
+const people: person[] = [
   {
     id: 1,
     passportNumber: "AA000000",
@@ -21,7 +35,7 @@ const people = [
     lastName: "Doe",
     major: "Computer Science & Design",
     year: "3",
-    quote: "I AM SUPER COOL",
+    quote: "1",
     image: "/jane_doe.png",
     isSponsor: false,
   },
@@ -32,7 +46,7 @@ const people = [
     lastName: "Doe",
     major: "Computer Science & Business",
     year: "4",
-    quote: "I really like soup a lot... i think soup is great!",
+    quote: "2",
     image: "/jane_doe.png",
     isSponsor: false,
   },
@@ -43,24 +57,87 @@ const people = [
     lastName: "Doe",
     major: "Computer Science & Econ",
     year: "4",
-    quote: "I am an avid soup hater!",
+    quote: "3",
+    image: "/jane_doe.png",
+    isSponsor: false,
+  },
+  {
+    id: 4,
+    passportNumber: "AA000000",
+    firstName: "Jenny",
+    lastName: "Doe",
+    major: "Computer Science & Econ",
+    year: "4",
+    quote: "4",
+    image: "/jane_doe.png",
+    isSponsor: false,
+  },
+  {
+    id: 5,
+    passportNumber: "AA000000",
+    firstName: "Jenny",
+    lastName: "Doe",
+    major: "Computer Science & Econ",
+    year: "4",
+    quote: "5",
     image: "/jane_doe.png",
     isSponsor: false,
   },
 ];
-const content = (
-  <div className="mt-8">
-    <StreetSign streetName="Testimonials" suffix="ST" />
-    <Carousel items={people} />
-  </div>
-);
+
+const Testimonials: React.FC<{ people: person[] }> = ({ people }) => {
+  const [page, setPage] = useState(1);
+
+  function onClickLeftArrow() {
+    setPage((prevPage) => {
+      const newPage = prevPage > 1 ? prevPage - 1 : 1;
+      return newPage;
+    });
+  }
+
+  function onClickRightArrow() {
+    setPage((prevPage) => {
+      const newPage = prevPage < people.length ? prevPage + 1 : people.length;
+      return newPage;
+    });
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <div className="font-bold text-center text-[#B2A0C2] p-8 font-Wilden-Regular">
+        <StreetSign streetName="Testimonials" suffix="ST" />
+      </div>
+      <ArrowButton
+        direction="left"
+        arrowButtonColor="greenButton"
+        onClick={onClickLeftArrow}
+        className="absolute left-5 top-1/2 transform -translate-y-1/2 z-2"
+      />
+      <ArrowButton
+        direction="right"
+        arrowButtonColor="greenButton"
+        onClick={onClickRightArrow}
+        className="absolute right-10 top-1/2 transform -translate-y-1/2 z-2"
+      />
+      <Carousel items={people} page={page} />
+      <div className="absolute bottom-7 w-full">
+        <PaginationDots
+          currentPage={page}
+          totalPages={people.length}
+          color="vineGreenLite"
+        />
+      </div>
+    </div>
+  );
+};
+
 export default function TestimonialSection(): React.ReactNode {
   return (
     <Section
       name={"testimonials"}
       background={background}
-      content={content}
-      height={100}
+      content={<Testimonials people={people} />}
+      height={80}
     />
   );
 }

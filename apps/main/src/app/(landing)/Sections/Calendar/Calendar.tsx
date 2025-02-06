@@ -205,11 +205,14 @@ export function CalendarEvents({
 type PaginationDotsProps = {
   currentPage: number;
   totalPages: number;
+  color: string;
 };
 
-const PaginationDots: React.FC<PaginationDotsProps> = ({
+export const PaginationDots: React.FC<PaginationDotsProps> = ({
   currentPage,
   totalPages,
+  color
+
 }) => {
   return (
     <div className="flex justify-center items-center space-x-2 mt-4">
@@ -219,8 +222,8 @@ const PaginationDots: React.FC<PaginationDotsProps> = ({
           className={clsx(
             "w-4 h-4 rounded-full cursor-pointer",
             currentPage === index + 1
-              ? "bg-orange" // Highlight current page
-              : "bg-orange opacity-40",
+              ? `bg-${color}` // Highlight current page
+              : `bg-${color} opacity-40`,
           )}
         />
       ))}
@@ -270,7 +273,7 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
       />
       <CalendarEvents calendarEvents={events} page={page} />
       <div className="absolute bottom-7 w-full">
-        <PaginationDots currentPage={page} totalPages={maxPages} />
+        <PaginationDots currentPage={page} totalPages={maxPages} color="orange"/>
       </div>
     </div>
   );
