@@ -6,7 +6,6 @@ import Image from "next/image";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import ResourcesBackground from "../lib/Assets/SVG/ResourcesBackground";
-import ResourcesExternalLink from "../lib/Assets/SVG/ResourcesExternalLink";
 
 const background = (
   <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
@@ -29,16 +28,45 @@ export default function Resources(): React.ReactNode {
       </div>
 
       <div className="tablet:text-2xl font-semibold flex flex-wrap justify-center gap-16">
-        <TicketCard onClick={() => {}}>
+        <TicketCard
+          onClick={() => {
+            window.open(
+              "https://docs.google.com/document/d/15XfcqKupkjGC7WLHvigt_nzUeM7LHQ1-o916hmZkCwo/edit?usp=sharing",
+              "_blank",
+            );
+          }}
+        >
           <p>{"Beginner Resource Guide"}</p>
         </TicketCard>
-        <TicketCard>
+        {/* waiting on Audrey to publish the hacker guide onto drive, the current link is wrong */}
+        <TicketCard
+          onClick={() => {
+            window.open(
+              "https://docs.google.com/document/d/15XfcqKupkjGC7WLHvigt_nzUeM7LHQ1-o916hmZkCwo/edit?usp=sharing",
+              "_blank",
+            );
+          }}
+        >
           <p>{"Hacker Welcome Guide"}</p>
         </TicketCard>
-        <TicketCard>
+        <TicketCard
+          onClick={() => {
+            window.open(
+              "https://docs.google.com/document/d/1Dv8U1G4lTaPD1e_f5du5skj2cxPo2AiNqXFUiYvddJY/edit?usp=sharing",
+              "_blank",
+            );
+          }}
+        >
           <p>{"Project Demo Guide"}</p>
         </TicketCard>
-        <TicketCard>
+        <TicketCard
+          onClick={() => {
+            window.open(
+              "https://docs.google.com/document/d/1Zy-EQfEap4irB7vSPygL1uwpsAJ4djqjNRVxP_lluv4/edit?usp=sharing",
+              "_blank",
+            );
+          }}
+        >
           <p>{"Judging Process Guide"}</p>
         </TicketCard>
       </div>
@@ -72,7 +100,13 @@ export function TicketCard({
         className="w-[250px] h-auto"
       />
       <div className="absolute right-[10%] top-[10%]">
-        <ResourcesExternalLink />
+        <Image
+          alt="LinkArrow"
+          src="/resources_link_arrow.svg"
+          height={42}
+          width={42}
+          className="w-[42px] h-[42px]"
+        />
       </div>
 
       <div className="absolute right-[49%] top-[70%] items-center justify-center -translate-y-1/2 w-full max-w-[5vw] text-darkSeaFoam flex flex-col text-[clamp(1.5rem,1vw,1rem)]">
