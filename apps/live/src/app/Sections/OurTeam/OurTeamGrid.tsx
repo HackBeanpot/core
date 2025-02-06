@@ -75,7 +75,7 @@ const TeamTable = () => {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-3  py-5">
+      <div className="grid grid-cols-5 grid-rows-2 gap-2 md:grid-cols-2 md:grid-rows-5">
         {teams[currTeam].map((member, index) => (
           <a key={index} href={member.linkedin} className="transition-transform scale-100 hover:scale-105">
           <div
