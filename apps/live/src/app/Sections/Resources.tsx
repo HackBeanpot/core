@@ -6,6 +6,7 @@ import Image from "next/image";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import ResourcesBackground from "../lib/Assets/SVG/ResourcesBackground";
+import ResourcesExternalLink from "../lib/Assets/SVG/ResourcesExternalLink";
 
 const background = (
   <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
@@ -71,13 +72,7 @@ export function TicketCard({
         className="w-[250px] h-auto"
       />
       <div className="absolute right-[10%] top-[10%]">
-        <Image
-          alt="LinkArrow"
-          src="/resources_link_arrow.svg"
-          height={42}
-          width={42}
-          className="w-[42px] h-[42px]"
-        />
+        <ResourcesExternalLink />
       </div>
 
       <div className="absolute right-[49%] top-[70%] items-center justify-center -translate-y-1/2 w-full max-w-[5vw] text-darkSeaFoam flex flex-col text-[clamp(1.5rem,1vw,1rem)]">

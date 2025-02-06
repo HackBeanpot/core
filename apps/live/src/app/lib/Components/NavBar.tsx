@@ -41,12 +41,6 @@ const NavBar = () => {
                 Schedule
               </Link>
               <Link
-                href={"#challenges"}
-                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw]"
-              >
-                Challenges
-              </Link>
-              <Link
                 href={"#mentors"}
                 className="text-[clamp(1rem,1.3vw, 4rem)] flex items-center px-[1.2vw]"
               >
@@ -81,13 +75,6 @@ const NavBar = () => {
               onClick={() => setIsOpen(false)}
             >
               Schedule
-            </Link>
-            <Link
-              href={"#challenges"}
-              className="text-xl py-2 font-GT-Walsheim-Regular hover:bg-beige px-3 rounded-md cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            >
-              Challenges
             </Link>
             <Link
               href={"#mentors"}

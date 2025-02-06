@@ -2,22 +2,20 @@
 
 import React from "react";
 import { Section } from "@repo/ui";
-// import useIsMobile from "@repo/util/hooks/useIsMobile";
 import Road from "../lib/Assets/SVG/Road";
 
 export default function HitTheRoad(): JSX.Element {
-  //const isMobile = useIsMobile();
 
   const background = (
-    <div className="w-full h-full bg-[#F2E6D7]">
-      <div className="ml-[15%] h-[auto] w-[88vw]">
+    <div className="w-full h-full flex items-center bg-[#F2E6D7]">
+      <div className="ml-[15%] h-full w-[88vw] ">
         <Road />
       </div>
     </div>
   );
 
   const content = (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex items-center">
       <div className="py-24 px-32 font-GT-Walsheim-Bold">
         <div className="flex flex-col text-xl gap-5">
           <div className="flex items-center justify-between max-w-[55vw]">
