@@ -23,7 +23,7 @@ export default function HitTheRoad(): JSX.Element {
             </p>
           </div>
           <div className="flex items-center justify-between">
-            <p className=" text-[clamp(0.9vw,1.6vw,3vw)] max-w-[50vw] font-GT-Walsheim-Regular">
+            <p className=" text-[clamp(1rem,2rem,3rem)] max-w-[50vw] font-GT-Walsheim-Regular">
               At HackBeanpot 2025, we&apos;re hitting the road with a community
               of explorers driven by creativity, learning, and meaningful
               connections.
