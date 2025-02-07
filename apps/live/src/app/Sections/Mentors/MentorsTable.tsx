@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Checkmark from "../../lib/Assets/SVG/Checkmark";
 import clsx from "clsx";
 import { AirtableData } from ".";
+import Link from "next/link";
 
 const date = new Date();
 
@@ -174,9 +175,11 @@ const MentorsTable = ({ data }: MentorTableProps) => {
           })
 
           .map((record, index) => (
-            <div
+            <Link
               key={index}
-              className="aspect-square flex flex-col items-center justify-center p-2 rounded-lg "
+              className="aspect-square flex flex-col items-center justify-center p-2 rounded-lg hover:scale-105 transition-transform "
+              href={record.fields.LinkedIn}
+              target="_blank"
             >
               <div className="w-full pb-[100%] relative overflow-hidden rounded-lg">
                 <img
@@ -188,7 +191,7 @@ const MentorsTable = ({ data }: MentorTableProps) => {
               <a className="mt-2 text-sm font-medium truncate w-full">
                 {record.fields.Name}
               </a>
-            </div>
+            </Link>
           ))}
       </div>
     </div>

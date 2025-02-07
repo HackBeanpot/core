@@ -34,35 +34,35 @@ const defaultOrder: person[] = [
     passportNumber: "ZT183920",
     firstName: "Karyna",
     lastName: "Yen",
-    major: "Computer Science", 
+    major: "Computer Science",
     year: "Northeastern '25",
     quote:
       '"I had a ton of fun at HackBeanpot! We made a Chrome extension that censored inappropriate language on the internet. My favorite part was when one of my teammates got an animated duck to quack when clicking on the extension icon!"',
-    image: "/karyna.png", 
+    image: "/karyna.png",
     isSponsor: false,
   },
   {
     id: 1,
-    passportNumber: "MP274861", 
+    passportNumber: "MP274861",
     firstName: "Ji-min",
     lastName: "Kim",
-    major: "Computer Science", 
+    major: "Computer Science",
     year: "Northeastern '22",
     quote:
       '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly people, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
-    image: "/jimin.png", 
+    image: "/jimin.png",
     isSponsor: false,
   },
   {
     id: 2,
-    passportNumber: "JS428172", 
+    passportNumber: "JS428172",
     firstName: "Spencer",
     lastName: "Shao",
-    major: "Computer Science & Music Tech", 
+    major: "Computer Science & Music Tech",
     year: "Northeastern '24",
     quote:
       '"I loved the collaboration between me, my teammates, and the amazing mentors! I really felt like it was a very welcoming environment for me to prioritize learning and having fun over 3 days. Prior to this hackathon I had never touched any kind of React or front-end web development but I came out of it feeling accomplished, having achieved a working website!"',
-    image: "/spencer2.png", 
+    image: "/spencer2.png",
     isSponsor: false,
   },
   {
@@ -74,11 +74,10 @@ const defaultOrder: person[] = [
     year: "Northeastern '25",
     quote:
       '"I enjoyed working with my teammates and trying to debug our mistakes. Debugging is a lot more fun when you have people doing it with you."',
-    image: "/group.png", 
+    image: "/group.png",
     isSponsor: false,
   },
 ];
-
 
 const Testimonials: React.FC = () => {
   const [people, setPeople] = useState(defaultOrder);
@@ -141,7 +140,7 @@ const Testimonials: React.FC = () => {
         className="absolute right-10 top-[54%] transform -translate-y-1/2 z-2"
       />
       <div className="top-2">
-        <Carousel items={people.slice(0, 3)}/>
+        <Carousel items={people.slice(0, 3)} />
       </div>
 
       <div className="absolute bottom-7 w-full">
@@ -161,7 +160,7 @@ export default function TestimonialSection(): React.ReactNode {
     <Section
       name={"testimonials"}
       background={background}
-      content={<Testimonials/>}
+      content={<Testimonials />}
       height={100}
     />
   );

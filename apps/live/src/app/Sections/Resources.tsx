@@ -10,7 +10,7 @@ import ResourcesBackground from "../lib/Assets/SVG/ResourcesBackground";
 type TicketInfo = {
   ticketText: string;
   link: string;
-}
+};
 
 const tickets: TicketInfo[] = [
   {
@@ -28,8 +28,8 @@ const tickets: TicketInfo[] = [
   {
     ticketText: "Judging Process Guide",
     link: "https://docs.google.com/document/d/1Zy-EQfEap4irB7vSPygL1uwpsAJ4djqjNRVxP_lluv4/edit?usp=sharing",
-  }
-]
+  },
+];
 
 const background = (
   <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
@@ -54,6 +54,7 @@ export default function Resources(): React.ReactNode {
       <div className="tablet:text-2xl font-semibold flex flex-wrap justify-center gap-16">
         {tickets.map((ticket) => (
           <TicketCard
+            key={ticket.link}
             ticketText={ticket.ticketText}
             onClick={() => {
               window.open(ticket.link, "_blank");
@@ -84,7 +85,10 @@ export function TicketCard({
   ticketText: string;
 }): React.ReactNode {
   return (
-    <div onClick={onClick} className="relative cursor-pointer hover:scale-105 transition-transform drop-shadow-lg">
+    <div
+      onClick={onClick}
+      className="relative cursor-pointer hover:scale-105 transition-transform drop-shadow-lg"
+    >
       <Image
         alt="TicketCard"
         src="/resources_card.svg"
