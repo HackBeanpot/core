@@ -48,12 +48,12 @@ export default function HitTheRoad(): JSX.Element {
             </p>
           </div>
           <Link
-              className="mt-8 bg-orange text-white py-3 px-7 rounded-[64px] w-fit hover:scale-105 transition-transform"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://discord.gg/4JUtKxxDnw"
-            >
-              {"Join our Discord"}
+            className="mt-8 bg-orange text-white py-3 px-7 rounded-[64px] w-fit hover:scale-105 transition-transform"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://discord.gg/4JUtKxxDnw"
+          >
+            {"Join our Discord"}
           </Link>
         </div>
       </div>
