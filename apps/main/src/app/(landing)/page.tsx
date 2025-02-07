@@ -6,7 +6,7 @@ import {
   Keynote,
   Calendar,
   Testimonials,
-  Apply
+  Apply,
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
