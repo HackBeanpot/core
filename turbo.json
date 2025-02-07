@@ -15,5 +15,6 @@
     "clean": {
       "cache": false
     }
-  }
+  },
+  "globalEnv": ["MENTOR_BASE_ID, AIRTABLE_TOKEN_ID, SCHEDULE_BASE_ID"]
 }

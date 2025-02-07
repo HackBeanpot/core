@@ -6,6 +6,7 @@ import {
   Keynote,
   Calendar,
   Testimonials,
+  Apply
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import React from "react";
@@ -20,6 +21,7 @@ export default function Page(): JSX.Element {
       </Head>
       <NavBar />
       <Landing />
+      <Apply />
       <Stats />
       <About />
       <Values />
