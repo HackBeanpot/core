@@ -7,6 +7,30 @@ import useContentHeight from "@repo/util/hooks/useContentHeight";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import ResourcesBackground from "../lib/Assets/SVG/ResourcesBackground";
 
+type TicketInfo = {
+  ticketText: string;
+  link: string;
+}
+
+const tickets: TicketInfo[] = [
+  {
+    ticketText: "Beginner Resource Guide",
+    link: "https://docs.google.com/document/d/15XfcqKupkjGC7WLHvigt_nzUeM7LHQ1-o916hmZkCwo/edit?usp=sharing",
+  },
+  {
+    ticketText: "Hacker Welcome Guide",
+    link: "https://drive.google.com/file/d/18UrWcSD3gIQZC0W5JggKnVi7w5YBwc1L/view?usp=sharing",
+  },
+  {
+    ticketText: "Project Demo Guide",
+    link: "https://docs.google.com/document/d/1JLBsSnUCa7nx5HBpUAV52qTS4-IIsyqkaUPuSXqI8cA/edit?usp=sharing",
+  },
+  {
+    ticketText: "Judging Process Guide",
+    link: "https://docs.google.com/document/d/1Zy-EQfEap4irB7vSPygL1uwpsAJ4djqjNRVxP_lluv4/edit?usp=sharing",
+  }
+]
+
 const background = (
   <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
     <ResourcesBackground />
@@ -28,42 +52,14 @@ export default function Resources(): React.ReactNode {
       </div>
 
       <div className="tablet:text-2xl font-semibold flex flex-wrap justify-center gap-16">
-        <TicketCard
-          ticketText="Beginner Resource Guide"
-          onClick={() => {
-            window.open(
-              "https://docs.google.com/document/d/15XfcqKupkjGC7WLHvigt_nzUeM7LHQ1-o916hmZkCwo/edit?usp=sharing",
-              "_blank",
-            );
-          }}
-        ></TicketCard>
-        <TicketCard
-          ticketText="Hacker Welcome Guide"
-          onClick={() => {
-            window.open(
-              "https://drive.google.com/file/d/18UrWcSD3gIQZC0W5JggKnVi7w5YBwc1L/view?usp=sharing",
-              "_blank",
-            );
-          }}
-        ></TicketCard>
-        <TicketCard
-          ticketText="Project Demo Guide"
-          onClick={() => {
-            window.open(
-              "https://docs.google.com/document/d/1JLBsSnUCa7nx5HBpUAV52qTS4-IIsyqkaUPuSXqI8cA/edit?usp=sharing",
-              "_blank",
-            );
-          }}
-        ></TicketCard>
-        <TicketCard
-          ticketText="Judging Process Guide"
-          onClick={() => {
-            window.open(
-              "https://docs.google.com/document/d/1Zy-EQfEap4irB7vSPygL1uwpsAJ4djqjNRVxP_lluv4/edit?usp=sharing",
-              "_blank",
-            );
-          }}
-        ></TicketCard>
+        {tickets.map((ticket) => (
+          <TicketCard
+            ticketText={ticket.ticketText}
+            onClick={() => {
+              window.open(ticket.link, "_blank");
+            }}
+          ></TicketCard>
+        ))}
       </div>
     </div>
   );
@@ -88,7 +84,7 @@ export function TicketCard({
   ticketText: string;
 }): React.ReactNode {
   return (
-    <div onClick={onClick} className="relative cursor-pointer">
+    <div onClick={onClick} className="relative cursor-pointer hover:scale-105 transition-transform drop-shadow-lg">
       <Image
         alt="TicketCard"
         src="/resources_card.svg"
