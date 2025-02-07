@@ -3,6 +3,7 @@
 import React from "react";
 import { Section } from "@repo/ui";
 import Road from "../lib/Assets/SVG/Road";
+import Link from "next/link";
 
 export default function HitTheRoad(): JSX.Element {
   const background = (
@@ -46,16 +47,14 @@ export default function HitTheRoad(): JSX.Element {
               </a>
             </p>
           </div>
-          <div className="mt-8 items-center">
-            <a
-              className=" bg-orange text-white py-3 px-7 rounded-[64px] max-w-[20vw]"
+          <Link
+              className="mt-8 bg-orange text-white py-3 px-7 rounded-[64px] w-fit hover:scale-105 transition-transform"
               target="_blank"
               rel="noopener noreferrer"
               href="https://discord.gg/4JUtKxxDnw"
             >
               {"Join our Discord"}
-            </a>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
