@@ -8,6 +8,7 @@ interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ items, page }) => {
+    
   return (
     <div className="flex justify-center items-center space-x-80">
       {items.map((cardInfo, i) => {
@@ -16,14 +17,15 @@ const Carousel: React.FC<CarouselProps> = ({ items, page }) => {
         }
 
         const isActive = i === page;
-        const opacityClass = isActive ? "opacity-100" : "opacity-70";
+        const activeClass = isActive ? "opacity-100 z-10" : "opacity-70 z-0";
+        const updatedInfo = { ...cardInfo, isActive };
 
         return (
           <div
             key={cardInfo.id}
-            className={`transition-opacity duration-300 ${opacityClass}`}
+            className={`transition-opacity duration-300 ${activeClass}`}
           >
-            <PassportCard {...cardInfo} />
+            <PassportCard {...updatedInfo} />
           </div>
         );
       })}
