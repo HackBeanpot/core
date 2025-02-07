@@ -43,7 +43,7 @@ function Project({
           <p className="text-[#918E89] mb-2 mt-5 text-l font-GT-Walsheim-Regular">
             {members}
           </p>
-          <p className="text-[#333333] text-l font-GT-Walsheim-Regular hyphens-auto overflow-hidden text-ellipsis">
+          <p className="inline-block w-full text-[#333333] text-l font-GT-Walsheim-Regular hyphens-auto text-ellipsis">
             {description}
           </p>
         </div>
