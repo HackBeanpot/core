@@ -5,7 +5,6 @@ import { Section } from "@repo/ui";
 import Road from "../lib/Assets/SVG/Road";
 
 export default function HitTheRoad(): JSX.Element {
-
   const background = (
     <div className="w-full h-full flex items-center bg-[#F2E6D7]">
       <div className="ml-[15%] h-full w-[88vw] ">

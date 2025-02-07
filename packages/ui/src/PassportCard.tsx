@@ -28,14 +28,14 @@ export default function PassportCard({
   isActive,
 }: PassportCardProps): React.ReactNode {
   const positionClass = isActive ? "top-[20%]" : "top-[22%]";
-  
-  const scaleClass = isActive ? "scale-100" : "scale-[75%]";  
+
+  const scaleClass = isActive ? "scale-100" : "scale-[75%]";
 
   return (
     <div className="flex justify-center items-center w-full font-GT-Walsheim-Pro-Regular font-bold">
-      <div className={`bg-white h-4/6 rounded-3xl w-1/3 ${scaleClass} absolute ${positionClass} shadow-[0_15px_0px_-5px_rgba(221,198,168,1)] grid grid-rows-[49.5%_1%_49.5%] space-x-2`}>
-        
-        
+      <div
+        className={`bg-white h-4/6 rounded-3xl w-1/3 ${scaleClass} absolute ${positionClass} shadow-[0_15px_0px_-5px_rgba(221,198,168,1)] grid grid-rows-[49.5%_1%_49.5%] space-x-2`}
+      >
         <div className={`transition-all duration-300 relative`}>
           <div className="flex flex-shrink items-center w-full ml-[5%]">
             <div className="grid grid-rows-[30%_70%]">
@@ -78,7 +78,6 @@ export default function PassportCard({
           <div>
             {!isSponsor && (
               <div className="absolute bottom-1 left-1/2 transform -translate-y-1/2 -translate-x-1/2  w-full h-0.5 bg-[#DDC6A8]"></div>
-
             )}
           </div>
 
@@ -91,4 +90,3 @@ export default function PassportCard({
     </div>
   );
 }
-

@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from "next/server";
 const PUBLICATION = "pub_e065c094-6f4b-4e8d-91d2-e39de7201fd4";
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
+  const body = await req.json();
   const airtableUrl = `https://api.beehiiv.com/v2/publications/${PUBLICATION}/subscriptions`;
   try {
     const response = await fetch(`${airtableUrl}`, {
@@ -19,7 +19,9 @@ export async function POST(req: NextRequest) {
       throw new Error("API request failed");
     }
 
-    return NextResponse.json({"success": "Successfully subscribed to mailing list"});
+    return NextResponse.json({
+      success: "Successfully subscribed to mailing list",
+    });
   } catch (err) {
     return NextResponse.json(
       { error: `Request to post email to beehiiv failed ${err}` },

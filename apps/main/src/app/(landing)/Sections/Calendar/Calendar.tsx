@@ -211,8 +211,7 @@ type PaginationDotsProps = {
 export const PaginationDots: React.FC<PaginationDotsProps> = ({
   currentPage,
   totalPages,
-  color
-
+  color,
 }) => {
   return (
     <div className="flex justify-center items-center space-x-2 mt-4">
@@ -273,7 +272,11 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
       />
       <CalendarEvents calendarEvents={events} page={page} />
       <div className="absolute bottom-7 w-full">
-        <PaginationDots currentPage={page} totalPages={maxPages} color="orange"/>
+        <PaginationDots
+          currentPage={page}
+          totalPages={maxPages}
+          color="orange"
+        />
       </div>
     </div>
   );

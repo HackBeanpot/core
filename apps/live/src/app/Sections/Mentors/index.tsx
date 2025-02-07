@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -39,7 +39,7 @@ const MentorSection = () => {
   const { height: windowHeight, width: windowWidth } = useWindowSize();
   const [contentHeight] = useContentHeight(ref);
   const [data, setData] = useState<AirtableData | null>(null);
-  
+
   useEffect(() => {
     async function fetchData() {
       const res = await fetch("/api/mentors");
@@ -63,7 +63,7 @@ const MentorSection = () => {
       </div>
     );
   };
-  
+
   const MentorSectionContent = React.forwardRef<HTMLDivElement>((_, ref) => {
     return (
       <div className="py-24 px-48" ref={ref}>
@@ -72,11 +72,11 @@ const MentorSection = () => {
         </p>
         <p className="font-GT-Walsheim-Regular text-[#333333]">
           Need expert advice? Our mentors are here to help! Filter by shift,
-          virtual status, expertise, or company to find the right support. Connect
-          on our hackathon platform and get insights to take your project to the
-          next level!
+          virtual status, expertise, or company to find the right support.
+          Connect on our hackathon platform and get insights to take your
+          project to the next level!
         </p>
-        <MentorsTable data={data}/>
+        <MentorsTable data={data} />
       </div>
     );
   });
@@ -87,7 +87,7 @@ const MentorSection = () => {
     <Section
       name="mentors"
       background={<MentorSectionBackground />}
-      content={<MentorSectionContent ref={ref}/>}
+      content={<MentorSectionContent ref={ref} />}
       height={(contentHeight / windowHeight) * 100}
     />
   );

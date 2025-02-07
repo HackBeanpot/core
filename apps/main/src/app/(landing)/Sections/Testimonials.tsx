@@ -31,50 +31,50 @@ type person = {
 const people: person[] = [
   {
     id: 0,
-    passportNumber: "ZT183920", 
+    passportNumber: "ZT183920",
     firstName: "Karyna",
     lastName: "Yen",
-    major: "Computer Science",  // Add a placeholder for the major
+    major: "Computer Science", // Add a placeholder for the major
     year: "Northeastern '25",
     quote:
       '"I had a ton of fun at HackBeanpot! We made a Chrome extension that censored inappropriate language on the internet. My favorite part was when one of my teammates got an animated duck to quack when clicking on the extension icon!"',
-    image: "/karyna.png",  // Assuming this is a reference to an image path or variable
+    image: "/karyna.png", // Assuming this is a reference to an image path or variable
     isSponsor: false,
   },
   {
     id: 1,
-    passportNumber: "MP274861",  // Add a placeholder
+    passportNumber: "MP274861", // Add a placeholder
     firstName: "Ji-min",
     lastName: "Kim",
-    major: "Computer Science",  // Add a placeholder for the major
+    major: "Computer Science", // Add a placeholder for the major
     year: "Northeastern '22",
     quote:
       '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly people, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
-    image: "/jimin.png",  // Assuming this is a reference to an image path or variable
+    image: "/jimin.png", // Assuming this is a reference to an image path or variable
     isSponsor: false,
   },
   {
     id: 2,
-    passportNumber: "JS428172",  // Add a placeholder
+    passportNumber: "JS428172", // Add a placeholder
     firstName: "Spencer",
     lastName: "Shao",
-    major: "Computer Science & Music Tech",  // Add a placeholder for the major
+    major: "Computer Science & Music Tech", // Add a placeholder for the major
     year: "Northeastern '24",
     quote:
       '"I loved the collaboration between me, my teammates, and the amazing mentors! I really felt like it was a very welcoming environment for me to prioritize learning and having fun over 3 days. Prior to this hackathon I had never touched any kind of React or front-end web development but I came out of it feeling accomplished, having achieved a working website!"',
-    image: "/spencer2.png",  // Assuming this is a reference to an image path or variable
+    image: "/spencer2.png", // Assuming this is a reference to an image path or variable
     isSponsor: false,
   },
   {
     id: 3,
-    passportNumber: "QW938465",  
+    passportNumber: "QW938465",
     firstName: "Raisa",
     lastName: "Bhuiyan",
-    major: "Computer Science",  
+    major: "Computer Science",
     year: "Northeastern '25",
     quote:
       '"I enjoyed working with my teammates and trying to debug our mistakes. Debugging is a lot more fun when you have people doing it with you."',
-    image: "/group.png",  // Assuming this is a reference to an image path or variable
+    image: "/group.png", // Assuming this is a reference to an image path or variable
     isSponsor: false,
   },
 ];
@@ -149,7 +149,8 @@ const Testimonials: React.FC<{ people: person[] }> = ({ people }) => {
 
   function onClickRightArrow() {
     setPage((prevPage) => {
-      const newPage = prevPage < people.length - 1  ? prevPage + 1 : people.length-1;
+      const newPage =
+        prevPage < people.length - 1 ? prevPage + 1 : people.length - 1;
       return newPage;
     });
   }
@@ -177,7 +178,7 @@ const Testimonials: React.FC<{ people: person[] }> = ({ people }) => {
 
       <div className="absolute bottom-7 w-full">
         <PaginationDots
-          currentPage={page+1}
+          currentPage={page + 1}
           totalPages={people.length}
           color="vineGreenLite"
         />

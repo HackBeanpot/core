@@ -8,7 +8,6 @@ interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ items, page }) => {
-    
   return (
     <div className="flex justify-center items-center space-x-80">
       {items.map((cardInfo, i) => {
