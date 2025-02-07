@@ -33,7 +33,7 @@ export default function Resources(): React.ReactNode {
           onClick={() => {
             window.open(
               "https://docs.google.com/document/d/15XfcqKupkjGC7WLHvigt_nzUeM7LHQ1-o916hmZkCwo/edit?usp=sharing",
-              "_blank"
+              "_blank",
             );
           }}
         ></TicketCard>
@@ -42,7 +42,7 @@ export default function Resources(): React.ReactNode {
           onClick={() => {
             window.open(
               "https://drive.google.com/file/d/18UrWcSD3gIQZC0W5JggKnVi7w5YBwc1L/view?usp=sharing",
-              "_blank"
+              "_blank",
             );
           }}
         ></TicketCard>
@@ -51,7 +51,7 @@ export default function Resources(): React.ReactNode {
           onClick={() => {
             window.open(
               "https://docs.google.com/document/d/1JLBsSnUCa7nx5HBpUAV52qTS4-IIsyqkaUPuSXqI8cA/edit?usp=sharing",
-              "_blank"
+              "_blank",
             );
           }}
         ></TicketCard>
@@ -60,7 +60,7 @@ export default function Resources(): React.ReactNode {
           onClick={() => {
             window.open(
               "https://docs.google.com/document/d/1Zy-EQfEap4irB7vSPygL1uwpsAJ4djqjNRVxP_lluv4/edit?usp=sharing",
-              "_blank"
+              "_blank",
             );
           }}
         ></TicketCard>

@@ -23,11 +23,11 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         setDays(days);
         const hours = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
         );
         setHours(hours);
         const minutes = Math.floor(
-          (difference % (1000 * 60 * 60)) / (1000 * 60)
+          (difference % (1000 * 60 * 60)) / (1000 * 60),
         );
         setMinutes(minutes);
       }
