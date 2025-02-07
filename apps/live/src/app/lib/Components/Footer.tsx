@@ -80,7 +80,7 @@ const Footer = () => {
       name="footer"
       background={FooterBackground}
       content={FooterContent}
-      height={60}
+      height={40}
     />
   );
 };
