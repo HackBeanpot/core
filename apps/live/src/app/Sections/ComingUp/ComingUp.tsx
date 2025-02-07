@@ -127,7 +127,9 @@ const ComingUpContent = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref}>
-      <Heading className="text-[#045954] flex justify-center pt-[3rem]">COMING UP!</Heading>
+      <Heading className="text-[#045954] flex justify-center pt-[3rem]">
+        COMING UP!
+      </Heading>
       <div
         className={`gap-16 flex items-center justify-center flex-wrap w-full h-full content-center pr-[10rem] pl-[10rem] pt-[5rem] pb-[5rem]`}
       >

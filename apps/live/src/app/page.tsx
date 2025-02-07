@@ -9,7 +9,7 @@ import NavBar from "./lib/Components/NavBar";
 import Footer from "./lib/Components/Footer";
 import ComingUp from "./Sections/ComingUp/ComingUp";
 import OurTeam from "./Sections/OurTeam";
-import Keynote from "./Sections/Keynote"
+import Keynote from "./Sections/Keynote";
 
 export default function Page(): JSX.Element {
   return (

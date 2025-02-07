@@ -6,7 +6,7 @@ import { wiggle, popAndShrink } from "./animations";
 const config: Omit<Config, "content"> = {
   theme: {
     extend: {
-      fontSize: { 
+      fontSize: {
         heading: "clamp(2.81rem, 10vw, 5.64rem)", // 45px → 90.3px
         body: "clamp(0.875rem, 2vw, 1.625rem)", // 14px → 26px
         button: "clamp(0.875rem, 1.8vw, 1.5rem)", // 14px → 24px

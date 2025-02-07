@@ -1,6 +1,5 @@
 import React from "react";
-import { SignLarge, SignSmall } from "@repo/ui"
-
+import { SignLarge, SignSmall } from "@repo/ui";
 
 type StreetSignProps = {
   streetName: string;
