@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Section, StreetSign, ArrowButton, Carousel } from "@repo/ui";
-import { PaginationDots } from "./Calendar/Calendar";
+import PaginationDots from "../../lib/Components/PaginationDots";
 
 const background = (
   <div>
@@ -28,7 +28,7 @@ type person = {
   isSponsor: boolean;
 };
 
-const people: person[] = [
+const defaultOrder: person[] = [
   {
     id: 0,
     passportNumber: "ZT183920",
@@ -80,22 +80,47 @@ const people: person[] = [
 ];
 
 
-const Testimonials: React.FC<{ people: person[] }> = ({ people }) => {
-  const [page, setPage] = useState(1);
+const Testimonials: React.FC = () => {
+  const [people, setPeople] = useState(defaultOrder);
+  const [currentPage, setCurrentPage] = useState(0);
 
   function onClickLeftArrow() {
-    setPage((prevPage) => {
-      const newPage = prevPage >= 1 ? prevPage - 1 : 0;
+    setPeople((prevPeople) => {
+      const newPeople = [...prevPeople];
+      const lastPerson = newPeople.pop();
+      newPeople.unshift(lastPerson!);
+      return newPeople;
+    });
+    setCurrentPage((prevPage) => {
+      const newPage = prevPage > 0 ? prevPage - 1 : people.length - 1;
       return newPage;
     });
   }
 
   function onClickRightArrow() {
-    setPage((prevPage) => {
-      const newPage =
-        prevPage < people.length - 1 ? prevPage + 1 : people.length - 1;
+    setPeople((prevPeople) => {
+      const newPeople = [...prevPeople];
+      const firstPerson = newPeople.shift();
+      newPeople.push(firstPerson!);
+      return newPeople;
+    });
+    setCurrentPage((prevPage) => {
+      const newPage = prevPage < people.length - 1 ? prevPage + 1 : 0;
       return newPage;
     });
+  }
+
+  function handleClick(index: number) {
+    setPeople((prevPeople) => {
+      const newPeople = [...prevPeople];
+      while (index !== 0) {
+        const firstPerson = newPeople.shift();
+        newPeople.push(firstPerson!);
+        index--;
+      }
+      return newPeople;
+    });
+    setCurrentPage(index);
   }
 
   return (
@@ -116,14 +141,15 @@ const Testimonials: React.FC<{ people: person[] }> = ({ people }) => {
         className="absolute right-10 top-[54%] transform -translate-y-1/2 z-2"
       />
       <div className="top-2">
-        <Carousel items={people} page={page} />
+        <Carousel items={people.slice(0, 3)}/>
       </div>
 
       <div className="absolute bottom-7 w-full">
         <PaginationDots
-          currentPage={page + 1}
+          currentPage={currentPage}
           totalPages={people.length}
           color="vineGreenLite"
+          handleClick={handleClick}
         />
       </div>
     </div>
@@ -135,8 +161,8 @@ export default function TestimonialSection(): React.ReactNode {
     <Section
       name={"testimonials"}
       background={background}
-      content={<Testimonials people={people} />}
-      height={115}
+      content={<Testimonials/>}
+      height={100}
     />
   );
 }
