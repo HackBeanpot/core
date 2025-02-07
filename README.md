@@ -1,5 +1,4 @@
-# HackBeanpot - Live Site! 
-
+# HackBeanpot - Live Site!
 
 ### Apps and Packages
 - `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
