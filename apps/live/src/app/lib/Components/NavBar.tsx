@@ -36,31 +36,25 @@ const NavBar = () => {
             <div className="flex flex-row align-middle justify-end">
               <Link
                 href={"#schedule"}
-                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw]"
+                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw] hover:scale-105 transition-transform"
               >
                 Schedule
               </Link>
               <Link
-                href={"#challenges"}
-                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw]"
-              >
-                Challenges
-              </Link>
-              <Link
                 href={"#mentors"}
-                className="text-[clamp(1rem,1.3vw, 4rem)] flex items-center px-[1.2vw]"
+                className="text-[clamp(1rem,1.3vw, 4rem)] flex items-center px-[1.2vw] hover:scale-105 transition-transform"
               >
                 Mentors
               </Link>
               <Link
                 href={"#resources"}
-                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw]"
+                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw] hover:scale-105 transition-transform"
               >
                 Resources
               </Link>
               <Link
                 href={"#team"}
-                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw]"
+                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw] hover:scale-105 transition-transform"
               >
                 Team
               </Link>
@@ -81,13 +75,6 @@ const NavBar = () => {
               onClick={() => setIsOpen(false)}
             >
               Schedule
-            </Link>
-            <Link
-              href={"#challenges"}
-              className="text-xl py-2 font-GT-Walsheim-Regular hover:bg-beige px-3 rounded-md cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            >
-              Challenges
             </Link>
             <Link
               href={"#mentors"}

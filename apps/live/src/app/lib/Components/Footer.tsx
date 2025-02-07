@@ -3,6 +3,7 @@
 import { Section } from "@repo/ui";
 import Link from "next/link";
 import React, { ChangeEvent, useState } from "react";
+import isValidEmail from "@repo/util/functions/isValidEmail";
 
 const Footer = () => {
   const [mailingEmail, setMailingEmail] = useState<string>("");
@@ -46,9 +47,26 @@ const Footer = () => {
         />
 
         <button
-          onClick={() =>
-            alert(`Setup email: ${mailingEmail} \n Not implemented yet`)
-          }
+          onClick={async () => {
+            if (!mailingEmail || !isValidEmail(mailingEmail)) {
+              alert("Please enter a valid email address");
+              return;
+            }
+            const res = await fetch("/api/joinMailingList", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: mailingEmail,
+                reactivate_existing: false,
+                send_welcome_email: true,
+              }),
+            });
+            if (res.ok) {
+              setMailingEmail("");
+            }
+          }}
           className="p-3 px-8 bg-black text-text-light rounded-full"
         >
           Join mailing list
@@ -62,7 +80,7 @@ const Footer = () => {
       name="footer"
       background={FooterBackground}
       content={FooterContent}
-      height={60}
+      height={40}
     />
   );
 };

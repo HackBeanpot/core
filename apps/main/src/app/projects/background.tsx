@@ -1,12 +1,21 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
+import { MobileContext } from "../providers";
 
 const ProjectsBackground = () => {
+  const { isMobile } = useContext(MobileContext);
+
   return (
     <div className="w-full h-full overflow-hidden">
       <Image
         alt="ProjectsBackground"
-        src={"/projects_background.svg"}
+        src={
+          isMobile
+            ? "/projects_background.svg"
+            : "/projects_background_mobile.svg"
+        }
         fill
         className="object-cover"
       />

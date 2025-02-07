@@ -2,22 +2,20 @@
 
 import React from "react";
 import { Section } from "@repo/ui";
-// import useIsMobile from "@repo/util/hooks/useIsMobile";
 import Road from "../lib/Assets/SVG/Road";
+import Link from "next/link";
 
 export default function HitTheRoad(): JSX.Element {
-  //const isMobile = useIsMobile();
-
   const background = (
-    <div className="w-full h-full bg-[#F2E6D7]">
-      <div className="ml-[15%] h-[auto] w-[88vw]">
+    <div className="w-full h-full flex items-center bg-[#F2E6D7]">
+      <div className="ml-[15%] h-full w-[88vw] ">
         <Road />
       </div>
     </div>
   );
 
   const content = (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex items-center">
       <div className="py-24 px-32 font-GT-Walsheim-Bold">
         <div className="flex flex-col text-xl gap-5">
           <div className="flex items-center justify-between max-w-[55vw]">
@@ -26,7 +24,7 @@ export default function HitTheRoad(): JSX.Element {
             </p>
           </div>
           <div className="flex items-center justify-between">
-            <p className=" text-[clamp(0.9vw,1.6vw,3vw)] max-w-[50vw] font-GT-Walsheim-Regular">
+            <p className=" text-[clamp(1rem,2rem,3rem)] max-w-[50vw] font-GT-Walsheim-Regular">
               At HackBeanpot 2025, we&apos;re hitting the road with a community
               of explorers driven by creativity, learning, and meaningful
               connections.
@@ -49,16 +47,14 @@ export default function HitTheRoad(): JSX.Element {
               </a>
             </p>
           </div>
-          <div className="mt-8 items-center">
-            <a
-              className=" bg-orange text-white py-3 px-7 rounded-[64px] max-w-[20vw]"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://discord.gg/4JUtKxxDnw"
-            >
-              {"Join our Discord"}
-            </a>
-          </div>
+          <Link
+            className="mt-8 bg-orange text-white py-3 px-7 rounded-[64px] w-fit hover:scale-105 transition-transform"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://discord.gg/4JUtKxxDnw"
+          >
+            {"Join our Discord"}
+          </Link>
         </div>
       </div>
     </div>

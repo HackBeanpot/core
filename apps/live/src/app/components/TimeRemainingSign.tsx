@@ -71,7 +71,7 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
             <p className="text-[clamp(0.4rem,1vw,1rem)]">minutes</p>
           </div>
         </div>
-        <div className="absolute right-[4%] top-[86%] w-full flex items-center justify-center -translate-y-1/2 font-GT-Walsheim-Regular">
+        <div className="absolute top-[86%] w-full flex items-center justify-center -translate-y-1/2 font-GT-Walsheim-Regular">
           <p
             className={`text-center flex ${
               isMobile
@@ -79,25 +79,32 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
                 : "text-[clamp(0.3rem,1.2vw,1rem)]"
             }`}
           >
-            SHARE WITH YOUR FRIENDS
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="ml-1"
-              style={{
-                width: "1.2em",
-                height: "1.2em",
-              }}
+            <a
+              className="w-full flex items-center justify-center"
+              href="https://www.hackbeanpot.com"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15"
-              />
-            </svg>
+              SHARE WITH YOUR FRIENDS
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.2}
+                stroke="currentColor"
+                className="ml-1"
+                style={{
+                  width: "1.2em",
+                  height: "1.2em",
+                }}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15"
+                />
+              </svg>
+            </a>
           </p>
         </div>
       </div>

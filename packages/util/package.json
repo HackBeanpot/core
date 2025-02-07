@@ -9,7 +9,7 @@
     "./hooks/*": "./src/hooks/*.ts",
     "./fonts": "./src/fonts/fonts.css",
     "./types": "./src/types.ts",
-    "./functions": "./src/functions/*.ts"
+    "./functions/*": "./src/functions/*.ts"
   },
   "license": "MIT",
   "scripts": {

@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import removeHoursFromDate from "../../../../../../packages/util/src/functions/removeHoursfromDate";
 import { FAQDropdown } from "@repo/ui";
 import LocationDot from "../../lib/Assets/SVG/LocationDot";
+import removeHoursFromDate from "@util/functions/removeHoursfromDate";
 
 const HappeningNow = () => (
   <div className="text-green flex items-center gap-2">
@@ -85,7 +85,7 @@ const Tab = ({ date, onClick, active }: TabProps) => {
     <div
       key={date + "-tab"}
       onClick={onClick}
-      className={`pt-5 flex w-[3vw] h-full justify-center ${raised} rounded-l-2xl cursor-pointer text-white hover:bg-grapePurple`}
+      className={`pt-5 flex w-[3vw] h-full justify-center ${raised} rounded-l-2xl cursor-pointer text-white hover:bg-grapePurple transition-all shadow-lg hover:translate-x-1`}
     >
       {date.toLocaleDateString("en-us", { weekday: "short" })}
       <br />

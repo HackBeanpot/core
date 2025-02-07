@@ -19,9 +19,6 @@ const EventScheduleContent = async () => {
           <p className="text-[clamp(3rem,7vw,7rem)] text-granolaLite font-bold font-Wilden">
             Event Schedule
           </p>
-          <button className="bg-white text-black font-bold px-4 py-2 shadow-md rounded-full transition-transform scale-100 hover:scale-105">
-            Add to Calendar
-          </button>
         </div>
         <p className="text-white text-xl font-GT-Walsheim-Regular">
           Dates and times are displayed in your local timezone. Schedule in EST
@@ -41,7 +38,7 @@ const EventSchedule = () => {
       name="schedule"
       background={<EventScheduleBackground />}
       content={<EventScheduleContent />}
-      height={180}
+      height={125}
     />
   );
 };

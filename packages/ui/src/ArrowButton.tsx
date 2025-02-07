@@ -14,7 +14,7 @@ const ArrowButtonType = {
   },
   greenButton: {
     arrowColor: "beige",
-    bgColor: "bg-leafGreen",
+    bgColor: "bg-vineGreenLite",
     topBorder: "border-t-darkGreen",
   },
   beigeButton: {

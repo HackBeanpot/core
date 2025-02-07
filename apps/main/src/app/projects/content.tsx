@@ -1,16 +1,19 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Project from "./components/Project";
 
-const ProjectsContent = () => {
+const ProjectsContent = forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <div className="mt-[5%] mr-[5%] ml-[5%]">
+    <div className="mt-[5%] mr-[5%] ml-[5%]" ref={ref}>
       <div className="">
         <h1 className="font-bold text-7xl mb-[5rem] mt-[7rem] text-center text-[#FFFFFF] font-Wilden-Regular drop-shadow-[0_8px_0px_rgba(0,0,0,.1)]">
           LAST YEAR&apos;S PROJECTS
         </h1>
       </div>
       <section className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5 mb-[5rem] max-w-[1200px] mx-auto">
-        <a href="https://devpost.com/software/poqua">
+        <a
+          href="https://devpost.com/software/poqua"
+          className="flex justify-center items-center"
+        >
           <Project
             projectImage="/poqua.png"
             projectName="POQUA"
@@ -110,6 +113,8 @@ const ProjectsContent = () => {
       </div>
     </div>
   );
-};
+});
+
+ProjectsContent.displayName = "ProjectsContent";
 
 export default ProjectsContent;

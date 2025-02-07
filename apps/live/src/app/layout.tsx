@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en" className="w-screen overflow-x-hidden">
+    <html lang="en" className="w-screen overflow-x-hidden bg-light-yellow">
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
