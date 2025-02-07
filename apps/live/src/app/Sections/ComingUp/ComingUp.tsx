@@ -5,7 +5,7 @@ import React, { useEffect, useState, useRef, forwardRef } from "react";
 
 // Components
 import ComingUpEvent from "./ComingUpEvent";
-import { Section } from "@repo/ui";
+import { Heading, Section } from "@repo/ui";
 import ComingUpBackground from "../../lib/Assets/SVG/ComingUpBackground";
 
 // Utils
@@ -127,9 +127,7 @@ const ComingUpContent = forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref}>
-      <h1 className="flex justify-center text-[clamp(3rem,6vw,7rem)] text-[#045954] font-Wilden pt-[3rem]">
-        COMING UP!
-      </h1>
+      <Heading className="text-[#045954] flex justify-center pt-[3rem]">COMING UP!</Heading>
       <div
         className={`gap-16 flex items-center justify-center flex-wrap w-full h-full content-center pr-[10rem] pl-[10rem] pt-[5rem] pb-[5rem]`}
       >

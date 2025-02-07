@@ -4,6 +4,7 @@ import React from "react";
 import { Section } from "@repo/ui";
 import Image from "next/image";
 import TimeRemainingSign from "../components/TimeRemainingSign";
+import { Heading } from "@repo/ui"
 import useIsMobile from "@repo/util/hooks/useIsMobile";
 
 export default function Landing(): JSX.Element {
@@ -21,9 +22,7 @@ export default function Landing(): JSX.Element {
         <h3 className="text-[clamp(0.9rem,2vw,3rem)] text-center text-white font-GT-Walsheim-Regular">
           Buckle up! We&apos;re going on a...
         </h3>
-        <p className="text-[clamp(3rem,7vw,7rem)] text-granolaLite font-bold font-Wilden">
-          ROADTRIP!
-        </p>
+        <Heading className="text-granolaLite">ROADTRIP!</Heading>
       </div>
       <div
         className={`absolute right-[0] ${isMobile ? "top-[25vh]" : "top-[15vh]"} z-50`}
