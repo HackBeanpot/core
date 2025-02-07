@@ -2,7 +2,13 @@ import React from "react";
 
 export default function Road() {
   return (
-    <svg className="h-full w-full" viewBox="0 0 1512 979" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <svg
+      className="h-full w-full"
+      viewBox="0 0 1512 979"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+    >
       <mask
         id="mask0_60_1511"
         maskUnits="userSpaceOnUse"
