@@ -1,21 +1,17 @@
 "use client";
 
-// Imports
 import React, { useRef, useState, forwardRef } from "react";
-import clsx from "clsx";
 
-// Components
 import { ArrowButton, Section, TitleBox } from "@repo/ui";
 
-// Hooks
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
 
-// Images
 import CalendarBackground from "./CalendarBackground";
 import RockVariant2 from "../../../lib/Assets/SVG/Rocks/RockVariant2";
 import RockVariant3 from "../../../lib/Assets/SVG/Rocks/RockVariant3";
 import RockVariant4 from "../../../lib/Assets/SVG/Rocks/RockVariant4";
+import PaginationDots from "../../../lib/Components/PaginationDots";
 
 // Calendar Events Data
 const events: CalendarEventProps[] = [
@@ -176,7 +172,7 @@ export function CalendarEvents({
   const columns = getGridColumns(windowSize.width || 0);
   const eventsPerPage = columns * 2;
 
-  const startIndex = (page - 1) * eventsPerPage;
+  const startIndex = page * eventsPerPage;
   const displayedEvents = calendarEvents.slice(
     startIndex,
     startIndex + eventsPerPage,
@@ -201,36 +197,9 @@ export function CalendarEvents({
   );
 }
 
-// Pagination Dots Component
-type PaginationDotsProps = {
-  currentPage: number;
-  totalPages: number;
-};
-
-const PaginationDots: React.FC<PaginationDotsProps> = ({
-  currentPage,
-  totalPages,
-}) => {
-  return (
-    <div className="flex justify-center items-center space-x-2 mt-4">
-      {Array.from({ length: totalPages }, (_, index) => (
-        <div
-          key={index}
-          className={clsx(
-            "w-4 h-4 rounded-full cursor-pointer",
-            currentPage === index + 1
-              ? "bg-orange" // Highlight current page
-              : "bg-orange opacity-40",
-          )}
-        />
-      ))}
-    </div>
-  );
-};
-
 // Calendar Section Component
 export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
-  const [page, setPage] = useState(1); // 1 index pagination
+  const [page, setPage] = useState(0);
 
   const windowSize = useWindowSize();
   const columns = getGridColumns(windowSize.width || 0);
@@ -239,16 +208,20 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
 
   function onClickLeftArrow() {
     setPage((prevPage) => {
-      const newPage = prevPage > 1 ? prevPage - 1 : 1;
+      const newPage = prevPage > 0 ? prevPage - 1 : maxPages - 1;
       return newPage;
     });
   }
 
   function onClickRightArrow() {
     setPage((prevPage) => {
-      const newPage = prevPage < maxPages ? prevPage + 1 : maxPages;
+      const newPage = prevPage < maxPages - 1 ? prevPage + 1 : 0;
       return newPage;
     });
+  }
+
+  function handleClick(index: number) {
+    setPage(index);
   }
 
   return (
@@ -270,7 +243,12 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
       />
       <CalendarEvents calendarEvents={events} page={page} />
       <div className="absolute bottom-7 w-full">
-        <PaginationDots currentPage={page} totalPages={maxPages} />
+        <PaginationDots
+          currentPage={page}
+          totalPages={maxPages}
+          color="orange"
+          handleClick={handleClick}
+        />
       </div>
     </div>
   );
