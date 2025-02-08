@@ -111,9 +111,9 @@ const Testimonials: React.FC = () => {
 
   function handleClick(index: number) {
     setPeople((prevPeople) => {
-      const newPeople = [...prevPeople]
-      const toMoveToFront = newPeople.splice(index - currentPage)
-      return [...toMoveToFront, ...newPeople]
+      const newPeople = [...prevPeople];
+      const toMoveToFront = newPeople.splice(index - currentPage);
+      return [...toMoveToFront, ...newPeople];
     });
     setCurrentPage(index);
   }
