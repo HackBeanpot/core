@@ -1,7 +1,4 @@
-import React, { forwardRef, useContext, useRef } from "react";
-// import Project from "./components/Project";
-import { Section } from "@repo/ui";
-import { MobileContext } from "../providers";
+import React, { forwardRef } from "react";
 import Project from "./components/Project";
 
 // type ProjectInfo = {
@@ -113,7 +110,7 @@ import Project from "./components/Project";
 //           ></Project>
 //         ))}
 //       </div>
-       
+
 //       <div className="flex justify-center items-center flex-col font-GT-Walsheim-Regular bg-[#FFF8EF] p-10 rounded-3xl mr-[2rem] ml-[2rem] drop-shadow-[0_8px_0px_rgba(0,0,0,.1)]">
 //         <div className="flex justify-center items-center flex-col">
 //           <h3 className="text-center text-3xl mb-[1rem] font-bold">
@@ -144,7 +141,6 @@ import Project from "./components/Project";
 
 // }
 
-
 // const background = (
 //   <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
 //     <ProjectsBackground />
@@ -174,7 +170,6 @@ import Project from "./components/Project";
 //       </div>
 // );
 
-
 // export function Project({
 //   onClick,
 //   projectName,
@@ -199,7 +194,6 @@ import Project from "./components/Project";
 //     </div>
 //   );
 // }
-
 
 const ProjectsContent = forwardRef<HTMLDivElement>((_, ref) => {
   return (
