@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import Checkmark from "../../lib/Assets/SVG/Checkmark";
 import clsx from "clsx";
 import { AirtableData } from ".";
+import Link from "next/link";
+import Image from "next/image";
 
 const date = new Date();
 
@@ -173,22 +175,25 @@ const MentorsTable = ({ data }: MentorTableProps) => {
             return hasSkills && isAvailable && virtual;
           })
 
-          .map((record) => (
-            <div
-              key={record.id}
-              className="aspect-square flex flex-col items-center justify-center p-2 rounded-lg "
+          .map((record, index) => (
+            <Link
+              key={index}
+              className="aspect-square flex flex-col items-center justify-center p-2 rounded-lg hover:scale-105 transition-transform"
+              href={record.fields.LinkedIn}
+              target="_blank"
             >
               <div className="w-full pb-[100%] relative overflow-hidden rounded-lg">
-                <img
+                <Image
                   src={record.fields.Image[0].url}
                   alt={record.id}
+                  fill
                   className="absolute inset-0 w-full h-full object-cover rounded-lg"
                 />
               </div>
               <a className="mt-2 text-sm font-medium truncate w-full">
                 {record.fields.Name}
               </a>
-            </div>
+            </Link>
           ))}
       </div>
     </div>

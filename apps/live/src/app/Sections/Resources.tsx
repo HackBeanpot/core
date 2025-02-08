@@ -31,6 +31,7 @@ const tickets: TicketInfo[] = [
   },
 ];
 
+
 const background = (
   <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
     <ResourcesBackground />
@@ -54,7 +55,7 @@ export default function Resources(): React.ReactNode {
       <div className="tablet:text-2xl font-semibold flex flex-wrap justify-center gap-16">
         {tickets.map((ticket) => (
           <TicketCard
-            key={`${ticket.ticketText}-${ticket.link}`}
+            key={ticket.link}
             ticketText={ticket.ticketText}
             onClick={() => {
               window.open(ticket.link, "_blank");
