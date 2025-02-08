@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { Section } from "@repo/ui";
+import { Heading, Body, Section } from "@repo/ui";
 import Road from "../lib/Assets/SVG/Road";
 import Link from "next/link";
+
 
 export default function HitTheRoad(): JSX.Element {
   const background = (
@@ -19,12 +20,12 @@ export default function HitTheRoad(): JSX.Element {
       <div className="py-24 px-32 font-GT-Walsheim-Bold">
         <div className="flex flex-col text-xl gap-5">
           <div className="flex items-center justify-between max-w-[55vw]">
-            <p className="text-[clamp(2vw,5vw,9vw)] text-tomato font-bold font-Wilden leading-[1.2] min-h-[5]">
+            <Heading className="text-tomato font-bold font-Wilden leading-[1.2] min-h-[5]">
               Hit the Road with HackBeanpot 2025!
-            </p>
+            </Heading>
           </div>
           <div className="flex items-center justify-between">
-            <p className=" text-[clamp(1rem,2rem,3rem)] max-w-[50vw] font-GT-Walsheim-Regular">
+            <Body className="max-w-[50vw] font-GT-Walsheim-Regular">
               At HackBeanpot 2025, we&apos;re hitting the road with a community
               of explorers driven by creativity, learning, and meaningful
               connections.
@@ -45,7 +46,7 @@ export default function HitTheRoad(): JSX.Element {
               >
                 www.hackbeanpot.com
               </a>
-            </p>
+            </Body>
           </div>
           <Link
             className="mt-8 bg-orange text-white py-3 px-7 rounded-[64px] w-fit hover:scale-105 transition-transform"

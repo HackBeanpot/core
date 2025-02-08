@@ -1,5 +1,5 @@
 import React from "react";
-import { Section } from "@repo/ui";
+import { Section, Heading, Body } from "@repo/ui";
 import EventScheduleRoad from "../../lib/Assets/SVG/EventScheduleRoad";
 import EventScheduleTabs from "./EventScheduleTabs";
 
@@ -13,19 +13,19 @@ const EventScheduleBackground = () => {
 
 const EventScheduleContent = async () => {
   return (
-    <div className="py-24 px-48 font-GT-Walsheim-Bold">
-      <div className="flex flex-col py-10 text-xl gap-10">
+    <div className="m-[5vw]">
+      <div className="flex flex-col py-10 gap-10">
         <div className="flex items-center justify-between">
-          <p className="text-[clamp(3rem,7vw,7rem)] text-granolaLite font-bold font-Wilden">
+          <Heading className="text-granolaLite">
             Event Schedule
-          </p>
+          </Heading>
         </div>
-        <p className="text-white text-xl font-GT-Walsheim-Regular">
+        <Body className="text-white">
           Dates and times are displayed in your local timezone. Schedule in EST
           can be found here. The password for all Zoom meetings can be found
           pinned in the #announcements Slack channel. Please be sure to attend
           all events labeled &quot;Everyone&quot;.
-        </p>
+        </Body>
       </div>
       <EventScheduleTabs />
     </div>
@@ -38,7 +38,7 @@ const EventSchedule = () => {
       name="schedule"
       background={<EventScheduleBackground />}
       content={<EventScheduleContent />}
-      height={125}
+      height={140}
     />
   );
 };
