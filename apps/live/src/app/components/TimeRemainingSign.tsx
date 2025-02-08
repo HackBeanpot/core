@@ -37,7 +37,7 @@ const TimeRemainingSign: React.FC<{ target: Date }> = ({ target }) => {
   }, [target]);
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center">
+    <div className="relative w-full flex flex-col items-center justify-center transform translate-x-7">
       <div
         className={`max-w-[500px] relative ${
           isMobile ? "w-[50vw]" : "w-[30vw]"

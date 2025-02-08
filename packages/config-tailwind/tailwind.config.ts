@@ -6,6 +6,13 @@ import { wiggle, popAndShrink } from "./animations";
 const config: Omit<Config, "content"> = {
   theme: {
     extend: {
+      fontSize: {
+        heading: "clamp(2.81rem, 10vw, 5.64rem)", // 45px → 90.3px
+        body: "clamp(0.875rem, 2vw, 1.625rem)", // 14px → 26px
+        button: "clamp(0.875rem, 1.8vw, 1.5rem)", // 14px → 24px
+        signLarge: "clamp(2.12rem, 10vw, 4.45rem)", // 33.94px → 71.27px
+        signSmall: "clamp(0.90rem, 15vw, 2rem)", // 14.44px → 30.33px
+      },
       backgroundImage: {
         "glow-conic":
           "conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)",
