@@ -12,7 +12,12 @@ export default function Landing(): JSX.Element {
 
   const background = (
     <div className="w-full h-full overflow-hidden pointer-events-none relative">
-      <Image alt="ProjectsBackground" src="/landing_live_background.png" fill />
+      <Image
+        alt="ProjectsBackground"
+        src="/landing_live_background.svg"
+        layout="fill"
+        objectFit="cover"
+      />
     </div>
   );
 

@@ -40,7 +40,7 @@ const OurTeam = () => {
       name="team"
       background={<OurTeamBackground />}
       content={<OurTeamContent ref={ref} />}
-      height={(contentHeight / windowHeight) * 100}
+      height={(contentHeight / windowHeight) * 90}
     />
   );
 };

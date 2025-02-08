@@ -36,25 +36,25 @@ const NavBar = () => {
             <div className="flex flex-row align-middle justify-end">
               <Link
                 href={"#schedule"}
-                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw]"
+                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw] hover:scale-105 transition-transform"
               >
                 Schedule
               </Link>
               <Link
                 href={"#mentors"}
-                className="text-[clamp(1rem,1.3vw, 4rem)] flex items-center px-[1.2vw]"
+                className="text-[clamp(1rem,1.3vw, 4rem)] flex items-center px-[1.2vw] hover:scale-105 transition-transform"
               >
                 Mentors
               </Link>
               <Link
                 href={"#resources"}
-                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw]"
+                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw] hover:scale-105 transition-transform"
               >
                 Resources
               </Link>
               <Link
                 href={"#team"}
-                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw]"
+                className="text-[clamp(1rem, 1.3vw, 4rem)] flex items-center px-[1.2vw] hover:scale-105 transition-transform"
               >
                 Team
               </Link>
