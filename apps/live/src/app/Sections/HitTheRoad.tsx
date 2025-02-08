@@ -5,7 +5,6 @@ import { Heading, Body, Section } from "@repo/ui";
 import Road from "../lib/Assets/SVG/Road";
 import Link from "next/link";
 
-
 export default function HitTheRoad(): JSX.Element {
   const background = (
     <div className="w-full h-full flex items-center bg-[#F2E6D7]">

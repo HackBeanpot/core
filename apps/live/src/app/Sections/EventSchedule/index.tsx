@@ -16,9 +16,7 @@ const EventScheduleContent = async () => {
     <div className="m-[5vw]">
       <div className="flex flex-col py-10 gap-10">
         <div className="flex items-center justify-between">
-          <Heading className="text-granolaLite">
-            Event Schedule
-          </Heading>
+          <Heading className="text-granolaLite">Event Schedule</Heading>
         </div>
         <Body className="text-white">
           Dates and times are displayed in your local timezone. Schedule in EST
