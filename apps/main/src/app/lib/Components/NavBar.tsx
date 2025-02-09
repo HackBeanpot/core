@@ -3,7 +3,6 @@
 import React from "react";
 import LocalLink from "./LocalLink";
 import { HomeIcon } from "@repo/ui";
-import { ExternalLink } from ".";
 
 const NavBar = () => {
   return (
@@ -40,13 +39,11 @@ const NavBar = () => {
             Sponsor Us
           </LocalLink>
           <LocalLink
-            href={"http://apply.hackbeanpot.com/"}
-          <ExternalLink
             href={"https://apply.hackbeanpot.com"}
             className="bg-green text-xl flex items-center px-5 text-text-light"
           >
             Apply
-          </ExternalLink>
+          </LocalLink>
         </div>
       </div>
     </div>
