@@ -20,7 +20,7 @@ const PaginationDots: React.FC<PaginationDotsProps> = ({
         <div
           key={index}
           className={clsx(
-            "w-4 h-4 rounded-full cursor-pointer",
+            `w-4 h-4 rounded-full cursor-pointer hover:scale-110`,
             currentPage === index
               ? `bg-${color}` // Highlight current page
               : `bg-${color} opacity-40`,

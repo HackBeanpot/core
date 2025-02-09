@@ -29,22 +29,16 @@ export default function Section({
   const sectionHeight = `${height}vh`;
 
   return (
-    <div id={name} style={{ height: sectionHeight }} className="w-lvw">
-      <div
-        style={{ height: sectionHeight }}
-        className={`absolute z-0 w-screen`}
-      >
+    <div id={name} style={{ height: sectionHeight }} className="w-full">
+      <div style={{ height: sectionHeight }} className={`absolute z-0 w-full`}>
         {background}
       </div>
-      <div
-        style={{ height: sectionHeight }}
-        className={`absolute z-10 w-screen`}
-      >
+      <div style={{ height: sectionHeight }} className={`absolute z-10 w-full`}>
         {content}
       </div>
       <div
         style={{ height: sectionHeight }}
-        className={`absolute z-20 w-screen pointer-events-none`}
+        className={`absolute z-20 w-full pointer-events-none`}
       >
         {foregroundItems?.map(({ item, coordinate }) => (
           <div

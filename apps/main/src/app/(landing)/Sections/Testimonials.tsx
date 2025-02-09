@@ -112,12 +112,8 @@ const Testimonials: React.FC = () => {
   function handleClick(index: number) {
     setPeople((prevPeople) => {
       const newPeople = [...prevPeople];
-      while (index !== 0) {
-        const firstPerson = newPeople.shift();
-        newPeople.push(firstPerson!);
-        index--;
-      }
-      return newPeople;
+      const toMoveToFront = newPeople.splice(index - currentPage);
+      return [...toMoveToFront, ...newPeople];
     });
     setCurrentPage(index);
   }
