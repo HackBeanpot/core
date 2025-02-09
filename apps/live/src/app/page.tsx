@@ -9,6 +9,7 @@ import NavBar from "./lib/Components/NavBar";
 import Footer from "./lib/Components/Footer";
 import ComingUp from "./Sections/ComingUp/ComingUp";
 import OurTeam from "./Sections/OurTeam";
+import Keynote from "./Sections/Keynote";
 
 export default function Page(): JSX.Element {
   return (
@@ -18,6 +19,7 @@ export default function Page(): JSX.Element {
       <ComingUp />
       <HitTheRoad />
       <EventSchedule />
+      <Keynote />
       <MentorSection />
       <Resources />
       <OurTeam />
