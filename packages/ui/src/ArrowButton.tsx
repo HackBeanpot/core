@@ -44,7 +44,7 @@ export default function ArrowButton({
       <button
         onClick={onClick}
         className={clsx(
-          `rounded-arrow w-24 h-24 ${bgColor} ${topBorder} border-t-4`,
+          `rounded-arrow w-24 h-24 ${bgColor} ${topBorder} border-t-4 hover:scale-105 transition-transform`,
           className,
         )}
       >
