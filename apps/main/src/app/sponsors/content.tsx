@@ -1,10 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const SponsorsContent = () => {
+const SponsorsContent = forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <div className="flex justify-center flex-col items-center">
+    <div className="flex justify-center flex-col items-center" ref={ref}>
       <div>
         <h1 className="font-bold text-7xl mb-[5rem] mt-[7rem] text-center text-[#AD916C] font-Wilden-Regular drop-shadow-[0_8px_0px_rgba(0,0,0,.1)]">
           HBP 2025 SPONSORS
@@ -60,7 +60,7 @@ const SponsorsContent = () => {
           />
         </div>
       </div>
-      <div className="bg-[#C6E0D3] w-full h-[15%] absolute bottom-0 flex justify-center items-center flex-col space-y-4 font-GT-Walsheim-Regular p-[10%]">
+      <div className="bg-[#C6E0D3] w-full h-[15%] absolute bottom-0 flex justify-center items-center flex-col space-y-4 font-GT-Walsheim-Regular p-28">
         <h1 className="text-2xl font-GT-Walsheim-Bold text-center">
           Interested in sponsoring HackBeanpot 2025?
         </h1>
@@ -76,6 +76,8 @@ const SponsorsContent = () => {
       </div>
     </div>
   );
-};
+});
+
+SponsorsContent.displayName = "SponsorsContent";
 
 export default SponsorsContent;
