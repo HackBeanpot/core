@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
-import { CommunityIcon, ExplorationIcon, GrowthIcon, Section } from "@repo/ui";
+import CommunityIcon from "@repo/ui/Icons/CommunityIcon";
+import ExplorationIcon from "@repo/ui/Icons/ExplorationIcon";
+import GrowthIcon from "@repo/ui/Icons/GrowthIcon";
 import RockVariant1 from "../../lib/Assets/SVG/Rocks/RockVariant1";
 import RockVariant2 from "../../lib/Assets/SVG/Rocks/RockVariant2";
 import RockVariant3 from "../../lib/Assets/SVG/Rocks/RockVariant3";
@@ -79,11 +81,17 @@ const ValuesGrowthContent = (
 );
 
 const content = (
-  <div className="w-full text-[#474747] h-full grid grid-cols-2 grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
-    <Box>{ValuesIntroContent}</Box>
-    <Box>{ValuesExplorationContent}</Box>
-    <Box>{ValuesCommunityContent}</Box>
-    <Box>{ValuesGrowthContent}</Box>
+  <div className="w-full h-full grid grid-cols-2 grid-rows-2">
+    <div className="w-full bg-[#EC765A] flex flex-col justify-center font-Wilden" />
+    <div className="w-full bg-[#E2D16D] flex flex-col justify-center" />
+    <div className="w-full bg-[#5BB9B3] flex flex-col justify-center" />
+    <div className="w-full bg-[#D5CAE7] flex flex-col justify-center" />
+    <div className="w-full text-[#474747] h-full grid grid-cols-2 grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
+      <Box>{ValuesIntroContent}</Box>
+      <Box>{ValuesExplorationContent}</Box>
+      <Box>{ValuesCommunityContent}</Box>
+      <Box>{ValuesGrowthContent}</Box>
+    </div>
   </div>
 );
 
@@ -106,22 +114,22 @@ const rocks = (
 
 const foreground = [
   {
-    // Rocks
     item: rocks,
     coordinate: { x: 0, y: 100 },
   },
 ];
 
 export default function Values(): React.ReactNode {
-  return (
-    <Section
-      name={"values"}
-      background={background}
-      content={content}
-      foreground={foreground}
-      height={80}
-    />
-  );
+  return content;
+  // return (
+  //   <Section
+  //     name={"values"}
+  //     background={background}
+  //     content={content}
+  //     foreground={foreground}
+  //     height={80}
+  //   />
+  // );
 }
 
 export function Box({

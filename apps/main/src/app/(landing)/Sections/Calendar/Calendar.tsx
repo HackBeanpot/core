@@ -2,7 +2,8 @@
 
 import React, { useRef, useState, forwardRef } from "react";
 
-import { ArrowButton, Section, TitleBox } from "@repo/ui";
+import ArrowButton from "@repo/ui/ArrowButton";
+import TitleBox from "@repo/ui/TitleBox";
 
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
@@ -11,7 +12,7 @@ import CalendarBackground from "./CalendarBackground";
 import RockVariant2 from "../../../lib/Assets/SVG/Rocks/RockVariant2";
 import RockVariant3 from "../../../lib/Assets/SVG/Rocks/RockVariant3";
 import RockVariant4 from "../../../lib/Assets/SVG/Rocks/RockVariant4";
-import PaginationDots from "../../../lib/Components/PaginationDots";
+import PaginationDots from "@repo/ui/PaginationDots";
 
 // Calendar Events Data
 const events: CalendarEventProps[] = [
@@ -175,7 +176,7 @@ export function CalendarEvents({
   const startIndex = page * eventsPerPage;
   const displayedEvents = calendarEvents.slice(
     startIndex,
-    startIndex + eventsPerPage,
+    startIndex + eventsPerPage
   );
 
   return (

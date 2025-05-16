@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { LinkedInLogo, Section } from "@repo/ui";
+import LinkedInLogo from "@repo/ui/LinkedInLogo";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
 import {
@@ -128,18 +128,18 @@ const Teams = () => {
         <TeamsTopSquiggle className="w-[110vw] -mt-48 -ml-[5vw]" />
         <TeamsMiddleSquiggle className="w-[110vw] -ml-[10vw]" />
         <TeamsBottomSquiggle className="w-[110vw] -ml-[5vw]" />
+        <TeamsContent></TeamsContent>
       </div>
     );
   };
 
-  return (
-    <Section
-      name={"teams"}
-      background={<TeamsBackground />}
-      content={<TeamsContent />}
-      height={(contentHeight / windowHeight) * 100}
-    />
-  );
+  return TeamsBackground;
+  // <Section
+  //   name={"teams"}
+  //   background={<TeamsBackground />}
+  //   content={<TeamsContent />}
+  //   height={(contentHeight / windowHeight) * 100}
+  // />
 };
 
 export default Teams;

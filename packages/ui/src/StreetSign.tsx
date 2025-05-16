@@ -1,5 +1,5 @@
 import React from "react";
-import { SignLarge, SignSmall } from "@repo/ui";
+import Typography from "@repo/ui/Typography";
 
 type StreetSignProps = {
   streetName: string;
@@ -16,8 +16,8 @@ export default function StreetSign({
         "relative inline-flex items-center bg-[#02877F] text-white border-4 border-white rounded-2xl px-8 clip-path-inset-10 transform -rotate-3 shadow-lg"
       }
     >
-      <SignLarge>{streetName}</SignLarge>
-      <SignSmall className="ml-2 mb-5">{suffix}</SignSmall>
+      <Typography.SignLarge>{streetName}</Typography.SignLarge>
+      <Typography.SignSmall className="ml-2 mb-5">{suffix}</Typography.SignSmall>
     </div>
   );
 }

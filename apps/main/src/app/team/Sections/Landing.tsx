@@ -1,5 +1,4 @@
 "use client";
-import { Section } from "@repo/ui";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
 import Image from "next/image";

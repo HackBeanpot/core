@@ -1,6 +1,5 @@
 "use client";
 
-import { Section } from "@repo/ui";
 import { Footer, NavBar } from "../lib/Components";
 import SponsorsBackground from "./background";
 import SponsorsContent from "./content";

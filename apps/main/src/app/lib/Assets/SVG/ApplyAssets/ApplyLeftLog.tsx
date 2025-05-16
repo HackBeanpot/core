@@ -3,7 +3,7 @@ import React from "react";
 const ApplyLeftLog = () => {
   return (
     <svg
-      width="48vh"
+      width="30vw"
       height="45vh"
       viewBox="0 0 441 322"
       fill="none"

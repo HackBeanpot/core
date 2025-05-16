@@ -1,22 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import { Section, StreetSign, ArrowButton, Carousel } from "@repo/ui";
-import PaginationDots from "../../lib/Components/PaginationDots";
+import StreetSign from "@repo/ui/StreetSign";
+import ArrowButton from "@repo/ui/ArrowButton";
+import Carousel from "@repo/ui/Carousel";
+import TestimonialBackground from "./testimonial_background.svg";
+import PaginationDots from "@repo/ui/PaginationDots";
 
-const background = (
-  <div>
-    <Image
-      alt="TestimonialBackground"
-      src="/testimonial_background.svg"
-      fill
-      className="object-cover"
-    />
-  </div>
-);
-
-type person = {
+type Person = {
   id: number;
   passportNumber: string;
   firstName: string;
@@ -28,7 +19,7 @@ type person = {
   isSponsor: boolean;
 };
 
-const defaultOrder: person[] = [
+const defaultOrder: Person[] = [
   {
     id: 0,
     passportNumber: "ZT183920",
@@ -79,7 +70,7 @@ const defaultOrder: person[] = [
   },
 ];
 
-const Testimonials: React.FC = () => {
+export default function TestimonialSection(): React.ReactNode {
   const [people, setPeople] = useState(defaultOrder);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -119,45 +110,36 @@ const Testimonials: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="font-bold text-center text-[#B2A0C2] p-8 font-Wilden-Regular">
-        <StreetSign streetName="Testimonials" suffix="ST" />
-      </div>
-      <ArrowButton
-        direction="left"
-        arrowButtonColor="greenButton"
-        onClick={onClickLeftArrow}
-        className="absolute left-5 top-[54%] transform -translate-y-1/2 z-2"
-      />
-      <ArrowButton
-        direction="right"
-        arrowButtonColor="greenButton"
-        onClick={onClickRightArrow}
-        className="absolute right-10 top-[54%] transform -translate-y-1/2 z-2"
-      />
-      <div className="top-2">
-        <Carousel items={people.slice(0, 3)} />
-      </div>
-
-      <div className="absolute bottom-7 w-full">
-        <PaginationDots
-          currentPage={currentPage}
-          totalPages={people.length}
-          color="vineGreenLite"
-          handleClick={handleClick}
+    <div style={{ backgroundImage: `url(./testimonial_background.svg)` }}>
+      <div className="flex flex-col items-center justify-center">
+        <div className="font-bold text-center text-[#B2A0C2] p-8 font-Wilden-Regular">
+          <StreetSign streetName="Testimonials" suffix="ST" />
+        </div>
+        <ArrowButton
+          direction="left"
+          arrowButtonColor="greenButton"
+          onClick={onClickLeftArrow}
+          className="absolute left-5 top-[54%] transform -translate-y-1/2 z-2"
         />
+        <ArrowButton
+          direction="right"
+          arrowButtonColor="greenButton"
+          onClick={onClickRightArrow}
+          className="absolute right-10 top-[54%] transform -translate-y-1/2 z-2"
+        />
+        <div className="top-2">
+          <Carousel items={people.slice(0, 3)} />
+        </div>
+
+        <div className="absolute bottom-7 w-full">
+          <PaginationDots
+            currentPage={currentPage}
+            totalPages={people.length}
+            color="vineGreenLite"
+            handleClick={handleClick}
+          />
+        </div>
       </div>
     </div>
-  );
-};
-
-export default function TestimonialSection(): React.ReactNode {
-  return (
-    <Section
-      name={"testimonials"}
-      background={background}
-      content={<Testimonials />}
-      height={100}
-    />
   );
 }
