@@ -2,7 +2,7 @@
 
 import React from "react";
 import LocalLink from "./LocalLink";
-import { HomeIcon } from "@repo/ui";
+import HomeIcon from "@repo/ui/Icons/HomeIcon";
 
 const NavBar = () => {
   return (

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-// Pagination Dots Component
+
 type PaginationDotsProps = {
   currentPage: number;
   totalPages: number;
@@ -21,9 +21,7 @@ const PaginationDots: React.FC<PaginationDotsProps> = ({
           key={index}
           className={clsx(
             `w-4 h-4 rounded-full cursor-pointer hover:scale-110`,
-            currentPage === index
-              ? `bg-${color}` // Highlight current page
-              : `bg-${color} opacity-40`,
+            currentPage === index ? `bg-${color}` : `bg-${color} opacity-40`
           )}
           onClick={() => {
             handleClick(index);
