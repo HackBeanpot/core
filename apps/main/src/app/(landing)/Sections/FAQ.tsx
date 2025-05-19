@@ -4,9 +4,12 @@ import FAQBackground from "../../lib/Assets/SVG/FAQBackground";
 
 export default function FAQSection(): React.ReactNode {
   return (
-    <div className="w-full h-full bg-cover overflow-hidden">
+    <div className="w-full h-full mb-48 bg-cover overflow-hidden">
+      <div className="absolute w-full -mt-16">
+        <FAQBackground height={1500} width={ 1920} preserveAspectRatio="none"/>
+      </div>
       <div className="flex flex-col p-28 space-y-5 font-GT-Walsheim-Regular">
-        <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular">
+        <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular z-10">
           FAQs
         </h1>
 
@@ -75,7 +78,6 @@ export default function FAQSection(): React.ReactNode {
           />
         </div>
       </div>
-      <FAQBackground />
     </div>
   );
 }

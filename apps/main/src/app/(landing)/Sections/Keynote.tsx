@@ -60,7 +60,7 @@ function SpeakerAbout(): JSX.Element {
 export default function Keynote(): React.ReactNode {
   const isMobile = useIsMobile();
   return (
-    <div className="w-full h-full bg-cream">
+    <div className="w-full h-[120vh] bg-cream">
       <div
         className={`h-full max-w-[80vw] mx-auto my-auto gap-5 ${
           isMobile

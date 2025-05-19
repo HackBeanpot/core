@@ -39,6 +39,18 @@ export default function About(): React.ReactNode {
         <Image alt="AboutPicture" src="/about_3.png" width={300} height={300} />
       </div>
 
+      <div className="absolute left-[68%] mt-48">
+        <Thumbtack1 />
+      </div>
+
+      <div className="absolute left-[95%] mt-96">
+        <Thumbtack2 />
+      </div>
+
+      <div className="absolute left-[95%] mt-28">
+        <Thumbtack3 />
+      </div>
+
       <div className="absolute h-full w-[50vw] ml-24 mr-auto mt-24 flex text-[1.8vw]">
         <div className="w-[50vw]">
           <StreetSign streetName={"ABOUT"} suffix="HBP" />
@@ -63,69 +75,3 @@ export default function About(): React.ReactNode {
     </div>
   );
 }
-
-// const foreground = [
-//   {
-//     item: (
-
-//     ),
-//     coordinate: { x: 15, y: 66 },
-//   },
-//   {
-//     item: (
-
-//     ),
-//     coordinate: { x: 90, y: 12 },
-//   },
-//   {
-//     item: (
-
-//     ),
-//     coordinate: { x: 90, y: 42 },
-//   },
-//   {
-//     item: (
-
-//     ),
-//     coordinate: { x: 60, y: 24 },
-//   },
-//   {
-//     item: <Thumbtack1 />,
-//     coordinate: { x: 63, y: 24 },
-//   },
-//   {
-//     item: <Thumbtack2 />,
-//     coordinate: { x: 94, y: 40 },
-//   },
-//   {
-//     item: <Thumbtack3 />,
-//     coordinate: { x: 94, y: 17 },
-//   },
-// ];
-
-// const background = (
-//   <div className="w-full h-full bg-[#F3E7D7] flex flex-col flex-none">
-//     <div className="w-[100vw]">
-//       <TopAboutBar />
-//     </div>
-//     <div className="w-[55vw]">
-//       <Squiggle />
-//     </div>
-//     <div className="absolute w-[45vw] left-[56vw] transform top-[2vh]">
-//       <Journal />
-//     </div>
-//     <div className="w-[100vw] mt-auto">
-//       <BottomAboutBar />
-//     </div>
-
-//     <div>
-//       <AboutText />
-//     </div>
-
-//     <div>{content}</div>
-
-//     {/* <div>
-//       {foreground}
-//     </div> */}
-//   </div>
-// );

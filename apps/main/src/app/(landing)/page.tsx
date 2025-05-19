@@ -26,13 +26,11 @@ export default function Page(): JSX.Element {
       <Apply />
       <Stats />
       <About />
-      {/* <Values /> */}
-      {/* <Keynote /> */}
-      {/* <Calendar /> */}
-      {/* <Testimonials /> */}
-      {/* <FAQSection /> */}
-      <Footer />
-      <Footer />
+      <Values />
+      <Keynote />
+      <Calendar />
+      <Testimonials />
+      <FAQSection />
       <Footer />
     </main>
   );

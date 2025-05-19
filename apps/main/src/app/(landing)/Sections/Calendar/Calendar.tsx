@@ -6,9 +6,9 @@ import ArrowButton from "@repo/ui/ArrowButton";
 import TitleBox from "@repo/ui/TitleBox";
 
 import useWindowSize from "@repo/util/hooks/useWindowSize";
-import useContentHeight from "@repo/util/hooks/useContentHeight";
 
-import CalendarBackground from "./CalendarBackground";
+// import CalendarBackground from "./CalendarBackground";
+import EventsBackground from "../../../lib/Assets/SVG/EventsBackground";
 import RockVariant2 from "../../../lib/Assets/SVG/Rocks/RockVariant2";
 import RockVariant3 from "../../../lib/Assets/SVG/Rocks/RockVariant3";
 import RockVariant4 from "../../../lib/Assets/SVG/Rocks/RockVariant4";
@@ -226,24 +226,41 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center" ref={ref}>
-      <h1 className="text-6xl font-bold text-center text-[#B2A0C2] p-8 mt-6 mb-3 font-Wilden-Regular">
+    <div
+      className="relative flex flex-col w-full h-full items-center justify-center"
+      ref={ref}
+    >
+      <div className="absolute inset-0 z-0">
+        <EventsBackground
+          height={750}
+          width={1920}
+          preserveAspectRatio="none"
+        />
+      </div>
+      <h1 className="text-6xl font-bold text-center text-[#B2A0C2] p-8 mt-6 font-Wilden-Regular z-10">
         EVENTS CALENDAR
       </h1>
-      <ArrowButton
-        direction="left"
-        arrowButtonColor="purpleButton"
-        onClick={onClickLeftArrow}
-        className="absolute left-5 top-1/2 transform -translate-y-1/2 z-2"
-      />
-      <ArrowButton
-        direction="right"
-        arrowButtonColor="purpleButton"
-        onClick={onClickRightArrow}
-        className="absolute right-5 top-1/2 transform -translate-y-1/2 z-2"
-      />
-      <CalendarEvents calendarEvents={events} page={page} />
-      <div className="absolute bottom-7 w-full">
+
+      <div className="relative w-full flex items-center justify-center my-8 z-20">
+        <ArrowButton
+          direction="left"
+          arrowButtonColor="purpleButton"
+          onClick={onClickLeftArrow}
+          className="absolute left-5 top-1/2 -translate-y-1/2 z-10"
+        />
+        <div className="h-[50vh]">
+          <CalendarEvents calendarEvents={events} page={page} />
+        </div>
+
+        <ArrowButton
+          direction="right"
+          arrowButtonColor="purpleButton"
+          onClick={onClickRightArrow}
+          className="absolute right-10 top-1/2 -translate-y-1/2 z-10"
+        />
+      </div>
+
+      <div className="bottom-0 z-10 w-full">
         <PaginationDots
           currentPage={page}
           totalPages={maxPages}
@@ -251,44 +268,22 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
           handleClick={handleClick}
         />
       </div>
+      <div className="absolute z-10 top-0 right-64">
+        <RockVariant3 />
+      </div>
+      <div className="absolute z-10 top-6 right-24">
+        <RockVariant4 />
+      </div>
+      <div className="absolute z-10 -top-20 right-32">
+        <RockVariant2 />
+      </div>
     </div>
   );
 });
 
 CalendarSection.displayName = "CalendarSection";
 
-const foreground = [
-  {
-    // RockVariant3
-    item: <RockVariant3 />,
-    coordinate: { x: 82, y: 0 },
-  },
-  {
-    // RockVariant4
-    item: <RockVariant4 />,
-    coordinate: { x: 90, y: 3 },
-  },
-  {
-    // RockVariant2
-    item: <RockVariant2 />,
-    coordinate: { x: 89, y: -11 },
-  },
-];
-
 export default function Calendar(): React.ReactNode {
   const ref = useRef<HTMLDivElement>(null);
-  const { height: windowHeight } = useWindowSize();
-  const [contentHeight] = useContentHeight(ref);
-
-  const height = windowHeight ? (contentHeight / windowHeight) * 100 + 8 : 85;
-
-  return (
-    <Section
-      name={"calendar"}
-      foreground={foreground}
-      background={<CalendarBackground />}
-      content={<CalendarSection ref={ref} />}
-      height={height}
-    />
-  );
+  return <CalendarSection ref={ref} />;
 }

@@ -13,7 +13,7 @@ const Footer = () => {
   };
 
   const FooterContent = (
-    <div className="bg-light-yellow w-full h-full">
+    <div className="mb-16 bg-light-yellow w-full h-full">
       <div className="grid w-full h-full grid-cols-[1fr_1fr_1.1fr] px-[25vw] text-xl text-black font-GT-Walsheim-Regular">
         <div className="w-full flex flex-col pt-[7vh] gap-4">
           <div>SOCIALS</div>

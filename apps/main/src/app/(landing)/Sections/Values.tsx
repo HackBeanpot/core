@@ -9,15 +9,6 @@ import RockVariant2 from "../../lib/Assets/SVG/Rocks/RockVariant2";
 import RockVariant3 from "../../lib/Assets/SVG/Rocks/RockVariant3";
 import RockVariant4 from "../../lib/Assets/SVG/Rocks/RockVariant4";
 
-const background = (
-  <div className="w-full h-full grid grid-cols-2 grid-rows-2">
-    <div className="w-full bg-[#EC765A] flex flex-col justify-center font-Wilden" />
-    <div className="w-full bg-[#E2D16D] flex flex-col justify-center" />
-    <div className="w-full bg-[#5BB9B3] flex flex-col justify-center" />
-    <div className="w-full bg-[#D5CAE7] flex flex-col justify-center" />
-  </div>
-);
-
 const ValuesIntroContent = (
   <div className="mx-auto font-Wilden">
     <p className="text-4xl tablet:text-8xl text-[#F3E7D7] sm:text-[#EC765A] whitespace-pre-line">
@@ -80,21 +71,6 @@ const ValuesGrowthContent = (
   </div>
 );
 
-const content = (
-  <div className="w-full h-full grid grid-cols-2 grid-rows-2">
-    <div className="w-full bg-[#EC765A] flex flex-col justify-center font-Wilden" />
-    <div className="w-full bg-[#E2D16D] flex flex-col justify-center" />
-    <div className="w-full bg-[#5BB9B3] flex flex-col justify-center" />
-    <div className="w-full bg-[#D5CAE7] flex flex-col justify-center" />
-    <div className="w-full text-[#474747] h-full grid grid-cols-2 grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
-      <Box>{ValuesIntroContent}</Box>
-      <Box>{ValuesExplorationContent}</Box>
-      <Box>{ValuesCommunityContent}</Box>
-      <Box>{ValuesGrowthContent}</Box>
-    </div>
-  </div>
-);
-
 const rocks = (
   <div className="flex">
     <div className="mt-[-2.5rem]">
@@ -112,24 +88,30 @@ const rocks = (
   </div>
 );
 
-const foreground = [
-  {
-    item: rocks,
-    coordinate: { x: 0, y: 100 },
-  },
-];
+const content = (
+  <div>
+    <div className="w-full h-[80vh] text-[#474747] grid grid-cols-2 grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
+      <div className="w-full bg-[#EC765A] flex flex-col justify-center font-Wilden">
+        <Box>{ValuesIntroContent}</Box>
+      </div>
+      <div className="w-full bg-[#E2D16D] flex flex-col justify-center">
+        <Box>{ValuesExplorationContent}</Box>
+      </div>
+      <div className="w-full bg-[#5BB9B3] flex flex-col justify-center">
+        <Box>{ValuesCommunityContent}</Box>
+      </div>
+      <div className="w-full bg-[#D5CAE7] flex flex-col justify-center">
+        <Box>{ValuesGrowthContent}</Box>
+      </div>
+    </div>
+    <div className="absolute z-10">
+      {rocks}
+    </div>
+  </div>
+);
 
 export default function Values(): React.ReactNode {
   return content;
-  // return (
-  //   <Section
-  //     name={"values"}
-  //     background={background}
-  //     content={content}
-  //     foreground={foreground}
-  //     height={80}
-  //   />
-  // );
 }
 
 export function Box({
