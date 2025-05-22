@@ -19,12 +19,12 @@ const Apply = () => {
             Applications close 12/3 @ 11:59 PM.
           </p>
           <div className="pt-10">
-            <button
+            {/* <button
               onClick={() => alert("apply not implemented yet")}
               className="p-3 bg-[#84AF67] text-text-light rounded-full drop-shadow-md w-44 h-14 text-2xl"
             >
               Apply here
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="invisible desktop:visible">
