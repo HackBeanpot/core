@@ -6,7 +6,10 @@ export default function FAQSection(): React.ReactNode {
   return (
     <div className="w-full min-h-screen bg-cover overflow-visible relative">
       <div className="absolute w-full -mt-16">
-        <FAQBackground height={1450} width={1920} preserveAspectRatio="none" />
+        <FAQBackground
+          className="w-full h-[1450px]"
+          preserveAspectRatio="xMidYMid slice"
+        />
       </div>
       <div className="relative flex flex-col px-28 py-20 space-y-10 font-GT-Walsheim-Regular z-10 min-h-[1400px]">
         <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular z-10">
