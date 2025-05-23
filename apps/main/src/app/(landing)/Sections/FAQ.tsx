@@ -8,7 +8,7 @@ export default function FAQSection(): React.ReactNode {
       <div className="absolute w-full -mt-16">
         <FAQBackground
           className="w-full h-[1450px]"
-          preserveAspectRatio="xMidYMid slice"
+          preserveAspectRatio="xMidYMax slice"
         />
       </div>
       <div className="relative flex flex-col px-28 py-20 space-y-10 font-GT-Walsheim-Regular z-10 min-h-[1400px]">
