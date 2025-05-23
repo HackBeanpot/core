@@ -4,11 +4,11 @@ import FAQBackground from "../../lib/Assets/SVG/FAQBackground";
 
 export default function FAQSection(): React.ReactNode {
   return (
-    <div className="w-full h-full mb-48 bg-cover overflow-hidden">
+    <div className="w-full min-h-screen bg-cover overflow-visible relative">
       <div className="absolute w-full -mt-16">
-        <FAQBackground height={1500} width={ 1920} preserveAspectRatio="none"/>
+        <FAQBackground height={1450} width={1920} preserveAspectRatio="none" />
       </div>
-      <div className="flex flex-col p-28 space-y-5 font-GT-Walsheim-Regular">
+      <div className="relative flex flex-col px-28 py-20 space-y-10 font-GT-Walsheim-Regular z-10 min-h-[1400px]">
         <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular z-10">
           FAQs
         </h1>
@@ -62,19 +62,6 @@ export default function FAQSection(): React.ReactNode {
           <FAQDropdown
             dropdownQuestion="What kind of projects can I work on?"
             dropdownAnswer="..."
-          />
-        </div>
-
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="How do I find a team?"
-            dropdownAnswer="..."
-          />
-        </div>
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="What prizes are there this year?"
-            dropdownAnswer="We will be releasing more information about our prizes soon!"
           />
         </div>
       </div>
