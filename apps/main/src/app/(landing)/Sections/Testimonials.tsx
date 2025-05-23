@@ -122,33 +122,31 @@ const Testimonials: React.FC = () => {
       <div className="font-bold text-center text-[#B2A0C2] p-8 font-Wilden-Regular">
         <StreetSign streetName="Testimonials" suffix="ST" />
       </div>
-        {/* https://tailwindcss.com/docs/position 
-        moving arrows over-- since arrows work however once resized arrows propagate behind testimonials.
-        --> unclickable, need to z-index to be higher than testimonials (or lower) as for when it resizes  they dont collapse.*/}
 
-        <div className="relative w-full flex flex-col items-center">
-          <ArrowButton
-          direction="left"
-          arrowButtonColor="greenButton"
-          onClick={onClickLeftArrow}
-          className="absolute left-5 top-[54%] transform -translate-y-1/2 z-2"/>
-          <ArrowButton
-          direction="right"
-          arrowButtonColor="greenButton"
-          onClick={onClickRightArrow}
-          className="absolute right-10 top-[54%] transform -translate-y-1/2 z-2"/>
-        </div>
-        <div className="top-2">
-          <Carousel items={people.slice(0, 3)} />
-        </div>
-        <div className="absolute bottom-7 w-full">
-          <PaginationDots
-            currentPage={currentPage}
-            totalPages={people.length}
-            color="vineGreenLite"
-            handleClick={handleClick}/>
-        </div>
+      <ArrowButton
+        direction="left"
+        arrowButtonColor="greenButton"
+        onClick={onClickLeftArrow}
+        className="absolute left-5 top-[54%] transform -translate-y-1/2 z-20"
+      />
+      <ArrowButton
+        direction="right"
+        arrowButtonColor="greenButton"
+        onClick={onClickRightArrow}
+        className="absolute right-10 top-[54%] transform -translate-y-1/2 z-20"
+      />
+      <div className="top-2">
+        <Carousel items={people.slice(0, 3)} />
       </div>
+      <div className="absolute bottom-7 w-full">
+        <PaginationDots
+          currentPage={currentPage}
+          totalPages={people.length}
+          color="vineGreenLite"
+          handleClick={handleClick}
+        />
+      </div>
+    </div>
   );
 };
 
