@@ -12,11 +12,11 @@ export default function FAQSection(): React.ReactNode {
         />
       </div>
       <div className="relative flex flex-col px-28 py-20 space-y-10 font-GT-Walsheim-Regular z-10 min-h-[1400px]">
-        <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular z-10">
+        <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular">
           FAQs
         </h1>
 
-        <div className="w-3/5 mx-auto flex z-10">
+        <div className="w-3/5 mx-auto flex">
           <h3 className="text-2xl font-semibold text-white">
             Time and Location
           </h3>
@@ -43,7 +43,7 @@ export default function FAQSection(): React.ReactNode {
         </div>
 
         <div className="w-3/5 mx-auto flex">
-          <h3 className="text-2xl font-semibold text-white pt-10 z-10">
+          <h3 className="text-2xl font-semibold text-white pt-10">
             Application Logistics
           </h3>
         </div>
@@ -56,7 +56,7 @@ export default function FAQSection(): React.ReactNode {
         </div>
 
         <div className="w-3/5 mx-auto flex">
-          <h3 className="text-2xl font-semibold text-white pt-10 z-10">
+          <h3 className="text-2xl font-semibold text-white pt-10">
             Event Logistics
           </h3>
         </div>
