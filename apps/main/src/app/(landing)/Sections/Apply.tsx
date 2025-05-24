@@ -15,8 +15,7 @@ const Apply = () => {
 
         <div className="w-full h-full relative w-1/2 flex flex-col justify-center text-center items-center text-2xl tablet:desktop:text-3xl desktop:text-4xl pb-7 font-GT-Walsheim-Regular">
           <p>
-            We’re going on a roadtrip! Reach new destinations at our hackathon.
-            Applications close 12/3 @ 11:59 PM.
+            Applications have not been released for HackBeanpot 2026. Check in with us again this fall!
           </p>
           <div className="pt-10">
             {/* <button
