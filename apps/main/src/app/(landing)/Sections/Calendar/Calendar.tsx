@@ -2,102 +2,67 @@
 
 import React, { useRef, useState, forwardRef } from "react";
 
-import { ArrowButton, Section, TitleBox } from "@repo/ui";
+import ArrowButton from "@repo/ui/ArrowButton";
+import TitleBox from "@repo/ui/TitleBox";
 
 import useWindowSize from "@repo/util/hooks/useWindowSize";
-import useContentHeight from "@repo/util/hooks/useContentHeight";
 
-import CalendarBackground from "./CalendarBackground";
+// import CalendarBackground from "./CalendarBackground";
+import EventsBackground from "../../../lib/Assets/SVG/EventsBackground";
 import RockVariant2 from "../../../lib/Assets/SVG/Rocks/RockVariant2";
 import RockVariant3 from "../../../lib/Assets/SVG/Rocks/RockVariant3";
 import RockVariant4 from "../../../lib/Assets/SVG/Rocks/RockVariant4";
-import PaginationDots from "../../../lib/Components/PaginationDots";
+import PaginationDots from "@repo/ui/PaginationDots";
 
 // Calendar Events Data
 const events: CalendarEventProps[] = [
   {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    month: "FEB",
+    date: "07",
+    dayAndTime: "Friday, 9:30 - 10:30pm",
+    eventName: "Intro to Web Dev + Git",
   },
   {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 9 - 10am",
+    eventName: "LeetCode Workshop",
   },
   {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 10 - 11am",
+    eventName: "3D Web Dev w/ 3JS Workshop",
   },
   {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 11 - 12pm",
+    eventName: "Social Engineering Workshop",
   },
   {
-    month: "OCT",
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 1 - 2pm",
+    eventName: "Machine Learning Workshop",
+  },
+  {
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 5 - 6pm",
+    eventName: "Bias in A.I. Models Workshop",
+  },
+  {
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Thursday, 7:15 - 8pm",
+    eventName: "Hacker Demo Prep Workshop",
+  },
+  {
+    month: "FEB",
     date: "09",
-    dayAndTime: "Monday, 5 - 6pm",
-    eventName: "Databases for Developers",
-  },
-  {
-    month: "OCT",
-    date: "10",
-    dayAndTime: "Tuesday, 4 - 5pm",
-    eventName: "Intro to Git and Version Control",
-  },
-  {
-    month: "OCT",
-    date: "11",
-    dayAndTime: "Wednesday, 3 - 4pm",
-    eventName: "Full Stack Development Overview",
-  },
-  {
-    month: "OCT",
-    date: "12",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
-  },
-  {
-    month: "OCT",
-    date: "10",
-    dayAndTime: "Tuesday, 4 - 5pm",
-    eventName: "React.js Workshop",
-  },
-  {
-    month: "OCT",
-    date: "11",
-    dayAndTime: "Wednesday, 3 - 4pm",
-    eventName: "Full Stack Development Overview",
-  },
-  {
-    month: "OCT",
-    date: "12",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Data Science",
-  },
-  {
-    month: "NOV",
-    date: "22",
-    dayAndTime: "Monday, 10am - 12pm",
-    eventName: "React.js Workshop",
-  },
-  {
-    month: "DEC",
-    date: "5",
-    dayAndTime: "Friday, 1 - 2pm",
-    eventName: "Introduction to Data Science",
-  },
-  {
-    month: "JAN",
-    date: "18",
-    dayAndTime: "Tuesday, 2 - 3pm",
-    eventName: "JavaScript Deep Dive",
+    dayAndTime: "Sunday, 11:30 - 1:15pm",
+    eventName: "Resumes and Internships",
   },
 ];
 
@@ -175,7 +140,7 @@ export function CalendarEvents({
   const startIndex = page * eventsPerPage;
   const displayedEvents = calendarEvents.slice(
     startIndex,
-    startIndex + eventsPerPage,
+    startIndex + eventsPerPage
   );
 
   return (
@@ -225,24 +190,41 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center" ref={ref}>
-      <h1 className="text-6xl font-bold text-center text-[#B2A0C2] p-8 mt-6 mb-3 font-Wilden-Regular">
-        EVENTS CALENDAR
+    <div
+      className="relative flex flex-col w-full h-full items-center justify-center"
+      ref={ref}
+    >
+      <div className="absolute inset-0 z-0">
+        <EventsBackground
+          height={750}
+          width={1920}
+          preserveAspectRatio="none"
+        />
+      </div>
+      <h1 className="text-6xl font-bold text-center text-[#B2A0C2] p-8 mt-6 font-Wilden-Regular z-10">
+        PREVIOUS EVENTS
       </h1>
-      <ArrowButton
-        direction="left"
-        arrowButtonColor="purpleButton"
-        onClick={onClickLeftArrow}
-        className="absolute left-5 top-1/2 transform -translate-y-1/2 z-2"
-      />
-      <ArrowButton
-        direction="right"
-        arrowButtonColor="purpleButton"
-        onClick={onClickRightArrow}
-        className="absolute right-5 top-1/2 transform -translate-y-1/2 z-2"
-      />
-      <CalendarEvents calendarEvents={events} page={page} />
-      <div className="absolute bottom-7 w-full">
+
+      <div className="relative w-full flex items-center justify-center my-8 z-20">
+        <ArrowButton
+          direction="left"
+          arrowButtonColor="purpleButton"
+          onClick={onClickLeftArrow}
+          className="absolute left-5 top-1/2 -translate-y-1/2 z-10"
+        />
+        <div className="h-[50vh]">
+          <CalendarEvents calendarEvents={events} page={page} />
+        </div>
+
+        <ArrowButton
+          direction="right"
+          arrowButtonColor="purpleButton"
+          onClick={onClickRightArrow}
+          className="absolute right-10 top-1/2 -translate-y-1/2 z-10"
+        />
+      </div>
+
+      <div className="bottom-0 z-10 w-full">
         <PaginationDots
           currentPage={page}
           totalPages={maxPages}
@@ -250,44 +232,22 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
           handleClick={handleClick}
         />
       </div>
+      <div className="absolute z-10 top-0 right-64">
+        <RockVariant3 />
+      </div>
+      <div className="absolute z-10 top-6 right-24">
+        <RockVariant4 />
+      </div>
+      <div className="absolute z-10 -top-20 right-32">
+        <RockVariant2 />
+      </div>
     </div>
   );
 });
 
 CalendarSection.displayName = "CalendarSection";
 
-const foreground = [
-  {
-    // RockVariant3
-    item: <RockVariant3 />,
-    coordinate: { x: 82, y: 0 },
-  },
-  {
-    // RockVariant4
-    item: <RockVariant4 />,
-    coordinate: { x: 90, y: 3 },
-  },
-  {
-    // RockVariant2
-    item: <RockVariant2 />,
-    coordinate: { x: 89, y: -11 },
-  },
-];
-
 export default function Calendar(): React.ReactNode {
   const ref = useRef<HTMLDivElement>(null);
-  const { height: windowHeight } = useWindowSize();
-  const [contentHeight] = useContentHeight(ref);
-
-  const height = windowHeight ? (contentHeight / windowHeight) * 100 + 8 : 85;
-
-  return (
-    <Section
-      name={"calendar"}
-      foreground={foreground}
-      background={<CalendarBackground />}
-      content={<CalendarSection ref={ref} />}
-      height={height}
-    />
-  );
+  return <CalendarSection ref={ref} />;
 }

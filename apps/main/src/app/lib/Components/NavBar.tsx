@@ -2,7 +2,7 @@
 
 import React from "react";
 import LocalLink from "./LocalLink";
-import { HomeIcon } from "@repo/ui";
+import HomeIcon from "@repo/ui/Icons/HomeIcon";
 
 const NavBar = () => {
   return (
@@ -39,8 +39,9 @@ const NavBar = () => {
             Sponsor Us
           </LocalLink>
           <LocalLink
-            href={"https://apply.hackbeanpot.com"}
+            href={""}
             className="bg-green text-xl flex items-center px-5 text-text-light"
+            onClick={() => alert("apply not implemented yet")}
           >
             Apply
           </LocalLink>
