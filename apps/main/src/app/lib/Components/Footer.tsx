@@ -26,10 +26,10 @@ const Footer = () => {
         </div>
         <div className="w-full flex flex-col pt-[7vh] gap-4">
           <div>ABOUT</div>
-          <LocalLink href={"#about"}>About Hackbeanpot</LocalLink>
-          <LocalLink href={"#projects"}>Projects</LocalLink>
-          <LocalLink href={"#sponsors"}>Sponsors</LocalLink>
-          <LocalLink href={"#team"}>Team</LocalLink>
+          <LocalLink href={"about"}>About Hackbeanpot</LocalLink>
+          <LocalLink href={"projects"}>Projects</LocalLink>
+          <LocalLink href={"sponsors"}>Sponsors</LocalLink>
+          <LocalLink href={"team"}>Team</LocalLink>
         </div>
         <div className="flex flex-col w-full pt-[7vh] gap-4 items-start">
           <div className="text-3xl">Stay up-to-date with HBP!</div>
