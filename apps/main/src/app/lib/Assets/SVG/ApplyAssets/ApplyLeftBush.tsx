@@ -1,6 +1,10 @@
 import * as React from "react";
 
-const ApplyLeftBush = ({ className }) => {
+type ApplyLeftBushProps = {
+  className: string;
+};
+
+const ApplyLeftBush: React.FC<ApplyLeftBushProps> = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

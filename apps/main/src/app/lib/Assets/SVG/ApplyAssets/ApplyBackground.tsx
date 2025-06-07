@@ -1,6 +1,6 @@
 import React from "react";
 
-const ApplyBackground = (props) => {
+const ApplyBackground = (props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
         viewBox="0 0 1512 559"
