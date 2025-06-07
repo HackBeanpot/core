@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { Section } from "@repo/ui";
+import Section from "@repo/ui/Section";
 import Image from "next/image";
 import useContentHeight from "@repo/util/hooks/useContentHeight";
 import useWindowSize from "@repo/util/hooks/useWindowSize";

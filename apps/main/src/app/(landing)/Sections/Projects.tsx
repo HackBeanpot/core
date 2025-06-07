@@ -6,8 +6,8 @@ export default function Projects(): React.ReactNode {
   return (
     <div>
       {/* not right, plz look into background  */}
-        <ProjectsBackground />
-        <ProjectsContent />
+      <ProjectsBackground />
+      <ProjectsContent />
     </div>
   );
 }

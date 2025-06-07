@@ -66,10 +66,25 @@ export default function FAQSection(): React.ReactNode {
             dropdownQuestion="What kind of projects can I work on?"
             dropdownAnswer={
               <>
-                Check out our <a href="https://www.hackbeanpot.com/projects" className="text-blue-500 underline" 
-                target="_blank" rel="noopener noreferrer">Projects</a> page or check us out on <a 
-                href="https://hackbeanpot2025.devpost.com/" className="text-blue-500 underline" 
-                target="_blank" rel="noopener noreferrer">Devpost</a>!
+                Check out our{" "}
+                <a
+                  href="https://www.hackbeanpot.com/projects"
+                  className="text-blue-500 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Projects
+                </a>{" "}
+                page or check us out on{" "}
+                <a
+                  href="https://hackbeanpot2025.devpost.com/"
+                  className="text-blue-500 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Devpost
+                </a>
+                !
               </>
             }
           />
