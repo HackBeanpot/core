@@ -4,16 +4,19 @@ import FAQBackground from "../../lib/Assets/SVG/FAQBackground";
 
 export default function FAQSection(): React.ReactNode {
   return (
-    <div className="w-full h-full mb-48 bg-cover overflow-hidden">
+    <div className="w-full min-h-screen bg-cover overflow-visible relative">
       <div className="absolute w-full -mt-16">
-        <FAQBackground height={1500} width={ 1920} preserveAspectRatio="none"/>
+        <FAQBackground
+          className="w-full h-[1450px]"
+          preserveAspectRatio="xMidYMax slice"
+        />
       </div>
-      <div className="flex flex-col p-28 space-y-5 font-GT-Walsheim-Regular">
-        <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular z-10">
+      <div className="relative flex flex-col px-28 py-20 space-y-10 font-GT-Walsheim-Regular z-10 min-h-[1400px]">
+        <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular">
           FAQs
         </h1>
 
-        <div className="w-3/5 mx-auto flex z-10">
+        <div className="w-3/5 mx-auto flex">
           <h3 className="text-2xl font-semibold text-white">
             Time and Location
           </h3>
@@ -40,7 +43,7 @@ export default function FAQSection(): React.ReactNode {
         </div>
 
         <div className="w-3/5 mx-auto flex">
-          <h3 className="text-2xl font-semibold text-white pt-10 z-10">
+          <h3 className="text-2xl font-semibold text-white pt-10">
             Application Logistics
           </h3>
         </div>
@@ -53,7 +56,7 @@ export default function FAQSection(): React.ReactNode {
         </div>
 
         <div className="w-3/5 mx-auto flex">
-          <h3 className="text-2xl font-semibold text-white pt-10 z-10">
+          <h3 className="text-2xl font-semibold text-white pt-10">
             Event Logistics
           </h3>
         </div>
@@ -69,19 +72,6 @@ export default function FAQSection(): React.ReactNode {
                 target="_blank" rel="noopener noreferrer">Devpost</a>!
               </>
             }
-          />
-        </div>
-
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="How do I find a team?"
-            dropdownAnswer="..."
-          />
-        </div>
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="What prizes are there this year?"
-            dropdownAnswer="We will be releasing more information about our prizes soon!"
           />
         </div>
       </div>

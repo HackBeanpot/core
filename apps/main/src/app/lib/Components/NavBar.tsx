@@ -39,8 +39,9 @@ const NavBar = () => {
             Sponsor Us
           </LocalLink>
           <LocalLink
-            href={"https://apply.hackbeanpot.com"}
+            href={""}
             className="bg-green text-xl flex items-center px-5 text-text-light"
+            onClick={() => alert("apply not implemented yet")}
           >
             Apply
           </LocalLink>
