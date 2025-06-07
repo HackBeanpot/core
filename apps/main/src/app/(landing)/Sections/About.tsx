@@ -11,8 +11,8 @@ import Journal from "../../lib/Assets/SVG/AboutAssets/Journal";
 import Thumbtack1 from "../../lib/Assets/SVG/AboutAssets/Thumbtack1";
 import Thumbtack2 from "../../lib/Assets/SVG/AboutAssets/Thumbtack2";
 import Thumbtack3 from "../../lib/Assets/SVG/AboutAssets/Thumbtack3";
-
 import useWindowSize from "@repo/util/hooks/useWindowSize";
+import AboutParagraph from "../../lib/Assets/SVG/AboutAssets/AboutParagraph";
 
 export default function About(): React.ReactNode {
   const { width } = useWindowSize();
@@ -72,14 +72,7 @@ export default function About(): React.ReactNode {
         <div className="w-[50vw]">
           <StreetSign streetName={"ABOUT"} suffix="HBP" />
           <div>
-            <p className="font-GT-Walsheim-Regular mt-12">
-              We&apos;re a non-profit organization in the Boston area that
-              organizes an annual undergraduate hackathon. Our goal is to expand
-              and nurture the hacker culture that exists in Boston and the
-              surrounding areas. We connect students and other aspiring nerds to
-              their colleagues so that they can meet new people, learn new
-              things, and have a great time.
-            </p>
+            <AboutParagraph />
             </div>
               <button className="bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
                                 relative top-[265px] w-[162.48px] h-[31.59px] right-[50px]
