@@ -104,9 +104,7 @@ const content = (
         <Box>{ValuesGrowthContent}</Box>
       </div>
     </div>
-    <div className="absolute z-10">
-      {rocks}
-    </div>
+    <div className="absolute z-10">{rocks}</div>
   </div>
 );
 

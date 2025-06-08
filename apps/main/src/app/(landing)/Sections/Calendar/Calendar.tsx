@@ -140,7 +140,7 @@ export function CalendarEvents({
   const startIndex = page * eventsPerPage;
   const displayedEvents = calendarEvents.slice(
     startIndex,
-    startIndex + eventsPerPage
+    startIndex + eventsPerPage,
   );
 
   return (

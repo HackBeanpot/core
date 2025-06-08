@@ -49,4 +49,5 @@ function SignSmall({ children, className = "" }: TypographyProps) {
   );
 }
 
-export default {Body, Heading, ButtonText, SignLarge, SignSmall};
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { Body, Heading, ButtonText, SignLarge, SignSmall };
