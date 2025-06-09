@@ -91,12 +91,3 @@ export default function About(): React.ReactNode {
     </div>
   );
 }
-
-/*
-<div className="absolute 
-w-[564.34px] h-[132.06px] left-[-160.67px] top-[447.5px]
-tablet:absolute tablet:w-[312px] tablet:h-auto tablet:left-[66%] 
-tablet:bottom-auto tablet:top-[64vh] tablet:scale-[3.3] ">
-<Cities />
-</div>
-*/
