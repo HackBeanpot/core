@@ -30,7 +30,7 @@ export default function About(): React.ReactNode {
         <BottomAboutBar />
       </div>
       <div className="absolute transform
-                   w-[373.15px] h-[227.91px] left-[28px] top-[1620px] 
+                   w-[373.15px] h-[220.91px] left-[28px] top-[1630px] 
                    scale-[1.9] rotate-[0] origin-left
                    tablet:absolute tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 
                    tablet:transform tablet:-rotate-[7.5deg] tablet:top-[210vh] tablet:scale-[2.2]">
@@ -68,26 +68,35 @@ export default function About(): React.ReactNode {
                  tablet:absolute tablet:left-[94%] tablet:top-[177vh] tablet:mt-28 tablet:scale-100">
       <Thumbtack3 />
     </div>
-      <div className="absolute h-full w-[50vw] ml-24 mr-auto mt-24 flex text-[1.8vw]">
+    <div className="absolute h-full w-[50vw] ml-24 mr-auto mt-5 tablet:mt-24 flex text-[1.8vw]">
         <div className="w-[50vw]">
           <StreetSign streetName={"ABOUT"} suffix="HBP" />
           <div>
             <AboutParagraph />
             </div>
-              <button className="bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
+              <button className="mt-0 absolute top-[30%] bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
                                 relative top-[265px] w-[162.48px] h-[31.59px] right-[50px]
                                 tablet:mt-12 tablet:top-auto tablet:w-auto tablet:h-auto tablet:right-auto
-                                tablet:w-[273.17px] tablet:h-[63.69px] tablet:!text-[26.5px]">
+                                tablet:w-[278.17px] tablet:h-[67.69px] tablet:!text-[26.5px]">
                 {"View Past Photos"}
               </button>
             </div>
-        <div className="absolute 
-                 w-[564.34px] h-[132.06px] left-[-160.67px] top-[447.5px]
+        <div className="absolute pb-0 top-[77vh]
+                 w-[560.34px] h-[132.06px] left-[-160.67px] top-[447.5px]
                  tablet:absolute tablet:w-[312px] tablet:h-auto tablet:left-[66%] 
-                 tablet:top-auto tablet:top-[64vh] tablet:scale-[3.3] ">
+                 tablet:bottom-auto tablet:top-[70vh] tablet:scale-[3.3] ">
           <Cities />
         </div>
       </div>
     </div>
   );
 }
+
+/*
+<div className="absolute 
+w-[564.34px] h-[132.06px] left-[-160.67px] top-[447.5px]
+tablet:absolute tablet:w-[312px] tablet:h-auto tablet:left-[66%] 
+tablet:bottom-auto tablet:top-[64vh] tablet:scale-[3.3] ">
+<Cities />
+</div>
+*/
