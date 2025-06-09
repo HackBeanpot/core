@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import LinkedInLogo from "@repo/ui/LinkedInLogo";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
-import useContentHeight from "@repo/util/hooks/useContentHeight";
 import {
   TeamsBottomSquiggle,
   TeamsMiddleSquiggle,
@@ -105,8 +104,6 @@ const Teams = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { height: windowHeight, width: windowWidth } = useWindowSize();
 
-  const [contentHeight] = useContentHeight(ref);
-
   if (!windowHeight || !windowWidth) return;
 
   const TeamsContent = () => {
@@ -122,25 +119,14 @@ const Teams = () => {
     );
   };
 
-  const TeamsBackground = () => {
-    return (
-      <div className="w-full h-full overflow-hidden flex flex-col justify-between">
-        <TeamsTopSquiggle className="w-[110vw] -mt-48 -ml-[5vw]" />
-        <TeamsMiddleSquiggle className="w-[110vw] -ml-[10vw]" />
-        <TeamsBottomSquiggle className="w-[110vw] -ml-[5vw]" />
-        <TeamsContent></TeamsContent>
-      </div>
-    );
-  };
-
   return (
     <div className="relative w-full min-h-screen">
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-       <TeamsTopSquiggle className="w-[110vw] -mt-48 -ml-[5vw]" />
+        <TeamsTopSquiggle className="w-[110vw] -mt-48 -ml-[5vw]" />
         <TeamsMiddleSquiggle className="w-[110vw] -ml-[10vw]" />
         <TeamsBottomSquiggle className="w-[110vw] -ml-[5vw]" />
       </div>
-      
+
       <div className="relative z-10">
         <TeamsContent />
       </div>

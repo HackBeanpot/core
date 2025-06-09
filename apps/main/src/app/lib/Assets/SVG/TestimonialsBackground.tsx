@@ -1,7 +1,7 @@
 // Generated from SVG to Code Figma Plugin
 import React from "react";
 
-const Testimonialsbackground = (props) => (
+const Testimonialsbackground = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     preserveAspectRatio="xMidYMid slice"
     fill="none"

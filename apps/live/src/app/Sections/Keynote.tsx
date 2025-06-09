@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-import { Section, StreetSign } from "@repo/ui";
+import Section from "@repo/ui/Section";
+import StreetSign from "@repo/ui/StreetSign";
+import Typography from "@repo/ui/Typography";
 import Image from "next/image";
 import useIsMobile from "@repo/util/hooks/useIsMobile";
-import { Body } from "@repo/ui";
 
 const background = <div className="w-full h-full bg-cream" />;
 
@@ -36,7 +37,7 @@ function SpeakerDetails(): JSX.Element {
 
 function SpeakerAbout(): JSX.Element {
   return (
-    <Body className="font-GT-Walsheim-Regular mt-8">
+    <Typography.Body className="font-GT-Walsheim-Regular mt-8">
       <span className="font-GT-Walsheim-Bold">Aidan Ouckama </span>is a a
       prominent tech content creator, known for engaging, informative, and
       humorous content across multiple social media platforms. By sharing
@@ -55,7 +56,7 @@ function SpeakerAbout(): JSX.Element {
       Through his content, Aidan is redefining the way students and early
       professionals approach tech, fostering a welcoming space where curiosity,
       innovation, and creativity thrive.
-    </Body>
+    </Typography.Body>
   );
 }
 

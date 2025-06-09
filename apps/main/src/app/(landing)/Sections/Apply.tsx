@@ -15,11 +15,16 @@ const Apply = () => {
 
         <div className="w-full h-full relative w-1/2 flex flex-col justify-center text-center items-center text-2xl tablet:desktop:text-3xl desktop:text-4xl pb-7 font-GT-Walsheim-Regular">
           <p>
-            Applications have not been released for HackBeanpot 2026. Check in with us again this fall!
+            Applications have not been released for HackBeanpot 2026. Check in
+            with us again this fall!
           </p>
           <div className="pt-10">
             <button
-              onClick={() => alert("Applications for HackBeanpot 2026 have not been released. Check in with us again this fall!")}
+              onClick={() =>
+                alert(
+                  "Applications for HackBeanpot 2026 have not been released. Check in with us again this fall!",
+                )
+              }
               className="p-3 bg-[#84AF67] text-text-light rounded-full drop-shadow-md w-44 h-14 text-2xl"
             >
               Apply here
