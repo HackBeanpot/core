@@ -119,28 +119,28 @@ export default function TestimonialSection(): React.ReactNode {
         <StreetSign streetName="Testimonials" suffix="ST" />
       </div>
 
-      <ArrowButton
-        direction="left"
-        arrowButtonColor="greenButton"
-        onClick={onClickLeftArrow}
-        className="absolute left-5 top-[54%] transform -translate-y-1/2 z-20"
-      />
-      <ArrowButton
-        direction="right"
-        arrowButtonColor="greenButton"
-        onClick={onClickRightArrow}
-        className="absolute right-10 top-[54%] transform -translate-y-1/2 z-20"
-      />
       <div className="absolute w-full h-full">
         <Carousel items={people.slice(0, 3)} />
-      </div>
-      <div className="absolute bottom-7 w-full">
-        <PaginationDots
-          currentPage={currentPage}
-          totalPages={people.length}
-          color="vineGreenLite"
-          handleClick={handleClick}
+        <ArrowButton
+          direction="left"
+          arrowButtonColor="greenButton"
+          onClick={onClickLeftArrow}
+          className="absolute left-5 top-[54%] transform -translate-y-1/2 z-20"
         />
+        <ArrowButton
+          direction="right"
+          arrowButtonColor="greenButton"
+          onClick={onClickRightArrow}
+          className="absolute right-10 top-[54%] transform -translate-y-1/2 z-20"
+        />
+        <div className="absolute bottom-[5%] z-10 w-full">
+          <PaginationDots
+            currentPage={currentPage}
+            totalPages={people.length}
+            color="vineGreenLite"
+            handleClick={handleClick}
+          />
+        </div>
       </div>
     </div>
   );
