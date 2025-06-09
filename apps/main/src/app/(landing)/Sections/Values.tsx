@@ -54,7 +54,7 @@ const ValuesCommunityContent = (
 );
 
 const ValuesGrowthContent = (
-    <div className="mx-[15%] flex flex-row items-center justify-center">
+  <div className="mx-[15%] flex flex-row items-center justify-center">
     <div className="mr-10">
       <GrowthIcon />
     </div>
