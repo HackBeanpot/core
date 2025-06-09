@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 // Icons
-import { HomeIcon } from "@repo/ui";
+import HomeIcon from "@repo/ui/Icons/HomeIcon";
 import MenuIcon from "../Assets/SVG/MenuIcon";
 import CloseIcon from "../Assets/SVG/CloseIcon";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Section } from "@repo/ui";
+import Section from "@repo/ui/Section";
 import Link from "next/link";
 import React, { ChangeEvent, useState } from "react";
 import isValidEmail from "@repo/util/functions/isValidEmail";

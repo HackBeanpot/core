@@ -1,13 +1,13 @@
 import React from "react";
 
-const Events = (props) => {
+const Events = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       fill="none"
       preserveAspectRatio="xMidYMid slice"
       viewBox="0 0 1512 1005"
-          xmlns="http://www.w3.org/2000/svg"
-        {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <g clipPath="url(#clip0_221_7)">
         <rect height="1005" width="1512" fill="white" />

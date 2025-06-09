@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Section } from "@repo/ui";
+import Section from "@repo/ui/Section";
 import Road from "../lib/Assets/SVG/Road";
 import Link from "next/link";
 
