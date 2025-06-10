@@ -81,7 +81,7 @@ export default function PassportCard({
             )}
           </div>
 
-          <div className="relative mt-[15%] p-[5%] ">
+          <div className="relative mt-[10%] p-[5%] ">
             <h1 className="text-xl">Testimony</h1>
             <p className="font-GT-Walsheim-Regular font-normal pt-2">{quote}</p>
           </div>

@@ -5,7 +5,7 @@ interface TypographyProps {
   className?: string;
 }
 
-export function Heading({ children, className = "" }: TypographyProps) {
+function Heading({ children, className = "" }: TypographyProps) {
   return (
     <h1 className={`text-heading font-bold font-Wilden ${className}`}>
       {children}
@@ -13,7 +13,7 @@ export function Heading({ children, className = "" }: TypographyProps) {
   );
 }
 
-export function Body({ children, className = "" }: TypographyProps) {
+function Body({ children, className = "" }: TypographyProps) {
   return (
     <p className={`text-body font-GT-Walsheim-Regular ${className}`}>
       {children}
@@ -21,7 +21,7 @@ export function Body({ children, className = "" }: TypographyProps) {
   );
 }
 
-export function ButtonText({ children, className = "" }: TypographyProps) {
+function ButtonText({ children, className = "" }: TypographyProps) {
   return (
     <span className={`text-button font-GT-Walsheim-Regular ${className}`}>
       {children}
@@ -29,7 +29,7 @@ export function ButtonText({ children, className = "" }: TypographyProps) {
   );
 }
 
-export function SignLarge({ children, className = "" }: TypographyProps) {
+function SignLarge({ children, className = "" }: TypographyProps) {
   return (
     <h1
       className={`text-signLarge font-Big-Shoulders-Display uppercase ${className}`}
@@ -39,7 +39,7 @@ export function SignLarge({ children, className = "" }: TypographyProps) {
   );
 }
 
-export function SignSmall({ children, className = "" }: TypographyProps) {
+function SignSmall({ children, className = "" }: TypographyProps) {
   return (
     <h2
       className={`text-signSmall font-Big-Shoulders-Display uppercase ${className}`}
@@ -48,3 +48,6 @@ export function SignSmall({ children, className = "" }: TypographyProps) {
     </h2>
   );
 }
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { Body, Heading, ButtonText, SignLarge, SignSmall };

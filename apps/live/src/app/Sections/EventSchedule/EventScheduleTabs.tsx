@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { FAQDropdown } from "@repo/ui";
+import FAQDropdown from "@repo/ui/FAQDropdown";
 import LocationDot from "../../lib/Assets/SVG/LocationDot";
 import removeHoursFromDate from "@util/functions/removeHoursfromDate";
 

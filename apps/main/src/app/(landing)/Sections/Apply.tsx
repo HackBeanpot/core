@@ -1,80 +1,53 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { Section } from "@repo/ui";
-import useIsMobile from "@util/hooks/useIsMobile";
 import ApplyLeftLog from "../../lib/Assets/SVG/ApplyAssets/ApplyLeftLog";
 import ApplyRightLog from "../../lib/Assets/SVG/ApplyAssets/ApplyRightLog";
+import ApplyBackground from "../../lib/Assets/SVG/ApplyAssets/ApplyBackground";
+import ApplyLeftBush from "../../lib/Assets/SVG/ApplyAssets/ApplyLeftBush";
+import ApplyRightBush from "../../lib/Assets/SVG/ApplyAssets/ApplyRightBush";
 
 const Apply = () => {
-  const isMobile = useIsMobile();
-
-  const background = (
-    <div className="relative h-screen overflow-hidden top-[-45%]">
-      <Image
-        alt="applyBackground"
-        src="/apply_background.svg"
-        fill
-        className="object-cover"
-      />
-    </div>
-  );
-
-  const content = (
-    <div>
-      {isMobile ? (
-        <div className="relative flex flex-col top-10 justify-center text-center items-center">
-          <div className="relative m-auto w-3/6 flex justify-center text-center items-center text-2xl pb-3 font-GT-Walsheim-Regular">
-            <p>
-              We’re going on a roadtrip! Reach new destinations at our
-              hackathon. Applications close 12/3 @ 11:59 PM.
-            </p>
-          </div>
-
-          <button
-            onClick={() => alert("apply not implemented yet")}
-            className="p-3 bg-[#84AF67] text-text-light rounded-full drop-shadow-md w-44 h-14 text-2xl font-GT-Walsheim-Regular"
-          >
-            Apply here
-          </button>
-        </div>
-      ) : (
-        <div className="h-full w-full">
-          <div className="relative top-20">
-            <ApplyLeftLog />
-          </div>
-
-          <div className="absolute top-20 right-0">
-            <ApplyRightLog />
-          </div>
-          <div className="relative flex flex-col bottom-72 justify-center text-center items-center">
-            <div className="relative m-auto w-3/6 flex justify-center text-center items-center text-2xl pb-7 font-GT-Walsheim-Regular">
-              <p>
-                We’re going on a roadtrip! Reach new destinations at our
-                hackathon. Applications close 12/3 @ 11:59 PM.
-              </p>
-            </div>
-
-            <button
-              onClick={() => alert("apply not implemented yet")}
-              className="p-3 bg-[#84AF67] text-text-light rounded-full drop-shadow-md w-44 h-14 text-2xl"
-            >
-              Apply here
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-
   return (
-    <Section
-      name={"apply"}
-      background={background}
-      content={content}
-      height={40}
-    />
+    <>
+      <div className="relative w-full mt-44 flex flex-col flex-none h-[559px]">
+        <div className="w-full h-full z-0">
+          <ApplyBackground height={555} preserveAspectRatio="none"/>
+        </div>
+
+        <div className="relative top-[-480px] z-10 flex justify-center items-center w-full h-full">
+          <div className="w-1/2 text-center">
+            <p className="text-[20px] tablet:desktop:text-2xl desktop:text-3xl font-GT-Walsheim-Regular">
+              Applications have not been released for HackBeanpot 2026. Check in with us again this fall!
+            </p>
+            <div className="pt-8">
+              <button
+                onClick={() => alert("Applications for HackBeanpot 2026 have not been released. Check in with us again this fall!")}
+                className="p-3 bg-[#84AF67] text-text-light rounded-full drop-shadow-md w-44 h-14 text-2xl"
+              >
+                Apply here
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute top-[-60px] left-0 w-[40%] h-[120%] z-31 invisible desktop:visible">
+          <ApplyLeftBush className="w-full h-full" />
+        </div>
+        
+        <div className="absolute top-[-140px] -right-16 w-[40%] h-[120%] z-31 invisible desktop:visible">
+          <ApplyRightBush className="w-full h-full" />
+        </div> 
+
+        <div className="absolute top-[30px] left-0 w-[40%] h-[120%] z-31 invisible desktop:visible">
+          <ApplyLeftLog />
+        </div>
+
+        <div className="absolute top-[40px] -right-40 w-[40%] h-[120%] z-31 invisible desktop:visible">
+          <ApplyRightLog />
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -9,8 +9,9 @@ import {
   Apply,
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
-import React from "react";
+// something wrong with the import here (?)
 import About from "./Sections/About";
+import React from "react";
 import Head from "next/head";
 
 export default function Page(): JSX.Element {

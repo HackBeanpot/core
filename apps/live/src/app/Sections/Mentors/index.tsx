@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Section } from "@repo/ui";
+import Section from "@repo/ui/Section";
 import MentorsTable from "./MentorsTable";
 import useContentHeight from "@util/hooks/useContentHeight";
 import useWindowSize from "@util/hooks/useWindowSize";

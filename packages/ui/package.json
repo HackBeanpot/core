@@ -9,8 +9,18 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
-    ".": "./src/index.ts",
-    "./components": "./src/Components/index.ts"
+    "./Box": "./src/Box.tsx",
+    "./FAQDropdown": "./src/FAQDropdown.tsx",
+    "./StreetSign": "./src/StreetSign.tsx",
+    "./LinkedInLogo": "./src/LinkedInLogo.tsx",
+    "./ArrowButton": "./src/ArrowButton.tsx",
+    "./TitleBox": "./src/TitleBox.tsx",
+    "./Carousel": "./src/Carousel.tsx",
+    "./PassportCard": "./src/PassportCard.tsx",
+    "./Typography": "./src/Typography.tsx",
+    "./Icons/*": "./src/Icons/*.tsx",
+    "./PaginationDots": "./src/PaginationDots.tsx",
+    "./Section": "./src/Section.tsx"
   },
   "license": "MIT",
   "scripts": {

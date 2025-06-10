@@ -1,5 +1,4 @@
 import React from "react";
-import { Section } from "@repo/ui";
 import Image from "next/image";
 import ExternalLink from "../../lib/Components/ExternalLink";
 import LandingBackground from "../../lib/Assets/SVG/LandingBackground";
@@ -8,15 +7,19 @@ import Road from "../../lib/Assets/SVG/RoadAssets/Road";
 import Bus from "../../lib/Assets/SVG/RoadAssets/Bus";
 
 export default function Landing(): JSX.Element {
-  const background = (
-    <div className="w-full h-full bg-[#F9EAD1] overflow-hidden">
+  return (
+    <div className="w-full h-[60vh] relative">
       <LandingBackground />
-    </div>
-  );
-
-  const content = (
-    <div className="relative w-full h-full flex flex-col justify-center items-center gap-4">
-      <div className="absolute top-14">
+      <div className="absolute top-[85%] w-full  z-1">
+        <Guardrail />
+      </div>
+      <div className="absolute top-[110%] w-full">
+        <Road />
+      </div>
+      <div className="absolute w-[40vw] left-1/2 top-[90%] transform -translate-x-1/2 -translate-y-1/2">
+        <Bus />
+      </div>
+      <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-[30%]">
         <Image
           alt="LicensePlate"
           src="/license_plate.png"
@@ -25,7 +28,7 @@ export default function Landing(): JSX.Element {
           className="w-[30vw] h-auto max-w-[700px] min-w-[300px]"
         />
       </div>
-      <div className="absolute top-5 right-5 flex gap-2">
+      <div className="absolute top-5 right-10 flex gap-2">
         <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
           <Image
             alt="InstagramLogo"
@@ -47,36 +50,5 @@ export default function Landing(): JSX.Element {
         </ExternalLink>
       </div>
     </div>
-  );
-
-  const roadSetup = (
-    <div className="w-full h-full">
-      <div className="relative w-[100vw] mb-[-9px]">
-        <Guardrail />
-      </div>
-      <div className="relative w-[100vw]">
-        <Road />
-      </div>
-      <div className="absolute w-[40vw] left-1/2 top-[12%] transform -translate-x-1/2 -translate-y-1/2">
-        <Bus />
-      </div>
-    </div>
-  );
-
-  const foreground = [
-    {
-      item: roadSetup,
-      coordinate: { x: 0, y: 60 },
-    },
-  ];
-
-  return (
-    <Section
-      name={"Landing"}
-      background={background}
-      content={content}
-      foreground={foreground}
-      height={70}
-    />
   );
 }
