@@ -1,5 +1,5 @@
 import React from "react";
-import { Section } from "@repo/ui";
+import Section from "@repo/ui/Section";
 import EventScheduleRoad from "../../lib/Assets/SVG/EventScheduleRoad";
 import EventScheduleTabs from "./EventScheduleTabs";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Section } from "@repo/ui";
+import Section from "@repo/ui/Section";
 import Hills from "../lib/Assets/SVG/OurTeam/Hills";
 
 export default function OurTeamBackground(): JSX.Element {

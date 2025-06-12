@@ -19,7 +19,8 @@
     "./PassportCard": "./src/PassportCard.tsx",
     "./Typography": "./src/Typography.tsx",
     "./Icons/*": "./src/Icons/*.tsx",
-    "./PaginationDots": "./src/PaginationDots.tsx"
+    "./PaginationDots": "./src/PaginationDots.tsx",
+    "./Section": "./src/Section.tsx"
   },
   "license": "MIT",
   "scripts": {

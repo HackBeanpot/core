@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { Section } from "@repo/ui";
+import Section from "@repo/ui/Section";
 import OurTeamGrid from "./OurTeamGrid";
 import useContentHeight from "@util/hooks/useContentHeight";
 import useWindowSize from "@util/hooks/useWindowSize";

@@ -3,384 +3,405 @@ import React from "react";
 const Journal = () => {
   return (
     <svg viewBox="0 0 686 612" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect
-        x="1.99854"
-        y="121.464"
-        width="395.208"
-        height="494.096"
-        rx="6.93631"
-        transform="rotate(-7.77894 1.99854 121.464)"
-        fill="#CB934C"
-      />
-      <rect
-        x="12.2017"
-        y="110.736"
-        width="395.208"
-        height="494.096"
-        transform="rotate(-7.77894 12.2017 110.736)"
-        fill="#FBF7F2"
-      />
-      <path
-        d="M42.4194 161.124L365.134 114.86"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M46.8301 193.411L369.544 147.146"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M51.2407 225.697L373.955 179.432"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M55.6514 257.983L378.366 211.719"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M60.062 290.27L382.776 244.005"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M64.4727 322.556L387.187 276.292"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M68.8833 354.843L391.597 308.578"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M73.2939 387.129L396.008 340.864"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M77.7046 419.415L400.419 373.151"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M82.1152 451.702L404.829 405.437"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M86.5254 483.988L409.24 437.723"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M90.936 516.274L413.65 470.01"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <path
-        d="M95.3467 548.561L418.061 502.296"
-        stroke="#E6D2B8"
-        strokeWidth="6.52013"
-        strokeLinecap="round"
-      />
-      <rect
-        width="395.208"
-        height="494.79"
-        rx="6.93631"
-        transform="matrix(-0.990798 0.135351 0.135351 0.990798 819.661 9.76453)"
-        fill="#CB934C"
-      />
-      <rect
-        width="395.208"
-        height="494.79"
-        transform="matrix(-0.990798 0.135351 0.135351 0.990798 806.956 2.16492)"
-        fill="#FBF7F2"
-      />
-      <path
-        d="M790.72 57.9117L465.796 100.109"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M795.153 90.3604L470.229 132.558"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M799.585 122.809L474.662 165.006"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M804.018 155.258L479.094 197.455"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M808.451 187.706L483.527 229.904"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M812.884 220.155L487.96 262.352"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M817.317 252.604L492.393 294.801"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M821.75 285.052L496.826 327.25"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M826.182 317.501L501.258 359.698"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M830.615 349.95L505.691 392.147"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M835.048 382.398L510.124 424.596"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M839.48 414.847L514.557 457.044"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <path
-        d="M843.913 447.296L518.989 489.493"
-        stroke="#E6D2B8"
-        strokeWidth="6.5529"
-        strokeLinecap="round"
-      />
-      <ellipse
-        cx="395.789"
-        cy="118.795"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 395.789 118.795)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="402.93"
-        cy="171.066"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 402.93 171.066)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="410.07"
-        cy="223.337"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 410.07 223.337)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="417.211"
-        cy="275.607"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 417.211 275.607)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="424.351"
-        cy="327.878"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 424.351 327.878)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="431.492"
-        cy="380.149"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 431.492 380.149)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="438.633"
-        cy="432.42"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 438.633 432.42)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="445.773"
-        cy="484.69"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 445.773 484.69)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="443.897"
-        cy="112.222"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 443.897 112.222)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="451.038"
-        cy="164.493"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 451.038 164.493)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="458.179"
-        cy="216.764"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 458.179 216.764)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="465.319"
-        cy="269.034"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 465.319 269.034)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="472.46"
-        cy="321.305"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 472.46 321.305)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="479.6"
-        cy="373.576"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 479.6 373.576)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="486.741"
-        cy="425.847"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 486.741 425.847)"
-        fill="#333333"
-      />
-      <ellipse
-        cx="493.882"
-        cy="478.117"
-        rx="9.03275"
-        ry="8.83284"
-        transform="rotate(-6.46703 493.882 478.117)"
-        fill="#333333"
-      />
-      <line
-        x1="400.458"
-        y1="117.202"
-        x2="443.984"
-        y2="111.256"
-        stroke="#333333"
-        strokeWidth="6.93631"
-      />
-      <line
-        x1="409.948"
-        y1="169.581"
-        x2="453.473"
-        y2="163.635"
-        stroke="#333333"
-        strokeWidth="6.93631"
-      />
-      <line
-        x1="412.564"
-        y1="222.894"
-        x2="456.089"
-        y2="216.948"
-        stroke="#333333"
-        strokeWidth="6.93631"
-      />
-      <line
-        x1="422.052"
-        y1="275.27"
-        x2="465.577"
-        y2="269.324"
-        stroke="#333333"
-        strokeWidth="6.93631"
-      />
-      <line
-        x1="426.959"
-        y1="328.272"
-        x2="470.484"
-        y2="322.326"
-        stroke="#333333"
-        strokeWidth="6.93631"
-      />
-      <line
-        x1="443.657"
-        y1="484.675"
-        x2="487.183"
-        y2="478.729"
-        stroke="#333333"
-        strokeWidth="6.93631"
-      />
-      <line
-        x1="436.447"
-        y1="380.646"
-        x2="479.973"
-        y2="374.7"
-        stroke="#333333"
-        strokeWidth="6.93631"
-      />
-      <line
-        x1="443.645"
-        y1="433.336"
-        x2="487.171"
-        y2="427.39"
-        stroke="#333333"
-        strokeWidth="6.93631"
-      />
+      <svg
+        width="352"
+        height="230"
+        viewBox="0 0 352 230"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Left Journal Page */}
+        <rect
+          x="0.486328"
+          y="6.25781"
+          width="178.697"
+          height="223.411"
+          rx="3.13633"
+          transform="rotate(-0.281579 0.486328 6.25781)"
+          fill="#CB934C"
+        />
+        <rect
+          x="5.69141"
+          y="2.04883"
+          width="178.697"
+          height="223.411"
+          transform="rotate(-0.281579 5.69141 2.04883)"
+          fill="#FBF7F2"
+        />
+
+        {/* Left Page Lines */}
+        <path
+          d="M16.2656 26.4199L163.666 24.7193"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.3398 41.1543L163.741 39.4537"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.4121 55.8867L163.813 54.1861"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.4844 70.6211L163.885 68.9205"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.5566 85.3555L163.957 83.6548"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.6289 100.09L164.03 98.3892"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.7012 114.824L164.102 113.124"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.7734 129.559L164.174 127.858"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.8457 144.291L164.246 142.59"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.918 159.025L164.319 157.325"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M16.9902 173.76L164.391 172.059"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M17.0625 188.494L164.463 186.794"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+        <path
+          d="M17.1348 203.229L164.536 201.528"
+          stroke="#E6D2B8"
+          strokeWidth="2.94815"
+          strokeLinecap="round"
+        />
+
+        {/* Right Journal Page */}
+        <rect
+          width="178.697"
+          height="223.725"
+          rx="3.13633"
+          transform="matrix(-0.999988 0.00491447 0.00491447 0.999988 373.631 4.42188)"
+          fill="#CB934C"
+        />
+        <rect
+          width="178.697"
+          height="223.725"
+          transform="matrix(-0.999988 0.00491447 0.00491447 0.999988 368.383 0.265625)"
+          fill="#FBF7F2"
+        />
+
+        {/* Right Page Lines */}
+        <path
+          d="M357.814 24.2988L209.663 24.0458"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M357.889 39.1074L209.737 38.8544"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M357.961 53.916L209.81 53.663"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.033 68.7227L209.882 68.4696"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.107 83.5312L209.956 83.2782"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.18 98.3398L210.028 98.0868"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.252 113.148L210.101 112.895"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.324 127.957L210.173 127.704"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.398 142.764L210.247 142.511"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.471 157.572L210.319 157.319"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.543 172.381L210.392 172.128"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.615 187.189L210.464 186.936"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+        <path
+          d="M358.689 201.996L210.538 201.743"
+          stroke="#E6D2B8"
+          strokeWidth="2.96297"
+          strokeLinecap="round"
+        />
+
+        {/* Left Column Holes */}
+        <ellipse
+          cx="177.178"
+          cy="28.2952"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 177.178 28.2952)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="177.295"
+          cy="52.1487"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 177.295 52.1487)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="177.412"
+          cy="76.0022"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 177.412 76.0022)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="177.529"
+          cy="99.8557"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 177.529 99.8557)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="177.647"
+          cy="123.711"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 177.647 123.711)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="177.764"
+          cy="147.565"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 177.764 147.565)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="177.883"
+          cy="171.418"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 177.883 171.418)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="178"
+          cy="195.272"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 178 195.272)"
+          fill="#333333"
+        />
+
+        {/* Right Column Holes */}
+        <ellipse
+          cx="199.131"
+          cy="28.1838"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 199.131 28.1838)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="199.248"
+          cy="52.0374"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 199.248 52.0374)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="199.365"
+          cy="75.8909"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 199.365 75.8909)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="199.482"
+          cy="99.7444"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 199.482 99.7444)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="199.6"
+          cy="123.6"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 199.6 123.6)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="199.717"
+          cy="147.453"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 199.717 147.453)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="199.836"
+          cy="171.307"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 199.836 171.307)"
+          fill="#333333"
+        />
+        <ellipse
+          cx="199.953"
+          cy="195.16"
+          rx="4.08426"
+          ry="3.99386"
+          transform="rotate(1.03033 199.953 195.16)"
+          fill="#333333"
+        />
+
+        {/* Spiral Binding Lines */}
+        <line
+          x1="179.365"
+          y1="27.8537"
+          x2="199.229"
+          y2="27.7561"
+          stroke="#333333"
+          strokeWidth="3.13633"
+        />
+        <line
+          x1="180.529"
+          y1="51.8967"
+          x2="200.393"
+          y2="51.7991"
+          stroke="#333333"
+          strokeWidth="3.13633"
+        />
+        <line
+          x1="178.555"
+          y1="75.9494"
+          x2="198.418"
+          y2="75.8518"
+          stroke="#333333"
+          strokeWidth="3.13633"
+        />
+        <line
+          x1="179.719"
+          y1="99.9904"
+          x2="199.582"
+          y2="99.8928"
+          stroke="#333333"
+          strokeWidth="3.13633"
+        />
+        <line
+          x1="178.793"
+          y1="124.037"
+          x2="198.656"
+          y2="123.94"
+          stroke="#333333"
+          strokeWidth="3.13633"
+        />
+        <line
+          x1="177.051"
+          y1="195.139"
+          x2="196.914"
+          y2="195.041"
+          stroke="#333333"
+          strokeWidth="3.13633"
+        />
+        <line
+          x1="179.957"
+          y1="148.076"
+          x2="199.82"
+          y2="147.979"
+          stroke="#333333"
+          strokeWidth="3.13633"
+        />
+        <line
+          x1="180.074"
+          y1="172.125"
+          x2="199.937"
+          y2="172.028"
+          stroke="#333333"
+          strokeWidth="3.13633"
+        />
+      </svg>
     </svg>
   );
 };

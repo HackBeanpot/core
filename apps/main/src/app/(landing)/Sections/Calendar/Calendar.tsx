@@ -17,88 +17,52 @@ import PaginationDots from "@repo/ui/PaginationDots";
 // Calendar Events Data
 const events: CalendarEventProps[] = [
   {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    month: "FEB",
+    date: "07",
+    dayAndTime: "Friday, 9:30 - 10:30pm",
+    eventName: "Intro to Web Dev + Git",
   },
   {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 9 - 10am",
+    eventName: "LeetCode Workshop",
   },
   {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 10 - 11am",
+    eventName: "3D Web Dev w/ 3JS Workshop",
   },
   {
-    month: "OCT",
-    date: "05",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 11 - 12pm",
+    eventName: "Social Engineering Workshop",
   },
   {
-    month: "OCT",
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 1 - 2pm",
+    eventName: "Machine Learning Workshop",
+  },
+  {
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Saturday, 5 - 6pm",
+    eventName: "Bias in A.I. Models Workshop",
+  },
+  {
+    month: "FEB",
+    date: "08",
+    dayAndTime: "Thursday, 7:15 - 8pm",
+    eventName: "Hacker Demo Prep Workshop",
+  },
+  {
+    month: "FEB",
     date: "09",
-    dayAndTime: "Monday, 5 - 6pm",
-    eventName: "Databases for Developers",
-  },
-  {
-    month: "OCT",
-    date: "10",
-    dayAndTime: "Tuesday, 4 - 5pm",
-    eventName: "Intro to Git and Version Control",
-  },
-  {
-    month: "OCT",
-    date: "11",
-    dayAndTime: "Wednesday, 3 - 4pm",
-    eventName: "Full Stack Development Overview",
-  },
-  {
-    month: "OCT",
-    date: "12",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Web Development",
-  },
-  {
-    month: "OCT",
-    date: "10",
-    dayAndTime: "Tuesday, 4 - 5pm",
-    eventName: "React.js Workshop",
-  },
-  {
-    month: "OCT",
-    date: "11",
-    dayAndTime: "Wednesday, 3 - 4pm",
-    eventName: "Full Stack Development Overview",
-  },
-  {
-    month: "OCT",
-    date: "12",
-    dayAndTime: "Thursday, 9 - 10pm",
-    eventName: "Introduction to Data Science",
-  },
-  {
-    month: "NOV",
-    date: "22",
-    dayAndTime: "Monday, 10am - 12pm",
-    eventName: "React.js Workshop",
-  },
-  {
-    month: "DEC",
-    date: "5",
-    dayAndTime: "Friday, 1 - 2pm",
-    eventName: "Introduction to Data Science",
-  },
-  {
-    month: "JAN",
-    date: "18",
-    dayAndTime: "Tuesday, 2 - 3pm",
-    eventName: "JavaScript Deep Dive",
+    dayAndTime: "Sunday, 11:30 - 1:15pm",
+    eventName: "Resumes and Internships",
   },
 ];
 
@@ -176,7 +140,7 @@ export function CalendarEvents({
   const startIndex = page * eventsPerPage;
   const displayedEvents = calendarEvents.slice(
     startIndex,
-    startIndex + eventsPerPage
+    startIndex + eventsPerPage,
   );
 
   return (
@@ -238,7 +202,7 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
         />
       </div>
       <h1 className="text-6xl font-bold text-center text-[#B2A0C2] p-8 mt-6 font-Wilden-Regular z-10">
-        EVENTS CALENDAR
+        PREVIOUS EVENTS
       </h1>
 
       <div className="relative w-full flex items-center justify-center my-8 z-20">

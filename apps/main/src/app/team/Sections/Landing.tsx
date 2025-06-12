@@ -6,7 +6,7 @@ import React, { useRef } from "react";
 const Landing = () => {
   const ref = useRef<HTMLImageElement>(null);
   const { height: windowHeight, width: windowWidth } = useWindowSize();
-  
+
   if (!windowHeight || !windowWidth) return null;
 
   return (

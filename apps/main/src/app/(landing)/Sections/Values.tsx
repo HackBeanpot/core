@@ -54,7 +54,7 @@ const ValuesCommunityContent = (
 );
 
 const ValuesGrowthContent = (
-  <div className="mx-[15%] flex flex-row">
+  <div className="mx-[15%] flex flex-row items-center justify-center">
     <div className="mr-10">
       <GrowthIcon />
     </div>
@@ -90,7 +90,7 @@ const rocks = (
 
 const content = (
   <div>
-    <div className="w-full h-[80vh] text-[#474747] grid grid-cols-1 tablet:grid-cols-2 tablet:grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
+    <div className="w-full h-[140vh] text-[#474747] grid grid-cols-1 tablet:grid-cols-2 tablet:grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
       <div className="w-full bg-[#EC765A] flex flex-col justify-center font-Wilden">
         <Box>{ValuesIntroContent}</Box>
       </div>
@@ -104,9 +104,7 @@ const content = (
         <Box>{ValuesGrowthContent}</Box>
       </div>
     </div>
-    <div className="absolute z-10">
-      {rocks}
-    </div>
+    <div className="absolute z-10">{rocks}</div>
   </div>
 );
 
@@ -119,5 +117,5 @@ export function Box({
 }: {
   children: React.ReactNode;
 }): React.ReactNode {
-  return <div className="flex flex-col justify-center py-14">{children}</div>;
+  return <div className="flex flex-col justify-center">{children}</div>;
 }
