@@ -17,12 +17,12 @@ const Landing = () => {
         alt=""
         fill
         priority
-        className="object-cover z-0"
+        className="tablet:object-cover object-contain"
         sizes="100vw"
-        style={{ objectFit: "cover" }}
+        style={{ objectPosition: "center 0%" }}
       />
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <span className="font-Wilden text-[10rem] text-text-light [text-shadow:_0_10px_0_rgb(0_0_0_/_20%)]">
+      <div className="absolute inset-0 flex items-center justify-center z-10 px-4 top-[-75%] tablet:top-0">
+        <span className="font-Wilden text-[3rem] tablet:text-[10rem] text-text-light text-center [text-shadow:_0_10px_0_rgb(0_0_0_/_20%)] leading-tight">
           Our Team
         </span>
       </div>
