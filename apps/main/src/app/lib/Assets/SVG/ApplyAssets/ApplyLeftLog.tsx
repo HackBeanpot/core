@@ -1,12 +1,17 @@
 import React from "react";
 
-const ApplyLeftLog = () => {
+type ApplyLeftLogProps = {
+  className: string;
+};
+
+const ApplyLeftLog: React.FC<ApplyLeftLogProps> = ({ className }) => {
   return (
     <svg
       width="30vw"
       height="45vh"
       viewBox="0 0 441 322"
       fill="none"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
       <g clipPath="url(#clip0_398_1630)">
