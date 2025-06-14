@@ -9,7 +9,11 @@ const ProjectsContent = forwardRef<HTMLDivElement>((_, ref) => {
           LAST YEAR&apos;S PROJECTS
         </h1>
       </div>
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5 mb-[5rem] max-w-[1200px] mx-auto">
+      <section
+        className="grid gap-5 mb-[5rem] max-w-[1200px] mx-auto
+        [@media(max-width:640px)]:grid-cols-1
+        grid-cols-[repeat(auto-fit,minmax(300px,1fr))]"
+      >
         <a
           href="https://devpost.com/software/poqua"
           className="flex justify-center items-center"
