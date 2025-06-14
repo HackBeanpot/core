@@ -14,7 +14,6 @@ import Thumbtack3 from "../../lib/Assets/SVG/AboutAssets/Thumbtack3";
 import AboutParagraph from "../../lib/Assets/SVG/AboutAssets/AboutParagraph";
 
 export default function About(): React.ReactNode {
-
   return (
     <div className="w-full h-[100vh] bg-[#F3E7D7] flex flex-col flex-none">
       <div className="w-[100vw]">
