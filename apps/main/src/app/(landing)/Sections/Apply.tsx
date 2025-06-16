@@ -10,7 +10,7 @@ import ApplyRightBush from "../../lib/Assets/SVG/ApplyAssets/ApplyRightBush";
 const Apply = () => {
   return (
     <>
-      <div className="relative w-full mt-44 flex flex-col flex-none h-[559px]">
+      <div className="relative w-full mt-44 flex flex-col flex-none h-[68vh]">
         <div className="w-full h-full z-0">
           <ApplyBackground height={555} preserveAspectRatio="none" />
         </div>
