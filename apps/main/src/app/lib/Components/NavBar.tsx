@@ -1,15 +1,12 @@
 "use client";
 
-import React, { useState} from "react";
+import React, { useState } from "react";
 import LocalLink from "./LocalLink";
 import HomeIcon from "@repo/ui/Icons/HomeIcon";
 import Hamburger from "hamburger-react";
-// import { MobileContext } from "../../providers";
-// import useIsMobile from "@repo/util/hooks/useIsMobile"
 import useIsMobileLgScreen from "@repo/util/hooks/useIsMobileLgScreen";
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
-  // const { isMobile } = useContext(MobileContext);
   const isMobile = useIsMobileLgScreen();
 
   return (
