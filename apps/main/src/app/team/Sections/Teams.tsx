@@ -133,7 +133,7 @@ const Teams = () => {
         </div>
         
         <div className="tablet:hidden">
-          {getTeamsToDisplay().map(([teamName, team]) => (
+          {getTeamsToDisplay().map(([teamName]) => (
             <TeamSections
               key={teamName}
               team={teamName}
@@ -142,7 +142,7 @@ const Teams = () => {
         </div>
 
         <div className="hidden tablet:block">
-          {getAllTeams().map(([teamName, team]) => (
+          {getAllTeams().map(([teamName]) => (
             <TeamSections
               key={teamName}
               team={teamName}

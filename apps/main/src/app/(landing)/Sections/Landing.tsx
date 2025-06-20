@@ -10,13 +10,13 @@ export default function Landing(): JSX.Element {
   return (
     <div className="w-full h-[60vh] relative">
       <LandingBackground />
-      <div className="absolute top-[85%] w-full  z-1">
+      <div className="absolute top-[95%] tablet:top-[85%] w-full z-1">
         <Guardrail />
       </div>
-      <div className="absolute top-[110%] w-full">
+      <div className="absolute top-[100%] tablet:top-[110%] w-[125%] tablet:w-full max-w-full">
         <Road />
       </div>
-      <div className="absolute w-[40vw] left-1/2 top-[90%] transform -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute w-[70vw] tablet:w-[40vw] left-1/2 top-[90%] transform -translate-x-1/2 -translate-y-1/2">
         <Bus />
       </div>
       <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-[30%]">
@@ -51,4 +51,5 @@ export default function Landing(): JSX.Element {
       </div>
     </div>
   );
+  
 }
