@@ -18,7 +18,7 @@ const Apply = () => {
         </div>
 
         <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-[40%] tablet:top-[60%] z-10 flex items-center text-center">
-          <div className="max-w-xl">
+          <div className="max-w-2xl">
             <p className=" text-md tablet:text-[20px] tablet:desktop:text-2xl desktop:text-3xl font-GT-Walsheim-Regular">
               Applications have not been released for HackBeanpot 2026. Check in
               with us again this fall!
@@ -38,19 +38,19 @@ const Apply = () => {
           </div>
         </div>
 
-        <div className="absolute -top-[15%] left-[-20%] w-[55%] max-w-[120%] z-20 invisible desktop:visible">
+        <div className="absolute mobile:top-[20%] tablet:-top-[15%] left-[-48%] tablet:left-[-20%] mobile:w-[80%] tablet:w-[55%] tablet:max-w-[120%] z-20 desktop:visible">
           <ApplyLeftBush className="w-full h-full" />
         </div>
 
-        <div className="absolute top-[-35%] right-[-2%] w-[42%] max-w-[120%] z-20 invisible desktop:visible">
+        <div className="absolute tablet:top-[-35%] mobile:right-[-40%] tablet:right-[-2%] mobile:w-[75%] tablet:w-[42%] tablet:max-w-[120%] z-20 desktop:visible">
           <ApplyRightBush className="w-full h-full" />
         </div>
 
-        <div className="absolute top-[20%] left-0 max-w-[30%] h-[120%] z-30 invisible desktop:visible">
+        <div className="absolute mobile:top-[30%] tablet:top-[20%] mobile:left-[-15%] tablet:left-0 mobile:w-[40%] tablet:max-w-[30%] tablet:h-[120%] z-30 desktop:visible">
           <ApplyLeftLog className="w-full h-full" />
         </div>
 
-        <div className="absolute top-[20%] right-0 max-w-[30%] h-[120%] z-30 invisible desktop:visible">
+        <div className="absolute mobile:top-[30%] tablet:top-[20%] mobile:right-[-15%] tablet:right-0 mobile:w-[40%] tablet:max-w-[30%] tablet:h-[120%] z-30 desktop:visible">
           <ApplyRightLog className="w-full h-full" />
         </div>
       </div>
