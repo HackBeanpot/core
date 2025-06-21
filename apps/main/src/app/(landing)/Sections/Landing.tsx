@@ -8,18 +8,23 @@ import Bus from "../../lib/Assets/SVG/RoadAssets/Bus";
 
 export default function Landing(): JSX.Element {
   return (
-    <div className="w-full h-[60vh] relative">
-      <LandingBackground />
-      <div className="absolute top-[95%] tablet:top-[85%] w-full z-1">
+    <div className="w-full h-[50vh] tablet:h-[90vh] relative overflow-hidden">
+      <div className="w-[230%] tablet:w-auto -translate-x-1/3 tablet:-translate-x-0">
+        <LandingBackground />
+      </div>
+      <div className="absolute -mt-[9vh] tablet:-mt-[20vh] w-[200%] tablet:w-full z-1">
         <Guardrail />
       </div>
-      <div className="absolute top-[100%] tablet:top-[110%] w-[125%] tablet:w-full max-w-full">
+      <div className="absolute -mt-[2vh] tablet:-mt-[5vh] w-[300%] tablet:w-full">
         <Road />
       </div>
-      <div className="absolute w-[70vw] tablet:w-[40vw] left-1/2 top-[90%] transform -translate-x-1/2 -translate-y-1/2">
+      <div
+        className="absolute -mt-[10vh] tablet:-mt-[20vh] w-[70vw] tablet:w-[40vw] left-1/2 top-[90%] 
+                      transform -translate-x-1/2 -translate-y-1/2 scale-125 tablet:scale-100"
+      >
         <Bus />
       </div>
-      <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-[30%]">
+      <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 scale-110 tablet:scale-100 top-[30%]">
         <Image
           alt="LicensePlate"
           src="/license_plate.png"

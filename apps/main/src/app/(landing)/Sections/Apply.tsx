@@ -10,8 +10,8 @@ import ApplyLeftBush from "../../lib/Assets/SVG/ApplyAssets/ApplyLeftBush";
 const Apply = () => {
   return (
     <>
-      <div className="relative w-full mt-44 sm:mt-36 lg:mt-52 2xl:mt-60 mb-10 flex flex-col flex-none">
-        <div className="w-[110%] left-2 h-full z-0">
+      <div className="relative w-full mt-44 flex flex-col flex-none h-[68vh]">
+        <div className="w-full h-full z-0">
           <ApplyBackground preserveAspectRatio="xMidYMid meet" />
         </div>
 
