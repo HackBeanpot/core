@@ -18,8 +18,10 @@ export default function Landing(): JSX.Element {
       <div className="absolute -mt-[2vh] tablet:-mt-[5vh] w-[300%] tablet:w-full">
         <Road />
       </div>
-      <div className="absolute -mt-[10vh] tablet:-mt-[20vh] w-[70vw] tablet:w-[40vw] left-1/2 top-[90%] 
-                      transform -translate-x-1/2 -translate-y-1/2 scale-125 tablet:scale-100">
+      <div
+        className="absolute -mt-[10vh] tablet:-mt-[20vh] w-[70vw] tablet:w-[40vw] left-1/2 top-[90%] 
+                      transform -translate-x-1/2 -translate-y-1/2 scale-125 tablet:scale-100"
+      >
         <Bus />
       </div>
       <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 scale-110 tablet:scale-100 top-[30%]">
