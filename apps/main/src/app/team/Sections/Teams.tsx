@@ -106,7 +106,8 @@ const teams = {
 const Teams = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { height: windowHeight, width: windowWidth } = useWindowSize();
-  const [selectedTeam, setSelectedTeam] = useState<keyof typeof teams>("Directors");
+  const [selectedTeam, setSelectedTeam] =
+    useState<keyof typeof teams>("Directors");
 
   if (!windowHeight || !windowWidth) return null;
 
@@ -115,38 +116,38 @@ const Teams = () => {
   };
 
   const getTeamsToDisplay = () => {
-    return [[selectedTeam, teams[selectedTeam]]] as [keyof typeof teams, typeof teams[keyof typeof teams]][];
+    return [[selectedTeam, teams[selectedTeam]]] as [
+      keyof typeof teams,
+      (typeof teams)[keyof typeof teams],
+    ][];
   };
 
   const getAllTeams = () => {
-    return Object.entries(teams) as [keyof typeof teams, typeof teams[keyof typeof teams]][];
+    return Object.entries(teams) as [
+      keyof typeof teams,
+      (typeof teams)[keyof typeof teams],
+    ][];
   };
 
   const TeamsContent = () => {
     return (
       <div ref={ref} className="p-4 sm:p-[6vw] lg:p-[8vw]">
         <div className="text-center mb-6 sm:mb-8 tablet:-mt-[10vh] -mt-[75vh] tablet:hidden">
-          <OurTeamDropdown 
+          <OurTeamDropdown
             onTeamSelect={handleTeamSelect}
             selectedTeam={selectedTeam}
           />
         </div>
-        
+
         <div className="tablet:hidden">
-          {getTeamsToDisplay().map(([teamName, team]) => (
-            <TeamSections
-              key={teamName}
-              team={teamName}
-            />
+          {getTeamsToDisplay().map(([teamName]) => (
+            <TeamSections key={teamName} team={teamName} />
           ))}
         </div>
 
         <div className="hidden tablet:block">
-          {getAllTeams().map(([teamName, team]) => (
-            <TeamSections
-              key={teamName}
-              team={teamName}
-            />
+          {getAllTeams().map(([teamName]) => (
+            <TeamSections key={teamName} team={teamName} />
           ))}
         </div>
       </div>
