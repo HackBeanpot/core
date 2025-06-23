@@ -94,9 +94,8 @@ const NavBar = () => {
             Team
           </LocalLink>
           <LocalLink
-            href={"#sponsor-us"}
-            className="block bg-orange text-text-light px-3 py-2 rounded"
-            onClick={() => setOpen(false)}
+            href={"/sponsor-us"}
+            className="bg-orange text-xl flex items-center px-5 text-text-light"
           >
             Sponsor Us
           </LocalLink>
