@@ -1,5 +1,5 @@
-import React from 'react';
-import SponsorUs from '../../app/(landing)/Sections/SponsorUs';
+import React from "react";
+import SponsorUs from "../../app/(landing)/Sections/SponsorUs";
 
 const SponsorUsPage = () => {
   return <SponsorUs />;
