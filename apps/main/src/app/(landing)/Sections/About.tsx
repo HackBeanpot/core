@@ -11,13 +11,9 @@ import Journal from "../../lib/Assets/SVG/AboutAssets/Journal";
 import Thumbtack1 from "../../lib/Assets/SVG/AboutAssets/Thumbtack1";
 import Thumbtack2 from "../../lib/Assets/SVG/AboutAssets/Thumbtack2";
 import Thumbtack3 from "../../lib/Assets/SVG/AboutAssets/Thumbtack3";
-// import useWindowSize from "@repo/util/hooks/useWindowSize";
 import AboutParagraph from "../../lib/Assets/SVG/AboutAssets/AboutParagraph";
 
 export default function About(): React.ReactNode {
-  // const { width } = useWindowSize();
-  // const isMobile = width != undefined && width < 2000;
-
   return (
     <div className="w-full h-[100vh] bg-[#F3E7D7] flex flex-col flex-none">
       <div className="w-[100vw]">

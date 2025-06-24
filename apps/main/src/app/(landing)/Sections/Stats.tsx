@@ -6,15 +6,15 @@ export default function Stats(): React.ReactNode {
     <div className="w-full">
       <div className="w-full bg-[#BEACD0] p-16 flex flex-row gap-16 justify-center content-center text-xl tablet:text-3xl">
         <Box>
-          <p className="text-4xl tablet:text-8xl font-medium mb-2">{"10+"}</p>
-          <p>{"years of HackBeanpot"}</p>
+          <p className="text-4xl tablet:text-7xl font-medium mb-2">{"10+"}</p>
+          <p>{"years of HBP"}</p>
         </Box>
         <Box>
-          <p className="text-4xl tablet:text-8xl font-medium mb-2">{"10+"}</p>
+          <p className="text-4xl tablet:text-7xl font-medium mb-2">{"10+"}</p>
           <p>{"sponsors each year"}</p>
         </Box>
         <Box>
-          <p className="text-4xl tablet:text-8xl font-medium mb-2">{"800+"}</p>
+          <p className="text-4xl tablet:text-7xl font-medium mb-2">{"800+"}</p>
           <p>{"beans and counting"}</p>
         </Box>
       </div>
