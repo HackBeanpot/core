@@ -25,6 +25,10 @@ const colors = {
   darkBeige: "#C6B6A9",
   darkGreen: "#4C7764",
   lightBrown: "#A9967D",
+  skyBlue: "#98CDDF",
+  sunnyBlue: "#C5DFD2",
+  pavement: "#333333", 
+  heather: "#C7C7C7", 
 };
 
 export default colors;
