@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
+import useIsMobile from "@repo/util/hooks/useIsMobile";
 const DownChevron = (
   <svg
     fill="#000000"
@@ -59,6 +59,7 @@ export default function FAQDropdown({
   iconType = "Symbol",
 }: FAQDropdownProps): React.ReactNode {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const OpenIcon = iconType === "Chevron" ? DownChevron : PlusSign;
   const CloseIcon = iconType === "Chevron" ? DownChevron : MinusSign;
@@ -70,7 +71,15 @@ export default function FAQDropdown({
   return (
     <div
       onClick={toggleAccordion}
-      className={`w-full transition-transform duration-300 transform scale-100 hover:scale-[102%] relative cursor-pointer justify-center rounded-lg bg-[#FBFBFB] text-[#3F3F3F] grid grid-cols-[95%_5%] place-content-around py-5 px-5 font-GT-Walsheim-Regular ${isOpen ? "max-h-screen" : "max-h-80"}`}
+      className={`
+        transition-transform duration-300 transform hover:scale-[102%]
+        cursor-pointer rounded-lg bg-[#FBFBFB] text-[#3F3F3F]
+        grid grid-cols-[95%_5%] place-content-around
+        font-GT-Walsheim-Regular
+        w-full ${isMobile ? "min-w-[900px] px-3 text-sm" : "max-w-[1200px] px-6 text-lg"}
+        py-5
+        ${isOpen ? "max-h-screen" : "max-h-80"}
+      `}
     >
       <div>
         <div className="text-lg">{dropdownQuestion}</div>
