@@ -76,7 +76,7 @@ export default function FAQDropdown({
         cursor-pointer rounded-lg bg-[#FBFBFB] text-[#3F3F3F]
         grid grid-cols-[95%_5%] place-content-around
         font-GT-Walsheim-Regular
-         ${isMobile ? "max-w-full px-3 text-sm" : "w-full max-w-[900px] px-6 text-lg"}
+         ${isMobile ? "px-3 text-sm" : "w-full max-w-[900px] px-6 text-lg"}
         py-5
         ${isOpen ? "max-h-screen" : "max-h-80"}
       `}
