@@ -6,8 +6,8 @@ type LargeSignProps = {
 
 const LargeSign: React.FC<LargeSignProps> = ({className}) => (
   <svg
-    width={538}
-    height={339}
+    width={638}
+    height={439}
     viewBox="0 0 538 339"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

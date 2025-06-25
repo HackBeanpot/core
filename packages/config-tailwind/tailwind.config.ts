@@ -31,8 +31,8 @@ const config: Omit<Config, "content"> = {
         "Big-Shoulders-Display": ['"Big-Shoulders-Display"'],
         "Wilden": ['"Wilden"'],
         "Wilden-Regular": ["'Wilden-Regular'"],
-        "DMSans-Regular": ["'DMSans-Regular"], 
-        "DMSans-Medium": ["'DMSans-Medium"],
+        "DMSans-Regular": ["'DMSans-Regular'"], 
+        "DMSans-Medium": ["'DMSans-Medium'"],
       },
       transitionProperty: {
         "max-height": "max-height",

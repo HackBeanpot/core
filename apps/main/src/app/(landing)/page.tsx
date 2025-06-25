@@ -1,19 +1,19 @@
-import {
-  Stats,
-  Values,
-  FAQSection,
-  Landing,
-  Keynote,
-  Calendar,
-  Testimonials,
-  Apply,
-  Placeholder,
-} from "./Sections";
-import { Footer, NavBar } from "../lib/Components";
-// something wrong with the import here (?)
-import About from "./Sections/About";
+// import {
+//   Stats,
+//   Values,
+//   FAQSection,
+//   Landing,
+//   Keynote,
+//   Calendar,
+//   Testimonials,
+//   Apply,
+//   About,
+// } from "./Sections";
+// import { Footer, NavBar } from "../lib/Components";
+// import Head from "next/head";
 import React from "react";
-import Head from "next/head";
+import Placeholder from "@repo/ui/Placeholder";
+
 
 export default function Page(): JSX.Element {
   return (
