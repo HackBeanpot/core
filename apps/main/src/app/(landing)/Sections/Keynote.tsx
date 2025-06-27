@@ -53,17 +53,24 @@ function SpeakerPhoto({
 
 function SpeakerDetails({
   textAlign,
-  scaleFactor,
-  bottomMargin,
 }: SpeakerDetailsProps): JSX.Element {
   return (
-    <div className={`mt-[15%] font-GT-Walsheim-Regular ${textAlign}`}>
-      <p
+    <div className={`desktop:mt-[15%] desktop:ml-2 desktop:mr-[-15%] mobile:mt-[-5%] mobile:ml-[-10%] mobile:mr-[10%] font-GT-Walsheim-Regular ${textAlign}`}>
+      {/* <p
         className={`text-[1.75vw] scale-[${scaleFactor}] font-bold ${bottomMargin}`}
       >
         Aidan Ouckama
       </p>
       <p className={`text-[1.5vw] scale-[${scaleFactor}] text-lightBrown`}>
+        3rd year Computer Science student, Stevens Institute of Technology |
+        Tech Content Creator
+      </p> */}
+      <p
+        className="desktop:text-3xl mobile:text-xl font-bold"
+      >
+        Aidan Ouckama
+      </p>
+      <p className='desktop:text-2xl text-lightBrown desktop:static mobile:absolute '>
         3rd year Computer Science student, Stevens Institute of Technology |
         Tech Content Creator
       </p>
@@ -110,7 +117,7 @@ export default function Keynote(): React.ReactNode {
   }`;
 
   return (
-    <div className={`w-full bg-cream ${isMobile ? "h-auto" : "h-[120vh]"}`}>
+    <div className={`w-full bg-cream ${isMobile ? "h-auto" : "h-[120vh]"} mobile:pb-10`}>
       <div className={conditionalAlignment}>
         <div className={`${isMobile ? "w-[80vw]" : "w-[55vw]"}`}>
           {isMobile && (
