@@ -1,22 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import useIsMobile from "@repo/util/hooks/useIsMobile";
+
 const DownChevron = (
   <svg
     fill="#000000"
     height="24px"
     width="24px"
     version="1.1"
-    id="Layer_1"
+    viewBox="0 0 407.437 407.437"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    viewBox="0 0 407.437 407.437"
     xmlSpace="preserve"
   >
     <polygon points="203.718,315.87 0,112.816 21.179,91.568 203.718,273.513 386.258,91.568 407.436,112.816" />
   </svg>
 );
+
 const MinusSign = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -59,43 +59,39 @@ export default function FAQDropdown({
   iconType = "Symbol",
 }: FAQDropdownProps): React.ReactNode {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useIsMobile();
 
   const OpenIcon = iconType === "Chevron" ? DownChevron : PlusSign;
   const CloseIcon = iconType === "Chevron" ? DownChevron : MinusSign;
 
-  const toggleAccordion = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
+  const toggleAccordion = () => setIsOpen((prev) => !prev);
 
   return (
     <div
       onClick={toggleAccordion}
-      className={`
-        transition-transform duration-300 transform hover:scale-[102%]
+      className={`transition-transform duration-300 transform hover:scale-[102%]
         cursor-pointer rounded-lg bg-[#FBFBFB] text-[#3F3F3F]
         grid grid-cols-[95%_5%] place-content-around
-        font-GT-Walsheim-Regular
-        ${isMobile ? "max-w-[95vw] px-3 text-sm" : "max-w-[900px] px-6 text-lg w-full"}
-        py-5
+        font-GT-Walsheim-Regular py-5
         ${isOpen ? "max-h-screen" : "max-h-80"}
-      `}
+        min-w-[325px] sm:min-w-[325px] w-full md:max-w-[900px] 
+        px-3 text-sm md:px-6 md:text-lg`}
     >
       <div>
         <div className="text-lg">{dropdownQuestion}</div>
       </div>
 
       <div
-        className={`w-6 h-6 self-center place-self-end transition-transform duration-500 transform ${isOpen ? "-rotate-180" : "rotate-0"} `}
+        className={`w-6 h-6 self-center place-self-end transition-transform duration-500 transform ${
+          isOpen ? "-rotate-180" : "rotate-0"
+        }`}
       >
         {isOpen ? CloseIcon : OpenIcon}
       </div>
+
       {isOpen && (
         <>
-          <div
-            className={`w-auto col-span-2 border-t border-[#CFCFCF] flex items-center justify-center m-2`}
-          ></div>
-          <div className={`text-lg col-span-2 break-all`}>{dropdownAnswer}</div>
+          <div className="w-auto col-span-2 border-t border-[#CFCFCF] flex items-center justify-center m-2"></div>
+          <div className="text-lg col-span-2 break-words">{dropdownAnswer}</div>
         </>
       )}
     </div>
