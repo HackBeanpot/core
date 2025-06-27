@@ -21,6 +21,7 @@ interface SpeakerPhotoProps {
 interface SpeakerDetailsProps {
   textAlign?: string;
   scaleFactor?: string;
+  bottomMargin?: string;
 }
 
 function SpeakerPhoto({
@@ -37,7 +38,7 @@ function SpeakerPhoto({
 
   return (
     <div
-      className={`bg-white rounded-sm inline-block pb-[5vw] shadow-lg ${padding} ${newClasses ?? ""}`}
+      className={`bg-white rounded-sm inline-block pb-[4vw] shadow-lg ${padding} ${newClasses}`}
     >
       <Image
         alt="Aidan"
@@ -53,16 +54,17 @@ function SpeakerPhoto({
 function SpeakerDetails({
   textAlign,
   scaleFactor,
+  bottomMargin,
 }: SpeakerDetailsProps): JSX.Element {
   return (
-    <div className={`mt-[15%] font-GT-Walsheim-Regular ${textAlign ?? ""}`}>
+    <div className={`mt-[15%] font-GT-Walsheim-Regular ${textAlign}`}>
       <p
-        className={`text-[1.75vw] scale-[${scaleFactor ?? "1"}] font-bold mb-[30%]`}
+        className={`text-[1.75vw] scale-[${scaleFactor}] font-bold ${bottomMargin}`}
       >
         Aidan Ouckama
       </p>
       <p
-        className={`text-[1.5vw] scale-[${scaleFactor ?? "1"}] text-lightBrown`}
+        className={`text-[1.5vw] scale-[${scaleFactor}] text-lightBrown`}
       >
         3rd year Computer Science student, Stevens Institute of Technology |
         Tech Content Creator
@@ -122,20 +124,21 @@ export default function Keynote(): React.ReactNode {
           )}
 
           <div
-            className={`${isMobile ? "flex flex-row gap-x-12 mb-[-5%]" : ""}`}
+            className={`${isMobile ? "flex flex-row gap-x-12 mb-[-5%]" : "flex flex-col items-center"}`}
           >
             <SpeakerPhoto
-              newClasses={`${isMobile ? "left-[-10%]" : ""}`}
-              newPadding={`${isMobile ? "p-2" : ""}`}
+              newClasses={`${isMobile ? "left-[-10%]" : "mt-[30%] mb-[-35%]"}`}
+              newPadding={`${isMobile ? "p-2" : "p-4"}`}
             />
             <SpeakerDetails
-              textAlign={`${isMobile ? "text-left text-wrap p-[5%]" : ""}`}
-              scaleFactor={`${isMobile ? "2" : ""}`}
+              textAlign={`${isMobile ? "text-left text-wrap p-[5%]" : "text-wrap p-[25%]"}`}
+              scaleFactor={`${isMobile ? "2" : "1"}`}
+              bottomMargin={`${isMobile ? " mb-[30%]" : ""}`}
             />
           </div>
         </div>
 
-        <div className={`${isMobile ? "w-[80vw]" : "w-[55vw]"}`}>
+        <div className={`${isMobile ? "w-[80vw]" : "w-[55vw] mr-[5%]"}`}>
           {!isMobile && <StreetSign streetName="KEYNOTE" suffix="SPEAKER" />}
           <SpeakerAbout additionalClasses={`${isMobile ? "text-left" : ""}`} />
         </div>
