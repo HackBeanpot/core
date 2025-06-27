@@ -63,9 +63,7 @@ function SpeakerDetails({
       >
         Aidan Ouckama
       </p>
-      <p
-        className={`text-[1.5vw] scale-[${scaleFactor}] text-lightBrown`}
-      >
+      <p className={`text-[1.5vw] scale-[${scaleFactor}] text-lightBrown`}>
         3rd year Computer Science student, Stevens Institute of Technology |
         Tech Content Creator
       </p>
@@ -138,7 +136,7 @@ export default function Keynote(): React.ReactNode {
           </div>
         </div>
 
-        <div className={`${isMobile ? "w-[80vw]" : "w-[55vw] mr-[5%]"}`}>
+        <div className={`${isMobile ? "w-[80vw]" : "w-[55vw] mr-[5%] sm:scale-[0.5]"}`}>
           {!isMobile && <StreetSign streetName="KEYNOTE" suffix="SPEAKER" />}
           <SpeakerAbout additionalClasses={`${isMobile ? "text-left" : ""}`} />
         </div>
