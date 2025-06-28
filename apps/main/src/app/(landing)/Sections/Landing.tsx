@@ -6,9 +6,9 @@ import Guardrail from "../../lib/Assets/SVG/RoadAssets/Guardrail";
 import Road from "../../lib/Assets/SVG/RoadAssets/Road";
 import Bus from "../../lib/Assets/SVG/RoadAssets/Bus";
 
-export default function Landing(): JSX.Element {
+export default function Landing(): React.ReactNode {
   return (
-    <div className="w-full h-[50vh] tablet:h-[90vh] relative overflow-hidden">
+    <div className="w-full mobile:h-[50vh] desktop:h-[88.5vh] relative overflow-hidden">
       <div className="w-[230%] tablet:w-auto -translate-x-1/3 tablet:-translate-x-0">
         <LandingBackground />
       </div>
@@ -19,7 +19,7 @@ export default function Landing(): JSX.Element {
         <Road />
       </div>
       <div
-        className="absolute -mt-[10vh] tablet:-mt-[20vh] w-[70vw] tablet:w-[40vw] left-1/2 top-[90%] 
+        className="absolute -mt-[10vh] tablet:-mt-[18vh] w-[70vw] tablet:w-[40vw] left-1/2 top-[90%] 
                       transform -translate-x-1/2 -translate-y-1/2 scale-125 tablet:scale-100"
       >
         <Bus />
