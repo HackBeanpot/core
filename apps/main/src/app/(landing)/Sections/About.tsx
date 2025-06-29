@@ -27,7 +27,7 @@ export default function About(): React.ReactNode {
       </div>
       <div
         className="absolute transform
-                   w-[373.15px] h-[220.91px] left-[28px] top-[1630px] 
+                   w-[373.15px] h-[220.91px] left-[55px] top-[1270px] 
                    scale-[1.9] rotate-[0] origin-left
                    tablet:absolute tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 
                    tablet:transform tablet:-rotate-[7.5deg] tablet:top-[210vh] tablet:scale-[2.2]"
@@ -37,21 +37,21 @@ export default function About(): React.ReactNode {
       {/* the journal parts*/}
       <div
         className="absolute 
-                 left-[280px] scale-[1.15] rotate-[0] top-[1550px] mt-0
+                 left-[280px] scale-[1.0] rotate-[0] top-[1190px] mt-0
                  tablet:left-[94%] tablet:scale-[2.7] tablet:-rotate-[7.5deg] tablet:top-[185vh] tablet:mt-24"
       >
         <Image alt="AboutPicture" src="/about_1.png" width={250} height={100} />
       </div>
       <div
         className="absolute 
-                 left-[245px] scale-[0.75] rotate-[0] top-[1645px]
+                 left-[265px] scale-[0.75] rotate-[0] top-[1297px]
                  tablet:absolute tablet:left-[96%] tablet:mt-96 tablet:scale-[3.8] tablet:-rotate-[7.5deg] tablet:top-[175vh]"
       >
         <Image alt="AboutPicture" src="/about_2.png" width={350} height={200} />
       </div>
       <div
         className="absolute
-                 w-[148.2px] h-[94.89px] left-[50.46px] top-[1575px] scale-[1.08] rotate-[7.5deg]
+                 w-[148.2px] h-[94.89px] left-[70.46px] top-[1235px] scale-[1.08] rotate-[7.5deg]
                  tablet:absolute tablet:w-[45vw] tablet:h-auto tablet:left-[60vw] tablet:top-[173vh] tablet:mt-48 tablet:scale-100 tablet:rotate-0"
       >
         <Image alt="AboutPicture" src="/about_3.png" width={300} height={300} />
@@ -59,36 +59,38 @@ export default function About(): React.ReactNode {
 
       <div
         className="absolute 
-                 left-[80.46px] top-[1555px] scale-[0.45]
+                 left-[90.46px] top-[1215px] scale-[0.45]
                  tablet:absolute tablet:left-[63vw] tablet:top-[173vh] tablet:mt-48 tablet:scale-100"
       >
         <Thumbtack1 />
       </div>
       <div
         className="absolute 
-                 left-[294px] scale-[0.45] top-[1630px]
+                 left-[324px] scale-[0.45] top-[1285px]
                  tablet:absolute tablet:left-[94%] tablet:top-[163vh] tablet:mt-96 tablet:scale-100"
       >
         <Thumbtack2 />
       </div>
       <div
         className="absolute 
-                 left-[300px] scale-[0.45] top-[1520px]
+                 left-[300px] scale-[0.45] top-[1170px]
                  tablet:absolute tablet:left-[94%] tablet:top-[177vh] tablet:mt-28 tablet:scale-100"
       >
         <Thumbtack3 />
       </div>
-      <div className="absolute h-full w-[50vw] ml-24 mr-auto mt-5 tablet:mt-24 flex text-[1.8vw]">
+      <div className="absolute h-full w-[50vw] ml-20 mr-auto mt-5 tablet:ml-24 tablet:mt-24 flex text-[1.8vw]">
         <div className="w-[50vw]">
-          <StreetSign streetName={"ABOUT"} suffix="HBP" />
-          <div>
+          <div className="scale-75 origin-left -ml-4 tablet:scale-100 tablet:ml-0">
+            <StreetSign streetName={"ABOUT"} suffix="HBP" />
+          </div>
+          <div className="mt-8 tablet:mt-4">
             <AboutParagraph />
           </div>
           <button
             className="mt-0 absolute top-[30%] bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
-                                relative top-[265px] w-[162.48px] h-[31.59px] right-[50px]
+                                relative top-[310px] w-[162.48px] h-[31.59px] right-[50px]
                                 tablet:mt-12 tablet:top-auto tablet:w-auto tablet:h-auto tablet:right-auto
-                                tablet:w-[278.17px] tablet:h-[67.69px] tablet:!text-[26.5px]"
+                                tablet:w-[298.17px] tablet:h-[77.69px] tablet:!text-[26.5px]"
           >
             {"View Past Photos"}
           </button>
