@@ -37,7 +37,7 @@ export default function PassportCard({
                     ${scaleClass} absolute ${positionClass} transition-all duration-300
                     w-[85%] max-w-[320px] sm:max-w-[360px] sm:w-[60%] md:w-[45%] lg:w-[30%]`}
       >
-        {/* ─── TOP SECTION ─────────────────────────────────────────────── */}
+        {/* ─── TOP SECTION */}
         <div
           className={`p-4 md:p-6 lg:p-8 ${
             !isSponsor ? "border-b border-[#DDC6A8]" : ""
@@ -91,7 +91,7 @@ export default function PassportCard({
           </div>
         </div>
 
-        {/* ─── BOTTOM SECTION ──────────────────────────────────────────── */}
+        {/* ─── BOTTOM SECTION */}
         <div className="p-4 md:p-6 lg:p-8">
           <h1 className="text-lg md:text-xl">Testimony</h1>
           <p className="font-GT-Walsheim-Regular font-normal pt-2 text-sm md:text-base leading-relaxed">
