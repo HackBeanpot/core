@@ -29,9 +29,9 @@ const config: Omit<Config, "content"> = {
         "GT-Walsheim-Regular": ["'GT-Walsheim-Regular'"],
         "GT-Walsheim-Bold": ["'GT-Walsheim-Bold'"],
         "Big-Shoulders-Display": ['"Big-Shoulders-Display"'],
-        "Wilden": ['"Wilden"'],
+        Wilden: ['"Wilden"'],
         "Wilden-Regular": ["'Wilden-Regular'"],
-        "DMSans-Regular": ["'DMSans-Regular'"], 
+        "DMSans-Regular": ["'DMSans-Regular'"],
         "DMSans-Medium": ["'DMSans-Medium'"],
       },
       transitionProperty: {

@@ -27,8 +27,8 @@ const colors = {
   lightBrown: "#A9967D",
   skyBlue: "#98CDDF",
   sunnyBlue: "#C5DFD2",
-  pavement: "#333333", 
-  heather: "#C7C7C7", 
+  pavement: "#333333",
+  heather: "#C7C7C7",
 };
 
 export default colors;

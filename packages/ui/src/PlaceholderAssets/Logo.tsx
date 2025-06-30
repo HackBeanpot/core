@@ -1,10 +1,10 @@
 import * as React from "react";
 
 type LogoProps = {
-    className?: string;
-}
+  className?: string;
+};
 
-const Logo: React.FC<LogoProps> = ({className}) => (
+const Logo: React.FC<LogoProps> = ({ className }) => (
   <svg
     width={193}
     height={70}

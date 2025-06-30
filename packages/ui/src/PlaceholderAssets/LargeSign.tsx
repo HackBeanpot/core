@@ -1,10 +1,10 @@
 import React from "react";
 
 type LargeSignProps = {
-    className?: string; 
+  className?: string;
 };
 
-const LargeSign: React.FC<LargeSignProps> = ({className}) => (
+const LargeSign: React.FC<LargeSignProps> = ({ className }) => (
   <svg
     width={638}
     height={439}

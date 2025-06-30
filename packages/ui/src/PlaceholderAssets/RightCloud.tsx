@@ -1,14 +1,14 @@
 import * as React from "react";
 
 type RightCloudProps = {
-    className?: string;
+  className?: string;
 };
 
 const RightCloud: React.FC<RightCloudProps> = ({ className }) => (
   <svg
     width={380}
-        height={221}
-        className={className}
+    height={221}
+    className={className}
     viewBox="0 0 380 221"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

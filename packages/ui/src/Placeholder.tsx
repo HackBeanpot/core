@@ -19,21 +19,21 @@ const InputBox: React.FC<{
 }> = ({ isMobile, isTablet, isDesktop }) => {
   const containerClass = clsx(
     "relative grid grid-cols-2",
-    isDesktop && "top-[-225%]",
+    isDesktop && "top-[-185%]",
     isTablet && "top-[-50%]",
-    isMobile && "top-[50%]"
+    isMobile && "top-[50%]",
   );
 
   const inputClass = clsx(
-    "font-DMSans-Regular text-xl border border-heather rounded-xl border-4 pl-4 bg-[#FEF9F2] h-[5vh]",
-    isDesktop && "w-[22vw]",
-    isTablet && "w-[42vw] "
+    "font-DMSans-Regular text-xl border border-heather rounded-xl border-4 pl-4 bg-[#FEF9F2] h-[5.5vh]",
+    isDesktop && "w-[20vw]",
+    isTablet && "w-[42vw] ",
   );
 
   const buttonClass = clsx(
     "hover:scale-105 transition-transform transition-duration-300 hover:bg-darkSeaFoam font-GT-Walsheim-Regular text-bold bg-seaFoam text-xl text-white h-[5vh]",
     isDesktop && "rounded-lg w-[8vw]",
-    isTablet && "rounded-xl w-[15vw]"
+    isTablet && "rounded-xl w-[15vw]",
   );
   return (
     <div className={containerClass}>
@@ -60,39 +60,39 @@ export default function Placeholder(): React.ReactNode {
     "absolute left-0 grid",
     isDesktop && "top-[25%] grid-cols-7",
     isTablet && "top-[15%] grid-rows-2",
-    isMobile && "top-[10%] grid-rows-2"
+    isMobile && "top-[10%] grid-rows-2",
   );
 
   const largeSignClass = clsx(
     "relative left-0",
     isDesktop && "col-span-3",
-    isTablet && "row-start-2 top-[-30%] w-[65%]"
+    isTablet && "row-start-2 w-[65%] -mt-36",
   );
 
   const contentWrapperClass = clsx(
     "relative mx-[5vw] grid grid-rows-3",
-    isDesktop && "col-span-4 top-[10%]",
+    isDesktop && "px-10 left-[7%] col-span-4 top-[10%]",
     isTablet && "",
-    isMobile && "top-0"
+    isMobile && "top-0",
   );
 
   const headingClass = clsx(
     "font-Wilden text-pavement ",
     isDesktop && "text-6xl row-span-2",
-    isTablet && "text-5xl"
+    isTablet && "text-5xl",
   );
 
   const paragraphClass = clsx(
     "font-GT-Walsheim-Regular text-xl",
-    isDesktop && "-mt-12",
+    isDesktop && "",
     isTablet && "mt-4",
-    isMobile && "mt-2"
+    isMobile && "mt-2",
   );
 
   const socialIconsClass = clsx(
     "absolute grid grid-cols-2 bottom-10 right-10",
     isDesktop && "w-[6.5vw]",
-    isTablet && "w-[14vw]"
+    isTablet && "w-[14vw]",
   );
   const contactWrapperClass = "absolute bottom-10 left-10 text-l";
   const emailClass =

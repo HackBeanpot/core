@@ -14,7 +14,6 @@
 import React from "react";
 import Placeholder from "@repo/ui/Placeholder";
 
-
 export default function Page(): JSX.Element {
   return (
     // <main className="flex flex-col items-center min-h-screen bg-light-yellow">
@@ -33,6 +32,6 @@ export default function Page(): JSX.Element {
     //   <FAQSection />
     //   <Footer />
     // </main>
-    <Placeholder/>
+    <Placeholder />
   );
 }
