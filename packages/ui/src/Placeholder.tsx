@@ -21,19 +21,21 @@ const InputBox: React.FC<{
     "relative grid grid-cols-2",
     isDesktop && "top-[-185%]",
     isTablet && "top-[-50%]",
-    isMobile && "top-[50%]",
+    isMobile && "grid-cols-4 top-[-65%]"
   );
 
   const inputClass = clsx(
-    "font-DMSans-Regular text-xl border border-heather rounded-xl border-4 pl-4 bg-[#FEF9F2] h-[5.5vh]",
-    isDesktop && "w-[20vw]",
-    isTablet && "w-[42vw] ",
+    "font-DMSans-Regular border border-heather border-4 pl-4 bg-[#FEF9F2] h-[5.5vh]",
+    isDesktop && "rounded-lg w-[20vw] text-xl",
+    isTablet && "rounded-xl w-[42vw] text-xl",
+    isMobile && "rounded-lg w-[85%] border-2 h-[5vh] col-span-3"
   );
 
   const buttonClass = clsx(
-    "hover:scale-105 transition-transform transition-duration-300 hover:bg-darkSeaFoam font-GT-Walsheim-Regular text-bold bg-seaFoam text-xl text-white h-[5vh]",
-    isDesktop && "rounded-lg w-[8vw]",
-    isTablet && "rounded-xl w-[15vw]",
+    "hover:scale-105 transition-transform transition-duration-300 hover:bg-darkSeaFoam font-GT-Walsheim-Regular text-bold bg-seaFoam  text-white h-[5vh]",
+    isDesktop && "text-xl rounded-lg w-[8vw]",
+    isTablet && "text-xl rounded-xl w-[15vw]",
+    isMobile && "relative rounded-lg w-[25vw] left-[-30%]"
   );
   return (
     <div className={containerClass}>
@@ -53,46 +55,51 @@ export default function Placeholder(): React.ReactNode {
     "absolute top-[10%] hover:scale-110 transition-transform transition-duration-3000";
   const rightCloudClass =
     "absolute right-0 top-[50%] hover:scale-110 transition-transform transition-duration-3000";
-  const logoClass =
-    "absolute top-4 left-6 hover:scale-110 transition-transform transition-duration-300";
+  const logoClass = clsx(
+    "absolute top-4 left-6 hover:scale-110 transition-transform transition-duration-300", 
+    isMobile && "left-4"
+  );
 
   const layoutClass = clsx(
     "absolute left-0 grid",
     isDesktop && "top-[25%] grid-cols-7",
     isTablet && "top-[15%] grid-rows-2",
-    isMobile && "top-[10%] grid-rows-2",
+    isMobile && "top-[10%] grid-rows-2"
   );
 
   const largeSignClass = clsx(
     "relative left-0",
     isDesktop && "col-span-3",
     isTablet && "row-start-2 w-[65%] -mt-36",
+    isMobile && "row-start-2 w-[85%] -mt-64"
   );
 
   const contentWrapperClass = clsx(
     "relative mx-[5vw] grid grid-rows-3",
     isDesktop && "px-10 left-[7%] col-span-4 top-[10%]",
     isTablet && "",
-    isMobile && "top-0",
+    isMobile && "top-8 left-2"
   );
 
   const headingClass = clsx(
-    "font-Wilden text-pavement ",
+    "font-Wilden text-pavement",
     isDesktop && "text-6xl row-span-2",
     isTablet && "text-5xl",
+    isMobile && "text-4xl"
   );
 
   const paragraphClass = clsx(
-    "font-GT-Walsheim-Regular text-xl",
-    isDesktop && "",
-    isTablet && "mt-4",
-    isMobile && "mt-2",
+    "font-GT-Walsheim-Regular ",
+    isDesktop && "text-xl",
+    isTablet && "mt-4 text-xl",
+    isMobile && "mt-2"
   );
 
   const socialIconsClass = clsx(
     "absolute grid grid-cols-2 bottom-10 right-10",
     isDesktop && "w-[6.5vw]",
-    isTablet && "w-[14vw]",
+    isTablet && "w-[14vw]", 
+    isMobile && "w-[24vw] right-6"
   );
   const contactWrapperClass = "absolute bottom-10 left-10 text-l";
   const emailClass =
