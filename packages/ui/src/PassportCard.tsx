@@ -26,7 +26,7 @@ export default function PassportCard({
   quote,
   image,
   isActive,
-}: PassportCardProps): React.ReactNode {
+}: PassportCardProps) {
   const positionClass = isActive ? "top-[20%]" : "top-[22%]";
   const scaleClass = isActive ? "scale-100" : "scale-[75%]";
 
@@ -39,10 +39,11 @@ export default function PassportCard({
       >
         {/* ─── TOP SECTION ─────────────────────────────────────────────── */}
         <div
-          className={`p-4 md:p-6 lg:p-8 ${!isSponsor ? "border-b border-[#DDC6A8]" : ""}`}
+          className={`p-4 md:p-6 lg:p-8 ${
+            !isSponsor ? "border-b border-[#DDC6A8]" : ""
+          }`}
         >
-          {" "}
-          {/* mobile = stacked | >=sm = side-by-side */}
+          {/* mobile = stacked | ≥sm = side-by-side */}
           <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-4">
             {/* photo + header */}
             <div className="flex-shrink-0">
