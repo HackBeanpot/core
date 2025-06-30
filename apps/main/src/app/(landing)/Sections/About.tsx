@@ -90,7 +90,7 @@ export default function About(): React.ReactNode {
             className="mt-0 absolute top-[30%] bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
                                 relative top-[310px] w-[162.48px] h-[31.59px] right-[50px]
                                 tablet:mt-12 tablet:top-auto tablet:w-auto tablet:h-auto tablet:right-auto
-                                tablet:w-[298.17px] tablet:h-[77.69px] tablet:!text-[26.5px]"
+                                tablet:w-[308.17px] tablet:h-[67.69px] tablet:!text-[26.5px]"
           >
             {"View Past Photos"}
           </button>
