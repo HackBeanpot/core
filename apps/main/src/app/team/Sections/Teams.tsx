@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import LinkedInLogo from "@repo/ui/LinkedInLogo";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
+import OurTeamDropdown from "../OurTeamDropdown";
+
 import {
   TeamsBottomSquiggle,
   TeamsMiddleSquiggle,
@@ -21,11 +23,11 @@ type TeamSectionsProps = {
 
 const TeamSections = ({ team }: TeamSectionsProps) => {
   return (
-    <div>
-      <h2 className="text-4xl text-black font-semibold font-GT-Walsheim-Regular">
+    <div className="mb-12 tablet:px-20">
+      <h2 className="text-2xl tablet:text-4xl text-black font-semibold font-GT-Walsheim-Regular mb-6 tablet:mb-4">
         {team}
       </h2>
-      <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-3  py-5">
+      <div className="grid grid-cols-2 tablet:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 tablet:gap-8 justify-items-center">
         {teams[team].map((member) => (
           <Headshot key={member.name} name={member.name} src={member.src} />
         ))}
@@ -36,21 +38,22 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
 
 const Headshot = ({ name, src }: HeadshotProps) => {
   return (
-    <div className="flex flex-col w-fit">
+    <div className="flex flex-col w-full max-w-[140px] tablet:max-w-[250px]">
       <Image
         alt={name}
         src={src}
         width={400}
         height={400}
-        className="rounded"
+        className="rounded w-full h-auto aspect-square object-cover"
       />
-      <div className="flex items-center font-semibold">
+      <div className="flex items-center font-semibold mt-3 text-sm tablet:text-lg">
         <LinkedInLogo />
-        {name}
+        <span className="ml-2">{name}</span>
       </div>
     </div>
   );
 };
+
 const teams = {
   Directors: [
     { name: "Mike Mundia", src: "/headshots/directors/mike.png" },
@@ -86,7 +89,7 @@ const teams = {
     { name: "Nidhi Pillai", src: "/headshots/sponsorship/nidhi.png" },
     { name: "Sammi Chen", src: "/headshots/sponsorship/sammi.png" },
     { name: "Harini Avula", src: "/headshots/sponsorship/harini.png" },
-    { name: "Swar Kewaiia", src: "/headshots/sponsorship/swar.png" },
+    { name: "Swar Kewalia", src: "/headshots/sponsorship/swar.png" },
     { name: "Tiffany Zheng", src: "/headshots/sponsorship/tiffany.png" },
   ],
   Operations: [
@@ -103,18 +106,50 @@ const teams = {
 const Teams = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { height: windowHeight, width: windowWidth } = useWindowSize();
+  const [selectedTeam, setSelectedTeam] =
+    useState<keyof typeof teams>("Directors");
 
-  if (!windowHeight || !windowWidth) return;
+  if (!windowHeight || !windowWidth) return null;
+
+  const handleTeamSelect = (team: keyof typeof teams) => {
+    setSelectedTeam(team);
+  };
+
+  const getTeamsToDisplay = () => {
+    return [[selectedTeam, teams[selectedTeam]]] as [
+      keyof typeof teams,
+      (typeof teams)[keyof typeof teams],
+    ][];
+  };
+
+  const getAllTeams = () => {
+    return Object.entries(teams) as [
+      keyof typeof teams,
+      (typeof teams)[keyof typeof teams],
+    ][];
+  };
 
   const TeamsContent = () => {
     return (
-      <div ref={ref} className="p-[8vw]">
-        {Object.entries(teams).map(([teamName, team]) => (
-          <TeamSections
-            key={team.toString()}
-            team={teamName as keyof typeof teams}
+      <div ref={ref} className="p-4 sm:p-[6vw] lg:p-[8vw]">
+        <div className="text-center mb-6 sm:mb-8 tablet:-mt-[10vh] -mt-[75vh] tablet:hidden">
+          <OurTeamDropdown
+            onTeamSelect={handleTeamSelect}
+            selectedTeam={selectedTeam}
           />
-        ))}
+        </div>
+
+        <div className="tablet:hidden">
+          {getTeamsToDisplay().map(([teamName]) => (
+            <TeamSections key={teamName} team={teamName} />
+          ))}
+        </div>
+
+        <div className="hidden tablet:block">
+          {getAllTeams().map(([teamName]) => (
+            <TeamSections key={teamName} team={teamName} />
+          ))}
+        </div>
       </div>
     );
   };
@@ -122,7 +157,7 @@ const Teams = () => {
   return (
     <div className="relative w-full min-h-screen">
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        <TeamsTopSquiggle className="w-[110vw] -mt-48 -ml-[5vw]" />
+        <TeamsTopSquiggle className="w-[110vw] -mt-[130vh] tablet:-mt-48 -ml-[5vw]" />
         <TeamsMiddleSquiggle className="w-[110vw] -ml-[10vw]" />
         <TeamsBottomSquiggle className="w-[110vw] -ml-[5vw]" />
       </div>

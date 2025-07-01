@@ -117,5 +117,5 @@ export function Box({
 }: {
   children: React.ReactNode;
 }): React.ReactNode {
-  return <div className="flex flex-col justify-center py-20">{children}</div>;
+  return <div className="flex flex-col justify-center">{children}</div>;
 }
