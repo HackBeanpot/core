@@ -51,11 +51,11 @@ function SpeakerPhoto({
   );
 }
 
-function SpeakerDetails({
-  textAlign,
-}: SpeakerDetailsProps): JSX.Element {
+function SpeakerDetails({ textAlign }: SpeakerDetailsProps): JSX.Element {
   return (
-    <div className={`desktop:mt-[15%] desktop:ml-2 desktop:mr-[-15%] mobile:mt-[-5%] mobile:ml-[-10%] mobile:mr-[10%] font-GT-Walsheim-Regular ${textAlign}`}>
+    <div
+      className={`desktop:mt-[15%] desktop:ml-2 desktop:mr-[-15%] mobile:mt-[-5%] mobile:ml-[-10%] mobile:mr-[10%] font-GT-Walsheim-Regular ${textAlign}`}
+    >
       {/* <p
         className={`text-[1.75vw] scale-[${scaleFactor}] font-bold ${bottomMargin}`}
       >
@@ -65,12 +65,8 @@ function SpeakerDetails({
         3rd year Computer Science student, Stevens Institute of Technology |
         Tech Content Creator
       </p> */}
-      <p
-        className="desktop:text-3xl mobile:text-xl font-bold"
-      >
-        Aidan Ouckama
-      </p>
-      <p className='desktop:text-2xl text-lightBrown desktop:static mobile:absolute '>
+      <p className="desktop:text-3xl mobile:text-xl font-bold">Aidan Ouckama</p>
+      <p className="desktop:text-2xl text-lightBrown desktop:static mobile:absolute ">
         3rd year Computer Science student, Stevens Institute of Technology |
         Tech Content Creator
       </p>
@@ -117,7 +113,9 @@ export default function Keynote(): React.ReactNode {
   }`;
 
   return (
-    <div className={`w-full bg-cream ${isMobile ? "h-auto" : "h-[120vh]"} mobile:pb-10`}>
+    <div
+      className={`w-full bg-cream ${isMobile ? "h-auto" : "h-[120vh]"} mobile:pb-10`}
+    >
       <div className={conditionalAlignment}>
         <div className={`${isMobile ? "w-[80vw]" : "w-[55vw]"}`}>
           {isMobile && (
@@ -143,7 +141,9 @@ export default function Keynote(): React.ReactNode {
           </div>
         </div>
 
-        <div className={`${isMobile ? "w-[80vw]" : "w-[55vw] mr-[5%] sm:scale-[0.5]"}`}>
+        <div
+          className={`${isMobile ? "w-[80vw]" : "w-[55vw] mr-[5%] sm:scale-[0.5]"}`}
+        >
           {!isMobile && <StreetSign streetName="KEYNOTE" suffix="SPEAKER" />}
           <SpeakerAbout additionalClasses={`${isMobile ? "text-left" : ""}`} />
         </div>
