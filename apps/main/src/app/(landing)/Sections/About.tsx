@@ -27,10 +27,10 @@ export default function About(): React.ReactNode {
       </div>
       <div
         className="absolute transform
-                   w-[373.15px] h-[220.91px] left-[55px] top-[1270px] 
+                   w-[373.15px] h-[220.91px] left-[55px]
                    scale-[1.9] rotate-[0] origin-left
                    tablet:absolute tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 
-                   tablet:transform tablet:-rotate-[7.5deg] tablet:top-[210vh] tablet:scale-[2.2] mobile:mt-14"
+                   tablet:transform tablet:-rotate-[7.5deg] tablet:top-[200vh] tablet:scale-[2.2] mobile:mt-14"
       >
         <Journal />
       </div>
@@ -96,8 +96,8 @@ export default function About(): React.ReactNode {
           </button>
         </div>
         <div
-          className="absolute pb-0 top-[77vh]
-                 w-[560.34px] h-[132.06px] left-[-160.67px] top-[447.5px]
+          className="absolute bottom-auto
+                 w-[560.34px] h-[132.06px] left-[-160.67px] 
                  tablet:absolute tablet:w-[312px] tablet:h-auto tablet:left-[66%] 
                  tablet:bottom-auto tablet:top-[70vh] tablet:scale-[3.3] mobile:mt-5 mobile:ml-5"
         >
