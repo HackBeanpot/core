@@ -9,6 +9,7 @@ const AboutParagraph = () => {
     font-GT-Walsheim-Regular 
     mt-6 tablet:mt-12
     text-left 
+    w-[70vw]
     text-[11px]               
     tablet:text-3xl           
     tablet:max-w-full
