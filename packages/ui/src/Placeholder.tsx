@@ -17,6 +17,56 @@ const InputBox: React.FC<{
   isTablet: boolean;
   isDesktop: boolean;
 }> = ({ isMobile, isTablet, isDesktop }) => {
+  const [email, setEmail] = React.useState<string>("");
+  const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async () => {
+
+    setStatus("loading");
+    
+    try {
+      const response = await fetch('/api/joinMailingList', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+    
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
+        
+        setTimeout(() => {
+          setStatus("idle");
+        }, 3000);
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setStatus("error");
+    }
+  
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
+  const getButtonText = () => {
+    switch (status) {
+      case "loading":
+        return "Submitting...";
+      case "success":
+        return "Subscribed!";
+      default:
+        return "Notify Me";
+    }
+  };
+
   const containerClass = clsx(
     "relative grid grid-cols-2",
     isDesktop && "top-[-185%]",
@@ -28,19 +78,35 @@ const InputBox: React.FC<{
     "font-DMSans-Regular border border-heather border-4 pl-4 bg-[#FEF9F2] h-[5.5vh]",
     isDesktop && "rounded-lg w-[20vw] text-xl",
     isTablet && "rounded-xl w-[42vw] text-xl",
-    isMobile && "rounded-lg w-[85%] border-2 h-[5vh] col-span-3"
+    isMobile && "rounded-lg w-[85%] border-2 h-[5vh] col-span-3",
   );
 
   const buttonClass = clsx(
-    "hover:scale-105 transition-transform transition-duration-300 hover:bg-darkSeaFoam font-GT-Walsheim-Regular text-bold bg-seaFoam  text-white h-[5vh]",
+    "hover:scale-105 transition-transform transition-duration-300 hover:bg-darkSeaFoam font-GT-Walsheim-Regular text-bold bg-seaFoam text-white h-[5vh] disabled:opacity-50 disabled:cursor-not-allowed",
     isDesktop && "text-xl rounded-lg w-[8vw]",
     isTablet && "text-xl rounded-xl w-[15vw]",
     isMobile && "relative rounded-lg w-[25vw] left-[-30%]"
   );
+
   return (
-    <div className={containerClass}>
-      <input className={inputClass} placeholder="Start your journey..." />
-      <button className={buttonClass}>Notify Me</button>
+    <div className="relative">
+      <div className={containerClass}>
+        <input
+          className={inputClass}
+          placeholder="Start your journey..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyPress}
+          disabled={status === "loading"}
+        />
+        <button 
+          className={buttonClass} 
+          onClick={handleSubmit} 
+          disabled={status === "loading"}
+        >
+          {getButtonText()}
+        </button>
+      </div>
     </div>
   );
 };
@@ -104,7 +170,7 @@ export default function Placeholder(): React.ReactNode {
   const contactWrapperClass = "absolute bottom-10 left-10 text-l";
   const emailClass =
     "font-GT-Walsheim-Regular underline hover:no-underline transition-transform transition-duration-300";
-
+  
   return (
     <div className={wrapperClass}>
       <div className={leftCloudClass}>
