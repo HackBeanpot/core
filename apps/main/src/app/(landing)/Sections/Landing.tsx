@@ -16,45 +16,45 @@ export default function Landing(): React.ReactNode {
   const containerStyles = clsx(
     "relative w-screen",
     isDesktop && "h-auto mb-8",
-    isMobile && ""
+    isMobile && "",
   );
 
   const bgStyles = clsx(
     "w-full",
     isDesktop && "h-full",
-    isMobile && "h-[22vh]"
+    isMobile && "h-[22vh]",
   );
 
   const foregroundStyles = clsx(
     "absolute grid grid-rows-2 transform -translate-x-1/2 -translate-y-1/2 left-1/2 h-[125%] top-[50%]",
-    isDesktop && "", 
-    isMobile && ""
+    isDesktop && "",
+    isMobile && "",
   );
 
   const busStyles = clsx(
     "absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 w-[40vw] top-[75%]",
     isDesktop && "",
-    isMobile && "top-[65%]"
+    isMobile && "top-[70%]",
   );
 
   const licensePlateStyles = clsx(
     "absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2  w-[20vw] h-auto max-w-[700px] min-w-[300px]",
     isDesktop && "top-[35%] scale-[185%]",
     isTablet && "top-[40%] scale-[100%]",
-    isMobile && "scale-[55%] top-[30%]"
+    isMobile && "scale-[55%] top-[30%]",
   );
 
   const roadContainer = clsx(
     "absolute w-full grid",
     isDesktop && "grid-rows-2 bottom-[-10%]",
     isTablet && "grid-rows-2 bottom-[-18%]",
-    isMobile && "grid-rows-2 bottom-[0%]"
+    isMobile && "grid-rows-2 bottom-[0%]",
   );
 
   const guardrailStyles = clsx(
     "w-full",
     isDesktop && "relative bottom-[-10%]",
-    isMobile && ""
+    isMobile && "",
   );
 
   const roadStyles = clsx("w-full", isDesktop && "", isMobile && "");
@@ -63,7 +63,7 @@ export default function Landing(): React.ReactNode {
     "absolute top-5 right-10 gap-2",
     isDesktop && "flex ",
     isTablet && "hidden",
-    isMobile ? "hidden" : "flex"
+    isMobile ? "hidden" : "flex",
   );
 
   return (
