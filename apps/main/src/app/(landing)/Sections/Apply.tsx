@@ -16,7 +16,7 @@ const Apply = () => {
     "relative w-full flex flex-col flex-none",
     isMobile && "h-[40vh] -mt-2 -mb-20",
     isTablet && "h-[40vh] mt-10 -mb-[30%]",
-    isDesktop && "h-[40vh] -mt-2 -mb-2"
+    isDesktop && "h-[40vh] -mt-2 -mb-2",
   );
 
   const bgWrapperStyles = clsx("overflow-hidden", isMobile && "-mb-10");
@@ -25,42 +25,42 @@ const Apply = () => {
     "h-full z-0",
     isMobile && "w-[300%] -translate-x-10",
     isTablet && "w-[160%] -translate-x-10 -translate-y-5",
-    isDesktop && "w-[140%] -translate-x-10 -translate-y-5"
+    isDesktop && "w-[110%] -translate-x-10 -translate-y-5",
   );
 
   const messageStyles = clsx(
     "absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 z-10 flex items-center text-center",
     isMobile && "top-[40%]",
     isTablet && "top-[25%]",
-    isDesktop && "top-[50%]"
+    isDesktop && "top-[50%]",
   );
 
   const leftBushStyles = clsx(
     "absolute z-20",
-    isMobile && "top-[20%] left-[-48%] w-[80%]",
+    isMobile && "hidden",
     isTablet && "-top-[5%] left-[-35%] w-[65%] max-w-[120%] visible",
-    isDesktop && "-top-[15%] left-[-28%] w-[55%] max-w-[120%] visible"
+    isDesktop && "-top-[15%] left-[-28%] w-[55%] max-w-[120%] visible",
   );
 
   const rightBushStyles = clsx(
     "absolute z-20",
-    isMobile && "top-[0%] right-[-40%] w-[75%]",
+    isMobile && "hidden",
     isTablet && "top-[-20%] right-[-20%] w-[55%] max-w-[120%] visible",
-    isDesktop && "top-[-30%] right-[-10%] w-[42%] max-w-[120%] visible"
+    isDesktop && "top-[-30%] right-[-10%] w-[42%] max-w-[120%] visible",
   );
 
   const leftLogStyles = clsx(
     "absolute z-30",
-    isMobile && "top-[30%] left-[-15%] w-[40%]",
+    isMobile && "hidden",
     isTablet && "-top-[25%] -left-8 max-w-[30%] h-[120%] visible",
-    isDesktop && "top-[10%] -left-8 max-w-[30%] h-[120%] visible"
+    isDesktop && "top-[10%] -left-8 max-w-[30%] h-[120%] visible",
   );
 
   const rightLogStyles = clsx(
     "absolute z-30",
-    isMobile && "top-[30%] right-[-15%] w-[40%]",
+    isMobile && "hidden",
     isTablet && "-top-[25%] -right-8 max-w-[30%] h-[120%] visible",
-    isDesktop && "top-[10%] -right-8 max-w-[30%] h-[120%] visible"
+    isDesktop && "top-[10%] -right-8 max-w-[30%] h-[120%] visible",
   );
 
   return (
@@ -81,7 +81,7 @@ const Apply = () => {
             <button
               onClick={() =>
                 alert(
-                  "Applications for HackBeanpot 2026 have not been released. Check in with us again this fall!"
+                  "Applications for HackBeanpot 2026 have not been released. Check in with us again this fall!",
                 )
               }
               className="p-3 bg-[#84AF67] text-text-light rounded-full drop-shadow-md w-32 tablet:w-44 h-12 tablet:h-14 text-md tablet:text-2xl hover:scale-110 transition-transform transition-duration-300"

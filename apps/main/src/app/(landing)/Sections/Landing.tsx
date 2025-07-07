@@ -34,7 +34,7 @@ export default function Landing(): React.ReactNode {
   const busStyles = clsx(
     "absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 w-[40vw] top-[75%]",
     isDesktop && "",
-    isMobile && "top-[70%]",
+    isMobile && "top-[65%]",
   );
 
   const licensePlateStyles = clsx(
