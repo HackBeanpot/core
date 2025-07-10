@@ -4,6 +4,8 @@ import ExternalLink from "./ExternalLink";
 import LocalLink from "./LocalLink";
 import React, { ChangeEvent, useState } from "react";
 import isValidEmail from "@util/functions/isValidEmail";
+import HomeIcon from "@repo/ui/Icons/HomeIcon";
+import Image from "next/image";
 
 const Footer = () => {
   const [mailingEmail, setMailingEmail] = useState<string>("");
@@ -15,7 +17,7 @@ const Footer = () => {
   const FooterContent = (
     <div className="mb-16 bg-light-yellow w-full h-full">
       <div className="grid w-full h-full grid-cols-[1fr_1fr_1.1fr] px-[25vw] text-xl text-black font-GT-Walsheim-Regular">
-        <div className="w-full flex flex-col pt-[7vh] gap-4">
+        <div className="w-full desktop:flex flex-col pt-[7vh] gap-4 mobile:hidden">
           <div>SOCIALS</div>
           <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
             Instagram
@@ -24,14 +26,14 @@ const Footer = () => {
             LinkedIn
           </ExternalLink>
         </div>
-        <div className="w-full flex flex-col pt-[7vh] gap-4">
+        <div className="w-full desktop:flex flex-col pt-[7vh] gap-4 mobile:hidden">
           <div>ABOUT</div>
           <LocalLink href={"#about"}>About Hackbeanpot</LocalLink>
           <LocalLink href={"#projects"}>Projects</LocalLink>
           <LocalLink href={"#sponsors"}>Sponsors</LocalLink>
           <LocalLink href={"#team"}>Team</LocalLink>
         </div>
-        <div className="flex flex-col w-full pt-[7vh] gap-4 items-start">
+        <div className="desktop:flex mobile:hidden flex-col w-full pt-[7vh] gap-4 items-start">
           <div className="text-3xl">Stay up-to-date with HBP!</div>
           <div className="text-base">
             Join our mailing list to receive updates about HBP events, news, and
@@ -70,6 +72,34 @@ const Footer = () => {
           >
             Join mailing list
           </button>
+        </div>
+      </div>
+      {/* mobile */}
+      <div
+        className="desktop:hidden mobile:flex items-center flex-col font-GT-Walsheim-Regular">
+        <HomeIcon />
+        <p className="text-center text-xl m-5">HackBeanpot, Inc. is a registered 503(c)(3) organization.</p>
+        <ExternalLink className="font-bold text-xl my-2" href="https://docs.google.com/document/d/1cWl7m1hL_WXXEMdQklubLu-h7wXO2dBPiEMJm63_2ak/edit?tab=t.0">Code of conduct</ExternalLink>
+        <div className="grid grid-cols-3 gap-2 my-5">
+          <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
+          <Image
+            alt="InstagramLogo"
+            src="/instagram_logo.png"
+            width={40}
+            height={40}
+          />
+        </ExternalLink>
+        <ExternalLink href="https://www.linkedin.com/company/hackbeanpot-inc/posts/?feedView=all">
+          <Image
+            alt="LinkedinLogo"
+            src="/linkedin_logo.png"
+            width={40}
+            height={40}
+          />
+        </ExternalLink>
+        <ExternalLink href="mailto:team@hackbeanpot.com">
+          <Image alt="EmailLogo" src="/email_logo.png" width={40} height={40} />
+        </ExternalLink>
         </div>
       </div>
     </div>
