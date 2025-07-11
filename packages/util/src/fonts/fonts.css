@@ -39,4 +39,20 @@
     src: url("./BigShouldersDisplay-Regular.ttf")
       format("truetype");
   }
+  @font-face {
+    font-family: "DMSans-Medium";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("./DMSans-Medium.ttf")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "DMSans-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./DMSans-Regular.ttf")
+      format("truetype");
+  }
 }
