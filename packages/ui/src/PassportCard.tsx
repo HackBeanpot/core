@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import clsx from "clsx";
+
 
 export type PassportCardProps = {
   isSponsor?: boolean;
@@ -31,33 +33,36 @@ export default function PassportCard({
 
   const scaleClass = isActive ? "scale-100" : "scale-[75%]";
 
+  const valuesStyles = clsx(
+
+  );
+
   return (
     <div className="flex justify-center items-center w-full font-GT-Walsheim-Pro-Regular font-bold">
       <div
-        className={`bg-white h-4/6 rounded-3xl w-1/3 ${scaleClass} absolute ${positionClass} shadow-[0_15px_0px_-5px_rgba(221,198,168,1)] grid grid-rows-[49.5%_1%_49.5%] space-x-2`}
+        className={`bg-white desktop:h-4/6 mobile:h-5/6 rounded-[2rem] desktop:w-1/3 mobile:w-5/6 ${scaleClass} absolute ${positionClass} shadow-[0_15px_0px_-5px_rgba(221,198,168,1)] grid grid-rows-[49.5%_1%_49.5%]`}
       >
-        <div className={`transition-all duration-300 relative`}>
-          <div className="flex flex-shrink items-center w-full ml-[5%]">
-            <div className="grid grid-rows-[30%_70%]">
-              <div className="flex items-center space-x-2 mb-[10%]">
-                <Image
-                  alt="passport icon"
-                  src={"/passport_icon.svg"}
-                  width={50}
-                  height={100}
-                  className="rounded-md"
-                />
-                <h1 className="text-xl">PASSPORT</h1>
-              </div>
-              <Image
-                alt={firstName + lastName + id}
-                src={image}
-                width={120}
-                height={195}
-                className="max-w-full h-auto object-contain"
-              />
-            </div>
-            <div className="flex flex-shrink mr-[5%] mt-[15%] w-3/5 justify-between">
+        {/* top half of card */}
+        <div className="py-4 px-10 grid grid-rows-[30%_70%]">
+          <div className="flex items-center space-x-2">
+            <Image
+              alt="passport icon"
+              src={"/passport_icon.svg"}
+              width={50}
+              height={100}
+              className="rounded-md"
+            />
+            <h1 className="text-xl">PASSPORT</h1>
+          </div>
+          <div className="grid grid-cols-[40%_60%]">
+            <Image
+              alt={firstName + lastName + id}
+              src={image}
+              width={135}
+              height={225}
+              className="max-w-full object-contain rounded-2xl mt-2"
+            />
+            <div className="flex flex-shrink w-3/5 justify-between">
               <div className="flex flex-col">
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">First name</p>
                 <h2>{firstName.toUpperCase()}</h2>
@@ -66,25 +71,26 @@ export default function PassportCard({
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">Year</p>
                 <h2>{year}</h2>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col desktop:ml-12">
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">Passport No.</p>
                 <h2>{passportNumber}</h2>
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">Major</p>
                 <h2>{major}</h2>
               </div>
             </div>
+          
           </div>
+        </div>
 
-          <div>
-            {!isSponsor && (
-              <div className="absolute bottom-1 left-1/2 transform -translate-y-1/2 -translate-x-1/2  w-full h-0.5 bg-[#DDC6A8]"></div>
-            )}
-          </div>
+        {/* divider if not sponsor */}
+        <div>
+          {!isSponsor && <div className="w-full h-0.5 bg-[#DDC6A8]"></div>}
+        </div>
 
-          <div className="relative mt-[10%] p-[5%] ">
-            <h1 className="text-xl">Testimony</h1>
-            <p className="font-GT-Walsheim-Regular font-normal pt-2">{quote}</p>
-          </div>
+        {/* bottom half */}
+        <div className="p-8">
+          <p className="desktopxl:text-2xl">Testimony</p>
+          <p className="font-GT-Walsheim-Regular font-normal desktop:text-base mobile:text-xs pt-4 desktopxl:leading-[2rem] desktopxl:text-xl">{quote}</p>
         </div>
       </div>
     </div>

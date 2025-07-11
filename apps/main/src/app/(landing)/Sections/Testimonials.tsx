@@ -6,6 +6,7 @@ import ArrowButton from "@repo/ui/ArrowButton";
 import Carousel from "@repo/ui/Carousel";
 import TestimonialsBackground from "../../lib/Assets/SVG/TestimonialsBackground";
 import PaginationDots from "@repo/ui/PaginationDots";
+import useIsMobile from "@repo/util/hooks/useIsMobile";
 
 type Person = {
   id: number;
@@ -73,6 +74,7 @@ const defaultOrder: Person[] = [
 export default function TestimonialSection(): React.ReactNode {
   const [people, setPeople] = useState(defaultOrder);
   const [currentPage, setCurrentPage] = useState(0);
+  const isMobile = useIsMobile();
 
   function onClickLeftArrow() {
     setPeople((prevPeople) => {
@@ -109,11 +111,10 @@ export default function TestimonialSection(): React.ReactNode {
     setCurrentPage(index);
   }
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center">
       <TestimonialsBackground
-        height={1080}
-        width={1920}
-        preserveAspectRatio="none"
+        className="w-full h-[1200px]"
+        preserveAspectRatio="xMidYMax slice"
       />
       <div className="absolute h-full font-bold text-center text-[#B2A0C2] p-8 font-Wilden-Regular">
         <StreetSign streetName="Testimonials" suffix="ST" />
@@ -121,18 +122,22 @@ export default function TestimonialSection(): React.ReactNode {
 
       <div className="absolute w-full h-full">
         <Carousel items={people.slice(0, 3)} />
-        <ArrowButton
-          direction="left"
-          arrowButtonColor="greenButton"
-          onClick={onClickLeftArrow}
-          className="absolute left-5 top-[54%] transform -translate-y-1/2 z-20"
-        />
-        <ArrowButton
-          direction="right"
-          arrowButtonColor="greenButton"
-          onClick={onClickRightArrow}
-          className="absolute right-10 top-[54%] transform -translate-y-1/2 z-20"
-        />
+
+        <div className="desktop:flex mobile:hidden">
+          <ArrowButton
+            direction="left"
+            arrowButtonColor="greenButton"
+            onClick={onClickLeftArrow}
+            className="absolute left-20 top-[54%] transform -translate-y-1/2 z-20"
+          />
+          <ArrowButton
+            direction="right"
+            arrowButtonColor="greenButton"
+            onClick={onClickRightArrow}
+            className="absolute right-24 top-[54%] transform -translate-y-1/2 z-20"
+          />
+        </div>
+
         <div className="absolute bottom-[5%] z-10 w-full">
           <PaginationDots
             currentPage={currentPage}

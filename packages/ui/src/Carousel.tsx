@@ -8,7 +8,7 @@ interface CarouselProps {
 
 const Carousel: React.FC<CarouselProps> = ({ items }) => {
   return (
-    <div className="flex justify-center items-center space-x-80">
+    <div className="flex justify-center items-center desktop:space-x-80 mobile:space-x-32">
       {items.map((cardInfo, i) => {
         const isActive = i === 1;
         const activeClass = isActive ? "opacity-100 z-10" : "opacity-70 z-0";
