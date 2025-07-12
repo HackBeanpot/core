@@ -1,8 +1,12 @@
 import React from "react";
-import SponsorUs from "../../app/(landing)/Sections/SponsorUs";
-
+import NavBar from "../lib/Components/NavBar";
+import SponsorUsContent from "./content";
 const SponsorUsPage = () => {
-  return <SponsorUs />;
+ return (
+   <div className="relative z-10 w-full flex flex-col items-center">
+       <NavBar />
+   <SponsorUsContent />
+   </div>
+ );
 };
-
 export default SponsorUsPage;
