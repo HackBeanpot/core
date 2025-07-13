@@ -7,7 +7,6 @@ import TitleBox from "@repo/ui/TitleBox";
 
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 
-
 // import CalendarBackground from "./CalendarBackground";
 import EventsBackground from "../../../lib/Assets/SVG/EventsBackground";
 import RockVariant2 from "../../../lib/Assets/SVG/Rocks/RockVariant2";
