@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import clsx from "clsx";
-
+// import clsx from "clsx";
 
 export type PassportCardProps = {
   isSponsor?: boolean;
@@ -33,9 +32,7 @@ export default function PassportCard({
 
   const scaleClass = isActive ? "scale-100" : "scale-[75%]";
 
-  const valuesStyles = clsx(
-
-  );
+  // const valuesStyles = clsx();
 
   return (
     <div className="flex justify-center items-center w-full font-GT-Walsheim-Pro-Regular font-bold">
@@ -78,7 +75,6 @@ export default function PassportCard({
                 <h2>{major}</h2>
               </div>
             </div>
-          
           </div>
         </div>
 
@@ -90,7 +86,9 @@ export default function PassportCard({
         {/* bottom half */}
         <div className="p-8">
           <p className="desktopxl:text-2xl">Testimony</p>
-          <p className="font-GT-Walsheim-Regular font-normal desktop:text-base mobile:text-xs pt-4 desktopxl:leading-[2rem] desktopxl:text-xl">{quote}</p>
+          <p className="font-GT-Walsheim-Regular font-normal desktop:text-base mobile:text-xs pt-4 desktopxl:leading-[2rem] desktopxl:text-xl">
+            {quote}
+          </p>
         </div>
       </div>
     </div>

@@ -75,31 +75,42 @@ const Footer = () => {
         </div>
       </div>
       {/* mobile */}
-      <div
-        className="desktop:hidden mobile:flex items-center flex-col text-black font-GT-Walsheim-Regular">
+      <div className="desktop:hidden mobile:flex items-center flex-col text-black font-GT-Walsheim-Regular">
         <HomeIcon />
-        <p className="text-center text-xl m-5">HackBeanpot, Inc. is a registered 503(c)(3) organization.</p>
-        <ExternalLink className="font-bold text-xl my-2" href="https://docs.google.com/document/d/1cWl7m1hL_WXXEMdQklubLu-h7wXO2dBPiEMJm63_2ak/edit?tab=t.0">Code of conduct</ExternalLink>
+        <p className="text-center text-xl m-5">
+          HackBeanpot, Inc. is a registered 503(c)(3) organization.
+        </p>
+        <ExternalLink
+          className="font-bold text-xl my-2"
+          href="https://docs.google.com/document/d/1cWl7m1hL_WXXEMdQklubLu-h7wXO2dBPiEMJm63_2ak/edit?tab=t.0"
+        >
+          Code of conduct
+        </ExternalLink>
         <div className="grid grid-cols-3 gap-2 my-5">
           <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
-          <Image
-            alt="InstagramLogo"
-            src="/instagram_logo.png"
-            width={39}
+            <Image
+              alt="InstagramLogo"
+              src="/instagram_logo.png"
+              width={39}
               height={39}
-          />
-        </ExternalLink>
-        <ExternalLink href="https://www.linkedin.com/company/hackbeanpot-inc/posts/?feedView=all">
-          <Image
-            alt="LinkedinLogo"
-            src="/linkedin_logo.png"
-            width={40}
-            height={40}
-          />
-        </ExternalLink>
-        <ExternalLink href="mailto:team@hackbeanpot.com">
-          <Image alt="EmailLogo" src="/email_logo.png" width={40} height={40} />
-        </ExternalLink>
+            />
+          </ExternalLink>
+          <ExternalLink href="https://www.linkedin.com/company/hackbeanpot-inc/posts/?feedView=all">
+            <Image
+              alt="LinkedinLogo"
+              src="/linkedin_logo.png"
+              width={40}
+              height={40}
+            />
+          </ExternalLink>
+          <ExternalLink href="mailto:team@hackbeanpot.com">
+            <Image
+              alt="EmailLogo"
+              src="/email_logo.png"
+              width={40}
+              height={40}
+            />
+          </ExternalLink>
         </div>
       </div>
     </div>

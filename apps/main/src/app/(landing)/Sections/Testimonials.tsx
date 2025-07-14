@@ -6,7 +6,6 @@ import ArrowButton from "@repo/ui/ArrowButton";
 import Carousel from "@repo/ui/Carousel";
 import TestimonialsBackground from "../../lib/Assets/SVG/TestimonialsBackground";
 import PaginationDots from "@repo/ui/PaginationDots";
-import useIsMobile from "@repo/util/hooks/useIsMobile";
 
 type Person = {
   id: number;
@@ -74,7 +73,6 @@ const defaultOrder: Person[] = [
 export default function TestimonialSection(): React.ReactNode {
   const [people, setPeople] = useState(defaultOrder);
   const [currentPage, setCurrentPage] = useState(0);
-  const isMobile = useIsMobile();
 
   function onClickLeftArrow() {
     setPeople((prevPeople) => {
