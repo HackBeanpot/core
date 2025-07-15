@@ -25,7 +25,7 @@ const Apply = () => {
     "h-full z-0",
     isMobile && "w-[300%] -translate-x-10",
     isTablet && "w-[160%] -translate-x-10 -translate-y-5",
-    isDesktop && "w-[110%] -translate-x-10 -translate-y-5",
+    isDesktop && "w-[200%] -translate-x-10 -translate-y-20",
   );
 
   const messageStyles = clsx(
@@ -46,21 +46,21 @@ const Apply = () => {
     "absolute z-20",
     isMobile && "hidden",
     isTablet && "top-[-20%] right-[-20%] w-[55%] max-w-[120%] visible",
-    isDesktop && "top-[-30%] right-[-10%] w-[42%] max-w-[120%] visible",
+    isDesktop && "top-[-40%] right-[-10%] w-[42%] max-w-[120%] visible",
   );
 
   const leftLogStyles = clsx(
     "absolute z-30",
     isMobile && "hidden",
     isTablet && "-top-[25%] -left-8 max-w-[30%] h-[120%] visible",
-    isDesktop && "top-[10%] -left-8 max-w-[30%] h-[120%] visible",
+    isDesktop && "top-[10%] -left-8 max-w-[25%] h-[120%] visible",
   );
 
   const rightLogStyles = clsx(
     "absolute z-30",
     isMobile && "hidden",
     isTablet && "-top-[25%] -right-8 max-w-[30%] h-[120%] visible",
-    isDesktop && "top-[10%] -right-8 max-w-[30%] h-[120%] visible",
+    isDesktop && "top-[10%] -right-8 max-w-[25%] h-[120%] visible",
   );
 
   return (
