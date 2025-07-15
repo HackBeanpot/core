@@ -20,7 +20,8 @@
     "./Typography": "./src/Typography.tsx",
     "./Icons/*": "./src/Icons/*.tsx",
     "./PaginationDots": "./src/PaginationDots.tsx",
-    "./Section": "./src/Section.tsx"
+    "./Section": "./src/Section.tsx", 
+    "./Placeholder": "./src/Placeholder.tsx"
   },
   "license": "MIT",
   "scripts": {
