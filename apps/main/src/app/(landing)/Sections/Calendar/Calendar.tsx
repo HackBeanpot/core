@@ -292,7 +292,8 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
           onClick={onClickLeftArrow}
           className="absolute left-5 top-1/2 -translate-y-1/2 z-10"
         />
-        <div className={isMobileOrTablet ? "h-[55vh]" : "h-[50vh]"}>
+        {/* updated pagination are only for mobile/tablet */}
+        <div className={isMobileOrTablet ? "h-[55vh]" : "h-[50vh]"}> 
           <CalendarEvents calendarEvents={events} page={page} />
         </div>
 
