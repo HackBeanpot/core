@@ -120,23 +120,18 @@ export function CalendarEvent({
     return (
       <div className="flex items-center bg-white rounded-2xl shadow-lg overflow-hidden max-w-[500px] w-full mx-auto h-[120px]">
         {/* date left orange */}
-        <div className="bg-orange-400 p-6 flex flex-col items-center justify-center min-w-[120px] h-full" style={{ backgroundColor: '#fb923c' }}>
-          <p className="text-white text-lg font-semibold mb-[-4px]">
-            {month}
-          </p>
-          <p className="text-white text-4xl font-bold">
-            {date}
-          </p>
+        <div
+          className="bg-orange-400 p-6 flex flex-col items-center justify-center min-w-[120px] h-full"
+          style={{ backgroundColor: "#fb923c" }}
+        >
+          <p className="text-white text-lg font-semibold mb-[-4px]">{month}</p>
+          <p className="text-white text-4xl font-bold">{date}</p>
         </div>
-        
+
         {/* event right white */}
         <div className="flex-1 p-4 h-full flex flex-col justify-center">
-          <p className="text-gray-500 text-xs mb-1">
-            {dayAndTime}
-          </p>
-          <p className="text-gray-800 text-sm font-semibold">
-            {eventName}
-          </p>
+          <p className="text-gray-500 text-xs mb-1">{dayAndTime}</p>
+          <p className="text-gray-800 text-sm font-semibold">{eventName}</p>
         </div>
       </div>
     );
@@ -187,7 +182,7 @@ export function CalendarEvents({
 }: CalendarEventsProps): React.ReactNode {
   const windowSize = useWindowSize();
   const gridRef = useRef<HTMLDivElement>(null);
-  const { isMobileOrTablet } = useDeviceType(); 
+  const { isMobileOrTablet } = useDeviceType();
 
   // phone/tablet - vertical layout [ literal layout ]
   if (isMobileOrTablet) {
@@ -247,11 +242,11 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
 
   const windowSize = useWindowSize();
   const { isMobileOrTablet } = useDeviceType();
-  
-  // pagination based on device type [needs new heights to match figma design]
+
+  // pagination based on device type [needs new heights to match figma design] ONLY IF isMobileOrTablet
   const columns = getGridColumns(windowSize.width || 0);
-  const eventsPerPage = isMobileOrTablet 
-    ? getRowsPerPage(windowSize.width || 0) 
+  const eventsPerPage = isMobileOrTablet
+    ? getRowsPerPage(windowSize.width || 0)
     : columns * 2;
   const maxPages = Math.ceil(events.length / eventsPerPage);
 
@@ -297,7 +292,7 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
           onClick={onClickLeftArrow}
           className="absolute left-5 top-1/2 -translate-y-1/2 z-10"
         />
-        <div className="h-[55vh]">
+        <div className={isMobileOrTablet ? "h-[55vh]" : "h-[50vh]"}>
           <CalendarEvents calendarEvents={events} page={page} />
         </div>
 
