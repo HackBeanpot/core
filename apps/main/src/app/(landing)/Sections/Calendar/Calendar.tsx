@@ -122,7 +122,7 @@ export function CalendarEvent({
         {/* date left orange */}
         <div
           className="bg-orange-400 p-6 flex flex-col items-center justify-center min-w-[120px] h-full"
-          style={{ backgroundColor: "#fb923c" }}
+          style={{ backgroundColor: "#f4ae56" }}
         >
           <p className="text-white text-lg font-semibold mb-[-4px]">{month}</p>
           <p className="text-white text-4xl font-bold">{date}</p>
@@ -293,7 +293,7 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
           className="absolute left-5 top-1/2 -translate-y-1/2 z-10"
         />
         {/* updated pagination are only for mobile/tablet */}
-        <div className={isMobileOrTablet ? "h-[55vh]" : "h-[50vh]"}> 
+        <div className={isMobileOrTablet ? "h-[55vh]" : "h-[50vh]"}>
           <CalendarEvents calendarEvents={events} page={page} />
         </div>
 
