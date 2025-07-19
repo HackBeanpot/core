@@ -74,7 +74,7 @@ const InputBox: React.FC<{
 
   const alert =
     status === "success"
-      ? { text: "You’re on the list 🎉 yayy!!", style: "bg-emerald-500" }
+      ? { text: "You’re on the list! Yayyy!! 🎉", style: "bg-emerald-500" }
       : status === "error"
         ? { text: "Something went wrong. Try again.", style: "bg-rose-500" }
         : null;
