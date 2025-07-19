@@ -17,61 +17,45 @@ const InputBox: React.FC<{
   isTablet: boolean;
   isDesktop: boolean;
 }> = ({ isMobile, isTablet, isDesktop }) => {
-  const [email, setEmail] = React.useState<string>("");
-  const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
+  const [email, setEmail] = React.useState("");
+  const [status, setStatus] = React.useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const handleSubmit = async () => {
-
+    if (!email) return;
     setStatus("loading");
-    
     try {
-      const response = await fetch('/api/joinMailingList', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const res = await fetch("/api/joinMailingList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-    
-      if (response.ok) {
-        setStatus("success");
-        setEmail("");
-        
-        setTimeout(() => {
-          setStatus("idle");
-        }, 3000);
-      } else {
-        setStatus("error");
-      }
-    } catch (error) {
-      console.error('Network error:', error);
+      setStatus(res.ok ? "success" : "error");
+      if (res.ok) setEmail("");
+    } catch {
       setStatus("error");
+    } finally {
+      setTimeout(() => setStatus("idle"), 3000);
     }
-  
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
+    if (e.key === "Enter") handleSubmit();
   };
 
-  const getButtonText = () => {
-    switch (status) {
-      case "loading":
-        return "Submitting...";
-      case "success":
-        return "Subscribed!";
-      default:
-        return "Notify Me";
-    }
-  };
+  const buttonText =
+    status === "loading"
+      ? "Submitting…"
+      : status === "success"
+        ? "Subscribed!"
+        : "Notify Me";
 
   const containerClass = clsx(
     "relative grid grid-cols-2",
     isDesktop && "top-[-185%]",
     isTablet && "top-[-50%]",
-    isMobile && "grid-cols-4 top-[-65%]"
+    isMobile && "grid-cols-4 top-[-65%]",
   );
 
   const inputClass = clsx(
@@ -82,14 +66,30 @@ const InputBox: React.FC<{
   );
 
   const buttonClass = clsx(
-    "hover:scale-105 transition-transform transition-duration-300 hover:bg-darkSeaFoam font-GT-Walsheim-Regular text-bold bg-seaFoam text-white h-[5vh] disabled:opacity-50 disabled:cursor-not-allowed",
+    "hover:scale-105 transition-transform hover:bg-darkSeaFoam font-GT-Walsheim-Regular bg-seaFoam text-white h-[5vh] disabled:opacity-50 disabled:cursor-not-allowed",
     isDesktop && "text-xl rounded-lg w-[8vw]",
     isTablet && "text-xl rounded-xl w-[15vw]",
-    isMobile && "relative rounded-lg w-[25vw] left-[-30%]"
+    isMobile && "relative rounded-lg w-[25vw] left-[-30%]",
   );
+
+  const alert =
+    status === "success"
+      ? { text: "You’re on the list 🎉 yayy!!", style: "bg-emerald-500" }
+      : status === "error"
+        ? { text: "Something went wrong. Try again.", style: "bg-rose-500" }
+        : null;
 
   return (
     <div className="relative">
+      {alert && (
+        <div
+          role="alert"
+          className={`absolute -top-12 left-1/2 -translate-x-1/2 rounded-md px-4 py-2 text-white text-sm shadow-md ${alert.style}`}
+        >
+          {alert.text}
+        </div>
+      )}
+
       <div className={containerClass}>
         <input
           className={inputClass}
@@ -99,12 +99,12 @@ const InputBox: React.FC<{
           onKeyDown={handleKeyPress}
           disabled={status === "loading"}
         />
-        <button 
-          className={buttonClass} 
-          onClick={handleSubmit} 
+        <button
+          className={buttonClass}
+          onClick={handleSubmit}
           disabled={status === "loading"}
         >
-          {getButtonText()}
+          {buttonText}
         </button>
       </div>
     </div>
@@ -122,55 +122,56 @@ export default function Placeholder(): React.ReactNode {
   const rightCloudClass =
     "absolute right-0 top-[50%] hover:scale-110 transition-transform transition-duration-3000";
   const logoClass = clsx(
-    "absolute top-4 left-6 hover:scale-110 transition-transform transition-duration-300", 
-    isMobile && "left-4"
+    "absolute top-4 left-6 hover:scale-110 transition-transform transition-duration-300",
+    isMobile && "left-4",
   );
 
   const layoutClass = clsx(
     "absolute left-0 grid",
     isDesktop && "top-[25%] grid-cols-7",
     isTablet && "top-[15%] grid-rows-2",
-    isMobile && "top-[10%] grid-rows-2"
+    isMobile && "top-[10%] grid-rows-2",
   );
 
   const largeSignClass = clsx(
     "relative left-0",
     isDesktop && "col-span-3",
     isTablet && "row-start-2 w-[65%] -mt-36",
-    isMobile && "row-start-2 w-[85%] -mt-64"
+    isMobile && "row-start-2 w-[85%] -mt-64",
   );
 
   const contentWrapperClass = clsx(
     "relative mx-[5vw] grid grid-rows-3",
     isDesktop && "px-10 left-[7%] col-span-4 top-[10%]",
     isTablet && "",
-    isMobile && "top-8 left-2"
+    isMobile && "top-8 left-2",
   );
 
   const headingClass = clsx(
     "font-Wilden text-pavement",
     isDesktop && "text-6xl row-span-2",
     isTablet && "text-5xl",
-    isMobile && "text-4xl"
+    isMobile && "text-4xl",
   );
 
   const paragraphClass = clsx(
-    "font-GT-Walsheim-Regular ",
+    "font-GT-Walsheim-Regular",
     isDesktop && "text-xl",
     isTablet && "mt-4 text-xl",
-    isMobile && "mt-2"
+    isMobile && "mt-2",
   );
 
   const socialIconsClass = clsx(
     "absolute grid grid-cols-2 bottom-10 right-10",
     isDesktop && "w-[6.5vw]",
-    isTablet && "w-[14vw]", 
-    isMobile && "w-[24vw] right-6"
+    isTablet && "w-[14vw]",
+    isMobile && "w-[24vw] right-6",
   );
+
   const contactWrapperClass = "absolute bottom-10 left-10 text-l";
   const emailClass =
     "font-GT-Walsheim-Regular underline hover:no-underline transition-transform transition-duration-300";
-  
+
   return (
     <div className={wrapperClass}>
       <div className={leftCloudClass}>
