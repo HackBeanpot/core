@@ -14,6 +14,8 @@ import RockVariant3 from "../../../lib/Assets/SVG/Rocks/RockVariant3";
 import RockVariant4 from "../../../lib/Assets/SVG/Rocks/RockVariant4";
 import PaginationDots from "@repo/ui/PaginationDots";
 
+// mobile check
+
 // Calendar Events Data
 const events: CalendarEventProps[] = [
   {
@@ -313,13 +315,14 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
           handleClick={handleClick}
         />
       </div>
-      <div className="absolute z-10 top-0 right-64">
+
+      <div className="mobile:hidden tablet:block absolute z-10 top-0 right-64">
         <RockVariant3 />
       </div>
-      <div className="absolute z-10 top-6 right-24">
+      <div className="mobile:hidden tablet:block absolute z-10 top-6 right-24 ">
         <RockVariant4 />
       </div>
-      <div className="absolute z-10 -top-20 right-32">
+      <div className="mobile:hidden tablet:block absolute z-10 -top-20 right-32">
         <RockVariant2 />
       </div>
     </div>
