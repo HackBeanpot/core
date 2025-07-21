@@ -288,23 +288,27 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
       </h1>
 
       <div className="relative w-full flex items-center justify-center my-8 z-20 mb-16">
-        <ArrowButton
-          direction="left"
-          arrowButtonColor="purpleButton"
-          onClick={onClickLeftArrow}
-          className="absolute left-5 top-1/2 -translate-y-1/2 z-10"
-        />
+        {!isMobileOrTablet && (
+          <ArrowButton
+            direction="left"
+            arrowButtonColor="purpleButton"
+            onClick={onClickLeftArrow}
+            className="absolute left-5 top-1/2 -translate-y-1/2 z-10"
+          />
+        )}
         {/* updated pagination are only for mobile/tablet */}
         <div className={isMobileOrTablet ? "h-[55vh]" : "h-[50vh]"}>
           <CalendarEvents calendarEvents={events} page={page} />
         </div>
 
-        <ArrowButton
-          direction="right"
-          arrowButtonColor="purpleButton"
-          onClick={onClickRightArrow}
-          className="absolute right-10 top-1/2 -translate-y-1/2 z-10"
-        />
+        {!isMobileOrTablet && (
+          <ArrowButton
+            direction="right"
+            arrowButtonColor="purpleButton"
+            onClick={onClickRightArrow}
+            className="absolute right-10 top-1/2 -translate-y-1/2 z-10"
+          />
+        )}
       </div>
 
       <div className="z-10 w-full mt-8 mb-8">
