@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-// import clsx from "clsx";
+import clsx from "clsx";
 
 export type PassportCardProps = {
   isSponsor?: boolean;
@@ -32,12 +32,12 @@ export default function PassportCard({
 
   const scaleClass = isActive ? "scale-100" : "scale-[75%]";
 
-  // const valuesStyles = clsx();
+  const valuesStyles = clsx();
 
   return (
     <div className="flex justify-center items-center w-full font-GT-Walsheim-Pro-Regular font-bold">
       <div
-        className={`bg-white desktop:h-4/6 mobile:h-5/6 rounded-[2rem] desktop:w-1/3 mobile:w-5/6 ${scaleClass} absolute ${positionClass} shadow-[0_15px_0px_-5px_rgba(221,198,168,1)] grid grid-rows-[49.5%_1%_49.5%]`}
+        className={`bg-white desktop:h-5/6 mobile:h-5/6 rounded-[2rem] desktop:w-1/3 mobile:w-5/6 ${scaleClass} absolute ${positionClass} shadow-[0_15px_0px_-5px_rgba(221,198,168,1)] grid grid-rows-[49.5%_1%_49.5%]`}
       >
         {/* top half of card */}
         <div className="py-4 px-10 grid grid-rows-[30%_70%]">
@@ -51,7 +51,7 @@ export default function PassportCard({
             />
             <h1 className="text-xl">PASSPORT</h1>
           </div>
-          <div className="grid grid-cols-[40%_60%]">
+          <div className="grid grid-cols-[35%_65%]">
             <Image
               alt={firstName + lastName + id}
               src={image}

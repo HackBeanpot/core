@@ -111,14 +111,14 @@ export default function TestimonialSection(): React.ReactNode {
   return (
     <div className="w-full flex flex-col items-center justify-center">
       <TestimonialsBackground
-        className="w-full h-[1200px]"
+        className="w-full h-[1250px]"
         preserveAspectRatio="xMidYMax slice"
       />
-      <div className="absolute h-full font-bold text-center text-[#B2A0C2] p-8 font-Wilden-Regular">
+      <div className="absolute h-full font-bold text-[#B2A0C2]  font-Wilden-Regular mt-[-7%]">
         <StreetSign streetName="Testimonials" suffix="ST" />
       </div>
 
-      <div className="absolute w-full h-full">
+      <div className="absolute w-full h-full mt-[-7%]">
         <Carousel items={people.slice(0, 3)} />
 
         <div className="desktop:flex mobile:hidden">
@@ -136,7 +136,7 @@ export default function TestimonialSection(): React.ReactNode {
           />
         </div>
 
-        <div className="absolute bottom-[5%] z-10 w-full">
+        <div className="absolute bottom-[-15%] z-10 w-full">
           <PaginationDots
             currentPage={currentPage}
             totalPages={people.length}
