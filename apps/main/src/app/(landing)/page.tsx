@@ -7,12 +7,12 @@ import {
   Calendar,
   Testimonials,
   Apply,
+  About,
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
-// something wrong with the import here (?)
-import About from "./Sections/About";
-import React from "react";
 import Head from "next/head";
+import React from "react";
+// import Placeholder from "@repo/ui/Placeholder";
 
 export default function Page(): JSX.Element {
   return (
@@ -32,5 +32,6 @@ export default function Page(): JSX.Element {
       <FAQSection />
       <Footer />
     </main>
+    // <Placeholder />
   );
 }
