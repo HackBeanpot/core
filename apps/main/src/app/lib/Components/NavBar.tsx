@@ -64,58 +64,57 @@ const NavBar = () => {
       </div>
 
       {isMobile && isOpen && (
-  <div className="bg-white drop-shadow-md px-4 py-3 space-y-3">
-    <LocalLink
-      href={"/"}
-      className="block text-lg"
-      onClick={() => setOpen(false)}
-    >
-      About
-    </LocalLink>
-    <LocalLink
-      href={"/projects"}
-      className="block text-lg"
-      onClick={() => setOpen(false)}
-    >
-      Projects
-    </LocalLink>
-    <LocalLink
-      href={"/sponsors"}
-      className="block text-lg"
-      onClick={() => setOpen(false)}
-    >
-      Sponsors
-    </LocalLink>
-    <LocalLink
-      href={"/team"}
-      className="block text-lg"
-      onClick={() => setOpen(false)}
-    >
-      Team
-    </LocalLink>
+        <div className="bg-white drop-shadow-md px-4 py-3 space-y-3">
+          <LocalLink
+            href={"/"}
+            className="block text-lg"
+            onClick={() => setOpen(false)}
+          >
+            About
+          </LocalLink>
+          <LocalLink
+            href={"/projects"}
+            className="block text-lg"
+            onClick={() => setOpen(false)}
+          >
+            Projects
+          </LocalLink>
+          <LocalLink
+            href={"/sponsors"}
+            className="block text-lg"
+            onClick={() => setOpen(false)}
+          >
+            Sponsors
+          </LocalLink>
+          <LocalLink
+            href={"/team"}
+            className="block text-lg"
+            onClick={() => setOpen(false)}
+          >
+            Team
+          </LocalLink>
 
-    {/* Stacked buttons with no space between */}
-    <div className="flex flex-col">
-      <LocalLink
-        href={"/sponsor-us"}
-        className="bg-orange text-lg flex items-center px-2 py-3 text-text-light"
-      >
-        Sponsor Us
-      </LocalLink>
-      <LocalLink
-        href={""}
-        className="bg-green text-lg text-text-light px-2 py-3"
-        onClick={() => {
-          setOpen(false);
-          alert("apply not implemented yet");
-        }}
-      >
-        Apply
-      </LocalLink>
-    </div>
-  </div>
-)}
-
+          {/* Stacked buttons with no space between */}
+          <div className="flex flex-col">
+            <LocalLink
+              href={"/sponsor-us"}
+              className="bg-orange text-lg flex items-center px-2 py-3 text-text-light"
+            >
+              Sponsor Us
+            </LocalLink>
+            <LocalLink
+              href={""}
+              className="bg-green text-lg text-text-light px-2 py-3"
+              onClick={() => {
+                setOpen(false);
+                alert("apply not implemented yet");
+              }}
+            >
+              Apply
+            </LocalLink>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
