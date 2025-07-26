@@ -1,6 +1,8 @@
 import React from "react";
+import RecruitmentBenefits from "./recruitment";
 const SponsorUsContent = () => {
  return (
+  <>
    <div className="bg-[#F9EFDA] w-full">
      <div className="mx-auto px-7 mobile:max-w-1xl tablet:max-w-6xl desktop:max-w-6xl mobile:py-6 tablet:py-12 desktop:py-12">
        <h1 className="mobile:text-5xl tablet:text-7xl desktop:text-7xl mt-[1rem]
@@ -22,6 +24,8 @@ const SponsorUsContent = () => {
        </button>
      </div>
    </div>
+   <RecruitmentBenefits />
+   </>
  );
 };
 
