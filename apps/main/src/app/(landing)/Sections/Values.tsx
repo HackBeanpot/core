@@ -73,16 +73,16 @@ const ValuesGrowthContent = (
 
 const rocks = (
   <div className="flex">
-    <div className="mt-[-2.5rem]">
+    <div className="mobile:hidden tablet:block mt-[-2.5rem] ">
       <RockVariant1 />
     </div>
-    <div className="ml-8">
+    <div className="mobile:hidden tablet:block ml-8 sm:hidden">
       <RockVariant4 />
     </div>
-    <div className="ml-[-9rem] mt-[-7rem]">
+    <div className="mobile:hidden tablet:block ml-[-9rem] mt-[-7rem]">
       <RockVariant2 />
     </div>
-    <div className="ml-5 mt-[-4rem]">
+    <div className="mobile:hidden tablet:block ml-5 mt-[-4rem]">
       <RockVariant3 />
     </div>
   </div>

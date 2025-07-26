@@ -3,7 +3,7 @@ import React from "react";
 const ApplyBackground = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      viewBox="0 0 1512 559"
+      viewBox="0 0 1512 350"
       fill="none"
       preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
