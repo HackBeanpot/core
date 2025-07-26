@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-// import clsx from "clsx";
+import clsx from "clsx";
+import useDevice from "@repo/util/hooks/useDevice";
 
 export type PassportCardProps = {
   isSponsor?: boolean;
@@ -31,8 +32,14 @@ export default function PassportCard({
   const positionClass = isActive ? "top-[20%]" : "top-[22%]";
 
   const scaleClass = isActive ? "scale-100" : "scale-[75%]";
+  const { isMobile, isTablet, isDesktop } = useDevice(); 
 
-  // const valuesStyles = clsx();
+  const valuesStyles = clsx(
+    "", 
+    isDesktop && "desktopxl:text-2xl", 
+    isTablet && "", 
+    isMobile && "text-xs"
+  );
 
   return (
     <div className="flex justify-center items-center w-full font-GT-Walsheim-Pro-Regular font-bold">
@@ -40,7 +47,7 @@ export default function PassportCard({
         className={`bg-white desktop:h-5/6 mobile:h-5/6 rounded-[2rem] desktop:w-1/3 mobile:w-5/6 ${scaleClass} absolute ${positionClass} shadow-[0_15px_0px_-5px_rgba(221,198,168,1)] grid grid-rows-[49.5%_1%_49.5%]`}
       >
         {/* top half of card */}
-        <div className="py-4 px-10 grid grid-rows-[30%_70%]">
+        <div className="py-4 desktop:px-10 mobile:px-5 grid grid-rows-[30%_70%]">
           <div className="flex items-center space-x-2">
             <Image
               alt="passport icon"
@@ -51,28 +58,28 @@ export default function PassportCard({
             />
             <h1 className="text-xl">PASSPORT</h1>
           </div>
-          <div className="grid grid-cols-[35%_65%]">
+          <div className="grid grid-cols-[35%_65%] desktop:gap-2">
             <Image
               alt={firstName + lastName + id}
               src={image}
               width={135}
-              height={225}
-              className="max-w-full object-contain rounded-2xl mt-2"
+              height={175}
+              className="desktop:w-[10vw] desktopxl:w-[10vw] desktopxl:h-[20vh] desktop:h-[20vh] mobile:h-[145px] object-cover rounded-2xl mt-2"
             />
             <div className="flex flex-shrink w-3/5 justify-between">
-              <div className="flex flex-col">
+              <div className="flex flex-col mobile:mx-4">
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">First name</p>
-                <h2>{firstName.toUpperCase()}</h2>
+                <h2 className={valuesStyles}>{firstName.toUpperCase()}</h2>
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">Last name</p>
-                <h2>{lastName.toUpperCase()}</h2>
+                <h2 className={valuesStyles}>{lastName.toUpperCase()}</h2>
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">Year</p>
-                <h2>{year}</h2>
+                <h2 className={valuesStyles}>{year}</h2>
               </div>
-              <div className="flex flex-col desktop:ml-12">
+              <div className="flex flex-col desktop:ml-12 mobile:ml-2">
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">Passport No.</p>
-                <h2>{passportNumber}</h2>
+                <h2 className={valuesStyles}>{passportNumber}</h2>
                 <p className="text-xs text-[#B1B1B2] mt-[5%]">Major</p>
-                <h2>{major}</h2>
+                <h2 className={valuesStyles}>{major}</h2>
               </div>
             </div>
           </div>
