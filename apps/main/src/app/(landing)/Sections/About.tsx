@@ -32,8 +32,8 @@ export default function About(): React.ReactNode {
         transform w-[373.15px] h-[220.91px] left-[55px]
         scale-[1.9] rotate-[0] origin-left
         tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 
-        tablet:transform tablet:-rotate-[7.5deg] tablet:top-[200vh] tablet:scale-[2.2] 
-        ${isMobile ? "relative mt-14" : "absolute tablet:absolute"}
+        tablet:transform tablet:-rotate-[7.5deg] tablet:scale-[2.2]
+        ${isMobile ? "fixed top-[80rem]" : "absolute top-[210vh]"}
       `}
       >
         <Journal />
@@ -110,3 +110,7 @@ export default function About(): React.ReactNode {
     </div>
   );
 }
+
+/*
+ ${isMobile ? "fixed top-[95vh]" : "fixed top-[130dvh] -translate-y-1/2"}
+*/

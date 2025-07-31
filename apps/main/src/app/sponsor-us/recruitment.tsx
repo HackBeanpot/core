@@ -14,8 +14,8 @@ const RecruitmentBenefits = () => {
             </h3>
             <p className="font-GT-Walsheim-Trial text-md mb-6">
               Scout the next generation of talent here. Sponsoring HackBeanpot
-              is a great way to expand and diversify your company&apos;s full-time,
-              internship, co-op program&apos;s applicant pool!
+              is a great way to expand and diversify your company&apos;s
+              full-time, internship, co-op program&apos;s applicant pool!
             </p>
             <div className="relative top-6">
               <img src="/image.png" />
