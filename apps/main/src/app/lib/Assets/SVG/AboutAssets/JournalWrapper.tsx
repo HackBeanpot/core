@@ -1,24 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Journal from "./Journal";
 
 const JournalWrapper = () => {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) return null;
+
   return (
     <>
+      {/* Journal Component */}
       <div
         className={`
         transform w-[373.15px] h-[220.91px] left-[55px]
         scale-[1.9] rotate-[0] origin-left
         tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 
         tablet:transform tablet:-rotate-[7.5deg] tablet:scale-[2.2] tablet:absolute tablet:top-[210vh]
-        mobile:fixed mobile:top-[95vh]
+        mobile:fixed mobile:top-[145vh]
         mobilelg:fixed mobilelg:top-[80vh]
-      `}
+      }
+        `}
       >
         <Journal />
       </div>
+
       <div
         className="absolute
                  left-[280px] scale-[1.0] rotate-[0] top-[1190px] mt-0
