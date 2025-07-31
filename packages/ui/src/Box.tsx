@@ -6,7 +6,7 @@ type BoxProps = {
 
 export default function Box({ children }: BoxProps) {
   return (
-    <div className="py-[4%] p-[2%] rounded-lg w-full text-center  tablet:max-w-[26vw] tablet:max-h-[13vw] text-[#474747] flex flex-col justify-center bg-[#FBFBFB] shadow-lg">
+    <div className="py-[4%] p-[2%] rounded-lg w-full desktop:max-w-[25vw] text-center text-[#474747] flex flex-col justify-center bg-[#FBFBFB] shadow-lg">
       {children}
     </div>
   );
