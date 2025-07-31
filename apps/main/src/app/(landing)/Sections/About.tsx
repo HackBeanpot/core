@@ -11,7 +11,6 @@ import Thumbtack2 from "../../lib/Assets/SVG/AboutAssets/Thumbtack2";
 import Thumbtack3 from "../../lib/Assets/SVG/AboutAssets/Thumbtack3";
 import AboutParagraph from "../../lib/Assets/SVG/AboutAssets/AboutParagraph";
 import JournalWrapper from "../../lib/Assets/SVG/AboutAssets/JournalWrapper";
-
 export default function About(): React.ReactNode {
   return (
     <div className="w-full h-[100vh] bg-[#F3E7D7] flex flex-col flex-none">
@@ -21,7 +20,7 @@ export default function About(): React.ReactNode {
       <div className="w-[55vw]">
         <Squiggle />
       </div>
-      <div className="w-[100vw] mt-auto">
+      <div className="w-[100vw] mt-auto relative">
         <BottomAboutBar />
       </div>
       <div>
