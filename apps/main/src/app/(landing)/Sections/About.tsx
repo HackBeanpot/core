@@ -12,8 +12,10 @@ import Thumbtack1 from "../../lib/Assets/SVG/AboutAssets/Thumbtack1";
 import Thumbtack2 from "../../lib/Assets/SVG/AboutAssets/Thumbtack2";
 import Thumbtack3 from "../../lib/Assets/SVG/AboutAssets/Thumbtack3";
 import AboutParagraph from "../../lib/Assets/SVG/AboutAssets/AboutParagraph";
+import useIsMobile from "@util/hooks/useIsMobile";
 
 export default function About(): React.ReactNode {
+  const isMobile = useIsMobile();
   return (
     <div className="w-full h-[100vh] bg-[#F3E7D7] flex flex-col flex-none">
       <div className="w-[100vw]">
@@ -26,15 +28,16 @@ export default function About(): React.ReactNode {
         <BottomAboutBar />
       </div>
       <div
-        className="absolute transform
-                   w-[373.15px] h-[220.91px] left-[55px]
-                   scale-[1.9] rotate-[0] origin-left
-                   tablet:absolute tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 
-                   tablet:transform tablet:-rotate-[7.5deg] tablet:top-[200vh] tablet:scale-[2.2] mobile:mt-14"
+        className={`
+        transform w-[373.15px] h-[220.91px] left-[55px]
+        scale-[1.9] rotate-[0] origin-left
+        tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 
+        tablet:transform tablet:-rotate-[7.5deg] tablet:top-[200vh] tablet:scale-[2.2] 
+        ${isMobile ? "relative mt-14" : "absolute tablet:absolute"}
+      `}
       >
         <Journal />
       </div>
-      {/* the journal parts*/}
       <div
         className="absolute 
                  left-[280px] scale-[1.0] rotate-[0] top-[1190px] mt-0

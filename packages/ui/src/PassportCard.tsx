@@ -32,13 +32,13 @@ export default function PassportCard({
   const positionClass = isActive ? "top-[20%]" : "top-[22%]";
 
   const scaleClass = isActive ? "scale-100" : "scale-[75%]";
-  const { isMobile, isTablet, isDesktop } = useDevice(); 
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
   const valuesStyles = clsx(
-    "", 
-    isDesktop && "desktopxl:text-2xl", 
-    isTablet && "", 
-    isMobile && "text-xs"
+    "",
+    isDesktop && "desktopxl:text-2xl",
+    isTablet && "",
+    isMobile && "text-xs",
   );
 
   return (
