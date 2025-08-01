@@ -17,18 +17,20 @@ export default function About(): React.ReactNode {
       <div className="w-[55vw]">
         <Squiggle />
       </div>
-      
+
       <div className="mobile:flex-1 mobile:flex mobile:items-center mobilelg:flex-1 mobilelg:flex mobilelg:items-center tablet:block tablet:flex-none desktop:block desktop:flex-none">
-    <div className={`
+        <div
+          className={`
       transform w-[373.15px] h-[220.91px] left-[55px] scale-[1.9] rotate-[0] origin-left 
       tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 tablet:transform tablet:-rotate-[7.5deg] tablet:scale-[2.2] tablet:absolute tablet:top-[200vh] 
       mobile:absolute mobile:left-[10px] 
       mobilelg:absolute mobilelg:left-[50px]
-    `}>
-      <Journal2 />
-    </div>
-  </div>
-  <div className="w-[100vw] mt-auto relative">
+    `}
+        >
+          <Journal2 />
+        </div>
+      </div>
+      <div className="w-[100vw] mt-auto relative">
         <BottomAboutBar />
       </div>
       <div className="absolute h-full w-[50vw] ml-20 mr-auto mt-5 tablet:ml-24 tablet:mt-24 flex text-[1.8vw]">
@@ -36,14 +38,14 @@ export default function About(): React.ReactNode {
           <div className="scale-75 origin-left -ml-4 tablet:scale-100 tablet:ml-0">
             <StreetSign streetName={"ABOUT"} suffix="HBP" />
           </div>
-          <div className="mt-8 tablet:mt-4">
+          <div>
             <AboutParagraph />
           </div>
           <button
             className="font-GT-Walsheim-Regular mt-0 absolute top-[30%] bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
                                 relative top-[310px] desktop:w-[235.22px] desktop:h-[64.05px] right-[50px]
                                 tablet:mt-12 tablet:top-auto tablet:w-auto tablet:h-auto tablet:right-auto
-                                tablet:w-[308.17px] tablet:h-[67.69px] tablet:!text-[26.5px] mobile:w-[162.48px] mobile:h-[31.59px]"
+                                tablet:w-[308.17px] tablet:h-[67.69px] tablet:!text-[26.5px] mobile:w-[162.48px] mobile:h-[31.59px] mobile:mt-10"
           >
             {"View Past Photos"}
           </button>

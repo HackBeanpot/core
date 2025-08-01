@@ -7,7 +7,7 @@ const AboutParagraph = () => {
       <p
         className="
     font-GT-Walsheim-Regular 
-    mt-6 tablet:mt-12
+    mobile:mt-4 tablet:mt-12 desktop:mt-12
     text-left 
     w-[70vw]
     text-[11px]               
