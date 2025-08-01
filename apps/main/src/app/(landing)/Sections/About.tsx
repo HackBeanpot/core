@@ -45,9 +45,7 @@ export default function About(): React.ReactNode {
             className="font-GT-Walsheim-Regular mt-0 absolute top-[28%] bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
                                 relative top-[310px] desktop:w-[235.22px] desktop:h-[64.05px] right-[50px]
                                 tablet:mt-12 tablet:top-auto tablet:w-auto tablet:h-auto tablet:right-auto
-                                tablet:w-[308.17px] tablet:h-[67.69px] tablet:!text-[26.5px] mobile:w-[162.48px] mobile:h-[31.59px] 
-                                mobile:mt-12
-                                mobilelg:mt-10"
+                                tablet:w-[308.17px] tablet:h-[67.69px] tablet:!text-[26.5px] mobile:w-[162.48px] mobile:h-[31.59px]"
           >
             {"View Past Photos"}
           </button>
