@@ -12,8 +12,6 @@ const AboutParagraph = () => {
     w-[70vw]
     mobile:text-[11px]
     mobilelg:text-[13px]
-    tablet:text-[11px]
-    desktop:text-[11px]
     tablet:text-3xl           
     tablet:max-w-full
     mobile:-ml-10
