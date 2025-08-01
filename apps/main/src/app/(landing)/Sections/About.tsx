@@ -6,46 +6,30 @@ import TopAboutBar from "../../lib/Assets/SVG/AboutAssets/TopAboutBar";
 import BottomAboutBar from "../../lib/Assets/SVG/AboutAssets/BottomAboutBar";
 import Squiggle from "../../lib/Assets/SVG/AboutAssets/Squiggle";
 import Cities from "../../lib/Assets/SVG/AboutAssets/Cities";
-import Thumbtack1 from "../../lib/Assets/SVG/AboutAssets/Thumbtack1";
-import Thumbtack2 from "../../lib/Assets/SVG/AboutAssets/Thumbtack2";
-import Thumbtack3 from "../../lib/Assets/SVG/AboutAssets/Thumbtack3";
 import AboutParagraph from "../../lib/Assets/SVG/AboutAssets/AboutParagraph";
-import JournalWrapper from "../../lib/Assets/SVG/AboutAssets/JournalWrapper";
+import Journal2 from "../../lib/Assets/SVG/AboutAssets/Journal2";
 export default function About(): React.ReactNode {
   return (
-    <div className="w-full h-[100vh] bg-[#F3E7D7] flex flex-col flex-none">
+    <div className="w-full h-[100vh] bg-[#F3E7D7] flex flex-col">
       <div className="w-[100vw]">
         <TopAboutBar />
       </div>
       <div className="w-[55vw]">
         <Squiggle />
       </div>
-      <div className="w-[100vw] mt-auto relative">
+      
+      <div className="mobile:flex-1 mobile:flex mobile:items-center mobilelg:flex-1 mobilelg:flex mobilelg:items-center tablet:block tablet:flex-none desktop:block desktop:flex-none">
+    <div className={`
+      transform w-[373.15px] h-[220.91px] left-[55px] scale-[1.9] rotate-[0] origin-left 
+      tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 tablet:transform tablet:-rotate-[7.5deg] tablet:scale-[2.2] tablet:absolute tablet:top-[200vh] 
+      mobile:absolute mobile:left-[10px] 
+      mobilelg:absolute mobilelg:left-[50px]
+    `}>
+      <Journal2 />
+    </div>
+  </div>
+  <div className="w-[100vw] mt-auto relative">
         <BottomAboutBar />
-      </div>
-      <div>
-        <JournalWrapper />
-      </div>
-      <div
-        className="absolute 
-                 left-[90.46px] top-[1215px] scale-[0.45]
-                 tablet:absolute tablet:left-[63vw] tablet:top-[173vh] tablet:mt-48 tablet:scale-100 mobile:mt-14"
-      >
-        <Thumbtack1 />
-      </div>
-      <div
-        className="absolute 
-                 left-[324px] scale-[0.45] top-[1285px]
-                 tablet:absolute tablet:left-[94%] tablet:top-[163vh] tablet:mt-96 tablet:scale-100 mobile:mt-14"
-      >
-        <Thumbtack2 />
-      </div>
-      <div
-        className="absolute 
-                 left-[300px] scale-[0.45] top-[1170px]
-                 tablet:absolute tablet:left-[94%] tablet:top-[177vh] tablet:mt-28 tablet:scale-100 mobile:mt-14"
-      >
-        <Thumbtack3 />
       </div>
       <div className="absolute h-full w-[50vw] ml-20 mr-auto mt-5 tablet:ml-24 tablet:mt-24 flex text-[1.8vw]">
         <div className="w-[50vw]">
@@ -110,4 +94,11 @@ export default function About(): React.ReactNode {
       >
         <Image alt="AboutPicture" src="/about_3.png" width={300} height={300} />
       </div>
+
+      ////////////
+      <div className="flex-1 flex justify-center items-center">
+    <div className="transform w-[373.15px] h-[220.91px] scale-[1.9] tablet:w-[45vw] tablet:scale-[2.2] tablet:-rotate-[7.5deg] mobile:scale-[2] mobilelg:scale-[2.1]">
+      <Journal2 />
+    </div>
+  </div>
 */
