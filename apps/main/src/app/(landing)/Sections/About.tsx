@@ -55,8 +55,8 @@ export default function About(): React.ReactNode {
           className="absolute
                  w-[560.34px] h-[132.06px] left-[-160.67px] 
                  tablet:absolute tablet:w-[312px] tablet:h-auto tablet:left-[66%] 
-                 tablet:bottom-auto tablet:top-[64vh] tablet:scale-[3.3] 
-                 mobile:mt-1 mobile:ml-5 mobile:bottom-0 mobile:top-[90vh]
+                 tablet:bottom-auto tablet:top-[67vh] tablet:scale-[3.3] 
+                 mobile:mt-1 mobile:ml-5 mobile:bottom-0 mobile:top-[79vh]
                  mobilelg:bottom-0"
         >
           <Cities />
