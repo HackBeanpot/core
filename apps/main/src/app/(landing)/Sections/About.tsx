@@ -23,7 +23,7 @@ export default function About(): React.ReactNode {
           className={`
       transform w-[373.15px] h-[220.91px] left-[55px] scale-[1.9] rotate-[0] origin-left 
       tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 tablet:transform tablet:-rotate-[7.5deg] tablet:scale-[2.2] tablet:absolute tablet:top-[200vh] 
-      mobile:absolute mobile:left-[10px] mobile:top-[140vh]
+      mobile:absolute mobile:left-[10px] mobile:top-[113vh]
       mobilelg:absolute mobilelg:left-[50px]
     `}
         >
@@ -55,7 +55,7 @@ export default function About(): React.ReactNode {
           className="absolute
                  w-[560.34px] h-[132.06px] left-[-160.67px] 
                  tablet:absolute tablet:w-[312px] tablet:h-auto tablet:left-[66%] 
-                 tablet:bottom-auto tablet:top-[64vh] tablet:scale-[3.3] 
+                 tablet:bottom-auto tablet:top-[71vh] tablet:scale-[3.3] 
                  mobile:mt-1 mobile:ml-5 mobile:bottom-0 mobile:top-[79vh]
                  mobilelg:bottom-0"
         >
