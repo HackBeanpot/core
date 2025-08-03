@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import useDevice from "@repo/util/hooks/useDevice";
 
@@ -113,12 +113,34 @@ const InputBox: React.FC<{
 
 export default function Placeholder(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
+  const [wasCloudClicked, setRotateCloud] = useState(false);
+  const [, setCloudClicks] = useState(0);
+
+  const handleFiveClicks = async () => {
+    setCloudClicks((prev) => {
+      const newCount = prev + 1;
+      if (newCount === 5) {
+        setRotateCloud(true);
+        return 0;
+      }
+      return newCount;
+    });
+  };
+
+  // useEffect(() => {{
+  //   if (wasCloudClicked) {
+
+  //   }
+  // }})
 
   const wrapperClass =
     "relative bg-gradient-to-b from-skyBlue to-sunnyBlue h-screen w-screen";
 
-  const leftCloudClass =
-    "absolute top-[10%] hover:scale-110 transition-transform transition-duration-3000";
+  const leftCloudClass = clsx(
+    "absolute top-[10%] hover:scale-110 transition-transform transition-duration-3000",
+    wasCloudClicked && "animate-spin transition-duration-200",
+  );
+
   const rightCloudClass =
     "absolute right-0 top-[50%] hover:scale-110 transition-transform transition-duration-3000";
   const logoClass = clsx(
@@ -174,7 +196,7 @@ export default function Placeholder(): React.ReactNode {
 
   return (
     <div className={wrapperClass}>
-      <div className={leftCloudClass}>
+      <div className={leftCloudClass} onClick={() => handleFiveClicks()}>
         <LeftCloud />
       </div>
 
