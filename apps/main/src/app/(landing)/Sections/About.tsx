@@ -23,7 +23,7 @@ export default function About(): React.ReactNode {
           className={`
       transform w-[373.15px] h-[220.91px] left-[55px] scale-[1.9] rotate-[0] origin-left 
       tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 tablet:transform tablet:-rotate-[7.5deg] tablet:scale-[2.2] tablet:absolute tablet:top-[200vh] 
-      mobile:absolute mobile:left-[10px] 
+      mobile:absolute mobile:left-[10px] mobile:top-[140vh]
       mobilelg:absolute mobilelg:left-[50px]
     `}
         >
@@ -45,7 +45,8 @@ export default function About(): React.ReactNode {
             className="font-GT-Walsheim-Regular mt-0 absolute mobile:top-[29%] tablet:top-[0%] bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
                                 relative mobile:top-[315px] tablet:top-[1px] desktop:w-[235.22px] desktop:h-[64.05px] right-[50px]
                                 tablet:mt-5 tablet:top-auto tablet:w-auto tablet:h-auto tablet:right-auto
-                                tablet:w-[308.17px] tablet:h-[67.69px] tablet:!text-[26.5px] mobile:w-[162.48px] mobile:h-[31.59px]"
+                                tablet:w-[308.17px] tablet:h-[67.69px] tablet:!text-[26.5px] 
+                                mobile:w-[162.48px] mobile:h-[31.59px] mobile:top-[34vh]"
           >
             {"View Past Photos"}
           </button>
@@ -55,7 +56,7 @@ export default function About(): React.ReactNode {
                  w-[560.34px] h-[132.06px] left-[-160.67px] 
                  tablet:absolute tablet:w-[312px] tablet:h-auto tablet:left-[66%] 
                  tablet:bottom-auto tablet:top-[64vh] tablet:scale-[3.3] 
-                 mobile:mt-1 mobile:ml-5 mobile:bottom-0 mobile:top-[83vh]
+                 mobile:mt-1 mobile:ml-5 mobile:bottom-0 mobile:top-[81vh]
                  mobilelg:bottom-0"
         >
           <Cities />
