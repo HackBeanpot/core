@@ -23,7 +23,7 @@ const RecruitmentBenefits = () => {
           </div>
           <div>
             <h3 className="text-xl font-GT-Walsheim-Trial mb-2 font-bold">
-              Market your company &amp; product
+              Market your company & product
             </h3>
             <p className="font-GT-Walsheim-Trial text-md mb-6">
               Market your product and receive feedback by sponsoring a
