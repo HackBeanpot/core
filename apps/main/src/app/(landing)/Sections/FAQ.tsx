@@ -11,13 +11,13 @@ export default function FAQSection(): React.ReactNode {
           preserveAspectRatio="xMidYMax slice"
         />
       </div>
-      <div className="relative flex flex-col px-28 py-20 space-y-10 font-GT-Walsheim-Regular z-10 min-h-[1400px]">
+      <div className="relative flex flex-col px-28 desktop:py-20 mobile:py-3 desktop:space-y-10 mobile:space-y-6 font-GT-Walsheim-Regular z-10 min-h-[1400px]">
         <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular">
           FAQs
         </h1>
 
-        <div className="w-3/5 mx-auto flex">
-          <h3 className="text-2xl font-semibold text-white">
+        <div className="mx-auto flex mobile:justify-end tablet:justify-start desktop:justify-start mobile:w-3/5 tablet:w-3/5 desktop:w-3/5 ">
+          <h3 className="text-2xl font-semibold text-white whitespace-nowrap">
             Time and Location
           </h3>
         </div>
@@ -42,8 +42,8 @@ export default function FAQSection(): React.ReactNode {
           />
         </div>
 
-        <div className="w-3/5 mx-auto flex">
-          <h3 className="text-2xl font-semibold text-white pt-10">
+        <div className="mx-auto flex mobile:justify-end tablet:justify-start desktop:justify-start mobile:w-4/5 tablet:w-3/5 desktop:w-3/5 ">
+          <h3 className="text-2xl font-semibold text-white pt-10 whitespace-nowrap">
             Application Logistics
           </h3>
         </div>
@@ -55,8 +55,8 @@ export default function FAQSection(): React.ReactNode {
           />
         </div>
 
-        <div className="w-3/5 mx-auto flex">
-          <h3 className="text-2xl font-semibold text-white pt-10">
+        <div className="mx-auto flex mobile:justify-end tablet:justify-start desktop:justify-start mobile:w-1/5 tablet:w-3/5 desktop:w-3/5 ">
+          <h3 className="text-2xl font-semibold text-white pt-10 whitespace-nowrap">
             Event Logistics
           </h3>
         </div>
