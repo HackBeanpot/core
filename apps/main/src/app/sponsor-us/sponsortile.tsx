@@ -26,7 +26,7 @@ export default function SponsorTile(props: SponsorProps): React.ReactNode {
     "bg-[#F9EFDA] rounded-2xl p-6 text-[#7D6950] w-[666px] scale-100 mt-20 mb-20",
     isTablet && "p-8 w-[500px]",
     isMobile && "w-[375px]",
-    containerWidth, 
+    containerWidth,
     containerHeight == "" ? "h-auto" : containerHeight,
   );
 
@@ -36,7 +36,6 @@ export default function SponsorTile(props: SponsorProps): React.ReactNode {
   );
 
   const contentStyling = clsx("mb-2");
-
 
   return (
     <div className={containerStyling}>

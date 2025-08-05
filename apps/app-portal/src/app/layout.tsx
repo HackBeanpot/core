@@ -10,8 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "HackBeanpot - Application Portal",
-  description:
-    "Apply to HackBeanpot!",
+  description: "Apply to HackBeanpot!",
 };
 
 export default function RootLayout({
