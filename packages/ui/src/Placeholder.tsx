@@ -17,6 +17,40 @@ const InputBox: React.FC<{
   isTablet: boolean;
   isDesktop: boolean;
 }> = ({ isMobile, isTablet, isDesktop }) => {
+  const [email, setEmail] = React.useState("");
+  const [status, setStatus] = React.useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async () => {
+    if (!email) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/joinMailingList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setStatus(res.ok ? "success" : "error");
+      if (res.ok) setEmail("");
+    } catch {
+      setStatus("error");
+    } finally {
+      setTimeout(() => setStatus("idle"), 3000);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSubmit();
+  };
+
+  const buttonText =
+    status === "loading"
+      ? "Submitting…"
+      : status === "success"
+        ? "Subscribed!"
+        : "Notify Me";
+
   const containerClass = clsx(
     "relative grid grid-cols-2",
     isDesktop && "top-[-185%]",
@@ -32,15 +66,47 @@ const InputBox: React.FC<{
   );
 
   const buttonClass = clsx(
-    "hover:scale-105 transition-transform transition-duration-300 hover:bg-darkSeaFoam font-GT-Walsheim-Regular text-bold bg-seaFoam  text-white h-[5vh]",
+    "hover:scale-105 transition-transform hover:bg-darkSeaFoam font-GT-Walsheim-Regular bg-seaFoam text-white h-[5vh] disabled:opacity-50 disabled:cursor-not-allowed",
     isDesktop && "text-xl rounded-lg w-[8vw]",
     isTablet && "text-xl rounded-xl w-[15vw]",
     isMobile && "relative rounded-lg w-[25vw] left-[-30%]",
   );
+
+  const alert =
+    status === "success"
+      ? { text: "You’re on the list! Yayyy!!! 🎉", style: "bg-emerald-500" }
+      : status === "error"
+        ? { text: "Something went wrong. Try again.", style: "bg-rose-500" }
+        : null;
+
   return (
-    <div className={containerClass}>
-      <input className={inputClass} placeholder="Start your journey..." />
-      <button className={buttonClass}>Notify Me</button>
+    <div className="relative">
+      {alert && (
+        <div
+          role="alert"
+          className={`absolute -top-12 left-1/2 -translate-x-1/2 rounded-md px-4 py-2 text-white text-sm shadow-md ${alert.style}`}
+        >
+          {alert.text}
+        </div>
+      )}
+
+      <div className={containerClass}>
+        <input
+          className={inputClass}
+          placeholder="Start your journey..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyPress}
+          disabled={status === "loading"}
+        />
+        <button
+          className={buttonClass}
+          onClick={handleSubmit}
+          disabled={status === "loading"}
+        >
+          {buttonText}
+        </button>
+      </div>
     </div>
   );
 };
@@ -89,7 +155,7 @@ export default function Placeholder(): React.ReactNode {
   );
 
   const paragraphClass = clsx(
-    "font-GT-Walsheim-Regular ",
+    "font-GT-Walsheim-Regular",
     isDesktop && "text-xl",
     isTablet && "mt-4 text-xl",
     isMobile && "mt-2",
@@ -101,6 +167,7 @@ export default function Placeholder(): React.ReactNode {
     isTablet && "w-[14vw]",
     isMobile && "w-[24vw] right-6",
   );
+
   const contactWrapperClass = "absolute bottom-10 left-10 text-l";
   const emailClass =
     "font-GT-Walsheim-Regular underline hover:no-underline transition-transform transition-duration-300";
