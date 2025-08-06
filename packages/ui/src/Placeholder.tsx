@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import useDevice from "@repo/util/hooks/useDevice";
 
@@ -115,30 +115,41 @@ export default function Placeholder(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
   const [wasCloudClicked, setRotateCloud] = useState(false);
   const [, setCloudClicks] = useState(0);
+  const [isMouseOnCloud, setMouseOnCloud] = useState(false);
 
-  const handleFiveClicks = async () => {
+  const handleFiveClicks = () => {
     setCloudClicks((prev) => {
-      const newCount = prev + 1;
-      if (newCount === 5) {
-        setRotateCloud(true);
-        return 0;
+      let newCount = prev;
+
+      if (isMouseOnCloud) {
+        newCount += 1;
+
+        if (newCount === 5) {
+          setRotateCloud(true);
+
+          console.log("current count: %d", newCount);
+          console.log("is mouse hovering cloud?:", isMouseOnCloud);
+          console.log("Clicked at", Date.now());
+
+          return 0;
+        }
+
+        setRotateCloud(false);
+        return newCount;
       }
-      return newCount;
+
+      setRotateCloud(false);
+      return 0;
     });
   };
-
-  // useEffect(() => {{
-  //   if (wasCloudClicked) {
-
-  //   }
-  // }})
 
   const wrapperClass =
     "relative bg-gradient-to-b from-skyBlue to-sunnyBlue h-screen w-screen";
 
   const leftCloudClass = clsx(
-    "absolute top-[10%] hover:scale-110 transition-transform transition-duration-3000",
-    wasCloudClicked && "animate-spin transition-duration-200",
+    "absolute top-[10%]",
+    wasCloudClicked && "animate-spin duration-150",
+    !wasCloudClicked && "hover:scale-110 transition-transform transition-duration-3000"
   );
 
   const rightCloudClass =
@@ -196,7 +207,12 @@ export default function Placeholder(): React.ReactNode {
 
   return (
     <div className={wrapperClass}>
-      <div className={leftCloudClass} onClick={() => handleFiveClicks()}>
+      <div 
+        className={leftCloudClass} 
+        onClick={() => handleFiveClicks()} 
+        onMouseEnter={() => setMouseOnCloud(true)} 
+        onMouseLeave={() => setMouseOnCloud(false)}
+      >
         <LeftCloud />
       </div>
 
