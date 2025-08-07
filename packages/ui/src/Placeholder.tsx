@@ -121,18 +121,20 @@ export default function Placeholder(): React.ReactNode {
 
   const leftCloudClass = clsx(
     "absolute top-[10%]",
-    leftCloudEffect.wasCloudClicked && "animate-ping animate-once animate-duration-[1500ms]",
+    leftCloudEffect.wasCloudClicked &&
+      "animate-ping animate-once animate-duration-[1500ms]",
     !leftCloudEffect.wasCloudClicked &&
       "hover:scale-110 transition-transform transition-duration-3000",
   );
 
   const rightCloudClass = clsx(
     "absolute right-0 top-[50%] hover:scale-110 transition-transform transition-duration-3000",
-    rightCloudEffect.wasCloudClicked && "animate-ping animate-once animate-duration-[1500ms]",
+    rightCloudEffect.wasCloudClicked &&
+      "animate-ping animate-once animate-duration-[1500ms]",
     !rightCloudEffect.wasCloudClicked &&
       "hover:scale-110 transition-transform transition-duration-3000",
   );
-  
+
   const logoClass = clsx(
     "absolute top-4 left-6 hover:scale-110 transition-transform transition-duration-300",
     isMobile && "left-4",
@@ -192,15 +194,16 @@ export default function Placeholder(): React.ReactNode {
         onMouseEnter={() => leftCloudEffect.setHovering(true)}
         onMouseLeave={() => leftCloudEffect.setHovering(false)}
       >
-        <Cloud className="absolute -left-[300px] -top-24 scale-50"/>
+        <Cloud className="absolute -left-[300px] -top-24 scale-50" />
       </div>
 
-      <div 
+      <div
         className={rightCloudClass}
         onClick={() => rightCloudEffect.handleCloudClicks()}
         onMouseEnter={() => rightCloudEffect.setHovering(true)}
-        onMouseLeave={() => rightCloudEffect.setHovering(false)}>
-        <Cloud className="absolute -right-72 -top-24 scale-50"/>
+        onMouseLeave={() => rightCloudEffect.setHovering(false)}
+      >
+        <Cloud className="absolute -right-72 -top-24 scale-50" />
       </div>
 
       <Logo className={logoClass} />

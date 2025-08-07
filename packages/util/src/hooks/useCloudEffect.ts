@@ -41,7 +41,7 @@ const useCloudEffect = () => {
     }
   }, [isHovering, cloudClicks]);
 
-  return {wasCloudClicked, handleCloudClicks, setHovering};
+  return { wasCloudClicked, handleCloudClicks, setHovering };
 };
 
 export default useCloudEffect;
