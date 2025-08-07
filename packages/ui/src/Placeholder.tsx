@@ -114,34 +114,73 @@ const InputBox: React.FC<{
 export default function Placeholder(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
   const [wasCloudClicked, setRotateCloud] = useState(false);
-  const [, setCloudClicks] = useState(0);
-  const [isMouseOnCloud, setMouseOnCloud] = useState(false);
+  const [cloudClicks, setCloudClicks] = useState(0);
+  const [isHovering, setHovering] = useState(false);
+  // const [isRotating, setIsRotating] = useState(false);
 
-  const handleFiveClicks = () => {
-    setCloudClicks((prev) => {
-      let newCount = prev;
+  // const handleFiveClicks = () => {
+  //   setCloudClicks((prev) => {
+  //     let newCount = prev;
 
-      if (isMouseOnCloud) {
-        newCount += 1;
+  //     if (isHovering) {
+  //       newCount += 1;
 
-        if (newCount === 5) {
-          setRotateCloud(true);
+  //       if (newCount === 5) {
+  //         setRotateCloud(true);
 
-          console.log("current count: %d", newCount);
-          console.log("is mouse hovering cloud?:", isMouseOnCloud);
-          console.log("Clicked at", Date.now());
+  //         // console.log("current count: %d", newCount);
+  //         // console.log("is mouse hovering cloud?:", isHovering);
+  //         // console.log("Clicked at", Date.now());
 
-          return 0;
-        }
+  //         return 0;
+  //       }
 
+  //       setRotateCloud(false);
+  //       return newCount;
+  //     }
+
+  //     setRotateCloud(false);
+  //     return 0;
+  //   });
+  // };
+
+  const handleCloudClicks = () => { 
+    if (isHovering) {
+      setCloudClicks((prev) => prev + 1);
+    } else {
+      resetCloudClicks();
+    }
+  };
+
+  const resetCloudClicks = () => { setCloudClicks(0) };
+
+  // const handleAnimationEnd = () => { 
+  //   setIsRotating(false);
+  //   resetCloudClicks();
+  // };
+
+  useEffect(() => {
+    if (isHovering) {
+      if (cloudClicks > 0 && cloudClicks < 5) {
         setRotateCloud(false);
-        return newCount;
+        return;
       }
 
-      setRotateCloud(false);
-      return 0;
-    });
-  };
+      if (cloudClicks === 5) {
+        setRotateCloud(true);
+
+        const timeout = setTimeout(() => {
+          setRotateCloud(false);
+        }, 1500);
+
+        resetCloudClicks();
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      resetCloudClicks();
+    }
+  }, [isHovering, cloudClicks]);
+
 
   const wrapperClass =
     "relative bg-gradient-to-b from-skyBlue to-sunnyBlue h-screen w-screen";
@@ -149,7 +188,8 @@ export default function Placeholder(): React.ReactNode {
   const leftCloudClass = clsx(
     "absolute top-[10%]",
     wasCloudClicked && "animate-spin duration-150",
-    !wasCloudClicked && "hover:scale-110 transition-transform transition-duration-3000"
+    !wasCloudClicked &&
+      "hover:scale-110 transition-transform transition-duration-3000",
   );
 
   const rightCloudClass =
@@ -207,14 +247,14 @@ export default function Placeholder(): React.ReactNode {
 
   return (
     <div className={wrapperClass}>
-      <div 
-        className={leftCloudClass} 
-        onClick={() => handleFiveClicks()} 
-        onMouseEnter={() => setMouseOnCloud(true)} 
-        onMouseLeave={() => setMouseOnCloud(false)}
-      >
-        <LeftCloud />
-      </div>
+        <div
+          className={leftCloudClass}
+          onClick={() => handleCloudClicks()}
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
+          <LeftCloud />
+        </div>
 
       <div className={rightCloudClass}>
         <RightCloud />
