@@ -3,9 +3,9 @@
 import React from "react";
 import clsx from "clsx";
 import useDevice from "@repo/util/hooks/useDevice";
+import useCloudEffect from "@repo/util/hooks/useCloudEffect";
 
-import LeftCloud from "./PlaceholderAssets/LeftCloud";
-import RightCloud from "./PlaceholderAssets/RightCloud";
+import Cloud from "./PlaceholderAssets/Cloud";
 import LargeSign from "./PlaceholderAssets/LargeSign";
 import Logo from "./PlaceholderAssets/Logo";
 import ExternalLink from "./PlaceholderAssets/ExternalLink";
@@ -113,14 +113,28 @@ const InputBox: React.FC<{
 
 export default function Placeholder(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
+  const leftCloudEffect = useCloudEffect();
+  const rightCloudEffect = useCloudEffect();
 
   const wrapperClass =
     "relative bg-gradient-to-b from-skyBlue to-sunnyBlue h-screen w-screen";
 
-  const leftCloudClass =
-    "absolute top-[10%] hover:scale-110 transition-transform transition-duration-3000";
-  const rightCloudClass =
-    "absolute right-0 top-[50%] hover:scale-110 transition-transform transition-duration-3000";
+  const leftCloudClass = clsx(
+    "absolute top-[10%]",
+    leftCloudEffect.wasCloudClicked &&
+      "animate-ping animate-once animate-duration-[1500ms]",
+    !leftCloudEffect.wasCloudClicked &&
+      "hover:scale-110 transition-transform transition-duration-3000",
+  );
+
+  const rightCloudClass = clsx(
+    "absolute right-0 top-[50%] hover:scale-110 transition-transform transition-duration-3000",
+    rightCloudEffect.wasCloudClicked &&
+      "animate-ping animate-once animate-duration-[1500ms]",
+    !rightCloudEffect.wasCloudClicked &&
+      "hover:scale-110 transition-transform transition-duration-3000",
+  );
+
   const logoClass = clsx(
     "absolute top-4 left-6 hover:scale-110 transition-transform transition-duration-300",
     isMobile && "left-4",
@@ -174,12 +188,22 @@ export default function Placeholder(): React.ReactNode {
 
   return (
     <div className={wrapperClass}>
-      <div className={leftCloudClass}>
-        <LeftCloud />
+      <div
+        className={leftCloudClass}
+        onClick={() => leftCloudEffect.handleCloudClicks()}
+        onMouseEnter={() => leftCloudEffect.setHovering(true)}
+        onMouseLeave={() => leftCloudEffect.setHovering(false)}
+      >
+        <Cloud className="absolute -left-[300px] -top-24 scale-50" />
       </div>
 
-      <div className={rightCloudClass}>
-        <RightCloud />
+      <div
+        className={rightCloudClass}
+        onClick={() => rightCloudEffect.handleCloudClicks()}
+        onMouseEnter={() => rightCloudEffect.setHovering(true)}
+        onMouseLeave={() => rightCloudEffect.setHovering(false)}
+      >
+        <Cloud className="absolute -right-72 -top-24 scale-50" />
       </div>
 
       <Logo className={logoClass} />
