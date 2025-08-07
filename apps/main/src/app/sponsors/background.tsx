@@ -8,7 +8,7 @@ const SponsorsBackground = () => {
   const { isMobile } = useContext(MobileContext);
 
   return (
-    <div className="w-full h-full overflow-hidden">
+    <div className="w-full h-full overflow-visible">
       <Image
         alt="Sponsors Background"
         src={
