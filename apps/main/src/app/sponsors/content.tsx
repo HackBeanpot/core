@@ -60,7 +60,7 @@ const SponsorsContent = forwardRef<HTMLDivElement>((_, ref) => {
           />
         </div>
       </div>
-      <div className="top-[101%] bg-[#C6E0D3] w-full h-[15%] absolute bottom-0 flex justify-center items-center flex-col space-y-4 font-GT-Walsheim-Regular p-28">
+      <div className="bg-[#C6E0D3] mobile:w-full desktop:w-[150%] flex justify-center items-center flex-col space-y-4 font-GT-Walsheim-Regular py-20 px-4 mt-20">
         <h1 className="text-2xl font-GT-Walsheim-Bold text-center">
           Interested in sponsoring HackBeanpot 2025?
         </h1>

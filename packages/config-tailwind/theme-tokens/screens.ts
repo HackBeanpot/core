@@ -3,9 +3,11 @@ export type ScreenToken = {
 };
 
 const screens = {
-  mobile: "360px",
-  tablet: "768px",
-  desktop: "1024px",
+  mobile: "300px",
+  mobilelg: "400px",
+  tablet: "640px",
+  desktop: "1080px",
+  desktopxl: "2080px",
 };
 
 export default screens;
