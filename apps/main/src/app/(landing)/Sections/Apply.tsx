@@ -10,7 +10,10 @@ import ApplyRightBush from "../../lib/Assets/SVG/ApplyAssets/ApplyRightBush";
 const Apply = () => {
   return (
     <>
-      <div className="relative w-full h-[40vh] -mt-2 -mb-20 tablet:mb-5 flex flex-col flex-none">
+      <div
+        id="apply"
+        className="relative w-full h-[40vh] -mt-2 -mb-20 tablet:mb-5 flex flex-col flex-none"
+      >
         <div className="overflow-hidden -mb-10">
           <div className="w-[300%] tablet:w-full -translate-x-10 tablet:-translate-x-0 h-full z-0">
             <ApplyBackground preserveAspectRatio="xMidYMid meet" />
@@ -19,9 +22,9 @@ const Apply = () => {
 
         <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-[40%] tablet:top-[60%] z-10 flex items-center text-center">
           <div className="max-w-2xl">
-            <p className=" text-md tablet:text-[20px] tablet:desktop:text-2xl desktop:text-3xl font-GT-Walsheim-Regular">
-              Applications have not been released for HackBeanpot 2026. Check in
-              with us again this fall!
+            <p className="text-md tablet:text-[20px] tablet:desktop:text-2xl desktop:text-3xl font-GT-Walsheim-Regular">
+              Applications have not been released for HackBeanpot&nbsp;2026.
+              Check in with us again this fall!
             </p>
             <div className="pt-8">
               <button
