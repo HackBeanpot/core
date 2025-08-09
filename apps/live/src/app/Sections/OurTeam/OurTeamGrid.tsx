@@ -211,7 +211,7 @@ const TeamTable = () => {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-5 grid-rows-2 gap-2 md:grid-cols-2 md:grid-rows-5">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         {teams[currTeam].map((member, index) => (
           <a
             key={index}
