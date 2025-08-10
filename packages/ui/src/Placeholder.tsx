@@ -167,7 +167,6 @@ export default function Placeholder(): React.ReactNode {
     isTablet && "w-[14vw]",
     isMobile && "w-[24vw] right-6",
   );
-  
 
   const contactWrapperClass = "absolute bottom-10 left-10 text-l";
   const emailClass =
@@ -184,7 +183,7 @@ export default function Placeholder(): React.ReactNode {
       </div>
 
       <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
-      <Logo className={logoClass}/>
+        <Logo className={logoClass} />
       </ExternalLink>
 
       <div className={layoutClass}>
