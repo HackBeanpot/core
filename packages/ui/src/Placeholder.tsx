@@ -151,7 +151,7 @@ export default function Placeholder(): React.ReactNode {
     "relative left-0",
     isMobile && "row-start-2 w-[85%] -mt-64",
     isTablet && "row-start-2 w-[65%] top-[-34%]",
-    isDesktop && "col-span-3 scale-124 left-10",
+    isDesktop && "col-span-3 scale-125 left-10",
   );
 
   const contentWrapperClass = clsx(
