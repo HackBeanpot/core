@@ -135,9 +135,9 @@ export default function Placeholder(): React.ReactNode {
 
   const largeSignClass = clsx(
     "relative left-0",
-    isDesktop && "col-span-3",
-    isTablet && "row-start-2 w-[65%] -mt-36",
     isMobile && "row-start-2 w-[85%] -mt-64",
+    isTablet && "row-start-2 w-[65%] top-[-34%]",
+    isDesktop && "col-span-3 scale-124 left-10",
   );
 
   const contentWrapperClass = clsx(
@@ -162,11 +162,12 @@ export default function Placeholder(): React.ReactNode {
   );
 
   const socialIconsClass = clsx(
-    "absolute grid grid-cols-2 bottom-10 right-10",
+    "absolute grid grid-cols-2 gap-5 place-items-center bottom-10 right-10",
     isDesktop && "w-[6.5vw]",
     isTablet && "w-[14vw]",
     isMobile && "w-[24vw] right-6",
   );
+  
 
   const contactWrapperClass = "absolute bottom-10 left-10 text-l";
   const emailClass =
@@ -182,7 +183,9 @@ export default function Placeholder(): React.ReactNode {
         <RightCloud />
       </div>
 
-      <Logo className={logoClass} />
+      <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
+      <Logo className={logoClass}/>
+      </ExternalLink>
 
       <div className={layoutClass}>
         <LargeSign className={largeSignClass} />
