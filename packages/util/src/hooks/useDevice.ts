@@ -19,9 +19,9 @@ const useDevice = (): DeviceType => {
     const width = window.innerWidth;
 
     setDevice({
-      isMobile: width < 768,
-      isTablet: width >= 768 && width < 1024,
-      isDesktop: width >= 1024,
+      isMobile: width < 480,
+      isTablet: width >= 480 && width <= 1024,
+      isDesktop: width > 1024,
     });
   };
 
