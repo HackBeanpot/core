@@ -1,6 +1,8 @@
 import React from "react";
 import RecruitmentBenefits from "./recruitment";
+
 const SponsorUsContent = () => {
+  
   return (
     <>
       <div className="bg-[#F9EFDA] w-full">
@@ -31,8 +33,9 @@ const SponsorUsContent = () => {
             View Sponsorship Packet
           </button>
         </div>
-      </div>
+      </div> 
       <RecruitmentBenefits />
+      {/* <SponsorTestimonials /> */}
     </>
   );
 };
