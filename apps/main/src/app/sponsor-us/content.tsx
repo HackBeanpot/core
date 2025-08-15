@@ -33,7 +33,7 @@ const SponsorUsContent = () => {
             View Sponsorship Packet
           </button>
         </div>
-      </div> 
+      </div>
       <RecruitmentBenefits />
       {/* <SponsorTestimonials /> */}
     </>

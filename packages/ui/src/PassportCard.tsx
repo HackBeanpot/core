@@ -29,7 +29,7 @@ export default function PassportCard({
   major,
   year,
   quote,
-  company, 
+  company,
   role,
   image,
   isActive,
@@ -43,36 +43,36 @@ export default function PassportCard({
     "",
     isDesktop && "desktopxl:text-2xl",
     isTablet && "",
-    isMobile && "text-xs"
+    isMobile && "text-xs",
   );
 
   const sponsorTestimonialStyles = clsx(
     "bg-[#F9EFDA] h-auto rounded-[2rem] absolute top-[22%] shadow-[0_12px_0px_-5px_rgba(221,198,168,1),0_20px_0px_-5px_rgba(0,0,0,0.25)] flex flex-col desktopxl:-space-y-8 py-10 px-10",
     isDesktop && "w-1/5 -space-y-3",
     isTablet && "w-1/3 -space-y-3 px-8",
-    isMobile && "w-2/3 -space-y-12"
+    isMobile && "w-2/3 -space-y-12",
   );
 
   const sponsorRepBoxStyles = clsx(
     "mt-4 grid grid-rows-2 -space-y-1",
-    isMobile && "mt-2"
+    isMobile && "mt-2",
   );
 
   const sponsorRepStyles = clsx(
     "text-lg text-center text-[#A98F6C]",
-    isTablet && "-mt-3"
+    isTablet && "-mt-3",
   );
 
   const sponsorRepPositionStyles = clsx(
     "text-xs text-center tablet:-mt-24 tablet:-mx-4 mobile:-mt-32 font-medium",
     isTablet && "-mx-4 -mt-24",
-    isMobile && "-mt-32"
+    isMobile && "-mt-32",
   );
 
   const sponsorBlurbStyles = clsx(
     "text-center font-medium -mt-16",
     isTablet && "-mt-14 text-sm",
-    isMobile && "-mt-6"
+    isMobile && "-mt-6",
   );
 
   return (
@@ -135,24 +135,26 @@ export default function PassportCard({
         </div>
       )}
       {isSponsor && (
-          <div className={sponsorTestimonialStyles}>
-            <div className="grid grid-rows-3 items-center justify-center">
-              <Image
-                src={image}
-                alt={company ?? "company" + " Logo"}
-                width={200}
-                height={200}
-                className="mt-2"
-              />
-              <div className={sponsorRepBoxStyles}>
-                <h1 className={sponsorRepStyles}>{firstName + " " + lastName}</h1>
-                <h2 className={sponsorRepPositionStyles}>{role + ", " + company}</h2>
-              </div>
-            </div>
-            <div>
-              <p className={sponsorBlurbStyles}>{quote}</p>
+        <div className={sponsorTestimonialStyles}>
+          <div className="grid grid-rows-3 items-center justify-center">
+            <Image
+              src={image}
+              alt={company ?? "company" + " Logo"}
+              width={200}
+              height={200}
+              className="mt-2"
+            />
+            <div className={sponsorRepBoxStyles}>
+              <h1 className={sponsorRepStyles}>{firstName + " " + lastName}</h1>
+              <h2 className={sponsorRepPositionStyles}>
+                {role + ", " + company}
+              </h2>
             </div>
           </div>
+          <div>
+            <p className={sponsorBlurbStyles}>{quote}</p>
+          </div>
+        </div>
       )}
     </div>
   );

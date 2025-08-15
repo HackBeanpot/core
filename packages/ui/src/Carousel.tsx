@@ -9,7 +9,6 @@ interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ items, isSponsor }) => {
-
   const sponsorStyling = clsx(
     "desktop:space-x-80 mobile:space-x-44",
     isSponsor && "desktop:space-x-72 mobile:space-x-32",
