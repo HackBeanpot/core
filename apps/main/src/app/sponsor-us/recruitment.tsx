@@ -1,13 +1,36 @@
+"use client"
+
+import useDevice from "@util/hooks/useDevice";
+import clsx from "clsx";
 import React from "react";
 
 const RecruitmentBenefits = () => {
+  const { isDesktop, isTablet, isMobile } = useDevice();
+
+  const innerContainerStyles = clsx(
+    "bg-[#0D685F] rounded-2xl p-6 text-white w-[866px] h-auto",
+    isTablet && "w-[600px] p-8",
+    isMobile && "min-w-[300px] max-w-[350px]",
+  );
+
+  const gridStyling = clsx(
+    "grid gap-8",
+    (isTablet || isDesktop) && "grid-cols-2",
+  );
+
+  const recruitmentPhotoStyles = clsx(
+    "relative",
+    isTablet && "top-20",
+    isDesktop && "top-6",
+  );
+
   return (
     <div className="bg-[#F9EFDA] w-full flex items-center justify-center">
-      <div className="bg-[#0D685F] rounded-2xl p-6 tablet:p-8 text-white w-[866px] h-[584.44px]">
-        <h2 className="text-center text-3xl font-GT-Walsheim-Trial font-medium mb-8">
+      <div className={innerContainerStyles}>
+        <h2 className="text-left text-3xl font-GT-Walsheim-Trial font-medium mb-8">
           How can sponsoring HackBeanpot help your company?
         </h2>
-        <div className="grid tablet:grid-cols-2 gap-8">
+        <div className={gridStyling}>
           <div>
             <h3 className="text-xl font-GT-Walsheim-Trial mb-2 font-bold">
               Recruitment
@@ -17,8 +40,8 @@ const RecruitmentBenefits = () => {
               is a great way to expand and diversify your company&apos;s
               full-time, internship, co-op program&apos;s applicant pool!
             </p>
-            <div className="relative top-6">
-              <img src="/image.png" />
+            <div className={recruitmentPhotoStyles}>
+              <img src="/image.png" className="rounded-2xl" alt="Recruitment Photo" />
             </div>
           </div>
           <div>
@@ -32,7 +55,7 @@ const RecruitmentBenefits = () => {
               implement your technologies for their projects.
             </p>
             <div className="relative">
-              <img src="/image2.png" />
+              <img src="/image2.png" className="rounded-2xl" alt="HackBeanpot Hackers" />
             </div>
           </div>
         </div>
