@@ -23,7 +23,7 @@ export default function SponsorTile(props: SponsorProps): React.ReactNode {
   const titleClasses = `${props.titleAlign} text-2xl font-GT-Walsheim-Trial font-medium mb-6`;
 
   const containerStyling = clsx(
-    "bg-[#F9EFDA] rounded-2xl p-6 text-[#7D6950] w-[666px] scale-100 mt-20 mb-20",
+    "bg-eggshell rounded-2xl p-6 text-[#7D6950] w-[666px] scale-100 mt-20 mb-20",
     isTablet && "p-8 w-[500px]",
     isMobile && "w-[375px]",
     containerWidth,

@@ -117,7 +117,7 @@ export default function SponsorTestimonialSection(): React.ReactNode {
     setCurrentPage(index);
   }
   return (
-    <div className="bg-[#F9EFDA] w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center">
+    <div className="bg-eggshell w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center">
       <div className="w-full h-full">
         <div className="relative -top-72 mobile:-top-80">
           <Carousel items={company.slice(0, 3)} isSponsor={true} />

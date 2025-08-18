@@ -29,6 +29,8 @@ const colors = {
   sunnyBlue: "#C5DFD2",
   pavement: "#333333",
   heather: "#C7C7C7",
+  teal: "#0D685F",
+  eggshell: "#F9EFDA",
 };
 
 export default colors;
