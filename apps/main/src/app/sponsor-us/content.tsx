@@ -1,6 +1,5 @@
 import React from "react";
 import RecruitmentBenefits from "./recruitment";
-import SponsorTestimonials from "./SponsorTestimonials";
 
 const SponsorUsContent = () => {
   
