@@ -47,7 +47,7 @@ export default function PassportCard({
   );
 
   const sponsorTestimonialStyles = clsx(
-    "bg-[#F9EFDA] h-auto rounded-[2rem] absolute top-[22%] shadow-[0_12px_0px_-5px_rgba(221,198,168,1),0_20px_0px_-5px_rgba(0,0,0,0.25)] flex flex-col desktopxl:-space-y-8 py-10 px-10",
+    "bg-eggshell h-auto rounded-[2rem] absolute top-[22%] shadow-[0_12px_0px_-5px_rgba(221,198,168,1),0_20px_0px_-5px_rgba(0,0,0,0.25)] flex flex-col desktopxl:-space-y-8 py-10 px-10",
     isDesktop && "w-1/5 -space-y-3",
     isTablet && "w-1/3 -space-y-3 px-8",
     isMobile && "w-2/3 -space-y-12",
