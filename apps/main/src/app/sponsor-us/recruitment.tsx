@@ -4,11 +4,15 @@ import useDevice from "@util/hooks/useDevice";
 import clsx from "clsx";
 import React from "react";
 
-const RecruitmentBenefits = () => {
+type RecruitmentProps = {
+  className?: string;
+}
+
+const RecruitmentBenefits: React.FC<RecruitmentProps> = ({ className }) => {
   const { isDesktop, isTablet, isMobile } = useDevice();
 
   const innerContainerStyles = clsx(
-    "bg-teal rounded-2xl p-6 text-white w-[866px] h-auto",
+    "bg-teal rounded-2xl p-6 text-white w-[766px] h-auto",
     isTablet && "w-[600px] p-8",
     isMobile && "min-w-[300px] max-w-[350px]",
   );
@@ -25,7 +29,7 @@ const RecruitmentBenefits = () => {
   );  
 
   return (
-    <div className="z-10 w-full flex items-center justify-center">
+    <div className={`w-full flex items-center justify-center ${className}`}>
       <div className={innerContainerStyles}>
         <h2 className="text-left text-3xl font-GT-Walsheim-Trial font-medium mb-8">
           How can sponsoring HackBeanpot help your company?

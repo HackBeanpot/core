@@ -12,6 +12,7 @@ type SponsorProps = {
     height?: string;
   };
   content: React.ReactNode;
+  className?: string;
 };
 
 export default function SponsorTile(props: SponsorProps): React.ReactNode {
@@ -38,7 +39,7 @@ export default function SponsorTile(props: SponsorProps): React.ReactNode {
   const contentStyling = clsx("mb-2");
 
   return (
-    <div className={containerStyling}>
+    <div className={`${containerStyling} ${props.className}`}>
       <h6 className={titleClasses}>{props.title}</h6>
       <div className={dividerStyling} />
       <div className={contentStyling}>{props.content}</div>

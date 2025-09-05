@@ -5,6 +5,10 @@ import ArrowButton from "@repo/ui/ArrowButton";
 import Carousel from "@repo/ui/Carousel";
 import PaginationDots from "@repo/ui/PaginationDots";
 
+type SponsorTestimonialsProps = {
+  className?: string;
+}
+
 type CompanyTestimonial = {
   id: number;
   passportNumber: "0";
@@ -26,7 +30,7 @@ const defaultOrder: CompanyTestimonial[] = [
     lastName: "Khan",
     quote:
       '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly company, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
-    image: "/testing-logos/woodmacklogo.svg",
+    image: "/sponsor-logos/woodmacklogo.svg",
     isSponsor: true,
     company: "Wood Mackenzie",
     role: "CTO",
@@ -40,7 +44,7 @@ const defaultOrder: CompanyTestimonial[] = [
     lastName: "Khan",
     quote:
       '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly company, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
-    image: "/testing-logos/woodmacklogo.svg",
+    image: "/sponsor-logos/woodmacklogo.svg",
     isSponsor: true,
     company: "Wood Mackenzie",
     role: "CTO",
@@ -54,7 +58,7 @@ const defaultOrder: CompanyTestimonial[] = [
     lastName: "Khan",
     quote:
       '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly company, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
-    image: "/testing-logos/woodmacklogo.svg",
+    image: "/sponsor-logos/woodmacklogo.svg",
     isSponsor: true,
     company: "Wood Mackenzie",
     role: "CTO",
@@ -68,7 +72,7 @@ const defaultOrder: CompanyTestimonial[] = [
     lastName: "Khan",
     quote:
       '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly company, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
-    image: "/testing-logos/woodmacklogo.svg",
+    image: "/sponsor-logos/woodmacklogo.svg",
     isSponsor: true,
     company: "Wood Mackenzie",
     role: "CTO",
@@ -78,7 +82,7 @@ const defaultOrder: CompanyTestimonial[] = [
   },
 ];
 
-export default function SponsorTestimonialSection(): React.ReactNode {
+export default function SponsorTestimonialSection(props: SponsorTestimonialsProps): React.ReactNode {
   const [company, setCompany] = useState(defaultOrder);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -117,7 +121,7 @@ export default function SponsorTestimonialSection(): React.ReactNode {
     setCurrentPage(index);
   }
   return (
-    <div className="bg-eggshell w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center">
+    <div className={`w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center ${props.className}`}>
       <div className="w-full h-full">
         <div className="relative -top-72 mobile:-top-80">
           <Carousel items={company.slice(0, 3)} isSponsor={true} />

@@ -3,7 +3,7 @@ import type { SVGProps } from "react";
 const SponsorUsBackground = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1512 4860"
+    viewBox="0 0 1512 4000"
     fill="none"
     preserveAspectRatio="xMidYMid slice"
     {...props}
