@@ -25,7 +25,7 @@ const RecruitmentBenefits = () => {
   );  
 
   return (
-    <div className="bg-eggshell w-full flex items-center justify-center">
+    <div className="z-10 w-full flex items-center justify-center">
       <div className={innerContainerStyles}>
         <h2 className="text-left text-3xl font-GT-Walsheim-Trial font-medium mb-8">
           How can sponsoring HackBeanpot help your company?

@@ -1,10 +1,22 @@
+"use client"
+
 import React from "react";
 import RecruitmentBenefits from "./recruitment";
+import SponsorUsBackground from "../lib/Assets/SVG/SponsorAssets/SponsorUsBackground";
+import clsx from "clsx";
+import useDevice from "@util/hooks/useDevice";
 
 const SponsorUsContent = () => {
+  const { isDesktop } = useDevice();
+
+  const bgStyles = clsx(
+    "w-full",
+    isDesktop && "h-full",
+  );
+
   return (
     <>
-      <div className="bg-eggshell w-full">
+      <div className="bg-eggshell w-full drop-shadow-[0_8px_0px_rgba(0,0,0,.1)]">
         <div className="mx-auto px-7 mobile:max-w-1xl tablet:max-w-6xl desktop:max-w-6xl mobile:py-6 tablet:py-12 desktop:py-12">
           <h1
             className="mobile:text-5xl tablet:text-7xl desktop:text-7xl mt-[1rem]
@@ -33,7 +45,12 @@ const SponsorUsContent = () => {
           </button>
         </div>
       </div>
-      <RecruitmentBenefits />
+
+      <div className={bgStyles}>
+        <SponsorUsBackground className="z-0" />
+        <RecruitmentBenefits />
+      </div>
+
       {/* <SponsorTestimonials /> */}
     </>
   );
