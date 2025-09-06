@@ -25,25 +25,11 @@ type CompanyTestimonial = {
 
 const defaultOrder: CompanyTestimonial[] = [
   {
-    id: 0,
-    firstName: "Khushi",
-    lastName: "Khan",
-    quote:
-      '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly company, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
-    image: "/sponsor-logos/woodmacklogo.svg",
-    isSponsor: true,
-    company: "Wood Mackenzie",
-    role: "CTO",
-    passportNumber: "0",
-    year: "2025",
-    major: "Computer Science",
-  },
-  {
     id: 1,
-    firstName: "Khushi",
-    lastName: "Khan",
+    firstName: "Rob",
+    lastName: "Antczak",
     quote:
-      '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly company, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
+      '"If I could describe HBP in one word - invigorating. We had a lot of folks who weren’t  sure what the experience would be like, and they left feeling united - really energized and really impressed with the amount of talent that was on display as well as the  atmosphere."',
     image: "/sponsor-logos/woodmacklogo.svg",
     isSponsor: true,
     company: "Wood Mackenzie",
@@ -51,13 +37,13 @@ const defaultOrder: CompanyTestimonial[] = [
     passportNumber: "0",
     year: "2025",
     major: "Computer Science",
-  },
+  }, 
   {
     id: 2,
-    firstName: "Khushi",
-    lastName: "Khan",
+    firstName: "Rob",
+    lastName: "Antczak",
     quote:
-      '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly company, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
+      '"If I could describe HBP in one word - invigorating. We had a lot of folks who weren’t  sure what the experience would be like, and they left feeling united - really energized and really impressed with the amount of talent that was on display as well as the  atmosphere."',
     image: "/sponsor-logos/woodmacklogo.svg",
     isSponsor: true,
     company: "Wood Mackenzie",
@@ -65,13 +51,13 @@ const defaultOrder: CompanyTestimonial[] = [
     passportNumber: "0",
     year: "2025",
     major: "Computer Science",
-  },
+  }, 
   {
     id: 3,
-    firstName: "Khushi",
-    lastName: "Khan",
+    firstName: "Rob",
+    lastName: "Antczak",
     quote:
-      '"I joined the astronaut bootcamp event in 2021, and I wanted to highlight my great experience there. I was able to connect with friendly company, learn about web development through workshops, and have free pizza for lunch! It was a really unique experience I had during the weekend, and this event also gave me motivation for me to join my first hackathon event in bostonhacks!"',
+      '"If I could describe HBP in one word - invigorating. We had a lot of folks who weren’t  sure what the experience would be like, and they left feeling united - really energized and really impressed with the amount of talent that was on display as well as the  atmosphere."',
     image: "/sponsor-logos/woodmacklogo.svg",
     isSponsor: true,
     company: "Wood Mackenzie",
@@ -79,7 +65,7 @@ const defaultOrder: CompanyTestimonial[] = [
     passportNumber: "0",
     year: "2025",
     major: "Computer Science",
-  },
+  }
 ];
 
 export default function SponsorTestimonialSection(props: SponsorTestimonialsProps): React.ReactNode {
@@ -132,17 +118,17 @@ export default function SponsorTestimonialSection(props: SponsorTestimonialsProp
             direction="left"
             arrowButtonColor="beigeButton"
             onClick={onClickLeftArrow}
-            className="absolute left-28 top-[54%] transform -translate-y-1/2 z-20"
+            className="absolute bottom-[10vh] left-28  z-20"
           />
           <ArrowButton
             direction="right"
             arrowButtonColor="beigeButton"
             onClick={onClickRightArrow}
-            className="absolute right-28 top-[54%] transform -translate-y-1/2 z-20"
+            className="absolute bottom-[10vh] right-28  z-20"
           />
         </div>
 
-        <div className="absolute desktop:bottom-[3%] tablet:bottom-[2.5%] mobile:bottom-[1%] z-10 w-full">
+        <div className="absolute bottom-[35vh] z-10 w-full">
           <PaginationDots
             currentPage={currentPage}
             totalPages={company.length}
