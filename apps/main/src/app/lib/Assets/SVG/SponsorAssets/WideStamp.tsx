@@ -1,8 +1,8 @@
 import React from "react";
 
 type WideStampProps = {
-    className: string;
-}
+  className: string;
+};
 
 const WideStamp: React.FC<WideStampProps> = ({ className }) => (
   <svg

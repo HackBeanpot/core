@@ -1,7 +1,7 @@
 import * as React from "react";
 
-type BubbleStatsProps  = {
-    className: string;
+type BubbleStatsProps = {
+  className: string;
 };
 
 const BubbleStats: React.FC<BubbleStatsProps> = ({ className }) => (
