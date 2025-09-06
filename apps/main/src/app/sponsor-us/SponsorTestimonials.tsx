@@ -7,7 +7,7 @@ import PaginationDots from "@repo/ui/PaginationDots";
 
 type SponsorTestimonialsProps = {
   className?: string;
-}
+};
 
 type CompanyTestimonial = {
   id: number;
@@ -37,7 +37,7 @@ const defaultOrder: CompanyTestimonial[] = [
     passportNumber: "0",
     year: "2025",
     major: "Computer Science",
-  }, 
+  },
   {
     id: 2,
     firstName: "Rob",
@@ -51,7 +51,7 @@ const defaultOrder: CompanyTestimonial[] = [
     passportNumber: "0",
     year: "2025",
     major: "Computer Science",
-  }, 
+  },
   {
     id: 3,
     firstName: "Rob",
@@ -65,10 +65,12 @@ const defaultOrder: CompanyTestimonial[] = [
     passportNumber: "0",
     year: "2025",
     major: "Computer Science",
-  }
+  },
 ];
 
-export default function SponsorTestimonialSection(props: SponsorTestimonialsProps): React.ReactNode {
+export default function SponsorTestimonialSection(
+  props: SponsorTestimonialsProps,
+): React.ReactNode {
   const [company, setCompany] = useState(defaultOrder);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -107,7 +109,9 @@ export default function SponsorTestimonialSection(props: SponsorTestimonialsProp
     setCurrentPage(index);
   }
   return (
-    <div className={`w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center ${props.className}`}>
+    <div
+      className={`w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center ${props.className}`}
+    >
       <div className="w-full h-full">
         <div className="relative -top-72 mobile:-top-80">
           <Carousel items={company.slice(0, 3)} isSponsor={true} />

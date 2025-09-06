@@ -12,7 +12,9 @@ type RecruitmentStatsProps = {
   className?: string;
 };
 
-export default function RecruitmentStats(props: RecruitmentStatsProps): React.ReactNode {
+export default function RecruitmentStats(
+  props: RecruitmentStatsProps,
+): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   const stampTitleStyles = clsx(
@@ -63,7 +65,9 @@ export default function RecruitmentStats(props: RecruitmentStatsProps): React.Re
   ];
 
   return (
-    <div className={`relative w-full min-h-[400px] flex flex-col items-center justify-center ${props.className}`}>
+    <div
+      className={`relative w-full min-h-[400px] flex flex-col items-center justify-center ${props.className}`}
+    >
       <div className={stampTitleStyles}>
         <WideStamp className={stampStyles}></WideStamp>
         <h1 className="absolute z-10 text-3xl font-GT-Walsheim-Bold text-teal">

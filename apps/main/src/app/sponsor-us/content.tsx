@@ -16,18 +16,18 @@ const SponsorUsContent = () => {
   const bgStyles = clsx(
     "w-full relative z-0",
     isDesktop && "",
-    isMobile && "h-[200%]"
+    isMobile && "h-[200%]",
   );
   const sponsorPerksStyles = clsx(
     "",
     isDesktop && "absolute top-[90%] left-[10vw]",
-    isMobile && "absolute top-[240vh]"
+    isMobile && "absolute top-[200vh] scale-50",
   );
 
   const pastSponsorStyles = clsx(
     "",
     isDesktop && "absolute top-[110%] right-[10vw]",
-    isMobile && ""
+    isMobile && "scale-50 absolute top-[240vh]",
   );
 
   return (
@@ -64,11 +64,23 @@ const SponsorUsContent = () => {
 
       <div className={bgStyles}>
         {/*  */}
-        {isMobile ? <SponsorUsBackgroundMobile className="absolute z-0"/> : <SponsorUsBackground className="absolute z-0" />}
+        {isMobile ? (
+          <SponsorUsBackgroundMobile className="absolute z-0" />
+        ) : (
+          <SponsorUsBackground className="absolute z-0" />
+        )}
         <div className="flex flex-col space-y-80 items-center justify-center mt-44">
           <RecruitmentStats className="z-10 scale-125" />
-          <RecruitmentBenefits className={isMobile? "absolute top-[60vh] z-10 scale-125" : "z-10 scale-125"} />
-          <SponsorTestimonialSection className={isMobile? "absolute top-[130vh] z-10 scale-125" : "z-10"} />
+          <RecruitmentBenefits
+            className={
+              isMobile ? "absolute top-[60vh] z-10 scale-125" : "z-10 scale-125"
+            }
+          />
+          <SponsorTestimonialSection
+            className={
+              isMobile ? "absolute top-[130vh] z-10 scale-125" : "z-10"
+            }
+          />
 
           <div className={sponsorPerksStyles}>
             <SponsorTile
