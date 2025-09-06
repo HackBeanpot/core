@@ -27,7 +27,13 @@
     "packages/*"
   ],
   "dependencies": {
+    "@auth/mongodb-adapter": "^3.10.0",
+    "@types/nodemailer": "^6.4.17",
     "clsx": "^2.1.1",
-    "hamburger-react": "^2.5.2"
+    "hamburger-react": "^2.5.2",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.17.1",
+    "next-auth": "^4.24.11",
+    "nodemailer": "^6.10.1"
   }
 }
