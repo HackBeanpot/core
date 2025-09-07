@@ -5,6 +5,7 @@
     "build": "turbo build",
     "dev": "yarn turbo run dev --filter=@repo/ui --filter=main",
     "dev:live": "yarn turbo run dev --filter=@repo/ui --filter=live",
+    "dev:app": "yarn turbo run dev --filter=@repo/ui --filter=app-portal",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
