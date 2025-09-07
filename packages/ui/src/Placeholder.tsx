@@ -3,9 +3,9 @@
 import React from "react";
 import clsx from "clsx";
 import useDevice from "@repo/util/hooks/useDevice";
+import useCloudEffect from "@repo/util/hooks/useCloudEffect";
 
-import LeftCloud from "./PlaceholderAssets/LeftCloud";
-import RightCloud from "./PlaceholderAssets/RightCloud";
+import Cloud from "./PlaceholderAssets/Cloud";
 import LargeSign from "./PlaceholderAssets/LargeSign";
 import Logo from "./PlaceholderAssets/Logo";
 import ExternalLink from "./PlaceholderAssets/ExternalLink";
@@ -17,6 +17,40 @@ const InputBox: React.FC<{
   isTablet: boolean;
   isDesktop: boolean;
 }> = ({ isMobile, isTablet, isDesktop }) => {
+  const [email, setEmail] = React.useState("");
+  const [status, setStatus] = React.useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async () => {
+    if (!email) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/joinMailingList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setStatus(res.ok ? "success" : "error");
+      if (res.ok) setEmail("");
+    } catch {
+      setStatus("error");
+    } finally {
+      setTimeout(() => setStatus("idle"), 3000);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSubmit();
+  };
+
+  const buttonText =
+    status === "loading"
+      ? "Submitting…"
+      : status === "success"
+        ? "Subscribed!"
+        : "Notify Me";
+
   const containerClass = clsx(
     "relative grid grid-cols-2",
     isDesktop && "top-[-185%]",
@@ -32,29 +66,75 @@ const InputBox: React.FC<{
   );
 
   const buttonClass = clsx(
-    "hover:scale-105 transition-transform transition-duration-300 hover:bg-darkSeaFoam font-GT-Walsheim-Regular text-bold bg-seaFoam  text-white h-[5vh]",
+    "hover:scale-105 transition-transform hover:bg-darkSeaFoam font-GT-Walsheim-Regular bg-seaFoam text-white h-[5vh] disabled:opacity-50 disabled:cursor-not-allowed",
     isDesktop && "text-xl rounded-lg w-[8vw]",
     isTablet && "text-xl rounded-xl w-[15vw]",
     isMobile && "relative rounded-lg w-[25vw] left-[-30%]",
   );
+
+  const alert =
+    status === "success"
+      ? { text: "You’re on the list! Yayyy!!! 🎉", style: "bg-emerald-500" }
+      : status === "error"
+        ? { text: "Something went wrong. Try again.", style: "bg-rose-500" }
+        : null;
+
   return (
-    <div className={containerClass}>
-      <input className={inputClass} placeholder="Start your journey..." />
-      <button className={buttonClass}>Notify Me</button>
+    <div className="relative">
+      {alert && (
+        <div
+          role="alert"
+          className={`absolute -top-12 left-1/2 -translate-x-1/2 rounded-md px-4 py-2 text-white text-sm shadow-md ${alert.style}`}
+        >
+          {alert.text}
+        </div>
+      )}
+
+      <div className={containerClass}>
+        <input
+          className={inputClass}
+          placeholder="Start your journey..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyPress}
+          disabled={status === "loading"}
+        />
+        <button
+          className={buttonClass}
+          onClick={handleSubmit}
+          disabled={status === "loading"}
+        >
+          {buttonText}
+        </button>
+      </div>
     </div>
   );
 };
 
 export default function Placeholder(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
+  const leftCloudEffect = useCloudEffect();
+  const rightCloudEffect = useCloudEffect();
 
   const wrapperClass =
     "relative bg-gradient-to-b from-skyBlue to-sunnyBlue h-screen w-screen";
 
-  const leftCloudClass =
-    "absolute top-[10%] hover:scale-110 transition-transform transition-duration-3000";
-  const rightCloudClass =
-    "absolute right-0 top-[50%] hover:scale-110 transition-transform transition-duration-3000";
+  const leftCloudClass = clsx(
+    "absolute top-[10%]",
+    leftCloudEffect.wasCloudClicked &&
+      "animate-ping animate-once animate-duration-[1500ms]",
+    !leftCloudEffect.wasCloudClicked &&
+      "hover:scale-110 transition-transform transition-duration-3000",
+  );
+
+  const rightCloudClass = clsx(
+    "absolute right-0 top-[50%] hover:scale-110 transition-transform transition-duration-3000",
+    rightCloudEffect.wasCloudClicked &&
+      "animate-ping animate-once animate-duration-[1500ms]",
+    !rightCloudEffect.wasCloudClicked &&
+      "hover:scale-110 transition-transform transition-duration-3000",
+  );
+
   const logoClass = clsx(
     "absolute top-4 left-6 hover:scale-110 transition-transform transition-duration-300",
     isMobile && "left-4",
@@ -69,9 +149,9 @@ export default function Placeholder(): React.ReactNode {
 
   const largeSignClass = clsx(
     "relative left-0",
-    isDesktop && "col-span-3",
-    isTablet && "row-start-2 w-[65%] -mt-36",
     isMobile && "row-start-2 w-[85%] -mt-64",
+    isTablet && "row-start-2 w-[65%] top-[-34%]",
+    isDesktop && "col-span-3 scale-125 left-10",
   );
 
   const contentWrapperClass = clsx(
@@ -89,33 +169,46 @@ export default function Placeholder(): React.ReactNode {
   );
 
   const paragraphClass = clsx(
-    "font-GT-Walsheim-Regular ",
+    "font-GT-Walsheim-Regular",
     isDesktop && "text-xl",
     isTablet && "mt-4 text-xl",
     isMobile && "mt-2",
   );
 
   const socialIconsClass = clsx(
-    "absolute grid grid-cols-2 bottom-10 right-10",
+    "absolute grid grid-cols-2 gap-5 place-items-center bottom-10 right-10",
     isDesktop && "w-[6.5vw]",
     isTablet && "w-[14vw]",
     isMobile && "w-[24vw] right-6",
   );
+
   const contactWrapperClass = "absolute bottom-10 left-10 text-l";
   const emailClass =
     "font-GT-Walsheim-Regular underline hover:no-underline transition-transform transition-duration-300";
 
   return (
     <div className={wrapperClass}>
-      <div className={leftCloudClass}>
-        <LeftCloud />
+      <div
+        className={leftCloudClass}
+        onClick={() => leftCloudEffect.handleCloudClicks()}
+        onMouseEnter={() => leftCloudEffect.setHovering(true)}
+        onMouseLeave={() => leftCloudEffect.setHovering(false)}
+      >
+        <Cloud className="absolute -left-[300px] -top-24 scale-50" />
       </div>
 
-      <div className={rightCloudClass}>
-        <RightCloud />
+      <div
+        className={rightCloudClass}
+        onClick={() => rightCloudEffect.handleCloudClicks()}
+        onMouseEnter={() => rightCloudEffect.setHovering(true)}
+        onMouseLeave={() => rightCloudEffect.setHovering(false)}
+      >
+        <Cloud className="absolute -right-72 -top-24 scale-50" />
       </div>
 
-      <Logo className={logoClass} />
+      <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
+        <Logo className={logoClass} />
+      </ExternalLink>
 
       <div className={layoutClass}>
         <LargeSign className={largeSignClass} />
