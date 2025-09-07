@@ -9,7 +9,11 @@ const ProjectsContent = forwardRef<HTMLDivElement>((_, ref) => {
           LAST YEAR&apos;S PROJECTS
         </h1>
       </div>
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5 mb-[5rem] max-w-[1200px] mx-auto">
+      <section
+        className="grid gap-5 mb-[2rem] max-w-[1200px] mx-auto
+        [@media(max-width:640px)]:grid-cols-1
+        grid-cols-[repeat(auto-fit,minmax(300px,1fr))]"
+      >
         <a
           href="https://devpost.com/software/poqua"
           className="flex justify-center items-center"
@@ -95,7 +99,7 @@ const ProjectsContent = forwardRef<HTMLDivElement>((_, ref) => {
           />
         </a>
       </section>
-      <div className="flex justify-center items-center flex-col font-GT-Walsheim-Regular bg-[#FFF8EF] p-10 rounded-3xl mr-[2rem] ml-[2rem] drop-shadow-[0_8px_0px_rgba(0,0,0,.1)]">
+      <div className="flex justify-center items-center flex-col font-GT-Walsheim-Regular bg-[#FFF8EF] p-10 rounded-3xl mr-[2rem] ml-[3rem] mb-0 [@media(max-width:640px)]:mb-[16rem]">
         <div className="flex justify-center items-center flex-col">
           <h3 className="text-center text-3xl mb-[1rem] font-bold">
             Interested in seeing more Past Hacker Projects?

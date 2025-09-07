@@ -109,31 +109,34 @@ export default function TestimonialSection(): React.ReactNode {
     setCurrentPage(index);
   }
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center">
       <TestimonialsBackground
-        height={1080}
-        width={1920}
-        preserveAspectRatio="none"
+        className="w-full desktop:h-[140vh] mobile:h-[120vh]"
+        preserveAspectRatio="xMidYMax slice"
       />
-      <div className="absolute h-full font-bold text-center text-[#B2A0C2] p-8 font-Wilden-Regular">
+      <div className="absolute h-full font-bold text-[#B2A0C2]  font-Wilden-Regular mobile:mt-[-20vh] desktop:mt-[-7%]">
         <StreetSign streetName="Testimonials" suffix="ST" />
       </div>
 
-      <div className="absolute w-full h-full">
+      <div className="absolute w-full h-full mobile:mt-[-20vh] desktop:mt-[-7%]">
         <Carousel items={people.slice(0, 3)} />
-        <ArrowButton
-          direction="left"
-          arrowButtonColor="greenButton"
-          onClick={onClickLeftArrow}
-          className="absolute left-5 top-[54%] transform -translate-y-1/2 z-20"
-        />
-        <ArrowButton
-          direction="right"
-          arrowButtonColor="greenButton"
-          onClick={onClickRightArrow}
-          className="absolute right-10 top-[54%] transform -translate-y-1/2 z-20"
-        />
-        <div className="absolute bottom-[5%] z-10 w-full">
+
+        <div className="desktop:flex mobile:hidden">
+          <ArrowButton
+            direction="left"
+            arrowButtonColor="greenButton"
+            onClick={onClickLeftArrow}
+            className="absolute left-20 top-[54%] transform -translate-y-1/2 z-20"
+          />
+          <ArrowButton
+            direction="right"
+            arrowButtonColor="greenButton"
+            onClick={onClickRightArrow}
+            className="absolute right-24 top-[54%] transform -translate-y-1/2 z-20"
+          />
+        </div>
+
+        <div className="absolute bottom-[-15%] z-10 w-full">
           <PaginationDots
             currentPage={currentPage}
             totalPages={people.length}
