@@ -328,8 +328,6 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
           handleClick={handleClick}
         />
       </div>
-
-      
     </div>
   );
 });

@@ -15,7 +15,7 @@ const RecruitmentBenefits: React.FC<RecruitmentProps> = ({ className }) => {
     "bg-teal rounded-2xl p-6 text-white h-auto",
     isDesktop && "w-[766px]",
     isTablet && "w-[600px] p-8",
-    isMobile && "w-[65vw] rounded-xl"
+    isMobile && "w-[65vw] rounded-xl",
   );
 
   const gridStyling = clsx("grid gap-8", isMobile ? "" : "grid-cols-2");
@@ -23,25 +23,25 @@ const RecruitmentBenefits: React.FC<RecruitmentProps> = ({ className }) => {
   const recruitmentPhotoStyles = clsx(
     "relative",
     isTablet && "top-20",
-    isDesktop && "top-6"
+    isDesktop && "top-6",
   );
 
   const h2Styles = clsx(
     "text-left font-GT-Walsheim-Trial font-medium ",
     isDesktop && "text-3xl mb-8",
-    isMobile && "mb-2"
+    isMobile && "mb-2",
   );
 
   const h3Styles = clsx(
     "font-GT-Walsheim-Trial font-bold",
     isDesktop && "text-xl mb-2",
-    isMobile && "text-xs mb-1"
+    isMobile && "text-xs mb-1",
   );
 
   const pStyles = clsx(
     "font-GT-Walsheim-Trial ",
     isDesktop && "text-md mb-6",
-    isMobile && "text-xs"
+    isMobile && "text-xs",
   );
 
   return (

@@ -110,7 +110,7 @@ export default function SponsorTestimonialSection(
   }
   return (
     <div
-      className={`w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center ${props.className} mobile:scale-75`}
+      className={`w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center ${props.className} mobile:scale-75 desktop:scale-100`}
     >
       <div className="w-full h-full">
         <div className="relative -top-72 mobile:-top-80">
