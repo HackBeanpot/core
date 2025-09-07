@@ -10,7 +10,7 @@ import AboutParagraph from "../../lib/Assets/SVG/AboutAssets/AboutParagraph";
 import Journal2 from "../../lib/Assets/SVG/AboutAssets/Journal2";
 export default function About(): React.ReactNode {
   return (
-    <div className="w-full h-[100vh] bg-[#F3E7D7] flex flex-col">
+    <div className="w-full desktop:h-[110vh] mobile:h-[100vh] bg-[#F3E7D7] flex flex-col">
       <div className="w-[100vw]">
         <TopAboutBar />
       </div>

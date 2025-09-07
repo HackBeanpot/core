@@ -11,7 +11,7 @@ import RockVariant4 from "../../lib/Assets/SVG/Rocks/RockVariant4";
 
 const ValuesIntroContent = (
   <div className="mx-auto font-Wilden">
-    <p className="text-4xl tablet:text-8xl text-[#F3E7D7] sm:text-[#EC765A] whitespace-pre-line">
+    <p className="mobile:text-4xl desktop:text-8xl tablet:text-8xl text-[#F3E7D7] sm:text-[#EC765A] whitespace-pre-line">
       {"WHAT \n HACKBEANPOT \n IS ALL ABOUT"}
     </p>
   </div>
@@ -90,17 +90,17 @@ const rocks = (
 
 const content = (
   <div>
-    <div className="w-full h-[140vh] text-[#474747] grid grid-cols-1 tablet:grid-cols-2 tablet:grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
-      <div className="w-full bg-[#EC765A] flex flex-col justify-center font-Wilden">
+    <div className="w-full desktop:h-[140vh] mobile:h-auto text-[#474747] grid grid-cols-1 tablet:grid-cols-2 tablet:grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
+      <div className="w-full bg-[#EC765A] flex flex-col justify-center font-Wilden mobile:py-5">
         <Box>{ValuesIntroContent}</Box>
       </div>
-      <div className="w-full bg-[#E2D16D] flex flex-col justify-center">
+      <div className="w-full bg-[#E2D16D] flex flex-col justify-center mobile:py-5">
         <Box>{ValuesExplorationContent}</Box>
       </div>
-      <div className="w-full bg-[#5BB9B3] flex flex-col justify-center">
+      <div className="w-full bg-[#5BB9B3] flex flex-col justify-center mobile:py-5">
         <Box>{ValuesCommunityContent}</Box>
       </div>
-      <div className="w-full bg-[#D5CAE7] flex flex-col justify-center">
+      <div className="w-full bg-[#D5CAE7] flex flex-col justify-center mobile:py-5">
         <Box>{ValuesGrowthContent}</Box>
       </div>
     </div>
