@@ -42,7 +42,7 @@
   @font-face {
     font-family: "DMSans-Medium";
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     font-display: swap;
     src: url("./DMSans-Medium.ttf")
       format("truetype");
@@ -53,6 +53,22 @@
     font-weight: 400;
     font-display: swap;
     src: url("./DMSans-Regular.ttf")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "DMSans-Bold";
+    font-style:  bold;
+    font-weight: 700;
+    font-display: swap;
+    src: url("./DMSans-Bold.ttf")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "Sancreek-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./Sancreek-Regular.ttf")
       format("truetype");
   }
 }

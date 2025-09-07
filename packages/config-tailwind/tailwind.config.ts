@@ -26,6 +26,9 @@ const config: Omit<Config, "content"> = {
         popAndShrink: popAndShrink.animation,
       },
       fontFamily: {
+        "DMSans-": ["'DM-Sans-Regular'"],
+        "DMSans-Bold": ["'DMSans-Bold'"],
+        "Sancreek-Regular": ["'Sancreek-Regular'"],
         "GT-Walsheim-Regular": ["'GT-Walsheim-Regular'"],
         "GT-Walsheim-Bold": ["'GT-Walsheim-Bold'"],
         "Big-Shoulders-Display": ['"Big-Shoulders-Display"'],
