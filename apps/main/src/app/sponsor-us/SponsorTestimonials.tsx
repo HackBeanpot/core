@@ -110,7 +110,7 @@ export default function SponsorTestimonialSection(
   }
   return (
     <div
-      className={`w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center ${props.className}`}
+      className={`w-full min-h-[400px] tablet:min-h-[700px] mobile:min-h-[800px] flex flex-col items-center justify-center ${props.className} mobile:scale-75 desktop:scale-100`}
     >
       <div className="w-full h-full">
         <div className="relative -top-72 mobile:-top-80">
@@ -132,7 +132,7 @@ export default function SponsorTestimonialSection(
           />
         </div>
 
-        <div className="absolute bottom-[35vh] z-10 w-full">
+        <div className="absolute desktop:bottom-[30vh] mobile:bottom-[35vh] z-10 w-full">
           <PaginationDots
             currentPage={currentPage}
             totalPages={company.length}

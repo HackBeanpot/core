@@ -49,7 +49,9 @@ const NavBar = () => {
             <LocalLink
               href={""}
               className="bg-green text-xl flex items-center px-5 text-text-light"
-              onClick={() => alert("apply not implemented yet")}
+              onClick={() =>
+                alert("Applications for this year's event are no longer open!")
+              }
             >
               Apply
             </LocalLink>

@@ -12,7 +12,8 @@ const RecruitmentBenefits: React.FC<RecruitmentProps> = ({ className }) => {
   const { isDesktop, isTablet, isMobile } = useDevice();
 
   const innerContainerStyles = clsx(
-    "bg-teal rounded-2xl p-6 text-white w-[766px] h-auto",
+    "bg-teal rounded-2xl p-6 text-white h-auto",
+    isDesktop && "w-[766px]",
     isTablet && "w-[600px] p-8",
     isMobile && "w-[65vw] rounded-xl",
   );
@@ -75,15 +76,14 @@ const RecruitmentBenefits: React.FC<RecruitmentProps> = ({ className }) => {
               or mentoring hackers that are eager to hear your advice and
               implement your technologies for their projects.
             </p>
-            {isMobile ? null : (
-              <div className="relative">
-                <img
-                  src="/image2.png"
-                  className="rounded-2xl mt-4"
-                  alt="HackBeanpot Hackers"
-                />
-              </div>
-            )}
+
+            <div className="relative">
+              <img
+                src="/image2.png"
+                className="rounded-2xl mt-4"
+                alt="HackBeanpot Hackers"
+              />
+            </div>
           </div>
         </div>
       </div>

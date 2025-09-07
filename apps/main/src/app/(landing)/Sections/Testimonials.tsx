@@ -111,14 +111,14 @@ export default function TestimonialSection(): React.ReactNode {
   return (
     <div className="w-full flex flex-col items-center justify-center">
       <TestimonialsBackground
-        className="w-full h-[140vh]"
+        className="w-full desktop:h-[140vh] mobile:h-[120vh]"
         preserveAspectRatio="xMidYMax slice"
       />
-      <div className="absolute h-full font-bold text-[#B2A0C2]  font-Wilden-Regular mt-[-7%]">
+      <div className="absolute h-full font-bold text-[#B2A0C2]  font-Wilden-Regular mobile:mt-[-20vh] desktop:mt-[-7%]">
         <StreetSign streetName="Testimonials" suffix="ST" />
       </div>
 
-      <div className="absolute w-full h-full mt-[-7%]">
+      <div className="absolute w-full h-full mobile:mt-[-20vh] desktop:mt-[-7%]">
         <Carousel items={people.slice(0, 3)} />
 
         <div className="desktop:flex mobile:hidden">
