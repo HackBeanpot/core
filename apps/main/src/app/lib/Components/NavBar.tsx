@@ -49,7 +49,9 @@ const NavBar = () => {
             <LocalLink
               href={""}
               className="bg-green text-xl flex items-center px-5 text-text-light"
-              onClick={() => alert("apply not implemented yet")}
+              onClick={() =>
+                alert("Applications for this year's event are no longer open!")
+              }
             >
               Apply
             </LocalLink>
@@ -93,22 +95,26 @@ const NavBar = () => {
           >
             Team
           </LocalLink>
-          <LocalLink
-            href={"/sponsor-us"}
-            className="bg-orange text-xl flex items-center px-5 text-text-light"
-          >
-            Sponsor Us
-          </LocalLink>
-          <LocalLink
-            href={""}
-            className="block bg-green text-text-light px-3 py-2 rounded"
-            onClick={() => {
-              setOpen(false);
-              alert("apply not implemented yet");
-            }}
-          >
-            Apply
-          </LocalLink>
+
+          {/* Stacked buttons with no space between */}
+          <div className="flex flex-col">
+            <LocalLink
+              href={"/sponsor-us"}
+              className="bg-orange text-lg flex items-center px-2 py-3 text-text-light"
+            >
+              Sponsor Us
+            </LocalLink>
+            <LocalLink
+              href={""}
+              className="bg-green text-lg text-text-light px-2 py-3"
+              onClick={() => {
+                setOpen(false);
+                alert("apply not implemented yet");
+              }}
+            >
+              Apply
+            </LocalLink>
+          </div>
         </div>
       )}
     </div>

@@ -27,7 +27,7 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
       <h2 className="text-2xl tablet:text-4xl text-black font-semibold font-GT-Walsheim-Regular mb-6 tablet:mb-4">
         {team}
       </h2>
-      <div className="grid grid-cols-2 tablet:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 tablet:gap-8 justify-items-center">
+      <div className="grid mobile:grid-cols-2 desktop:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 tablet:gap-8 justify-items-center">
         {teams[team].map((member) => (
           <Headshot key={member.name} name={member.name} src={member.src} />
         ))}

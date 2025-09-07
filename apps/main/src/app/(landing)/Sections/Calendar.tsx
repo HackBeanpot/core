@@ -8,10 +8,10 @@ import TitleBox from "@repo/ui/TitleBox";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 
 // import CalendarBackground from "./CalendarBackground";
-import EventsBackground from "../../../lib/Assets/SVG/EventsBackground";
-import RockVariant2 from "../../../lib/Assets/SVG/Rocks/RockVariant2";
-import RockVariant3 from "../../../lib/Assets/SVG/Rocks/RockVariant3";
-import RockVariant4 from "../../../lib/Assets/SVG/Rocks/RockVariant4";
+import EventsBackground from "../../lib/Assets/SVG/EventsBackground";
+import RockVariant2 from "../../lib/Assets/SVG/Rocks/RockVariant2";
+import RockVariant3 from "../../lib/Assets/SVG/Rocks/RockVariant3";
+import RockVariant4 from "../../lib/Assets/SVG/Rocks/RockVariant4";
 import PaginationDots from "@repo/ui/PaginationDots";
 
 // mobile check
@@ -275,6 +275,15 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
       className="relative flex flex-col w-full min-h-screen items-center justify-center overflow-hidden"
       ref={ref}
     >
+      <div className="mobile:hidden tablet:block absolute z-10 top-0 right-64">
+        <RockVariant3 />
+      </div>
+      <div className="mobile:hidden tablet:block absolute z-10 top-6 right-24 ">
+        <RockVariant4 />
+      </div>
+      <div className="mobile:hidden tablet:block absolute z-10 -top-20 right-32">
+        <RockVariant2 />
+      </div>
       <div className="absolute inset-0 z-0 w-full h-full">
         <EventsBackground
           height="100%"
@@ -318,16 +327,6 @@ export const CalendarSection = forwardRef<HTMLDivElement>((_, ref) => {
           color="orange"
           handleClick={handleClick}
         />
-      </div>
-
-      <div className="mobile:hidden tablet:block absolute z-10 top-0 right-64">
-        <RockVariant3 />
-      </div>
-      <div className="mobile:hidden tablet:block absolute z-10 top-6 right-24 ">
-        <RockVariant4 />
-      </div>
-      <div className="mobile:hidden tablet:block absolute z-10 -top-20 right-32">
-        <RockVariant2 />
       </div>
     </div>
   );
