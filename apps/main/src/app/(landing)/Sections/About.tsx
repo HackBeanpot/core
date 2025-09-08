@@ -1,13 +1,21 @@
 "use client";
 
 import React from "react";
+import Button from "@repo/ui/Button";
 // import clsx from "clsx";
 // import useDevice from "@repo/util/hooks/useDevice";
 
 export default function About(): React.ReactNode {
+  // example for buttons, remove whenever
   return (
     <>
-      <h1 className="font-NeulisNeue-Bold">Hello</h1>
+      <Button
+        text="Back to top"
+        color="firecrackerRedLight"
+        textColor="white"
+        // icon={<FaArrowUp />}
+      />
+      <Button text="Submit" color="marigoldYellow" />
     </>
   );
 }

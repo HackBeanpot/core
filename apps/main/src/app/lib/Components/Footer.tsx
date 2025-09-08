@@ -15,9 +15,7 @@ const Footer = () => {
   //   setMailingEmail(e.target.value);
   // };
 
-  const FooterContent = (
-    <div></div>
-  );
+  const FooterContent = <div></div>;
 
   return FooterContent;
 };
