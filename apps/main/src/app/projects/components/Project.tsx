@@ -23,9 +23,7 @@ import React from "react";
 
 // DELETE THIS AND UNCOMMENT THE ABOVE TO USE PROJECT FUNC TEMPLATE
 function Project() {
-  return (
-    <></>
-  );
+  return <></>;
 }
 
 export default Project;

@@ -9,10 +9,7 @@ const NavBar = () => {
   // const [isOpen, setOpen] = useState(false);
   // const isMobile = useIsMobileLgScreen();
 
-  return (
-    <div className="sticky top-0 z-[50] w-full">
-    </div>
-  );
+  return <div className="sticky top-0 z-[50] w-full"></div>;
 };
 
 export default NavBar;

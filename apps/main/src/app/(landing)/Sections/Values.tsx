@@ -5,7 +5,5 @@ import React from "react";
 // import useDevice from "@repo/util/hooks/useDevice";
 
 export default function Values(): React.ReactNode {
-  return (
-    <></>
-  );
-};
+  return <></>;
+}
