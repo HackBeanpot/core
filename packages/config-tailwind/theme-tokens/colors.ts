@@ -77,6 +77,9 @@ const colors = {
   ribbonBlueDark: "#62A0A6", 
   starlightBlueDark: "#091F36", 
   mysticPurpleDark: "#59225D", 
+
+  
+
 };
 
 export default colors;
