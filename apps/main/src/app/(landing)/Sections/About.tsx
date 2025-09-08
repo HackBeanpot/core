@@ -6,6 +6,8 @@ import React from "react";
 
 export default function About(): React.ReactNode {
   return (
-    <></>
+    <>
+      <h1 className="font-NeulisNeue-Bold">Hello</h1>
+    </>
   );
 }
