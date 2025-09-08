@@ -6,12 +6,6 @@ import LinkedInLogo from "@repo/ui/LinkedInLogo";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import OurTeamDropdown from "../OurTeamDropdown";
 
-import {
-  TeamsBottomSquiggle,
-  TeamsMiddleSquiggle,
-  TeamsTopSquiggle,
-} from "../../lib/Assets/SVG";
-
 type HeadshotProps = {
   name: string;
   src: string;
@@ -27,7 +21,7 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
       <h2 className="text-2xl tablet:text-4xl text-black font-semibold font-GT-Walsheim-Regular mb-6 tablet:mb-4">
         {team}
       </h2>
-      <div className="grid mobile:grid-cols-2 desktop:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 tablet:gap-8 justify-items-center">
+      <div className="grid grid-cols-2 tablet:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 tablet:gap-8 justify-items-center">
         {teams[team].map((member) => (
           <Headshot key={member.name} name={member.name} src={member.src} />
         ))}
@@ -157,9 +151,7 @@ const Teams = () => {
   return (
     <div className="relative w-full min-h-screen">
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        <TeamsTopSquiggle className="w-[110vw] -mt-[130vh] tablet:-mt-48 -ml-[5vw]" />
-        <TeamsMiddleSquiggle className="w-[110vw] -ml-[10vw]" />
-        <TeamsBottomSquiggle className="w-[110vw] -ml-[5vw]" />
+        
       </div>
 
       <div className="relative z-10">
