@@ -64,6 +64,22 @@
       format("truetype");
   }
   @font-face {
+    font-family: "NeulisNeue-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./NeulisNeue-Regular.otf")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "NeulisNeue-Bold";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("./NeulisNeue-Bold.otf")
+      format("truetype");
+  }
+  @font-face {
     font-family: "Sancreek-Regular";
     font-style: normal;
     font-weight: 400;
