@@ -1,6 +1,8 @@
 // import Image from "next/image";
 import React from "react";
 
+// const ProjectCard = <div></div>;
+
 // interface ProjectProps {
 //   projectImage: string;
 //   projectName: string;
@@ -16,14 +18,11 @@ import React from "react";
 //   members,
 //   description,
 // }: ProjectProps) {
-//   return (
-//     <></>
-//   );
+//   return <>{ProjectCard}</>;
 // }
 
-// DELETE THIS AND UNCOMMENT THE ABOVE TO USE PROJECT FUNC TEMPLATE
-function ProjectCard() {
+function Project() {
   return <></>;
 }
 
-export default ProjectCard;
+export default Project;
