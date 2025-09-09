@@ -22,8 +22,8 @@ import React from "react";
 // }
 
 // DELETE THIS AND UNCOMMENT THE ABOVE TO USE PROJECT FUNC TEMPLATE
-function Project() {
+function ProjectCard() {
   return <></>;
 }
 
-export default Project;
+export default ProjectCard;
