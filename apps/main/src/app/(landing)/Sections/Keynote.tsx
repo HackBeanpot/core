@@ -2,10 +2,12 @@
 
 import React from "react";
 // absolute or next path (has to define in tsconfig)
-import Tent from "../../lib/Assets/SVG/tent.tsx";
+// import Tent from "../../lib/Assets/SVG/tent.tsx";
 // import clsx from "clsx";
 // import useDevice from "@repo/util/hooks/useDevice";
-
+// import Banner from "../../lib/Assets/SVG/banner.tsx";
+// import Popcorn from "../../lib/Assets/SVG/popcorn.tsx";
+import KeynoteSpeaker from "../../lib/Assets/SVG/KeynoteSpeaker.tsx";
 export default function Keynote(): React.ReactNode {
   return (
     <>
@@ -15,7 +17,7 @@ export default function Keynote(): React.ReactNode {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
           quos.
         </p>
-        <Tent />
+        <KeynoteSpeaker />
       </div>
     </>
   );
