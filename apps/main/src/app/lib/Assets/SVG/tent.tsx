@@ -9,7 +9,7 @@ const Tent = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_707_15325)">
+      <g clipPath="url(#clip0_707_15325)">
         <rect
           x="104.143"
           y="462.001"
@@ -235,7 +235,7 @@ const Tent = () => {
           width="600.591"
           height="54.5839"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
@@ -269,7 +269,7 @@ const Tent = () => {
           width="137"
           height="416.49"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
@@ -303,7 +303,7 @@ const Tent = () => {
           width="600.591"
           height="54.5839"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
