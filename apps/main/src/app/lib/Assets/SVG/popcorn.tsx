@@ -1,7 +1,11 @@
 import React from "react";
-const Popcorn: React.FC = () => {
+interface PopcornProps {
+  className?: string;
+}
+const Popcorn: React.FC<PopcornProps> = ({ className }) => {
   return (
     <svg
+      className={className}
       width="96"
       height="130"
       viewBox="0 0 96 130"

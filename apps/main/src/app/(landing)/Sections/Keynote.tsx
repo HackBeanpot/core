@@ -6,17 +6,17 @@ import React from "react";
 // import clsx from "clsx";
 // import useDevice from "@repo/util/hooks/useDevice";
 // import Banner from "../../lib/Assets/SVG/banner.tsx";
-// import Popcorn from "../../lib/Assets/SVG/popcorn.tsx";
+import Popcorn from "../../lib/Assets/SVG/popcorn.tsx";
 import KeynoteSpeaker from "../../lib/Assets/SVG/KeynoteSpeaker.tsx";
+import GuestPhoto from "../../lib/Assets/SVG/guestphoto.tsx";
 export default function Keynote(): React.ReactNode {
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
+      <div className="relative flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold">Keynote</h1>
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
-        </p>
+        <p className="text-lg">Lorem ipsum dolor sit amet...</p>
+        <GuestPhoto />
+        <Popcorn className="absolute top-[750px] left-[560px] w-24 h-24" />
         <KeynoteSpeaker />
       </div>
     </>
