@@ -19,6 +19,6 @@ export default function About(): React.ReactNode {
         // icon={<FaArrowUp />}
       />
       <Button text="Submit" color="marigoldYellow" />
-    </div> 
+    </div>
   );
 }
