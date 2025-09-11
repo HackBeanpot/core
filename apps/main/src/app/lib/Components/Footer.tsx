@@ -48,7 +48,7 @@ const InputField = ({
 
 const Footer = () => {
   const [mailingEmail, setMailingEmail] = useState<string>("");
-  const { isMobile, isTablet, isDesktop } = useDevice();
+  const { isMobile, isTablet } = useDevice();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMailingEmail(e.target.value);
