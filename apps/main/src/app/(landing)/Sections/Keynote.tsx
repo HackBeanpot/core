@@ -11,10 +11,10 @@ import GuestPhoto from "../../lib/Assets/SVG/guestphoto.tsx";
 export default function Keynote(): React.ReactNode {
   return (
     <>
-      <div className="border relative flex flex-col items-center justify-center w-full">
-        <KeynoteSpeaker className="border" />
-        <div className="border mx-[20%] absolute tablet:top-[105%] desktop:top-[55%] flex lg:flex-row sm:flex-col justify-center gap-8">
-        <GuestPhoto className="border w-80 h-80" />
+      <div className="border relative flex items-center justify-center w-full">
+        <KeynoteSpeaker className="relative" />
+        <div className="border mx-[20%] absolute mobile:top-0 tablet:top-[55%] desktop:top-[55%] flex flex-row mobile:flex-col tablet:flex-col desktop:flex-row justify-center items-center gap-8">
+          <GuestPhoto className="border mobile:w-20 mobile:h-20 tablet:w-56 tablet:h-56 desktop:w-80 desktop:h-80" />
           <div className="border max-w-lg text-left space-y-2">
             <div className="tablet:text-charcoalFog desktop:text-white text-3xl font-semibold font-['NeulisNeue-Bold'] leading-relaxed">
               Jamie Chen
