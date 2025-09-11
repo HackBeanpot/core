@@ -1,11 +1,16 @@
 import React from "react";
 
-const KeynoteSpeaker: React.FC = () => {
+type KeynoteSpeakerProps = {
+  className?: string;
+};
+
+const KeynoteSpeaker: React.FC<KeynoteSpeakerProps> = ({ className }) => {
   return (
     <svg
-      width="2000"
-      height="983"
-      viewBox="0 0 2000 983"
+      className={className}
+      width={className ? undefined : "2000"}
+      height={className ? undefined : "983"}
+      viewBox="389 0 1200 983"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

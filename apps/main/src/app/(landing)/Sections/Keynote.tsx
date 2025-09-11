@@ -11,21 +11,22 @@ import GuestPhoto from "../../lib/Assets/SVG/guestphoto.tsx";
 export default function Keynote(): React.ReactNode {
   return (
     <>
-      <div className="relative flex flex-col items-center justify-center">
-        <KeynoteSpeaker /> 
-        <GuestPhoto className="absolute top-[550px] left-[560px] w-80 h-80" />
-        {/* Text positioned inside the black portion of the tent */}
-        <div className="absolute top-[560px] left-1/2 transform -translate-x-1/4 px-7 max-w-lg text-left">
-          <div className="text-white text-3xl font-semibold font-['NeulisNeue-Bold'] leading-relaxed">
-            Jamie Chen
-          </div>
-          <div className="text-left text-white text-base font-light font-['DMSans-Regular'] leading-relaxed">
-            Jamie Chen is Director of Product Engineering at Luma Labs, where
-            she leads teams building ethical, user-focused AI tools. With a
-            background in computer science and over a decade in tech, she&apos;s
-            known for her leadership in inclusive innovation. Jamie also mentors
-            emerging engineers and speaks on ethical development and tech for
-            social good.
+      <div className="border relative flex flex-col items-center justify-center w-full">
+        <KeynoteSpeaker className="border"/>
+        <div className="border mx-[20%] absolute top-[55%] flex lg:flex-row sm:flex-col justify-center gap-8">
+            <GuestPhoto className="border w-80 h-80" />
+            <div className="border max-w-lg text-left space-y-2">
+              <div className="text-white text-3xl font-semibold font-['NeulisNeue-Bold'] leading-relaxed">
+                Jamie Chen
+              </div>
+              <div className="text-white text-base font-light font-['DMSans-Regular'] leading-relaxed">
+                Jamie Chen is Director of Product Engineering at Luma Labs, where
+                she leads teams building ethical, user-focused AI tools. With a
+                background in computer science and over a decade in tech, she&apos;s
+                known for her leadership in inclusive innovation. Jamie also mentors
+                emerging engineers and speaks on ethical development and tech for
+                social good.
+              </div>
           </div>
         </div>
       </div>
