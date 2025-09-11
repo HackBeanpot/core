@@ -11,7 +11,7 @@ const config: Omit<Config, "content"> = {
         body: "clamp(0.875rem, 2vw, 1.625rem)", // 14px → 26px
         button: "clamp(0.875rem, 1.8vw, 1.5rem)", // 14px → 24px
         signLarge: "clamp(2.12rem, 10vw, 4.45rem)", // 33.94px → 71.27px
-        signSmall: "clamp(0.90rem, 15vw, 2rem)", // 14.44px → 30.33px
+        RibbonTitle: "clamp(0.90rem, 15vw, 2rem)", // 14.44px → 30.33px
       },
       backgroundImage: {
         "glow-conic":
