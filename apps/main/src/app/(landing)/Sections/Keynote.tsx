@@ -13,13 +13,13 @@ export default function Keynote(): React.ReactNode {
     <>
       <div className="border relative flex flex-col items-center justify-center w-full">
         <KeynoteSpeaker className="border"/>
-        <div className="border mx-[20%] absolute top-[55%] flex lg:flex-row sm:flex-col justify-center gap-8">
+        <div className="border desktop:mx-[20%] tablet:top-[105%] absolute top-[55%] flex lg:flex-row sm:flex-col justify-center desktop:gap-8">
             <GuestPhoto className="border w-80 h-80" />
-            <div className="border max-w-lg text-left space-y-2">
-              <div className="text-white text-3xl font-semibold font-['NeulisNeue-Bold'] leading-relaxed">
+            <div className="border max-w-lg text-left tablet:space-y-1 desktop:space-y-2">
+              <div className="tablet:text-charcoalFog desktop:text-white text-3xl font-semibold font-['NeulisNeue-Bold'] tablet:leading-1 desktop:leading-relaxed">
                 Jamie Chen
               </div>
-              <div className="text-white text-base font-light font-['DMSans-Regular'] leading-relaxed">
+              <div className="tablet:text-charcoalFog tablet:text-[14px] desktop:text-white desktop:text-2xl text-base font-light font-['DMSans-Regular'] tablet:leading-1 desktop:leading-relaxed">
                 Jamie Chen is Director of Product Engineering at Luma Labs, where
                 she leads teams building ethical, user-focused AI tools. With a
                 background in computer science and over a decade in tech, she&apos;s
