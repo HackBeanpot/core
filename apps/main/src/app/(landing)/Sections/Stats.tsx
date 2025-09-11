@@ -7,8 +7,8 @@ import StatsPage from "../../lib/Assets/SVG/StatsPage";
 
 export default function Stats(): React.ReactNode {
   return (
-      <div className="w-screen h-screen overflow-hidden">
-        <StatsPage className="w-full h-auto"/>
-      </div>
+    <div className="w-screen h-screen overflow-hidden">
+      <StatsPage className="w-full h-auto" />
+    </div>
   );
 }
