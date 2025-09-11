@@ -11,4 +11,5 @@ const screens = {
   mobile: { max: "481 px" },
 };
 
+
 export default screens;
