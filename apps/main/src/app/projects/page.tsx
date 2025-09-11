@@ -21,19 +21,14 @@ export default function Page() {
     <main className="flex flex-col items-center min-h-screen relative">
       <div className="absolute top-10">
         {projectData.map((project, index) => (
-          <a
+          <Project
             key={index}
-            href={project.link}
-            className="flex justify-center items-center my-4"
-          >
-            <Project
-              projectImage={project.projectImage}
-              projectName={project.projectName}
-              award={project.award}
-              members={project.members}
-              description={project.description}
-            />
-          </a>
+            projectImage={project.projectImage}
+            projectName={project.projectName}
+            url={project.link}
+            members={project.members}
+            description={project.description}
+          />
         ))}
       </div>
     </main>
