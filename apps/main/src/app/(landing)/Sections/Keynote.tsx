@@ -21,8 +21,8 @@ export default function Keynote(): React.ReactNode {
         <div className="absolute top-[605px] left-1/2 transform -translate-x-1/4 max-w-lg mx-auto text-left text-white text-md font-light font-['DMSans-Regular'] leading-relaxed px-8">
           Jamie Chen is Director of Product Engineering at Luma Labs, where she
           leads teams building ethical, user-focused AI tools. With a background
-          in computer science and over a decade in tech, she&apos;s known for her
-          leadership in inclusive innovation. Jamie also mentors emerging
+          in computer science and over a decade in tech, she&apos;s known for
+          her leadership in inclusive innovation. Jamie also mentors emerging
           engineers and speaks on ethical development and tech for social good.
         </div>
       </div>
