@@ -14,7 +14,7 @@ export default function Keynote(): React.ReactNode {
       <div className="border relative flex flex-col items-center justify-center w-full">
         <KeynoteSpeaker className="border" />
         <div className="border mx-[20%] absolute tablet:top-[105%] desktop:top-[55%] flex lg:flex-row sm:flex-col justify-center gap-8">
-          <GuestPhoto className="border w-80 h-80" />
+        <GuestPhoto className="border w-80 h-80" />
           <div className="border max-w-lg text-left space-y-2">
             <div className="tablet:text-charcoalFog desktop:text-white text-3xl font-semibold font-['NeulisNeue-Bold'] leading-relaxed">
               Jamie Chen
