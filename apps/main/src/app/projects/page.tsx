@@ -7,13 +7,13 @@ const projectData = [
   {
     projectImage: "/projects/memora.png",
     projectName: "Memora",
-    award: "Best Overall Tech",
-    members: "Jalen Wu, Caleb Lee, Kyle Sung, Elaine Min, Dewi Kalis",
+    award: "Leave No Trace",
+    members: "Kaleb Cole, Yaroslav Petrashko, Shrey Agarwal, Aditya",
     description:
-      "Poqua is an aquarium tank monitor software app that gives users a platform to simulate their aquarium when away from home.",
-    link: "https://devpost.com/software/poqua",
+      "Memora is a mobile app that acts as a personalized road map through memories, designed for individuals in the early to moderate stages of dementia and their families. Using personal family photos – snapshots from life's journey – Memora stimulates memory recall through engaging quizzes and a user-friendly interface.",
+    link: "https://devpost.com/software/memora-bmi4zw",
   },
-  // ADD MORE PROJECTS
+  // TODO: ADD MORE PROJECTS
 ];
 
 export default function Page() {
@@ -21,6 +21,7 @@ export default function Page() {
     <main className="flex flex-col items-center min-h-screen relative">
       <div className="absolute top-10">
         {projectData.map((project, index) => (
+          // TODO: add title component here when done 
           <Project
             key={index}
             projectImage={project.projectImage}

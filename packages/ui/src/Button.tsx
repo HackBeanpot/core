@@ -7,12 +7,19 @@ interface ButtonProps {
   icon?: React.ReactNode;
   color: string;
   textColor?: string;
+  size?: string;
 }
 
 const bgColorMap: Record<string, string> = {
   mossGreen: "bg-mossGreen hover:bg-mossGreenDark",
   firecrackerRedLight: "bg-firecrackerRedLight hover:bg-firecrackerRed",
   marigoldYellow: "bg-marigoldYellow hover:bg-marigoldYellowDark",
+};
+
+const sizeMap: Record<string, string> = {
+  small: "text-xs",
+  medium: "text-md",
+  large: "text-xl"
 };
 
 const textColorMap: Record<string, string> = {
@@ -25,11 +32,14 @@ const Button: React.FC<ButtonProps> = ({
   color = "mossyGreen",
   onClick,
   icon,
+  size = "small",
 }) => {
+
   const bgClass = bgColorMap[color] || bgColorMap["mossGreen"];
   const textColorClass = textColorMap[textColor];
-  const buttonClasses = `font-DMSans-Bold flex items-center justify-center gap-1 rounded-full w-auto h-auto ${text ? "px-4" : "px-2"} py-2 ${bgClass} shadow-[inset_2px_3px_0_rgba(0,0,0,0.10)] ${textColorClass}
-c`;
+  const sizeClass = sizeMap[size] || sizeMap['small'];
+
+  const buttonClasses = `font-DMSans-Bold flex items-center justify-center gap-1 rounded-full w-auto h-auto ${text ? "px-4" : "px-2"} py-2 ${bgClass} shadow-[inset_2px_3px_0_rgba(0,0,0,0.10)] ${textColorClass} ${sizeClass} transition-transform duration-200 ease-in-out hover:scale-105`;
 
   return (
     <button className={buttonClasses} onClick={onClick}>
