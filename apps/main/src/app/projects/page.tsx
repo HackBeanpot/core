@@ -6,7 +6,7 @@ import Project from "./components/Project";
 const projectData = [
   {
     projectImage: "/projects/memora.png",
-    projectName: "POQUA",
+    projectName: "Memora",
     award: "Best Overall Tech",
     members: "Jalen Wu, Caleb Lee, Kyle Sung, Elaine Min, Dewi Kalis",
     description:
