@@ -6,6 +6,8 @@ import isValidEmail from "@util/functions/isValidEmail";
 import Image from "next/image";
 import ExternalLink from "./ExternalLink";
 import { FaArrowUp } from "react-icons/fa";
+import clsx from "clsx";
+import useDevice from "@util/hooks/useDevice";
 
 const SocialIconButton = ({ 
   icon,
@@ -46,6 +48,7 @@ const InputField = ({
 
 const Footer = () => {
   const [mailingEmail, setMailingEmail] = useState<string>("");
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMailingEmail(e.target.value);
@@ -85,8 +88,25 @@ const Footer = () => {
     { icon: "/footer-logos/tiktok-logo.svg", alt: "TikTok", href: "https://www.tiktok.com/@hackbeanpot" }
   ];
 
+  const outerDivStyles = clsx(
+    "flex flex-row bg-starlightBlue w-full justify-between py-16 px-12 gap-x-10",
+    isTablet && "flex-col gap-y-16",
+    isMobile && "px-5"
+  );
+
+  const mailListSectionStyles = clsx(
+    "flex flex-col gap-2 max-w-[540px] justify-between",
+    isTablet && "gap-y-8",
+    isMobile && "w-full"
+  );
+
+  const mailListInputStyles = clsx(
+    "flex flex-row gap-3 w-full justify-between",
+    isMobile && "flex-col"
+  );
+
   const FooterContent = (
-    <div className="flex flex-row tablet:flex-col tablet:gap-y-16 bg-starlightBlue w-full justify-between py-16 px-12 mobile-xl:px-5 gap-x-10">
+    <div className={outerDivStyles}>
       <div className="flex flex-col items-start gap-5">
         <Button
           text="Back to top"
@@ -103,11 +123,11 @@ const Footer = () => {
           })}
         </div>
       </div>
-      <div className="flex flex-col gap-2 tablet:gap-y-8 max-w-[540px] mobile-xl:w-full justify-between">
+      <div className={mailListSectionStyles}>
         <p className="font-medium text-white text-xl">
           Stay up to date with HackBeanpot by signing up for our mailing list!
         </p>
-        <div className="flex flex-row mobile-xl:flex-col gap-3 w-full justify-between">
+        <div className={mailListInputStyles}>
           <InputField
             placeholder={"example@email.com"}
             value={mailingEmail}
