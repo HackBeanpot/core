@@ -5,7 +5,7 @@ interface ButtonProps {
   text?: string;
   onClick?: () => void;
   icon?: React.ReactNode;
-  color: string;
+  color?: string;
   textColor?: string;
 }
 
@@ -34,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button className={buttonClasses} onClick={onClick}>
-      {icon && <span>{icon}</span>}
+      {icon && <span className="p-2">{icon}</span>}
       {text && text}
     </button>
   );

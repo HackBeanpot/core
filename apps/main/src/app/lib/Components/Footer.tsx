@@ -1,30 +1,36 @@
 "use client";
 
-// import ExternalLink from "./ExternalLink";
-// import LocalLink from "./LocalLink";
-// import React, { ChangeEvent, useState } from "react";
 import React, { ChangeEvent, useState } from "react";
 import Button from "@repo/ui/Button";
-// import isValidEmail from "@util/functions/isValidEmail";
-// import HomeIcon from "@repo/ui/Icons/HomeIcon";
-// import Image from "next/image";
+import isValidEmail from "@util/functions/isValidEmail";
+import Image from "next/image";
+import ExternalLink from "./ExternalLink";
+import { FaArrowUp } from "react-icons/fa";
 
-const SocialIconButton = ({ icon }: { icon: React.ReactNode }) => {
+const SocialIconButton = ({ 
+  icon,
+  alt,
+  href 
+  }: { icon: string, alt: string, href: string }) => {
   return (
-    <div className="w-16 h-16 rounded-full bg-mossGreen shadow-[inset_2px_3px_0_rgba(0,0,0,0.10)] items-center justify-center">
-      {icon}
-    </div>
+    <Button icon={
+      <ExternalLink href={href}>
+        <Image alt={"HackBeanpot " + alt} src={icon} width={25} height={25} />
+      </ExternalLink>
+    } />
   );
 };
 
-const TextField = ({
+const InputField = ({
   placeholder,
   value,
   onChange,
+  onKeyDown,
 }: {
   placeholder: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (e: React.KeyboardEvent) => void;
 }) => {
   return (
     <input
@@ -32,6 +38,7 @@ const TextField = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      onKeyDown={onKeyDown}
       className="px-4 py-2 rounded-full bg-cream w-full"
     />
   );
@@ -44,11 +51,39 @@ const Footer = () => {
     setMailingEmail(e.target.value);
   };
 
-  // To do
-  const handleBackToTop = () => {};
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  // To do
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    if (!mailingEmail || !isValidEmail(mailingEmail)) {
+      alert("Please enter a valid email address");
+      return;
+    }
+
+    const res = await fetch("/api/joinMailingList", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: mailingEmail,
+        reactivate_existing: false,
+        send_welcome_email: true,
+      }),
+    });
+    if (res.ok) {
+      setMailingEmail("");
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSubmit();
+  }
+
+  const imageInfo = [
+    { icon: "/footer-logos/insta-logo.svg", alt: "Instagram", href: "https://www.instagram.com/hackbeanpot/?hl=en" },
+    { icon: "/footer-logos/linkedin-logo.svg", alt: "LinkedIn", href: "https://www.linkedin.com/company/hackbeanpot-inc" },
+    { icon: "/footer-logos/tiktok-logo.svg", alt: "TikTok", href: "https://www.tiktok.com/@hackbeanpot" }
+  ];
 
   const FooterContent = (
     <div className="flex flex-row tablet:flex-col tablet:gap-y-16 bg-starlightBlue w-full justify-between py-16 px-12 mobile-xl:px-5 gap-x-10">
@@ -58,14 +93,14 @@ const Footer = () => {
           color="cottonCandyCoral"
           textColor="white"
           onClick={handleBackToTop}
-          // icon={<FaArrowUp />}
+          icon={<FaArrowUp />}
         />
-
         <div className="flex flex-row gap-2">
-          {/* To do: add icons */}
-          <SocialIconButton icon={<></>} />
-          <SocialIconButton icon={<></>} />
-          <SocialIconButton icon={<></>} />
+          {imageInfo.map((socialIcon, index) => {
+            return (
+              <SocialIconButton icon={socialIcon.icon} alt={socialIcon.alt} href={socialIcon.href} key={index} />
+            )
+          })}
         </div>
       </div>
       <div className="flex flex-col gap-2 tablet:gap-y-8 max-w-[540px] mobile-xl:w-full justify-between">
@@ -73,10 +108,11 @@ const Footer = () => {
           Stay up to date with HackBeanpot by signing up for our mailing list!
         </p>
         <div className="flex flex-row mobile-xl:flex-col gap-3 w-full justify-between">
-          <TextField
+          <InputField
             placeholder={"example@email.com"}
             value={mailingEmail}
             onChange={handleInputChange}
+            onKeyDown={handleKeyPress}
           />
           <div className="w-fit">
             <Button
