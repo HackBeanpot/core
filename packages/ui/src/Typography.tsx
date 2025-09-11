@@ -74,7 +74,7 @@ function RibbonTitle({ children, className = "" }: TypographyProps) {
       </svg>
 
       {/* Text overlay */}
-      <span className="absolute inset-0 flex items-center justify-center px-3 text-xs text-marigoldYellowDark font-bold uppercase transform -translate-y-[3px]">
+      <span className="absolute inset-0 flex items-center justify-center px-3 text-xs text-marigoldYellowDark font-bold font-NeulisNeue uppercase transform -translate-y-[3px]">
         {children}
       </span>
     </div>
