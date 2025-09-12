@@ -1,12 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, {
-  useState,
-  useRef,
-  useLayoutEffect,
-  useEffect,
-} from "react";
+import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import clsx from "clsx";
 import useDevice from "@util/hooks/useDevice";
 import Button from "@repo/ui/Button";
