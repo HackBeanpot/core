@@ -11,14 +11,15 @@ export default function Keynote(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   return (
-    <div className="relative flex items-center justify-center w-full">
-      <KeynoteSpeaker className="relative" />
-
+    <div className="border relative flex flex-col items-center justify-center w-full">
+      <KeynoteSpeaker className={ `border
+          ${isMobile ? "scale-x-110" : ""}`}
+      />
       <div
-        className={`mx-[20%] absolute flex justify-center items-center
-          ${isMobile ? "top-[31%] flex-col gap-0" : ""}
-          ${isTablet ? "top-[55%] flex-col gap-8" : ""}
-          ${isDesktop ? "top-[57%] flex-row gap-8" : ""}`}
+        className={`border w-[72%] absolute flex justify-center
+          ${isMobile ? "top-[30%] w-11/12 flex-col items-center" : ""}
+          ${isTablet ? "top-[55%]  flex-col gap-y-8 items-center" : ""}
+          ${isDesktop ? "top-[57%] flex-row justify-between items-start gap-x-8" : ""}`}
       >
         <GuestPhoto
           className={`transform
@@ -28,9 +29,9 @@ export default function Keynote(): React.ReactNode {
         />
 
         <div
-          className={`text-left
+          className={`border text-left
           ${isMobile ? "max-w-sm space-y-0" : ""}
-          ${isTablet ? "max-w-lg space-y-2" : ""}
+          ${isTablet ? "max-w-full space-y-2" : ""}
           ${isDesktop ? "max-w-lg space-y-2" : ""}`}
           >
           <div
