@@ -8,7 +8,7 @@ const GuestPhoto: React.FC<GuestPhotoProps> = ({ className }) => {
       className={className}
       width="238"
       height="269"
-      viewBox="-25 0 238 320"
+      viewBox="-41 0 238 320"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
