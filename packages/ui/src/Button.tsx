@@ -13,6 +13,7 @@ const bgColorMap: Record<string, string> = {
   mossGreen: "bg-mossGreen hover:bg-mossGreenDark",
   firecrackerRedLight: "bg-firecrackerRedLight hover:bg-firecrackerRed",
   marigoldYellow: "bg-marigoldYellow hover:bg-marigoldYellowDark",
+  starlightBlue: "bg-starlightBlue hover:bg-starlightBlueDark",
 };
 
 const textColorMap: Record<string, string> = {
