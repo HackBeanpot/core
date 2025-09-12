@@ -11,12 +11,13 @@ export default function Keynote(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   return (
-    <div className="border relative flex flex-col items-center justify-center w-full">
-      <KeynoteSpeaker className={ `border
+    <div className="relative flex flex-col items-center justify-center w-full">
+      <KeynoteSpeaker
+        className={`
           ${isMobile ? "scale-x-110" : ""}`}
       />
       <div
-        className={`border w-[72%] absolute flex justify-center
+        className={`w-[72%] absolute flex justify-center
           ${isMobile ? "top-[30%] w-11/12 flex-col items-center" : ""}
           ${isTablet ? "top-[55%]  flex-col gap-y-8 items-center" : ""}
           ${isDesktop ? "top-[57%] flex-row justify-between items-start gap-x-8" : ""}`}
@@ -29,11 +30,11 @@ export default function Keynote(): React.ReactNode {
         />
 
         <div
-          className={`border text-left
+          className={`text-left
           ${isMobile ? "max-w-sm space-y-0" : ""}
           ${isTablet ? "max-w-full space-y-2" : ""}
           ${isDesktop ? "max-w-lg space-y-2" : ""}`}
-          >
+        >
           <div
             className={`text-3xl font-semibold font-['NeulisNeue-Bold'] leading-relaxed
               ${isTablet ? "text-charcoalFog" : ""}
