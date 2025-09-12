@@ -5,7 +5,7 @@ import TicketBooth from "../lib/Assets/SVG/TicketBooth";
 import Button from "@repo/ui/Button";
 
 const SponsorUsPage = () => {
-   return (
+  return (
     <div className="relative z-10 w-full">
       <div className="relative mx-auto w-full max-w-[1200px]">
         <div className="w-full flex justify-center">
