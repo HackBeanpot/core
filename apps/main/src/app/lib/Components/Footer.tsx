@@ -1,116 +1,147 @@
 "use client";
 
-import ExternalLink from "./ExternalLink";
-import LocalLink from "./LocalLink";
 import React, { ChangeEvent, useState } from "react";
+import Button from "@repo/ui/Button";
 import isValidEmail from "@util/functions/isValidEmail";
-import HomeIcon from "@repo/ui/Icons/HomeIcon";
 import Image from "next/image";
+import ExternalLink from "./ExternalLink";
+import { FaArrowUp } from "react-icons/fa";
+import clsx from "clsx";
+import useDevice from "@util/hooks/useDevice";
+
+const SocialIconButton = ({ 
+  icon,
+  alt,
+  href 
+  }: { icon: string, alt: string, href: string }) => {
+  return (
+    <Button icon={
+      <ExternalLink href={href}>
+        <Image alt={"HackBeanpot " + alt} src={icon} width={25} height={25} />
+      </ExternalLink>
+    } />
+  );
+};
+
+const InputField = ({
+  placeholder,
+  value,
+  onChange,
+  onKeyDown,
+}: {
+  placeholder: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (e: React.KeyboardEvent) => void;
+}) => {
+  return (
+    <input
+      type="email"
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      className="px-4 py-2 rounded-full bg-cream w-full"
+    />
+  );
+};
 
 const Footer = () => {
   const [mailingEmail, setMailingEmail] = useState<string>("");
+  const { isMobile, isTablet } = useDevice();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMailingEmail(e.target.value);
   };
 
-  const FooterContent = (
-    <div className="mb-16 bg-light-yellow w-full h-full">
-      <div className="grid w-full h-full grid-cols-[1fr_1fr_1.1fr] px-[25vw] text-xl text-black font-GT-Walsheim-Regular">
-        <div className="w-full desktop:flex flex-col pt-[7vh] gap-4 mobile:hidden">
-          <div>SOCIALS</div>
-          <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
-            Instagram
-          </ExternalLink>
-          <ExternalLink href="https://www.linkedin.com/company/hackbeanpot-inc">
-            LinkedIn
-          </ExternalLink>
-        </div>
-        <div className="w-full desktop:flex flex-col pt-[7vh] gap-4 mobile:hidden">
-          <div>ABOUT</div>
-          <LocalLink href={"#about"}>About Hackbeanpot</LocalLink>
-          <LocalLink href={"#projects"}>Projects</LocalLink>
-          <LocalLink href={"#sponsors"}>Sponsors</LocalLink>
-          <LocalLink href={"#team"}>Team</LocalLink>
-        </div>
-        <div className="desktop:flex mobile:hidden flex-col w-full pt-[7vh] gap-4 items-start">
-          <div className="text-3xl">Stay up-to-date with HBP!</div>
-          <div className="text-base">
-            Join our mailing list to receive updates about HBP events, news, and
-            more!
-          </div>
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            value={mailingEmail}
-            onChange={handleInputChange}
-            className="w-full py-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-400 focus:placeholder-transparent"
-          />
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-          <button
-            onClick={async () => {
-              if (!mailingEmail || !isValidEmail(mailingEmail)) {
-                alert("Please enter a valid email address");
-                return;
-              }
-              const res = await fetch("/api/joinMailingList", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  email: mailingEmail,
-                  reactivate_existing: false,
-                  send_welcome_email: true,
-                }),
-              });
-              if (res.ok) {
-                setMailingEmail("");
-              }
-            }}
-            className="p-3 px-8 bg-black text-text-light rounded-full"
-          >
-            Join mailing list
-          </button>
+  const handleSubmit = async () => {
+    if (!mailingEmail || !isValidEmail(mailingEmail)) {
+      alert("Please enter a valid email address");
+      return;
+    }
+
+    const res = await fetch("/api/joinMailingList", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: mailingEmail,
+        reactivate_existing: false,
+        send_welcome_email: true,
+      }),
+    });
+    if (res.ok) {
+      setMailingEmail("");
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSubmit();
+  }
+
+  const imageInfo = [
+    { icon: "/footer-logos/insta-logo.svg", alt: "Instagram", href: "https://www.instagram.com/hackbeanpot/?hl=en" },
+    { icon: "/footer-logos/linkedin-logo.svg", alt: "LinkedIn", href: "https://www.linkedin.com/company/hackbeanpot-inc" },
+    { icon: "/footer-logos/tiktok-logo.svg", alt: "TikTok", href: "https://www.tiktok.com/@hackbeanpot" }
+  ];
+
+  const outerDivStyles = clsx(
+    "flex flex-row bg-starlightBlue w-full justify-between py-16 px-12 gap-x-10",
+    isTablet && "flex-col gap-y-16",
+    isMobile && "px-5"
+  );
+
+  const mailListSectionStyles = clsx(
+    "flex flex-col gap-2 max-w-[540px] justify-between",
+    isTablet && "gap-y-8",
+    isMobile && "w-full"
+  );
+
+  const mailListInputStyles = clsx(
+    "flex flex-row gap-3 w-full justify-between",
+    isMobile && "flex-col"
+  );
+
+  const FooterContent = (
+    <div className={outerDivStyles}>
+      <div className="flex flex-col items-start gap-5">
+        <Button
+          text="Back to top"
+          color="cottonCandyCoral"
+          textColor="white"
+          onClick={handleBackToTop}
+          icon={<FaArrowUp />}
+        />
+        <div className="flex flex-row gap-2">
+          {imageInfo.map((socialIcon, index) => {
+            return (
+              <SocialIconButton icon={socialIcon.icon} alt={socialIcon.alt} href={socialIcon.href} key={index} />
+            )
+          })}
         </div>
       </div>
-      {/* mobile */}
-      <div className="desktop:hidden mobile:flex items-center flex-col text-black font-GT-Walsheim-Regular">
-        <HomeIcon />
-        <p className="text-center text-xl m-5">
-          HackBeanpot, Inc. is a registered 503(c)(3) organization.
+      <div className={mailListSectionStyles}>
+        <p className="font-medium text-white text-xl">
+          Stay up to date with HackBeanpot by signing up for our mailing list!
         </p>
-        <ExternalLink
-          className="font-bold text-xl my-2"
-          href="https://docs.google.com/document/d/1cWl7m1hL_WXXEMdQklubLu-h7wXO2dBPiEMJm63_2ak/edit?tab=t.0"
-        >
-          Code of conduct
-        </ExternalLink>
-        <div className="grid grid-cols-3 gap-2 my-5">
-          <ExternalLink href="https://www.instagram.com/hackbeanpot/?hl=en">
-            <Image
-              alt="InstagramLogo"
-              src="/instagram_logo.png"
-              width={39}
-              height={39}
+        <div className={mailListInputStyles}>
+          <InputField
+            placeholder={"example@email.com"}
+            value={mailingEmail}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyPress}
+          />
+          <div className="w-fit">
+            <Button
+              text="Submit"
+              color="marigoldYellow"
+              textColor="charcoalFog"
+              onClick={handleSubmit}
             />
-          </ExternalLink>
-          <ExternalLink href="https://www.linkedin.com/company/hackbeanpot-inc/posts/?feedView=all">
-            <Image
-              alt="LinkedinLogo"
-              src="/linkedin_logo.png"
-              width={40}
-              height={40}
-            />
-          </ExternalLink>
-          <ExternalLink href="mailto:team@hackbeanpot.com">
-            <Image
-              alt="EmailLogo"
-              src="/email_logo.png"
-              width={40}
-              height={40}
-            />
-          </ExternalLink>
+          </div>
         </div>
       </div>
     </div>

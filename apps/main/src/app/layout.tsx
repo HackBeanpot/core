@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en" className="w-screen overflow-x-hidden bg-light-yellow">
+    <html lang="en" className="w-screen overflow-x-hidden bg-canopyGreen">
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>

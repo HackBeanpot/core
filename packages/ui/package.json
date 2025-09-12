@@ -21,7 +21,8 @@
     "./Icons/*": "./src/Icons/*.tsx",
     "./PaginationDots": "./src/PaginationDots.tsx",
     "./Section": "./src/Section.tsx", 
-    "./Placeholder": "./src/Placeholder.tsx"
+    "./Placeholder": "./src/Placeholder.tsx", 
+    "./Button": "./src/Button.tsx"
   },
   "license": "MIT",
   "scripts": {

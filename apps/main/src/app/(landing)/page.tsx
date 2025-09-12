@@ -12,11 +12,10 @@ import {
 import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
-// import Placeholder from "@repo/ui/Placeholder";
 
 export default function Page(): JSX.Element {
   return (
-    <main className="flex flex-col items-center min-h-screen bg-light-yellow">
+    <main className="flex flex-col items-center min-h-screen bg-canopyGreen">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -32,6 +31,5 @@ export default function Page(): JSX.Element {
       <FAQSection />
       <Footer />
     </main>
-    // <Placeholder />
   );
 }
