@@ -13,6 +13,7 @@ const config: Omit<Config, "content"> = {
         signLarge: "clamp(2.12rem, 10vw, 4.45rem)", // 33.94px → 71.27px
         signSmall: "clamp(0.90rem, 15vw, 2rem)", // 14.44px → 30.33px
       },
+      
       backgroundImage: {
         "glow-conic":
           "conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)",
