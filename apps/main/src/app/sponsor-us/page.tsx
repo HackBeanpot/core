@@ -16,11 +16,16 @@ const SponsorUsPage = () => {
             Interested in sponsoring us?
           </h1>
           <p className="text-xl text-charcoalFog mb-2 bg-opacity-80 px-4 py-2 font-NeulisNeue-Regular">
-            Reach out to us at team@hackbeanpot.com<br /> or check out our sponsorship package!
+            Reach out to us at team@hackbeanpot.com
+            <br /> or check out our sponsorship package!
           </p>
           {/* TODO: add link to sponsorship packet */}
           <div className="pointer-events-auto">
-            <Button text="View Sponsorship Package" color="starlightBlue" textColor="white"/>
+            <Button
+              text="View Sponsorship Package"
+              color="starlightBlue"
+              textColor="white"
+            />
           </div>
         </div>
       </div>
