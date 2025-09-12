@@ -2,6 +2,7 @@
 
 import Button from "@repo/ui/Button";
 import React from "react";
+import SponsorTicketComp from "../../lib/Components/SponsorComponents/SponsorTicketComp";
 // import Button from "@repo/ui/Button";
 // import Footer from "../../lib/Components/Footer";
 
@@ -19,6 +20,11 @@ export default function About(): React.ReactNode {
         // icon={<FaArrowUp />}
       />
       <Button text="Submit" color="marigoldYellow" />
+      <SponsorTicketComp 
+        isUsSponsor={false} 
+        logoPath={"/footer-logos/insta-logo.svg"} 
+      />
+      <SponsorTicketComp isUsSponsor={true} logoPath={"/footer-logos/insta-logo.svg"} />
     </div>
   );
 }
