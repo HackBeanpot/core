@@ -1,23 +1,23 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React from "react";
 import SponsorTicket from "../../Assets/SponsorAssets/SponsorTicket";
 import SponsorUsTicket from "../../Assets/SponsorAssets/SponsorUsTicket";
 import Image from "next/image";
 
 export type SponsorTicketProps = {
-    isUsSponsor: boolean;
+    isSponsorUs: boolean;
     logoPath: string;
     scaleFactor?: string;
 };
 
 export default function SponsorTicketComp ({
-    isUsSponsor, 
+    isSponsorUs, 
     logoPath,
     scaleFactor
 }: SponsorTicketProps): React.ReactNode {
     return (
-        <div className={`flex items-center justify-center ${scaleFactor}`}>
+        <div className={`flex items-center justify-center ${scaleFactor} w-full h-full`}>
             <Image 
                 width={50} 
                 height={50} 
@@ -25,8 +25,8 @@ export default function SponsorTicketComp ({
                 src={logoPath} 
                 className="absolute z-10"
             />
-            { isUsSponsor && <SponsorUsTicket className="absolute z-0" /> }
-            {!isUsSponsor && <SponsorTicket className="absolute z-0" /> }
+            { isSponsorUs && <SponsorUsTicket className="relative z-0" /> }
+            {!isSponsorUs && <SponsorTicket className="relative z-0" /> }
         </div>
     )
 };
