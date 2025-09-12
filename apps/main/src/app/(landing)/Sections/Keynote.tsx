@@ -19,7 +19,7 @@ export default function Keynote(): React.ReactNode {
       <div
         className={`w-[72%] absolute flex justify-center
           ${isMobile ? "top-[30%] w-11/12 flex-col items-center" : ""}
-          ${isTablet ? "top-[55%]  flex-col gap-y-8 items-center" : ""}
+          ${isTablet ? "top-[55%]  flex-col gap-y-12 items-center" : ""}
           ${isDesktop ? "top-[57%] flex-row justify-between items-start gap-x-8" : ""}`}
       >
         <GuestPhoto
@@ -36,9 +36,10 @@ export default function Keynote(): React.ReactNode {
           ${isDesktop ? "max-w-lg space-y-2" : ""}`}
         >
           <div
-            className={`text-3xl font-semibold font-['NeulisNeue-Bold'] leading-relaxed
-              ${isTablet ? "text-charcoalFog" : ""}
-              ${isDesktop ? "text-white" : ""}`}
+            className={`font-semibold font-['NeulisNeue-Bold'] leading-relaxed
+            ${isMobile ? "text-3xl" : ""}
+              ${isTablet ? "text-charcoalFog text-3xl" : ""}
+              ${isDesktop ? "text-white text-3xl" : ""}`}
           >
             Jamie Chen
           </div>
