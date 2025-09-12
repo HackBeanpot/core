@@ -6,9 +6,9 @@ const screens = {
   "desktop-2xl": { max: "4080px" },
   "desktop-xl": { max: "3060px" },
   desktop: { max: "1920px" },
-  tablet: { max: "1279px" },
-  "mobile-xl": { max: "639px" },
-  mobile: { max: "481 px" },
+  tablet: { min: "640px", max: "1279px" },
+  "mobile-xl": { min:"482px", max: "639px" },
+  mobile: { max: "481px" },
 };
 
 export default screens;

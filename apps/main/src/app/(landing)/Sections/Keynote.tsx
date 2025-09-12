@@ -13,8 +13,8 @@ export default function Keynote(): React.ReactNode {
     <>
       <div className="border relative flex items-center justify-center w-full">
         <KeynoteSpeaker className="relative" />
-        <div className="border mx-[20%] absolute mobile:top-0 tablet:top-[55%] desktop:top-[55%] flex flex-row mobile:flex-col tablet:flex-col desktop:flex-row justify-center items-center gap-8">
-          <GuestPhoto className="border mobile:w-20 mobile:h-20 tablet:w-56 tablet:h-56 desktop:w-80 desktop:h-80" />
+        <div className="border mx-[20%] absolute mobile:top-[35%] mobile-xl:top-[36%] tablet:top-[55%] desktop:top-[55%] flex flex-row mobile:flex-col tablet:flex-col desktop:flex-row justify-center items-center gap-8">
+          <GuestPhoto className="border transform mobile:scale-50 mobile-xl:scale-50 tablet:scale-100 desktop:scale-120 tablet:w-56 tablet:h-56 desktop:w-80 desktop:h-80" />
           <div className="border max-w-lg text-left space-y-2">
             <div className="tablet:text-charcoalFog desktop:text-white text-3xl font-semibold font-['NeulisNeue-Bold'] leading-relaxed">
               Jamie Chen
