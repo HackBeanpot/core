@@ -17,10 +17,10 @@ export default function Keynote(): React.ReactNode {
           ${isMobile ? "scale-x-110" : ""}`}
       />
       <div
-        className={`w-[72%] absolute flex justify-center
-          ${isMobile ? "top-[30%] w-11/12 flex-col items-center" : ""}
-          ${isTablet ? "top-[55%]  flex-col gap-y-12 items-center" : ""}
-          ${isDesktop ? "top-[59%] flex-row justify-between items-start gap-x-8" : ""}`}
+        className={`w-[72%] flex justify-center
+          ${isMobile ? "relatve top-[50%] w-11/12 flex-col items-center" : ""}
+          ${isTablet ? "absolute top-[55%]  flex-col gap-y-12 items-center" : ""}
+          ${isDesktop ? "absolute top-[59%] flex-row justify-between items-start gap-x-8" : ""}`}
       >
         <GuestPhoto
           className={`transform
