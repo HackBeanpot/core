@@ -89,15 +89,17 @@ function Project({
     ? "h-[50vh] w-[50vw]"
     : isTablet
       ? "h-[50vh] w-[60vw]"
-      : "h-[70vh] w-[70vw]";
+      : "h-full w-[70vw]";
 
   const expandedSize = isDescExpanded
     ? isDesktop
       ? "h-[60vh] w-[50vw]"
       : isTablet
         ? "h-[95vh] w-[70vw]"
-        : "h-[75vh] w-[70vw]"
+        : "h-[105%] w-[70vw]"
     : baseSize;
+
+
 
   const projectCardStylesBG = clsx(
     "absolute bg-starlightBlue rounded-xl shadow-[inset_-15px_15px_0_rgba(0,0,0,0.25)]",
@@ -124,15 +126,15 @@ function Project({
       ),
     isTablet &&
       clsx(
-        "flex flex-row gap-6",
+        "flex flex-row gap-6 overflow-hidden",
         isDescExpanded
-          ? "h-auto w-[65vw] overflow-hidden"
+          ? "h-auto w-[60vw] "
           : "h-[50vh] w-[60vw]",
       ),
     isMobile &&
       clsx(
-        "flex flex-col h-full",
-        isDescExpanded ? "h-auto w-[70vw]" : "h-[65vh] w-[70vw]",
+        "flex flex-col h-full overflow-hidden",
+        isDescExpanded ? "h-auto w-[70vw]" : "h-[60vh] w-[70vw]",
       ),
   );
 
@@ -156,7 +158,7 @@ function Project({
         <div
           className="flex flex-col place-self-center
             desktop-2xl:gap-6 desktopxl:gap-4 desktop:gap-2 tablet:gap-0 mobile-xl:gap-0
-            desktop:pr-4 tablet:px-0 mobile-xl:px-2 mobile-xl:py-0"
+            desktop:pr-4 tablet:px-0 mobile-xl:px-2 mobile-xl:pt-2"
         >
           <div className="flex flex-row gap-2 items-center">
             <ProjectStarIcon className="mobile-xl:w-[7vw]" />
@@ -191,7 +193,7 @@ function Project({
             {needsTruncation && (
               <button
                 onClick={() => setIsDescExpanded((prev) => !prev)}
-                className="my-1 text-marigoldYellow font-bold flex items-center hover:underline"
+            className="my-2 text-marigoldYellow font-bold flex items-center hover:underline"
                 aria-expanded={isDescExpanded}
               >
                 <span>{isDescExpanded ? "Read less -" : "Read more +"}</span>
