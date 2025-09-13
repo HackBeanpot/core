@@ -11,14 +11,15 @@ export default function Keynote(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full">
+    <div className={`relative flex flex-col items-center justify-center w-full h-full'
+      ${isMobile ? "h-[95vh]" : ""}`}>
       <KeynoteSpeaker
         className={`
           ${isMobile ? "scale-x-110" : ""}`}
       />
       <div
         className={`w-[72%] flex justify-center
-          ${isMobile ? "relatve top-[50%] w-11/12 flex-col items-center" : ""}
+          ${isMobile ? "absolute top-[42%] w-11/12 flex-col items-center" : ""}
           ${isTablet ? "absolute top-[55%]  flex-col gap-y-12 items-center" : ""}
           ${isDesktop ? "absolute top-[59%] flex-row justify-between items-start gap-x-8" : ""}`}
       >
@@ -31,13 +32,13 @@ export default function Keynote(): React.ReactNode {
 
         <div
           className={`text-left
-          ${isMobile ? "max-w-sm space-y-0" : ""}
+          ${isMobile ? "max-w-sm space-y-0 relative -top-6" : ""}
           ${isTablet ? "max-w-full space-y-2" : ""}
           ${isDesktop ? "max-w-2xl space-y-5" : ""}`}
         >
           <div
             className={`font-semibold font-['NeulisNeue-Bold'] leading-relaxed
-            ${isMobile ? "text-3xl" : ""}
+            ${isMobile ? "text-xl relative" : ""}
               ${isTablet ? "text-charcoalFog text-3xl" : ""}
               ${isDesktop ? "text-white text-5xl" : ""}`}
           >
@@ -45,7 +46,7 @@ export default function Keynote(): React.ReactNode {
           </div>
           <div
             className={`font-light font-['DMSans-Regular'] leading-relaxed
-            ${isMobile ? "text-charcoalFog text-sm" : ""}
+            ${isMobile ? "relative text-charcoalFog text-sm" : ""}
               ${isTablet ? "text-charcoalFog text-xl" : ""}
               ${isDesktop ? "text-white text-2xl" : ""}`}
           >
