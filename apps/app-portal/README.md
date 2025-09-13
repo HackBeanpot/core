@@ -1,28 +1,61 @@
+# HackBeanpot Application Portal
+
+This is the application portal for HackBeanpot hackathon, migrated to work with Node v24 and the turbo repo structure.
+
+## Features
+
+- User authentication with NextAuth.js
+- Application form submission
+- Admin dashboard for managing applicants
+- Post-acceptance form handling
+- MongoDB integration
+- SCSS styling support
+
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
 
-```bash
-yarn dev
-```
+   ```bash
+   yarn install
+   ```
 
-Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
+2. Set up environment variables:
 
-You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   cp .env.example .env.local
+   ```
 
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3001/api/hello](http://localhost:3001/api/hello).
+   Fill in the required environment variables in `.env.local`.
 
-## Learn More
+3. Start the development server:
+   ```bash
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
+- `MONGODB_URI`: MongoDB connection string
+- `NEXTAUTH_URL`: Your application URL
+- `NEXTAUTH_SECRET`: Secret key for NextAuth
+- `EMAIL_SERVER_*`: Email configuration for authentication
+- `GOOGLE_CLOUD_*`: Optional Google Cloud Storage configuration
+- `ROLLBAR_CLIENT_TOKEN`: Optional Rollbar error tracking
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+- `yarn dev`: Start development server
+- `yarn build`: Build for production
+- `yarn start`: Start production server
+- `yarn lint`: Run ESLint
+- `yarn type-check`: Run TypeScript type checking
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
+## Migration Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This application has been migrated from the original application-portal repository to work with:
+
+- Node v24
+- Next.js 14 with App Router
+- Turbo repo structure
+- Updated dependencies for compatibility
+
+The original functionality has been preserved while updating the codebase to work with modern tooling and the turbo repo architecture.

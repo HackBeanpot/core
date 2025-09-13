@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@repo/ui"],
+  experimental: {
+    serverComponentsExternalPackages: ["mongodb"],
+  },
 };
+
+module.exports = nextConfig;

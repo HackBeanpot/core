@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:4.4
+    container_name: application-portal_mongodb
+    ports:
+      - "${MONGO_DEV_PORT}:27017"
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+      - ./mongo-data:/data/db
+    environment:
+      # admin user created in the "admin" database
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_DEV_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DEV_PASSWORD}
+      - MONGO_SERVER_DBNAME=${MONGO_SERVER_DBNAME}
+    healthcheck:
+      # check with admin user against admin db
+      test: echo 'db.runCommand({serverStatus:1}).ok' | mongo admin -u $MONGO_DEV_USERNAME -p $MONGO_DEV_PASSWORD --quiet | grep 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+  mongo-express:
+    image: mongo-express
+    container_name: application-portal_mongo-express
+    restart: always
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=${MONGO_DEV_PORT}
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_DEV_USERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_DEV_PASSWORD}
+
+networks:
+  default:
+    name: application-portal_network-default
