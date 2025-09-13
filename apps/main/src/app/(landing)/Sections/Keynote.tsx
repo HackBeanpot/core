@@ -25,7 +25,7 @@ export default function Keynote(): React.ReactNode {
         <GuestPhoto
           className={`transform
             ${isMobile ? "scale-[0.45]" : ""}
-            ${isTablet ? "scale-100 w-56 h-56" : ""}
+            ${isTablet ? "scale-100 w-1/3 h-1/3" : ""}
             ${isDesktop ? "scale-120 w-80 h-80" : ""}`}
         />
 
