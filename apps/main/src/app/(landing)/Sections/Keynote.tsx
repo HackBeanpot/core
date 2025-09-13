@@ -33,7 +33,7 @@ export default function Keynote(): React.ReactNode {
           className={`text-left
           ${isMobile ? "max-w-sm space-y-0" : ""}
           ${isTablet ? "max-w-full space-y-2" : ""}
-          ${isDesktop ? "max-w-2xl space-y-2" : ""}`}
+          ${isDesktop ? "max-w-2xl space-y-5" : ""}`}
         >
           <div
             className={`font-semibold font-['NeulisNeue-Bold'] leading-relaxed
