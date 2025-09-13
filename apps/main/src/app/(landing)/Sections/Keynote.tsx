@@ -20,26 +20,26 @@ export default function Keynote(): React.ReactNode {
         className={`w-[72%] absolute flex justify-center
           ${isMobile ? "top-[30%] w-11/12 flex-col items-center" : ""}
           ${isTablet ? "top-[55%]  flex-col gap-y-12 items-center" : ""}
-          ${isDesktop ? "top-[57%] flex-row justify-between items-start gap-x-8" : ""}`}
+          ${isDesktop ? "top-[59%] flex-row justify-between items-start gap-x-8" : ""}`}
       >
         <GuestPhoto
           className={`transform
             ${isMobile ? "scale-[0.45]" : ""}
             ${isTablet ? "scale-100 w-1/3 h-1/3" : ""}
-            ${isDesktop ? "scale-120 w-80 h-80" : ""}`}
+            ${isDesktop ? "scale-150 w-80 h-80 w-1/2 h-1/3" : ""}`}
         />
 
         <div
           className={`text-left
           ${isMobile ? "max-w-sm space-y-0" : ""}
           ${isTablet ? "max-w-full space-y-2" : ""}
-          ${isDesktop ? "max-w-lg space-y-2" : ""}`}
+          ${isDesktop ? "max-w-2xl space-y-2" : ""}`}
         >
           <div
             className={`font-semibold font-['NeulisNeue-Bold'] leading-relaxed
             ${isMobile ? "text-3xl" : ""}
               ${isTablet ? "text-charcoalFog text-3xl" : ""}
-              ${isDesktop ? "text-white text-3xl" : ""}`}
+              ${isDesktop ? "text-white text-5xl" : ""}`}
           >
             Jamie Chen
           </div>
@@ -47,7 +47,7 @@ export default function Keynote(): React.ReactNode {
             className={`font-light font-['DMSans-Regular'] leading-relaxed
             ${isMobile ? "text-charcoalFog text-sm" : ""}
               ${isTablet ? "text-charcoalFog text-xl" : ""}
-              ${isDesktop ? "text-white text-xl" : ""}`}
+              ${isDesktop ? "text-white text-2xl" : ""}`}
           >
             Jamie Chen is Director of Product Engineering at Luma Labs, where
             she leads teams building ethical, user-focused AI tools. With a
