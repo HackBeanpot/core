@@ -7,8 +7,8 @@ import TicketBooth from "../../lib/Assets/SVG/StatsPage/TicketBooth.tsx";
 import TicketsBack from "../../lib/Assets/SVG/StatsPage/TicketsBack.tsx";
 import TicketsFront from "../../lib/Assets/SVG/StatsPage/TicketsFront.tsx";
 
-export default function Stats(): React.ReactNode {
-  const { isMobile } = useDevice();
+export default function Stats(): JSX.Element {
+  const { isMobile, isTablet } = useDevice();
   const DESIGN_WIDTH = 1200;
   const DESIGN_HEIGHT = 681;
   const canvasRatio = DESIGN_HEIGHT / DESIGN_WIDTH; // ≈0.5675
@@ -34,22 +34,24 @@ export default function Stats(): React.ReactNode {
       className="w-full bg-carouselCream flex justify-center"
       style={{ height: creamHeight }}
     >
-      <div className="relative w-full h-full mx-auto">
+      <div className="relative w-full h-full mx-auto ">
+        {/* Back Tickets Top */}
         <div
-          className="absolute"
+          className="absolute w-full"
           style={{
             width: pxToPercentW(1033.693),
             height: pxToPercentH(114.141),
             top: pxToPercentH(-103),
             left: 0,
+            scale: isMobile ? 0.5 :  isTablet ? 0.85 : 1,
             transform: "rotate(170.42deg)",
-            opacity: 1,
             transformOrigin: "bottom center",
           }}
         >
           <TicketsBack className="w-full h-full overflow-visible" />
         </div>
 
+        {/* Back Tickets Bottom */}
         <div
           className="absolute"
           style={{
@@ -57,27 +59,31 @@ export default function Stats(): React.ReactNode {
             height: pxToPercentH(114.141),
             top: pxToPercentH(400),
             left: 0,
+            scale: isMobile ? 0.5 : isTablet ? 0.85 : 1,
             transform: "translateY(75%) rotate(170.42deg)",
-            opacity: 1,
             transformOrigin: "center center",
           }}
         >
           <TicketsBack className="w-full h-full overflow-visible" />
         </div>
 
+        {/* Front Tickets */}
         <div
           className="absolute left-0 w-full"
           style={{
             top: pxToPercentH(isMobile ? 30.9 : 110),
-            transform: `translateX(-12%) translateY(60%) rotate(${isMobile ? -9.58 : 9.58}deg)`,
+            transform: `translateX(-12%) translateY(60%) rotate(${
+               9.58
+            }deg)`,
             transformOrigin: "top center",
           }}
         >
           <TicketsFront className="w-full h-auto" />
         </div>
 
+        {/* Ticket Booth */}
         <div
-          className="absolute bottom-0 right-0 Mobile-xl:hidden"
+          className="absolute bottom-0 right-0"
           style={{
             width: pxToPercentW(270.42),
             height: pxToPercentH(566.78),
@@ -85,7 +91,7 @@ export default function Stats(): React.ReactNode {
             transformOrigin: "bottom center",
           }}
         >
-          <TicketBooth className="w-full h-full" viewBox="0 0 276 568" />
+          <TicketBooth className="absolute w-full h-full" viewBox="0 0 276 568" />
         </div>
       </div>
     </div>
