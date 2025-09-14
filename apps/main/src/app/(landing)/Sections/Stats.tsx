@@ -30,14 +30,15 @@ export default function Stats(): JSX.Element {
   const pxToPercentH = (px: number) => `${(px / DESIGN_HEIGHT) * 100}%`;
 
   return (
-      <div
-          className="w-full bg-carouselCream flex justify-center"
-          style={{height: creamHeight}}
-      >
-        <div className="relative w-full h-full mx-auto ">
-
-          {/* Back Tickets Top */}
-          <div className="absolute" style={{
+    <div
+      className="w-full bg-carouselCream flex justify-center"
+      style={{ height: creamHeight }}
+    >
+      <div className="relative w-full h-full mx-auto ">
+        {/* Back Tickets Top */}
+        <div
+          className="absolute"
+          style={{
             width: pxToPercentW(1500),
             height: pxToPercentH(114.141),
             top: pxToPercentH(-103),
@@ -46,68 +47,64 @@ export default function Stats(): JSX.Element {
             opacity: 1,
             transformOrigin: "bottom center",
             overflow: "visible",
-          }}>
-            <TicketsBack className="w-full h-full"/>
-          </div>
-
-
-          {/* Back Tickets Bottom */}
-          <div
-              className="absolute"
-              style={{
-                width: pxToPercentW(1500),
-                height: pxToPercentH(114.141),
-                top: pxToPercentH(600),
-                left: 0,
-                transform: "translateX(-5%) rotate(170.42deg)",
-                transformOrigin: "top center",
-                overflow: "visible",
-              }}
-          >
-            <TicketsBack className="w-full h-full" />
-          </div>
-
-
-          {/* Front Tickets */}
-          <div
-              className="absolute left-0"
-              style={{
-                top: pxToPercentH(isMobile ? 20 : 110),
-                width: "100vw", // parent fills the viewport
-                overflow: "visible",
-                transform: isMobile
-                    ? `translateX(-42%) translateY(60%) rotate(9.58deg)`
-                    : `translateX(-12%) translateY(60%) rotate(9.58deg)`,
-                transformOrigin: "top center",
-              }}
-          >
-            <TicketsFront
-                style={{
-                  width: isMobile ? "145vw" : "100vw", // scale relative to viewport
-                  height: "auto",
-                  display: "block",
-                }}
-            />
-          </div>
-
-
-          {/* Ticket Booth */}
-          {!isMobile && (
-              <div
-                  className="absolute bottom-0 right-0"
-                  style={{
-                    width: pxToPercentW(270.42),
-                    height: pxToPercentH(566.78),
-                    transform: "translateX(10%) rotate(9.62deg)",
-                    transformOrigin: "bottom center",
-                  }}
-              >
-                <TicketBooth className="w-full h-full" viewBox="0 0 276 568"/>
-              </div>
-          )}
+          }}
+        >
+          <TicketsBack className="w-full h-full" />
         </div>
 
+        {/* Back Tickets Bottom */}
+        <div
+          className="absolute"
+          style={{
+            width: pxToPercentW(1500),
+            height: pxToPercentH(114.141),
+            top: pxToPercentH(600),
+            left: 0,
+            transform: "translateX(-5%) rotate(170.42deg)",
+            transformOrigin: "top center",
+            overflow: "visible",
+          }}
+        >
+          <TicketsBack className="w-full h-full" />
+        </div>
 
+        {/* Front Tickets */}
+        <div
+          className="absolute left-0"
+          style={{
+            top: pxToPercentH(isMobile ? 20 : 110),
+            width: "100vw", // parent fills the viewport
+            overflow: "visible",
+            transform: isMobile
+              ? `translateX(-42%) translateY(60%) rotate(9.58deg)`
+              : `translateX(-12%) translateY(60%) rotate(9.58deg)`,
+            transformOrigin: "top center",
+          }}
+        >
+          <TicketsFront
+            style={{
+              width: isMobile ? "145vw" : "100vw", // scale relative to viewport
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </div>
+
+        {/* Ticket Booth */}
+        {!isMobile && (
+          <div
+            className="absolute bottom-0 right-0"
+            style={{
+              width: pxToPercentW(270.42),
+              height: pxToPercentH(566.78),
+              transform: "translateX(10%) rotate(9.62deg)",
+              transformOrigin: "bottom center",
+            }}
+          >
+            <TicketBooth className="w-full h-full" viewBox="0 0 276 568" />
+          </div>
+        )}
       </div>
+    </div>
   );
 }
