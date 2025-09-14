@@ -18,12 +18,12 @@ const SponsorUsPage = () => {
 
         <div className="pointer-events-none absolute inset-0 flex">
           <div
-  className={`text-left
+            className={`text-left
     // ${isMobile ? "max-w-sm space-y-2 relative mt-[100%] ml-[13%]" : ""}
     ${isTablet ? "max-w-full space-y-4 mt-[50%] ml-[40%]" : ""}
     ${isDesktop ? "max-w-2xl space-y-5 mt-[34%] ml-[40%]" : ""}
   `}
->
+          >
             <h1
               className={`
                 font-NeulisNeue-Bold mb-3 text-charcoalFog
