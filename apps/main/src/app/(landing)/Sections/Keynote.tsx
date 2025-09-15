@@ -13,7 +13,7 @@ export default function Keynote(): React.ReactNode {
   return (
     <div
       className={`relative flex flex-col items-center justify-center w-full h-full'
-      ${isMobile ? "h-[95vh]" : ""}`}
+      ${isMobile ? "h-[105vh]" : ""}`}
     >
       <KeynoteSpeaker
         className={`
