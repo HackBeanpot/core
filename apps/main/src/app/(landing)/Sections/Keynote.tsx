@@ -21,7 +21,7 @@ export default function Keynote(): React.ReactNode {
       />
       <div
         className={`w-[72%] flex justify-center
-          ${isMobile ? "absolute top-[42%] w-11/12 flex-col items-center" : ""}
+          ${isMobile ? "absolute top-[43%] w-11/12 flex-col items-center" : ""}
           ${isTablet ? "absolute top-[55%]  flex-col gap-y-12 items-center" : ""}
           ${isDesktop ? "absolute top-[59%] flex-row justify-between items-start gap-x-8" : ""}`}
       >
