@@ -11,8 +11,10 @@ export default function Keynote(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   return (
-    <div className={`relative flex flex-col items-center justify-center w-full h-full'
-      ${isMobile ? "h-[95vh]" : ""}`}>
+    <div
+      className={`relative flex flex-col items-center justify-center w-full h-full'
+      ${isMobile ? "h-[95vh]" : ""}`}
+    >
       <KeynoteSpeaker
         className={`
           ${isMobile ? "scale-x-110" : ""}`}
