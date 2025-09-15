@@ -9,17 +9,23 @@ import { FaArrowUp } from "react-icons/fa";
 import clsx from "clsx";
 import useDevice from "@util/hooks/useDevice";
 
-const SocialIconButton = ({ 
+const SocialIconButton = ({
   icon,
   alt,
-  href 
-  }: { icon: string, alt: string, href: string }) => {
+  href,
+}: {
+  icon: string;
+  alt: string;
+  href: string;
+}) => {
   return (
-    <Button icon={
-      <ExternalLink href={href}>
-        <Image alt={"HackBeanpot " + alt} src={icon} width={25} height={25} />
-      </ExternalLink>
-    } />
+    <Button
+      icon={
+        <ExternalLink href={href}>
+          <Image alt={"HackBeanpot " + alt} src={icon} width={25} height={25} />
+        </ExternalLink>
+      }
+    />
   );
 };
 
@@ -55,7 +61,7 @@ const Footer = () => {
   };
 
   const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleSubmit = async () => {
@@ -80,29 +86,41 @@ const Footer = () => {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") handleSubmit();
-  }
+  };
 
   const imageInfo = [
-    { icon: "/footer-logos/insta-logo.svg", alt: "Instagram", href: "https://www.instagram.com/hackbeanpot/?hl=en" },
-    { icon: "/footer-logos/linkedin-logo.svg", alt: "LinkedIn", href: "https://www.linkedin.com/company/hackbeanpot-inc" },
-    { icon: "/footer-logos/tiktok-logo.svg", alt: "TikTok", href: "https://www.tiktok.com/@hackbeanpot" }
+    {
+      icon: "/footer-logos/insta-logo.svg",
+      alt: "Instagram",
+      href: "https://www.instagram.com/hackbeanpot/?hl=en",
+    },
+    {
+      icon: "/footer-logos/linkedin-logo.svg",
+      alt: "LinkedIn",
+      href: "https://www.linkedin.com/company/hackbeanpot-inc",
+    },
+    {
+      icon: "/footer-logos/tiktok-logo.svg",
+      alt: "TikTok",
+      href: "https://www.tiktok.com/@hackbeanpot",
+    },
   ];
 
   const outerDivStyles = clsx(
     "flex flex-row bg-starlightBlue w-full justify-between py-16 px-12 gap-x-10",
     isTablet && "flex-col gap-y-16",
-    isMobile && "px-5"
+    isMobile && "px-5",
   );
 
   const mailListSectionStyles = clsx(
     "flex flex-col gap-2 max-w-[540px] justify-between",
     isTablet && "gap-y-8",
-    isMobile && "w-full"
+    isMobile && "w-full",
   );
 
   const mailListInputStyles = clsx(
     "flex flex-row gap-3 w-full justify-between",
-    isMobile && "flex-col"
+    isMobile && "flex-col",
   );
 
   const FooterContent = (
@@ -118,8 +136,13 @@ const Footer = () => {
         <div className="flex flex-row gap-2">
           {imageInfo.map((socialIcon, index) => {
             return (
-              <SocialIconButton icon={socialIcon.icon} alt={socialIcon.alt} href={socialIcon.href} key={index} />
-            )
+              <SocialIconButton
+                icon={socialIcon.icon}
+                alt={socialIcon.alt}
+                href={socialIcon.href}
+                key={index}
+              />
+            );
           })}
         </div>
       </div>
