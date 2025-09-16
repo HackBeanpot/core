@@ -22,7 +22,8 @@
     "./PaginationDots": "./src/PaginationDots.tsx",
     "./Section": "./src/Section.tsx", 
     "./Placeholder": "./src/Placeholder.tsx", 
-    "./Button": "./src/Button.tsx"
+    "./Button": "./src/Button.tsx", 
+    "./RibbonTitle": "./src/RibbonTitle.tsx"
   },
   "license": "MIT",
   "scripts": {

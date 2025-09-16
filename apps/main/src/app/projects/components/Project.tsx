@@ -99,8 +99,6 @@ function Project({
         : "h-[105%] w-[70vw]"
     : baseSize;
 
-
-
   const projectCardStylesBG = clsx(
     "absolute bg-starlightBlue rounded-xl shadow-[inset_-15px_15px_0_rgba(0,0,0,0.25)]",
     expandedSize,
@@ -127,9 +125,7 @@ function Project({
     isTablet &&
       clsx(
         "flex flex-row gap-6 overflow-hidden",
-        isDescExpanded
-          ? "h-auto w-[60vw] "
-          : "h-[50vh] w-[60vw]",
+        isDescExpanded ? "h-auto w-[60vw] " : "h-[50vh] w-[60vw]",
       ),
     isMobile &&
       clsx(
@@ -193,7 +189,7 @@ function Project({
             {needsTruncation && (
               <button
                 onClick={() => setIsDescExpanded((prev) => !prev)}
-            className="my-2 text-marigoldYellow font-bold flex items-center hover:underline"
+                className="my-2 text-marigoldYellow font-bold flex items-center hover:underline"
                 aria-expanded={isDescExpanded}
               >
                 <span>{isDescExpanded ? "Read less -" : "Read more +"}</span>
