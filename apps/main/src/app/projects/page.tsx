@@ -2,6 +2,7 @@
 
 import React from "react";
 import Project from "./components/Project";
+import Example from "./components/Example";
 
 const projectData = [
   {
@@ -41,7 +42,7 @@ export default function Page() {
         {projectData.map((project, index) => (
           // TODO: add title component here when done
           <div key={index} className="pt-24">
-            <Project
+            <Example
               projectImage={project.projectImage}
               projectName={project.projectName}
               url={project.link}
