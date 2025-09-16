@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Accordion from "./../../lib/Components/Accordian";
+import useDevice from "@util/hooks/useDevice";
 // import clsx from "clsx";
 
 const faqData = [
@@ -20,7 +21,7 @@ const faqData = [
 export default function FAQ() {
   return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', 
-      color: 'white', fontSize: '20px', backgroundColor: '#1F2937', padding: '48px 24px'}}>
+      color: 'white', fontSize: '20px', backgroundColor: '#535353', padding: '48px 24px'}}>
         FAQ
         <Accordion items={faqData} />
       </div>

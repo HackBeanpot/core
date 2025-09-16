@@ -18,7 +18,6 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
                 style={{
                 width: '746px',
                 backgroundColor: '#535353',
-                marginBottom: '45px',
                 }}
             >
                 <button 
@@ -47,7 +46,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
                 </span>
                 </button>
                 {open === index && (
-                <div style={{ padding: '0 20px 20px', color: '#D1D5DB' }}>
+                <div style={{ padding: '0 20px 20px', color: '#D1D5DB', borderBottom: '1px solid #004687', fontSize: '16px' }}>
                     {item.content}
                 </div>
                 )}
