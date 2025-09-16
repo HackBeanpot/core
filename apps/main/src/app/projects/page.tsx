@@ -2,6 +2,7 @@
 
 import React from "react";
 import Project from "./components/Project";
+import RibbonTitle from "@repo/ui/RibbonTitle";
 
 const projectData = [
   {
@@ -41,6 +42,7 @@ export default function Page() {
         {projectData.map((project, index) => (
           // TODO: add title component here when done
           <div key={index} className="pt-24">
+            <RibbonTitle text={project.projectName.toUpperCase()} />
             <Project
               projectImage={project.projectImage}
               projectName={project.projectName}
