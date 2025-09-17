@@ -75,7 +75,7 @@ export default function Page() {
         </div>
 
         {projectData.map((project, index) => (
-          <div key={index} className="pt-24">
+          <div key={index} className="pt-14">
             <RibbonTitle text={project.projectName.toUpperCase()} />
             <Project
               projectImage={project.projectImage}
@@ -86,6 +86,13 @@ export default function Page() {
             />
           </div>
         ))}
+
+        <div className="mt-30">
+        <div className="flex-grow" /> 
+<div className="self-stretch text-center justify-center text-light-yellow text-3xl font-semibold font-['Neulis_Neue'] leading-10 mb-20">
+  Interested in seeing more past hacker projects?
+</div>
+        </div>
       </div>
     </main>
   );
