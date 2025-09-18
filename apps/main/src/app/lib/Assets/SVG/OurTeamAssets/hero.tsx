@@ -1,7 +1,6 @@
 import React from "react";
 import HeroBackground from "./heroBackground";
 
-
 export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden">
