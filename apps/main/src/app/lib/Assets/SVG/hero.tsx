@@ -1,4 +1,3 @@
-// app/team/Hero.tsx
 import React from "react";
 import HeroBackground from "../SVG/heroBackground";
 

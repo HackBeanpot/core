@@ -4,7 +4,7 @@ type Props = { className?: string; preserveAspectRatio?: string };
 
 const HeroBackground: React.FC<Props> = ({
   className = "",
-  preserveAspectRatio = "xMidYMin slice", // anchor near top, crop bottom
+  preserveAspectRatio = "xMidYMin slice",
 }) => {
   return (
     <svg
