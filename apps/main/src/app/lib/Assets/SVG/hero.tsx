@@ -26,25 +26,26 @@ export default function Hero() {
             <feDropShadow dx="3" dy="4" stdDeviation="0.6" floodOpacity="0.6" />
           </filter>
         </defs>
-
-        <text
-          x="50%"
-          y="57%"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          className="font-Sancreek-Regular"
-          fontSize="80"
-          fill="#CC322D"
+        <g
           stroke="#F2E06F"
-          letterSpacing="0.02em"
-          strokeWidth="0.105em"
+          strokeWidth="6"
           strokeLinejoin="round"
           paintOrder="stroke fill"
           vectorEffect="non-scaling-stroke"
           filter="url(#titleShadow)"
         >
-          OUR TEAM
-        </text>
+          <text
+            x="50%"
+            y="57%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            className="font-Sancreek-Regular"
+            fontSize="80"
+            fill="#CC322D"
+          >
+            OUR TEAM
+          </text>
+        </g>
       </svg>
     </section>
   );
