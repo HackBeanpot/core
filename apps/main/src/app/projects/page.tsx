@@ -63,7 +63,7 @@ const projectData = [
 ];
 
 export default function Page() {
-  const { isMobile, isTablet, isDesktop } = useDevice();
+  const { isMobile, } = useDevice();
   return (
     <main className="flex flex-col items-center min-h-screen relative overflow-auto">
       <div className="absolute top-0 left-0 w-full h-full -z-10">
