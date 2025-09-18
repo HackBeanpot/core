@@ -1,5 +1,6 @@
 import React from "react";
-import HeroBackground from "../SVG/heroBackground";
+import HeroBackground from "./heroBackground";
+
 
 export default function Hero() {
   return (
