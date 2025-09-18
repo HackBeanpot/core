@@ -4,6 +4,7 @@ import React from "react";
 import Project from "./components/Project";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import ProjectBackground from "./components/background";
+import useDevice from "@util/hooks/useDevice";
 const projectData = [
   {
     projectImage: "/projects/memora.png",
@@ -62,21 +63,24 @@ const projectData = [
 ];
 
 export default function Page() {
+  const { isMobile, isTablet, isDesktop } = useDevice();
   return (
-    <main className="flex flex-col items-center min-h-screen relative">
-      {/* Background positioned absolutely to cover the entire container */}
-      <div className="absolute inset-0 z-0">
-        <ProjectBackground />
+    <main className="flex flex-col items-center min-h-screen relative overflow-auto">
+      <div className="absolute top-0 left-0 w-full h-full -z-10">
+        <ProjectBackground
+          className={`
+          ${isMobile ? " w-full h-full" : ""}`}
+        />
       </div>
 
-      <div className="relative z-10 w-full flex flex-col items-center pt-24">
+      <div className="relative z-10 max-w-screen flex flex-col items-center pt-24">
         <div className="self-stretch text-center justify-center text-firecrackerRedDark font-Sancreek-Regular text-heading leading-[96px] text-shadow [text-stroke:2px_#F2E06F] [-webkit-text-stroke:2px_#F2E06F]">
           2025 PROJECTS
         </div>
 
         {projectData.map((project, index) => (
           <div key={index} className="pt-14">
-            <RibbonTitle text={project.projectName.toUpperCase()} />
+            <RibbonTitle text={project.award.toUpperCase()} />
             <Project
               projectImage={project.projectImage}
               projectName={project.projectName}
@@ -87,9 +91,8 @@ export default function Page() {
           </div>
         ))}
 
-        <div className="mt-30">
-          <div className="flex-grow" />
-          <div className="self-stretch text-center justify-center text-light-yellow text-3xl font-semibold font-['Neulis_Neue'] leading-10 mb-20">
+        <div className="absolute top-[115%]">
+          <div className="self-stretch text-center justify-center text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-10">
             Interested in seeing more past hacker projects?
           </div>
         </div>
