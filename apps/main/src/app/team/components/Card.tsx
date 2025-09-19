@@ -2,7 +2,9 @@ import React from "react";
 import clsx from "clsx";
 
 const cardStylesBorder = clsx(
-  "relative w-[50vw] aspect-[815.74/360.2] outline outline-[15px] outline-firecrackerRedLight rounded-xl drop-shadow-[8px_8px_0_#CC322D] flex items-center justify-center",
+    "relative w-[50vw] mobile:w-[70vw] tablet:w-[70vw] desktop:w-[50vw] " +
+    "aspect-[815.74/360.2] outline outline-[15px] outline-firecrackerRedLight " +
+    "rounded-xl drop-shadow-[8px_8px_0_#CC322D] flex items-center justify-center"
 );
 
 const cardStylesBG = clsx(
@@ -13,11 +15,11 @@ const Card = () => {
   return (
     <div className={cardStylesBorder}>
       <div className={cardStylesBG} />
-      <div className="relative flex flex-col items-center justify-center h-full">
-        <span className="font-['NeulisNeue-Bold'] font-semibold text-[2vw] text-white">
+      <div className="relative flex flex-col items-center justify-center h-full text-center">
+        <span className="font-['NeulisNeue-Bold'] font-semibold text-[clamp(16px,2vw,28px)] text-white">
           Interested in joining core?
         </span>
-        <span className="font-['NeulisNeue-Regular'] font-normal text-[1.3vw] text-white">
+        <span className="font-['NeulisNeue-Regular'] font-normal text-[clamp(14px,1.3vw,18px)] text-white">
           Applications open in February!
         </span>
       </div>
