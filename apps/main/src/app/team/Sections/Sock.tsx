@@ -27,7 +27,7 @@ const Sock = () => {
         src={AboutUs}
         alt="About Us Background"
         fill
-        className="absolute inset-0 object-cover rounded-xl -z-10"
+        className="absolute inset-0 object-cover -z-10"
       />
       <Card />
     </div>
