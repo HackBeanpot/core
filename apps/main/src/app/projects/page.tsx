@@ -5,6 +5,9 @@ import Project from "./components/Project";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import ProjectBackground from "./components/background";
 import useDevice from "@util/hooks/useDevice";
+import PinkFirework from "./components/pinkFirework";
+import OrangeFirework from "./components/orangeFirework";
+import YellowFirework from "./components/yellowFirework";
 const projectData = [
   {
     projectImage: "/projects/memora.png",
@@ -63,23 +66,26 @@ const projectData = [
 ];
 
 export default function Page() {
-  const { isMobile, } = useDevice();
+  const { isMobile, isTablet, isDesktop } = useDevice();
   return (
-    <main className="flex flex-col items-center min-h-screen relative overflow-auto">
-      <div className="absolute top-0 left-0 w-full h-full -z-10">
-        <ProjectBackground
-          className={`
-          ${isMobile ? " w-full h-full" : ""}`}
-        />
+    <div className="flex flex-col items-center min-h-screen relative overflow-x-hidden overflow-y-visible">
+      <div
+        className={`absolute inset-0 -z-10 ${isMobile ? "scale-125" : ""} ${isTablet ? "scale-125" : ""} ${isDesktop ? "scale-125" : ""}`}
+      >
+        <ProjectBackground className={`${isMobile ? "w-full h-full" : ""}`} />
       </div>
 
-      <div className="relative z-10 max-w-screen flex flex-col items-center pt-24">
-        <div className="self-stretch text-center justify-center text-firecrackerRedDark font-Sancreek-Regular text-heading leading-[96px] text-shadow [text-stroke:2px_#F2E06F] [-webkit-text-stroke:2px_#F2E06F]">
+      <div className="relative z-10 max-w-screen flex flex-col items-center pt-14">
+        <div
+          className="self-stretch text-center justify-center text-firecrackerRedDark 
+        font-Sancreek-Regular text-heading leading-[96px] 
+        text-shadow [text-stroke:2px_#F2E06F] [-webkit-text-stroke:2px_#F2E06F]"
+        >
           2025 PROJECTS
         </div>
 
         {projectData.map((project, index) => (
-          <div key={index} className="pt-14">
+          <div key={index} className="pt-10">
             <RibbonTitle text={project.award.toUpperCase()} />
             <Project
               projectImage={project.projectImage}
@@ -91,12 +97,53 @@ export default function Page() {
           </div>
         ))}
 
-        <div className="absolute top-[115%]">
-          <div className="self-stretch text-center justify-center text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-10">
+        <div
+          className={`
+    ${isMobile ? "top-[106.5%] -left-[200px]" : ""}
+    ${isTablet ? "top-[125%] -left-[200px]" : ""}
+    ${isDesktop ? "top-[100%] -left-[200px]" : ""}
+    absolute
+  `}
+        >
+          <PinkFirework />
+        </div>
+        <div
+          className={`
+    ${isMobile ? "top-[106.5%] left-[200px]" : ""}
+    ${isTablet ? "top-[125%] left-[200px]" : ""}
+    ${isDesktop ? "top-[104%] -left-[85px]" : ""}
+    absolute
+  `}
+        >
+          <YellowFirework />
+        </div>
+        <div
+          className={`
+    ${isMobile ? "top-[106.5%] left-[200px]" : ""}
+    ${isTablet ? "top-[125%] left-[200px]" : ""}
+    ${isDesktop ? "top-[104%] -left-[85px]" : ""}
+    absolute
+  `}
+        >
+          <OrangeFirework />
+        </div>
+
+        <div
+          className={`absolute flex flex-col items-center ${isMobile ? "top-[106.5%]" : ""} ${isTablet ? "top-[125%]" : ""} ${isDesktop ? "top-[115%]" : ""}`}
+        >
+          <div className="self-stretch text-center justify-center text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
             Interested in seeing more past hacker projects?
+          </div>
+          <div className="self-stretch text-center justify-center text-carouselCreamLight text-md font-normal font-['NeulisNeue-Regular'] leading-tight mb-5">
+            Check out the HackBeanpot Archive!
+          </div>
+          <div className="px-5 py-2.5 bg-starlightBlue rounded-[30px] shadow-[inset_3.2307441234588623px_4.307659149169922px_0px_0px_rgba(0,0,0,0.10)] inline-flex justify-center items-center gap-2.5">
+            <div className="text-center justify-center text-white text-xl font-bold font-['DM_Sans']">
+              View Archive
+            </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
