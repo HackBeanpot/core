@@ -99,29 +99,27 @@ export default function Page() {
 
         <div
           className={`
-    ${isMobile ? "top-[106.5%] -left-[200px]" : ""}
-    ${isTablet ? "top-[125%] -left-[200px]" : ""}
-    ${isDesktop ? "top-[100%] -left-[200px]" : ""}
-    absolute
-  `}
+        ${isMobile ? "scale-[0.3] top-[98.5%] -left-[125px]" : ""}
+        ${isTablet ? "scale-[0.7] top-[101%] -left-[150px]" : ""}
+        ${isDesktop ? "top-[100%] -left-[200px]" : ""}
+        absolute`}
         >
-          <PinkFirework />
+        <PinkFirework />
         </div>
         <div
           className={`
-    ${isMobile ? "top-[106.5%] left-[200px]" : ""}
-    ${isTablet ? "top-[125%] left-[200px]" : ""}
-    ${isDesktop ? "top-[104%] -left-[85px]" : ""}
-    absolute
-  `}
+      ${isMobile ? "scale-[0.3] top-[98.5%] -left-[120px]" : ""}
+      ${isTablet ? "scale-[0.7] top-[103%] -left-[60px]" : ""}
+      ${isDesktop ? "top-[104%] -left-[85px]" : ""}
+      absolute`}
         >
           <YellowFirework />
         </div>
         <div
           className={`
-    ${isMobile ? "top-[106.5%] left-[200px]" : ""}
-    ${isTablet ? "top-[125%] left-[200px]" : ""}
-    ${isDesktop ? "top-[104%] -left-[85px]" : ""}
+    ${isMobile ? "scale-[0.3] top-[96%] -left-[30px]" : ""}
+    ${isTablet ? "scale-[0.65] top-[100%] left-[200px]" : ""}
+    ${isDesktop ? "top-[101%] left-[485px]" : ""}
     absolute
   `}
         >
@@ -129,7 +127,7 @@ export default function Page() {
         </div>
 
         <div
-          className={`absolute flex flex-col items-center ${isMobile ? "top-[106.5%]" : ""} ${isTablet ? "top-[125%]" : ""} ${isDesktop ? "top-[115%]" : ""}`}
+          className={`absolute flex flex-col items-center ${isMobile ? "top-[106.5%]" : ""} ${isTablet ? "top-[112%]" : ""} ${isDesktop ? "top-[115%]" : ""}`}
         >
           <div className="self-stretch text-center justify-center text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
             Interested in seeing more past hacker projects?
