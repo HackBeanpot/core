@@ -104,7 +104,7 @@ export default function Page() {
         ${isDesktop ? "top-[100%] -left-[200px]" : ""}
         absolute`}
         >
-        <PinkFirework />
+          <PinkFirework />
         </div>
         <div
           className={`
