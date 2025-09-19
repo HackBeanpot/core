@@ -16,22 +16,21 @@ import AboutUs from "../../lib/Assets/SVG/OurTeamAssets/AboutUs.png";
  */
 const Sock = () => {
   return (
-      <div className="relative w-full
+    <div
+      className="relative w-full
       mobile:aspect-[3/2]
       tablet:aspect-[701/386]
       desktop:aspect-[1200/660]
       flex items-center justify-center"
-      >
-        <Image
-            src={AboutUs}
-            alt="About Us Background"
-            fill
-            className="absolute inset-0 object-cover rounded-xl -z-10"
-        />
-        <Card/>
-      </div>
-
-
+    >
+      <Image
+        src={AboutUs}
+        alt="About Us Background"
+        fill
+        className="absolute inset-0 object-cover rounded-xl -z-10"
+      />
+      <Card />
+    </div>
   );
 };
 
