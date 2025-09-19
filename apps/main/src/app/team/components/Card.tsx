@@ -2,9 +2,9 @@ import React from "react";
 import clsx from "clsx";
 
 const cardStylesBorder = clsx(
-    "relative w-[50vw] mobile:w-[70vw] tablet:w-[70vw] desktop:w-[50vw] " +
+  "relative w-[50vw] mobile:w-[70vw] tablet:w-[70vw] desktop:w-[50vw] " +
     "aspect-[815.74/360.2] outline outline-[15px] outline-firecrackerRedLight " +
-    "rounded-xl drop-shadow-[8px_8px_0_#CC322D] flex items-center justify-center"
+    "rounded-xl drop-shadow-[8px_8px_0_#CC322D] flex items-center justify-center",
 );
 
 const cardStylesBG = clsx(
