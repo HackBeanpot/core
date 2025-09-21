@@ -338,6 +338,13 @@
   dependencies:
     glob "10.3.10"
 
+"@next/eslint-plugin-next@^14.2.3":
+  version "14.2.23"
+  resolved "https://registry.npmjs.org/@next/eslint-plugin-next/-/eslint-plugin-next-14.2.23.tgz"
+  integrity sha512-efRC7m39GoiU1fXZRgGySqYbQi6ZyLkuGlvGst7IwkTTczehQTJA/7PoMg4MMjUZvZEGpiSEu+oJBAjPawiC3Q==
+  dependencies:
+    glob "10.3.10"
+
 "@next/eslint-plugin-next@15.0.3":
   version "15.0.3"
   resolved "https://registry.npmjs.org/@next/eslint-plugin-next/-/eslint-plugin-next-15.0.3.tgz"
