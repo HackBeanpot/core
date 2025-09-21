@@ -19,16 +19,16 @@ export default function Page(): JSX.Element {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <NavBar />
+      {/* <NavBar />
       <Landing />
       <Apply />
-      <Stats />
+      <Stats /> */}
       <About />
-      <Values />
+      {/* <Values />
       <Keynote />
       <Calendar />
       <Testimonials />
-      <FAQSection />
+      <FAQSection /> */}
       <Footer />
     </main>
   );
