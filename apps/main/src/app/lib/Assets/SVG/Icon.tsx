@@ -6,7 +6,7 @@ type IconProps = {
   url?: string;
 };
 
-const Icon: React.FC<IconProps> = ({ image_location, size, url}) => {
+const Icon: React.FC<IconProps> = ({ image_location, size, url }) => {
   return (
     <div
       className="relative inline-block rounded-full overflow-hidden group
@@ -38,17 +38,17 @@ const Icon: React.FC<IconProps> = ({ image_location, size, url}) => {
           transition-opacity duration-300
         "
       >
-      <img
-        src="/sponsor-logos/linkedin.png"
-        alt="linkedin"
-        className="
+        <img
+          src="/Users/alexchen/Documents/projects/core/apps/main/src/app/lib/Assets/SVG/Frame.svg"
+          alt="linkedin"
+          className="
           absolute inset-0 m-auto
           w-1/3 h-1/3
           opacity-0 group-hover:opacity-100
           transition-opacity duration-300
         "
-       />
-       </a>
+        />
+      </a>
     </div>
   );
 };

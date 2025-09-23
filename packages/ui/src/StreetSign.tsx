@@ -17,9 +17,8 @@ export default function StreetSign({
       }
     >
       <Typography.SignLarge>{streetName}</Typography.SignLarge>
-      
-        {suffix}
-      
+
+      {suffix}
     </div>
   );
 }

@@ -9,16 +9,13 @@ import {
   Apply,
   About,
 } from "./Sections";
-import { Footer, NavBar} from "../lib/Components";
+import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
 import Icon from "../lib/Assets/SVG/Icon";
 
-
-
 export default function Page(): JSX.Element {
   return (
-
     <main className="flex flex-col items-center min-h-screen bg-canopyGreen">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,7 +25,10 @@ export default function Page(): JSX.Element {
       <Landing />
       <Apply />
       <Stats />
-      <Icon image_location="/headshots/emma_icon.png" url = 'https://www.linkedin.com/in/alexchen04/' />
+      <Icon
+        image_location="/team/components/emma_icon.png"
+        url="https://www.linkedin.com/in/alexchen04/"
+      />
       <About />
       <Values />
       <Keynote />
