@@ -87,23 +87,23 @@ export default function Page() {
 
         {projectData.map((project, index) => (
           <div
-          key={index}
-          className={`${isMobile ? "pt-10 mb-10" : ""} ${isTablet ? "pt-10" : ""} ${isDesktop ? "pt-10" : ""}`}
-        >
+            key={index}
+            className={`${isMobile ? "pt-10 mb-10" : ""} ${isTablet ? "pt-10" : ""} ${isDesktop ? "pt-10" : ""}`}
+          >
             <RibbonTitle text={project.award.toUpperCase()} size="short" />
-            <div className={`${isMobile ? "mb-5" : ""} ${isTablet ? "" : ""} ${isDesktop ? "" : ""}`}
-        >
-            <Project
-              projectImage={project.projectImage}
-              projectName={project.projectName}
-              url={project.link}
-              members={project.members}
-              description={project.description}
-            />
-          </div>
+            <div
+              className={`${isMobile ? "mb-5" : ""} ${isTablet ? "" : ""} ${isDesktop ? "" : ""}`}
+            >
+              <Project
+                projectImage={project.projectImage}
+                projectName={project.projectName}
+                url={project.link}
+                members={project.members}
+                description={project.description}
+              />
+            </div>
           </div>
         ))}
-
 
         <div
           className={`
@@ -143,17 +143,18 @@ export default function Page() {
           <div className="self-stretch text-center justify-center text-carouselCreamLight text-md font-normal font-['NeulisNeue-Regular'] leading-tight mb-5">
             Check out the HackBeanpot Archive!
           </div>
-          
-            <div className="text-center justify-center">
+
+          <div className="text-center justify-center">
             <Button
               text="View Archive"
               textColor="white"
               color="starlightBlue"
               size="medium"
-              onClick={() => window.open("https://archive.hackbeanpot.com/", "_blank")}
-              ></Button>
-            </div>
-     
+              onClick={() =>
+                window.open("https://archive.hackbeanpot.com/", "_blank")
+              }
+            ></Button>
+          </div>
         </div>
       </div>
     </div>
