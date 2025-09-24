@@ -8,6 +8,7 @@ import useDevice from "@util/hooks/useDevice";
 import PinkFirework from "./components/pinkFirework";
 import OrangeFirework from "./components/orangeFirework";
 import YellowFirework from "./components/yellowFirework";
+import Button from "@repo/ui/Button";
 const projectData = [
   {
     projectImage: "/projects/memora.png",
@@ -85,8 +86,13 @@ export default function Page() {
         </div>
 
         {projectData.map((project, index) => (
-          <div key={index} className="pt-10">
-            <RibbonTitle text={project.award.toUpperCase()} />
+          <div
+          key={index}
+          className={`${isMobile ? "pt-10 mb-10" : ""} ${isTablet ? "pt-10" : ""} ${isDesktop ? "pt-10" : ""}`}
+        >
+            <RibbonTitle text={project.award.toUpperCase()} size="short" />
+            <div className={`${isMobile ? "mb-5" : ""} ${isTablet ? "" : ""} ${isDesktop ? "" : ""}`}
+        >
             <Project
               projectImage={project.projectImage}
               projectName={project.projectName}
@@ -95,7 +101,9 @@ export default function Page() {
               description={project.description}
             />
           </div>
+          </div>
         ))}
+
 
         <div
           className={`
@@ -127,7 +135,7 @@ export default function Page() {
         </div>
 
         <div
-          className={`absolute flex flex-col items-center ${isMobile ? "top-[106.5%]" : ""} ${isTablet ? "top-[112%]" : ""} ${isDesktop ? "top-[115%]" : ""}`}
+          className={`absolute flex flex-col items-center ${isMobile ? "top-[106.5%]" : ""} ${isTablet ? "top-[112%]" : ""} ${isDesktop ? "top-[118%]" : ""}`}
         >
           <div className="self-stretch text-center justify-center text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
             Interested in seeing more past hacker projects?
@@ -135,11 +143,17 @@ export default function Page() {
           <div className="self-stretch text-center justify-center text-carouselCreamLight text-md font-normal font-['NeulisNeue-Regular'] leading-tight mb-5">
             Check out the HackBeanpot Archive!
           </div>
-          <div className="px-5 py-2.5 bg-starlightBlue rounded-[30px] shadow-[inset_3.2307441234588623px_4.307659149169922px_0px_0px_rgba(0,0,0,0.10)] inline-flex justify-center items-center gap-2.5">
-            <div className="text-center justify-center text-white text-xl font-bold font-['DM_Sans']">
-              View Archive
+          
+            <div className="text-center justify-center">
+            <Button
+              text="View Archive"
+              textColor="white"
+              color="starlightBlue"
+              size="medium"
+              onClick={() => window.open("https://archive.hackbeanpot.com/", "_blank")}
+              ></Button>
             </div>
-          </div>
+     
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ export default function RibbonTitle({
     <div className="relative inline-block w-full transform scale-75 text-marigoldYellow">
       {isShort && (
         <div>
-          <span className="absolute inset-0 flex items-center justify-center desktop:text-7xl tablet:text-4xl mobile:text-[1.70rem] z-10 font-NeulisNeue-Bold">
+          <span className="absolute inset-0 flex items-center justify-center desktop:text-6xl tablet:text-4xl mobile:text-[1.5rem] z-10 font-NeulisNeue-Bold">
             {text}
           </span>
           <ShortRibbon className="w-full transform scale-[1.1]" />
