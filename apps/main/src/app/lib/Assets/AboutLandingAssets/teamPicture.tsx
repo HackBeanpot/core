@@ -12,6 +12,15 @@ const TeamPicture: React.FC = () => {
       <g filter="url(#filter0_d_707_13984)">
         <path d="M527 17.1854L0.96875 0V341.538H527V17.1854Z" fill="white" />
       </g>
+      {/* Add your picture here */}
+      <image
+        href="/team.png" // path to your image
+        x="15" // left offset
+        y="30" // top offset
+        width="500" // image width
+        height="300" // image height
+        preserveAspectRatio="xMidYMid slice"
+      />
       <defs>
         <filter
           id="filter0_d_707_13984"

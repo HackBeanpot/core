@@ -53,6 +53,35 @@ const TextBackground: React.FC = () => {
           />
         </filter>
       </defs>
+      <text
+        x="40" // left margin
+        y="100" // first line position
+        fill="black"
+        fontSize="19"
+        fontFamily="DMSans-Regular"
+      >
+        <tspan x="65" dy="0">
+        We&apos;re a non-profit organization in the Boston area
+        </tspan>
+        <tspan x="65" dy="24">
+          that organizes an annual undergraduate hackathon.
+        </tspan>
+        <tspan x="65" dy="24">
+          Our goal is to expand and nurture the hacker
+        </tspan>
+        <tspan x="65" dy="24">
+          culture that exists in Boston and the surrounding
+        </tspan>
+        <tspan x="65" dy="24">
+          areas. We connect students and other aspiring nerds
+        </tspan>
+        <tspan x="65" dy="24">
+          to their colleagues so that they can meet new people,
+        </tspan>
+        <tspan x="65" dy="24">
+          learn new things, and have a great time.
+        </tspan>
+      </text>
     </svg>
   );
 };
