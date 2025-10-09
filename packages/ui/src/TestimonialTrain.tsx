@@ -35,6 +35,9 @@ export default function TestimonialTrain() {
     if (pixelPos < currBounds.rightBound) {
       setPixelPos((prev) => prev + currBounds.threshold);
     }
+    if (pixelPos < currBounds.rightBound) {
+      setPixelPos((prev) => prev + currBounds.threshold);
+    }
     // console.log(pixelPos);
   }, [pixelPos, currBounds]);
 
@@ -51,6 +54,22 @@ export default function TestimonialTrain() {
       </div> */}
       {/* top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 */}
       <div className="absolute w-full z-10 self-center">
+        <div className="flex flex-row items-center justify-center gap-[550px]">
+          <Button
+            color="ribbonBlue"
+            textColor="starlightBlue"
+            icon={<IoIosArrowBack size={28} />}
+            removePadding={true}
+            onClick={handleLeftClick}
+          />
+          <Button
+            color="ribbonBlue"
+            textColor="starlightBlue"
+            icon={<IoIosArrowForward size={28} />}
+            removePadding={true}
+            onClick={handleRightClick}
+          />
+        </div>
         <div className="flex flex-row items-center justify-center gap-[550px]">
           <Button
             color="ribbonBlue"
