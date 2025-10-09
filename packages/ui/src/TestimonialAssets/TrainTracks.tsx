@@ -3,9 +3,9 @@ import type { SVGProps } from "react";
 
 const TrainTracks = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    viewBox="0 0 1335 125"
     xmlns="http://www.w3.org/2000/svg"
-    width={1335}
-    height={125}
+    preserveAspectRatio="none"
     fill="none"
     {...props}
   >

@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from "react";
 import Train from "./Train";
-// import TrainTracks from "./TestimonialAssets/TrainTracks";
+import TrainTracks from "./TestimonialAssets/TrainTracks";
 import Button from "./Button";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import useDevice from "@repo/util/hooks/useDevice";
@@ -42,18 +42,14 @@ export default function TestimonialTrain() {
   }, [pixelPos, currBounds]);
 
   return (
-    <div className="flex max-w-screen h-[400px]">
-      <div className="relative overflow-hidden w-screen z-10 bg-tomato p-12">
+    <div className="relative w-full h-[400px] bg-tomato">
+      <div className="relative overflow-hidden w-screen z-10 p-10">
         <Train
           className={`h-full transition-transform ease-in-out duration-300`}
           style={{ transform: `translateX(-${pixelPos}px)` }}
         />
       </div>
-      {/* <div className="relative w-full">
-        <TrainTracks className="absolute z-10 bottom-10 w-fit" />
-      </div> */}
-      {/* top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 */}
-      <div className="absolute w-full z-10 self-center">
+      <div className="absolute w-full z-20 h-1/2 self-center">
         <div className="flex flex-row items-center justify-center gap-[550px]">
           <Button
             color="ribbonBlue"
@@ -70,22 +66,9 @@ export default function TestimonialTrain() {
             onClick={handleRightClick}
           />
         </div>
-        <div className="flex flex-row items-center justify-center gap-[550px]">
-          <Button
-            color="ribbonBlue"
-            textColor="starlightBlue"
-            icon={<IoIosArrowBack size={28} />}
-            removePadding={true}
-            onClick={handleLeftClick}
-          />
-          <Button
-            color="ribbonBlue"
-            textColor="starlightBlue"
-            icon={<IoIosArrowForward size={28} />}
-            removePadding={true}
-            onClick={handleRightClick}
-          />
-        </div>
+      </div>
+      <div className="absolute w-full z-0 bottom-10">
+        <TrainTracks />
       </div>
     </div>
   );
