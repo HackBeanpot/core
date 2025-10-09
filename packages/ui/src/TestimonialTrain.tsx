@@ -38,7 +38,6 @@ export default function TestimonialTrain() {
     if (pixelPos < currBounds.rightBound) {
       setPixelPos((prev) => prev + currBounds.threshold);
     }
-    // console.log(pixelPos);
   }, [pixelPos, currBounds]);
 
   return (
