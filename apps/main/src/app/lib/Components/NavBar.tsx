@@ -6,10 +6,12 @@ import LocalLink from "./LocalLink";
 import Button from "@repo/ui/Button";
 import useDevice from "@util/hooks/useDevice";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { FiX } from "react-icons/fi";
+import clsx from "clsx";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
-  const { isDesktop } = useDevice();
+  const { isMobile, isDesktop } = useDevice();
 
   type LocalLinkInfo = {
     pageName: string;
@@ -19,13 +21,35 @@ const NavBar = () => {
   const localLinkArr: LocalLinkInfo[] = [
     { pageName: "About", link: "/" },
     { pageName: "Projects", link: "/projects" },
-    { pageName: "Sponsors", link: "/sponsors" },
     { pageName: "Team", link: "/team" },
+    { pageName: "Sponsors", link: "/sponsors" },
   ];
 
+  const outerDivStyles = clsx(
+    "sticky top-0 z-[50] w-full h-fit bg-white flex flex-row",
+    isDesktop ? "flex-row p-2" : "flex-col",
+    isOpen && isMobile && "fixed",
+  );
+
+  const navBarStyles = clsx(
+    "flex flex-row items-center left-0 w-full",
+    isMobile && "p-2",
+  );
+
+  const navBarItemsStyles = clsx(
+    "flex gap-10 w-full items-center z-10",
+    isDesktop ? "flex-row justify-end self-center p-4" : "flex-col gap-8 bg-starlightBlue text-white top-10 p-10",
+    isMobile ? "h-screen" : "h-fit",
+  );
+
+  const buttonsStyles = clsx(
+    "flex flex-row gap-2 items-center",
+    isDesktop && "justify-end pr-4",
+  );
+
   return (
-    <div className={`sticky top-0 z-[50] w-full h-fit bg-white flex ${isOpen && !isDesktop ? "flex-col" : "flex-row"}`}>
-      <div className={`p-2 left-0 ${!isDesktop && "flex flex-row w-full"}`}>
+    <div className={outerDivStyles}>
+      <div className={navBarStyles}>
         <LocalLink href={"/"}>
           <Logo />
         </LocalLink>
@@ -35,49 +59,23 @@ const NavBar = () => {
             className="flex flex-row w-full items-center justify-end pr-2"
             onClick={() => setOpen((prev) => !prev)}
           >
-            <RxHamburgerMenu size={36} color="black" />
+            {isOpen ? <FiX size={36} color="black" /> : <RxHamburgerMenu size={36} color="black" />}
           </div>
         }
       </div>
 
-      {isOpen && !isDesktop &&
-        <div className="flex flex-col gap-2 w-full items-start p-2 pl-4">
+      {(isDesktop || (!isDesktop && isOpen)) &&
+        <div className={navBarItemsStyles}>
           {localLinkArr.map((item) => (
             <LocalLink
               key={item.pageName}
-              href={item.link}
+              href={item.link} 
               className="text-lg font-DMSans-Bold"
             >
               {item.pageName}
             </LocalLink>
           ))}
-          <div className="flex flex-col gap-2 items-start">
-            <LocalLink href={"/sponsor-us"}>
-              <Button textColor="white" text="Sponsor Us" size="medium" />
-            </LocalLink>
-            <Button
-              textColor="white"
-              text="Apply"
-              color="firecrackerRedLight"
-              size="medium"
-              onClick={() => alert("2026 Applications haven't opened yet!")}
-            />
-          </div>
-        </div>
-      }
-
-      {isDesktop && 
-        <div className="flex flex-row gap-10 w-full items-center justify-end">
-          {localLinkArr.map((item) => (
-            <LocalLink
-              key={item.pageName}
-              href={item.link}
-              className="text-lg font-DMSans-Bold"
-            >
-              {item.pageName}
-            </LocalLink>
-          ))}
-          <div className="flex flex-row gap-2 items-center justify-end pr-10">
+          <div className={buttonsStyles}>
             <LocalLink href={"/sponsor-us"}>
               <Button textColor="white" text="Sponsor Us" size="medium" />
             </LocalLink>
