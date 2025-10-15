@@ -38,7 +38,9 @@ const NavBar = () => {
 
   const navBarItemsStyles = clsx(
     "flex gap-10 w-full items-center z-10",
-    isDesktop ? "flex-row justify-end self-center p-4" : "flex-col gap-8 bg-starlightBlue text-white top-10 p-10",
+    isDesktop
+      ? "flex-row justify-end self-center p-4"
+      : "flex-col gap-8 bg-starlightBlue text-white top-10 p-10",
     isMobile ? "h-screen" : "h-fit",
   );
 
@@ -54,22 +56,26 @@ const NavBar = () => {
           <Logo />
         </LocalLink>
 
-        {!isDesktop && 
-          <div 
+        {!isDesktop && (
+          <div
             className="flex flex-row w-full items-center justify-end pr-2"
             onClick={() => setOpen((prev) => !prev)}
           >
-            {isOpen ? <FiX size={36} color="black" /> : <RxHamburgerMenu size={36} color="black" />}
+            {isOpen ? (
+              <FiX size={36} color="black" />
+            ) : (
+              <RxHamburgerMenu size={36} color="black" />
+            )}
           </div>
-        }
+        )}
       </div>
 
-      {(isDesktop || (!isDesktop && isOpen)) &&
+      {(isDesktop || isOpen) && (
         <div className={navBarItemsStyles}>
           {localLinkArr.map((item) => (
             <LocalLink
               key={item.pageName}
-              href={item.link} 
+              href={item.link}
               className="text-lg font-DMSans-Bold"
             >
               {item.pageName}
@@ -88,7 +94,7 @@ const NavBar = () => {
             />
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };
