@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Logo from "../Assets/SVG/HackBeanpotLogo";
+import Logo from "../../../../../../packages/ui/src/Logos/HackBeanpotLogo";
 import LocalLink from "./LocalLink";
 import Button from "@repo/ui/Button";
 import useDevice from "@util/hooks/useDevice";
@@ -11,7 +11,7 @@ import clsx from "clsx";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
-  const { isMobile, isDesktop } = useDevice();
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
   type LocalLinkInfo = {
     pageName: string;
@@ -36,6 +36,11 @@ const NavBar = () => {
     isMobile && "p-2",
   );
 
+  const iconStyles = clsx(
+    "flex flex-row w-full items-center justify-end pr-2",
+    isTablet && "pr-6"
+  );
+
   const navBarItemsStyles = clsx(
     "flex gap-10 w-full items-center z-10",
     isDesktop
@@ -58,7 +63,7 @@ const NavBar = () => {
 
         {!isDesktop && (
           <div
-            className="flex flex-row w-full items-center justify-end pr-2"
+            className={iconStyles}
             onClick={() => setOpen((prev) => !prev)}
           >
             {isOpen ? (
