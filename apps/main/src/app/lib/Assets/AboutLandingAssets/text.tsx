@@ -61,7 +61,7 @@ const TextBackground: React.FC = () => {
         fontFamily="DMSans-Regular"
       >
         <tspan x="65" dy="0">
-        We&apos;re a non-profit organization in the Boston area
+          We&apos;re a non-profit organization in the Boston area
         </tspan>
         <tspan x="65" dy="24">
           that organizes an annual undergraduate hackathon.

@@ -4,7 +4,7 @@ const TicketsBack = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width={1664}
     height={115}
-    viewBox="0 0 1664 115"
+    viewBox="0 0 875 115"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}

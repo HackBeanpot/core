@@ -8,10 +8,13 @@ import YellowBear from "../../lib/Assets/AboutLandingAssets/yellowBear";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import Background from "../../lib/Assets/AboutLandingAssets/background";
 import Dart from "../../lib/Assets/AboutLandingAssets/dart";
-
+import Squiggle from "../../lib/Assets/AboutLandingAssets/squiggle";
 export default function About(): React.ReactNode {
   return (
-    <div>
+    <div className="pb-40">
+      <div className="absolute -z-10">
+        <Background />
+      </div>
       <div className="mb-10">
         <RibbonTitle text="ABOUT US" />
       </div>
@@ -26,15 +29,14 @@ export default function About(): React.ReactNode {
         </div>
       </div>
 
-      <div className="absolute top-[65%] left-[46%]">
+      <div className="absolute top-[65%] left-[46%] mb-10">
         <PurpleBear />
       </div>
-      <div className="absolute top-[68%] left-[79%]">
+      <div className="absolute top-[68%] left-[79%] mb-10">
         <Dart />
       </div>
-
-      <div className="relative mt-10 mb-20">
-        <Background />
+      <div className="absolute top-[92%] w-[80%] z-10 scale-150">
+        <Squiggle />
       </div>
     </div>
   );
