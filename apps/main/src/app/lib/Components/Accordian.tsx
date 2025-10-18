@@ -1,4 +1,5 @@
 "use client";
+import clsx from "clsx";
 import React, { useState, useEffect } from "react";
 
 interface AccordionProps {
@@ -21,11 +22,10 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const wrapperStyle = {
-    width: isMobile ? "100%" : "746px",
-    margin: isMobile ? "0 8px" : "0 auto",
-    backgroundColor: "#535353",
-  };
+  const wrapperStyles = clsx(
+    "w-[746px] m-auto",
+    isMobile && "w-full my-[8px]"
+  );
 
   const buttonStyle = {
     width: "100%",
@@ -36,6 +36,11 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
     borderBottom: "1px solid #004687",
   };
 
+  // const buttonStyles = clsx(
+  //   "flex p-[16px] w-full justify",
+  //   isMobile && "px-[12px] py-[16px]"
+  // );
+
   const contentStyle = {
     padding: isMobile ? "16px 16px 16px" : "20px 20px 20px",
     color: "#D1D5DB",
@@ -45,7 +50,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
   };
 
   return (
-    <div style={wrapperStyle}>
+    <div className={wrapperStyles}>
       {items.map((item, index) => (
         <div key={index}>
           <button

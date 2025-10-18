@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+"use client"
+
+import React from "react";
 import Accordion from "./../../lib/Components/Accordian";
-import useDevice from "@util/hooks/useDevice";
-// import clsx from "clsx";
+import RibbonTitle from "@repo/ui/RibbonTitle";
 
 const faqData = [
   {
@@ -20,9 +21,8 @@ const faqData = [
 
 export default function FAQ() {
   return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', 
-      color: 'white', fontSize: '20px', backgroundColor: '#535353', padding: '48px 24px'}}>
-        FAQ
+      <div className="flex flex-col items-center text-white text-[20px] px-[48px] py-[24px]">
+        <RibbonTitle text={"FAQ"} />
         <Accordion items={faqData} />
       </div>
   );
