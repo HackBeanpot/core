@@ -38,7 +38,7 @@ const NavBar = () => {
 
   const iconStyles = clsx(
     "flex flex-row w-full items-center justify-end pr-2",
-    isTablet && "pr-6"
+    isTablet && "pr-6",
   );
 
   const navBarItemsStyles = clsx(
@@ -62,10 +62,7 @@ const NavBar = () => {
         </LocalLink>
 
         {!isDesktop && (
-          <div
-            className={iconStyles}
-            onClick={() => setOpen((prev) => !prev)}
-          >
+          <div className={iconStyles} onClick={() => setOpen((prev) => !prev)}>
             {isOpen ? (
               <FiX size={36} color="black" />
             ) : (
