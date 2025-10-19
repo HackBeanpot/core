@@ -54,10 +54,14 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
   return (
     <div className={wrapperStyles}>
       {items.map((item, sectionIndex) => (
-        <div className="pb-4" key={`accordian-item-${item.toString()}-${sectionIndex}`}>
+        <div
+          className="pb-4"
+          key={`accordian-item-${item.toString()}-${sectionIndex}`}
+        >
           <span className={faqTitleStyles}>{item.title}</span>
           {item.content.map((contentItem, idx) => {
             const key = `accordian-item-${item.toString()}-${sectionIndex}-${idx}`;
+            const hoveredColor = hoveredKey === key ? "text-marigoldYellow" : "text-white";
 
             return (
               <div key={key}>
@@ -70,7 +74,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
                   <span
                     className={clsx(
                       faqQuestionStyles,
-                      hoveredKey === key ? "text-marigoldYellow" : "text-white",
+                      hoveredColor,
                     )}
                   >
                     {contentItem.question}
@@ -78,7 +82,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
                   <span
                     className={clsx(
                       iconStyles,
-                      hoveredKey === key ? "text-marigoldYellow" : "text-white",
+                      hoveredColor,
                     )}
                   >
                     {openKey === key ? "−" : "+"}
