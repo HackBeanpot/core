@@ -1,7 +1,7 @@
 "use client";
 import useDevice from "@util/hooks/useDevice";
 import clsx from "clsx";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 type AccordianInfo = {
   question: string;
@@ -16,21 +16,18 @@ interface AccordionProps {
 const Accordion = ({ items }: { items: AccordionProps[] }) => {
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   const [openKey, setOpenKey] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const { isTablet, isDesktop } = useDevice();
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 639);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const wrapperStyles = clsx("w-[746px] m-auto", isMobile && "w-full my-[8px]");
+  const wrapperStyles = clsx(
+    "m-auto p-4",
+    isDesktop && "w-[90vw] max-w-[800px]",
+    isTablet && "w-[80vw]",
+    isMobile && "w-[90vw] my-[8px]",
+  );
 
   const buttonStyles = clsx(
     "flex py-[4px] w-full justify-between items-center",
-    isMobile && "px-[12px] py-[16px]"
+    isMobile && "px-[12px] py-[16px]",
   );
 
   const faqTitleStyles = clsx(
@@ -41,7 +38,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
   );
 
   const faqQuestionStyles = clsx(
-    "text-[20px] font-NeulisNeue-Regular font-medium text-left flex-1 mr-[12px]",
+    "text-[20px] font-NeulisNeue-Regular font-medium text-left flex-1 mr-[12px] text-wrap",
     isTablet && "text-[18px]",
     isMobile && "text-[16px]",
   );
@@ -49,7 +46,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
   const iconStyles = clsx(isMobile ? "text-[20px]" : "text-[24px]");
 
   const faqAnswerStyles = clsx(
-    "pb-[10px] font-DMSans-Regular text-white text-[18px] leading-[1.5] border-b border-solid border-starlightBlueLight",
+    "pb-[10px] font-DMSans-Regular text-white text-[18px] leading-[1.5] border-b border-solid border-starlightBlueLight text-wrap",
     isTablet && "text-[16px]",
     isMobile && "p-[16px] text-[14px] leading-[1.4]",
   );
@@ -73,7 +70,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
                   <span
                     className={clsx(
                       faqQuestionStyles,
-                      hoveredKey === key ? "text-marigoldYellow" : "text-white"
+                      hoveredKey === key ? "text-marigoldYellow" : "text-white",
                     )}
                   >
                     {contentItem.question}
@@ -81,7 +78,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
                   <span
                     className={clsx(
                       iconStyles,
-                      hoveredKey === key ? "text-marigoldYellow" : "text-white"
+                      hoveredKey === key ? "text-marigoldYellow" : "text-white",
                     )}
                   >
                     {openKey === key ? "−" : "+"}
@@ -91,7 +88,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
                   <div
                     className={clsx(
                       faqAnswerStyles,
-                      idx === item.content.length - 1 && "border-none"
+                      idx === item.content.length - 1 && "border-none",
                     )}
                   >
                     {contentItem.answer}
