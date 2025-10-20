@@ -61,7 +61,8 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
           <span className={faqTitleStyles}>{item.title}</span>
           {item.content.map((contentItem, idx) => {
             const key = `accordian-item-${item.toString()}-${sectionIndex}-${idx}`;
-            const hoveredColor = hoveredKey === key ? "text-marigoldYellow" : "text-white";
+            const hoveredColor =
+              hoveredKey === key ? "text-marigoldYellow" : "text-white";
 
             return (
               <div key={key}>
@@ -71,20 +72,10 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
                   onMouseEnter={() => setHoveredKey(key)}
                   onMouseLeave={() => setHoveredKey(null)}
                 >
-                  <span
-                    className={clsx(
-                      faqQuestionStyles,
-                      hoveredColor,
-                    )}
-                  >
+                  <span className={clsx(faqQuestionStyles, hoveredColor)}>
                     {contentItem.question}
                   </span>
-                  <span
-                    className={clsx(
-                      iconStyles,
-                      hoveredColor,
-                    )}
-                  >
+                  <span className={clsx(iconStyles, hoveredColor)}>
                     {openKey === key ? "−" : "+"}
                   </span>
                 </button>
