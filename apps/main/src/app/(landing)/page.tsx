@@ -12,7 +12,6 @@ import {
 import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
-import Icon from "../lib/Assets/SVG/Icon";
 
 export default function Page(): JSX.Element {
   return (
@@ -25,10 +24,6 @@ export default function Page(): JSX.Element {
       <Landing />
       <Apply />
       <Stats />
-      <Icon
-        image_location="/team/components/emma_icon.png"
-        url="https://www.linkedin.com/in/alexchen04/"
-      />
       <About />
       <Values />
       <Keynote />
