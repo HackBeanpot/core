@@ -19,8 +19,8 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   const wrapperStyles = clsx(
-    "m-auto p-4",
-    isDesktop && "w-[90vw] max-w-[800px]",
+    "m-auto",
+    isDesktop && "w-[90vw] max-w-[700px]",
     isTablet && "w-[80vw]",
     isMobile && "w-[90vw] my-[8px]",
   );
@@ -46,7 +46,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
   const iconStyles = clsx(isMobile ? "text-[20px]" : "text-[24px]");
 
   const faqAnswerStyles = clsx(
-    "pb-[10px] font-DMSans-Regular text-white text-[18px] leading-[1.5] border-b border-solid border-starlightBlueLight text-wrap",
+    "pb-[12px] font-DMSans-Regular text-white text-[18px] leading-[1.5] border-b border-solid border-starlightBlueLight text-wrap",
     isTablet && "text-[16px]",
     isMobile && "p-[16px] text-[14px] leading-[1.4]",
   );

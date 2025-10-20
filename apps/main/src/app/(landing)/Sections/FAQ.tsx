@@ -6,6 +6,7 @@ import RibbonTitle from "@repo/ui/RibbonTitle";
 import FAQFireworks from "../../lib/Components/FAQComponents/FAQFireworks";
 import FAQCarousel from "../../lib/Components/FAQComponents/FAQCarousel";
 import clsx from "clsx";
+import useDevice from "@util/hooks/useDevice";
 
 const generalQuestions = [
   {
@@ -107,29 +108,30 @@ const faqData = [
 ];
 
 export default function FAQ() {
+  const { isDesktop } = useDevice();
+
   const outerStyles = clsx(
-    "flex flex-col items-center text-white text-[20px] px-[48px] py-[24px] w-full bg-starlightBlueDark overflow-hidden"
+    "flex flex-col items-center text-white text-[20px] size-full bg-starlightBlueDark overflow-hidden",
   );
 
-  const bannerStyles = clsx(
-    "relative w-full h-full top-0 pointer-events-none",
-  );
+  const bannerStyles = clsx("relative w-full pointer-events-none desktop:h-[60vh] tablet:h-[40vh] mobile-xl:h-[30vh] mobile:h-[20vh]");
 
-  const fireworkStyles = clsx(
-    "w-full desktop:scale-150 desktop:pl-16 z-0",
-  );
+  const fireworkStyles = clsx("w-full desktop:scale-125 desktop:pl-16 mobile:pl-8 z-0");
 
   const ribbonOuterStyles = clsx(
-    "absolute z-10 inset-0 flex items-center justify-center"
+    "absolute z-10 inset-0 flex items-center justify-center h-full",
+  );
+  
+  const ribbonStyles = clsx(
+    "w-3/4",
+    isDesktop && "w-1/2"
   );
 
   const accordionStyles = clsx(
-    "w-full h-full mb-32 desktop:-mt-32 desktop-xl:-mt-40"
+    "relative size-full mb-32 tablet:-mt-10",
   );
 
-  const carouselStyles = clsx(
-    "w-full h-full scale-110"
-  );
+  const carouselStyles = clsx("relative w-[100vw] h-full scale-110");
 
   return (
     <div className={outerStyles}>
@@ -138,7 +140,7 @@ export default function FAQ() {
           <FAQFireworks className={fireworkStyles} />
         </div>
         <div className={ribbonOuterStyles}>
-          <div className="w-1/2">
+          <div className={ribbonStyles}>
             <RibbonTitle text={"FAQ"} />
           </div>
         </div>
