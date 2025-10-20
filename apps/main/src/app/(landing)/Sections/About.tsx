@@ -29,13 +29,13 @@ export default function About(): React.ReactNode {
         </div>
       </div>
 
-      <div className="absolute top-[65%] left-[46%] mb-10">
+      <div className="absolute top-[68%] left-[46%] mb-10">
         <PurpleBear />
       </div>
       <div className="absolute top-[68%] left-[79%] mb-10">
         <Dart />
       </div>
-      <div className="absolute top-[92%] w-[80%] z-10 scale-150">
+      <div className="absolute top-[100%] w-[80%] z-10 scale-150">
         <Squiggle />
       </div>
     </div>
