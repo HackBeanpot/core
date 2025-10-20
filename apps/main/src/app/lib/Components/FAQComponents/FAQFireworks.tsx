@@ -2,8 +2,6 @@ import * as React from "react";
 import { SVGProps } from "react";
 const FAQFireworks = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width={1445}
-    height={709}
     viewBox="0 0 1445 709"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

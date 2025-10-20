@@ -3,14 +3,14 @@ import useDevice from "@util/hooks/useDevice";
 import clsx from "clsx";
 import React, { useState } from "react";
 
-type AccordianInfo = {
+type AccordionInfo = {
   question: string;
   answer: string;
 };
 
 interface AccordionProps {
   title: string;
-  content: AccordianInfo[];
+  content: AccordionInfo[];
 }
 
 const Accordion = ({ items }: { items: AccordionProps[] }) => {

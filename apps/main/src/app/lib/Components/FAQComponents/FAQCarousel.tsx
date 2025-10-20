@@ -3,8 +3,6 @@ import { SVGProps } from "react";
 
 const FAQCarousel = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width={1214}
-    height={723}
     viewBox="0 0 1214 723"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
