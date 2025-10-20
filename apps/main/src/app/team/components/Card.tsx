@@ -1,0 +1,30 @@
+import React from "react";
+import clsx from "clsx";
+
+const cardStylesBorder = clsx(
+  "relative w-[50vw] mobile:w-[70vw] tablet:w-[70vw] desktop:w-[50vw] " +
+    "aspect-[815.74/360.2] outline outline-[15px] outline-firecrackerRedLight " +
+    "rounded-xl drop-shadow-[8px_8px_0_#CC322D] flex items-center justify-center",
+);
+
+const cardStylesBG = clsx(
+  "absolute inset-0 bg-[#CC322D] rounded-xl shadow-[inset_-10px_10px_0_rgba(0,0,0,0.25)]",
+);
+
+const Card = () => {
+  return (
+    <div className={cardStylesBorder}>
+      <div className={cardStylesBG} />
+      <div className="relative flex flex-col items-center justify-center h-full text-center">
+        <span className="font-['NeulisNeue-Bold'] font-semibold text-[clamp(16px,2vw,28px)] text-white">
+          Interested in joining core?
+        </span>
+        <span className="font-['NeulisNeue-Regular'] font-normal text-[clamp(14px,1.3vw,18px)] text-white">
+          Applications open in February!
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
