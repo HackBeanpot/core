@@ -135,6 +135,7 @@ export default function FAQ() {
 
   return (
     <div className={outerStyles}>
+      {/* Banner */}
       <div className={bannerStyles}>
         <div className="w-full h-full">
           <FAQFireworks className={fireworkStyles} />
@@ -145,9 +146,13 @@ export default function FAQ() {
           </div>
         </div>
       </div>
+
+      {/* Accordion */}
       <div className={accordionStyles}>
         <Accordion items={faqData} />
       </div>
+
+      {/* Carousel */}
       <FAQCarousel className={carouselStyles} />
     </div>
   );
