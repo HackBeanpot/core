@@ -9,27 +9,34 @@ import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorT
 import useDevice from "@util/hooks/useDevice.ts";
 import SponsorText from "../lib/Assets/SVG/SponsorAssets/SponsorText.tsx";
 
-function makeSponsorRow(numSponsors: number, ticketSize: number, gap: number) {
+function makeSponsorRow(
+    ticketSizes: number[],
+    logos?: string[]            // array of logo paths
+) {
   return (
-    <div
-      className="flex justify-center"
-      style={{
-        gap: `${gap}vw`,
-      }}
-    >
-      {Array.from({ length: numSponsors }).map((_, i) => (
-        <SponsorTicketComp
-          key={i}
-          isSponsorUs={false}
-          ticketWidthVW={ticketSize}
-        />
-      ))}
-    </div>
+      <div
+          className="flex justify-center"
+          style={{
+            gap: `${ticketSizes.length > 1 ? 2 : 5}vw`,
+          }}
+      >
+        {ticketSizes.map((width, i) => (
+            <SponsorTicketComp
+                key={i}
+                isSponsorUs={false}
+                logoPath={logos?.[i] ?? ""}
+                ticketWidthVW={width}
+            />
+        ))}
+      </div>
   );
 }
 
 {
-  /* TODO: add sponsor logos when available by adding logoPath=String param to SponsorticketComp*/
+  /* TODO: add sponsor logos when available by adding logoPath=String param to SponsorticketComp
+  *  example is to feed row ['path1', 'path2', 'path3']
+  *  probs can change makeSponsorRow better but later
+  */
 }
 export default function Page(): JSX.Element {
   const { isMobile, isTablet, isDesktop } = useDevice();
@@ -62,33 +69,36 @@ export default function Page(): JSX.Element {
           {/* Tickets here */}
           <div className="relative w-full flex flex-col items-center">
             <div className="relative z-10 flex flex-col items-center" style={{rowGap: '2vw'}}>
+              {/* Desktop */}
               {isDesktop && (
                   <>
-                    {makeSponsorRow(3, 27, 5)}
-                    {makeSponsorRow(4, 21, 2)}
-                    {makeSponsorRow(5, 17, 1)}
+                    {makeSponsorRow([27, 27, 27])}
+                    {makeSponsorRow([21, 21, 21, 21])}
+                    {makeSponsorRow([17, 17, 17, 17, 17])}
                   </>
               )}
 
+              {/* Tablet */}
               {isTablet && (
                   <>
-                    {makeSponsorRow(1, 27, 5)}
-                    {makeSponsorRow(2, 21, 2)}
-                    {makeSponsorRow(3, 17, 1)}
-                    {makeSponsorRow(4, 17, 1)}
+                    {makeSponsorRow([27])}
+                    {makeSponsorRow([21, 21])}
+                    {makeSponsorRow([17, 17, 17])}
+                    {makeSponsorRow([17, 17, 17, 17])}
                   </>
               )}
 
+              {/* Mobile */}
               {isMobile && (
                   <>
-                    {makeSponsorRow(1, 90, 5)}
-                    {makeSponsorRow(1, 90, 5)}
-                    {makeSponsorRow(1, 90, 5)}
-                    {makeSponsorRow(2, 40, 5)}
-                    {makeSponsorRow(2, 40, 5)}
-                    {makeSponsorRow(2, 35, 5)}
-                    {makeSponsorRow(2, 35, 5)}
-                    {makeSponsorRow(1, 35, 1)}
+                    {makeSponsorRow([90])}
+                    {makeSponsorRow([90])}
+                    {makeSponsorRow([90])}
+                    {makeSponsorRow([40, 40])}
+                    {makeSponsorRow([40, 40])}
+                    {makeSponsorRow([35, 35])}
+                    {makeSponsorRow([35, 35])}
+                    {makeSponsorRow([35])}
                   </>
               )}
             </div>

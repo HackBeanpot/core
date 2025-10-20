@@ -6,7 +6,7 @@ import SponsorUsTicket from "../../Assets/SVG/SponsorAssets/SponsorUsTicket";
 import Image from "next/image";
 
 export type SponsorTicketProps = {
-  isSponsorUs: boolean;
+  isSponsorUs?: boolean;
   logoPath?: string;
   ticketWidthVw?: number;
 };
@@ -18,7 +18,7 @@ export type SponsorTicketProps = {
  * @param ticketWidthVW scale ticket size
  */
 export default function SponsorTicketComp({
-  isSponsorUs,
+  isSponsorUs = false,
   logoPath,
   ticketWidthVW = 20,
 }: SponsorTicketProps & { ticketWidthVW?: number }): JSX.Element {
