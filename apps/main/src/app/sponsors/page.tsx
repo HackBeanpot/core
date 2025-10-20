@@ -3,9 +3,9 @@
 // import { Footer, NavBar } from "../lib/Components";
 import React from "react";
 import SponsorBackground from "../lib/Assets/SVG/SponsorAssets/SponsorBackground.tsx";
-import { NavBar } from "../lib/Components";
+import {Footer, NavBar} from "../lib/Components";
 import SponsorTicketComp from "../lib/Components/SponsorComponents/SponsorTicketComp.tsx";
-// import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
+import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
 import useDevice from "@util/hooks/useDevice.ts";
 import SponsorText from "../lib/Assets/SVG/SponsorAssets/SponsorText.tsx";
 
@@ -33,7 +33,9 @@ function makeSponsorRow(numSponsors: number, ticketSize: number, gap: number) {
 }
 export default function Page(): JSX.Element {
   const { isMobile, isTablet, isDesktop } = useDevice();
-  const bgScale = isMobile ? 3 : isTablet ? 1.2 : 1;
+  const bgScale = isMobile ? 3.1 : isTablet ? 1.2 : 1;
+  const boothPosition = isMobile ? '115%' : '165%';
+  const boothWidth = isMobile ? 90 : isTablet ? 80 : 70;
 
   return (
     <main className="flex flex-col items-center min-h-screen relative">
@@ -51,49 +53,60 @@ export default function Page(): JSX.Element {
 
         {/* Stuff on top of bg SVG */}
         <div
-          className="flex flex-col items-center text-white absolute top-0 left-0 w-full"
-          style={{ paddingTop: "12vw", gap: "5vw" }}
+            className="flex flex-col items-center text-white absolute top-0 left-0 w-full"
+            style={{paddingTop: "12vw", gap: "5vw"}}
         >
           {/* Sponsors text */}
-          <SponsorText className="w-[75vw] h-auto" />
+          <SponsorText className="w-[75vw] h-auto"/>
 
           {/* Tickets here */}
-          {isDesktop && (
-            <>
-              {makeSponsorRow(3, 27, 5)}
-              {makeSponsorRow(4, 21, 2)}
-              {makeSponsorRow(5, 17, 1)}
-            </>
-          )}
+          <div className="relative w-full flex flex-col items-center">
+            <div className="relative z-10 flex flex-col items-center" style={{rowGap: '2vw'}}>
+              {isDesktop && (
+                  <>
+                    {makeSponsorRow(3, 27, 5)}
+                    {makeSponsorRow(4, 21, 2)}
+                    {makeSponsorRow(5, 17, 1)}
+                  </>
+              )}
 
-          {isTablet && (
-            <>
-              {makeSponsorRow(1, 27, 5)}
-              {makeSponsorRow(2, 21, 2)}
-              {makeSponsorRow(3, 17, 1)}
-              {makeSponsorRow(4, 17, 1)}
-            </>
-          )}
+              {isTablet && (
+                  <>
+                    {makeSponsorRow(1, 27, 5)}
+                    {makeSponsorRow(2, 21, 2)}
+                    {makeSponsorRow(3, 17, 1)}
+                    {makeSponsorRow(4, 17, 1)}
+                  </>
+              )}
 
-          {isMobile && (
-            <>
-              {makeSponsorRow(1, 90, 5)}
-              {makeSponsorRow(1, 90, 5)}
-              {makeSponsorRow(1, 90, 5)}
-              {makeSponsorRow(2, 40, 5)}
-              {makeSponsorRow(2, 40, 5)}
-              {makeSponsorRow(2, 35, 5)}
-              {makeSponsorRow(2, 35, 5)}
-              {makeSponsorRow(1, 35, 1)}
-            </>
-          )}
+              {isMobile && (
+                  <>
+                    {makeSponsorRow(1, 90, 5)}
+                    {makeSponsorRow(1, 90, 5)}
+                    {makeSponsorRow(1, 90, 5)}
+                    {makeSponsorRow(2, 40, 5)}
+                    {makeSponsorRow(2, 40, 5)}
+                    {makeSponsorRow(2, 35, 5)}
+                    {makeSponsorRow(2, 35, 5)}
+                    {makeSponsorRow(1, 35, 1)}
+                  </>
+              )}
+            </div>
 
-          {/*<div className="absolute left-1/2 transform -translate-x-1/2"*/}
-          {/*       style={{top: '10vh'}}>*/}
-          {/*    <SponsorTicketBoothComp/>*/}
-          {/*  </div>*/}
+            {/* Ticket booth positioned around bg */}
+            <div
+                className="absolute z-20 w-full flex justify-center"
+                style={{
+                  top: boothPosition,
+                  transform: 'translateY(-50%)',
+                }}
+            >
+              <SponsorTicketBoothComp widthVW={boothWidth}/>
+            </div>
+          </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

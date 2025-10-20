@@ -14,50 +14,56 @@ const SponsorTicketBoothComp = ({
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   return (
-    <div
-      className="relative mx-auto max-w-[1200px]"
-      style={{ width: `${widthVW}vw` }}
-    >
-      <div className="w-full flex justify-center">
-        {isMobile ? <Ticket /> : <TicketBooth />}
-      </div>
+      <div
+          className="relative mx-auto"
+          style={{
+            width: `${widthVW}vw`,
+          }}
+      >
+        <div className="w-full flex justify-center">
+          {isMobile ? <Ticket/> : <TicketBooth/>}
+        </div>
 
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div
-          className={`text-left space-y-5 max-w-2xl
-              ${isTablet ? "ml-[25%]" : ""}
-              ${isDesktop ? "ml-[30%]" : ""}
-              `}
-        >
-          <h1
-            className={`font-NeulisNeue-Bold mb-3 text-charcoalFog
-              ${isMobile ? "text-xl" : ""}
-              ${isTablet ? "text-2xl" : ""}
-              ${isDesktop ? "text-4xl" : ""}
-            `}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div
+              className="text-left space-y-[2vw]"
+              style={{
+                maxWidth: "60vw",
+                marginLeft: isDesktop ? "30%" : isTablet ? "25%" : "0",
+              }}
           >
-            Interested in sponsoring us?
-          </h1>
+            <h1
+                className="font-NeulisNeue-Bold text-charcoalFog"
+                style={{
+                  fontSize: isMobile ? "4vw" : isTablet ? "2.2vw" : "1.8vw",
+                  marginBottom: "1vw",
+                }}
+            >
+              Interested in sponsoring us?
+            </h1>
 
-          <p
-            className={`font-NeulisNeue-Regular text-charcoalFog leading-relaxed mb-6
-              ${isMobile ? "text-sm" : ""}
-              ${isTablet ? "text-lg" : ""}
-              ${isDesktop ? "text-2xl" : ""}
-              `}
-          >
-            Reach out to us at team@hackbeanpot.com
-            <br /> or check out our sponsorship package!
-          </p>
+            <p
+                className="font-NeulisNeue-Regular text-charcoalFog leading-relaxed"
+                style={{
+                  fontSize: isMobile ? "3.2vw" : isTablet ? "1.6vw" : "1.3vw",
+                  marginBottom: "2vw",
+                }}
+            >
+              Reach out to us at team@hackbeanpot.com
+              <br/> or check out our sponsorship package!
+            </p>
 
-          <Button
-            text="View Sponsorship Package"
-            color="starlightBlue"
-            textColor="white"
-          />
+            <div style={{transform: "translateY(1vw)"}}>
+              <Button
+                  text="View Sponsorship Package"
+                  color="starlightBlue"
+                  textColor="white"
+              />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
   );
 };
 
