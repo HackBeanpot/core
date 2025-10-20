@@ -8,35 +8,40 @@ import Image from "next/image";
 export type SponsorTicketProps = {
   isSponsorUs: boolean;
   logoPath?: string;
-  scaleFactor?: string;
+  ticketWidthVw?: number;
 };
 
 /**
  * To be used in SponsorUs page AND Sponsors page
  * @param isSponsorUs is a boolean that tells which page it is
  * @param logoPath is the path of the sponsor's logo
- * @param scaleFactor ?
+ * @param ticketWidthVW scale ticket size
  */
 export default function SponsorTicketComp({
   isSponsorUs,
   logoPath,
-  scaleFactor,
-}: SponsorTicketProps): React.ReactNode {
+  ticketWidthVW = 20,
+}: SponsorTicketProps & { ticketWidthVW?: number }): JSX.Element {
   return (
     <div
-      className={`flex items-center justify-center ${scaleFactor ?? ""} w-full h-full`}
+      className="flex items-center justify-center relative"
+      style={{ width: `${ticketWidthVW}vw`, height: "auto" }}
     >
       {logoPath && (
         <Image
           width={50}
           height={50}
-          alt={"image of ticket sponsor"}
+          alt="image of ticket sponsor"
           src={logoPath}
           className="absolute z-10"
         />
       )}
-      {isSponsorUs && <SponsorUsTicket className="relative z-0" />}
-      {!isSponsorUs && <SponsorTicket className="relative z-0" />}
+
+      {isSponsorUs ? (
+        <SponsorUsTicket className="w-full h-auto relative z-0" />
+      ) : (
+        <SponsorTicket className="w-full h-auto relative z-0" />
+      )}
     </div>
   );
 }
