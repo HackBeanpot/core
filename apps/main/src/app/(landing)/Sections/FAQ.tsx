@@ -119,7 +119,7 @@ export default function FAQ() {
   const fireworkStyles = clsx("w-full desktop:scale-125 desktop:pl-16 mobile:pl-8 z-0");
 
   const ribbonOuterStyles = clsx(
-    "absolute z-10 inset-0 flex items-center justify-center h-full",
+    "absolute z-10 inset-0 flex items-center justify-center top-10",
   );
   
   const ribbonStyles = clsx(
@@ -128,7 +128,7 @@ export default function FAQ() {
   );
 
   const accordionStyles = clsx(
-    "relative size-full mb-32 tablet:-mt-10",
+    "relative z-10 size-full mb-32 tablet:-mt-10",
   );
 
   const carouselStyles = clsx("relative w-[100vw] h-full scale-110");

@@ -39,8 +39,6 @@ export default function Values() {
 
   const height = isMobile ? "h-[260vw]" : isTablet ? "h-[145vw]" : "h-[60vw]";
 
-  const ribbonSize = isMobile ? "w-[90vw]" : "w-[70vw]";
-  const ribbonTextSize = isMobile ? "text-[8vw]" : "text-[5vw]";
   const wrapLimit = isDesktop
     ? "max-w-[50vw]"
     : isMobile
@@ -48,6 +46,7 @@ export default function Values() {
       : "max-w-[40vw]";
 
   const iconSize = isMobile ? "w-[6vw]" : isTablet ? "w-[4vw]" : "w-[4vw]";
+  
   return (
     <div
       className={`relative w-full ${aspectRatio} bg-ribbonBlue overflow-visible`}
@@ -64,20 +63,7 @@ export default function Values() {
         className={`relative z-20 flex flex-col items-center justify-center ${height} gap-6`}
       >
         {/* Title */}
-        <div
-          className={`relative ${ribbonSize} text-[2vw] flex justify-center items-center`}
-        >
-          <RibbonTitle text={""} />
-
-          {/* Overlay text */}
-          <div className="absolute z-30 inset-0 flex items-center justify-center">
-            <span
-              className={`text-marigoldYellow font-NeulisNeue-Bold ${ribbonTextSize} tracking-wide`}
-            >
-              OUR VALUES
-            </span>
-          </div>
-        </div>
+        <RibbonTitle text={"OUR VALUES"} />
 
         {/* Values Section */}
         <div
