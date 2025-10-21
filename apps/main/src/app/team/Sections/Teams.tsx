@@ -5,7 +5,6 @@ import Image from "next/image";
 import LinkedInLogo from "@repo/ui/LinkedInLogo";
 import useWindowSize from "@repo/util/hooks/useWindowSize";
 import OurTeamDropdown from "../OurTeamDropdown";
-import Icon from "../components/Icon.tsx";
 
 type HeadshotProps = {
   name: string;
@@ -94,7 +93,6 @@ const teams = {
     { name: "Zoe Gao", src: "/headshots/operations/zoe.png" },
     { name: "Rachel Pao", src: "/headshots/operations/rachel.png" },
     { name: "Tonatiuh Godinez", src: "/headshots/operations/tonatiuh.png" },
-    { name: "Jalen Wu", src: "/headshots/operations/jalen.png" },
   ],
 };
 
@@ -139,16 +137,6 @@ const Teams = () => {
             <TeamSections key={teamName} team={teamName} />
           ))}
         </div>
-
-        <div>
-          <Icon
-            imageLocation="/headshots/emma.png"
-            name="Emma my queen"
-            size={150}
-            url="www.linkedin.com"
-          ></Icon>
-        </div>
-
         <div className="hidden tablet:block">
           {getAllTeams().map(([teamName]) => (
             <TeamSections key={teamName} team={teamName} />
