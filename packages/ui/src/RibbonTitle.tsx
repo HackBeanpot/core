@@ -1,36 +1,25 @@
 import React from "react";
 import LongRibbon from "./RibbonTitleAssets/LongRibbon";
-import ShortRibbon from "./RibbonTitleAssets/ShortRibbon";
+import useIsMobile from "@repo/util/hooks/useIsMobile";
 
 export type RibbonTitleProps = {
-  size?: "short" | "long";
   text: string;
 };
 
 export default function RibbonTitle({
   text,
-  size = "short",
 }: RibbonTitleProps): React.ReactNode {
-  const isShort = size === "short";
+  const isMobile = useIsMobile();
+  const ribbonSize = isMobile ? "w-[90vw]" : "w-[70vw]";
+  const ribbonTextSize = isMobile ? "text-[8vw]" : "text-[5vw]";
   return (
-    <div className="relative inline-block w-full transform scale-75 text-marigoldYellow">
-      {isShort && (
+    <div className={`relative inline-block w-full transform scale-75 text-marigoldYellow ${ribbonSize} ${ribbonTextSize}`}>
         <div>
-          <span className="absolute inset-0 flex items-center justify-center desktop:text-6xl tablet:text-4xl mobile:text-[1.5rem] z-10 font-NeulisNeue-Bold">
+          <span className="absolute inset-0 flex items-center justify-center z-10 font-NeulisNeue-Bold  tracking-wide">
             {text}
           </span>
-          <ShortRibbon className="w-full transform scale-[1.1]" />
+          <LongRibbon className="w-full transform" />
         </div>
-      )}
-
-      {!isShort && (
-        <div>
-          <span className="absolute inset-0 flex items-center justify-center z-10 font-NeulisNeue-Bold">
-            {text}
-          </span>
-          <LongRibbon className="w-full transform scale-[1.5]" />
-        </div>
-      )}
     </div>
   );
 }
