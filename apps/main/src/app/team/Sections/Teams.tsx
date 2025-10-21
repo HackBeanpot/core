@@ -93,7 +93,6 @@ const teams = {
     { name: "Zoe Gao", src: "/headshots/operations/zoe.png" },
     { name: "Rachel Pao", src: "/headshots/operations/rachel.png" },
     { name: "Tonatiuh Godinez", src: "/headshots/operations/tonatiuh.png" },
-    { name: "Jalen Wu", src: "/headshots/operations/jalen.png" },
   ],
 };
 
@@ -138,7 +137,6 @@ const Teams = () => {
             <TeamSections key={teamName} team={teamName} />
           ))}
         </div>
-
         <div className="hidden tablet:block">
           {getAllTeams().map(([teamName]) => (
             <TeamSections key={teamName} team={teamName} />

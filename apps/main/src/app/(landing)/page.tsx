@@ -19,6 +19,7 @@ export default function Page(): JSX.Element {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+
       <NavBar />
       <Landing />
       <Apply />
