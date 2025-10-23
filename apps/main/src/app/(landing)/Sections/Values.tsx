@@ -46,7 +46,7 @@ export default function Values() {
       : "max-w-[40vw]";
 
   const iconSize = isMobile ? "w-[6vw]" : isTablet ? "w-[4vw]" : "w-[4vw]";
-  
+
   return (
     <div
       className={`relative w-full ${aspectRatio} bg-ribbonBlue overflow-visible`}
