@@ -11,14 +11,18 @@ import SponsorTop from "./components/SponsorTop.tsx";
 
 const SponsorUsPage = () => {
   return (
-    <div className="relative z-10 w-full">
-      <SponsorTicketBoothComp />
-      <SponsorUsBenefitCardComp
-        title="Market your company and product"
-        content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
-      />
+    <div>
+      <div className="relative z-10 w-full">
+        <SponsorTop />
+      </div>
 
-      <SponsorTop />
+      <div className="top-[800px] absolute z-10 w-full">
+        <SponsorTicketBoothComp />
+        <SponsorUsBenefitCardComp
+          title="Market your company and product"
+          content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
+        />
+      </div>
     </div>
   );
 };
