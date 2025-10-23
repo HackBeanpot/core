@@ -3,12 +3,12 @@ import LinkedInIcon from "../../lib/Assets/SVG/LinkedinLogo.svg";
 import Image from "next/image";
 
 type IconProps = {
-  imageLocation: string;
+  src: string;
   name: string;
   url?: string;
 };
 
-const Icon: React.FC<IconProps> = ({ imageLocation, name, url }) => {
+const Icon: React.FC<IconProps> = ({ src, name, url }) => {
   return (
     <div className="flex flex-col items-center ">
       <div
@@ -16,8 +16,8 @@ const Icon: React.FC<IconProps> = ({ imageLocation, name, url }) => {
             w-40 h-40 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32"
       >
         <Image
-          src={imageLocation}
-          alt={imageLocation}
+          src={src}
+          alt={name}
           fill
           className="object-cover rounded-full border-6 border-firecrackerRed"
         />
