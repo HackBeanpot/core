@@ -21,7 +21,9 @@ export default function Page(): JSX.Element {
       </Head>
 
       <NavBar />
-      <Landing />
+      <div className="relative z-50">
+        <Landing />
+      </div>
       <Apply />
       <Stats />
       <About />
