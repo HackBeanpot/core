@@ -90,7 +90,7 @@ export default function Page() {
             key={index}
             className={`${isMobile ? "pt-10 mb-10" : ""} ${isTablet ? "pt-10" : ""} ${isDesktop ? "pt-10" : ""}`}
           >
-            <RibbonTitle text={project.award.toUpperCase()}/>
+            <RibbonTitle text={project.award.toUpperCase()} />
             <div
               className={`${isMobile ? "mb-5" : ""} ${isTablet ? "" : ""} ${isDesktop ? "" : ""}`}
             >

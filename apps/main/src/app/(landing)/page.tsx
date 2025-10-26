@@ -21,7 +21,7 @@ export default function Page(): JSX.Element {
       </Head>
 
       <NavBar />
-      <div className="relative z-50">
+      <div className="relative z-10">
         <Landing />
       </div>
       <Apply />
@@ -30,7 +30,7 @@ export default function Page(): JSX.Element {
       <Values />
       <Keynote />
       <Calendar />
-      <Testimonials />
+      <Testimonials />d
       <FAQSection />
       <Footer />
     </main>

@@ -46,13 +46,13 @@ export default function Values() {
       : "max-w-[40vw]";
 
   const iconSize = isMobile ? "w-[6vw]" : isTablet ? "w-[4vw]" : "w-[4vw]";
-  
+
   return (
     <div
       className={`relative w-full ${aspectRatio} bg-ribbonBlue overflow-visible`}
     >
       {/* Foreground SVG Stuff (ballons, clouds, etc) */}
-      <CloudsTop className="absolute z-50 top-0 left-1/2 w-[100vw] -mt-[13vw] h-auto -translate-x-1/2" />
+      <CloudsTop className="absolute z-30 top-0 left-1/2 w-[100vw] -mt-[13vw] h-auto -translate-x-1/2" />
       <OurTeamValuesForeground
         className="absolute bottom-0 left-1/2 w-[160vw] h-auto -translate-x-1/2"
         preserveAspectRatio="xMidYMid meet"
