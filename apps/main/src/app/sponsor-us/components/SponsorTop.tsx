@@ -8,12 +8,9 @@ import BoxWithText from "./BoxWithText.tsx";
 const SponsorTop = () => {
   return (
     <div className="relative flex flex-col items-center mobile:pt-20 desktop:pt-40">
-      {/* Background */}
       <div className="absolute inset-0 -z-10">
         <TopBackground />
       </div>
-
-      {/* Title */}
       <div
         className="self-stretch text-center justify-center text-firecrackerRedDark 
         font-Sancreek-Regular text-heading leading-[96px] 
@@ -22,12 +19,10 @@ const SponsorTop = () => {
         SPONSOR US
       </div>
 
-      {/* Added more margin between title and box */}
       <div className="mobile:mt-10 desktop:mt-20">
         <BoxWithText />
       </div>
 
-      {/* Button */}
       <div className="mt-10">
         <Button
           text="View Sponsorship Packet"
