@@ -15,7 +15,7 @@ const SponsorUsPage = () => {
         <SponsorTop />
       </div>
 
-      <div className="absolute top-[105%] z-10 w-full">
+      <div className="absolute top-[155%] z-10 w-full">
         <SponsorUsBenefitCardComp
           title="Market your company and product"
           content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
