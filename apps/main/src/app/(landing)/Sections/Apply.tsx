@@ -19,6 +19,7 @@ export default function Apply(): React.ReactNode {
         size="medium"
         color="mossGreen"
         textColor="white"
+        onClick={() => window.open("https://apply.hackbeanpot.com/")}
       />
     </div>
   );
