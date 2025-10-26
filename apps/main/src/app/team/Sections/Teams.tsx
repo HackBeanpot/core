@@ -27,17 +27,17 @@ const teams = {
     },
     {
       name: "Alexander Chen",
-      src: "/headshots/tech/Alexander.png",
+      src: "/headshots/tech/Alex.png",
       url: "https://www.linkedin.com/in/alexchen04/",
     },
     {
       name: "Yumiko Chow",
-      src: "/headshots/tech/Yumiko.png",
+      src: "/headshots/tech/Yumi.png",
       url: "https://www.linkedin.com/in/yumiko-chow/",
     },
     {
       name: "Alexandra Hu",
-      src: "/headshots/tech/Alexandra.png",
+      src: "/headshots/tech/Ally.png",
       url: "https://www.linkedin.com/in/alexandra-hu",
     },
     {
@@ -204,7 +204,7 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
     "",
     isMobile && "scale-95",
     isTablet && "scale-75",
-    isDesktop && "scale-50",
+    isDesktop && "scale-50"
   );
   return (
     <div className="w-full">
@@ -222,11 +222,11 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
 
 const Teams = () => {
   return (
-    <>
+    <div className="mb-12">
       {Object.entries(teams).map(([teamName]) => (
         <TeamSections key={teamName} team={teamName as TeamName} />
       ))}
-    </>
+    </div>
   );
 };
 
