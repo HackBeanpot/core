@@ -7,6 +7,7 @@ const TeamPicture: React.FC = () => {
       height="352"
       viewBox="0 0 538 352"
       fill="none"
+      preserveAspectRatio="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_d_707_13984)">

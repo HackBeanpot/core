@@ -8,23 +8,44 @@ import YellowBear from "../../lib/Assets/AboutLandingAssets/yellowBear";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import Background from "../../lib/Assets/AboutLandingAssets/background";
 import Dart from "../../lib/Assets/AboutLandingAssets/dart";
-import Squiggle from "../../lib/Assets/AboutLandingAssets/squiggle";
+import useDevice from "@util/hooks/useDevice";
+
 export default function About(): React.ReactNode {
+  const { isMobile, isTablet, isDesktop } = useDevice();
   return (
-    <div className="pb-40">
-      <div className="absolute -z-10">
-        <Background />
-      </div>
-      <div className="mb-10">
-        <RibbonTitle text="ABOUT US" />
-      </div>
+    <div
+      className={`relative w-full z-10 ${
+        isMobile ? "aspect-[1] top-16" : "aspect-[1.72/1]"
+      }`}
+    >
+      <Background
+        className="absolute w-full -bottom-24 -z-10"
+        style={{
+          transform: isMobile ? "scale(0.9)" : "scale(1)",
+          transformOrigin: "top center",
+        }}
+      />
+
+      <RibbonTitle text="ABOUT US" />
+
       <div className="absolute top-[20%] left-[80%]">
         <YellowBear />
       </div>
 
-      <div className="mt-20 flex flex-row items-start justify-center scale-125">
-        <TextBackground />
-        <div className="-ml-14 mt-8">
+      <div className="mt-20 mobile:mt-32 flex desktop:flex-row mobile:flex-col mobile:items-center items-start justify-center scale-125">
+        <div className="relative flex  mobile:w-3/5">
+          <p className="mobile:text-xs font-DMSans-Regular absolute h-full mobile:p-12 desktop:py-20 desktop:px-16 self-center">
+            We're a non-profit organization in the Boston area that organizes an
+            annual undergraduate hackathon. Our goal is to expand and nurture
+            the hacker culture that exists in Boston and the surrounding areas.
+            We connect students and other aspiring nerds to their colleagues so
+            that they can meet new people, learn new things, and have a great
+            time.
+          </p>
+          <TextBackground />
+        </div>
+
+        <div className="flex mobile:-mt-16 mobile:-ml-0 desktop:-ml-14 desktop:mt-8 transform mobile:scale-[50%] mobile:items-center">
           <TeamPicture />
         </div>
       </div>
@@ -34,9 +55,6 @@ export default function About(): React.ReactNode {
       </div>
       <div className="absolute top-[68%] left-[79%] mb-10">
         <Dart />
-      </div>
-      <div className="absolute top-[100%] w-[80%] z-10 scale-150">
-        <Squiggle />
       </div>
     </div>
   );
