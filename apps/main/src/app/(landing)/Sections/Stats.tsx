@@ -34,7 +34,7 @@ export default function Stats(): JSX.Element {
       className="w-full bg-carouselCream flex justify-center"
       style={{ height: creamHeight }}
     >
-      <div className="relative w-full h-full mx-auto ">
+      <div className="relative w-full h-full mx-auto">
         {/* Back Tickets Top */}
         <div
           className="absolute"
