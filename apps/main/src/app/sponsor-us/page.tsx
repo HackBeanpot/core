@@ -18,32 +18,23 @@ const SponsorUsPage = () => {
     };
 
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const firstCardClasses = clsx(
-    'w-full flex',
-    {
-      'justify-center px-4': isSmallScreen || isMobile,
-      'justify-end pr-96': !(isSmallScreen || isMobile)
-    }
-  );
+  const firstCardClasses = clsx("w-full flex", {
+    "justify-center px-4": isSmallScreen || isMobile,
+    "justify-end pr-96": !(isSmallScreen || isMobile),
+  });
 
-  const secondCardClasses = clsx(
-    'w-full flex',
-    {
-      'justify-center px-4': isSmallScreen || isMobile,
-      'justify-start pl-96': !(isSmallScreen || isMobile)
-    }
-  );
+  const secondCardClasses = clsx("w-full flex", {
+    "justify-center px-4": isSmallScreen || isMobile,
+    "justify-start pl-96": !(isSmallScreen || isMobile),
+  });
 
-  const cardWrapperClasses = clsx(
-    'max-w-xl',
-    {
-      'w-full': isSmallScreen || isMobile
-    }
-  );
+  const cardWrapperClasses = clsx("max-w-xl", {
+    "w-full": isSmallScreen || isMobile,
+  });
 
   return (
     <div className="relative z-10 w-full">
@@ -57,7 +48,10 @@ const SponsorUsPage = () => {
                 title="Recruitment"
                 content={
                   <>
-                    <p>Scout the next generation of talent here. Receive perks such as:</p>
+                    <p>
+                      Scout the next generation of talent here. Receive perks
+                      such as:
+                    </p>
                     <ul>
                       <li>• Onsite interviews</li>
                       <li>• A spot in our career fair</li>
@@ -82,12 +76,15 @@ const SponsorUsPage = () => {
 
       <div className="justify-items-center mt-24 mb-16 text-center px-4">
         <h2 className="text-xl font-NeulisNeue-Bold text-charcoalFog">
-          Additionally, we provide the flexibility to create your own perk or package.
+          Additionally, we provide the flexibility to create your own perk or
+          package.
         </h2>
         <p className="mt-4 text-charcoalFog font-NeulisNeue-Regular max-w-2xl">
-          Let us know your ideas and package choice at sponsorship@hackbeanpot.com.
-          Our team will work with you to answer any questions and guide you through
-          the next steps in becoming a HackBeanpot 2026 sponsor!</p>
+          Let us know your ideas and package choice at
+          sponsorship@hackbeanpot.com. Our team will work with you to answer any
+          questions and guide you through the next steps in becoming a
+          HackBeanpot 2026 sponsor!
+        </p>
       </div>
     </div>
   );
