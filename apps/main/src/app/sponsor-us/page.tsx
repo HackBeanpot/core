@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import SponsorUsStatsComp from "../lib/Components/SponsorUsComponents/SponsorUsStatsComp";
 // import TicketBooth from "../lib/Assets/SVG/SponsorUsAssets/TicketBooth";
 // import Ticket from "../lib/Assets/SVG/SponsorUsAssets/Ticket";
 // import Button from "@repo/ui/Button";
@@ -16,6 +17,7 @@ const SponsorUsPage = () => {
         title="Market your company and product"
         content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
       /> */}
+      <SponsorUsStatsComp />
     </div>
   );
 };
