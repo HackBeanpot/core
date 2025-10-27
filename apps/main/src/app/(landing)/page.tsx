@@ -20,16 +20,14 @@ export default function Page(): JSX.Element {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <NavBar />
-      <div className="relative z-10">
-        <Landing />
-      </div>
+      <Landing />
+      <About />
       <Apply />
       <Stats />
-      <About />
       <Values />
       <Keynote />
       <Calendar />
-      <Testimonials />d
+      <Testimonials />
       <FAQSection />
       <Footer />
     </main>

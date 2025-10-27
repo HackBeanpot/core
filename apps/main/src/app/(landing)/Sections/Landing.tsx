@@ -18,7 +18,7 @@ export default function Landing(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   return (
-    <>
+    <div className="relative z-10">
       <div
         className={`relative w-full ${
           isMobile ? "aspect-[1]" : "aspect-[1.72/1]"
@@ -130,6 +130,6 @@ export default function Landing(): React.ReactNode {
           className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-auto ${isMobile ? "w-[200vw]" : "w-[170vw]"}`}
         />
       </div>
-    </>
+    </div>
   );
 }
