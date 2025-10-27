@@ -12,8 +12,8 @@ export default function Keynote(): React.ReactNode {
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center w-full h-full'
-      ${isMobile ? "h-[105vh]" : ""}`}
+      className={`relative flex flex-col items-center justify-center w-full h-full
+      ${isMobile ? "h-[200vh]" : ""}`}
     >
       <KeynoteSpeaker
         className={`
@@ -48,7 +48,7 @@ export default function Keynote(): React.ReactNode {
           </div>
           <div
             className={`font-light font-['DMSans-Regular'] leading-relaxed
-            ${isMobile ? "relative text-charcoalFog text-sm" : ""}
+            ${isMobile ? "relative text-charcoalFog text-xs" : ""}
               ${isTablet ? "text-charcoalFog text-xl" : ""}
               ${isDesktop ? "text-white text-2xl" : ""}`}
           >

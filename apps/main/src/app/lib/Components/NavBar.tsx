@@ -26,7 +26,7 @@ const NavBar = () => {
   ];
 
   const outerDivStyles = clsx(
-    "sticky top-0 z-[50] w-full h-fit bg-white flex flex-row",
+    "sticky top-0 z-[100] w-full h-fit bg-white flex flex-row",
     isDesktop ? "flex-row p-2" : "flex-col",
     isOpen && isMobile && "fixed",
   );

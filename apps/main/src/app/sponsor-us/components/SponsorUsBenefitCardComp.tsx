@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import SponsorUsBenefitCard from "../../Assets/SVG/SponsorUsAssets/SponsorsUsBenefitCard";
+import SponsorUsBenefitCard from "../../lib/Assets/SVG/SponsorUsAssets/SponsorsUsBenefitCard";
 
 export type SponsorUsBenefitCardProps = {
   title: string;

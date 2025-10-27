@@ -3,7 +3,7 @@
 import React from "react";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import Image from "next/image";
-import FullCloudBackground from "../../Assets/SVG/SponsorUsAssets/FullCloudBackground";
+import FullCloudBackground from "../../lib/Assets/SVG/SponsorUsAssets/FullCloudBackground";
 import useDevice from "@util/hooks/useDevice";
 import clsx from "clsx";
 
@@ -79,7 +79,7 @@ export default function SponsorUsBenefitCardComp() {
   ];
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-tomato">
+    <div className="relative h-screen w-full overflow-hidden">
       <FullCloudBackground
         className="absolute z-0 inset-0 w-[100vw] h-full justify-self-center"
         preserveAspectRatio="none"

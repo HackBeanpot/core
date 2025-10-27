@@ -21,8 +21,8 @@ export default function Page(): JSX.Element {
       </Head>
       <NavBar />
       <Landing />
-      <About />
       <Apply />
+      <About />
       <Stats />
       <Values />
       <Keynote />

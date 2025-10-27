@@ -3,7 +3,7 @@
 import React from "react";
 import Impact from "./Impact.tsx";
 
-const BoxWithText = () => {
+const LandingCard = () => {
   return (
     <div className="mobile:scale-[0.90]">
       <div className="relative flex flex-col items-center">
@@ -36,4 +36,4 @@ const BoxWithText = () => {
   );
 };
 
-export default BoxWithText;
+export default LandingCard;

@@ -11,7 +11,7 @@ import Dart from "../../lib/Assets/AboutLandingAssets/dart";
 import useDevice from "@util/hooks/useDevice";
 
 export default function About(): React.ReactNode {
-  const { isMobile, isTablet, isDesktop } = useDevice();
+  const { isMobile} = useDevice();
   return (
     <div
       className={`relative w-full z-10 ${
@@ -35,12 +35,12 @@ export default function About(): React.ReactNode {
       <div className="mt-20 mobile:mt-32 flex desktop:flex-row mobile:flex-col mobile:items-center items-start justify-center scale-125">
         <div className="relative flex  mobile:w-3/5">
           <p className="mobile:text-xs font-DMSans-Regular absolute h-full mobile:p-12 desktop:py-20 desktop:px-16 self-center">
-            We're a non-profit organization in the Boston area that organizes an
-            annual undergraduate hackathon. Our goal is to expand and nurture
-            the hacker culture that exists in Boston and the surrounding areas.
-            We connect students and other aspiring nerds to their colleagues so
-            that they can meet new people, learn new things, and have a great
-            time.
+            We&apos;re a non-profit organization in the Boston area that
+            organizes an annual undergraduate hackathon. Our goal is to expand
+            and nurture the hacker culture that exists in Boston and the
+            surrounding areas. We connect students and other aspiring nerds to
+            their colleagues so that they can meet new people, learn new things,
+            and have a great time.
           </p>
           <TextBackground />
         </div>

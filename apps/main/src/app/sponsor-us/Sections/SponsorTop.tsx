@@ -2,8 +2,8 @@
 
 import React from "react";
 import Button from "@repo/ui/Button";
-import TopBackground from "./TopBackground.tsx";
-import BoxWithText from "./BoxWithText.tsx";
+import TopBackground from "../components/TopBackground.tsx";
+import BoxWithText from "../components/LandingCard.tsx";
 
 const SponsorTop = () => {
   return (
