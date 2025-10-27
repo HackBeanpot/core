@@ -32,51 +32,51 @@ export default function SponsorUsBenefitCardComp() {
       desktop: { width: 200, height: 300, transform: "translate(32vw, 20vw)" },
       tablet: { width: 100, height: 200, transform: "translate(32vw, 20vw)" },
       mobile: { width: 100, height: 200, transform: "translate(32vw, 16vw)" },
-      zIdx: "z-10"
+      zIdx: "z-10",
     },
     {
       src: "/sponsor-stats/darkgreenballoon.svg",
       desktop: { width: 200, height: 300, transform: "translate(10vw, 30vw)" },
       tablet: { width: 100, height: 200, transform: "translate(10vw, 30vw)" },
       mobile: { width: 70, height: 200, transform: "translate(10vw, 30vw)" },
-      zIdx: "z-10"
+      zIdx: "z-10",
     },
     {
       src: "/sponsor-stats/purpleballoon.svg",
       desktop: { width: 200, height: 300, transform: "translate(70vw, 20vw)" },
       tablet: { width: 100, height: 200, transform: "translate(70vw, 20vw)" },
       mobile: { width: 80, height: 200, transform: "translate(63vw, 25vw)" },
-      zIdx: "z-10"
+      zIdx: "z-10",
     },
     {
       src: "/sponsor-stats/lightgreenballoon.svg",
       desktop: { width: 200, height: 300, transform: "translate(48vw, 4vw)" },
       tablet: { width: 100, height: 200, transform: "translate(48vw, 4vw)" },
       mobile: { width: 80, height: 200, transform: "translate(52vw, -8vw)" },
-      zIdx: "z-10"
+      zIdx: "z-10",
     },
     {
       src: "/sponsor-stats/darkredballoon.svg",
       desktop: { width: 150, height: 200, transform: "translate(11vw, 4vw)" },
       tablet: { width: 80, height: 150, transform: "translate(12vw, 2vw)" },
       mobile: { width: 70, height: 200, transform: "translate(15vw, 0vw)" },
-      zIdx: "z-0"
+      zIdx: "z-0",
     },
     {
       src: "/sponsor-stats/peachballoon.svg",
       desktop: { width: 150, height: 200, transform: "translate(30vw, -3vw)" },
       tablet: { width: 80, height: 150, transform: "translate(30vw, -5vw)" },
       mobile: { width: 60, height: 200, transform: "translate(33vw, -10vw)" },
-      zIdx: "z-0"
+      zIdx: "z-0",
     },
     {
       src: "/sponsor-stats/navyballoon.svg",
       desktop: { width: 150, height: 200, transform: "translate(70vw, 0vw)" },
       tablet: { width: 80, height: 150, transform: "translate(70vw, -4vw)" },
       mobile: { width: 50, height: 200, transform: "translate(74vw, 6vw)" },
-      zIdx: "z-0"
-    }
-  ]
+      zIdx: "z-0",
+    },
+  ];
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-tomato">
@@ -90,23 +90,25 @@ export default function SponsorUsBenefitCardComp() {
         </div>
         <div className="relative w-full flex h-full">
           {balloons.map((aBalloon, idx) => {
-            const balloonSize = isMobile ? aBalloon.mobile 
-              : isTablet ? aBalloon.tablet
-              : aBalloon.desktop;
+            const balloonSize = isMobile
+              ? aBalloon.mobile
+              : isTablet
+                ? aBalloon.tablet
+                : aBalloon.desktop;
 
             return (
-              <Image 
-              key={`${aBalloon.src.toString}-${idx}`}
-              src={aBalloon.src} 
-              alt={aBalloon.alt || ""}
-              width={balloonSize.width}
-              height={balloonSize.height}
-              style={{
-                transform: balloonSize.transform
-              }}
-              className={`absolute ${aBalloon.zIdx}`}
-            />
-            )
+              <Image
+                key={`${aBalloon.src.toString}-${idx}`}
+                src={aBalloon.src}
+                alt={aBalloon.alt || ""}
+                width={balloonSize.width}
+                height={balloonSize.height}
+                style={{
+                  transform: balloonSize.transform,
+                }}
+                className={`absolute ${aBalloon.zIdx}`}
+              />
+            );
           })}
         </div>
       </div>
