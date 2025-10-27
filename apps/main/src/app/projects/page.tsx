@@ -9,6 +9,8 @@ import PinkFirework from "./components/pinkFirework";
 import OrangeFirework from "./components/orangeFirework";
 import YellowFirework from "./components/yellowFirework";
 import Button from "@repo/ui/Button";
+import { Footer, NavBar } from "../lib/Components";
+
 const projectData = [
   {
     projectImage: "/projects/memora.png",
@@ -70,6 +72,7 @@ export default function Page() {
   const { isMobile, isTablet, isDesktop } = useDevice();
   return (
     <div className="flex flex-col items-center min-h-screen relative overflow-x-hidden overflow-y-visible">
+      <NavBar />
       <div
         className={`absolute inset-0 -z-10 ${isMobile ? "scale-125" : ""} ${isTablet ? "scale-125" : ""} ${isDesktop ? "scale-125" : ""}`}
       >
@@ -88,7 +91,7 @@ export default function Page() {
         {projectData.map((project, index) => (
           <div
             key={index}
-            className={`${isMobile ? "pt-10 mb-10" : ""} ${isTablet ? "pt-10" : ""} ${isDesktop ? "pt-10" : ""}`}
+            className={` ${isMobile ? "pt-10 mb-10" : ""} ${isTablet ? "pt-10" : ""} ${isDesktop ? "pt-10" : ""}`}
           >
             <RibbonTitle text={project.award.toUpperCase()} />
             <div
@@ -157,6 +160,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

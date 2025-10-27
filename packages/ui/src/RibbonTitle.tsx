@@ -17,7 +17,7 @@ export default function RibbonTitle({
       className={`relative inline-block w-full transform scale-75 text-marigoldYellow ${ribbonSize} ${ribbonTextSize}`}
     >
       <div>
-        <span className="absolute inset-0 flex items-center justify-center z-10 font-NeulisNeue-Bold  tracking-wide">
+        <span className="absolute inset-0 flex items-center text-[10vh] justify-center z-10 font-NeulisNeue-Bold  tracking-wide">
           {text}
         </span>
         <LongRibbon className="w-full transform" />

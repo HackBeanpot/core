@@ -10,7 +10,7 @@ const teams = {
   Directors: [
     {
       name: "Emma Vonbuelow",
-      src: "/headshots/directors/Emma.png",
+      src: "/headshots/directors/Emma.jpg",
       url: "https://www.linkedin.com/in/emma-von/",
     },
     {
@@ -204,7 +204,7 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
     "",
     isMobile && "scale-95",
     isTablet && "scale-75",
-    isDesktop && "scale-50"
+    isDesktop && "scale-50",
   );
   return (
     <div className="w-full">
