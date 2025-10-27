@@ -1,13 +1,8 @@
 "use client";
 
 import React from "react";
-import SponsorUsStatsComp from "../lib/Components/SponsorUsComponents/SponsorUsStatsComp";
-// import TicketBooth from "../lib/Assets/SVG/SponsorUsAssets/TicketBooth";
-// import Ticket from "../lib/Assets/SVG/SponsorUsAssets/Ticket";
-// import Button from "@repo/ui/Button";
-// import useDevice from "@repo/util/hooks/useDevice";
-// import SponsorUsBenefitCardComp from "../lib/Components/SponsorUsComponents/SponsorUsBenefitCardComp";
-// import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
+import SponsorUsBenefitCardComp from "../lib/Components/SponsorUsComponents/SponsorUsBenefitCardComp";
+import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
 
 const SponsorUsPage = () => {
   return (
