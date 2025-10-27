@@ -7,6 +7,7 @@ import useDevice from "@repo/util/hooks/useDevice";
 import SponsorUsBenefitCardComp from "../lib/Components/SponsorUsComponents/SponsorUsBenefitCardComp";
 import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
 import SponsorUsStatsComp from "../lib/Components/SponsorUsComponents/SponsorUsStatsComp";
+import SponsorTop from "./components/SponsorTop.tsx";
 
 const SponsorUsPage = () => {
   const { isMobile } = useDevice();
@@ -39,6 +40,7 @@ const SponsorUsPage = () => {
 
   return (
     <div className="relative z-10 w-full">
+      <SponsorTop />
       <SponsorTicketBoothComp />
       <div className="mt-12">
         <RibbonTitle text="Sponsorship Benefits" />
