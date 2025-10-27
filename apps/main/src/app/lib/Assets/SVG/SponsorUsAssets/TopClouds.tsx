@@ -4,8 +4,7 @@ import type { SVGProps } from "react";
 const TopClouds = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={2000}
-    height={328}
+    viewBox="0 0 2000 328"
     fill="none"
     {...props}
   >
