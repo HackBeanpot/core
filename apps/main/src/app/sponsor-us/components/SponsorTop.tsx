@@ -19,11 +19,11 @@ const SponsorTop = () => {
         SPONSOR US
       </div>
 
-      <div className="mobile:mt-10 desktop:mt-20">
+      <div className="mobile:mt-10 desktop:mt-20 flex justify-center">
         <BoxWithText />
       </div>
 
-      <div className="mt-10">
+      <div className="mobile:mt-10 desktop:mt-12 flex justify-center">
         <Button
           text="View Sponsorship Packet"
           textColor="white"
