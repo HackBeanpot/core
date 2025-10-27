@@ -6,6 +6,7 @@ import RibbonTitle from "@repo/ui/RibbonTitle";
 import useDevice from "@repo/util/hooks/useDevice";
 import SponsorUsBenefitCardComp from "../lib/Components/SponsorUsComponents/SponsorUsBenefitCardComp";
 import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
+import SponsorUsStatsComp from "../lib/Components/SponsorUsComponents/SponsorUsStatsComp";
 
 const SponsorUsPage = () => {
   const { isMobile } = useDevice();
@@ -86,6 +87,11 @@ const SponsorUsPage = () => {
           HackBeanpot 2026 sponsor!
         </p>
       </div>
+      <SponsorUsBenefitCardComp
+        title="Market your company and product"
+        content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
+      /> 
+      <SponsorUsStatsComp />
     </div>
   );
 };
