@@ -3,7 +3,7 @@
 import React from "react";
 import SponsorUsBenefitCardComp from "../lib/Components/SponsorUsComponents/SponsorUsBenefitCardComp";
 import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
-import SponsorUsStatsComp from "../lib/SponsorComponents/SponsorUsStatsComp";
+import SponsorUsStatsComp from "../lib/Components/SponsorComponents/SponsorUsStatsComp";
 
 const SponsorUsPage = () => {
   return (
