@@ -6,10 +6,10 @@ import Impact from "./Impact.tsx";
 const BoxWithText = () => {
   return (
     <div className="mobile:scale-[0.90]">
-    <div className="relative flex flex-col items-center">
-      <div className="absolute -top-11 z-10">
-        <Impact />
-      </div>
+      <div className="relative flex flex-col items-center">
+        <div className="absolute -top-11 z-10">
+          <Impact />
+        </div>
       </div>
 
       <div className="mobile:scale-[0.90]">
