@@ -8,7 +8,7 @@ import YearSign from "../../lib/Assets/SVG/Hero/LandingAssets/YearSign.tsx";
 import Balloon from "../../lib/Assets/SVG/Hero/LandingAssets/Balloon.tsx";
 import RollerCoaster from "../../lib/Assets/SVG/Hero/LandingAssets/RollerCoaster.tsx";
 import FerrisWheel from "../../lib/Assets/SVG/Hero/LandingAssets/FerrisWheel.tsx";
-import MLHLogo from "../../lib/Assets/SVG/Hero/LandingAssets/MLHLogo.tsx";
+import MLHLogo from "../../../../../../packages/ui/src/Logos/MLHLogo.tsx";
 import SocialsButtonsRow from "../../../../../../packages/ui/src/SocialsButtonsRow.tsx";
 import HBPLogo from "../../lib/Assets/SVG/Hero/LandingAssets/HBPLogo.tsx";
 
