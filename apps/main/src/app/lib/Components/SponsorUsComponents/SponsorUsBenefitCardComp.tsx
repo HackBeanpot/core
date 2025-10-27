@@ -5,7 +5,7 @@ import SponsorUsBenefitCard from "../../Assets/SVG/SponsorUsAssets/SponsorsUsBen
 
 export type SponsorUsBenefitCardProps = {
   title: string;
-  content: string;
+  content: React.ReactNode;
 };
 
 export default function SponsorUsBenefitCardComp({
@@ -13,10 +13,10 @@ export default function SponsorUsBenefitCardComp({
   content,
 }: SponsorUsBenefitCardProps) {
   return (
-    <div className="relative w-[100%] h-[302px] flex items-center justify-center">
+    <div className="relative w-96 h-[302px] flex items-center justify-center">
       <SponsorUsBenefitCard className="absolute w-full h-full" />
 
-      <div className="relative flex flex-col items-center justify-center text-left left-7 bottom-5 mx-auto px-4">
+      <div className="relative flex flex-col justify-center text-left left-7 bottom-5 mx-auto px-4">
         <h3 className="text-lg text-white font-NeulisNeue-Bold max-w-72">
           {title}
         </h3>
