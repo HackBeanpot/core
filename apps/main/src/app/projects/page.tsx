@@ -2,7 +2,6 @@
 
 import React from "react";
 import Project from "./components/Project";
-import RibbonTitle from "@repo/ui/RibbonTitle";
 import ProjectBackground from "./components/background";
 import useDevice from "@util/hooks/useDevice";
 import PinkFirework from "./components/pinkFirework";
@@ -10,6 +9,7 @@ import OrangeFirework from "./components/orangeFirework";
 import YellowFirework from "./components/yellowFirework";
 import Button from "@repo/ui/Button";
 import { Footer, NavBar } from "../lib/Components";
+import ProjectName from "./components/ProjectName";
 
 const projectData = [
   {
@@ -70,96 +70,86 @@ const projectData = [
 
 export default function Page() {
   const { isMobile, isTablet, isDesktop } = useDevice();
+
   return (
-    <div className="flex flex-col items-center min-h-screen relative overflow-x-hidden overflow-y-visible">
+    <div className="flex flex-col items-center min-h-screen relative overflow-x-hidden overflow-y-hidden">
       <NavBar />
+
+      {/* Background */}
       <div
-        className={`absolute inset-0 -z-10 ${isMobile ? "scale-125" : ""} ${isTablet ? "scale-125" : ""} ${isDesktop ? "scale-125" : ""}`}
+        className={`absolute inset-0 -z-10 ${
+          isMobile || isTablet || isDesktop ? "scale-125" : ""
+        }`}
       >
         <ProjectBackground className={`${isMobile ? "w-full h-full" : ""}`} />
       </div>
 
-      <div className="relative z-10 max-w-screen flex flex-col items-center pt-14">
+      {/* Projects Section */}
+      <div className="relative z-10 max-w-screen-lg w-full flex flex-col items-center pt-14">
         <div
           className="self-stretch text-center justify-center text-firecrackerRedDark 
-        font-Sancreek-Regular text-heading leading-[96px] 
-        text-shadow [text-stroke:2px_#F2E06F] [-webkit-text-stroke:2px_#F2E06F]"
+          font-Sancreek-Regular text-heading leading-[96px] 
+          text-shadow [text-stroke:2px_#F2E06F] [-webkit-text-stroke:2px_#F2E06F]"
         >
           2025 PROJECTS
         </div>
 
         {projectData.map((project, index) => (
-          <div
-            key={index}
-            className={` ${isMobile ? "pt-10 mb-10" : ""} ${isTablet ? "pt-10" : ""} ${isDesktop ? "pt-10" : ""}`}
-          >
-            <RibbonTitle text={project.award.toUpperCase()} />
-            <div
-              className={`${isMobile ? "mb-5" : ""} ${isTablet ? "" : ""} ${isDesktop ? "" : ""}`}
-            >
-              <Project
-                projectImage={project.projectImage}
-                projectName={project.projectName}
-                url={project.link}
-                members={project.members}
-                description={project.description}
-              />
-            </div>
+  <div
+    key={index}
+    className={`${isMobile ? "pt-2 mb-2" : "pt-10"} w-full flex flex-col items-center`}
+  >
+    <div className={`${isMobile ? "scale-[0.85]" : ""} w-full flex justify-center`}>
+      <ProjectName projectName={project.award.toUpperCase()} />
+    </div>
+    <div className={`${isMobile ? "mb-2" : ""} w-full scale-[0.85]`}>
+      <Project
+        projectImage={project.projectImage}
+        projectName={project.projectName}
+        url={project.link}
+        members={project.members}
+        description={project.description}
+      />
+    </div>
+  </div>
+))}
+
+      </div>
+
+      {/* Fireworks + Archive Section */}
+      <div className="relative flex flex-col items-center w-full mt-[39rem] mb-20 overflow-visible">
+        {/* Fireworks Layer */}
+        <div className="absolute inset-0 flex justify-center items-center">
+          <div className="absolute left-[10%] -top-[395%] scale-100">
+            <PinkFirework />
           </div>
-        ))}
-
-        <div
-          className={`
-        ${isMobile ? "scale-[0.3] top-[98.5%] -left-[125px]" : ""}
-        ${isTablet ? "scale-[0.7] top-[101%] -left-[150px]" : ""}
-        ${isDesktop ? "top-[100%] -left-[200px]" : ""}
-        absolute`}
-        >
-          <PinkFirework />
-        </div>
-        <div
-          className={`
-      ${isMobile ? "scale-[0.3] top-[98.5%] -left-[120px]" : ""}
-      ${isTablet ? "scale-[0.7] top-[103%] -left-[60px]" : ""}
-      ${isDesktop ? "top-[104%] -left-[85px]" : ""}
-      absolute`}
-        >
-          <YellowFirework />
-        </div>
-        <div
-          className={`
-    ${isMobile ? "scale-[0.3] top-[96%] -left-[30px]" : ""}
-    ${isTablet ? "scale-[0.65] top-[100%] left-[200px]" : ""}
-    ${isDesktop ? "top-[101%] left-[485px]" : ""}
-    absolute
-  `}
-        >
-          <OrangeFirework />
+          <div className="absolute right-[60%] -top-[315%] scale-90">
+            <YellowFirework />
+          </div>
+          <div className="absolute right-[15%] -top-[440%] scale-100">
+            <OrangeFirework />
+          </div>
         </div>
 
-        <div
-          className={`absolute flex flex-col items-center ${isMobile ? "top-[106.5%]" : ""} ${isTablet ? "top-[112%]" : ""} ${isDesktop ? "top-[118%]" : ""}`}
-        >
-          <div className="self-stretch text-center justify-center text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
+        {/* Archive CTA */}
+        <div className="flex flex-col items-center text-center z-10 px-4">
+          <div className="text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
             Interested in seeing more past hacker projects?
           </div>
-          <div className="self-stretch text-center justify-center text-carouselCreamLight text-md font-normal font-['NeulisNeue-Regular'] leading-tight mb-5">
+          <div className="text-carouselCreamLight text-md font-['NeulisNeue-Regular'] leading-tight mb-5">
             Check out the HackBeanpot Archive!
           </div>
 
-          <div className="text-center justify-center">
-            <Button
-              text="View Archive"
-              textColor="white"
-              color="starlightBlue"
-              size="medium"
-              onClick={() =>
-                window.open("https://archive.hackbeanpot.com/", "_blank")
-              }
-            ></Button>
-          </div>
+          <Button
+            text="View Archive"
+            textColor="white"
+            color="starlightBlue"
+            size="medium"
+            onClick={() => window.open("https://archive.hackbeanpot.com/", "_blank")}
+          />
         </div>
       </div>
+
       <Footer />
     </div>
   );
