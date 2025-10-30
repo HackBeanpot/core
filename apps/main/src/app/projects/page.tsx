@@ -95,25 +95,26 @@ export default function Page() {
         </div>
 
         {projectData.map((project, index) => (
-  <div
-    key={index}
-    className={`${isMobile ? "pt-2 mb-2" : "pt-10"} w-full flex flex-col items-center`}
-  >
-    <div className={`${isMobile ? "scale-[0.85]" : ""} w-full flex justify-center`}>
-      <ProjectName projectName={project.award.toUpperCase()} />
-    </div>
-    <div className={`${isMobile ? "mb-2" : ""} w-full scale-[0.85]`}>
-      <Project
-        projectImage={project.projectImage}
-        projectName={project.projectName}
-        url={project.link}
-        members={project.members}
-        description={project.description}
-      />
-    </div>
-  </div>
-))}
-
+          <div
+            key={index}
+            className={`${isMobile ? "pt-2 mb-2" : "pt-10"} w-full flex flex-col items-center`}
+          >
+            <div
+              className={`${isMobile ? "scale-[0.85]" : ""} w-full flex justify-center`}
+            >
+              <ProjectName projectName={project.award.toUpperCase()} />
+            </div>
+            <div className={`${isMobile ? "mb-2" : ""} w-full scale-[0.85]`}>
+              <Project
+                projectImage={project.projectImage}
+                projectName={project.projectName}
+                url={project.link}
+                members={project.members}
+                description={project.description}
+              />
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Fireworks + Archive Section */}
@@ -145,7 +146,9 @@ export default function Page() {
             textColor="white"
             color="starlightBlue"
             size="medium"
-            onClick={() => window.open("https://archive.hackbeanpot.com/", "_blank")}
+            onClick={() =>
+              window.open("https://archive.hackbeanpot.com/", "_blank")
+            }
           />
         </div>
       </div>
