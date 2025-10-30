@@ -104,7 +104,9 @@ export default function Page() {
             >
               <ProjectName projectName={project.award.toUpperCase()} />
             </div>
-            <div className={`${isMobile ? "mb-2" : "mb-3"} w-full scale-[0.85]`}>
+            <div
+              className={`${isMobile ? "mb-2" : "mb-3"} w-full scale-[0.85]`}
+            >
               <Project
                 projectImage={project.projectImage}
                 projectName={project.projectName}
