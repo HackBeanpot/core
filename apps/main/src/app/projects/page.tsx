@@ -121,20 +121,25 @@ export default function Page() {
       <div className="relative flex flex-col items-center w-full mb-20 overflow-visible mobile:mt-[27rem] tablet:mt-[39rem] desktop:mt-[39rem]">
         {/* Fireworks Layer */}
         <div className="absolute inset-0 flex justify-center items-center">
-         
-          <div className="absolute mobile:-left-[19%] mobile:-top-[255%] mobile:scale-[0.4]
+          <div
+            className="absolute mobile:-left-[19%] mobile:-top-[255%] mobile:scale-[0.4]
           tablet:left-[10%] tablet:-top-[395%] tablet:scale-100
-          desktop:left-[10%] desktop:-top-[395%] desktopscale-100">
+          desktop:left-[10%] desktop:-top-[395%] desktopscale-100"
+          >
             <PinkFirework />
           </div>
-          <div className="absolute mobile:right-[20%] mobile:-top-[225%] mobile:scale-[0.35]
+          <div
+            className="absolute mobile:right-[20%] mobile:-top-[225%] mobile:scale-[0.35]
           tablet:right-[60%] tablet:-top-[315%] tablet:scale-90
-          desktop:right-[60%] desktop:-top-[315%] desktop:scale-90">
+          desktop:right-[60%] desktop:-top-[315%] desktop:scale-90"
+          >
             <YellowFirework />
           </div>
-          <div className="absolute mobile:left-[40%] mobile:-top-[300%] mobile:scale-[0.3]
+          <div
+            className="absolute mobile:left-[40%] mobile:-top-[300%] mobile:scale-[0.3]
           tablet:right-[15%] tablet:-top-[440%] tablet:scale-100
-          desktop:right-[15%] desktop:-top-[440%] desktop:scale-100">
+          desktop:right-[15%] desktop:-top-[440%] desktop:scale-100"
+          >
             <OrangeFirework />
           </div>
         </div>
