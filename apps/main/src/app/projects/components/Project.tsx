@@ -93,18 +93,18 @@ function Project({
 
   const expandedSize = isDescExpanded
     ? isDesktop
-      ? "h-[60vh] w-[50vw]"
+      ? "h-[45vh] w-[50vw]"
       : isTablet
         ? "h-[95vh] w-[70vw]"
         : "h-[105%] w-[70vw]"
     : baseSize;
 
   const projectCardStylesBG = clsx(
-    "absolute bg-starlightBlue rounded-xl shadow-[inset_-15px_15px_0_rgba(0,0,0,0.25)]",
+    "absolute top-0 bg-starlightBlue rounded-xl shadow-[inset_-15px_15px_0_rgba(0,0,0,0.25)]",
     expandedSize,
   );
   const projectCardStylesBorder = clsx(
-    "absolute outline outline-[15px] outline-firecrackerRedLight outline-solid rounded-xl drop-shadow-[8px_8px_0_#CC322D]",
+    "absolute top-0 outline outline-[15px] outline-firecrackerRedLight outline-solid rounded-xl drop-shadow-[8px_8px_0_#CC322D]",
     expandedSize,
   );
 

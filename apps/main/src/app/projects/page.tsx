@@ -18,7 +18,7 @@ const projectData = [
     award: "Best Social Impact",
     members: "Kaleb Cole, Yaroslav Petrashko, Shrey Agarwal, Aditya",
     description:
-      "Memora is a mobile app that acts as a personalized road map through memories, designed for individuals in the early to moderate stages of dementia and their families. Using personal family photos – snapshots from life's journey – Memora stimulates memory recall through engaging quizzes and a user-friendly interface.",
+      "Memora acts as a personalized road map through memories, designed for individuals in the early to moderate stages of dementia and their families. Using personal family photos, Memora stimulates memory recall through engaging quizzes and a user-friendly interface.",
     link: "https://devpost.com/software/memora-bmi4zw",
   },
   {
@@ -104,7 +104,7 @@ export default function Page() {
             >
               <ProjectName projectName={project.award.toUpperCase()} />
             </div>
-            <div className={`${isMobile ? "mb-2" : ""} w-full scale-[0.85]`}>
+            <div className={`${isMobile ? "mb-2" : "mb-3"} w-full scale-[0.85]`}>
               <Project
                 projectImage={project.projectImage}
                 projectName={project.projectName}
