@@ -108,18 +108,23 @@ const faqData = [
 ];
 
 export default function FAQ() {
-  const { isDesktop } = useDevice();
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
   const outerStyles = clsx(
     "flex flex-col items-center text-white text-[20px] size-full bg-starlightBlueDark overflow-hidden",
   );
 
   const bannerStyles = clsx(
-    "relative w-full pointer-events-none desktop:h-[50vh] tablet:h-[40vh] mobile-xl:h-[30vh] mobile:h-[20vh]",
+    "relative w-full pointer-events-none",
+    isDesktop && "h-[50vh]",
+    isTablet && "tablet:h-[40vh] mobile-xl:h-[30vh]",
+    isMobile && "h-[20vh]"
   );
 
   const fireworkStyles = clsx(
-    "w-full desktop:scale-125 desktop:pl-16 mobile:pl-8 z-0",
+    "w-full z-0",
+    isDesktop && "scale-125 pl-16",
+    isMobile && "pl-8"
   );
 
   const ribbonOuterStyles = clsx(
@@ -128,7 +133,10 @@ export default function FAQ() {
 
   const ribbonStyles = clsx("w-3/4", isDesktop && "w-1/2");
 
-  const accordionStyles = clsx("relative z-10 size-full mb-32 tablet:-mt-10");
+  const accordionStyles = clsx(
+    "relative z-10 size-full mb-32",
+    isTablet && "-mt-10"
+  );
 
   const carouselStyles = clsx("relative w-[100vw] h-full scale-110");
 
