@@ -20,7 +20,7 @@ export default function SponsorUsBenefitCardComp() {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   const outerDivStyles = clsx(
-    "relative w-full overflow-hidden,
+    "relative w-full overflow-hidden",
     isDesktop && "h-[1500px] mt-[7.5vh]",
     isTablet && "h-[160vh] mobile-xl:h-[90vh] mobile-xl:mt-[5vh] tablet:mt-[6vh]",
     isMobile && "mobile:h-[70vh] mt-[4.5vh]"
