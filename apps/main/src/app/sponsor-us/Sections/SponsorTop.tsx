@@ -30,7 +30,7 @@ const SponsorTop = () => {
           color="firecrackerRed"
           size="medium"
           onClick={() =>
-            window.open("https://archive.hackbeanpot.com/", "_blank")
+            window.open("https://drive.google.com/file/d/1MNIE0Tgme3mkMVg26E9VZPQQ8i37-VqL/view?usp=sharing", "_blank")
           }
         />
       </div>
