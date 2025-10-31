@@ -115,7 +115,7 @@ export default function FAQ() {
   );
 
   const bannerStyles = clsx(
-    "relative w-full pointer-events-none desktop:h-[60vh] tablet:h-[40vh] mobile-xl:h-[30vh] mobile:h-[20vh]",
+    "relative w-full pointer-events-none desktop:h-[50vh] tablet:h-[40vh] mobile-xl:h-[30vh] mobile:h-[20vh]",
   );
 
   const fireworkStyles = clsx(
