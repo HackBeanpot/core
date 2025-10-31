@@ -79,7 +79,7 @@ export default function SponsorUsBenefitCardComp() {
   ];
 
   return (
-    <div className="relative h-screen w-full overflow-hidden mt-[7.5vh]">
+    <div className="relative h-screen w-full overflow-hidden mobile:mt-[4.5vh] desktop:mt-[7.5vh]">
       <FullCloudBackground
         className="absolute z-0 inset-0 w-[100vw] h-full justify-self-center"
         preserveAspectRatio="none"
