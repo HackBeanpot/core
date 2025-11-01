@@ -40,11 +40,9 @@ export default function Landing(): React.ReactNode {
 
         {(isDesktop || isTablet) && (
           <div
-            className={`absolute top-0 right-0 transition-transform duration-300 ${
-              isTablet ? "scale-75" : "scale-100"
-            }`}
+            className={`absolute top-0 right-0 transition-transform duration-300}`}
             style={{
-              transform: `${isTablet ? "scale(0.75)" : "scale(1)"} translate(-3vw, 1vw)`,
+              transform: `translate(-3vw, 1vw) ${isTablet ? `scale(0.6)`: "scale(1)"}`,
               transformOrigin: "top right",
             }}
           >
