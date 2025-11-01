@@ -7,7 +7,6 @@ const SponsorUsBenefitCard = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 441 302"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="none"
     {...props}
   >
     <path

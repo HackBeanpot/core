@@ -4,7 +4,7 @@ import { Footer, NavBar } from "../lib/Components";
 import React from "react";
 import Teams from "./Sections/Teams";
 import Sock from "./Sections/Sock";
-import Hero from "../lib/Assets/SVG/OurTeamPageAssets/hero";
+import Hero from "../lib/Assets/SVG/OurTeamAssets/hero";
 
 export default function Page(): JSX.Element {
   return (

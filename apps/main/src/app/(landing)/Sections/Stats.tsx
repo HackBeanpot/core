@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import useDevice from "@repo/util/hooks/useDevice";
 
-import TicketBooth from "../../lib/Assets/SVG/StatsAssets/TicketBooth.tsx";
-import TicketsBack from "../../lib/Assets/SVG/StatsAssets/TicketsBack.tsx";
-import TicketsFront from "../../lib/Assets/SVG/StatsAssets/TicketsFront.tsx";
+import TicketBooth from "../../lib/Assets/SVG/StatsPage/TicketBooth.tsx";
+import TicketsBack from "../../lib/Assets/SVG/StatsPage/TicketsBack.tsx";
+import TicketsFront from "../../lib/Assets/SVG/StatsPage/TicketsFront.tsx";
 
 export default function Stats(): JSX.Element {
   const { isMobile } = useDevice();

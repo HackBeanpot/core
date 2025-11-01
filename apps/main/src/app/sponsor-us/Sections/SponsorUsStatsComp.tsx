@@ -3,7 +3,7 @@
 import React from "react";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import Image from "next/image";
-import FullCloudBackground from "../../lib/Assets/SVG/SponsorUsPageAssets/FullCloudBackground";
+import FullCloudBackground from "../../lib/Assets/SVG/SponsorUsAssets/FullCloudBackground";
 import useDevice from "@util/hooks/useDevice";
 import clsx from "clsx";
 
@@ -21,16 +21,16 @@ export default function SponsorUsBenefitCardComp() {
 
   const outerDivStyles = clsx(
     "relative w-full overflow-hidden",
-    isDesktop && "h-[1500px] mt-[7.5vh]",
-    isTablet && "h-[160vh] mobile-xl:h-[90vh] mobile-xl:mt-[5vh] tablet:mt-[6vh]",
-    isMobile && "mobile:h-[70vh] mt-[4.5vh]"
+    isDesktop && "h-[180vh]",
+    isTablet && "h-[100vh] mobile-xl:h-[90vh]",
+    isMobile && "mobile:h-[70vh]"
   );
 
   const ribbonStyles = clsx(
     "w-1/2",
     isMobile && "mt-36 mb-10",
     isTablet && "mt-48 mb-8",
-    isDesktop && "mt-64 mb-12"
+    isDesktop && "mt-64 mb-12",
   );
 
   const balloons: BalloonProps[] = [
