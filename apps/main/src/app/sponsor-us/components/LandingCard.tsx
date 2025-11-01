@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Impact from "./Impact.tsx";
+import Impact from "../../lib/Assets/SVG/SponsorUsPageAssets/ImpactHeader.tsx";
 
 const LandingCard = () => {
   return (
