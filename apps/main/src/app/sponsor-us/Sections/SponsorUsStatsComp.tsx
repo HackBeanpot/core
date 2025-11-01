@@ -23,7 +23,7 @@ export default function SponsorUsBenefitCardComp() {
     "w-1/2",
     isMobile && "mt-52 mb-10",
     isTablet && "mt-48 mb-8",
-    isDesktop && "mt-64 mb-12"
+    isDesktop && "mt-64 mb-12",
   );
 
   const balloons: BalloonProps[] = [

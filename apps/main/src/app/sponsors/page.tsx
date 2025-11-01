@@ -10,7 +10,7 @@ import SponsorText from "../lib/Assets/SVG/SponsorPageAssets/SponsorText.tsx";
 
 function makeSponsorRow(
   ticketSizes: number[],
-  logos?: string[] // array of logo paths
+  logos?: string[], // array of logo paths
 ) {
   return (
     <div
