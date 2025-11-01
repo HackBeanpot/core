@@ -115,43 +115,41 @@ export default function FAQ() {
   );
 
   const bannerStyles = clsx(
-    "relative w-full pointer-events-none",
-    isDesktop && "h-[50vh]",
-    isTablet && "tablet:h-[40vh] mobile-xl:h-[30vh]",
-    isMobile && "h-[20vh]"
+    "relative w-full pointer-events-none flex items-center justify-center z-10",
+    isDesktop && "h-[45vh] pt-20",
+    isTablet && "h-[35vh] pt-10 mobile-xl:h-[30vh] mobile-xl:pt-40 mobile-xl:mb-20",
+    isMobile && "h-[20vh] pt-10"
   );
 
   const fireworkStyles = clsx(
-    "w-full z-0",
-    isDesktop && "scale-125 pl-16",
+    "w-full z-0 scale-125",
+    isTablet && "pl-6",
+    isDesktop && "pl-16",
     isMobile && "pl-8"
   );
 
-  const ribbonOuterStyles = clsx(
-    "absolute z-10 inset-0 flex items-center justify-center top-10",
+  const ribbonStyles = clsx("w-3/4", 
+    isDesktop && "w-1/2",
   );
-
-  const ribbonStyles = clsx("w-3/4", isDesktop && "w-1/2");
 
   const accordionStyles = clsx(
     "relative z-10 size-full mb-32",
-    isTablet && "-mt-10"
   );
 
-  const carouselStyles = clsx("relative w-[100vw] h-full scale-110");
+  const carouselStyles = clsx("relative w-[100vw] h-full scale-110 z-0");
 
   return (
     <div className={outerStyles}>
+      {/* Fireworks */}
+      <div className="absolute w-full h-full z-0 overflow-hidden">
+        <FAQFireworks className={fireworkStyles} />
+      </div>
+
       {/* Banner */}
       <div className={bannerStyles}>
-        <div className="w-full h-full">
-          <FAQFireworks className={fireworkStyles} />
-        </div>
-        <div className={ribbonOuterStyles}>
           <div className={ribbonStyles}>
             <RibbonTitle text={"FAQ"} />
           </div>
-        </div>
       </div>
 
       {/* Accordion */}

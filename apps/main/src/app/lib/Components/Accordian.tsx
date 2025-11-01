@@ -55,7 +55,7 @@ const Accordion = ({ items }: { items: AccordionProps[] }) => {
     <div className={wrapperStyles}>
       {items.map((item, sectionIndex) => (
         <div
-          className="pb-4"
+          className="pb-8"
           key={`accordian-item-${item.toString()}-${sectionIndex}`}
         >
           <span className={faqTitleStyles}>{item.title}</span>
