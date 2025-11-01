@@ -3,11 +3,11 @@
 import React from "react";
 import Project from "./components/Project";
 import RibbonTitle from "@repo/ui/RibbonTitle";
-import ProjectBackground from "./components/background";
+import ProjectBackground from "../lib/Assets/SVG/ProjectsPageAssets/ProjectBackground";
 import useDevice from "@util/hooks/useDevice";
-import PinkFirework from "./components/pinkFirework";
-import OrangeFirework from "./components/orangeFirework";
-import YellowFirework from "./components/yellowFirework";
+import PinkFirework from "../lib/Assets/SVG/ProjectsPageAssets/PinkFirework";
+import OrangeFirework from "../lib/Assets/SVG/ProjectsPageAssets/OrangeFirework";
+import YellowFirework from "../lib/Assets/SVG/ProjectsPageAssets/YellowFirework";
 import Button from "@repo/ui/Button";
 import { Footer, NavBar } from "../lib/Components";
 

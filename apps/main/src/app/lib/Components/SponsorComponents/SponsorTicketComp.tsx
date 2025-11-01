@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import SponsorTicket from "../../Assets/SVG/SponsorAssets/SponsorTicket";
-import SponsorUsTicket from "../../Assets/SVG/SponsorAssets/SponsorUsTicket";
+import SponsorTicket from "../../Assets/SVG/SponsorPageAssets/SponsorTicket";
+import SponsorUsTicket from "../../Assets/SVG/SponsorUsPageAssets/SponsorUsTicket";
 import Image from "next/image";
 
 export type SponsorTicketProps = {

@@ -4,8 +4,8 @@ import React from "react";
 // import Tent from "../../lib/Assets/SVG/tent.tsx";
 // import clsx from "clsx";
 import useDevice from "@repo/util/hooks/useDevice";
-import KeynoteSpeaker from "../../lib/Assets/SVG/KeynoteSpeaker.tsx";
-import GuestPhoto from "../../lib/Assets/SVG/guestphoto.tsx";
+import KeynoteSpeaker from "../../lib/Assets/SVG/KeynoteAssets/KeynoteSpeaker.tsx";
+import GuestPhoto from "../../lib/Assets/SVG/KeynoteAssets/guestphoto.tsx";
 
 export default function Keynote(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
