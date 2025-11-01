@@ -4,7 +4,7 @@ import React from "react";
 import Card from "../components/Card.tsx";
 
 import Image from "next/image";
-import AboutUs from "../../lib/Assets/SVG/OurTeamAssets/AboutUs.png";
+import AboutUs from "../../lib/Assets/SVG/OurTeamPageAssets/AboutUs.png";
 
 // TODO: replace png with svg once exporting issue is figured out, delete png
 // import AboutUs from "../../lib/Assets/SVG/OurTeamAssets/AboutUs.tsz";
