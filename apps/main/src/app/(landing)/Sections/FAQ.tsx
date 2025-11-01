@@ -3,8 +3,8 @@
 import React from "react";
 import Accordion from "./../../lib/Components/Accordian";
 import RibbonTitle from "@repo/ui/RibbonTitle";
-import FAQFireworks from "../../lib/Assets/SVG/FAQAssets/FAQFireworks";
-import FAQCarousel from "../../lib/Assets/SVG/FAQAssets/FAQCarousel";
+import FAQFireworks from "../../lib/Components/FAQComponents/FAQFireworks";
+import FAQCarousel from "../../lib/Components/FAQComponents/FAQCarousel";
 import clsx from "clsx";
 import useDevice from "@util/hooks/useDevice";
 

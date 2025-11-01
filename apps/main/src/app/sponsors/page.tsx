@@ -1,16 +1,16 @@
 "use client";
 
 import React from "react";
-import SponsorBackground from "../lib/Assets/SVG/SponsorPageAssets/SponsorBackground.tsx";
+import SponsorBackground from "../lib/Assets/SVG/SponsorAssets/SponsorBackground.tsx";
 import { Footer, NavBar } from "../lib/Components";
 import SponsorTicketComp from "../lib/Components/SponsorComponents/SponsorTicketComp.tsx";
 import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
 import useDevice from "@util/hooks/useDevice.ts";
-import SponsorText from "../lib/Assets/SVG/SponsorPageAssets/SponsorText.tsx";
+import SponsorText from "../lib/Assets/SVG/SponsorAssets/SponsorText.tsx";
 
 function makeSponsorRow(
   ticketSizes: number[],
-  logos?: string[] // array of logo paths
+  logos?: string[], // array of logo paths
 ) {
   return (
     <div

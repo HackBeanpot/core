@@ -1,17 +1,17 @@
 "use client";
 
 import React from "react";
-import TextBackground from "../../lib/Assets/SVG/AboutLandingAssets/text";
-import TeamPicture from "../../lib/Assets/SVG/AboutLandingAssets/teamPicture";
-import PurpleBear from "../../lib/Assets/SVG/AboutLandingAssets/purpleBear";
-import YellowBear from "../../lib/Assets/SVG/AboutLandingAssets/yellowBear";
+import TextBackground from "../../lib/Assets/AboutLandingAssets/text";
+import TeamPicture from "../../lib/Assets/AboutLandingAssets/teamPicture";
+import PurpleBear from "../../lib/Assets/AboutLandingAssets/purpleBear";
+import YellowBear from "../../lib/Assets/AboutLandingAssets/yellowBear";
 import RibbonTitle from "@repo/ui/RibbonTitle";
-import Background from "../../lib/Assets/SVG/AboutLandingAssets/background";
-import Dart from "../../lib/Assets/SVG/AboutLandingAssets/dart";
+import Background from "../../lib/Assets/AboutLandingAssets/background";
+import Dart from "../../lib/Assets/AboutLandingAssets/dart";
 import useDevice from "@util/hooks/useDevice";
 
 export default function About(): React.ReactNode {
-  const { isMobile } = useDevice();
+  const { isMobile} = useDevice();
   return (
     <div
       className={`relative w-full z-10 ${
