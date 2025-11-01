@@ -21,8 +21,8 @@ export default function SponsorUsBenefitCardComp() {
 
   const outerDivStyles = clsx(
     "relative w-full overflow-hidden",
-    isDesktop && "h-[1500px]",
-    isTablet && "h-[160vh] mobile-xl:h-[90vh]",
+    isDesktop && "h-[180vh]",
+    isTablet && "h-[100vh] mobile-xl:h-[90vh]",
     isMobile && "mobile:h-[70vh]"
   );
 
