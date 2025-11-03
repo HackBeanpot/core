@@ -3,8 +3,7 @@
 import React from "react";
 import Card from "../components/Card.tsx";
 
-import Image from "next/image";
-import AboutUs from "../../lib/Assets/SVG/OurTeamAssets/AboutUs.png";
+import AboutUsBackground from "../../lib/Assets/SVG/OurTeamAssets/JoinCoreBackground.tsx";
 
 // TODO: replace png with svg once exporting issue is figured out, delete png
 // import AboutUs from "../../lib/Assets/SVG/OurTeamAssets/AboutUs.tsz";
@@ -17,18 +16,15 @@ import AboutUs from "../../lib/Assets/SVG/OurTeamAssets/AboutUs.png";
 const Sock = () => {
   return (
     <div
-      className="relative w-full
+      className="relative w-full z-10
       mobile:aspect-[3/2]
       tablet:aspect-[701/386]
-      desktop:aspect-[1200/660]
-      flex items-center justify-center"
+      desktop:aspect-[1600/660]
+      flex items-center justify-center p-0 overflow-hidden"
     >
-      <Image
-        src={AboutUs}
-        alt="About Us Background"
-        fill
-        className="absolute inset-0 object-cover -z-10"
-      />
+      <div className="absolute">
+        <AboutUsBackground />
+      </div>
       <Card />
     </div>
   );
