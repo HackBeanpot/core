@@ -19,9 +19,16 @@ type BalloonProps = {
 export default function SponsorUsBenefitCardComp() {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
+  const outerDivStyles = clsx(
+    "relative w-full overflow-hidden",
+    isDesktop && "h-[180vh]",
+    isTablet && "h-[100vh] mobile-xl:h-[90vh]",
+    isMobile && "mobile:h-[70vh]"
+  );
+
   const ribbonStyles = clsx(
     "w-1/2",
-    isMobile && "mt-52 mb-10",
+    isMobile && "mt-36 mb-10",
     isTablet && "mt-48 mb-8",
     isDesktop && "mt-64 mb-12",
   );
@@ -79,7 +86,7 @@ export default function SponsorUsBenefitCardComp() {
   ];
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className={outerDivStyles}>
       <FullCloudBackground
         className="absolute z-0 inset-0 w-[100vw] h-full justify-self-center"
         preserveAspectRatio="none"
