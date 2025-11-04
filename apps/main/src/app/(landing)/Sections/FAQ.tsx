@@ -3,8 +3,8 @@
 import React from "react";
 import Accordion from "./../../lib/Components/Accordian";
 import RibbonTitle from "@repo/ui/RibbonTitle";
-import FAQFireworks from "../../lib/Assets/SVG/FAQAssets/FAQFireworks";
-import FAQCarousel from "../../lib/Assets/SVG/FAQAssets/FAQCarousel";
+import FAQFireworks from "../../lib/Components/FAQComponents/FAQFireworks";
+import FAQCarousel from "../../lib/Components/FAQComponents/FAQCarousel";
 import clsx from "clsx";
 import useDevice from "@util/hooks/useDevice";
 
@@ -108,42 +108,48 @@ const faqData = [
 ];
 
 export default function FAQ() {
-  const { isDesktop } = useDevice();
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
   const outerStyles = clsx(
     "flex flex-col items-center text-white text-[20px] size-full bg-starlightBlueDark overflow-hidden",
   );
 
   const bannerStyles = clsx(
-    "relative w-full pointer-events-none desktop:h-[60vh] tablet:h-[40vh] mobile-xl:h-[30vh] mobile:h-[20vh]",
+    "relative w-full pointer-events-none flex items-center justify-center z-10",
+    isDesktop && "h-[45vh] pt-20",
+    isTablet && "h-[35vh] pt-10 mobile-xl:h-[30vh] mobile-xl:pt-40 mobile-xl:mb-20",
+    isMobile && "h-[20vh] pt-10"
   );
 
   const fireworkStyles = clsx(
-    "w-full desktop:scale-125 desktop:pl-16 mobile:pl-8 z-0",
+    "w-full z-0 scale-125",
+    isTablet && "pl-6",
+    isDesktop && "pl-16",
+    isMobile && "pl-8"
   );
 
-  const ribbonOuterStyles = clsx(
-    "absolute z-10 inset-0 flex items-center justify-center top-10",
+  const ribbonStyles = clsx("w-3/4", 
+    isDesktop && "w-1/2",
   );
 
-  const ribbonStyles = clsx("w-3/4", isDesktop && "w-1/2");
+  const accordionStyles = clsx(
+    "relative z-10 size-full mb-32",
+  );
 
-  const accordionStyles = clsx("relative z-10 size-full mb-32 tablet:-mt-10");
-
-  const carouselStyles = clsx("relative w-[100vw] h-full scale-110");
+  const carouselStyles = clsx("relative w-[100vw] h-full scale-110 z-0");
 
   return (
     <div className={outerStyles}>
+      {/* Fireworks */}
+      <div className="absolute w-full h-full z-0 overflow-hidden">
+        <FAQFireworks className={fireworkStyles} />
+      </div>
+
       {/* Banner */}
       <div className={bannerStyles}>
-        <div className="w-full h-full">
-          <FAQFireworks className={fireworkStyles} />
-        </div>
-        <div className={ribbonOuterStyles}>
           <div className={ribbonStyles}>
             <RibbonTitle text={"FAQ"} />
           </div>
-        </div>
       </div>
 
       {/* Accordion */}
