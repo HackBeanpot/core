@@ -117,9 +117,7 @@ export default function Page(): JSX.Element {
           </div>
         </div>
       </div>
-      <div 
-        className="w-full items center tablet:-mt-[20vw]"
-      >
+      <div className="w-full items center tablet:-mt-[20vw]">
         <Footer />
       </div>
     </main>

@@ -50,7 +50,7 @@ const SponsorTicketBoothComp = ({
             }}
           >
             Reach out to us at team@hackbeanpot.com
-            <br/> or check out our sponsorship package!
+            <br /> or check out our sponsorship package!
           </p>
 
           <div style={{ transform: "translateY(1vw)" }}>
@@ -59,7 +59,10 @@ const SponsorTicketBoothComp = ({
               color="starlightBlue"
               textColor="white"
               onClick={() =>
-                window.open("https://drive.google.com/file/d/1MNIE0Tgme3mkMVg26E9VZPQQ8i37-VqL/view?usp=sharing", "_blank")
+                window.open(
+                  "https://drive.google.com/file/d/1MNIE0Tgme3mkMVg26E9VZPQQ8i37-VqL/view?usp=sharing",
+                  "_blank",
+                )
               }
             />
           </div>
