@@ -3,7 +3,7 @@
 import React from "react";
 import Card from "../components/Card.tsx";
 
-import AboutUsBackground from "../../lib/Assets/SVG/OurTeamAssets/JoinCoreBackground.tsx";
+import JoinCoreBackground from "../../lib/Assets/SVG/OurTeamAssets/JoinCoreBackground.tsx";
 
 // TODO: replace png with svg once exporting issue is figured out, delete png
 // import AboutUs from "../../lib/Assets/SVG/OurTeamAssets/AboutUs.tsz";
@@ -20,10 +20,10 @@ const Sock = () => {
       mobile:aspect-[3/2]
       tablet:aspect-[701/386]
       desktop:aspect-[1600/660]
-      flex items-center justify-center p-0 overflow-hidden"
+      flex items-center justify-center overflow-hidden"
     >
       <div className="absolute">
-        <AboutUsBackground />
+        <JoinCoreBackground preserveAspectRatio="none"/>
       </div>
       <Card />
     </div>
