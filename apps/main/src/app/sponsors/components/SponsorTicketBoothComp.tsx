@@ -1,6 +1,6 @@
 import useDevice from "@util/hooks/useDevice.ts";
-import Ticket from "../../Assets/SVG/SponsorUsAssets/Ticket.tsx";
-import TicketBooth from "../../Assets/SVG/SponsorUsAssets/TicketBooth.tsx";
+import Ticket from "../../lib/Assets/SVG/SponsorUsAssets/Ticket.tsx";
+import TicketBooth from "../../lib/Assets/SVG/SponsorUsAssets/TicketBooth.tsx";
 import Button from "@repo/ui/Button";
 import React from "react";
 

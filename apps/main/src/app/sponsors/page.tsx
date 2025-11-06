@@ -3,8 +3,8 @@
 import React from "react";
 import SponsorBackground from "../lib/Assets/SVG/SponsorAssets/SponsorBackground.tsx";
 import { Footer, NavBar } from "../lib/Components";
-import SponsorTicketComp from "../lib/Components/SponsorComponents/SponsorTicketComp.tsx";
-import SponsorTicketBoothComp from "../lib/Components/SponsorComponents/SponsorTicketBoothComp.tsx";
+import SponsorTicketComp from "./components/SponsorTicketComp.tsx";
+import SponsorTicketBoothComp from "./components/SponsorTicketBoothComp.tsx";
 import useDevice from "@util/hooks/useDevice.ts";
 import SponsorText from "../lib/Assets/SVG/SponsorAssets/SponsorText.tsx";
 
