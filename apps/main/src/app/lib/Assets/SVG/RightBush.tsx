@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import type { SVGProps } from "react";
 
 const RightBush = (props: SVGProps<SVGSVGElement>) => (
@@ -30,5 +30,5 @@ const RightBush = (props: SVGProps<SVGSVGElement>) => (
       d="M218.672 65.383s-16.071-3.584-24.228 25.632c-8.24 29.217-10.116 37.865-10.116 37.865s-15.907-80.17 4.242-85.312c20.068-5.064 14.765 23.763 14.765 23.763s12.808-4.83 15.337-2.026v.078ZM176.415 112.83s-15.499-77.365-32.386-69.807c-16.805 7.557 29.776 72.923 29.776 72.923s-59.146-43.508-78.153-30.03c-19.008 13.479 29.795 37.356 29.795 37.356s-34.769-9.273-42.11 2.881c-7.343 12.154 1.712 13.946 1.712 13.946l96.995-5.298-5.71-21.971h.081Z"
     />
   </svg>
-)
-export default RightBush
+);
+export default RightBush;

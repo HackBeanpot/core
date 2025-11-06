@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import type { SVGProps } from "react";
 
 const TopGrassWave = (props: SVGProps<SVGSVGElement>) => (
@@ -18,5 +18,5 @@ const TopGrassWave = (props: SVGProps<SVGSVGElement>) => (
       d="M292.5 128.5C157.7 138.1 41.334 100.167 0 80v117.5h2219v-69c-38.33-27.167-152.9-81.5-304.5-81.5-189.5 0-338.27 72.186-497.5 81.5-359 21-461.5-81.5-672.5-81.5-163.11 0-283.5 69.5-452 81.5Z"
     />
   </svg>
-)
-export default TopGrassWave
+);
+export default TopGrassWave;

@@ -10,13 +10,13 @@ import RightBush from "../../lib/Assets/SVG/RightBush";
 const BenefitsSection = () => {
   const { isMobile, isTablet, isDesktop } = useDevice();
   const [isSmallScreen, setIsSmallScreen] = React.useState(true);
-  
+
   const ribbonStyles = clsx(
-      "w-1/2",
-      isMobile && "mt-36 mb-10",
-      isTablet && "mt-48 mb-8",
-      isDesktop && "mt-64 mb-12",
-    );
+    "w-1/2",
+    isMobile && "mt-36 mb-10",
+    isTablet && "mt-48 mb-8",
+    isDesktop && "mt-64 mb-12",
+  );
 
   React.useEffect(() => {
     const checkScreenSize = () => {
@@ -46,17 +46,15 @@ const BenefitsSection = () => {
     <>
       <div className="relative inset-0 z-20 flex flex-col items-center justify-center">
         <TopGrassWave
-        className="absolute z-0 -top-28 left-0 right-0 w-[100vw] h-full justify-self-center"
-        preserveAspectRatio="none"
-      />
+          className="absolute z-0 -top-28 left-0 right-0 w-[100vw] h-full justify-self-center"
+          preserveAspectRatio="none"
+        />
         <div className={ribbonStyles}>
-                  <RibbonTitle text={"STATS"} />
-                </div>
+          <RibbonTitle text={"STATS"} />
+        </div>
         <div className="flex flex-col gap-10">
           <div>
-            <FluffyBush
-              className="absolute z-0 top-14 left-8 w-48 md:w-64 h-auto"
-            />
+            <FluffyBush className="absolute z-0 top-14 left-8 w-48 md:w-64 h-auto" />
           </div>
           <div className={firstCardClasses}>
             <div className={cardWrapperClasses}>
@@ -79,14 +77,14 @@ const BenefitsSection = () => {
               />
             </div>
           </div>
-              <div className={secondCardClasses}>
-                <div className={cardWrapperClasses}>
-                  <SponsorUsBenefitCardComp
-                    title="Market your company"
-                    content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
-                  />
-                </div>
-              </div>
+          <div className={secondCardClasses}>
+            <div className={cardWrapperClasses}>
+              <SponsorUsBenefitCardComp
+                title="Market your company"
+                content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -101,9 +99,7 @@ const BenefitsSection = () => {
           questions and guide you through the next steps in becoming a
           HackBeanpot 2026 sponsor!
         </p>
-        <RightBush
-          className="absolute bottom-0 right-8 w-48 h-auto pointer-events-none"
-        />
+        <RightBush className="absolute bottom-0 right-8 w-48 h-auto pointer-events-none" />
       </div>
     </>
   );

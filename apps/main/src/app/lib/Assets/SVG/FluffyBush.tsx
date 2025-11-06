@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import type { SVGProps } from "react";
 
 const FluffyBush = (props: SVGProps<SVGSVGElement>) => (
@@ -22,5 +22,5 @@ const FluffyBush = (props: SVGProps<SVGSVGElement>) => (
       d="M48.371 34.036s-30.39 3.118-27.125-9.595c3.265-12.953 30.39 6.477 30.39 6.477l-3.265 3.118ZM153.166 11.681s1.489-11.902 8.697-7.603c7.355 4.35-9.61 13.449-9.61 13.449l.913-5.846Z"
     />
   </svg>
-)
-export default FluffyBush
+);
+export default FluffyBush;
