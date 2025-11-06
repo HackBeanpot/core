@@ -2,11 +2,12 @@ import * as React from "react";
 import type { SVGProps } from "react";
 const SponsorUsBenefitCard = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width="441"
-    height="302"
-    viewBox="0 0 441 302"
+    width="1200"
+    height="604"
+    viewBox="0 0 450 300"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
     {...props}
   >
     <path
