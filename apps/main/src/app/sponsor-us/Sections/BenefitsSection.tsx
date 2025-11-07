@@ -18,7 +18,6 @@ const BenefitsSection = () => {
     isDesktop && "mt-30 mb-12",
   );
 
-
   React.useEffect(() => {
     const checkScreenSize = () => {
       const isSmall = window.innerWidth <= 1024;
@@ -50,59 +49,59 @@ const BenefitsSection = () => {
           className="absolute z-0 -top-28 left-0 right-0 w-[100vw] h-full justify-self-center"
           preserveAspectRatio="none"
         />
-          <div>
-            <FluffyBush className="relative z-0 top-14 left-8 w-[50vw]" />
-          </div>
+        <div>
+          <FluffyBush className="relative z-0 top-14 left-8 w-[50vw]" />
+        </div>
         <div className="flex flex-col items-center justify-center">
-          <div className={ribbonStyles }>
+          <div className={ribbonStyles}>
             <RibbonTitle text={"BENEFITS"} />
           </div>
-        <div>
-          <div className={firstCardClasses}>
-            <div className={cardWrapperClasses}>
-              <SponsorUsBenefitCardComp
-                title="Recruitment"
-                content={
-                  <>
-                    <p>
-                      Scout the next generation of talent here. Receive perks
-                      such as:
-                    </p>
-                    <ul>
-                      <li>• Onsite interviews</li>
-                      <li>• A spot in our career fair</li>
-                      <li>• Hacker resumes</li>
-                      <li>• Sponsoring a company specific prize</li>
-                    </ul>
-                  </>
-                }
-              />
+          <div>
+            <div className={firstCardClasses}>
+              <div className={cardWrapperClasses}>
+                <SponsorUsBenefitCardComp
+                  title="Recruitment"
+                  content={
+                    <>
+                      <p>
+                        Scout the next generation of talent here. Receive perks
+                        such as:
+                      </p>
+                      <ul>
+                        <li>• Onsite interviews</li>
+                        <li>• A spot in our career fair</li>
+                        <li>• Hacker resumes</li>
+                        <li>• Sponsoring a company specific prize</li>
+                      </ul>
+                    </>
+                  }
+                />
+              </div>
             </div>
-          </div>
-          <div className={secondCardClasses}>
-            <div className={cardWrapperClasses}>
-              <SponsorUsBenefitCardComp
-                title="Market your company"
-                content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
-              />
+            <div className={secondCardClasses}>
+              <div className={cardWrapperClasses}>
+                <SponsorUsBenefitCardComp
+                  title="Market your company"
+                  content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="relative justify-items-center mt-24 mb-16 text-center px-4">
-        <h2 className="text-xl font-NeulisNeue-Bold text-charcoalFog">
-          Additionally, we provide the flexibility to create your own perk or
-          package.
-        </h2>
-        <p className="mt-4 text-charcoalFog font-NeulisNeue-Regular max-w-2xl">
-          Let us know your ideas and package choice at
-          sponsorship@hackbeanpot.com. Our team will work with you to answer any
-          questions and guide you through the next steps in becoming a
-          HackBeanpot 2026 sponsor!
-        </p>
-        <RightBush className="relative bottom-0 left-96" />
-      </div>
+        <div className="relative justify-items-center mt-24 mb-16 text-center px-4">
+          <h2 className="text-xl font-NeulisNeue-Bold text-charcoalFog">
+            Additionally, we provide the flexibility to create your own perk or
+            package.
+          </h2>
+          <p className="mt-4 text-charcoalFog font-NeulisNeue-Regular max-w-2xl">
+            Let us know your ideas and package choice at
+            sponsorship@hackbeanpot.com. Our team will work with you to answer
+            any questions and guide you through the next steps in becoming a
+            HackBeanpot 2026 sponsor!
+          </p>
+          <RightBush className="relative bottom-0 left-96" />
+        </div>
       </div>
     </>
   );
