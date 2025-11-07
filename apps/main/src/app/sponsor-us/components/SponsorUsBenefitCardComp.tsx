@@ -2,25 +2,37 @@
 
 import React from "react";
 import SponsorUsBenefitCard from "../../lib/Assets/SVG/SponsorUsAssets/SponsorsUsBenefitCard";
+import clsx from "clsx";
 
 export type SponsorUsBenefitCardProps = {
   title: string;
   content: React.ReactNode;
 };
 
-export default function SponsorUsBenefitCardComp({
-  title,
-  content,
-}: SponsorUsBenefitCardProps) {
+export default function SponsorUsBenefitCardComp({ title, content }: SponsorUsBenefitCardProps) {
   return (
-    <div className="relative w-96 h-[302px] flex items-center justify-center">
-      <SponsorUsBenefitCard className="absolute w-full h-full" />
+    <div
+      className={clsx(
+        "relative flex justify-center items-center mx-auto",
+        "w-full max-w-[640px] h-[420px]",
+        "sm:w-[40vw] sm:h-[50vh]",
+        "mb-10"
+      )}
+    >
 
-      <div className="relative flex flex-col justify-center text-left left-7 bottom-5 mx-auto px-4">
-        <h3 className="text-lg text-white font-NeulisNeue-Bold max-w-72">
+      <SponsorUsBenefitCard className="w-full h-full" />
+
+      <div
+        className={clsx(
+        "absolute z-10 flex flex-col items-start text-left",
+        "top-20 left-32 sm:left-10 md:left-20"
+        )}
+      >
+        <h1 className="font-NeulisNeue-Bold text-white text-xl max-w-[260px]">
           {title}
-        </h3>
-        <p className="mt-2 text-sm text-white font-NeulisNeue-Regular max-w-72">
+        </h1>
+
+        <p className="font-NeulisNeue-Regular text-white text-base mt-4 max-w-[300px]">
           {content}
         </p>
       </div>

@@ -13,10 +13,11 @@ const BenefitsSection = () => {
 
   const ribbonStyles = clsx(
     "w-1/2",
-    isMobile && "mt-36 mb-10",
-    isTablet && "mt-48 mb-8",
-    isDesktop && "mt-64 mb-12",
+    isMobile && "mt-30 mb-10",
+    isTablet && "mt-36 mb-8",
+    isDesktop && "mt-30 mb-12",
   );
+
 
   React.useEffect(() => {
     const checkScreenSize = () => {
@@ -44,18 +45,19 @@ const BenefitsSection = () => {
 
   return (
     <>
-      <div className="relative inset-0 z-20 flex flex-col items-center justify-center">
+      <div className="relative inset-0 z-20 flex flex-col">
         <TopGrassWave
           className="absolute z-0 -top-28 left-0 right-0 w-[100vw] h-full justify-self-center"
           preserveAspectRatio="none"
         />
-        <div className={ribbonStyles}>
-          <RibbonTitle text={"STATS"} />
-        </div>
-        <div className="flex flex-col gap-10">
           <div>
-            <FluffyBush className="absolute z-0 top-14 left-8 w-48 md:w-64 h-auto" />
+            <FluffyBush className="relative z-0 top-14 left-8 w-[50vw]" />
           </div>
+        <div className="flex flex-col items-center justify-center">
+          <div className={ribbonStyles }>
+            <RibbonTitle text={"BENEFITS"} />
+          </div>
+        <div>
           <div className={firstCardClasses}>
             <div className={cardWrapperClasses}>
               <SponsorUsBenefitCardComp
@@ -99,7 +101,8 @@ const BenefitsSection = () => {
           questions and guide you through the next steps in becoming a
           HackBeanpot 2026 sponsor!
         </p>
-        <RightBush className="absolute bottom-0 right-8 w-48 h-auto pointer-events-none" />
+        <RightBush className="relative bottom-0 left-96" />
+      </div>
       </div>
     </>
   );
