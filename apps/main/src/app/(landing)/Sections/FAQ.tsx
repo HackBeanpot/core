@@ -117,24 +117,21 @@ export default function FAQ() {
   const bannerStyles = clsx(
     "relative w-full pointer-events-none flex items-center justify-center z-10",
     isDesktop && "h-[45vh] pt-20",
-    isTablet && "h-[35vh] pt-10 mobile-xl:h-[30vh] mobile-xl:pt-40 mobile-xl:mb-20",
-    isMobile && "h-[20vh] pt-10"
+    isTablet &&
+      "h-[35vh] pt-10 mobile-xl:h-[30vh] mobile-xl:pt-40 mobile-xl:mb-20",
+    isMobile && "h-[20vh] pt-10",
   );
 
   const fireworkStyles = clsx(
     "w-full z-0 scale-125",
     isTablet && "pl-6",
     isDesktop && "pl-16",
-    isMobile && "pl-8"
+    isMobile && "pl-8",
   );
 
-  const ribbonStyles = clsx("w-3/4", 
-    isDesktop && "w-1/2",
-  );
+  const ribbonStyles = clsx("w-3/4", isDesktop && "w-1/2");
 
-  const accordionStyles = clsx(
-    "relative z-10 size-full mb-32",
-  );
+  const accordionStyles = clsx("relative z-10 size-full mb-32");
 
   const carouselStyles = clsx("relative w-[100vw] h-full scale-110 z-0");
 
@@ -147,9 +144,9 @@ export default function FAQ() {
 
       {/* Banner */}
       <div className={bannerStyles}>
-          <div className={ribbonStyles}>
-            <RibbonTitle text={"FAQ"} />
-          </div>
+        <div className={ribbonStyles}>
+          <RibbonTitle text={"FAQ"} />
+        </div>
       </div>
 
       {/* Accordion */}
