@@ -16,11 +16,8 @@ import JoinCoreBackground from "../../lib/Assets/SVG/OurTeamAssets/JoinCoreBackg
 const Sock = () => {
   return (
     <div
-      className="relative w-full z-10
-      mobile:aspect-[3/2]
-      tablet:aspect-[701/386]
-      desktop:aspect-[1600/660]
-      flex items-center justify-center overflow-hidden"
+      className="relative w-full z-10 flex items-center justify-center overflow-hidden
+      min-h-[400px] tablet:min-h-[500px] desktop:min-h-[600px]"
     >
       <div className="absolute">
         <JoinCoreBackground preserveAspectRatio="none"/>
