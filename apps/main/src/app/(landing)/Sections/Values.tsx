@@ -46,7 +46,8 @@ export default function Values() {
       : "max-w-[40vw]";
 
   const iconSize = isMobile ? "w-[6vw]" : isTablet ? "w-[4vw]" : "w-[4vw]";
-
+  const scale = isMobile ? "transform scale-[0.85]": "scale-100";
+  
   return (
     <div
       className={`relative w-full ${aspectRatio} bg-ribbonBlue overflow-visible`}
@@ -60,7 +61,7 @@ export default function Values() {
 
       {/* Content container */}
       <div
-        className={`relative z-20 flex flex-col items-center justify-center ${height} gap-6`}
+        className={`relative z-20 flex flex-col items-center justify-center ${height} gap-6 ${scale}`}
       >
         {/* Title */}
         <RibbonTitle text={"OUR VALUES"} />
