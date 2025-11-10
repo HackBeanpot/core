@@ -65,37 +65,40 @@ export default function Values() {
         {/* Title */}
         <RibbonTitle text={"OUR VALUES"} />
 
-
         {/* Values Section */}
         <div
-            className={`flex ${flexDirection} justify-center ${gapSize ? gapSize : ""} max-w-6xl mx-auto`}
+          className={`flex ${flexDirection} justify-center ${gapSize ? gapSize : ""} max-w-6xl mx-auto`}
         >
           {/* Community */}
           <div className="flex flex-col items-center text-center max-w-md">
             <div className={`${iconSize} flex-shrink-0`}>
-              <ProjectStarIcon className="w-full h-auto"/>
+              <ProjectStarIcon className="w-full h-auto" />
             </div>
-            <div className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}>
+            <div
+              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+            >
               Community
             </div>
             <p
-                className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
             >
-              Connect with fellow students and our partners in the tech community.
-              Make connections that will last a lifetime!
+              Connect with fellow students and our partners in the tech
+              community. Make connections that will last a lifetime!
             </p>
           </div>
 
           {/* Growth */}
           <div className="flex flex-col items-center text-center max-w-md">
             <div className={`${iconSize} flex-shrink-0`}>
-              <ProjectStarIcon className="w-full h-auto"/>
+              <ProjectStarIcon className="w-full h-auto" />
             </div>
-            <div className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}>
+            <div
+              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+            >
               Growth
             </div>
             <p
-                className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
             >
               Expand beyond your horizons and grow your current skill set in a
               safe and supportive environment.
@@ -105,16 +108,19 @@ export default function Values() {
           {/* Exploration */}
           <div className="flex flex-col items-center text-center max-w-md">
             <div className={`${iconSize} flex-shrink-0`}>
-              <ProjectStarIcon className="w-full h-auto"/>
+              <ProjectStarIcon className="w-full h-auto" />
             </div>
-            <div className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}>
+            <div
+              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+            >
               Exploration
             </div>
             <p
-                className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
             >
-              Discover new ideas and technologies with the help of our experienced
-              mentors, or learn new skills at our beginner-friendly workshops!
+              Discover new ideas and technologies with the help of our
+              experienced mentors, or learn new skills at our beginner-friendly
+              workshops!
             </p>
           </div>
         </div>

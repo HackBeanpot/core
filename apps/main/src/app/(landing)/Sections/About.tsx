@@ -11,7 +11,7 @@ import Dart from "../../lib/Assets/AboutLandingAssets/dart";
 import useDevice from "@util/hooks/useDevice";
 
 export default function About(): React.ReactNode {
-  const { isMobile} = useDevice();
+  const { isMobile } = useDevice();
   return (
     <div
       className={`relative w-full z-10 ${
