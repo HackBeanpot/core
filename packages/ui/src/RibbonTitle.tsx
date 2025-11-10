@@ -1,12 +1,10 @@
 import React from "react";
-import useDevice from "@repo/util/hooks/useDevice";
 type RibbonTitleProps = {
   text: string;
 };
 const RibbonTitle: React.FC<RibbonTitleProps> = ({ text }) => {
-  const { isMobile } = useDevice();
   return (
-    <div className={`${isMobile ? "scale-[0.85]" : ""} flex justify-center`}>
+    <div className="flex justify-center">
       <svg
         x="690"
         y="265"
