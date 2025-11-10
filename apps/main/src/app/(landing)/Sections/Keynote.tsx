@@ -72,7 +72,7 @@ export default function Keynote(): React.ReactNode {
         }
       ></KeynoteSpeakerFrame>
 
-      {/* Text cluster */}
+      {/* Text cluster TODO: update title & content */}
       <div
         className="absolute"
         style={
