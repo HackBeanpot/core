@@ -17,9 +17,10 @@ export default function VolunteeringInfoCard({
   content,
   url,
 }: InfoCardProps): React.ReactNode {
-    const { isMobile } = useDevice();
+    const { isMobile, isTablet } = useDevice();
     const cardStyles = clsx(
         "w-1/4", 
+        isTablet && "w-[50vw]",
         isMobile && "w-3/4"
     );
   return (

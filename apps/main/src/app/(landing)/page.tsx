@@ -9,11 +9,11 @@ import {
   Apply,
   About,
   SponsorFeature,
+  Volunteering
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
-import Volunteering from "./Sections/Volunteering";
 
 export default function Page(): JSX.Element {
   return (
