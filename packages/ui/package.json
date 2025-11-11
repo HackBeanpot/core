@@ -19,6 +19,7 @@
     "./PassportCard": "./src/PassportCard.tsx",
     "./Typography": "./src/Typography.tsx",
     "./Icons/*": "./src/Icons/*.tsx",
+    "./Logos/*": "./src/Logos/*.tsx",
     "./PaginationDots": "./src/PaginationDots.tsx",
     "./Section": "./src/Section.tsx", 
     "./Placeholder": "./src/Placeholder.tsx", 
