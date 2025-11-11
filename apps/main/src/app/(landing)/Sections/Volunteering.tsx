@@ -18,13 +18,13 @@ export default function Volunteering(): React.ReactNode {
     title: "Become a Mentor",
     content:
       "Want to be a HBP 2026 Mentor? Click to view more information about how to become a mentor!",
-    url: "https://forms.gle/ctezfrwxrqawzB2j7",
+    url: "https://drive.google.com/file/d/1CqnEvZiVzT_v9z_DVYeTWzsmI0474LIg/view?usp=sharing",
   };
   const judgeInfo = {
     title: "Become a Judge",
     content:
       "Want to be a HBP 2026 Judge? Click to view more information about how to become a judge!",
-    url: "https://forms.gle/ctezfrwxrqawzB2j7",
+    url: "https://drive.google.com/file/d/1U671uCJpBVy6XClP8Vsku_m0IfU55GMW/view?usp=sharing",
   };
     
   return (
