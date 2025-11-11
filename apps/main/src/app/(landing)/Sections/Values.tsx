@@ -62,8 +62,10 @@ export default function Values() {
       <div
         className={`relative z-20 flex flex-col items-center justify-center ${height} gap-6`}
       >
-        {/* Title */}
-        <RibbonTitle text={"OUR VALUES"} />
+        <div className={`${isMobile ? "transform scale-[0.55]" : ""}`}>
+          {/* Title */}
+          <RibbonTitle text={"OUR VALUES"} />
+        </div>
 
         {/* Values Section */}
         <div
