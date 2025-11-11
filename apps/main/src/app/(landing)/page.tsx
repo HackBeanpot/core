@@ -9,7 +9,7 @@ import {
   Apply,
   About,
   SponsorFeature,
-  Volunteering
+  Volunteering,
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";

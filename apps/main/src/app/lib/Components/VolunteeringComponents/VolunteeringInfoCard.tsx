@@ -17,14 +17,12 @@ export default function VolunteeringInfoCard({
   content,
   url,
 }: InfoCardProps): React.ReactNode {
-    const { isMobile, isTablet } = useDevice();
-    const cardStyles = clsx(
-        "w-1/4", 
-        isTablet && "w-[50vw]",
-        isMobile && "w-3/4"
-    );
+  const { isMobile, isTablet } = useDevice();
+  const cardStyles = clsx("w-1/4", isTablet && "w-[50vw]", isMobile && "w-3/4");
   return (
-    <div className={`bg-carouselCreamLight rounded-lg h-auto p-4 drop-shadow-lg font-NeulisNeue-Regular transform hover:scale-105 transition duration-300 ease-in-out ${cardStyles}`}>
+    <div
+      className={`bg-carouselCreamLight rounded-lg h-auto p-4 drop-shadow-lg font-NeulisNeue-Regular transform hover:scale-105 transition duration-300 ease-in-out ${cardStyles}`}
+    >
       <div className="flex flex-row font-NeulisNeue-Bold text-2xl items-center gap-4">
         <ProjectStarIcon />
         <a

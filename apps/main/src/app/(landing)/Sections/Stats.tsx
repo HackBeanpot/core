@@ -76,7 +76,7 @@ export default function Stats(): JSX.Element {
             width: "100vw", // parent fills the viewport
             overflow: "visible",
             transform: isMobile
-              ? `translateX(-42%) translateY(60%) rotate(9.58deg)`
+              ? `translateX(-42%) translateY(300%) rotate(9.58deg)`
               : `translateX(-12%) translateY(60%) rotate(9.58deg)`,
             transformOrigin: "top center",
           }}
