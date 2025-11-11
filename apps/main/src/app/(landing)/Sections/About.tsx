@@ -17,14 +17,7 @@ export default function About(): React.ReactNode {
         isMobile ? "aspect-[1] top-16" : "aspect-[1.72/1]"
       }`}
     >
-      <Background
-        className="absolute w-full -bottom-24 -z-10"
-        style={{
-          transform: isMobile ? "scale(0.9)" : "scale(1)",
-          transformOrigin: "top center",
-        }}
-      />
-
+      
       <div className={`${isMobile ? "transform scale-[0.85]" : ""}`}>
         <RibbonTitle text="ABOUT US" />
       </div>
