@@ -18,7 +18,7 @@ const projectData = [
     award: "Best Social Impact",
     members: "Kaleb Cole, Yaroslav Petrashko, Shrey Agarwal, Aditya",
     description:
-      "Memora is a mobile app that acts as a personalized road map through memories, designed for individuals in the early to moderate stages of dementia and their families. Using personal family photos – snapshots from life's journey – Memora stimulates memory recall through engaging quizzes and a user-friendly interface.",
+      "Memora acts as a personalized road map through memories, designed for individuals in the early to moderate stages of dementia and their families. Using personal family photos, Memora stimulates memory recall through engaging quizzes and a user-friendly interface.",
     link: "https://devpost.com/software/memora-bmi4zw",
   },
   {
@@ -71,10 +71,12 @@ const projectData = [
 export default function Page() {
   const { isMobile, isTablet, isDesktop } = useDevice();
   return (
-    <div className="flex flex-col items-center min-h-screen relative overflow-x-hidden overflow-y-visible">
+    <div className="flex flex-col items-center min-h-screen relative overflow-x-hidden overflow-y-hidden">
       <NavBar />
       <div
-        className={`absolute inset-0 -z-10 ${isMobile ? "scale-125" : ""} ${isTablet ? "scale-125" : ""} ${isDesktop ? "scale-125" : ""}`}
+        className={`absolute inset-0 -z-10 ${
+          isMobile || isTablet || isDesktop ? "scale-125" : ""
+        }`}
       >
         <ProjectBackground className={`${isMobile ? "w-full h-full" : ""}`} />
       </div>
@@ -91,11 +93,15 @@ export default function Page() {
         {projectData.map((project, index) => (
           <div
             key={index}
-            className={` ${isMobile ? "pt-10 mb-10" : ""} ${isTablet ? "pt-10" : ""} ${isDesktop ? "pt-10" : ""}`}
+            className={`${isMobile ? "pt-2 mb-2" : "pt-10"} w-full flex flex-col items-center`}
           >
-            <RibbonTitle text={project.award.toUpperCase()} />
             <div
-              className={`${isMobile ? "mb-5" : ""} ${isTablet ? "" : ""} ${isDesktop ? "" : ""}`}
+              className={`${isMobile ? "scale-[0.55]" : ""} w-full flex justify-center`}
+            >
+              <RibbonTitle text={project.award.toUpperCase()} />
+            </div>
+            <div
+              className={`${isMobile ? "mb-2" : "mb-3"} w-full scale-[0.85]`}
             >
               <Project
                 projectImage={project.projectImage}
@@ -107,57 +113,54 @@ export default function Page() {
             </div>
           </div>
         ))}
-
-        <div
-          className={`
-        ${isMobile ? "scale-[0.3] top-[98.5%] -left-[125px]" : ""}
-        ${isTablet ? "scale-[0.7] top-[101%] -left-[150px]" : ""}
-        ${isDesktop ? "top-[100%] -left-[200px]" : ""}
-        absolute`}
-        >
-          <PinkFirework />
-        </div>
-        <div
-          className={`
-      ${isMobile ? "scale-[0.3] top-[98.5%] -left-[120px]" : ""}
-      ${isTablet ? "scale-[0.7] top-[103%] -left-[60px]" : ""}
-      ${isDesktop ? "top-[104%] -left-[85px]" : ""}
-      absolute`}
-        >
-          <YellowFirework />
-        </div>
-        <div
-          className={`
-    ${isMobile ? "scale-[0.3] top-[96%] -left-[30px]" : ""}
-    ${isTablet ? "scale-[0.65] top-[100%] left-[200px]" : ""}
-    ${isDesktop ? "top-[101%] left-[485px]" : ""}
-    absolute
-  `}
-        >
-          <OrangeFirework />
+      </div>
+      {/* Fireworks + Archive Section */}
+      <div className="relative flex flex-col items-center w-full mb-20 overflow-visible mobile:mt-[27rem] tablet:mt-[39rem] desktop:mt-[39rem]">
+        {/* Fireworks Layer */}
+        <div className="absolute inset-0 flex justify-center items-center">
+          <div
+            className="absolute mobile:-left-[19%] mobile:-top-[255%] mobile:scale-[0.4]
+          tablet:left-[10%] tablet:-top-[395%] tablet:scale-100
+          desktop:left-[10%] desktop:-top-[395%] desktopscale-100"
+          >
+            <PinkFirework />
+          </div>
+          <div
+            className="absolute mobile:right-[20%] mobile:-top-[225%] mobile:scale-[0.35]
+          tablet:right-[60%] tablet:-top-[315%] tablet:scale-90
+          desktop:right-[60%] desktop:-top-[315%] desktop:scale-90"
+          >
+            <YellowFirework />
+          </div>
+          <div
+            className="absolute mobile:left-[40%] mobile:-top-[300%] mobile:scale-[0.3]
+          tablet:right-[15%] tablet:-top-[440%] tablet:scale-100
+          desktop:right-[15%] desktop:-top-[440%] desktop:scale-100"
+          >
+            <OrangeFirework />
+          </div>
         </div>
 
-        <div
-          className={`absolute flex flex-col items-center ${isMobile ? "top-[106.5%]" : ""} ${isTablet ? "top-[112%]" : ""} ${isDesktop ? "top-[118%]" : ""}`}
-        >
-          <div className="self-stretch text-center justify-center text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
+        <div className="flex flex-col items-center text-center z-10 px-4">
+          <div className="text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
             Interested in seeing more past hacker projects?
           </div>
-          <div className="self-stretch text-center justify-center text-carouselCreamLight text-md font-normal font-['NeulisNeue-Regular'] leading-tight mb-5">
+          <div className="text-carouselCreamLight text-md font-['NeulisNeue-Regular'] leading-tight mb-5">
             Check out the HackBeanpot Archive!
           </div>
 
-          <div className="text-center justify-center">
-            <Button
-              text="View Archive"
-              textColor="white"
-              color="starlightBlue"
-              size="medium"
-              onClick={() =>
-                window.open("https://archive.hackbeanpot.com/", "_blank")
-              }
-            ></Button>
-          </div>
+          <Button
+            text="View Archive"
+            textColor="white"
+            color="starlightBlue"
+            size="medium"
+            onClick={() =>
+              window.open(
+                "https://hackbeanpot2025.devpost.com/project-gallery",
+                "_blank",
+              )
+            }
+          />
         </div>
       </div>
       <Footer />
