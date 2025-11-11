@@ -29,9 +29,9 @@ export default function Volunteering(): React.ReactNode {
     
   return (
     <div className="relative w-full mt-[5vh] p-[5vh] z-20">
-      <VolunteeringBackground className="absolute inset-0 w-full h-full top-[25%]" />
+      <VolunteeringBackground className="absolute inset-0 w-full h-full top-[25%] z-0" />
       <RibbonTitle text="VOLUNTEERING" />
-      <div className={`mt-[5vh] flex ${cardStyles} justify-center  relative z-30`}>
+      <div className={`mt-[5vh] flex ${cardStyles} justify-center relative z-30`}>
         <VolunteeringInfoCard
           title={mentorInfo.title}
           content={mentorInfo.content}
