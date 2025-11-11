@@ -92,7 +92,7 @@ const NavBar = () => {
               text="Apply"
               color="firecrackerRedLight"
               size="medium"
-              onClick={() => alert("2026 Applications haven't opened yet!")}
+              onClick={() => window.open("https://apply.hackbeanpot.com/")}
             />
           </div>
         </div>
