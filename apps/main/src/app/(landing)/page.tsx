@@ -23,7 +23,7 @@ export default function Page(): JSX.Element {
       <NavBar />
       <Landing />
       <Apply />
-      <SponsorFeature/>
+      <SponsorFeature />
       <About />
       <Stats />
       <Values />
