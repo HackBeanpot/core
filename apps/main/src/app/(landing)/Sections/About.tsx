@@ -26,7 +26,9 @@ export default function About(): React.ReactNode {
         }}
       />
 
-      <RibbonTitle text="ABOUT US" />
+      <div className={`${isMobile ? "transform scale-[0.85]" : ""}`}>
+        <RibbonTitle text="ABOUT US" />
+      </div>
 
       <div className="absolute top-[20%] left-[80%]">
         <YellowBear />

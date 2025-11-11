@@ -202,7 +202,7 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
   const { isMobile, isTablet, isDesktop } = useDevice();
   const ribbonStyles = clsx(
     "",
-    isMobile && "scale-95",
+    isMobile && "transform scale-[0.55]",
     isTablet && "scale-75",
     isDesktop && "scale-50",
   );
