@@ -1,16 +1,22 @@
+"use client";
+
 import React from "react";
-import NavBar from "../lib/Components/NavBar";
-import SponsorUsContent from "./content";
-import { Footer } from "../lib/Components";
+import SponsorUsStatsComp from "./Sections/SponsorUsStatsComp.tsx";
+import SponsorTop from "./Sections/SponsorTop.tsx";
+import BenefitsSection from "./Sections/BenefitsSection.tsx";
+import { Footer, NavBar } from "../lib/Components";
+
 const SponsorUsPage = () => {
   return (
-    <div className="relative z-10 w-full flex flex-col items-center">
+    <div className="relative z-10 w-full">
       <NavBar />
-      <SponsorUsContent />
-      <div className="absolute mobile:top-[430vh] desktop:top-[650vh]">
-        <Footer />
-      </div>
+      <SponsorTop />
+      <SponsorUsStatsComp />
+      <BenefitsSection />
+
+      <Footer />
     </div>
   );
 };
+
 export default SponsorUsPage;

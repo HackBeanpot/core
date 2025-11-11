@@ -5,6 +5,7 @@
     "build": "turbo build",
     "dev": "yarn turbo run dev --filter=@repo/ui --filter=main",
     "dev:live": "yarn turbo run dev --filter=@repo/ui --filter=live",
+    "dev:app": "yarn turbo run dev --filter=@repo/ui --filter=app-portal",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
@@ -27,6 +28,7 @@
   ],
   "dependencies": {
     "clsx": "^2.1.1",
-    "hamburger-react": "^2.5.2"
+    "hamburger-react": "^2.5.2",
+    "react-icons": "^5.5.0"
   }
 }

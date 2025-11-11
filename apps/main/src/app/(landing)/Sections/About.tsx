@@ -1,67 +1,50 @@
 "use client";
 
 import React from "react";
-import StreetSign from "@repo/ui/StreetSign";
-import TopAboutBar from "../../lib/Assets/SVG/AboutAssets/TopAboutBar";
-import BottomAboutBar from "../../lib/Assets/SVG/AboutAssets/BottomAboutBar";
-import Squiggle from "../../lib/Assets/SVG/AboutAssets/Squiggle";
-import Cities from "../../lib/Assets/SVG/AboutAssets/Cities";
-import AboutParagraph from "../../lib/Assets/SVG/AboutAssets/AboutParagraph";
-import Journal2 from "../../lib/Assets/SVG/AboutAssets/Journal2";
+import TextBackground from "../../lib/Assets/AboutLandingAssets/text";
+import TeamPicture from "../../lib/Assets/AboutLandingAssets/teamPicture";
+// import PurpleBear from "../../lib/Assets/AboutLandingAssets/purpleBear";
+// import YellowBear from "../../lib/Assets/AboutLandingAssets/yellowBear";
+import RibbonTitle from "@repo/ui/RibbonTitle";
+// import Dart from "../../lib/Assets/AboutLandingAssets/dart";
+import useDevice from "@util/hooks/useDevice";
+
 export default function About(): React.ReactNode {
+  const { isMobile } = useDevice();
   return (
-    <div className="w-full desktop:h-[110vh] mobile:h-[100vh] bg-[#F3E7D7] flex flex-col">
-      <div className="w-[100vw]">
-        <TopAboutBar />
-      </div>
-      <div className="w-[55vw]">
-        <Squiggle />
+    <div className="relative w-full my-10">
+      <div className={`${isMobile ? "transform scale-[0.85]" : ""}`}>
+        <RibbonTitle text="ABOUT US" />
       </div>
 
-      <div className="mobile:flex-1 mobile:flex mobile:items-center mobilelg:flex-1 mobilelg:flex mobilelg:items-center tablet:block tablet:flex-none desktop:block desktop:flex-none">
-        <div
-          className={`
-      transform w-[373.15px] h-[220.91px] left-[55px] scale-[1.9] rotate-[0] origin-left 
-      tablet:w-[45vw] tablet:left-[58vw] tablet:right-0 tablet:transform tablet:-rotate-[7.5deg] tablet:scale-[2.2] tablet:absolute tablet:top-[200vh] 
-      mobile:absolute mobile:left-[10px] mobile:top-[121vh]
-      mobilelg:absolute mobilelg:left-[50px]
-    `}
-        >
-          <Journal2 />
+      {/* <div className="absolute top-[20%] left-[80%]">
+        <YellowBear />
+      </div> */}
+
+      <div className="mt-[15vh] mobile:mt-20 flex desktop:flex-row mobile:flex-col mobile:items-center items-start justify-center scale-125">
+        <div className="relative flex  mobile:w-3/5">
+          <p className="mobile:text-xs font-DMSans-Regular absolute h-full mobile:p-12 desktop:py-20 desktop:px-16 desktop-xl:py-20 desktop-xl:px-16 self-center">
+            We&apos;re a non-profit organization in the Boston area that
+            organizes an annual undergraduate hackathon. Our goal is to expand
+            and nurture the hacker culture that exists in Boston and the
+            surrounding areas. We connect students and other aspiring nerds to
+            their colleagues so that they can meet new people, learn new things,
+            and have a great time.
+          </p>
+          <TextBackground />
+        </div>
+
+        <div className="flex mobile:-mt-16 mobile:-ml-0 desktop:-ml-14 desktop:mt-8 transform mobile:scale-[50%] mobile:items-center">
+          <TeamPicture />
         </div>
       </div>
-      <div className="w-[100vw] mt-auto relative">
-        <BottomAboutBar />
+
+      {/* <div className="absolute top-[68%] left-[46%] mb-10">
+        <PurpleBear />
       </div>
-      <div className="absolute h-full w-[50vw] ml-20 mr-auto mt-5 tablet:ml-24 tablet:mt-24 flex text-[1.8vw]">
-        <div className="w-[50vw]">
-          <div className="scale-75 origin-left -ml-4 tablet:scale-100 tablet:ml-0">
-            <StreetSign streetName={"ABOUT"} suffix="HBP" />
-          </div>
-          <div>
-            <AboutParagraph />
-          </div>
-          <button
-            className="font-GT-Walsheim-Regular mt-0 absolute mobile:top-[29%] tablet:top-[0%] bg-[#02877F] text-white rounded-[64px] text-xs flex items-center justify-center
-                                relative mobile:top-[315px] tablet:top-[1px] desktop:w-[235.22px] desktop:h-[64.05px] right-[50px]
-                                tablet:mt-5 tablet:top-auto tablet:w-auto tablet:h-auto tablet:right-auto
-                                tablet:w-[308.17px] tablet:h-[67.69px] tablet:!text-[26.5px] 
-                                mobile:w-[162.48px] mobile:h-[31.59px] mobile:top-[34vh]"
-          >
-            {"View Past Photos"}
-          </button>
-        </div>
-        <div
-          className="absolute
-                 w-[560.34px] h-[132.06px] left-[-160.67px] 
-                 tablet:absolute tablet:w-[312px] tablet:h-auto tablet:left-[66%] 
-                 tablet:bottom-auto tablet:top-[71vh] tablet:scale-[3.3] 
-                 mobile:mt-1 mobile:ml-5 mobile:bottom-0 mobile:top-[79vh]
-                 mobilelg:bottom-0"
-        >
-          <Cities />
-        </div>
-      </div>
+      <div className="absolute top-[68%] left-[79%] mb-10">
+        <Dart />
+      </div> */}
     </div>
   );
 }

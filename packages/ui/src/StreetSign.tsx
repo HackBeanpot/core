@@ -17,9 +17,8 @@ export default function StreetSign({
       }
     >
       <Typography.SignLarge>{streetName}</Typography.SignLarge>
-      <Typography.SignSmall className="ml-2 mb-5">
-        {suffix}
-      </Typography.SignSmall>
+
+      {suffix}
     </div>
   );
 }

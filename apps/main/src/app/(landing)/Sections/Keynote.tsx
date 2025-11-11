@@ -1,144 +1,166 @@
 "use client";
 
 import React from "react";
-import StreetSign from "@repo/ui/StreetSign";
-import Image from "next/image";
-import useIsLargeMobile from "@repo/util/hooks/useIsMobileLgScreen";
-import Typography from "@repo/ui/Typography";
-
-interface AdditionalClassesProps {
-  additionalClasses?: string;
-}
-
-interface SpeakerPhotoProps {
-  newWidth?: number;
-  newHeight?: number;
-  newPadding?: string;
-  newMinWidth?: string;
-  newClasses?: string;
-}
-
-interface SpeakerDetailsProps {
-  textAlign?: string;
-  scaleFactor?: string;
-  bottomMargin?: string;
-}
-
-function SpeakerPhoto({
-  newWidth,
-  newHeight,
-  newPadding,
-  newMinWidth,
-  newClasses,
-}: SpeakerPhotoProps): JSX.Element {
-  const padding = newPadding ?? "p-4";
-  const width = newWidth ?? 400;
-  const height = newHeight ?? 500;
-  const minWidth = newMinWidth ?? "min-w-200px";
-
-  return (
-    <div
-      className={`bg-white rounded-sm inline-block pb-[4vw] shadow-lg ${padding} ${newClasses}`}
-    >
-      <Image
-        alt="Aidan"
-        src="/aidan.png"
-        width={width}
-        height={height}
-        className={minWidth}
-      />
-    </div>
-  );
-}
-
-function SpeakerDetails({ textAlign }: SpeakerDetailsProps): JSX.Element {
-  return (
-    <div
-      className={`desktop:mt-[15%] desktop:ml-2 desktop:mr-[-15%] mobile:mt-[-5%] mobile:ml-[-10%] mobile:mr-[10%] font-GT-Walsheim-Regular ${textAlign}`}
-    >
-      <p className="desktop:text-3xl mobile:text-xl font-bold">Aidan Ouckama</p>
-      <p className="desktop:text-2xl text-lightBrown desktop:static mobile:absolute ">
-        3rd year Computer Science student, Stevens Institute of Technology |
-        Tech Content Creator
-      </p>
-    </div>
-  );
-}
-
-function SpeakerAbout({
-  additionalClasses,
-}: AdditionalClassesProps): JSX.Element {
-  return (
-    <Typography.Body
-      className={`font-GT-Walsheim-Regular mt-8 ${additionalClasses ?? ""}`}
-    >
-      <span className="font-GT-Walsheim-Bold">Aidan Ouckama </span>is a a
-      prominent tech content creator, known for engaging, informative, and
-      humorous content across multiple social media platforms. By sharing
-      instructional projects, vlogs, internship application tips, and even
-      brainrot computer science memes, Aidan has amassed a substantial following
-      of aspiring and early-career technologists.
-      <br />
-      <br />
-      Aidan offers an authentic, behind-the-scenes look into the challenges and
-      triumphs of navigating the tech industry as a student, making topics like
-      leetcode, job interviews, and career growth more accessible and relatable.
-      His blend of humor, insight, and industry experience has positioned him as
-      one of the leading voices in a new wave of tech creators.
-      <br />
-      <br />
-      Through his content, Aidan is redefining the way students and early
-      professionals approach tech, fostering a welcoming space where curiosity,
-      innovation, and creativity thrive.
-    </Typography.Body>
-  );
-}
+// import Tent from "../../lib/Assets/SVG/tent.tsx";
+// import clsx from "clsx";
+import useDevice from "@repo/util/hooks/useDevice";
+import KeynoteSpeakerBackgroundWaves from "../../lib/Assets/SVG/KeynoteSpeakerAssets/KeynoteSpeakerBackgroundWaves.tsx";
+import KeynoteSpeakerForegroundWaves from "../../lib/Assets/SVG/KeynoteSpeakerAssets/KeynoteSpeakerForegroundWaves.tsx";
+import KeynoteSpeakerTent from "../../lib/Assets/SVG/KeynoteSpeakerAssets/KeynoteSpeakerTent.tsx";
+import RibbonTitle from "@repo/ui/RibbonTitle";
+import KeynoteSpeakerFrame from "../../lib/Assets/SVG/KeynoteSpeakerAssets/KeynoteSpeakerFrame.tsx";
+import KeynoteSpeakerBush from "../../lib/Assets/SVG/KeynoteSpeakerAssets/KeynoteSpeakerBush.tsx";
+import KeynoteSpeakerTentShadow from "../../lib/Assets/SVG/KeynoteSpeakerAssets/KeynoteSpeakerTentShadow.tsx";
 
 export default function Keynote(): React.ReactNode {
-  const isMobile = useIsLargeMobile();
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
-  const conditionalAlignment = `h-full mx-auto my-auto gap-5 ${
-    isMobile
-      ? "flex flex-col items-center justify-center min-h-screen text-center"
-      : "flex items-center"
-  }`;
+  const speakerName = "Jamie Chen";
 
   return (
     <div
-      className={`w-full z-0 bg-cream ${isMobile ? "h-auto" : "h-[140vh]"} mobile:pb-10`}
+      className={`relative w-full ${
+        isMobile
+          ? "aspect-[1/1.6]"
+          : isTablet
+            ? "aspect-[1/1.1]"
+            : "aspect-[1/0.75]"
+      }`}
     >
-      <div className={conditionalAlignment}>
-        <div className={`${isMobile ? "w-[80vw]" : "w-[55vw]"}`}>
-          {isMobile && (
-            <div
-              className={`relative ${isMobile ? "mb-[5%] mt-10 justify-self-center scale-[0.7]" : "mb-[10%]"}`}
-            >
-              <StreetSign streetName="KEYNOTE" suffix="SPEAKER" />
-            </div>
-          )}
+      <KeynoteSpeakerBackgroundWaves
+        className={`absolute w-[160vw] h-auto -mt-[7vw] overflow-hidden`}
+        style={{ transform: "translate(-25vw, 0)" }}
+      />
 
-          <div
-            className={`${isMobile ? "flex flex-row gap-x-12 mb-[-5%]" : "flex flex-col items-center"}`}
-          >
-            <SpeakerPhoto
-              newClasses={`${isMobile ? "left-[-10%]" : "mt-[30%] mb-[-35%]"}`}
-              newPadding={`${isMobile ? "p-2" : "p-4"}`}
-            />
-            <SpeakerDetails
-              textAlign={`${isMobile ? "text-left text-wrap p-[5%]" : "text-wrap p-[25%]"}`}
-              scaleFactor={`${isMobile ? "2" : "1"}`}
-              bottomMargin={`${isMobile ? " mb-[30%]" : ""}`}
-            />
-          </div>
-        </div>
+      {/* Tent Shadow */}
+      <KeynoteSpeakerTentShadow
+        className={`absolute w-[98vw] h-auto left-1/2 -mt-[12vw]`}
+        style={{
+          transform: "translate(-50%, 64vw)",
+        }}
+      ></KeynoteSpeakerTentShadow>
 
-        <div
-          className={`${isMobile ? "w-[80vw]" : "w-[55vw] mr-[5%] sm:scale-[0.5]"}`}
-        >
-          {!isMobile && <StreetSign streetName="KEYNOTE" suffix="SPEAKER" />}
-          <SpeakerAbout additionalClasses={`${isMobile ? "text-left" : ""}`} />
-        </div>
+      {/* Tent */}
+      <KeynoteSpeakerTent
+        className={`absolute w-[98vw] h-auto left-1/2 -mt-[12vw]`}
+        style={{
+          transform: "translate(-50.5%, 0)",
+        }}
+      ></KeynoteSpeakerTent>
+
+      {/* Bush */}
+      <KeynoteSpeakerBush
+        className={`absolute w-[12vw] h-auto`}
+        style={{ transform: "translate(1vw, 48vw)" }}
+      ></KeynoteSpeakerBush>
+
+      {/* Ribbon Title */}
+      <div
+        className="absolute w-[70vw] h-auto left-1/2 -translate-x-1/2"
+        style={{ transform: "translate(-50%, 8vw)" }}
+      >
+        <RibbonTitle text={"GUEST SPEAKER"}></RibbonTitle>
       </div>
+
+      {/* Speaker Headshot, TODO: actually add the headshot in when available */}
+      <KeynoteSpeakerFrame
+        className="absolute w-[29vw] h-auto"
+        style={
+          isDesktop
+            ? { transform: "translate(12vw, 30.5vw)" }
+            : { left: "50%", top: "30.5vw", transform: "translateX(-62%)" }
+        }
+      ></KeynoteSpeakerFrame>
+
+      {/* Text cluster TODO: update title & content */}
+      <div
+        className="absolute"
+        style={
+          isDesktop
+            ? { transform: "translate(43vw, 32vw)" }
+            : isTablet
+              ? { left: "50%", top: "65vw", transform: "translateX(-50%)" }
+              : { left: "50%", top: "67vw", transform: "translateX(-50%)" }
+        }
+      >
+        <h1
+          className={`font-NeulisNeue-Bold ${isDesktop ? "text-[3vw] text-white" : "text-[5vw] text-charcoalFog"}`}
+        >
+          {speakerName}
+        </h1>
+        <p
+          className={`font-NeulisNeue-Regular h-auto
+              ${
+                isDesktop
+                  ? "w-[42vw] text-[1.5vw] text-white"
+                  : isTablet
+                    ? "w-[80vw] text-[2vw] text-charcoalFog"
+                    : "w-[80vw] text-[4vw] text-charcoalFog"
+              }`}
+        >
+          Jamie Chen is Director of Product Engineering at Luma Labs, where she
+          leads teams building ethical, user-focused AI tools. With a background
+          in computer science and over a decade in tech, she&apos;s known for
+          her leadership in inclusive innovation. Jamie also mentors emerging
+          engineers and speaks on ethical development and tech for social good.
+        </p>
+      </div>
+
+      <KeynoteSpeakerForegroundWaves
+        className={`absolute w-[200vw] h-auto bottom-0`}
+      ></KeynoteSpeakerForegroundWaves>
     </div>
+
+    // <div
+    //   className={`relative flex flex-col items-center justify-center w-full h-full
+    //   ${isMobile ? "h-[200vh]" : ""}`}
+    //       // >
+    //   <KeynoteSpeakerTent></KeynoteSpeakerTent>
+    //   <KeynoteSpeakerForegroundWaves></KeynoteSpeakerForegroundWaves>
+    //
+    //   <div
+    //       className={`w-[72%] flex justify-center
+    //           ${isMobile ? "absolute top-[43%] w-11/12 flex-col items-center" : ""}
+    //           ${isTablet ? "absolute top-[55%]  flex-col gap-y-12 items-center" : ""}
+    //           ${isDesktop ? "absolute top-[59%] flex-row justify-between items-start gap-x-8" : ""}`}
+    //   >
+    //     {/*<GuestPhoto*/}
+    //     {/*  className={`transform*/}
+    //     {/*    ${isMobile ? "scale-[0.45]" : ""}*/}
+    //     {/*    ${isTablet ? "scale-100 w-1/3 h-1/3" : ""}*/}
+    //     {/*    ${isDesktop ? "scale-150 w-80 h-80 w-1/2 h-1/3" : ""}`}*/}
+    //     {/*/>*/}
+    //
+    //     <div
+    //         className={`text-left
+    //           ${isMobile ? "max-w-sm space-y-0 relative -top-6" : ""}
+    //           ${isTablet ? "max-w-full space-y-2" : ""}
+    //           ${isDesktop ? "max-w-2xl space-y-5" : ""}`}
+    //     >
+    //
+    //       <div
+    //           className={`font-semibold font-['NeulisNeue-Bold'] leading-relaxed
+    //             ${isMobile ? "text-xl relative" : ""}
+    //               ${isTablet ? "text-charcoalFog text-3xl" : ""}
+    //               ${isDesktop ? "text-white text-5xl" : ""}`}
+    //       >
+    //         {speakerName}
+    //       </div>
+    //       <div
+    //           className={`font-light font-['DMSans-Regular'] leading-relaxed
+    //             ${isMobile ? "relative text-charcoalFog text-xs" : ""}
+    //               ${isTablet ? "text-charcoalFog text-xl" : ""}
+    //               ${isDesktop ? "text-white text-2xl" : ""}`}
+    //       >
+    //         Jamie Chen is Director of Product Engineering at Luma Labs, where
+    //         she leads teams building ethical, user-focused AI tools. With a
+    //         background in computer science and over a decade in tech, she&apos;s
+    //         known for her leadership in inclusive innovation. Jamie also mentors
+    //         emerging engineers and speaks on ethical development and tech for
+    //         social good.
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }

@@ -1,4 +1,3 @@
-export { default as KeynotePhoto } from "./KeynotePhoto";
-export { default as TeamsTopSquiggle } from "./TeamsTopSquiggle";
-export { default as TeamsMiddleSquiggle } from "./TeamsMiddleSquiggle";
-export { default as TeamsBottomSquiggle } from "./TeamsBottomSquiggle";
+// example: export { default as KeynotePhoto } from "./KeynotePhoto";
+export { default as ProjectStarIcon } from "./StarIcon.tsx";
+export { default as VolunteeringBackground } from "./VolunteeringAssets/VolunteeringBackground.tsx";

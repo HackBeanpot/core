@@ -1,95 +1,161 @@
+"use client";
+
 import React from "react";
-import FAQDropdown from "@repo/ui/FAQDropdown";
-import FAQBackground from "../../lib/Assets/SVG/FAQBackground";
+import Accordion from "./../../lib/Components/Accordian";
+import RibbonTitle from "@repo/ui/RibbonTitle";
+import FAQFireworks from "../../lib/Components/FAQComponents/FAQFireworks";
+import FAQCarousel from "../../lib/Components/FAQComponents/FAQCarousel";
+import clsx from "clsx";
+import useDevice from "@util/hooks/useDevice";
 
-export default function FAQSection(): React.ReactNode {
+const generalQuestions = [
+  {
+    question: "When is the hackathon?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "Am I eligible to attend the hackathon?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "Where is the hackathon?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "Is this an in-person or virtual hackathon?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "How long is the hackathon?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+];
+
+const appQuestions = [
+  {
+    question: "How do I apply to HackBeanpot?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "How can I be a mentor or judge?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "I applied! When will I hear back?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+];
+
+const logisticsQuestions = [
+  {
+    question: "Will my travel be reimbursed?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "How do I find a team?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "How do teams work?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "What are the prizes this year?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "Will there be overnight acccommodations?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "Will food be provided?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+  {
+    question: "Does my project have to be carnival themed?",
+    answer:
+      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+  },
+];
+
+const faqData = [
+  {
+    title: "General",
+    content: generalQuestions,
+  },
+  {
+    title: "Application",
+    content: appQuestions,
+  },
+  {
+    title: "Event Logistics",
+    content: logisticsQuestions,
+  },
+];
+
+export default function FAQ() {
+  const { isMobile, isTablet, isDesktop } = useDevice();
+
+  const outerStyles = clsx(
+    "flex flex-col items-center text-white text-[20px] size-full bg-starlightBlueDark overflow-hidden",
+  );
+
+  const bannerStyles = clsx(
+    "relative w-full pointer-events-none flex items-center justify-center z-10",
+    isDesktop && "h-[45vh] pt-20",
+    isTablet &&
+      "h-[35vh] pt-10 mobile-xl:h-[30vh] mobile-xl:pt-40 mobile-xl:mb-20",
+    isMobile && "h-[20vh] pt-10",
+  );
+
+  const fireworkStyles = clsx(
+    "w-full z-0 scale-125",
+    isTablet && "pl-6",
+    isDesktop && "pl-16",
+    isMobile && "pl-8",
+  );
+
+  const ribbonStyles = clsx("w-3/4", isDesktop && "w-1/2");
+
+  const accordionStyles = clsx("relative z-10 size-full mb-32");
+
+  const carouselStyles = clsx("relative w-[100vw] h-full scale-110 z-0");
+
   return (
-    <div className="w-full min-h-screen bg-cover overflow-visible relative">
-      <div className="absolute w-full -mt-16">
-        <FAQBackground
-          className="w-full h-[1450px]"
-          preserveAspectRatio="xMidYMax slice"
-        />
+    <div className={outerStyles}>
+      {/* Fireworks */}
+      <div className="absolute w-full h-full z-0 overflow-hidden">
+        <FAQFireworks className={fireworkStyles} />
       </div>
-      <div className="relative flex flex-col px-28 desktop:py-20 mobile:py-3 desktop:space-y-10 mobile:space-y-6 font-GT-Walsheim-Regular z-10 min-h-[1400px]">
-        <h1 className="text-7xl font-bold text-white mb-16 flex justify-center font-Wilden-Regular">
-          FAQs
-        </h1>
 
-        <div className="mx-auto flex mobile:justify-end tablet:justify-start desktop:justify-start mobile:w-3/5 tablet:w-3/5 desktop:w-3/5 ">
-          <h3 className="text-2xl font-semibold text-white whitespace-nowrap">
-            Time and Location
-          </h3>
-        </div>
-
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="When and where is HackBeanpot 2026?"
-            dropdownAnswer="HackBeanpot will take place in the spring semester of 2026. Location TBD!"
-          />
-        </div>
-
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="Will HackBeanpot 2026 be in-person or online?"
-            dropdownAnswer="HackBeanpot 2026 will be in-person!"
-          />
-        </div>
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="How long is the event?"
-            dropdownAnswer="Our Hackathon is typically 36 hours long!"
-          />
-        </div>
-
-        <div className="mx-auto flex mobile:justify-end tablet:justify-start desktop:justify-start mobile:w-4/5 tablet:w-3/5 desktop:w-3/5 ">
-          <h3 className="text-2xl font-semibold text-white pt-10 whitespace-nowrap">
-            Application Logistics
-          </h3>
-        </div>
-
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="How do I apply to attend HackBeanpot?"
-            dropdownAnswer="Our applications have not been released yet for the 2026 Hackathon! Be sure to connect with us on our social media or join our mailing list for any updates!"
-          />
-        </div>
-
-        <div className="mx-auto flex mobile:justify-end tablet:justify-start desktop:justify-start mobile:w-1/5 tablet:w-3/5 desktop:w-3/5 ">
-          <h3 className="text-2xl font-semibold text-white pt-10 whitespace-nowrap">
-            Event Logistics
-          </h3>
-        </div>
-
-        <div className="flex justify-center w-3/5 self-center">
-          <FAQDropdown
-            dropdownQuestion="What kind of projects can I work on?"
-            dropdownAnswer={
-              <>
-                Check out our{" "}
-                <a
-                  href="https://www.hackbeanpot.com/projects"
-                  className="text-blue-500 underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Projects
-                </a>{" "}
-                page or check us out on{" "}
-                <a
-                  href="https://hackbeanpot2025.devpost.com/"
-                  className="text-blue-500 underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Devpost
-                </a>
-                !
-              </>
-            }
-          />
+      {/* Banner */}
+      <div className={bannerStyles}>
+        <div className={ribbonStyles}>
+          <RibbonTitle text={"FAQ"} />
         </div>
       </div>
+
+      {/* Accordion */}
+      <div className={accordionStyles}>
+        <Accordion items={faqData} />
+      </div>
+
+      {/* Carousel */}
+      <FAQCarousel className={carouselStyles} />
     </div>
   );
 }

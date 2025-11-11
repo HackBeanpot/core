@@ -39,15 +39,5 @@ function SignLarge({ children, className = "" }: TypographyProps) {
   );
 }
 
-function SignSmall({ children, className = "" }: TypographyProps) {
-  return (
-    <h2
-      className={`text-signSmall font-Big-Shoulders-Display uppercase ${className}`}
-    >
-      {children}
-    </h2>
-  );
-}
-
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { Body, Heading, ButtonText, SignLarge, SignSmall };
+export default { Body, Heading, ButtonText, SignLarge };

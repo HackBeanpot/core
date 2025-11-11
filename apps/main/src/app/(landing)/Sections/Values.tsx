@@ -1,121 +1,132 @@
 "use client";
 
 import React from "react";
-import CommunityIcon from "@repo/ui/Icons/CommunityIcon";
-import ExplorationIcon from "@repo/ui/Icons/ExplorationIcon";
-import GrowthIcon from "@repo/ui/Icons/GrowthIcon";
-import RockVariant1 from "../../lib/Assets/SVG/Rocks/RockVariant1";
-import RockVariant2 from "../../lib/Assets/SVG/Rocks/RockVariant2";
-import RockVariant3 from "../../lib/Assets/SVG/Rocks/RockVariant3";
-import RockVariant4 from "../../lib/Assets/SVG/Rocks/RockVariant4";
+import RibbonTitle from "@repo/ui/RibbonTitle";
+import useDevice from "@util/hooks/useDevice.ts";
+import { ProjectStarIcon } from "../../lib/Assets/SVG";
+import OurTeamValuesForeground from "../../lib/Assets/SVG/OurTeamValuesAssets/OurTeamValuesForeground.tsx";
+import CloudsTop from "../../lib/Assets/SVG/OurTeamValuesAssets/CloudsTop.tsx";
 
-const ValuesIntroContent = (
-  <div className="mx-auto font-Wilden">
-    <p className="mobile:text-4xl desktop:text-8xl tablet:text-8xl text-[#F3E7D7] sm:text-[#EC765A] whitespace-pre-line">
-      {"WHAT \n HACKBEANPOT \n IS ALL ABOUT"}
-    </p>
-  </div>
-);
+export default function Values() {
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
-const ValuesExplorationContent = (
-  <div className="mx-[15%] flex flex-row">
-    <div className="mr-10">
-      <ExplorationIcon />
-    </div>
-    <div>
-      <p className="font-GT-Walsheim-Bold mb-3 text-xl tablet:text-3xl">
-        {"Exploration"}
-      </p>
-      <p>
-        {
-          "Discover new ideas and technologies with the help of our experienced mentors, or learn new skills at our beginner-friendly workshops!"
-        }
-      </p>
-    </div>
-  </div>
-);
+  const titleSize = isMobile
+    ? "text-[6vw]"
+    : isTablet
+      ? "text-[3.5vw]"
+      : "text-[2.5vw]";
+  const subtitleSize = isMobile
+    ? "text-[4.5vw]"
+    : isTablet
+      ? "text-[2vw]"
+      : "text-[1.25vw]";
 
-const ValuesCommunityContent = (
-  <div className="mx-[15%] flex flex-row">
-    <div className="mr-10">
-      <CommunityIcon />
-    </div>
-    <div>
-      <p className="font-GT-Walsheim-Bold mb-3 text-xl tablet:text-3xl">
-        {"Community"}
-      </p>
-      <p>
-        {
-          "Connect with fellow students and our partners in the tech community. Make connections that will last a lifetime!"
-        }
-      </p>
-    </div>
-  </div>
-);
+  {
+    /* dynamic flex stuff */
+  }
+  const flexDirection = isDesktop ? "flex-row" : "flex-col";
+  const gapSize = isDesktop
+    ? "gap-[2vw]"
+    : isTablet
+      ? "gap-[6vw]"
+      : "gap-[8vw]";
 
-const ValuesGrowthContent = (
-  <div className="mx-[15%] flex flex-row items-center justify-center">
-    <div className="mr-10">
-      <GrowthIcon />
-    </div>
-    <div>
-      <p className="font-GT-Walsheim-Bold mb-3 text-xl tablet:text-3xl">
-        {"Growth"}
-      </p>
-      <p>
-        {
-          "Expand beyond your horizons and grow your current skill set in a safe and supportive environment."
-        }
-      </p>
-    </div>
-  </div>
-);
+  const aspectRatio = isMobile
+    ? "aspect-[1/3]"
+    : isTablet
+      ? "aspect-[700/1200]"
+      : "aspect-[1200/1200]";
 
-const rocks = (
-  <div className="flex">
-    <div className="mobile:hidden tablet:block mt-[-2.5rem] ">
-      <RockVariant1 />
-    </div>
-    <div className="mobile:hidden tablet:block ml-8 sm:hidden">
-      <RockVariant4 />
-    </div>
-    <div className="mobile:hidden tablet:block ml-[-9rem] mt-[-7rem]">
-      <RockVariant2 />
-    </div>
-    <div className="mobile:hidden tablet:block ml-5 mt-[-4rem]">
-      <RockVariant3 />
-    </div>
-  </div>
-);
+  const height = isMobile ? "h-[260vw]" : isTablet ? "h-[145vw]" : "h-[60vw]";
 
-const content = (
-  <div>
-    <div className="w-full desktop:h-[140vh] mobile:h-auto text-[#474747] grid grid-cols-1 tablet:grid-cols-2 tablet:grid-rows-2 justify-center content-center font-GT-Walsheim-Regular tablet:text-2xl">
-      <div className="w-full bg-[#EC765A] flex flex-col justify-center font-Wilden mobile:py-5">
-        <Box>{ValuesIntroContent}</Box>
+  const wrapLimit = isDesktop
+    ? "max-w-[50vw]"
+    : isMobile
+      ? "max-w-[60vw]"
+      : "max-w-[40vw]";
+
+  const iconSize = isMobile ? "w-[6vw]" : isTablet ? "w-[4vw]" : "w-[4vw]";
+
+  return (
+    <div
+      className={`relative w-full ${aspectRatio} bg-ribbonBlue overflow-visible`}
+    >
+      {/* Foreground SVG Stuff (ballons, clouds, etc) */}
+      <CloudsTop className="absolute z-30 top-0 left-1/2 w-[100vw] -mt-[13vw] h-auto -translate-x-1/2" />
+      <OurTeamValuesForeground
+        className="absolute bottom-0 left-1/2 w-[160vw] h-auto -translate-x-1/2"
+        preserveAspectRatio="xMidYMid meet"
+      />
+
+      {/* Content container */}
+      <div
+        className={`relative z-20 flex flex-col items-center justify-center ${height} gap-6`}
+      >
+        <div className={`${isMobile ? "transform scale-[0.55]" : ""}`}>
+          {/* Title */}
+          <RibbonTitle text={"OUR VALUES"} />
+        </div>
+
+        {/* Values Section */}
+        <div
+          className={`flex ${flexDirection} justify-center ${gapSize ? gapSize : ""} max-w-6xl mx-auto`}
+        >
+          {/* Community */}
+          <div className="flex flex-col items-center text-center max-w-md">
+            <div className={`${iconSize} flex-shrink-0`}>
+              <ProjectStarIcon className="w-full h-auto" />
+            </div>
+            <div
+              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+            >
+              Community
+            </div>
+            <p
+              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+            >
+              Connect with fellow students and our partners in the tech
+              community. Make connections that will last a lifetime!
+            </p>
+          </div>
+
+          {/* Growth */}
+          <div className="flex flex-col items-center text-center max-w-md">
+            <div className={`${iconSize} flex-shrink-0`}>
+              <ProjectStarIcon className="w-full h-auto" />
+            </div>
+            <div
+              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+            >
+              Growth
+            </div>
+            <p
+              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+            >
+              Expand beyond your horizons and grow your current skill set in a
+              safe and supportive environment.
+            </p>
+          </div>
+
+          {/* Exploration */}
+          <div className="flex flex-col items-center text-center max-w-md">
+            <div className={`${iconSize} flex-shrink-0`}>
+              <ProjectStarIcon className="w-full h-auto" />
+            </div>
+            <div
+              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+            >
+              Exploration
+            </div>
+            <p
+              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+            >
+              Discover new ideas and technologies with the help of our
+              experienced mentors, or learn new skills at our beginner-friendly
+              workshops!
+            </p>
+          </div>
+        </div>
       </div>
-      <div className="w-full bg-[#E2D16D] flex flex-col justify-center mobile:py-5">
-        <Box>{ValuesExplorationContent}</Box>
-      </div>
-      <div className="w-full bg-[#5BB9B3] flex flex-col justify-center mobile:py-5">
-        <Box>{ValuesCommunityContent}</Box>
-      </div>
-      <div className="w-full bg-[#D5CAE7] flex flex-col justify-center mobile:py-5">
-        <Box>{ValuesGrowthContent}</Box>
-      </div>
     </div>
-    <div className="absolute z-10">{rocks}</div>
-  </div>
-);
-
-export default function Values(): React.ReactNode {
-  return content;
-}
-
-export function Box({
-  children,
-}: {
-  children: React.ReactNode;
-}): React.ReactNode {
-  return <div className="flex flex-col justify-center">{children}</div>;
+  );
 }
