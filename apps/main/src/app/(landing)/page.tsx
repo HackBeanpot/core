@@ -8,6 +8,7 @@ import {
   Testimonials,
   Apply,
   About,
+  SponsorFeature,
 } from "./Sections";
 import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
@@ -22,6 +23,7 @@ export default function Page(): JSX.Element {
       <NavBar />
       <Landing />
       <Apply />
+      <SponsorFeature/>
       <About />
       <Stats />
       <Values />

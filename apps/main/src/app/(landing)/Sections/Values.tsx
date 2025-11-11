@@ -67,11 +67,11 @@ export default function Values() {
 
         {/* Values Section */}
         <div
-          className={`flex ${flexDirection} items-center justify-center text-center ${gapSize ? gapSize : gapSize} max-w-6xl mx-auto`}
+          className={`flex ${flexDirection} justify-center ${gapSize ? gapSize : ""} max-w-6xl mx-auto`}
         >
           {/* Community */}
-          <div className="flex flex-col items-center max-w-md">
-            <div className={`${iconSize}`}>
+          <div className="flex flex-col items-center text-center max-w-md">
+            <div className={`${iconSize} flex-shrink-0`}>
               <ProjectStarIcon className="w-full h-auto" />
             </div>
             <div
@@ -88,8 +88,8 @@ export default function Values() {
           </div>
 
           {/* Growth */}
-          <div className="flex flex-col items-center max-w-md">
-            <div className={`${iconSize}`}>
+          <div className="flex flex-col items-center text-center max-w-md">
+            <div className={`${iconSize} flex-shrink-0`}>
               <ProjectStarIcon className="w-full h-auto" />
             </div>
             <div
@@ -106,17 +106,15 @@ export default function Values() {
           </div>
 
           {/* Exploration */}
-          <div className="flex flex-col items-center max-w-md">
-            <div className={`${iconSize}`}>
+          <div className="flex flex-col items-center text-center max-w-md">
+            <div className={`${iconSize} flex-shrink-0`}>
               <ProjectStarIcon className="w-full h-auto" />
             </div>
-
             <div
               className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
             >
               Exploration
             </div>
-
             <p
               className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
             >
