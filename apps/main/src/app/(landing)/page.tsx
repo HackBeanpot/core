@@ -12,6 +12,7 @@ import {
 import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
+import Volunteering from "./Sections/Volunteering";
 
 export default function Page(): JSX.Element {
   return (
@@ -23,6 +24,7 @@ export default function Page(): JSX.Element {
       <Landing />
       <Apply />
       <About />
+      <Volunteering />
       <Stats />
       <Values />
       <Keynote />

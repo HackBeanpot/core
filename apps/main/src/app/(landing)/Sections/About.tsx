@@ -6,7 +6,6 @@ import TeamPicture from "../../lib/Assets/AboutLandingAssets/teamPicture";
 import PurpleBear from "../../lib/Assets/AboutLandingAssets/purpleBear";
 import YellowBear from "../../lib/Assets/AboutLandingAssets/yellowBear";
 import RibbonTitle from "@repo/ui/RibbonTitle";
-import Background from "../../lib/Assets/AboutLandingAssets/background";
 import Dart from "../../lib/Assets/AboutLandingAssets/dart";
 import useDevice from "@util/hooks/useDevice";
 
@@ -18,14 +17,6 @@ export default function About(): React.ReactNode {
         isMobile ? "aspect-[1] top-16" : "aspect-[1.72/1]"
       }`}
     >
-      <Background
-        className="absolute w-full -bottom-24 -z-10"
-        style={{
-          transform: isMobile ? "scale(0.9)" : "scale(1)",
-          transformOrigin: "top center",
-        }}
-      />
-
       <RibbonTitle text="ABOUT US" />
 
       <div className="absolute top-[20%] left-[80%]">
