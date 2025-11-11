@@ -38,7 +38,7 @@ const RibbonTitle: React.FC<RibbonTitleProps> = ({ text }) => {
           x="50%"
           y="50%"
           fill="#F2E06F"
-          fontSize="43"
+          fontSize="42"
           fontFamily="NeulisNeue-Bold"
           fontWeight="bold"
           letterSpacing="0.05em"
