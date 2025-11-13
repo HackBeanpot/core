@@ -7,3 +7,5 @@ export { default as Apply } from "./Apply";
 export { default as Calendar } from "./Calendar";
 export { default as Testimonials } from "./Testimonials";
 export { default as About } from "./About";
+export { default as SponsorFeature } from "./SponsorFeature";
+export { default as Volunteering } from "./Volunteering";
