@@ -45,7 +45,7 @@ const appQuestions = [
   {
     question: "How can I be a mentor or judge?",
     answer:
-      "For more information about becoming a mentor or a judge, please refer to the information founded here: … If you are interested, please fill out this form.",
+      "For more information about becoming a mentor or a judge, please refer to the information found here: … If you are interested, please fill out this form.",
   },
   {
     question: "I applied! When will I hear back?",
