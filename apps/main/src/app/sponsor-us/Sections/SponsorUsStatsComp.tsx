@@ -23,7 +23,7 @@ export default function SponsorUsBenefitCardComp() {
     "relative w-full overflow-hidden",
     isDesktop && "h-[180vh]",
     isTablet && "h-[100vh] mobile-xl:h-[90vh]",
-    isMobile && "mobile:h-[70vh]"
+    isMobile && "mobile:h-[70vh]",
   );
 
   const ribbonStyles = clsx(
