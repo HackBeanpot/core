@@ -22,7 +22,7 @@ export default function Hero() {
             filterUnits="userSpaceOnUse"
             colorInterpolationFilters="sRGB"
           >
-            <feDropShadow dx="3" dy="4" stdDeviation="0.6" floodOpacity="0.6" />
+            <feDropShadow dx="0" dy="4" stdDeviation="0" floodOpacity="0.6" />
           </filter>
         </defs>
         <g
