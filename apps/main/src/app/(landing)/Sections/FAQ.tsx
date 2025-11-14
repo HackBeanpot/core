@@ -12,12 +12,12 @@ const generalQuestions = [
   {
     question: "When is the hackathon?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "HackBeanpot is a three day long event, beginning on Friday, February 13th and ending on Sunday, February 15th.",
   },
   {
     question: "Am I eligible to attend the hackathon?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "Yes! As long as you're an undergraduate student at an accredited college or university, you're eligible to attend! HackBeanpot is committed to creating a beginner-friendly and inclusive environment for all participants.",
   },
   {
     question: "Where is the hackathon?",
@@ -32,7 +32,7 @@ const generalQuestions = [
   {
     question: "How long is the hackathon?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "The hackathon runs over a weekend in February 2026, beginning on Friday evening and wrapping up by early Sunday afternoon. A detailed schedule will be shared as the event approaches.",
   },
 ];
 
@@ -40,12 +40,12 @@ const appQuestions = [
   {
     question: "How do I apply to HackBeanpot?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "Application for HackBeanpot 2026 is not yet available, but you can find it here once it is released: https://apply.hackbeanpot.com You can also follow us on LinkedIn or Instagram for the application opening announcement!",
   },
   {
     question: "How can I be a mentor or judge?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "For more information about becoming a mentor or a judge, please refer to the information founded here: … If you are interested, please fill out this form.",
   },
   {
     question: "I applied! When will I hear back?",
@@ -58,7 +58,7 @@ const logisticsQuestions = [
   {
     question: "Will my travel be reimbursed?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "Unfortunately, we’re not able to offer travel reimbursement for HackBeanpot 2026.",
   },
   {
     question: "How do I find a team?",
@@ -68,12 +68,12 @@ const logisticsQuestions = [
   {
     question: "How do teams work?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "Teams can be formed in two ways: either before the event through the application process or during the first day of the hackathon. If you don’t have a team when you arrive, we’ll host team formation activities to help you find collaborators!",
   },
   {
     question: "What are the prizes this year?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "Prizes will be awarded to teams that win in specific prize categories. While we’re keeping the exact prizes under wraps for now, they’ll be fun and aligned with the associated prize category.",
   },
   {
     question: "Will there be overnight acccommodations?",
@@ -83,12 +83,12 @@ const logisticsQuestions = [
   {
     question: "Will food be provided?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "Yes! Dinner and Lunch meals will be provided for the duration of the hackathon. Light breakfast options will also be available on Saturday and Sunday.",
   },
   {
     question: "Does my project have to be carnival themed?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "Not at all! While we encourage teams to get creative and incorporate this year’s carnival theme, it’s entirely optional. Projects will still be fully eligible for judging regardless of theme.",
   },
 ];
 
