@@ -18,14 +18,14 @@ export default function Landing(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 overflow-hidden">
       <div
-        className={`relative w-full ${
+        className={`relative w-full overflow-hidden ${
           isMobile ? "aspect-[1]" : "aspect-[1.72/1]"
         }`}
       >
         <HeroLandingBackground
-          className="w-full h-auto"
+          className="w-full h-auto overflow-hidden"
           style={{
             transform: isMobile ? "scale(2.5)" : "scale(1)",
             transformOrigin: "top center",
@@ -34,7 +34,7 @@ export default function Landing(): React.ReactNode {
 
         {/* TODO: Remove if we are not MLH */}
         <MLHLogo
-          className={`absolute top-0 left-0  h-auto ${isMobile ? "w-[14vw]" : "w-[7vw]"}`}
+          className={`absolute top-0 left-0 h-auto ${isMobile ? "w-[14vw]" : "w-[7vw]"}`}
           style={{ transform: "translate(4vw, 0)" }}
         />
 
@@ -125,7 +125,7 @@ export default function Landing(): React.ReactNode {
         />
 
         <HeroLandingForeground
-          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-auto ${isMobile ? "w-[200vw]" : "w-[170vw]"}`}
+          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-auto ${isMobile ? "w-[200vw]" : "w-[170vw]" }`}
         />
       </div>
     </div>
