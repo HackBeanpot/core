@@ -76,7 +76,7 @@ const logisticsQuestions = [
       "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
   },
   {
-    question: "Will there be overnight acccommodations?",
+    question: "Will there be overnight accommodations?",
     answer:
       "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
   },

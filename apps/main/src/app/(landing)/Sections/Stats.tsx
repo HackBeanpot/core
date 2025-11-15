@@ -31,7 +31,7 @@ export default function Stats(): JSX.Element {
 
   return (
     <div
-      className="w-full bg-carouselCream flex justify-center"
+      className="w-full bg-carouselCream flex justify-center overflow-hidden"
       style={{ height: creamHeight }}
     >
       <div className="relative w-full h-full mx-auto">
