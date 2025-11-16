@@ -31,6 +31,11 @@ const teams = {
       url: "https://www.linkedin.com/in/alexchen04/",
     },
     {
+      name: "Angie Che",
+      src: "/headshots/tech/Sophia.png",
+      url: "https://www.linkedin.com/in/angie-che-b2398529a/",
+    },
+    {
       name: "Yumiko Chow",
       src: "/headshots/tech/Yumi.png",
       url: "https://www.linkedin.com/in/yumiko-chow/",
@@ -41,25 +46,30 @@ const teams = {
       url: "https://www.linkedin.com/in/alexandra-hu",
     },
     {
-      name: "Aditya Pathak",
-      src: "/headshots/tech/Aditya.png",
-      url: "https://www.linkedin.com/in/aditya-pathak-499962279/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    },
-    {
       name: "Khushi Khan",
       src: "/headshots/tech/Khushi.png",
       url: "https://www.linkedin.com/in/khushi-khan",
     },
     {
+      name: "Roslyn Maloney",
+      src: "/headshots/tech/Roslyn.png",
+      url: "https://www.linkedin.com/in/roslyn-maloney-nustudent/",
+    },
+    {
+      name: "Aditya Pathak",
+      src: "/headshots/tech/Aditya.png",
+      url: "https://www.linkedin.com/in/aditya-pathak-499962279/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    },
+    {
+      name: "Veronica Song",
+      src: "/headshots/tech/Veronica.png",
+      url: "https://www.linkedin.com/in/veronica-song/",
+    },
+    {
       name: "Sophia Yang",
       src: "/headshots/tech/Sophia.png",
       url: "https://www.linkedin.com/in/sophia-yang-nu/",
-    },
-    {
-      name: "Angie Che",
-      src: "/headshots/tech/Angie.png",
-      url: "https://www.linkedin.com/in/angie-che-b2398529a/",
-    },
+    }
   ],
   Design: [
     {
