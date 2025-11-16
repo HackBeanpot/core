@@ -15,16 +15,23 @@ import JoinCoreBackground from "../../lib/Assets/SVG/OurTeamAssets/JoinCoreBackg
  */
 const Sock = () => {
   return (
-    <div
-      className="relative w-full z-10 flex items-center justify-center overflow-hidden
-      mobile:min-h-[400px] tablet:min-h-[500px] desktop:min-h-[600px]"
-    >
-      <div className="absolute">
-        <JoinCoreBackground preserveAspectRatio="none"/>
+    <div className="relative w-full overflow-hidden pb-[33%]">
+      <div className="absolute inset-0 w-full h-full">
+        <JoinCoreBackground
+          className="w-full h-full"
+          preserveAspectRatio="none"
+        />
       </div>
-      <Card />
+
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Card />
+      </div>
     </div>
   );
 };
 
 export default Sock;
+
+
+
+

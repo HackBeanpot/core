@@ -8,7 +8,7 @@ import Hero from "../lib/Assets/SVG/OurTeamAssets/hero";
 
 export default function Page(): JSX.Element {
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col">
       <NavBar />
       <Hero />
       <Teams />
