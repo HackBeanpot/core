@@ -1,73 +1,72 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import Train from "./Train";
-import TrainTracks from "./TestimonialAssets/TrainTracks";
 import Button from "./Button";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import useDevice from "@repo/util/hooks/useDevice";
 // import clsx from "clsx";
 
-const deviceBounds = [
-  { leftBound: 0, rightBound: 1400, threshold: 500 }, // isMobile
-  { leftBound: 0, rightBound: 1400, threshold: 600 }, // isTablet
-  { leftBound: 0, rightBound: 1400, threshold: 650 }, // isDesktop
-];
-
 export default function TestimonialTrain() {
-  const { isMobile, isTablet } = useDevice();
-  const [pixelPos, setPixelPos] = useState(1400);
-  const [boundsID, setBoundsID] = useState(2);
+  const numCarts = 4;
+  const [currCart, setCurrCart] = useState(1);
+  const startingPos = -25.6;
 
-  const currBounds = deviceBounds[boundsID];
+  const { isDesktop } = useDevice();
+  const [pixelPos, setPixelPos] = useState(startingPos);
 
-  useEffect(() => {
-    setBoundsID(isMobile ? 0 : isTablet ? 1 : 2);
-  }, [isMobile, isTablet]);
+  const currBounds = { leftBound: 0, rightBound: 10000, threshold: 21.7 };
 
   const handleLeftClick = useCallback(() => {
-    if (pixelPos > currBounds.leftBound + currBounds.threshold) {
-      setPixelPos((prev) => prev - currBounds.threshold);
+    if (currCart < numCarts) {
+      setPixelPos((prev) => prev + currBounds.threshold);
+      setCurrCart((prev) => prev + 1);
     }
   }, [pixelPos, currBounds]);
 
   const handleRightClick = useCallback(() => {
-    if (pixelPos < currBounds.rightBound) {
-      setPixelPos((prev) => prev + currBounds.threshold);
-    }
-    if (pixelPos < currBounds.rightBound) {
-      setPixelPos((prev) => prev + currBounds.threshold);
+    if (currCart > 1) {
+      setPixelPos((prev) => prev - currBounds.threshold);
+      setCurrCart((prev) => prev - 1);
     }
   }, [pixelPos, currBounds]);
 
   return (
-    <div className="relative w-full h-[400px] bg-tomato">
-      <div className="relative overflow-hidden w-screen z-10 p-10">
+    <div
+      className={`relative w-full ${isDesktop ? "h-[45vw]" : "h-[60vw]"} bg-mossGreen`}
+    >
+      <div
+        className={`relative ${isDesktop ? "w-[300vw]" : "w-[400vw]"} h-full z-10 p-[3vw]`}
+      >
         <Train
-          className={`h-full transition-transform ease-in-out duration-300`}
-          style={{ transform: `translateX(-${pixelPos}px)` }}
+          className={`transition-transform ease-in-out duration-300`}
+          style={{ transform: `translateX(${pixelPos}%)` }}
         />
       </div>
-      <div className="absolute w-full z-20 h-1/2 self-center">
-        <div className="flex flex-row items-center justify-center gap-[550px]">
+      <div className="absolute w-full z-20 top-1/2 trans self-center">
+        <div
+          className={`
+              absolute
+              flex flex-row items-center justify-center
+              ${isDesktop ? "gap-[65vw]" : "gap-[80vw]"}
+              w-full
+              h-auto`}
+        >
           <Button
             color="ribbonBlue"
             textColor="starlightBlue"
-            icon={<IoIosArrowBack size={28} />}
+            icon={<IoIosArrowBack size={"4vw"} />}
             removePadding={true}
             onClick={handleLeftClick}
           />
           <Button
             color="ribbonBlue"
             textColor="starlightBlue"
-            icon={<IoIosArrowForward size={28} />}
+            icon={<IoIosArrowForward size={"4vw"} />}
             removePadding={true}
             onClick={handleRightClick}
           />
         </div>
-      </div>
-      <div className="absolute w-full z-0 bottom-10">
-        <TrainTracks />
       </div>
     </div>
   );

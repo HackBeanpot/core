@@ -1,7 +1,7 @@
 import React from "react";
 import type { SVGProps } from "react";
 
-const LeftBush = (props: SVGProps<SVGSVGElement>) => (
+const TestimonialLeftBush = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={196}
@@ -23,4 +23,4 @@ const LeftBush = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
-export default LeftBush;
+export default TestimonialLeftBush;

@@ -1,15 +1,15 @@
 import {
-  // Stats,
-  // Values,
-  // FAQSection,
-  // Landing,
-  // Keynote,
-  // Calendar,
-  // Testimonials,
-  // Apply,
+  Stats,
+  Values,
+  FAQSection,
+  Landing,
+  Keynote,
+  Calendar,
+  Testimonials,
+  Apply,
   About,
 } from "./Sections";
-import { Footer } from "../lib/Components";
+import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
 
@@ -19,16 +19,16 @@ export default function Page(): JSX.Element {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {/* <NavBar />
+      <NavBar />
       <Landing />
       <Apply />
-      <Stats /> */}
       <About />
-      {/* <Values />
+      <Stats />
+      <Values />
       <Keynote />
       <Calendar />
       <Testimonials />
-      <FAQSection /> */}
+      <FAQSection />
       <Footer />
     </main>
   );
