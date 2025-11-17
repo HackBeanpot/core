@@ -19,7 +19,7 @@ export default function Keynote(): React.ReactNode {
 
   return (
     <div
-      className={`relative w-full ${
+      className={`relative w-full overflow-hidden ${
         isMobile
           ? "aspect-[1/1.6]"
           : isTablet
@@ -107,7 +107,7 @@ export default function Keynote(): React.ReactNode {
       </div>
 
       <KeynoteSpeakerForegroundWaves
-        className={`absolute w-[200vw] h-auto bottom-0`}
+        className={`absolute w-[200vw] h-auto bottom-0 overflow-hidden`}
       ></KeynoteSpeakerForegroundWaves>
     </div>
 
