@@ -12,7 +12,7 @@ import useDevice from "@util/hooks/useDevice";
 export default function About(): React.ReactNode {
   const { isMobile } = useDevice();
   return (
-    <div className="relative w-full my-10">
+    <div className="relative w-full my-10 overflow-hidden">
       <div className={`${isMobile ? "transform scale-[0.85]" : ""}`}>
         <RibbonTitle text="ABOUT US" />
       </div>
@@ -23,7 +23,7 @@ export default function About(): React.ReactNode {
 
       <div className="mt-[15vh] mobile:mt-20 flex desktop:flex-row mobile:flex-col mobile:items-center items-start justify-center scale-125">
         <div className="relative flex  mobile:w-3/5">
-          <p className="mobile:text-xs font-DMSans-Regular absolute h-full mobile:p-12 desktop:py-20 desktop:px-16 desktop-xl:py-20 desktop-xl:px-16 self-center">
+          <p className="text-charcoalFogDark mobile:text-xs font-DMSans-Regular absolute h-full mobile:p-12 desktop:py-20 desktop:px-16 desktop-xl:py-20 desktop-xl:px-16 self-center">
             We&apos;re a non-profit organization in the Boston area that
             organizes an annual undergraduate hackathon. Our goal is to expand
             and nurture the hacker culture that exists in Boston and the

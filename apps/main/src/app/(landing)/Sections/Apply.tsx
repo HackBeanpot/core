@@ -7,9 +7,9 @@ import Button from "@repo/ui/Button";
 
 export default function Apply(): React.ReactNode {
   return (
-    <div className="flex flex-col justify-center items-center bg-canopyGreen h-[30vh] gap-2">
-      <h3 className="font-NeulisNeue-Bold text-center text-3xl text-black">
-        Applications open November 13th!
+    <div className="flex flex-col justify-center items-center bg-canopyGreen h-[30vh] gap-2 overflow-hidden">
+      <h3 className="font-NeulisNeue-Bold text-center text-3xl text-charcoalFogDark">
+        Applications are now live!
       </h3>
       <p className="font-DMSans-Regular text-charcoalFog mb-1">
         Apply by January 10th, 2026.

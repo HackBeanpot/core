@@ -51,7 +51,7 @@ const logisticsQuestions = [
       "Prizes will be awarded to teams that win in specific prize categories. While we’re keeping the exact prizes under wraps for now, they’ll be fun and aligned with the associated prize category.",
   },
   {
-    question: "Will there be overnight acccommodations?",
+    question: "Will there be overnight accommodations?",
     answer:
       "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
   },

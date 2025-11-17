@@ -1,9 +1,16 @@
 {
   "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
-    "plugins": [{ "name": "next" }],
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "@util/*": ["../../packages/util/src/*"]
+      "@util/*": [
+        "../../packages/util/src/*"
+      ]
     }
   },
   "include": [
@@ -13,5 +20,7 @@
     ".next/types/**/*.ts",
     "../../packages/ui/src/Placeholder.tsx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
