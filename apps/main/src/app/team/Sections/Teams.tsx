@@ -93,7 +93,7 @@ const teams = {
       url: "https://www.linkedin.com/in/yurika-kan/",
     },
   ],
-  "Socials & Outreach": [
+  "Socials&Outreach": [
     {
       name: "Megan Lai",
       src: "/headshots/socials/Megan.png",
@@ -202,7 +202,7 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
   const { isMobile, isTablet, isDesktop } = useDevice();
   const ribbonStyles = clsx(
     "",
-    isMobile && "scale-95",
+    isMobile && "transform scale-[0.55]",
     isTablet && "scale-75",
     isDesktop && "scale-50",
   );
@@ -211,7 +211,7 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
       <div className={ribbonStyles}>
         <RibbonTitle text={team.toUpperCase()} />
       </div>
-      <div className="-mt-8 mobile:mt-2 mobile-xl:mt-2 mobile:mb-4 mobile-xl:mb-4 w-1/2 mx-auto gap-6 flex flex-wrap justify-center items-center">
+      <div className="mb-8 mobile:mt-2 mobile-xl:mt-2 mobile:mb-4 mobile-xl:mb-4 w-1/2 mx-auto gap-6 flex flex-wrap justify-center items-center">
         {members.map((member) => (
           <Icon key={member.name} {...member} />
         ))}

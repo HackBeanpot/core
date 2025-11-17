@@ -3,7 +3,7 @@ import HeroBackground from "./heroBackground";
 
 export default function Hero() {
   return (
-    <section className="relative w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden -mt-[1vh]">
       <HeroBackground />
 
       <svg
