@@ -46,11 +46,10 @@ export default function Page(): JSX.Element {
   return (
     <main className="flex flex-col items-center min-h-screen relative">
       <NavBar />
-
-      <div className="relative w-full">
+      <div className="relative w-full mobile:mb-[250vw] tablet:mb-[20vw] desktop-xl:mb-[0vw] desktop:mb-[0vw]">
         {/* Background SVG */}
         <SponsorBackground
-          className="w-full h-auto"
+          className="w-full h-auto -mb-[1vh]"
           style={{
             transform: `scaleY(${bgScale})`,
             transformOrigin: "top",
@@ -118,7 +117,9 @@ export default function Page(): JSX.Element {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="w-full items center tablet:-mt-[20vw]">
+        <Footer />
+      </div>
     </main>
   );
 }
