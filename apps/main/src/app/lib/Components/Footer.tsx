@@ -80,7 +80,7 @@ const Footer = () => {
   );
 
   const mailListInputStyles = clsx(
-    "flex flex-row gap-3 w-full justify-between",
+    "font-DMSans-Regular mt-2 flex flex-row gap-3 w-full justify-between",
     isMobile && "flex-col",
   );
 
@@ -92,12 +92,16 @@ const Footer = () => {
           color="cottonCandyCoral"
           textColor="white"
           onClick={handleBackToTop}
+          size="medium"
           icon={<FaArrowUp />}
         />
         <SocialsButtonsRow></SocialsButtonsRow>
       </div>
       <div className={mailListSectionStyles}>
-        <p className="font-medium text-white text-xl">
+        <h3 className="font-NeulisNeue-Bold font-medium text-white text-2xl">
+          Join our mailing list
+        </h3>
+        <p className="font-DMSans-Regular font-medium text-white text-xl">
           Stay up to date with HackBeanpot by signing up for our mailing list!
         </p>
         <div className={mailListInputStyles}>
@@ -112,6 +116,7 @@ const Footer = () => {
               text="Submit"
               color="marigoldYellow"
               textColor="charcoalFog"
+              size="medium"
               onClick={handleSubmit}
             />
           </div>
