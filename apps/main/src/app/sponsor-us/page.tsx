@@ -8,12 +8,11 @@ import { Footer, NavBar } from "../lib/Components";
 
 const SponsorUsPage = () => {
   return (
-    <div className="relative z-10 w-full">
+    <div className="relative z-10 w-full overflow-hidden">
       <NavBar />
       <SponsorTop />
       <SponsorUsStatsComp />
       <BenefitsSection />
-
       <Footer />
     </div>
   );

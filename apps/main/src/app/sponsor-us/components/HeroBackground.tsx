@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopBackground = () => (
+const HeroBackground = () => (
   <svg
     width={2000}
     height={879}
@@ -408,4 +408,4 @@ const TopBackground = () => (
     </defs>
   </svg>
 );
-export default TopBackground;
+export default HeroBackground;
