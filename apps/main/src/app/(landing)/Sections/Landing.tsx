@@ -25,7 +25,7 @@ export default function Landing(): React.ReactNode {
         }`}
       >
         <HeroLandingBackground
-          className="w-full h-auto overflow-hidden"
+          className={`w-full ${isMobile ? "h-auto" : "min-h-screen"}`}
           style={{
             transform: isMobile ? "scale(2.5)" : "scale(1)",
             transformOrigin: "top center",
@@ -66,7 +66,7 @@ export default function Landing(): React.ReactNode {
         />
 
         <p
-          className={`font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : ""}`}
+          className={`font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : "text-[1vw]"}`}
           style={{
             transform: isMobile
               ? "translate(-45vw, 37vw)"
@@ -76,11 +76,18 @@ export default function Landing(): React.ReactNode {
           Brought to you by{" "}
         </p>
 
-        <Image className="absolute top-0 right-0 h-auto" alt="Amazon Logo" src="/sponsor-logos/amazon.svg" width={50} height={50} style={{
+        <Image
+          className={`absolute top-0 right-0 h-auto ${isMobile ? "" : "w-[3vw]"}`}
+          alt="Amazon Logo"
+          src="/sponsor-logos/amazon.svg"
+          width={50}
+          height={50}
+          style={{
             transform: isMobile
               ? "translate(-30vw, 38vw)"
               : "translate(-44vw, 15.5vw)",
-          }}/> 
+          }}
+        />
 
         {/* TODO: elements to be animated */}
         <Balloon
