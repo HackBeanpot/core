@@ -2,16 +2,16 @@
 
 import React from "react";
 
+// TODO: Fix imports
 import HeroLandingForeground from "../../lib/Assets/SVG/Hero/LandingAssets/HeroLandingForeground.tsx";
 import HeroLandingBackground from "../../lib/Assets/SVG/Hero/LandingAssets/HeroLandingBackground.tsx";
-import YearSign from "../../lib/Assets/SVG/Hero/LandingAssets/YearSign.tsx";
 import Balloon from "../../lib/Assets/SVG/Hero/LandingAssets/Balloon.tsx";
 import RollerCoaster from "../../lib/Assets/SVG/Hero/LandingAssets/RollerCoaster.tsx";
 import FerrisWheel from "../../lib/Assets/SVG/Hero/LandingAssets/FerrisWheel.tsx";
 import MLHLogo from "../../../../../../packages/ui/src/Logos/MLHLogo.tsx";
 import SocialsButtonsRow from "../../../../../../packages/ui/src/SocialsButtonsRow.tsx";
 import HBPLogo from "../../lib/Assets/SVG/Hero/LandingAssets/HBPLogo.tsx";
-
+import Image from "next/image";
 import useDevice from "@util/hooks/useDevice.ts";
 
 export default function Landing(): React.ReactNode {
@@ -25,7 +25,7 @@ export default function Landing(): React.ReactNode {
         }`}
       >
         <HeroLandingBackground
-          className="w-full h-auto overflow-hidden"
+          className={`w-full ${isMobile ? "h-auto" : "min-h-screen"}`}
           style={{
             transform: isMobile ? "scale(2.5)" : "scale(1)",
             transformOrigin: "top center",
@@ -65,12 +65,27 @@ export default function Landing(): React.ReactNode {
       ${isMobile ? "top-[25%] -translate-x-1/2 w-[60vw]" : "top-[12%] -translate-x-1/2 w-[45vw]"}`}
         />
 
-        <YearSign
-          className={`absolute top-0 right-0 h-auto ${isMobile ? "w-[20vw]" : "w-[10vw]"}`}
+        <p
+          className={`font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : "text-[1vw]"}`}
           style={{
             transform: isMobile
-              ? "translate(-15vw, 35vw)"
-              : "translate(-26vw, 14vw)",
+              ? "translate(-45vw, 37vw)"
+              : "translate(-48vw, 15vw)",
+          }}
+        >
+          Brought to you by{" "}
+        </p>
+
+        <Image
+          className={`absolute top-0 right-0 h-auto ${isMobile ? "" : "w-[3vw]"}`}
+          alt="Amazon Logo"
+          src="/sponsor-logos/amazon.svg"
+          width={50}
+          height={50}
+          style={{
+            transform: isMobile
+              ? "translate(-30vw, 38vw)"
+              : "translate(-44vw, 15.5vw)",
           }}
         />
 
@@ -125,7 +140,7 @@ export default function Landing(): React.ReactNode {
         />
 
         <HeroLandingForeground
-          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-auto ${isMobile ? "w-[200vw]" : "w-[170vw]" }`}
+          className={`absolute -bottom-6 left-1/2 -translate-x-1/2 h-auto ${isMobile ? "w-[200vw]" : "w-[170vw]"}`}
         />
       </div>
     </div>
