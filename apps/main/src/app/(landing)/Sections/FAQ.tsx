@@ -20,16 +20,6 @@ const generalQuestions = [
       "Yes! As long as you're an undergraduate student at an accredited college or university, you're eligible to attend! HackBeanpot is committed to creating a beginner-friendly and inclusive environment for all participants.",
   },
   {
-    question: "Where is the hackathon?",
-    answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
-  },
-  {
-    question: "Is this an in-person or virtual hackathon?",
-    answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
-  },
-  {
     question: "How long is the hackathon?",
     answer:
       "The hackathon runs over a weekend in February 2026, beginning on Friday evening and wrapping up by early Sunday afternoon. A detailed schedule will be shared as the event approaches.",
@@ -38,19 +28,9 @@ const generalQuestions = [
 
 const appQuestions = [
   {
-    question: "How do I apply to HackBeanpot?",
-    answer:
-      "Application for HackBeanpot 2026 is not yet available, but you can find it here once it is released: https://apply.hackbeanpot.com You can also follow us on LinkedIn or Instagram for the application opening announcement!",
-  },
-  {
     question: "How can I be a mentor or judge?",
     answer:
       "For more information about becoming a mentor or a judge, please refer to the information found here: … If you are interested, please fill out this form.",
-  },
-  {
-    question: "I applied! When will I hear back?",
-    answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
   },
 ];
 
@@ -59,11 +39,6 @@ const logisticsQuestions = [
     question: "Will my travel be reimbursed?",
     answer:
       "Unfortunately, we’re not able to offer travel reimbursement for HackBeanpot 2026.",
-  },
-  {
-    question: "How do I find a team?",
-    answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
   },
   {
     question: "How do teams work?",
