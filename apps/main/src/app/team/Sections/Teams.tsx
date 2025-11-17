@@ -1,160 +1,231 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import Image from "next/image";
-import LinkedInLogo from "@repo/ui/LinkedInLogo";
-import useWindowSize from "@repo/util/hooks/useWindowSize";
-import OurTeamDropdown from "../OurTeamDropdown";
+import React from "react";
+import Icon from "../components/Icon";
+import RibbonTitle from "@repo/ui/RibbonTitle";
+import useDevice from "@util/hooks/useDevice";
+import clsx from "clsx";
 
-type HeadshotProps = {
-  name: string;
-  src: string;
-};
+const teams = {
+  Directors: [
+    {
+      name: "Emma Vonbuelow",
+      src: "/headshots/directors/Emma.jpg",
+      url: "https://www.linkedin.com/in/emma-von/",
+    },
+    {
+      name: "Rachel Pao",
+      src: "/headshots/directors/Rachel.png",
+      url: "https://www.linkedin.com/in/rachelpaocyber/",
+    },
+  ],
+  Tech: [
+    {
+      name: "Alina Gonzalez",
+      src: "/headshots/tech/Alina.png",
+      url: "www.linkedin.com/in/agonzalez26",
+    },
+    {
+      name: "Alexander Chen",
+      src: "/headshots/tech/Alex.png",
+      url: "https://www.linkedin.com/in/alexchen04/",
+    },
+    {
+      name: "Yumiko Chow",
+      src: "/headshots/tech/Yumi.png",
+      url: "https://www.linkedin.com/in/yumiko-chow/",
+    },
+    {
+      name: "Alexandra Hu",
+      src: "/headshots/tech/Ally.png",
+      url: "https://www.linkedin.com/in/alexandra-hu",
+    },
+    {
+      name: "Aditya Pathak",
+      src: "/headshots/tech/Aditya.png",
+      url: "https://www.linkedin.com/in/aditya-pathak-499962279/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    },
+    {
+      name: "Khushi Khan",
+      src: "/headshots/tech/Khushi.png",
+      url: "https://www.linkedin.com/in/khushi-khan",
+    },
+    {
+      name: "Sophia Yang",
+      src: "/headshots/tech/Sophia.png",
+      url: "https://www.linkedin.com/in/sophia-yang-nu/",
+    },
+    {
+      name: "Angie Che",
+      src: "/headshots/tech/Angie.png",
+      url: "https://www.linkedin.com/in/angie-che-b2398529a/",
+    },
+  ],
+  Design: [
+    {
+      name: "Zahra Wibisana",
+      src: "/headshots/design/Zahra.png",
+      url: "https://www.linkedin.com/in/zahra-wibisana-0b0bb2222/",
+    },
+    {
+      name: "Isabella Borda",
+      src: "/headshots/design/Isabella.png",
+      url: "https://www.linkedin.com/in/isabella-borda-03537b306/",
+    },
+    {
+      name: "Annabelle Chung",
+      src: "/headshots/design/Annabelle.png",
+      url: "https://www.linkedin.com/in/annabelle-chung-/",
+    },
+    {
+      name: "Cole Abrams",
+      src: "/headshots/design/Cole.png",
+      url: "https://www.linkedin.com/in/coleabrams/",
+    },
+    {
+      name: "Lucy Liu",
+      src: "/headshots/design/Lucy.png",
+      url: "https://www.linkedin.com/in/xinninglucyliu/",
+    },
+    {
+      name: "Yurika Kan",
+      src: "/headshots/design/Yurika.png",
+      url: "https://www.linkedin.com/in/yurika-kan/",
+    },
+  ],
+  "Socials&Outreach": [
+    {
+      name: "Megan Lai",
+      src: "/headshots/socials/Megan.png",
+      url: "https://www.linkedin.com/in/meganplai/",
+    },
+    {
+      name: "Nidhi Bendre",
+      src: "/headshots/socials/Nidhi.png",
+      url: "https://www.linkedin.com/in/nidhi-bendre-928423218/",
+    },
+    {
+      name: "Dalton Burkhart",
+      src: "/headshots/socials/Dalton.png",
+      url: "http://www.linkedin.com/in/dalton-burkhart",
+    },
+    {
+      name: "Katya Luch",
+      src: "/headshots/socials/Katya.png",
+      url: "https://www.linkedin.com/in/katya-luch/",
+    },
+    {
+      name: "Rai Makaraju",
+      src: "/headshots/socials/Rai.png",
+      url: "https://www.linkedin.com/in/ria-makaraju-57b64b343/",
+    },
+    {
+      name: "Sukira Harris",
+      src: "/headshots/socials/Sukira.png",
+      url: "http://www.linkedin.com/in/sukira-harris-9aba9b2a1",
+    },
+    {
+      name: "Susan Chen",
+      src: "/headshots/socials/Susan.png",
+      url: "http://www.linkedin.com/in/susan-42-chen",
+    },
+  ],
+  Sponsorship: [
+    {
+      name: "Jesse James",
+      src: "/headshots/sponsorship/Jesse.png",
+      url: "https://www.linkedin.com/in/jessejamescs/",
+    },
+    {
+      name: "Sammi Chen",
+      src: "/headshots/sponsorship/Sammi.png",
+      url: "https://www.linkedin.com/in/chensammi/",
+    },
+    {
+      name: "Aaryan Jain",
+      src: "/headshots/sponsorship/Aaryan.png",
+      url: "https://www.linkedin.com/aaryanja",
+    },
+    {
+      name: "Johny Sargent",
+      src: "/headshots/sponsorship/Johny.png",
+      url: "https://www.linkedin.com/in/john--sargent/",
+    },
+    {
+      name: "Jolin Yang",
+      src: "/headshots/sponsorship/Jolin.png",
+      url: "https://www.linkedin.com/in/jolin-yang-ba8241246/",
+    },
+    {
+      name: "Livia Cutra",
+      src: "/headshots/sponsorship/Livia.png",
+      url: "http://www.linkedin.com/in/liviacutra",
+    },
+  ],
+  Operations: [
+    {
+      name: "Amy Wang",
+      src: "/headshots/operations/Amy.png",
+      url: "https://www.linkedin.com/in/amy-wang-17b526248/",
+    },
+    {
+      name: "Zoe Gao",
+      src: "/headshots/operations/Zoe.png",
+      url: "https://www.linkedin.com/in/zoe-gao-khoury",
+    },
+    {
+      name: "Nicole Ni",
+      src: "/headshots/operations/Nicole.png",
+      url: "https://www.linkedin.com/in/nicoleni22",
+    },
+    {
+      name: "Fanta Kébé",
+      src: "/headshots/operations/Fanta.png",
+      url: "https://www.linkedin.com/in/fantaa-kebe?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSKzRhbsvTIaBt8MSstJu3w%3D%3D",
+    },
+    {
+      name: "Nodoka Shibasaki",
+      src: "/headshots/operations/Nodoka.png",
+      url: "https://www.linkedin.com/in/nodoka2027/",
+    },
+  ],
+} as const;
 
+type TeamsType = typeof teams;
+type TeamName = keyof TeamsType;
 type TeamSectionsProps = {
-  team: keyof typeof teams;
+  team: TeamName;
 };
 
 const TeamSections = ({ team }: TeamSectionsProps) => {
+  const members = teams[team];
+  const { isMobile, isTablet, isDesktop } = useDevice();
+  const ribbonStyles = clsx(
+    "",
+    isMobile && "transform scale-[0.55]",
+    isTablet && "scale-75",
+    isDesktop && "scale-50",
+  );
   return (
-    <div className="mb-12 tablet:px-20">
-      <h2 className="text-2xl tablet:text-4xl text-black font-semibold font-GT-Walsheim-Regular mb-6 tablet:mb-4">
-        {team}
-      </h2>
-      <div className="grid grid-cols-2 tablet:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 tablet:gap-8 justify-items-center">
-        {teams[team].map((member) => (
-          <Headshot key={member.name} name={member.name} src={member.src} />
+    <div className="w-full">
+      <div className={ribbonStyles}>
+        <RibbonTitle text={team.toUpperCase()} />
+      </div>
+      <div className="mb-8 mobile:mt-2 mobile-xl:mt-2 mobile:mb-4 mobile-xl:mb-4 w-1/2 mx-auto gap-6 flex flex-wrap justify-center items-center">
+        {members.map((member) => (
+          <Icon key={member.name} {...member} />
         ))}
       </div>
     </div>
   );
 };
 
-const Headshot = ({ name, src }: HeadshotProps) => {
-  return (
-    <div className="flex flex-col w-full max-w-[140px] tablet:max-w-[250px]">
-      <Image
-        alt={name}
-        src={src}
-        width={400}
-        height={400}
-        className="rounded w-full h-auto aspect-square object-cover"
-      />
-      <div className="flex items-center font-semibold mt-3 text-sm tablet:text-lg">
-        <LinkedInLogo />
-        <span className="ml-2">{name}</span>
-      </div>
-    </div>
-  );
-};
-
-const teams = {
-  Directors: [
-    { name: "Mike Mundia", src: "/headshots/directors/mike.png" },
-    { name: "Lisa Jiang", src: "/headshots/directors/lisa.png" },
-  ],
-  Tech: [
-    { name: "John Sargent", src: "/headshots/tech/john.png" },
-    { name: "Nelson Dong", src: "/headshots/tech/nelson.png" },
-    { name: "Mandy Rodriques", src: "/headshots/tech/mandy.png" },
-    { name: "Aaryan Jain", src: "/headshots/tech/aaryan.png" },
-    { name: "Lucas Dunker", src: "/headshots/tech/lucas.png" },
-    { name: "Crystal Zhang", src: "/headshots/tech/crystal.png" },
-    { name: "Aretha Chen", src: "/headshots/tech/aretha.png" },
-    { name: "Alina Gonzalez", src: "/headshots/tech/alina.png" },
-    { name: "Alexander Chen", src: "/headshots/tech/alexander.png" },
-    { name: "Yumiko Chow", src: "/headshots/tech/yumiko.png" },
-  ],
-  Design: [
-    { name: "Audrey Wong", src: "/headshots/design/audrey.png" },
-    { name: "Zahra Wibisana", src: "/headshots/design/zahra.png" },
-    { name: "Trisha Garg", src: "/headshots/design/trisha.png" },
-    { name: "Isabella Borda", src: "/headshots/design/isabella.png" },
-    { name: "Annabelle Chung", src: "/headshots/design/annabelle.png" },
-  ],
-  Social: [
-    { name: "Emma Vonuelow", src: "/headshots/social/emma.png" },
-    { name: "Nidhi Bendre", src: "/headshots/social/nidhi.png" },
-    { name: "Megan Lai", src: "/headshots/social/megan.png" },
-    { name: "Nicole Ni", src: "/headshots/social/nicole.png" },
-  ],
-  Sponsorship: [
-    { name: "Luke Steimel", src: "/headshots/sponsorship/luke.png" },
-    { name: "Nidhi Pillai", src: "/headshots/sponsorship/nidhi.png" },
-    { name: "Sammi Chen", src: "/headshots/sponsorship/sammi.png" },
-    { name: "Harini Avula", src: "/headshots/sponsorship/harini.png" },
-    { name: "Swar Kewalia", src: "/headshots/sponsorship/swar.png" },
-    { name: "Tiffany Zheng", src: "/headshots/sponsorship/tiffany.png" },
-  ],
-  Operations: [
-    { name: "Katherine Zeng", src: "/headshots/operations/katherine.png" },
-    { name: "Alexandra Hu", src: "/headshots/operations/alexandra.png" },
-    { name: "Amy Wang", src: "/headshots/operations/amy.png" },
-    { name: "Zoe Gao", src: "/headshots/operations/zoe.png" },
-    { name: "Rachel Pao", src: "/headshots/operations/rachel.png" },
-    { name: "Tonatiuh Godinez", src: "/headshots/operations/tonatiuh.png" },
-    { name: "Jalen Wu", src: "/headshots/operations/jalen.png" },
-  ],
-};
-
 const Teams = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { height: windowHeight, width: windowWidth } = useWindowSize();
-  const [selectedTeam, setSelectedTeam] =
-    useState<keyof typeof teams>("Directors");
-
-  if (!windowHeight || !windowWidth) return null;
-
-  const handleTeamSelect = (team: keyof typeof teams) => {
-    setSelectedTeam(team);
-  };
-
-  const getTeamsToDisplay = () => {
-    return [[selectedTeam, teams[selectedTeam]]] as [
-      keyof typeof teams,
-      (typeof teams)[keyof typeof teams],
-    ][];
-  };
-
-  const getAllTeams = () => {
-    return Object.entries(teams) as [
-      keyof typeof teams,
-      (typeof teams)[keyof typeof teams],
-    ][];
-  };
-
-  const TeamsContent = () => {
-    return (
-      <div ref={ref} className="p-4 sm:p-[6vw] lg:p-[8vw]">
-        <div className="text-center mb-6 sm:mb-8 tablet:-mt-[10vh] -mt-[75vh] tablet:hidden">
-          <OurTeamDropdown
-            onTeamSelect={handleTeamSelect}
-            selectedTeam={selectedTeam}
-          />
-        </div>
-
-        <div className="tablet:hidden">
-          {getTeamsToDisplay().map(([teamName]) => (
-            <TeamSections key={teamName} team={teamName} />
-          ))}
-        </div>
-
-        <div className="hidden tablet:block">
-          {getAllTeams().map(([teamName]) => (
-            <TeamSections key={teamName} team={teamName} />
-          ))}
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <div className="relative w-full min-h-screen">
-      <div className="absolute inset-0 w-full h-full pointer-events-none z-0"></div>
-
-      <div className="relative z-10">
-        <TeamsContent />
-      </div>
+    <div className="mb-12">
+      {Object.entries(teams).map(([teamName]) => (
+        <TeamSections key={teamName} team={teamName as TeamName} />
+      ))}
     </div>
   );
 };
