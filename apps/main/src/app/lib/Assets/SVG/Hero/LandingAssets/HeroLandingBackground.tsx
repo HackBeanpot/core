@@ -7,6 +7,7 @@ const HeroLandingBackground = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 2000 720"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
     {...props}
   >
     <g clipPath="url(#clip0_2276_3222)">
