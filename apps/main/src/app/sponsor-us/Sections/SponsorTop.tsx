@@ -11,13 +11,46 @@ const SponsorTop = () => {
       <div className="absolute inset-0 -z-10">
         <TopBackground />
       </div>
-      <div
-        className="self-stretch text-center justify-center text-firecrackerRedDark 
-        font-Sancreek-Regular text-heading leading-[96px] 
-        text-shadow [text-stroke:2px_#F2E06F] [-webkit-text-stroke:2px_#F2E06F]"
+      <svg
+        className="inset-x-0 -translate-y-1/2 w-full pointer-events-none"
+        viewBox="0 0 1200 160"
+        preserveAspectRatio="xMaxYMin slice"
+        aria-hidden
       >
-        SPONSOR US
-      </div>
+        <defs>
+          <filter
+            id="titleShadow"
+            x="0"
+            y="0"
+            width="1200"
+            height="160"
+            filterUnits="userSpaceOnUse"
+            colorInterpolationFilters="sRGB"
+          >
+            <feDropShadow dx="0" dy="4" stdDeviation="0" floodOpacity="0.6" />
+          </filter>
+        </defs>
+        <g
+          stroke="#F2E06F"
+          strokeWidth="6"
+          strokeLinejoin="round"
+          paintOrder="stroke fill"
+          vectorEffect="non-scaling-stroke"
+          filter="url(#titleShadow)"
+        >
+          <text
+            x="50%"
+            y="57%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            className="font-Sancreek-Regular"
+            fontSize="80"
+            fill="#CC322D"
+          >
+            SPONSOR US
+          </text>
+        </g>
+      </svg>
 
       <div className="mobile:mt-10 desktop:mt-20 flex justify-center">
         <BoxWithText />
@@ -30,7 +63,10 @@ const SponsorTop = () => {
           color="firecrackerRed"
           size="medium"
           onClick={() =>
-            window.open("https://archive.hackbeanpot.com/", "_blank")
+            window.open(
+              "https://drive.google.com/file/d/1MNIE0Tgme3mkMVg26E9VZPQQ8i37-VqL/view?usp=sharing",
+              "_blank",
+            )
           }
         />
       </div>
