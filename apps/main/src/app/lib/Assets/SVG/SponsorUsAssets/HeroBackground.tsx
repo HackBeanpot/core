@@ -2,10 +2,9 @@ import React from "react";
 
 const HeroBackground = () => (
   <svg
-    width={2000}
-    height={879}
+    className="w-full h-[879px]"
     viewBox="0 0 2000 879"
-    fill="none"
+    preserveAspectRatio="xMidYMid slice"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g clipPath="url(#clip0_826_2890)">

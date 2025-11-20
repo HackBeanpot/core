@@ -2,14 +2,14 @@
 
 import React from "react";
 import Button from "@repo/ui/Button";
-import TopBackground from "../components/HeroBackground";
+import {HeroBackground} from "../../lib/Assets/SVG/index";
 import LandingCard from "../components/LandingCard";
 
-const SponsorTop = () => {
+const SponsorUsHero = () => {
   return (
     <div className="relative flex flex-col items-center mobile:pt-20 desktop:pt-40">
       <div className="absolute w-screen inset-0 -z-10">
-        <TopBackground />
+        <HeroBackground />
       </div>
       <svg
         className="inset-x-0 -translate-y-1/2 w-full pointer-events-none"
@@ -52,11 +52,11 @@ const SponsorTop = () => {
         </g>
       </svg>
 
-      <div className="mobile:mt-10 desktop:mt-20 flex justify-center">
+      <div className="flex justify-center mobile:mt-10 desktop:-mt-20 desktop-xl:-mt-20 desktop-2xl:-mt-20">
         <LandingCard />
       </div>
 
-      <div className="mobile:mt-10 desktop:mt-12 flex justify-center">
+      <div className="mobile:mt-5 desktop:mt-5 flex justify-center">
         <Button
           text="View Sponsorship Packet"
           textColor="white"
@@ -74,4 +74,4 @@ const SponsorTop = () => {
   );
 };
 
-export default SponsorTop;
+export default SponsorUsHero;
