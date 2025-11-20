@@ -82,13 +82,46 @@ export default function Page() {
       </div>
 
       <div className="relative z-10 max-w-screen flex flex-col items-center pt-14">
-        <div
-          className="self-stretch text-center justify-center text-firecrackerRedDark 
-        font-Sancreek-Regular text-heading leading-[96px] 
-        text-shadow [text-stroke:2px_#F2E06F] [-webkit-text-stroke:2px_#F2E06F]"
+        <svg
+          className=" inset-x-0 w-full pointer-events-none"
+          viewBox="0 0 650 100"
+          preserveAspectRatio="xMaxYMin slice"
+          aria-hidden
         >
-          2025 PROJECTS
-        </div>
+          <defs>
+            <filter
+              id="titleShadow"
+              x="0"
+              y="0"
+              width="1200"
+              height="160"
+              filterUnits="userSpaceOnUse"
+              colorInterpolationFilters="sRGB"
+            >
+              <feDropShadow dx="0" dy="4" stdDeviation="0" floodOpacity="0.6" />
+            </filter>
+          </defs>
+          <g
+            stroke="#F2E06F"
+            strokeWidth="6"
+            strokeLinejoin="round"
+            paintOrder="stroke fill"
+            vectorEffect="non-scaling-stroke"
+            filter="url(#titleShadow)"
+          >
+            <text
+              x="50%"
+              y="57%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              className="font-Sancreek-Regular"
+              fontSize="80"
+              fill="#CC322D"
+            >
+              2025 PROJECTS
+            </text>
+          </g>
+        </svg>
 
         {projectData.map((project, index) => (
           <div

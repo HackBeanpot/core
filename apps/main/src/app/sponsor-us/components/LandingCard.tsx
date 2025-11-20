@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Impact from "./ImpactSign.tsx";
+import Impact from "./ImpactSign";
 
 const LandingCard = () => {
   return (

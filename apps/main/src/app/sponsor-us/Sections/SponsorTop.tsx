@@ -2,8 +2,8 @@
 
 import React from "react";
 import Button from "@repo/ui/Button";
-import TopBackground from "../components/HeroBackground.tsx";
-import LandingCard from "../components/LandingCard.tsx";
+import TopBackground from "../components/HeroBackground";
+import LandingCard from "../components/LandingCard";
 
 const SponsorTop = () => {
   return (
@@ -11,14 +11,46 @@ const SponsorTop = () => {
       <div className="absolute w-screen inset-0 -z-10">
         <TopBackground />
       </div>
-      <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center">
-      <div
-        className="self-stretch text-center justify-center text-firecrackerRedDark 
-        font-Sancreek-Regular text-heading leading-[96px] 
-        text-shadow [text-stroke:2px_#F2E06F] [-webkit-text-stroke:2px_#F2E06F]"
+      <svg
+        className="inset-x-0 -translate-y-1/2 w-full pointer-events-none"
+        viewBox="0 0 1200 160"
+        preserveAspectRatio="xMaxYMin slice"
+        aria-hidden
       >
-        SPONSOR US
-      </div>
+        <defs>
+          <filter
+            id="titleShadow"
+            x="0"
+            y="0"
+            width="1200"
+            height="160"
+            filterUnits="userSpaceOnUse"
+            colorInterpolationFilters="sRGB"
+          >
+            <feDropShadow dx="0" dy="4" stdDeviation="0" floodOpacity="0.6" />
+          </filter>
+        </defs>
+        <g
+          stroke="#F2E06F"
+          strokeWidth="6"
+          strokeLinejoin="round"
+          paintOrder="stroke fill"
+          vectorEffect="non-scaling-stroke"
+          filter="url(#titleShadow)"
+        >
+          <text
+            x="50%"
+            y="57%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            className="font-Sancreek-Regular"
+            fontSize="80"
+            fill="#CC322D"
+          >
+            SPONSOR US
+          </text>
+        </g>
+      </svg>
 
       <div className="mobile:mt-10 desktop:mt-20 flex justify-center">
         <LandingCard />
@@ -38,7 +70,6 @@ const SponsorTop = () => {
           }
         />
       </div>
-    </div>
     </div>
   );
 };
