@@ -2,7 +2,7 @@
 
 import React from "react";
 import Button from "@repo/ui/Button";
-import {HeroBackground} from "../../lib/Assets/SVG/index";
+import { HeroBackground } from "../../lib/Assets/SVG/index";
 import LandingCard from "../components/LandingCard";
 
 const SponsorUsHero = () => {

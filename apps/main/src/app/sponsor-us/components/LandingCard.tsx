@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import {ImpactSign} from "../../lib/Assets/SVG/index";
+import { ImpactSign } from "../../lib/Assets/SVG/index";
 
 const LandingCard = () => {
   return (
