@@ -12,7 +12,7 @@ import useDevice from "@util/hooks/useDevice";
 export default function About(): React.ReactNode {
   const { isMobile } = useDevice();
   return (
-    <div className="relative w-full my-10 overflow-hidden">
+    <div className="relative w-full my-10">
       <div className={`${isMobile ? "transform scale-[0.85]" : ""}`}>
         <RibbonTitle text="ABOUT US" />
       </div>

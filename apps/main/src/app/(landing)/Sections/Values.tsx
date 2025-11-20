@@ -49,10 +49,10 @@ export default function Values() {
 
   return (
     <div
-      className={`relative w-full ${aspectRatio} bg-ribbonBlue overflow-hidden `}
+      className={`relative w-full overflow-x-hidden ${aspectRatio} bg-ribbonBlue  `}
     >
       {/* Foreground SVG Stuff (ballons, clouds, etc) */}
-      <CloudsTop className="absolute z-30 top-0 left-1/2 w-[100vw] -mt-[13vw] h-auto -translate-x-1/2" />
+      <CloudsTop className="absolute overflow-auto z-30 top-0 left-1/2 w-[100vw] -mt-[13vw] h-auto -translate-x-1/2" />
       <OurTeamValuesForeground
         className="absolute bottom-0 left-1/2 w-[160vw] h-auto -translate-x-1/2"
         preserveAspectRatio="xMidYMid meet"

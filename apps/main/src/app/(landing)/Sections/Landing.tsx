@@ -123,7 +123,7 @@ export default function Landing(): React.ReactNode {
         )}
 
         <RollerCoaster
-          className="absolute top-0 right-0 w-[30vw] h-auto"
+          className="absolute mt-4 top-0 right-0 w-[32vw] h-auto"
           style={{
             transform: isMobile
               ? "translate(2vw, 54vw)"
@@ -131,7 +131,7 @@ export default function Landing(): React.ReactNode {
           }}
         />
         <FerrisWheel
-          className="absolute top-0 left-0 w-[18vw] h-auto"
+          className="absolute top-0 left-0 w-[20vw] h-auto"
           style={{
             transform: isMobile
               ? "translate(5vw, 53vw)"
