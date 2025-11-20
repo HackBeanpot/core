@@ -125,7 +125,7 @@ export default function Landing(): React.ReactNode {
         />
 
         <HeroLandingForeground
-          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-auto ${isMobile ? "w-[200vw]" : "w-[170vw]" }`}
+          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-auto ${isMobile ? "w-[200vw]" : "w-[170vw]"}`}
         />
       </div>
     </div>

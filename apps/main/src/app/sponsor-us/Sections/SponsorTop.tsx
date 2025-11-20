@@ -3,14 +3,15 @@
 import React from "react";
 import Button from "@repo/ui/Button";
 import TopBackground from "../components/HeroBackground.tsx";
-import BoxWithText from "../components/LandingCard.tsx";
+import LandingCard from "../components/LandingCard.tsx";
 
 const SponsorTop = () => {
   return (
     <div className="relative flex flex-col items-center mobile:pt-20 desktop:pt-40">
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute w-screen inset-0 -z-10">
         <TopBackground />
       </div>
+      <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center">
       <div
         className="self-stretch text-center justify-center text-firecrackerRedDark 
         font-Sancreek-Regular text-heading leading-[96px] 
@@ -20,7 +21,7 @@ const SponsorTop = () => {
       </div>
 
       <div className="mobile:mt-10 desktop:mt-20 flex justify-center">
-        <BoxWithText />
+        <LandingCard />
       </div>
 
       <div className="mobile:mt-10 desktop:mt-12 flex justify-center">
@@ -37,6 +38,7 @@ const SponsorTop = () => {
           }
         />
       </div>
+    </div>
     </div>
   );
 };
