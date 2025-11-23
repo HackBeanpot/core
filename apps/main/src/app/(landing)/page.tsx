@@ -3,7 +3,7 @@ import {
   Values,
   FAQSection,
   Landing,
-  Keynote,
+  // Keynote,
   Calendar,
   Testimonials,
   Apply,
@@ -27,7 +27,7 @@ export default function Page(): JSX.Element {
       <Volunteering />
       <Stats />
       <Values />
-      <Keynote />
+      {/* <Keynote /> */}
       <Calendar />
       <Testimonials />
       <FAQSection />
