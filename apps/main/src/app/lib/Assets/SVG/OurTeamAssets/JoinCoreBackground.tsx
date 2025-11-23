@@ -4,11 +4,7 @@ type Props = { className?: string; preserveAspectRatio?: string };
 
 const JoinCoreBackground: React.FC<Props> = () => {
   return (
-    <svg
-      viewBox="0 0 2000 660"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 2000 660" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_1848_14695)">
         <rect width="2000" height="660" fill="#B8C952" />
         <mask
