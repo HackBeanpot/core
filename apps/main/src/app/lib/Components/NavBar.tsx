@@ -58,7 +58,7 @@ const NavBar = () => {
     <div className={outerDivStyles}>
       <div className={navBarStyles}>
         <LocalLink href={"/"}>
-          <Logo />
+          <Logo className="w-[10vw] min-w-[100px]" />
         </LocalLink>
 
         {!isDesktop && (
@@ -78,20 +78,26 @@ const NavBar = () => {
             <LocalLink
               key={item.pageName}
               href={item.link}
-              className="text-lg font-DMSans-Bold"
+              className="text-charcoalFogDark hover:text-charcoalFogLight text-[1vw] font-DMSans-Bold"
             >
               {item.pageName}
             </LocalLink>
           ))}
           <div className={buttonsStyles}>
             <LocalLink href={"/sponsor-us"}>
-              <Button textColor="white" text="Sponsor Us" size="medium" />
+              <Button
+                textColor="white"
+                text="Sponsor Us"
+                size="medium"
+                className="w-[5vw] min-w-[100px] text-[1vw]"
+              />
             </LocalLink>
             <Button
               textColor="white"
               text="Apply"
               color="firecrackerRedLight"
               size="medium"
+              className="w-[5vw] min-w-[100px] text-[1vw]"
               onClick={() => window.open("https://apply.hackbeanpot.com/")}
             />
           </div>

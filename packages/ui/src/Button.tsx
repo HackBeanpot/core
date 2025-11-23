@@ -9,6 +9,7 @@ interface ButtonProps {
   textColor?: string;
   size?: string;
   removePadding?: boolean;
+  className?: string;
 }
 
 const bgColorMap: Record<string, string> = {
@@ -40,12 +41,13 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   size = "small",
   removePadding,
+  className,
 }) => {
   const bgClass = bgColorMap[color] || bgColorMap["mossGreen"];
   const textColorClass = textColorMap[textColor];
   const sizeClass = sizeMap[size] || sizeMap["small"];
 
-  const buttonClasses = `font-DMSans-Bold flex items-center justify-center gap-1 rounded-full w-auto h-auto ${text ? "px-4" : "px-2"} py-2 ${bgClass} shadow-[inset_2px_3px_0_rgba(0,0,0,0.10)] ${textColorClass} ${sizeClass} text-base whitespace-nowrap transition-transform duration-200 ease-in-out hover:scale-105`;
+  const buttonClasses = `font-DMSans-Bold flex items-center justify-center gap-1 rounded-full w-auto h-auto ${text ? "px-4" : "px-2"} py-2 ${bgClass} shadow-[inset_2px_3px_0_rgba(0,0,0,0.10)] ${textColorClass} ${sizeClass} text-base whitespace-nowrap transition-transform duration-200 ease-in-out hover:scale-105 ${className ?? ""}`;
 
   return (
     <button className={buttonClasses} onClick={onClick}>
