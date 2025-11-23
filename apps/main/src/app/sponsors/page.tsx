@@ -62,7 +62,7 @@ export default function Page(): JSX.Element {
           style={{ paddingTop: "12vw", gap: "5vw" }}
         >
           {/* Sponsors text */}
-          <SponsorText/>
+          <SponsorText />
 
           {/* Tickets here */}
           <div className="relative w-full flex flex-col items-center">
