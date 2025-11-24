@@ -102,10 +102,10 @@ export default function SponsorUsTestimonials() {
         <SponsorUsCarousel items={testimonials.slice(0)} />
       </div>
       <Button
-        color="starlightBlueLight" 
-        icon={<IoIosArrowBack size={31} />} 
-        size="small" 
-        textColor="carouselCreamLight" 
+        color="starlightBlueLight"
+        icon={<IoIosArrowBack size={31} />}
+        size="small"
+        textColor="carouselCreamLight"
       />
       <TestimonialsFerrisWheel className="absolute top-[100%] size-full z-10 scale-[175%]" />
       <Button

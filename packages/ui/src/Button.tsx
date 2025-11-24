@@ -29,7 +29,7 @@ const sizeMap: Record<string, string> = {
 const textColorMap: Record<string, string> = {
   charcoalFog: "text-[#353131]",
   white: "text-white",
-  carouselCreamLight: "text-[#FFF5E5]"
+  carouselCreamLight: "text-[#FFF5E5]",
 };
 
 const Button: React.FC<ButtonProps> = ({
