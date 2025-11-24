@@ -58,6 +58,7 @@ const SponsorTicketBoothComp = ({
               text="View Sponsorship Package"
               color="starlightBlue"
               textColor="white"
+              size="medium"
               onClick={() =>
                 window.open(
                   "https://drive.google.com/file/d/1MNIE0Tgme3mkMVg26E9VZPQQ8i37-VqL/view?usp=sharing",

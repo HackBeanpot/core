@@ -8,6 +8,7 @@ interface ButtonProps {
   color?: string;
   textColor?: string;
   size?: string;
+  removePadding?: boolean;
 }
 
 const bgColorMap: Record<string, string> = {
@@ -17,6 +18,7 @@ const bgColorMap: Record<string, string> = {
   starlightBlue: "bg-starlightBlue hover:bg-starlightBlueDark",
   starlightBlueLight: "bg-starlightBlue disabled:bg-starlightBlueLight",
   cottonCandyCoral: "bg-cottonCandyCoral hover:bg-cottonCandyCoralDark",
+  ribbonBlue: "bg-ribbonBlue",
   firecrackerRed: "bg-firecrackerRed hover:bg-firecrackerRedDark",
 };
 
@@ -30,6 +32,7 @@ const textColorMap: Record<string, string> = {
   charcoalFog: "text-[#353131]",
   white: "text-white",
   carouselCreamLight: "text-[#FFF5E5]",
+  starlightBlue: "text-starlightBlue",
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -39,6 +42,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   icon,
   size = "small",
+  removePadding,
 }) => {
   const bgClass = bgColorMap[color] || bgColorMap["mossGreen"];
   const textColorClass = textColorMap[textColor];
@@ -48,7 +52,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button className={buttonClasses} onClick={onClick}>
-      {icon && <span className="p-2">{icon}</span>}
+      {icon && <span className={removePadding ? "" : "p-2"}>{icon}</span>}
       {text && text}
     </button>
   );

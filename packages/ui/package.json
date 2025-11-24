@@ -24,7 +24,8 @@
     "./Section": "./src/Section.tsx", 
     "./Placeholder": "./src/Placeholder.tsx", 
     "./Button": "./src/Button.tsx", 
-    "./RibbonTitle": "./src/RibbonTitle.tsx"
+    "./RibbonTitle": "./src/RibbonTitle.tsx",
+    "./Train": "./src/TestimonialTrain.tsx"
   },
   "license": "MIT",
   "scripts": {

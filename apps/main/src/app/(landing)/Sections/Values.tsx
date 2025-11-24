@@ -48,82 +48,82 @@ export default function Values() {
   const iconSize = isMobile ? "w-[6vw]" : isTablet ? "w-[4vw]" : "w-[4vw]";
 
   return (
-    <div
-      className={`relative w-full ${aspectRatio} bg-ribbonBlue overflow-visible`}
-    >
+    <div className={`relative w-full ${aspectRatio} bg-ribbonBlue`}>
       {/* Foreground SVG Stuff (ballons, clouds, etc) */}
-      <CloudsTop className="absolute z-30 top-0 left-1/2 w-[100vw] -mt-[13vw] h-auto -translate-x-1/2" />
-      <OurTeamValuesForeground
-        className="absolute bottom-0 left-1/2 w-[160vw] h-auto -translate-x-1/2"
-        preserveAspectRatio="xMidYMid meet"
-      />
+      <CloudsTop className="absolute z-30 top-0 left-1/2 w-[100vw] -mt-[13vw] h-auto -translate-x-1/2 " />
+      <div className={`relative w-full ${aspectRatio} overflow-hidden`}>
+        <OurTeamValuesForeground
+          className="absolute bottom-0 left-1/2 w-[160vw] h-auto -translate-x-1/2"
+          preserveAspectRatio="xMidYMid meet"
+        />
 
-      {/* Content container */}
-      <div
-        className={`relative z-20 flex flex-col items-center justify-center ${height} gap-6`}
-      >
-        <div className={`${isMobile ? "transform scale-[0.55]" : ""}`}>
-          {/* Title */}
-          <RibbonTitle text={"OUR VALUES"} />
-        </div>
-
-        {/* Values Section */}
+        {/* Content container */}
         <div
-          className={`flex ${flexDirection} justify-center ${gapSize ? gapSize : ""} max-w-6xl mx-auto`}
+          className={`relative z-20 flex flex-col items-center justify-center ${height} gap-6`}
         >
-          {/* Community */}
-          <div className="flex flex-col items-center text-center max-w-md">
-            <div className={`${iconSize} flex-shrink-0`}>
-              <ProjectStarIcon className="w-full h-auto" />
-            </div>
-            <div
-              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
-            >
-              Community
-            </div>
-            <p
-              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
-            >
-              Connect with fellow students and our partners in the tech
-              community. Make connections that will last a lifetime!
-            </p>
+          <div className={`${isMobile ? "transform scale-[0.55]" : ""}`}>
+            {/* Title */}
+            <RibbonTitle text={"OUR VALUES"} />
           </div>
 
-          {/* Growth */}
-          <div className="flex flex-col items-center text-center max-w-md">
-            <div className={`${iconSize} flex-shrink-0`}>
-              <ProjectStarIcon className="w-full h-auto" />
+          {/* Values Section */}
+          <div
+            className={`flex ${flexDirection} justify-center ${gapSize ? gapSize : ""} max-w-6xl mx-auto`}
+          >
+            {/* Community */}
+            <div className="flex flex-col items-center text-center max-w-md">
+              <div className={`${iconSize} flex-shrink-0`}>
+                <ProjectStarIcon className="w-full h-auto" />
+              </div>
+              <div
+                className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+              >
+                Community
+              </div>
+              <p
+                className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+              >
+                Connect with fellow students and our partners in the tech
+                community. Make connections that will last a lifetime!
+              </p>
             </div>
-            <div
-              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
-            >
-              Growth
-            </div>
-            <p
-              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
-            >
-              Expand beyond your horizons and grow your current skill set in a
-              safe and supportive environment.
-            </p>
-          </div>
 
-          {/* Exploration */}
-          <div className="flex flex-col items-center text-center max-w-md">
-            <div className={`${iconSize} flex-shrink-0`}>
-              <ProjectStarIcon className="w-full h-auto" />
+            {/* Growth */}
+            <div className="flex flex-col items-center text-center max-w-md">
+              <div className={`${iconSize} flex-shrink-0`}>
+                <ProjectStarIcon className="w-full h-auto" />
+              </div>
+              <div
+                className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+              >
+                Growth
+              </div>
+              <p
+                className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+              >
+                Expand beyond your horizons and grow your current skill set in a
+                safe and supportive environment.
+              </p>
             </div>
-            <div
-              className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
-            >
-              Exploration
+
+            {/* Exploration */}
+            <div className="flex flex-col items-center text-center max-w-md">
+              <div className={`${iconSize} flex-shrink-0`}>
+                <ProjectStarIcon className="w-full h-auto" />
+              </div>
+              <div
+                className={`font-NeulisNeue-Bold text-black ${titleSize} mt-4`}
+              >
+                Exploration
+              </div>
+              <p
+                className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
+              >
+                Discover new ideas and technologies with the help of our
+                experienced mentors, or learn new skills at our
+                beginner-friendly workshops!
+              </p>
             </div>
-            <p
-              className={`font-DMSans-Regular text-black ${subtitleSize} mt-2 ${wrapLimit}`}
-            >
-              Discover new ideas and technologies with the help of our
-              experienced mentors, or learn new skills at our beginner-friendly
-              workshops!
-            </p>
           </div>
         </div>
       </div>
