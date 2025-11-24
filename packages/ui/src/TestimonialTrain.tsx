@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState, useCallback, useEffect} from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Train from "./Train";
 import Button from "./Button";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
