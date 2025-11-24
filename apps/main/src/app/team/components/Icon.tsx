@@ -13,13 +13,13 @@ const Icon: React.FC<IconProps> = ({ src, name, url }) => {
     <div className="flex flex-col items-center ">
       <div
         className="relative inline-block rounded-full overflow-hidden group
-            w-40 h-40 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32"
+          w-40 h-40 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-cover rounded-full border-6 border-firecrackerRed"
       >
         <Image
           src={src}
           alt={name}
           fill
-          className="object-cover rounded-full border-6 border-firecrackerRed"
+          className="object-cover rounded-full group-hover:scale-[105%] transition-transform duration-300"
         />
         <div
           className="
