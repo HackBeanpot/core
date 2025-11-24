@@ -23,9 +23,9 @@ export default function Testimonials(): React.ReactNode {
       </div>
 
       <div
-        className={`relative w-full ${isDesktop ? "h-[50vw]" : "h-[62vw]"} bg-mossGreen z-20`}>
-        <TestimonialBottomSquiggle className="absolute w-[140vw] h-auto bottom-0 translate-y-[10vw]">
-        </TestimonialBottomSquiggle>
+        className={`relative w-full ${isDesktop ? "h-[50vw]" : "h-[62vw]"} bg-mossGreen z-20`}
+      >
+        <TestimonialBottomSquiggle className="absolute w-[140vw] h-auto bottom-0 translate-y-[10vw]"></TestimonialBottomSquiggle>
 
         <TrainTracks className="absolute w-[120vw] h-auto bottom-0 translate-y-[-3vw]"></TrainTracks>
 
