@@ -6,8 +6,8 @@ import RibbonTitle from "@repo/ui/RibbonTitle";
 import clsx from "clsx";
 import SponsorUsCarousel from "./SponsorUsCarousel";
 import TestimonialsFerrisWheel from "../../lib/Assets/SVG/SponsorUsPageAssets/TestimonialsFerrisWheel";
-// import Button from "@repo/ui/Button";
-// import { IoIosArrowUp } from "react-icons/io";
+import Button from "@repo/ui/Button";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const defaultOrder = [
   {
@@ -38,7 +38,7 @@ const defaultOrder = [
 ];
 
 export default function SponsorUsTestimonials() {
-  const [testimonials, ] = useState(defaultOrder); // add setTestimonials back in
+  const [testimonials] = useState(defaultOrder); // add setTestimonials back in
   // const [currentPage, setCurrentPage] = useState(0);
 
   const outerDivStyles = clsx(
@@ -101,8 +101,19 @@ export default function SponsorUsTestimonials() {
       <div className="absolute top-[40%]">
         <SponsorUsCarousel items={testimonials.slice(0)} />
       </div>
+      <Button
+        color="starlightBlueLight" 
+        icon={<IoIosArrowBack size={31} />} 
+        size="small" 
+        textColor="carouselCreamLight" 
+      />
       <TestimonialsFerrisWheel className="absolute top-[100%] size-full z-10 scale-[175%]" />
-      {/* <Button color="bg-starlightBlue" icon={<IoIosArrowUp />} /> */}
+      <Button
+        color="starlightBlueLight"
+        icon={<IoIosArrowForward size={31} />}
+        size="small"
+        textColor="carouselCreamLight"
+      />
       <SponsorUsTestimonialsBackground className={backgroundStyles} />
     </div>
   );

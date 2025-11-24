@@ -15,6 +15,7 @@ const bgColorMap: Record<string, string> = {
   firecrackerRedLight: "bg-firecrackerRedLight hover:bg-firecrackerRed",
   marigoldYellow: "bg-marigoldYellow hover:bg-marigoldYellowDark",
   starlightBlue: "bg-starlightBlue hover:bg-starlightBlueDark",
+  starlightBlueLight: "bg-starlightBlue disabled:bg-starlightBlueLight",
   cottonCandyCoral: "bg-cottonCandyCoral hover:bg-cottonCandyCoralDark",
   firecrackerRed: "bg-firecrackerRed hover:bg-firecrackerRedDark",
 };
@@ -28,7 +29,9 @@ const sizeMap: Record<string, string> = {
 const textColorMap: Record<string, string> = {
   charcoalFog: "text-[#353131]",
   white: "text-white",
+  carouselCreamLight: "text-[#FFF5E5]"
 };
+
 const Button: React.FC<ButtonProps> = ({
   text,
   textColor = "charcoalFog",
