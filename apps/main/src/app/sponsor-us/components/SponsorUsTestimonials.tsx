@@ -40,6 +40,7 @@ const defaultOrder = [
 export default function SponsorUsTestimonials() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [currentAnimation, setCurrentAnimation] = useState("");
+  const [currWheelAngle, setCurrWheelAngle] = useState(0);
   const [animationKey, setAnimationKey] = useState(0);
 
   const currentItem = defaultOrder[currentIdx];
@@ -47,12 +48,20 @@ export default function SponsorUsTestimonials() {
   const rightBound = currentIdx === defaultOrder.length - 1;
 
   const triggerAnimation = (direction: "left" | "right") => {
-    if ((leftBound && direction === "left") || (rightBound && direction === "right")) {
+    if (
+      (leftBound && direction === "left") ||
+      (rightBound && direction === "right")
+    ) {
       return;
     }
-    
-    setCurrentAnimation(direction === "left" ? "animate-fade-left" : "animate-fade-right");
-    setAnimationKey(prev => prev + 1);
+
+    setCurrentAnimation(
+      direction === "left" ? "animate-fade-left" : "animate-fade-right",
+    );
+
+    setCurrWheelAngle((prev) => (direction === "left" ? prev - 90 : prev + 90));
+
+    setAnimationKey((prev) => prev + 1);
   };
 
   function onClickLeftArrow() {
@@ -78,22 +87,26 @@ export default function SponsorUsTestimonials() {
   return (
     <div className={outerDivStyles}>
       <div className={outerRibbonStyles}>
-          <RibbonTitle text={"TESTIMONIALS"} />
+        <RibbonTitle text={"TESTIMONIALS"} />
       </div>
       <div className="absolute top-[40%] z-20">
-        <div 
+        <div
           key={animationKey}
-          className={`transition-opacity duration-300 animate-ease-out ${currentAnimation}`}>
-          <SponsorUsTestimonialCart 
-            id={currentItem.id} 
-            testimonial={currentItem.testimonial} 
-            sponsorRep={currentItem.sponsorRep} 
-            sponsorRepPosition={currentItem.sponsorRepPosition} 
+          className={`transition-opacity duration-300 animate-ease-out ${currentAnimation}`}
+        >
+          <SponsorUsTestimonialCart
+            id={currentItem.id}
+            testimonial={currentItem.testimonial}
+            sponsorRep={currentItem.sponsorRep}
+            sponsorRepPosition={currentItem.sponsorRepPosition}
             sponsor={currentItem.sponsor}
           />
         </div>
       </div>
-      <TestimonialsFerrisWheel className="absolute top-[100%] size-full z-10 scale-[175%]" />
+      <TestimonialsFerrisWheel 
+        className={`absolute top-[90%] size-full z-10 scale-[175%] transform transition-transform duration-300`} 
+        style={{ transform: `scale(1.75) rotate(${currWheelAngle}deg)`}}
+      />
       <div className="absolute w-full z-20 top-[60%]">
         <div
           className={`
