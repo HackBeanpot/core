@@ -16,12 +16,20 @@ export default function SponsorUsTestimonialCart({
   sponsorRepPosition,
   sponsor,
 }: CarouselCardProps): React.ReactNode {
+  const outerDivStyles = clsx(
+    "relative flex justify-center items-center size-full text-carouselCreamLight font-DMSans-Regular mobile:text-[10px] mobile-xl:text-[10px] tablet:text-[14px] desktop:text-[18px]",
+  );
+
   const scaleFactor = clsx(
-    "mobile:scale-[40%] tablet:scale-[55%] desktop:scale-[120%] desktop-md:scale-[125%]"
+    "mobile:scale-[60%] mobile-xl:scale-[60%] tablet:scale-[70%] desktop:scale-[110%] desktop-sm:scale-[115%] desktop-md:scale-[125%] desktop-xl:scale-[140%]",
+  );
+
+  const outerTextStyles = clsx(
+    "absolute z-20 flex flex-col text-left space-y-5 mobile:p-32 mobile-xl:p-36 mobile-xl:top-[6%] tablet:p-36 desktop:p-8 desktop:top-[6%]",
   );
 
   return (
-    <div className="relative flex justify-center items-center size-full text-carouselCreamLight font-DMSans-Regular text-[18px]">
+    <div className={outerDivStyles}>
       <div className="relative flex size-full">
         <img
           src="/sponsor-testimonials/cart.svg"
@@ -29,12 +37,14 @@ export default function SponsorUsTestimonialCart({
           alt="Ferris Wheel Cart"
         />
       </div>
-      <div className="absolute z-20 p-8 top-[6%]">
-        <p className="pb-8">{testimonial}</p>
-        <p className="font-DMSans-Bold">{sponsorRep}</p>
-        <p>
-          {sponsorRepPosition} at {sponsor}
-        </p>
+      <div className={outerTextStyles}>
+        <p>{testimonial}</p>
+        <div>
+          <p className="font-DMSans-Bold">{sponsorRep}</p>
+          <p>
+            {sponsorRepPosition} at {sponsor}
+          </p>
+        </div>
       </div>
     </div>
   );

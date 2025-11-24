@@ -32,7 +32,7 @@ export default function SponsorUsTestimonials() {
   const [currentAnimation, setCurrentAnimation] = useState("");
   const [currWheelAngle, setCurrWheelAngle] = useState(0);
   const [animationKey, setAnimationKey] = useState(0);
-  const { isMobile, isTablet, isDesktop } = useDevice();
+  const { isTablet, isDesktop } = useDevice();
 
   const currentItem = defaultOrder[currentIdx];
   const leftBound = currentIdx === 0;
@@ -70,39 +70,29 @@ export default function SponsorUsTestimonials() {
   );
 
   const outerRibbonStyles = clsx(
-    "absolute z-10 w-full top-[20%] desktop:top-[20%] desktop-md:top-[25%]",
-    isMobile && "scale-[60%]",
-    isTablet && "scale-[65%]"
+    "absolute z-10 w-full desktop:top-[20%] desktop-md:top-[25%] desktop-xl:top-[25%] desktop-xl:scale-[150%] tablet:top-[20%] tablet:scale-[65%] mobile:top-[20%] mobile:scale-[60%] mobile-xl:top-[20%] mobile-xl:scale-[65%]",
   );
 
   const cartOuterStyles = clsx(
-    "absolute z-20 top-[15%]",
-    isDesktop && "top-[35%] desktop-md:top-[40%]",
+    "absolute z-20 mobile:top-[15%] mobile-xl:top-[15%] tablet:top-[20%] desktop:top-[30%] desktop-md:top-[35%] desktop-xl:top-[40%]",
   );
 
   const buttonsOuterStyles = clsx(
-    "absolute w-full z-20 mobile:top-[60%] tablet:top-[55%] desktop:top-[50%] desktop-md:top-[55%]"
+    "absolute w-full z-20 mobile:top-[60%] mobile-xl:top-[55%] tablet:top-[55%] desktop:top-[60%] desktop-md:top-[45%] desktop-xl:top-[45%]",
   );
 
   const buttonsInnerStyles = clsx(
-    "absolute flex flex-row items-center justify-center w-full h-auto gap-[60vw]",
-    isTablet && "gap-[70vw]",
+    "absolute flex flex-row items-center justify-center w-full h-auto mobile:gap-[50vw] tablet:gap-[77vw] desktop-xl:gap-[55vw]",
   );
 
-  const buttonSizes = clsx(
-    isTablet && 40,
-    isDesktop && 60
-  );
+  const buttonSizes = isDesktop ? 60 : isTablet ? 30 : 10;
 
   const ferrisWheelStyles = clsx(
     "absolute size-full z-10 transform transition-transform duration-300 top-[70%]",
     isDesktop && "top-[80%]",
   );
 
-  const ferrisWheelScaling = clsx(
-    "scale(1.2)",
-    isDesktop && "scale(1.5)",
-  );
+  const ferrisWheelScaling = clsx("scale(1.2)", isDesktop && "scale(1.5)");
 
   const backgroundStyles = clsx(
     "relative z-0 w-[165vw] h-full bg-tomato -ml-10",
@@ -130,9 +120,7 @@ export default function SponsorUsTestimonials() {
       </div>
       {/* Buttons */}
       <div className={buttonsOuterStyles}>
-        <div
-          className={buttonsInnerStyles}
-        >
+        <div className={buttonsInnerStyles}>
           {/* Left Button */}
           <Button
             color={leftBound ? "starlightBlueLight" : "starlightBlue"}
@@ -157,7 +145,9 @@ export default function SponsorUsTestimonials() {
       {/* Ferris Wheel */}
       <TestimonialsFerrisWheel
         className={ferrisWheelStyles}
-        style={{ transform: `${ferrisWheelScaling} rotate(${currWheelAngle}deg)` }}
+        style={{
+          transform: `${ferrisWheelScaling} rotate(${currWheelAngle}deg)`,
+        }}
       />
 
       {/* Testimonials Background */}
