@@ -95,7 +95,7 @@ export default function SponsorUsTestimonials() {
   const ferrisWheelScaling = clsx("scale(1.2)", isDesktop && "scale(1.5)");
 
   const backgroundStyles = clsx(
-    "relative z-0 w-[165vw] h-full bg-tomato -ml-10",
+    "relative z-0 w-[165vw] h-full -ml-10",
   );
 
   return (
