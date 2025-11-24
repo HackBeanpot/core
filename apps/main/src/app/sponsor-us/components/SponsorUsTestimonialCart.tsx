@@ -1,30 +1,31 @@
 "use client";
 
+import clsx from "clsx";
 import React from "react";
 
 export type CarouselCardProps = {
-  id: number;
   testimonial: string;
   sponsorRep: string;
   sponsorRepPosition: string;
   sponsor: string;
-  isActive?: boolean;
 };
 
 export default function SponsorUsTestimonialCart({
-  id,
   testimonial,
   sponsorRep,
   sponsorRepPosition,
   sponsor,
-  // isActive,
 }: CarouselCardProps): React.ReactNode {
+  const scaleFactor = clsx(
+    "mobile:scale-[40%] tablet:scale-[55%] desktop:scale-[120%] desktop-md:scale-[125%]"
+  );
+
   return (
     <div className="relative flex justify-center items-center size-full text-carouselCreamLight font-DMSans-Regular text-[18px]">
       <div className="relative flex size-full">
         <img
           src="/sponsor-testimonials/cart.svg"
-          className="size-full scale-[120%]"
+          className={`size-full ${scaleFactor}`}
           alt="Ferris Wheel Cart"
         />
       </div>
