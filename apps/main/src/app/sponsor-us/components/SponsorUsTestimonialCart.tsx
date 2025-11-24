@@ -11,8 +11,8 @@ export type CarouselCardProps = {
   isActive?: boolean;
 };
 
-export default function SponsorUsCarouselCard({
-  // id,
+export default function SponsorUsTestimonialCart({
+  id,
   testimonial,
   sponsorRep,
   sponsorRepPosition,

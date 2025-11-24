@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import SponsorUsTestimonialsBackground from "../../lib/Assets/SVG/SponsorUsPageAssets/SponsorUsTestimonialsBackground";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import clsx from "clsx";
-import SponsorUsCarousel from "./SponsorUsCarousel";
 import TestimonialsFerrisWheel from "../../lib/Assets/SVG/SponsorUsPageAssets/TestimonialsFerrisWheel";
 import Button from "@repo/ui/Button";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import SponsorUsTestimonialCart from "./SponsorUsTestimonialCart";
 
 const defaultOrder = [
   {
@@ -38,8 +38,32 @@ const defaultOrder = [
 ];
 
 export default function SponsorUsTestimonials() {
-  const [testimonials] = useState(defaultOrder); // add setTestimonials back in
-  // const [currentPage, setCurrentPage] = useState(0);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [currentAnimation, setCurrentAnimation] = useState("");
+  const [animationKey, setAnimationKey] = useState(0);
+
+  const currentItem = defaultOrder[currentIdx];
+  const leftBound = currentIdx === 0;
+  const rightBound = currentIdx === defaultOrder.length - 1;
+
+  const triggerAnimation = (direction: "left" | "right") => {
+    if ((leftBound && direction === "left") || (rightBound && direction === "right")) {
+      return;
+    }
+    
+    setCurrentAnimation(direction === "left" ? "animate-fade-left" : "animate-fade-right");
+    setAnimationKey(prev => prev + 1);
+  };
+
+  function onClickLeftArrow() {
+    setCurrentIdx((prev) => Math.max(prev - 1, 0));
+    triggerAnimation("left");
+  }
+
+  function onClickRightArrow() {
+    setCurrentIdx((prev) => Math.min(prev + 1, defaultOrder.length - 1));
+    triggerAnimation("right");
+  }
 
   const outerDivStyles = clsx(
     "relative flex flex-col items-center justify-center overflow-hidden",
@@ -47,73 +71,57 @@ export default function SponsorUsTestimonials() {
 
   const outerRibbonStyles = clsx("absolute z-10 top-[25%] w-full");
 
-  const ribbonScaling = clsx("scale-100");
-
   const backgroundStyles = clsx(
     "relative z-0 w-[165vw] h-full bg-tomato -ml-10",
   );
 
-  // function onClickLeftArrow() {
-  //   setTestimonials((prevBlurb) => {
-  //     const newBlurb = [...prevBlurb];
-  //     const lastBlurb = newBlurb.pop();
-  //     newBlurb.unshift(lastBlurb!);
-  //     return newBlurb;
-  //   });
-
-  //   setCurrentPage((prevPage) => {
-  //     const newPage = prevPage > 0 ? prevPage - 1 : testimonials.length - 1;
-  //     return newPage;
-  //   });
-  // }
-
-  // function onClickRightArrow() {
-  //   setTestimonials((prevBlurb) => {
-  //     const newBlurb = [...prevBlurb];
-  //     const firstPerson = newBlurb.shift();
-  //     newBlurb.push(firstPerson!);
-  //     return newBlurb;
-  //   });
-
-  //   setCurrentPage((prevPage) => {
-  //     const newPage = prevPage < testimonials.length - 1 ? prevPage + 1 : 0;
-  //     return newPage;
-  //   });
-  // }
-
-  // function handleClick(index: number) {
-  //   setTestimonials((prevBlurb) => {
-  //     const newBlurb = [...prevBlurb];
-  //     const toMoveToFront = newBlurb.splice(index - currentPage);
-  //     return [...toMoveToFront, ...newBlurb];
-  //   });
-
-  //   setCurrentPage(index);
-  // }
-
   return (
     <div className={outerDivStyles}>
       <div className={outerRibbonStyles}>
-        <div className={ribbonScaling}>
           <RibbonTitle text={"TESTIMONIALS"} />
+      </div>
+      <div className="absolute top-[40%] z-20">
+        <div 
+          key={animationKey}
+          className={`transition-opacity duration-300 animate-ease-out ${currentAnimation}`}>
+          <SponsorUsTestimonialCart 
+            id={currentItem.id} 
+            testimonial={currentItem.testimonial} 
+            sponsorRep={currentItem.sponsorRep} 
+            sponsorRepPosition={currentItem.sponsorRepPosition} 
+            sponsor={currentItem.sponsor}
+          />
         </div>
       </div>
-      <div className="absolute top-[40%]">
-        <SponsorUsCarousel items={testimonials.slice(0)} />
-      </div>
-      <Button
-        color="starlightBlueLight"
-        icon={<IoIosArrowBack size={31} />}
-        size="small"
-        textColor="carouselCreamLight"
-      />
       <TestimonialsFerrisWheel className="absolute top-[100%] size-full z-10 scale-[175%]" />
-      <Button
-        color="starlightBlueLight"
-        icon={<IoIosArrowForward size={31} />}
-        size="small"
-        textColor="carouselCreamLight"
-      />
+      <div className="absolute w-full z-20 top-[60%]">
+        <div
+          className={`
+              absolute
+              flex flex-row items-center justify-center
+              ${"gap-[55vw]"}
+              w-full
+              h-auto`}
+        >
+          <Button
+            color={leftBound ? "starlightBlueLight" : "starlightBlue"}
+            icon={<IoIosArrowBack size={60} />}
+            size="small"
+            textColor="carouselCreamLight"
+            removePadding={true}
+            onClick={onClickLeftArrow}
+          />
+          <Button
+            color={rightBound ? "starlightBlueLight" : "starlightBlue"}
+            icon={<IoIosArrowForward size={60} />}
+            size="small"
+            textColor="carouselCreamLight"
+            removePadding={true}
+            onClick={onClickRightArrow}
+          />
+        </div>
+      </div>
+
       <SponsorUsTestimonialsBackground className={backgroundStyles} />
     </div>
   );
