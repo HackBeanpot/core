@@ -19,7 +19,7 @@ const Icon: React.FC<IconProps> = ({ src, name, url }) => {
           src={src}
           alt={name}
           fill
-          className="object-cover rounded-full group-hover:scale-[105%] transition-transform duration-300"
+          className="group-hover:scale-[105%] transition-transform duration-300"
         />
         <div
           className="
