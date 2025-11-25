@@ -3,3 +3,5 @@ export { default as ProjectStarIcon } from "./StarIcon";
 export { default as VolunteeringBackground } from "./VolunteeringAssets/VolunteeringBackground";
 export { default as ImpactSign } from "./SponsorUsAssets/ImpactSign";
 export { default as HeroBackground } from "./SponsorUsAssets/HeroBackground";
+export { default as TestimonialsFerrisWheel } from "./SponsorUsPageAssets/TestimonialsFerrisWheel";
+export { default as SponsorUsTestimonialsBackground } from "./SponsorUsPageAssets/SponsorUsTestimonialsBackground";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

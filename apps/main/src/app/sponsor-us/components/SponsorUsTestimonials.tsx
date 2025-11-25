@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import SponsorUsTestimonialsBackground from "../../lib/Assets/SVG/SponsorUsPageAssets/SponsorUsTestimonialsBackground";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import clsx from "clsx";
-import TestimonialsFerrisWheel from "../../lib/Assets/SVG/SponsorUsPageAssets/TestimonialsFerrisWheel";
+import { TestimonialsFerrisWheel, SponsorUsTestimonialsBackground } from "../../lib/Assets/SVG";
 import Button from "@repo/ui/Button";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import SponsorUsTestimonialCart from "./SponsorUsTestimonialCart";
