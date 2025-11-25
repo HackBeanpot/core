@@ -58,40 +58,36 @@ export default function Landing(): React.ReactNode {
             color: "#091F36",
           }}
         >
-          Come one, come all
+          Come one, come all!
         </h1>
 
         <HBPLogo
           className={`absolute left-1/2  h-auto
       ${isMobile ? "top-[25%] -translate-x-1/2 w-[60vw]" : "top-[12%] -translate-x-1/2 w-[45vw]"}`}
         />
+        <p
+          className={`font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : "text-[1vw]"}`}
+          style={{
+            transform: isMobile
+              ? "translate(-45vw, 37vw)"
+              : "translate(-48vw, 15vw)",
+          }}
+        >
+          Brought to you by{" "}
+        </p>
 
-        <div className={`flex items-center justify-center gap-1`}>
-          <p
-            className={`font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : "text-[1vw]"}`}
-            style={{
-              transform: isMobile
-                ? "translate(-45vw, 37vw)"
-                : "translate(-48vw, 15vw)",
-            }}
-          >
-            Brought to you by{" "}
-          </p>
-
-          <Image
-            className={`absolute top-0 right-0 h-auto ${isMobile ? "" : "w-[6vw]"}`}
-            alt="Amazon Logo"
-            src="/sponsor-logos/amazon.svg"
-            width={50}
-            height={50}
-            style={{
-              transform: isMobile
-                ? "translate(-30vw, 38vw)"
-                : "translate(-41vw, 15.25vw)",
-            }}
-          />
-        </div>
-
+        <Image
+          className={`absolute top-0 right-0 h-auto ${isMobile ? "" : "w-[6vw]"}`}
+          alt="Amazon Logo"
+          src="/sponsor-logos/amazon.svg"
+          width={50}
+          height={50}
+          style={{
+            transform: isMobile
+              ? "translate(-30.5vw, 38vw)"
+              : "translate(-41vw, 15.25vw)",
+          }}
+        />
         {/* TODO: elements to be animated */}
         <Balloon
           className={`absolute top-0 right-0 h-auto ${isMobile ? "w-[8vw]" : "w-[5vw]"}`}
