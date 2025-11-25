@@ -55,9 +55,10 @@ export default function Landing(): React.ReactNode {
           style={{
             fontSize: isMobile ? "4vw" : "2vw",
             top: isMobile ? "17%" : "5%",
+            color: "#091F36",
           }}
         >
-          COME ONE, COME ALL
+          Come one, come all
         </h1>
 
         <HBPLogo
@@ -65,29 +66,31 @@ export default function Landing(): React.ReactNode {
       ${isMobile ? "top-[25%] -translate-x-1/2 w-[60vw]" : "top-[12%] -translate-x-1/2 w-[45vw]"}`}
         />
 
-        <p
-          className={`font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : "text-[1vw]"}`}
-          style={{
-            transform: isMobile
-              ? "translate(-45vw, 37vw)"
-              : "translate(-48vw, 15vw)",
-          }}
-        >
-          Brought to you by{" "}
-        </p>
+        <div className={`flex items-center justify-center gap-1`}>
+          <p
+            className={`font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : "text-[1vw]"}`}
+            style={{
+              transform: isMobile
+                ? "translate(-45vw, 37vw)"
+                : "translate(-48vw, 15vw)",
+            }}
+          >
+            Brought to you by{" "}
+          </p>
 
-        <Image
-          className={`absolute top-0 right-0 h-auto ${isMobile ? "" : "w-[3vw]"}`}
-          alt="Amazon Logo"
-          src="/sponsor-logos/amazon.svg"
-          width={50}
-          height={50}
-          style={{
-            transform: isMobile
-              ? "translate(-30vw, 38vw)"
-              : "translate(-44vw, 15.5vw)",
-          }}
-        />
+          <Image
+            className={`absolute top-0 right-0 h-auto ${isMobile ? "" : "w-[6vw]"}`}
+            alt="Amazon Logo"
+            src="/sponsor-logos/amazon.svg"
+            width={50}
+            height={50}
+            style={{
+              transform: isMobile
+                ? "translate(-30vw, 38vw)"
+                : "translate(-41vw, 15.25vw)",
+            }}
+          />
+        </div>
 
         {/* TODO: elements to be animated */}
         <Balloon
