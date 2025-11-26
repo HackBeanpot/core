@@ -17,7 +17,6 @@ export default function Testimonials(): React.ReactNode {
     <>
       <div className={`relative w-full h-[15vw] bg-mossGreen`}>
         <div className="absolute w-[65vw] h-auto left-1/2 -translate-x-1/2 bottom-0">
-          {/*<RibbonTitle size={"w-[65vw]"} text={"TESTIMONIALS"}></RibbonTitle>*/}
           <RibbonTitle text={"TESTIMONIALS"}></RibbonTitle>
         </div>
       </div>
