@@ -37,9 +37,7 @@ export default function TestimonialTrain() {
   }, [currCart, currBounds.threshold]);
 
   return (
-    <div
-      className={`relative w-full ${isDesktop ? "h-[45vw]" : "h-[60vw]"}`}
-    >
+    <div className={`relative w-full ${isDesktop ? "h-[45vw]" : "h-[60vw]"}`}>
       <div
         className={`relative ${isDesktop ? "w-[300vw]" : "w-[400vw]"} h-full z-10 p-[3vw]`}
       >
