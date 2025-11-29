@@ -81,7 +81,7 @@ export default function Page() {
         <ProjectBackground className={`${isMobile ? "w-full h-full" : ""}`} />
       </div>
 
-      <div className="relative z-10 max-w-screen flex flex-col items-center pt-14">
+      <div className="relative z-10 max-w-screen flex flex-col items-center pt-24">
         <svg
           className=" inset-x-0 w-full pointer-events-none"
           viewBox="0 0 650 100"
@@ -175,10 +175,10 @@ export default function Page() {
         </div>
 
         <div className="flex flex-col items-center text-center z-10 px-4">
-          <div className="text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
+          <div className="text-carouselCreamLight text-3xl font-['NeulisNeue-bold'] leading-10 mb-5">
             Interested in seeing more past hacker projects?
           </div>
-          <div className="text-carouselCreamLight text-md font-['NeulisNeue-Regular'] leading-tight mb-5">
+          <div className="text-carouselCreamLight text-md font-DMSans-Regular leading-tight mb-5">
             Check out the HackBeanpot Archive!
           </div>
 
