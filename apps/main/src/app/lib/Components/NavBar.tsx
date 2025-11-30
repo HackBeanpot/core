@@ -78,7 +78,7 @@ const NavBar = () => {
             <LocalLink
               key={item.pageName}
               href={item.link}
-              className="text-charcoalFogDark hover:text-charcoalFogLight text-[1vw] mobile:text-[4vw] mobile:text-white font-DMSans-Bold"
+              className="text-charcoalFog hover:text-charcoalFogLight text-[1vw] mobile:text-[4vw] mobile:text-white font-DMSans-Bold"
             >
               {item.pageName}
             </LocalLink>
