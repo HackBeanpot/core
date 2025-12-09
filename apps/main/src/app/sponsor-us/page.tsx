@@ -5,6 +5,7 @@ import SponsorUsStatsComp from "./Sections/SponsorUsStatsComp";
 import SponsorUsHero from "./Sections/SponsorHero";
 import BenefitsSection from "./Sections/BenefitsSection";
 import { Footer, NavBar } from "../lib/Components";
+import PastSponsors from "./Sections/PastSponsors.tsx";
 
 const SponsorUsPage = () => {
   return (
@@ -13,6 +14,7 @@ const SponsorUsPage = () => {
       <SponsorUsHero />
       <SponsorUsStatsComp />
       <BenefitsSection />
+      <PastSponsors />
       <Footer />
     </div>
   );

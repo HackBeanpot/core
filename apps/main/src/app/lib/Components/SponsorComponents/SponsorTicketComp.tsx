@@ -24,6 +24,7 @@ export default function SponsorTicketComp({
   ticketWidthVW = 20,
   logoWidth
 }: SponsorTicketProps & { ticketWidthVW?: number }): JSX.Element {
+  
   return (
     <div
       className="flex items-center justify-center relative"
