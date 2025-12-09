@@ -5,7 +5,7 @@
     "**/*.css"
   ],
   "files": [
-    "dist"
+    "dist", "src/Logos"
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
@@ -19,7 +19,7 @@
     "./PassportCard": "./src/PassportCard.tsx",
     "./Typography": "./src/Typography.tsx",
     "./Icons/*": "./src/Icons/*.tsx",
-    "./Logos/*": "./src/Logos/*.tsx",
+    "./Logos/*.svg": "./src/Logos/*.svg",
     "./PaginationDots": "./src/PaginationDots.tsx",
     "./Section": "./src/Section.tsx", 
     "./Placeholder": "./src/Placeholder.tsx", 
