@@ -16,7 +16,7 @@ import WhoopLogo from "@repo/ui/Logos/WhoopLogo.svg";
 function makeSponsorRow(
   ticketSizes: number[],
   logos?: string[], // array of logo paths
-  logoSizes?: number[] // array og logo sizes in vw
+  logoSizes?: number[], // array og logo sizes in vw
 ) {
   return (
     <div
@@ -44,7 +44,11 @@ export default function Page(): JSX.Element {
   const boothPosition = isMobile ? "145%" : "165%";
   const boothWidth = isMobile ? 90 : isTablet ? 80 : 70;
 
-  const logos = [[AWSLogo], [MavenAGILogo, WhoopLogo, RGLogo], [CodeCraftersLogo, FlagLogicLogo]];
+  const logos = [
+    [AWSLogo],
+    [MavenAGILogo, WhoopLogo, RGLogo],
+    [CodeCraftersLogo, FlagLogicLogo],
+  ];
 
   return (
     <main className="flex flex-col items-center min-h-screen relative">
@@ -62,7 +66,7 @@ export default function Page(): JSX.Element {
         {/* Stuff on top of bg SVG */}
         <div
           className="flex flex-col items-center text-white absolute top-0 left-0 w-full"
-          style={{ paddingTop: "12vw"}}
+          style={{ paddingTop: "12vw" }}
         >
           {/* Sponsors text */}
           <SponsorText />
@@ -76,7 +80,7 @@ export default function Page(): JSX.Element {
               {/* Desktop */}
               {isDesktop && (
                 <>
-                  {makeSponsorRow([27,], logos[0], [200])}
+                  {makeSponsorRow([27], logos[0], [200])}
                   {makeSponsorRow([21, 21, 21], logos[1], [200, 200, 100])}
                   {makeSponsorRow([17, 17], logos[2], [200, 200])}
                 </>
@@ -85,7 +89,7 @@ export default function Page(): JSX.Element {
               {/* Tablet */}
               {isTablet && (
                 <>
-                  {makeSponsorRow([27,], logos[0], [150])}
+                  {makeSponsorRow([27], logos[0], [150])}
                   {makeSponsorRow([21, 21, 21], logos[1], [115, 115, 65])}
                   {makeSponsorRow([17, 17], logos[2], [120, 120])}
                 </>
@@ -98,7 +102,6 @@ export default function Page(): JSX.Element {
                   {makeSponsorRow([40, 40], logos[1], [115, 115])}
                   {makeSponsorRow([40], [logos[1][2]])}
                   {makeSponsorRow([30, 30], logos[2], [100, 100])}
-                  
                 </>
               )}
             </div>

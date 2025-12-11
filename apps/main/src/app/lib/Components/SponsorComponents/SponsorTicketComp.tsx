@@ -22,9 +22,8 @@ export default function SponsorTicketComp({
   isSponsorUs = false,
   logoPath,
   ticketWidthVW = 20,
-  logoWidth
+  logoWidth,
 }: SponsorTicketProps & { ticketWidthVW?: number }): JSX.Element {
-  
   return (
     <div
       className="flex items-center justify-center relative"
@@ -32,7 +31,7 @@ export default function SponsorTicketComp({
     >
       {logoPath && (
         <Image
-          width={logoWidth?? 50}
+          width={logoWidth ?? 50}
           height={50}
           alt="image of ticket sponsor"
           src={logoPath}

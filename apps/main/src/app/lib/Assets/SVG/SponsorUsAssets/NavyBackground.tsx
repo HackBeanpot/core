@@ -1,12 +1,14 @@
 import * as React from "react";
+import type { SVGProps } from "react";
 
-const NavyBackground = () => (
+const NavyBackground = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="2000"
     height="2409"
     viewBox="0 0 2000 2409"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...props}
   >
     <g clipPath="url(#clip0_826_2873)">
       <rect width="2000" height="2409" fill="#425B7D" />
