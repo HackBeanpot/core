@@ -11,15 +11,15 @@ const BenefitsSection = () => {
   const firstCardClasses = clsx(
     "w-full flex h-[50vh]",
     isMobile && "justify-center",
-    isTablet  && "justify-center pr-[55vw]",
-    isDesktop && "justify-start pl-[10vw]"
+    isTablet && "justify-center pr-[55vw]",
+    isDesktop && "justify-start pl-[10vw]",
   );
 
   const secondCardClasses = clsx(
     "w-full flex h-[50vh]",
     isMobile && "justify-center",
-    isTablet  && "justify-center pr-[55vw]",
-    isDesktop && "justify-center pl-[10vw] "
+    isTablet && "justify-center pr-[55vw]",
+    isDesktop && "justify-center pl-[10vw] ",
   );
 
   const cardWrapperClasses = clsx("max-w-xl", isMobile && "w-full ml-[7vw]");
@@ -27,8 +27,8 @@ const BenefitsSection = () => {
   const sectionStyles = clsx(
     "relative",
     isDesktop && "-mt-[18vh] pt-[18vh]",
-    isTablet  && "-mt-[14vh] pt-[16vh]",
-    isMobile && "-mt-[14vh] pt-[14vh]"
+    isTablet && "-mt-[14vh] pt-[16vh]",
+    isMobile && "-mt-[14vh] pt-[14vh]",
   );
 
   return (

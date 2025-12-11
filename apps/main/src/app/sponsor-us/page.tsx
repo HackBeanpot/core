@@ -15,6 +15,8 @@ const SponsorUsPage = () => {
       <SponsorUsStatsComp />
       <BenefitsSection />
       <PastSponsors />
+      {/* this div shouldn't be needed in 2027 lol */}
+      <div className="mobile:mb-[50vh] tablet:mb-[90vh] desktop:mb-[50vh]"></div>
       <Footer />
     </div>
   );

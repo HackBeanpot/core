@@ -82,8 +82,7 @@ export default function Page() {
         <ProjectBackground className={`${isMobile ? "w-full h-full" : ""}`} />
       </div>
       <div className="mb-40 mobile:mb-12 mobile-xl:mb-12"></div>
-        <CarnivalTitle text="PROJECTS" />
-      
+      <CarnivalTitle text="PROJECTS" />
 
       <div className="relative z-10 max-w-screen flex flex-col items-center -mt-[10vw]">
         {projectData.map((project, index) => (
@@ -153,7 +152,7 @@ export default function Page() {
             onClick={() =>
               window.open(
                 "https://hackbeanpot2025.devpost.com/project-gallery",
-                "_blank"
+                "_blank",
               )
             }
           />

@@ -17,7 +17,6 @@ import YelpLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/yelp.svg";
 import VMwareLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/vmware.svg";
 import ToastLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/toast.svg";
 
-
 const desktopRows: string[][] = [
   [GoogleLogo, CarGurusLogo, MetaLogo, DatadogLogo],
   [SimplisafeLogo, WoodMacLogo, YelpLogo],
@@ -70,35 +69,29 @@ function makeSponsorRow(
 
 export default function PastSponsors(): JSX.Element {
   const { isMobile, isTablet, isDesktop } = useDevice();
-  const bgScale = isMobile ? 3.75 : isTablet ? 1 : 0.75;
+  const bgScale = isMobile ? 1.75 : isTablet ? 1.25 : 1.25;
 
   const ribbonStyles = clsx(
     `${isMobile ? "transform scale-[0.65]" : ""}`,
-    isMobile && "mt-12 mb-6",
-    isTablet && "mt-16 mb-6",
-    isDesktop && "mt-20 mb-20"
+    isMobile && "mt-48 mb-6",
+    isTablet && "mt-[32vh] mb-6",
+    isDesktop && "mt-[30vh] mb-12"
   );
 
   return (
     <div className="relative w-full flex flex-col mobile:h-[180vh] mobile-xl:h-[180vh] desktop:h-[100vh]">
       {/* Background burst */}
-      <div
-        className=" h-auto flex justify-center"
-      >
+      <div className=" h-auto flex justify-center">
         <SponsorBackground
-          className="w-full h-auto -mb-[1vh]"
+          className="absolute mobile:top-[45vh] top-[20vh] left-1/2 transform"
           style={{
-            transform: `scaleY(${bgScale})`,
-            transformOrigin: "top",
+            transform: `translateX(-50%) scale(${bgScale}, ${bgScale})`,
           }}
         />
       </div>
 
       {/* Content overlay */}
-      <div
-        className="absolute top-0 left-0 w-full flex flex-col items-center text-white"
-        
-      >
+      <div className="z-10 ">
         <div className={ribbonStyles}>
           <RibbonTitle text="PAST SPONSORS" />
         </div>

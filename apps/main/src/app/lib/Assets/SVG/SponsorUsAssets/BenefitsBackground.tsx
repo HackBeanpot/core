@@ -7,7 +7,7 @@ const BenefitsBackground = (props: SVGProps<SVGSVGElement>) => (
     height={1684}
     viewBox="0 0 2001 1684"
     fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="none"
     {...props}
   >
