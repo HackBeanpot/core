@@ -46,7 +46,6 @@ const appQuestions = [
   },
 ];
 
-
 const logisticsQuestions = [
   {
     question: "Will my travel be reimbursed?",
