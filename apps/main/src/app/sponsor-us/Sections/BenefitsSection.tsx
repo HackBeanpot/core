@@ -1,87 +1,90 @@
 import React from "react";
 import SponsorUsBenefitCardComp from "../components/SponsorUsBenefitCardComp";
+import BenefitsBackground from "../../lib/Assets/SVG/SponsorUsAssets/BenefitsBackground";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import useDevice from "@util/hooks/useDevice";
 import clsx from "clsx";
 
 const BenefitsSection = () => {
-  const { isMobile } = useDevice();
-  const [isSmallScreen, setIsSmallScreen] = React.useState(true);
+  const { isMobile, isTablet, isDesktop } = useDevice();
 
-  React.useEffect(() => {
-    const checkScreenSize = () => {
-      const isSmall = window.innerWidth <= 1024;
-      setIsSmallScreen(isSmall);
-    };
+  const firstCardClasses = clsx(
+    "w-full flex h-[50vh]",
+    isMobile && "justify-center",
+    isTablet && "justify-center pr-[55vw]",
+    isDesktop && "justify-start pl-[10vw]",
+  );
 
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
-  const firstCardClasses = clsx("w-full flex", {
-    "justify-center px-4": isSmallScreen || isMobile,
-    "justify-end pr-96": !(isSmallScreen || isMobile),
-  });
+  const secondCardClasses = clsx(
+    "w-full flex h-[50vh]",
+    isMobile && "justify-center",
+    isTablet && "justify-center pr-[55vw]",
+    isDesktop && "justify-center pl-[10vw] ",
+  );
 
-  const secondCardClasses = clsx("w-full flex", {
-    "justify-center px-4": isSmallScreen || isMobile,
-    "justify-start pl-96": !(isSmallScreen || isMobile),
-  });
+  const cardWrapperClasses = clsx("max-w-xl", isMobile && "w-full ml-[7vw]");
 
-  const cardWrapperClasses = clsx("max-w-xl", {
-    "w-full": isSmallScreen || isMobile,
-  });
+  const sectionStyles = clsx(
+    "relative",
+    isDesktop && "-mt-[18vh] pt-[18vh]",
+    isTablet && "-mt-[14vh] pt-[16vh]",
+    isMobile && "-mt-[14vh] pt-[14vh]",
+  );
 
   return (
-    <>
-      <div className="mt-12">
-        <RibbonTitle text="Sponsorship Benefits" />
-        <div className="mt-7 flex flex-col gap-10">
-          <div className={firstCardClasses}>
-            <div className={cardWrapperClasses}>
-              <SponsorUsBenefitCardComp
-                title="Recruitment"
-                content={
-                  <>
-                    <p>
-                      Scout the next generation of talent here. Receive perks
-                      such as:
-                    </p>
-                    <ul>
-                      <li>• Onsite interviews</li>
-                      <li>• A spot in our career fair</li>
-                      <li>• Hacker resumes</li>
-                      <li>• Sponsoring a company specific prize</li>
-                    </ul>
-                  </>
-                }
-              />
+    <div>
+      <div className={sectionStyles}>
+        <div className="absolute inset-0 z-0 w-full h-full">
+          <BenefitsBackground className="" />
+        </div>
+        <div className="mt-12 relative z-10  inset-0">
+          <RibbonTitle text="BENEFITS" />
+          <div className="mt-[5vw] flex flex-col">
+            <div className={firstCardClasses}>
+              <div className={cardWrapperClasses}>
+                <SponsorUsBenefitCardComp
+                  title="Recruitment"
+                  content={
+                    <>
+                      <p>
+                        Scout the next generation of talent here. Receive perks
+                        such as:
+                      </p>
+                      <ul>
+                        <li>• Onsite interviews</li>
+                        <li>• A spot in our career fair</li>
+                        <li>• Hacker resumes</li>
+                        <li>• Sponsoring a company specific prize</li>
+                      </ul>
+                    </>
+                  }
+                />
+              </div>
             </div>
-          </div>
-          <div className={secondCardClasses}>
-            <div className={cardWrapperClasses}>
-              <SponsorUsBenefitCardComp
-                title="Market your company"
-                content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
-              />
+            <div className={secondCardClasses}>
+              <div className={cardWrapperClasses}>
+                <SponsorUsBenefitCardComp
+                  title="Market your company"
+                  content="Market your product and receive feedback by sponsoring a company-specific prize, hosting a workshop, giving a product demo, or mentoring hackers that are eager to hear your advice and implement your technologies for their projects."
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="justify-items-center mt-24 mb-16 text-center px-4">
+      <div className="relative z-10 mt-12 text-center px-4 mx-auto max-w-3xl mb-10">
         <h2 className="text-xl font-NeulisNeue-Bold text-charcoalFog">
           Additionally, we provide the flexibility to create your own perk or
           package.
         </h2>
-        <p className="mt-4 text-charcoalFog font-NeulisNeue-Regular max-w-2xl">
+        <p className="mt-4 text-charcoalFog font-NeulisNeue-Regular">
           Let us know your ideas and package choice at
           sponsorship@hackbeanpot.com. Our team will work with you to answer any
           questions and guide you through the next steps in becoming a
           HackBeanpot 2026 sponsor!
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
