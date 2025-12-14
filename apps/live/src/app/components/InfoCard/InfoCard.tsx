@@ -10,8 +10,12 @@ type InfoCardProps = {
   size?: string;
 };
 
-const InfoCard: React.FC<InfoCardProps> = ({ heading, text, icon , size = "[40vw]"}) => {
-
+const InfoCard: React.FC<InfoCardProps> = ({
+  heading,
+  text,
+  icon,
+  size = "[40vw]",
+}) => {
   return (
     <div
       className={`relative w-${size} rounded-2xl bg-white shadow-md overflow-hidden`}
