@@ -2,20 +2,19 @@
 import React from "react";
 import { ProjectStarIcon } from "main/src/app/lib/Assets/SVG";
 import { itemIconMap, ItemName } from "./icons.tsx";
-import useDevice from "@repo/util/hooks/useDevice";
 
 type InfoCardProps = {
   heading: string;
   text: string;
   icon: ItemName;
+  size?: string;
 };
 
-const InfoCard: React.FC<InfoCardProps> = ({ heading, text, icon }) => {
-  const { isTablet, isDesktop } = useDevice();
+const InfoCard: React.FC<InfoCardProps> = ({ heading, text, icon , size = "[40vw]"}) => {
 
   return (
     <div
-      className={`relative ${isDesktop ? "w-[40vw]" : isTablet ? "w-[75vw]" : "w-[90vw]"} rounded-2xl bg-white shadow-md overflow-hidden`}
+      className={`relative w-${size} rounded-2xl bg-white shadow-md overflow-hidden`}
     >
       <div className="relative" style={{ paddingTop: `${(157 / 277) * 100}%` }}>
         {/* Content */}
