@@ -4,7 +4,7 @@ import {
   InfoCardCottonCandy,
   InfoCardHotDogBag,
   InfoCardIceCream,
-  InfoCardPopcorn
+  InfoCardPopcorn,
 } from "../../lib/Assets/SVG";
 
 export enum ItemName {
