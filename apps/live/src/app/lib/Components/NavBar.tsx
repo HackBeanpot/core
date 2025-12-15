@@ -16,7 +16,7 @@ const NavBar = () => {
       buttonLinks={[
         { pageName: "Judging", link: "#judging", buttonColor: "starlightBlue" },
       ]}
-      dropdownBgColor="bg-carouselCreamDark" // TODO NAVBAR: update the background color of the navbar dropdown once design gives u access
+      solidDropdownColor={true}
     />
   );
 };

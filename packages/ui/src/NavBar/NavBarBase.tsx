@@ -19,7 +19,7 @@ export type LinkProps = {
 export type NavBarProps = {
   links: LinkProps[];
   buttonLinks: LinkProps[];
-  dropdownBgColor?: string;
+  solidDropdownColor?: boolean;
 };
 
 const LinkedButton = ({
@@ -54,7 +54,7 @@ const LinkedButton = ({
 const NavBarBase: React.FC<NavBarProps> = ({
   links,
   buttonLinks,
-  dropdownBgColor,
+  solidDropdownColor,
 }) => {
   const [isOpen, setOpen] = useState(false);
   const { isMobile, isTablet, isDesktop } = useDevice();
@@ -79,7 +79,7 @@ const NavBarBase: React.FC<NavBarProps> = ({
     "flex gap-10 w-full items-center z-10 text-md",
     isDesktop
       ? "flex-row justify-end self-center p-4 text-lg"
-      : `flex-col gap-8 ${dropdownBgColor ?? "bg-starlightBlue"} top-10 p-10`,
+      : "flex-col gap-8 bg-starlightBlue top-10 p-10",
     isMobile ? "h-screen" : "h-fit",
   );
 
@@ -119,11 +119,21 @@ const NavBarBase: React.FC<NavBarProps> = ({
           ))}
           <div className={buttonsStyles}>
             {buttonLinks.map((linkItem) => (
-              <LinkedButton
-                key={linkItem.pageName + "-" + linkItem.link}
-                useExternalLink={linkItem.useExternalLink ?? false}
-                linkInfo={linkItem}
-              />
+              (solidDropdownColor && !isDesktop ? 
+                <LocalLink
+                  key={linkItem.pageName + "-" + linkItem.link}
+                  href={linkItem.link}
+                  className={`${isOpen && !isDesktop ? "text-white" : "text-charcoalFog"} hover:text-charcoalFogLight font-DMSans-Bold`}
+                >
+                  {linkItem.pageName}
+                </LocalLink>
+                :
+                <LinkedButton
+                  key={linkItem.pageName + "-" + linkItem.link}
+                  useExternalLink={linkItem.useExternalLink ?? false}
+                  linkInfo={linkItem}
+                />
+              )
             ))}
           </div>
         </div>
