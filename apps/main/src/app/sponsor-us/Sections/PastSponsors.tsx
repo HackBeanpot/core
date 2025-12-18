@@ -47,7 +47,7 @@ const mobileRows: string[][] = [
 function makeSponsorRow(
   ticketWidthVW: number,
   logos: string[],
-  logoSizes: number[]
+  logoSizes: number[],
 ) {
   return (
     <div
@@ -75,7 +75,7 @@ export default function PastSponsors(): JSX.Element {
     `${isMobile ? "transform scale-[0.65]" : ""}`,
     isMobile && "mt-48 mb-6",
     isTablet && "mt-[32vh] mb-6",
-    isDesktop && "mt-[30vh] mb-12"
+    isDesktop && "mt-[30vh] mb-12",
   );
 
   return (

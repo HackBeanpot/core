@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Section from "@repo/ui/Section";
-import MentorsTable from "./MentorsTable";
+// import MentorsTable from "./MentorsTable";
 import useContentHeight from "@util/hooks/useContentHeight";
 import useWindowSize from "@util/hooks/useWindowSize";
 
@@ -76,7 +76,8 @@ const MentorSection = () => {
           Connect on our hackathon platform and get insights to take your
           project to the next level!
         </p>
-        <MentorsTable data={data} />
+        {/* TODO: Add MentorsTable back in when there is data */}
+        {/* <MentorsTable data={data} /> */}
       </div>
     );
   });
