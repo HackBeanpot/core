@@ -25,7 +25,7 @@
     "./Placeholder": "./src/Placeholder.tsx", 
     "./Button": "./src/Button.tsx", 
     "./RibbonTitle": "./src/RibbonTitle.tsx",
-    "./LinkedInfoCard": "./src/LinkedInfoCard.tsx"
+    "./LinkedInfoCard": "./src/LinkedInfoCard.tsx",
     "./Train": "./src/TestimonialTrain.tsx",
     "./NavBarBase": "./src/NavBar/NavBarBase.tsx",
     "./SocialsButtonsRow": "./src/SocialsButtonsRow.tsx",
