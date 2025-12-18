@@ -13,6 +13,8 @@ import {
 import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
+import Hamburger from "hamburger-react";
+
 
 export default function Page(): JSX.Element {
   return (
@@ -20,6 +22,7 @@ export default function Page(): JSX.Element {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+
       <NavBar />
       <Landing />
       <Apply />
