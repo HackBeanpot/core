@@ -10,7 +10,8 @@ import {
   About,
   Volunteering,
 } from "./Sections";
-import { Footer, NavBar } from "../lib/Components";
+import { Footer } from "../lib/Components";
+import { NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
 import Hamburger from "hamburger-react";

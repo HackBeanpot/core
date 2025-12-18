@@ -25,7 +25,10 @@
     "./Placeholder": "./src/Placeholder.tsx", 
     "./Button": "./src/Button.tsx", 
     "./RibbonTitle": "./src/RibbonTitle.tsx",
-    "./Train": "./src/TestimonialTrain.tsx", 
+    "./Train": "./src/TestimonialTrain.tsx",
+    "./NavBarBase": "./src/NavBar/NavBarBase.tsx",
+    "./SocialsButtonsRow": "./src/SocialsButtonsRow.tsx",
+    "./Footer": "./src/Footer.tsx",
     "./CarnivalTitle": "./src/CarnivalTitle.tsx"
   },
   "license": "MIT",
