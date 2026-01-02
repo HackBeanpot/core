@@ -29,7 +29,6 @@ export default function SponsorTicketComp({
       className="flex items-center justify-center relative"
       style={{ width: `${ticketWidthVW}vw`, height: "auto" }}
     >
-
       {logoPath && (
         <div
           className="absolute z-10 flex items-center justify-center overflow-hidden"

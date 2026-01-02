@@ -83,11 +83,13 @@ export default function PastSponsors(): JSX.Element {
   const boothWidth = isMobile ? 90 : isTablet ? 80 : 70;
 
   const ribbonStyles = clsx(
-    "w-full flex justify-center",
-    isMobile && "mt-36 mb-10",
-    isTablet && "mt-48 mb-8",
-    isDesktop && "mt-64 mb-12"
+    "flex justify-center",
+    isMobile && "w-[60%] mt-10 mb-8",
+    isTablet && "w-[50%] mt-14 mb-8",
+    isDesktop && "w-1/2 mt-20 mb-12"
   );
+
+  const ribbonScale = isMobile ? 0.6 : isTablet ? 0.8 : 1;
 
   return (
     <div className="relative w-full">
@@ -105,10 +107,16 @@ export default function PastSponsors(): JSX.Element {
       {/* Content overlay */}
       <div
         className="absolute top-0 left-0 w-full flex flex-col items-center text-white"
-        style={{ gap: "3vw" }}
+        style={{ paddingTop: "3vw", gap: "3vw" }}
       >
         <div className={ribbonStyles}>
-          <div className="w-full max-w-[720px] flex justify-center">
+          <div
+            className="w-fit"
+            style={{
+              transform: `scale(${ribbonScale})`,
+              transformOrigin: "top center",
+            }}
+          >
             <RibbonTitle text="PAST SPONSORS" />
           </div>
         </div>
