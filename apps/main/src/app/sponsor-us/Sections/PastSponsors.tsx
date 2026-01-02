@@ -18,6 +18,11 @@ import YelpLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/yelp.svg";
 import VMwareLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/vmware.svg";
 import ToastLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/toast.svg";
 
+const logoScaleMap: Record<string, number> = {
+  [DatadogLogo]: 0.6,
+  [ToastLogo]: 0.6,
+};
+
 const desktopRows: string[][] = [
   [GoogleLogo, CarGurusLogo, MetaLogo, DatadogLogo],
   [SimplisafeLogo, WoodMacLogo, YelpLogo],
@@ -57,6 +62,7 @@ function makeSponsorRow(ticketWidthVW: number, logos: string[]) {
           logoPath={logo}
           isSponsorUs={false}
           ticketWidthVW={ticketWidthVW}
+          logoScale={logoScaleMap[logo] ?? 1}
         />
       ))}
     </div>
@@ -74,7 +80,7 @@ export default function PastSponsors(): JSX.Element {
     "w-1/2 flex justify-center",
     isMobile && "mt-12 mb-6",
     isTablet && "mt-16 mb-6",
-    isDesktop && "mt-20 mb-6"
+    isDesktop && "mt-20 mb-6",
   );
 
   return (

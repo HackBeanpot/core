@@ -9,6 +9,7 @@ export type SponsorTicketProps = {
   isSponsorUs?: boolean;
   logoPath?: string;
   ticketWidthVw?: number;
+  logoScale?: number;
 };
 
 /**
@@ -22,7 +23,6 @@ export default function SponsorTicketComp({
   logoPath,
   ticketWidthVW = 20,
 }: SponsorTicketProps & { ticketWidthVW?: number }): JSX.Element {
-  
   return (
     <div
       className="flex items-center justify-center relative"
