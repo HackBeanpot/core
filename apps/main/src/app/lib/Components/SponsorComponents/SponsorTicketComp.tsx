@@ -22,20 +22,40 @@ export default function SponsorTicketComp({
   isSponsorUs = false,
   logoPath,
   ticketWidthVW = 20,
+  logoScale = 1,
 }: SponsorTicketProps & { ticketWidthVW?: number }): JSX.Element {
   return (
     <div
       className="flex items-center justify-center relative"
       style={{ width: `${ticketWidthVW}vw`, height: "auto" }}
     >
+
       {logoPath && (
-        <Image
-          width={100}
-          height={100}
-          alt="image of ticket sponsor"
-          src={logoPath}
-          className="absolute z-10"
-        />
+        <div
+          className="absolute z-10 flex items-center justify-center overflow-hidden"
+          style={{
+            inset: 0,
+          }}
+        >
+          <div
+            className="flex items-center justify-center"
+            style={{
+              width: "60%",
+              height: "45%",
+              transform: `scale(${logoScale})`,
+              transformOrigin: "center",
+            }}
+          >
+            <Image
+              fill
+              alt="image of ticket sponsor"
+              src={logoPath}
+              style={{ objectFit: "contain" }}
+              sizes="(max-width: 768px) 60vw, 20vw"
+              priority={false}
+            />
+          </div>
+        </div>
       )}
 
       {isSponsorUs ? (

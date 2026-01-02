@@ -18,39 +18,45 @@ import YelpLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/yelp.svg";
 import VMwareLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/vmware.svg";
 import ToastLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/toast.svg";
 
-const logoScaleMap: Record<string, number> = {
-  [DatadogLogo]: 0.6,
-  [ToastLogo]: 0.6,
-};
+type LogoItem = { logoPath: string; logoScale?: number };
 
-const desktopRows: string[][] = [
-  [GoogleLogo, CarGurusLogo, MetaLogo, DatadogLogo],
-  [SimplisafeLogo, WoodMacLogo, YelpLogo],
-  [VMwareLogo, ToastLogo],
+const desktopRows: LogoItem[][] = [
+  [
+    { logoPath: GoogleLogo },
+    { logoPath: CarGurusLogo },
+    { logoPath: MetaLogo },
+    { logoPath: DatadogLogo, logoScale: 1.2 },
+  ],
+  [
+    { logoPath: SimplisafeLogo },
+    { logoPath: WoodMacLogo },
+    { logoPath: YelpLogo },
+  ],
+  [{ logoPath: VMwareLogo }, { logoPath: ToastLogo, logoScale: 1.2 }],
 ];
 
-const tabletRows: string[][] = [
-  [GoogleLogo, CarGurusLogo],
-  [MetaLogo, DatadogLogo],
-  [SimplisafeLogo, WoodMacLogo],
-  [YelpLogo, VMwareLogo],
-  [ToastLogo],
+const tabletRows: LogoItem[][] = [
+  [{ logoPath: GoogleLogo }, { logoPath: CarGurusLogo }],
+  [{ logoPath: MetaLogo }, { logoPath: DatadogLogo, logoScale: 1.2 }],
+  [{ logoPath: SimplisafeLogo }, { logoPath: WoodMacLogo }],
+  [{ logoPath: YelpLogo }, { logoPath: VMwareLogo }],
+  [{ logoPath: ToastLogo, logoScale: 1.2 }],
 ];
 
-const mobileRows: string[][] = [
-  [GoogleLogo],
-  [CarGurusLogo],
-  [MetaLogo],
-  [DatadogLogo],
-  [SimplisafeLogo],
-  [WoodMacLogo],
-  [YelpLogo],
-  [VMwareLogo],
-  [ToastLogo],
+const mobileRows: LogoItem[][] = [
+  [{ logoPath: GoogleLogo }],
+  [{ logoPath: CarGurusLogo }],
+  [{ logoPath: MetaLogo }],
+  [{ logoPath: DatadogLogo, logoScale: 1.2 }],
+  [{ logoPath: SimplisafeLogo }],
+  [{ logoPath: WoodMacLogo }],
+  [{ logoPath: YelpLogo }],
+  [{ logoPath: VMwareLogo }],
+  [{ logoPath: ToastLogo, logoScale: 1.2 }],
 ];
 
 // generate single row of tickets
-function makeSponsorRow(ticketWidthVW: number, logos: string[]) {
+function makeSponsorRow(ticketWidthVW: number, logos: LogoItem[]) {
   return (
     <div
       className="flex justify-center"
@@ -59,10 +65,10 @@ function makeSponsorRow(ticketWidthVW: number, logos: string[]) {
       {logos.map((logo, i) => (
         <SponsorTicketComp
           key={i}
-          logoPath={logo}
+          logoPath={logo.logoPath}
           isSponsorUs={false}
           ticketWidthVW={ticketWidthVW}
-          logoScale={logoScaleMap[logo] ?? 1}
+          logoScale={logo.logoScale ?? 1}
         />
       ))}
     </div>
@@ -77,10 +83,10 @@ export default function PastSponsors(): JSX.Element {
   const boothWidth = isMobile ? 90 : isTablet ? 80 : 70;
 
   const ribbonStyles = clsx(
-    "w-1/2 flex justify-center",
-    isMobile && "mt-12 mb-6",
-    isTablet && "mt-16 mb-6",
-    isDesktop && "mt-20 mb-6",
+    "w-full flex justify-center",
+    isMobile && "mt-36 mb-10",
+    isTablet && "mt-48 mb-8",
+    isDesktop && "mt-64 mb-12"
   );
 
   return (
@@ -99,10 +105,12 @@ export default function PastSponsors(): JSX.Element {
       {/* Content overlay */}
       <div
         className="absolute top-0 left-0 w-full flex flex-col items-center text-white"
-        style={{ paddingTop: "12vw", gap: "5vw" }}
+        style={{ gap: "3vw" }}
       >
         <div className={ribbonStyles}>
-          <RibbonTitle text="Past Sponsors" />
+          <div className="w-full max-w-[720px] flex justify-center">
+            <RibbonTitle text="PAST SPONSORS" />
+          </div>
         </div>
 
         {/* Ticket Rows */}
