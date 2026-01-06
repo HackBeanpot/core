@@ -25,7 +25,11 @@
     "./Placeholder": "./src/Placeholder.tsx", 
     "./Button": "./src/Button.tsx", 
     "./RibbonTitle": "./src/RibbonTitle.tsx",
-    "./Train": "./src/TestimonialTrain.tsx", 
+    "./LinkedInfoCard": "./src/LinkedInfoCard.tsx",
+    "./Train": "./src/TestimonialTrain.tsx",
+    "./NavBarBase": "./src/NavBar/NavBarBase.tsx",
+    "./SocialsButtonsRow": "./src/SocialsButtonsRow.tsx",
+    "./Footer": "./src/Footer.tsx",
     "./CarnivalTitle": "./src/CarnivalTitle.tsx"
   },
   "license": "MIT",
@@ -36,7 +40,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/util": "*"
+    "@repo/util": "*",
+    "react-icons": "^5.0.0",
+    "clsx": "^2.0.0"
   },
   "peerDependencies": {
     "react": "^18.2.0"

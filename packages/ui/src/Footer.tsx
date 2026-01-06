@@ -2,11 +2,11 @@
 
 import React, { ChangeEvent, useState } from "react";
 import Button from "@repo/ui/Button";
-import isValidEmail from "@util/functions/isValidEmail.ts";
+import isValidEmail from "@repo/util/functions/isValidEmail";
 import { FaArrowUp } from "react-icons/fa";
 import clsx from "clsx";
-import useDevice from "@util/hooks/useDevice.ts";
-import SocialsButtonsRow from "../../../../../../packages/ui/src/SocialsButtonsRow.tsx";
+import useDevice from "@repo/util/hooks/useDevice";
+import SocialsButtonsRow from "@repo/ui/SocialsButtonsRow";
 
 const InputField = ({
   placeholder,
@@ -121,6 +121,12 @@ const Footer = () => {
             />
           </div>
         </div>
+        <a
+          className="font-DMSans-Regular text-white mt-2 underline"
+          href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
+        >
+          MLH Code of Conduct
+        </a>
       </div>
     </div>
   );

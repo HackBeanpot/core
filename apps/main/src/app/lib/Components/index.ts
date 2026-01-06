@@ -1,5 +1,5 @@
-export { default as NavBar } from "./NavBar";
-export { default as Footer } from "./Footer.tsx";
+export { default as NavBar } from "./NavBar.tsx";
+export { default as Footer } from "@repo/ui/Footer";
 export { default as LocalLink } from "./LocalLink";
 export { default as ExternalLink } from "./ExternalLink";
 export { default as VolunteeringInfoCard } from "./VolunteeringComponents/VolunteeringInfoCard.tsx";
