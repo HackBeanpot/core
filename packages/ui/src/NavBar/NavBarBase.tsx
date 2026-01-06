@@ -118,8 +118,8 @@ const NavBarBase: React.FC<NavBarProps> = ({
             </LocalLink>
           ))}
           <div className={buttonsStyles}>
-            {buttonLinks.map((linkItem) => (
-              (solidDropdownColor && !isDesktop ? 
+            {buttonLinks.map((linkItem) =>
+              solidDropdownColor && !isDesktop ? (
                 <LocalLink
                   key={linkItem.pageName + "-" + linkItem.link}
                   href={linkItem.link}
@@ -127,14 +127,14 @@ const NavBarBase: React.FC<NavBarProps> = ({
                 >
                   {linkItem.pageName}
                 </LocalLink>
-                :
+              ) : (
                 <LinkedButton
                   key={linkItem.pageName + "-" + linkItem.link}
                   useExternalLink={linkItem.useExternalLink ?? false}
                   linkInfo={linkItem}
                 />
-              )
-            ))}
+              ),
+            )}
           </div>
         </div>
       )}

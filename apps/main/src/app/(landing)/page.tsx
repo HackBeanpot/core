@@ -14,8 +14,6 @@ import { Footer } from "../lib/Components";
 import { NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
-import Hamburger from "hamburger-react";
-
 
 export default function Page(): JSX.Element {
   return (
