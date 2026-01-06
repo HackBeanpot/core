@@ -17,9 +17,11 @@ export default function About(): React.ReactNode {
         <RibbonTitle text="ABOUT US" />
       </div>
 
-      {<div className="absolute w-[160vw] h-auto top-[20%] left-[80%]">
-        <YellowBear />
-      </div>}
+      {
+        <div className="absolute w-[160vw] h-auto top-[20%] left-[80%]">
+          <YellowBear />
+        </div>
+      }
 
       <div className="mt-[15vh] mobile:mt-20 flex desktop:flex-row mobile:flex-col mobile:items-center items-start justify-center scale-125">
         <div className="relative flex h-auto mobile:w-3/5">
@@ -45,8 +47,7 @@ export default function About(): React.ReactNode {
 
       <div className="absolute w-[160vw] h-auto top-[78%] left-[79%] mb-10">
         <Dart />
-      </div> 
-
+      </div>
     </div>
   );
 }
