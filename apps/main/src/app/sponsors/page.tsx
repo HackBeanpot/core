@@ -41,14 +41,14 @@ function makeSponsorRow(
 
 export default function Page(): JSX.Element {
   const { isMobile, isTablet, isDesktop } = useDevice();
-  const bgScale = isMobile ? 2.1 : isTablet ? 1.1 : 1;
-  const boothPosition = isMobile ? "125%" : "135%";
+  const bgScale = isMobile ? 2 : isTablet ? 1.1 : 1;
+  const boothPosition = isMobile ? "155%" : "135%";
   const boothWidth = isMobile ? 90 : isTablet ? 80 : 70;
 
   const logos = [
-    [AWSLogo],
+    [AWSLogo, MavenAGILogo],
     [KlaviyoLogo],
-    [MavenAGILogo, WhoopLogo, RGLogo],
+    [WhoopLogo, RGLogo],
     [CodeCraftersLogo, FlagLogicLogo],
   ];
 
@@ -82,9 +82,9 @@ export default function Page(): JSX.Element {
               {/* Desktop */}
               {isDesktop && (
                 <>
-                  {makeSponsorRow([30], logos[0], [250])}
+                  {makeSponsorRow([30, 30], logos[0], [250, 250])}
                   {makeSponsorRow([25], logos[1], [175])}
-                  {makeSponsorRow([21, 21, 21], logos[2], [200, 200, 100])}
+                  {makeSponsorRow([21, 21], logos[2], [200, 100])}
                   {makeSponsorRow([17, 17], logos[3], [200, 200])}
                 </>
               )}
@@ -92,9 +92,9 @@ export default function Page(): JSX.Element {
               {/* Tablet */}
               {isTablet && (
                 <>
-                  {makeSponsorRow([30], logos[0], [150])}
+                  {makeSponsorRow([30, 30], logos[0], [150, 150])}
                   {makeSponsorRow([25], logos[1], [125])}
-                  {makeSponsorRow([21, 21, 21], logos[2], [115, 115, 65])}
+                  {makeSponsorRow([21, 21], logos[2], [115, 115])}
                   {makeSponsorRow([17, 17], logos[3], [120, 120])}
                 </>
               )}
@@ -102,11 +102,10 @@ export default function Page(): JSX.Element {
               {/* Mobile */}
               {isMobile && (
                 <>
-                  {makeSponsorRow([90], logos[0], [180])}
-                  {makeSponsorRow([70], logos[1], [150])}
-                  {makeSponsorRow([40, 40], logos[2], [115, 115])}
-                  {makeSponsorRow([40], [logos[2][2]])}
-                  {makeSponsorRow([30, 30], logos[3], [100, 100])}
+                  {makeSponsorRow([45, 45], logos[0], [85, 110])}
+                  {makeSponsorRow([40], logos[1], [75])}
+                  {makeSponsorRow([30, 30], logos[2], [115, 45])}
+                  {makeSponsorRow([25, 25], logos[3], [85, 85])}
                 </>
               )}
             </div>
