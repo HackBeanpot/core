@@ -5,7 +5,7 @@ import useDevice from "@util/hooks/useDevice.ts";
 
 import SponsorBackground from "../../lib/Assets/SVG/SponsorUsAssets/NavyBackground.tsx";
 import RibbonTitle from "@repo/ui/RibbonTitle";
-import SponsorTicketComp from "../../lib/Components/SponsorComponents/SponsorTicketComp.tsx";
+import SponsorTicketComp from "../../../../../../packages/ui/src/SponsorComponents/SponsorTicketComp.tsx";
 import clsx from "clsx";
 import GoogleLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/google.svg";
 import CarGurusLogo from "../../lib/Assets/SVG/SponsorUsAssets/Logos/cargurus.svg";
