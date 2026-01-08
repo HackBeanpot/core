@@ -66,11 +66,11 @@ export default function Landing(): React.ReactNode {
       ${isMobile ? "top-[25%] -translate-x-1/2 w-[60vw]" : "top-[12%] -translate-x-1/2 w-[45vw]"}`}
         />
         <p
-          className={`font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : "text-[1vw]"}`}
+          className={`z-10 font-DMSans-Bold absolute top-0 right-0 h-auto ${isMobile ? "text-xs" : "text-[1vw]"}`}
           style={{
             transform: isMobile
-              ? "translate(-45vw, 37vw)"
-              : "translate(-48vw, 15vw)",
+              ? "translate(-50vw, 36vw)"
+              : "translate(-51vw, 15vw)",
           }}
         >
           Brought to you by{" "}
@@ -84,8 +84,21 @@ export default function Landing(): React.ReactNode {
           height={50}
           style={{
             transform: isMobile
-              ? "translate(-30.5vw, 38vw)"
-              : "translate(-41vw, 15.25vw)",
+              ? "translate(-36vw, 37vw)"
+              : "translate(-44vw, 15.25vw)",
+          }}
+        />
+
+        <Image
+          className={`absolute top-0 right-0 h-auto ${isMobile ? "" : "w-[6vw]"}`}
+          alt="MavenAGI Logo"
+          src="/sponsor-logos/MavenAGILogo.svg"
+          width={50}
+          height={50}
+          style={{
+            transform: isMobile
+              ? "translate(-21vw, 37vw) scale(1.2)"
+              : "translate(-36.5vw, 15.25vw) scale(1.2)",
           }}
         />
         {/* TODO: elements to be animated */}

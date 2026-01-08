@@ -22,7 +22,7 @@ const KeynoteCard: React.FC<KeynoteCardProps> = ({
         <h3 className="font-NeulisNeue-Bold text-xl text-firecrackerRed">
           {bio}
         </h3>
-        <p className="text-charcoalFogDark mobile:text-xs font-DMSans-Regular ">
+        <p className="text-charcoalFogDark mobile:text-s font-DMSans-Regular ">
           {text}
         </p>
       </div>

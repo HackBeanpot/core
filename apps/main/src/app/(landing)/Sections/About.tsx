@@ -18,14 +18,18 @@ export default function About(): React.ReactNode {
       </div>
 
       {
-        <div className="absolute w-[160vw] h-auto top-[20%] left-[80%]">
+        <div className="absolute w-[160vw] h-auto top-[20%] left-[80%]" style={{
+          transform: isMobile
+            ? "translate(-15vw, 8vh)"
+            : "",
+        }}>
           <YellowBear />
         </div>
       }
 
       <div className="mt-[15vh] mobile:mt-20 flex desktop:flex-row mobile:flex-col mobile:items-center items-start justify-center scale-125">
         <div className="relative flex h-auto mobile:w-3/5">
-          <p className="text-charcoalFogDark mobile:text-xs font-DMSans-Regular absolute h-full mobile:p-12 desktop:py-20 desktop:px-16 desktop-xl:py-20 desktop-xl:px-16 self-center">
+          <p className="z-10 text-charcoalFogDark mobile:text-xs font-DMSans-Regular absolute h-full mobile:-mr-16 desktop:py-20 desktop:px-16 desktop-xl:py-20 desktop-xl:px-16 self-center">
             We&apos;re a non-profit organization in the Boston area that
             organizes an annual undergraduate hackathon. Our goal is to expand
             and nurture the hacker culture that exists in Boston and the
@@ -33,7 +37,11 @@ export default function About(): React.ReactNode {
             their colleagues so that they can meet new people, learn new things,
             and have a great time.
           </p>
-          <TextBackground />
+          <TextBackground style={{
+          transform: isMobile
+            ? "translate(10vw, 8vh) scale(1.2)"
+            : "",
+        }}/>
         </div>
 
         <div className="flex mobile:-mt-16 mobile:-ml-0 desktop:-ml-14 desktop:mt-8 transform mobile:scale-[50%] mobile:items-center">
@@ -41,7 +49,11 @@ export default function About(): React.ReactNode {
         </div>
       </div>
 
-      <div className="absolute w-[160vw] h-auto top-[68%] left-[46%] mb-10">
+      <div className="absolute w-[160vw] h-auto top-[68%] left-[46%] mb-10" style={{
+          transform: isMobile
+            ? "translate(-20vw, 8vh)"
+            : "",
+        }}>
         <PurpleBear />
       </div>
 

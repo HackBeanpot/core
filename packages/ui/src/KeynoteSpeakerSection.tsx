@@ -23,22 +23,24 @@ export default function Keynote(): React.ReactNode {
   };
 
   return (
-    <div className="h-[190vh] w-full bg-mossGreen">
+    <div className="h-[190vh] mobile:h-[170vh] w-full bg-mossGreen">
       <KeynoteTopSquiggle
         className="absolute z-10"
         style={{
           transform: isMobile
-            ? "translate(0, 0) scale(2)"
-            : "translate(15vw, -15vh) scale(1.5)",
+            ? "translate(-100vw, -10vh) scale(0.5)"
+            : "translate(15vw, -15vh) scale(1.75)",
         }}
       />
       <div className="mt-[10vh]">
         <RibbonTitle text="GUEST SPEAKERS" />
       </div>
 
-      <div className="absolute">
-        <KeynoteCart />
-      </div>
+      {!isMobile && (
+        <div className="absolute">
+          <KeynoteCart />
+        </div>
+      )}
 
       {/* SUE */}
       <div className="">
@@ -46,7 +48,7 @@ export default function Keynote(): React.ReactNode {
           imageURL="/guest-speakers/Sue.jpg"
           style={{
             transform: isMobile
-              ? "translate(-45vw, 37vw)"
+              ? "translate(-14vw, -8vh) scale(0.6)"
               : "translate(28vw, 8vw)",
           }}
         />
@@ -56,7 +58,7 @@ export default function Keynote(): React.ReactNode {
           className="absolute"
           style={{
             transform: isMobile
-              ? "translate(-45vw, 37vw)"
+              ? "translate(7vw, -40vh) scale(0.7)"
               : "translate(50vw, -18vw)",
           }}
         >
@@ -74,7 +76,7 @@ export default function Keynote(): React.ReactNode {
           imageURL="/guest-speakers/Jessica.jpg"
           style={{
             transform: isMobile
-              ? "translate(-45vw, 37vw)"
+              ? "translate(-14vw, -8vh) scale(0.6)"
               : "translate(48vw, 14vw)",
           }}
         />
@@ -84,7 +86,7 @@ export default function Keynote(): React.ReactNode {
           className="absolute"
           style={{
             transform: isMobile
-              ? "translate(-45vw, 37vw)"
+              ? "translate(7vw, -40vh) scale(0.7)"
               : "translate(28vw, -12vw)",
           }}
         >
