@@ -11,6 +11,7 @@
     "./styles.css": "./dist/index.css",
     "./Box": "./src/Box.tsx",
     "./FAQDropdown": "./src/FAQDropdown.tsx",
+    "./KeynoteSpeakerSection": "./src/KeynoteSpeakerSection.tsx", 
     "./StreetSign": "./src/StreetSign.tsx",
     "./LinkedInLogo": "./src/LinkedInLogo.tsx",
     "./ArrowButton": "./src/ArrowButton.tsx",

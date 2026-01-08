@@ -90,7 +90,7 @@ export default function Landing(): React.ReactNode {
         />
         {/* TODO: elements to be animated */}
         <Balloon
-          className={`absolute top-0 right-0 h-auto ${isMobile ? "w-[8vw]" : "w-[5vw]"}`}
+          className={`absolute top-0 right-0 h-auto ${isMobile ? "w-[8vw]" : "w-[5vw]"} `}
           style={{
             transform: isMobile
               ? "translate(-25vw, 45vw)"
@@ -98,7 +98,7 @@ export default function Landing(): React.ReactNode {
           }}
         />
         <Balloon
-          className={`absolute top-0 right-0 h-auto ${isMobile ? "w-[5vw]" : "w-[3vw]"}`}
+          className={`absolute top-0 right-0 h-auto ${isMobile ? "w-[5vw]" : "w-[3vw]"} `}
           style={{
             transform: isMobile
               ? "translate(-20vw, 52vw)"

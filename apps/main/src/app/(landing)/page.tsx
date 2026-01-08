@@ -3,7 +3,7 @@ import {
   Values,
   FAQSection,
   Landing,
-  // Keynote,
+  Keynote,
   Calendar,
   Testimonials,
   Apply,
@@ -14,8 +14,6 @@ import { Footer } from "../lib/Components";
 import { NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
-import Hamburger from "hamburger-react";
-
 
 export default function Page(): JSX.Element {
   return (
@@ -31,7 +29,7 @@ export default function Page(): JSX.Element {
       <Volunteering />
       <Stats />
       <Values />
-      {/* <Keynote /> */}
+      <Keynote />
       <Calendar />
       <Testimonials />
       <FAQSection />
