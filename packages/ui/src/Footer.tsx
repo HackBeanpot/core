@@ -121,6 +121,12 @@ const Footer = () => {
             />
           </div>
         </div>
+        <a
+          className="font-DMSans-Regular text-white mt-2 underline"
+          href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
+        >
+          MLH Code of Conduct
+        </a>
       </div>
     </div>
   );
