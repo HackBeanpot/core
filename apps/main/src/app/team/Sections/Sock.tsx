@@ -31,7 +31,3 @@ const Sock = () => {
 };
 
 export default Sock;
-
-
-
-

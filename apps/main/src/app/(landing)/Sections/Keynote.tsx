@@ -107,7 +107,7 @@ export default function Keynote(): React.ReactNode {
       </div>
 
       <KeynoteSpeakerForegroundWaves
-        className={`absolute w-[200vw] h-auto bottom-0 overflow-hidden`}
+        className={`absolute w-[200vw] h-auto bottom-0 overflow-x-hidden`}
       ></KeynoteSpeakerForegroundWaves>
     </div>
 

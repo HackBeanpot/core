@@ -1,14 +1,15 @@
 "use client";
 
 import React from "react";
-import SponsorTicket from "../../Assets/SVG/SponsorAssets/SponsorTicket";
-import SponsorUsTicket from "../../Assets/SVG/SponsorAssets/SponsorUsTicket";
+import SponsorTicket from "../SponsorAssets/SponsorTicket";
+import SponsorUsTicket from "../SponsorAssets/SponsorUsTicket";
 import Image from "next/image";
 
 export type SponsorTicketProps = {
   isSponsorUs?: boolean;
   logoPath?: string;
   ticketWidthVw?: number;
+  logoWidth?: number;
 };
 
 /**
@@ -21,6 +22,7 @@ export default function SponsorTicketComp({
   isSponsorUs = false,
   logoPath,
   ticketWidthVW = 20,
+  logoWidth,
 }: SponsorTicketProps & { ticketWidthVW?: number }): JSX.Element {
   return (
     <div
@@ -29,7 +31,7 @@ export default function SponsorTicketComp({
     >
       {logoPath && (
         <Image
-          width={50}
+          width={logoWidth ?? 50}
           height={50}
           alt="image of ticket sponsor"
           src={logoPath}
