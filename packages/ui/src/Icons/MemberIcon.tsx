@@ -22,7 +22,7 @@ const Icon: React.FC<IconProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-center relative">
-      <div className="relative inline-block rounded-full overflow-hidden group w-40 h-40 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32">
+      <div className="relative inline-block rounded-full overflow-hidden group w-40 h-40 hover:scale-105 transition-transform duration-200 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32">
         <Image
           src={src}
           alt={name}
