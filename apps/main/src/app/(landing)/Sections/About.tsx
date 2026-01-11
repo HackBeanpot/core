@@ -12,17 +12,18 @@ import useDevice from "@util/hooks/useDevice";
 export default function About(): React.ReactNode {
   const { isMobile } = useDevice();
   return (
-    <div className="relative w-full max-w-[1400px] mx-auto overflow-visible p-[clamp(2rem,6vw,8rem)]">
+    <div className="relative w-full max-w-[1400px] mx-auto overflow-visible p-[clamp(2rem,6vw,8rem)] z-20">
       <div className={`${isMobile ? "transform scale-[0.85]" : ""}`}>
         <RibbonTitle text="ABOUT US" />
       </div>
 
       {
-        <div className="absolute w-[160vw] h-auto top-[20%] left-[80%]" style={{
-          transform: isMobile
-            ? "translate(-15vw, 8vh)"
-            : "",
-        }}>
+        <div
+          className="absolute w-[160vw] h-auto top-[20%] left-[80%]"
+          style={{
+            transform: isMobile ? "translate(-15vw, 8vh)" : "",
+          }}
+        >
           <YellowBear />
         </div>
       }
@@ -37,11 +38,11 @@ export default function About(): React.ReactNode {
             their colleagues so that they can meet new people, learn new things,
             and have a great time.
           </p>
-          <TextBackground style={{
-          transform: isMobile
-            ? "translate(10vw, 8vh) scale(1.2)"
-            : "",
-        }}/>
+          <TextBackground
+            style={{
+              transform: isMobile ? "translate(10vw, 8vh) scale(1.2)" : "",
+            }}
+          />
         </div>
 
         <div className="flex mobile:-mt-16 mobile:-ml-0 desktop:-ml-14 desktop:mt-8 transform mobile:scale-[50%] mobile:items-center">
@@ -49,11 +50,12 @@ export default function About(): React.ReactNode {
         </div>
       </div>
 
-      <div className="absolute w-[160vw] h-auto top-[68%] left-[46%] mb-10" style={{
-          transform: isMobile
-            ? "translate(-20vw, 8vh)"
-            : "",
-        }}>
+      <div
+        className="absolute w-[160vw] h-auto top-[68%] left-[46%] mb-10"
+        style={{
+          transform: isMobile ? "translate(-20vw, 8vh)" : "",
+        }}
+      >
         <PurpleBear />
       </div>
 
