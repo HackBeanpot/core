@@ -333,6 +333,5 @@ const ResourcesBackground = () => (
       </filter>
     </defs>
   </svg>
-
 );
 export default ResourcesBackground;

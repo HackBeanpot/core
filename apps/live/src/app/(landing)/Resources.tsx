@@ -9,7 +9,6 @@ import ResourcesBackground from "../lib/Assets/SVG/ResourcesBackground";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import useDevice from "@repo/util/hooks/useDevice";
 
-
 type TicketInfo = {
   ticketText: string;
   link: string;
@@ -20,27 +19,34 @@ const tickets: TicketInfo[] = [
   {
     ticketText: "Hacker Guide >",
     link: "https://docs.google.com/document/d/15XfcqKupkjGC7WLHvigt_nzUeM7LHQ1-o916hmZkCwo/edit?usp=sharing",
-    description: "Basic welcome information like map of venue, due dates and more!",
+    description:
+      "Basic welcome information like map of venue, due dates and more!",
   },
   {
     ticketText: "How to Demo >",
     link: "https://drive.google.com/file/d/18UrWcSD3gIQZC0W5JggKnVi7w5YBwc1L/view?usp=sharing",
-    description: "Basic welcome information like map of venue, due dates and more!",
+    description:
+      "Basic welcome information like map of venue, due dates and more!",
   },
   {
     ticketText: "Resources >",
     link: "https://docs.google.com/document/d/1JLBsSnUCa7nx5HBpUAV52qTS4-IIsyqkaUPuSXqI8cA/edit?usp=sharing",
-    description: "Basic welcome information like map of venue, due dates and more!",
+    description:
+      "Basic welcome information like map of venue, due dates and more!",
   },
   {
     ticketText: "Resources >",
     link: "https://docs.google.com/document/d/1Zy-EQfEap4irB7vSPygL1uwpsAJ4djqjNRVxP_lluv4/edit?usp=sharing",
-    description: "Basic welcome information like map of venue, due dates and more!",
+    description:
+      "Basic welcome information like map of venue, due dates and more!",
   },
 ];
 
 const background = (
-  <div className="absolute inset-0 w-full overflow-hidden pointer-events-none z-10" style={{transform: "translateY(-10vh)", height: "calc(100% + 10vh)"}}>
+  <div
+    className="absolute inset-0 w-full overflow-hidden pointer-events-none z-10"
+    style={{ transform: "translateY(-10vh)", height: "calc(100% + 10vh)" }}
+  >
     <ResourcesBackground />
   </div>
 );
@@ -55,7 +61,7 @@ export default function Resources(): React.ReactNode {
   const content = (
     <div ref={ref}>
       <div className={`${isMobile ? "transform scale-[0.85]" : ""} mt-5`}>
-         <RibbonTitle text="RESOURCES" />
+        <RibbonTitle text="RESOURCES" />
       </div>
 
       <div className="tablet:text-2xl font-semibold text-2xl grid grid-cols-1 mobile:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 tablet:grid-cols-2 desktop:grid-cols-2 gap-8 justify-center mx-auto w-fit mt-20">
