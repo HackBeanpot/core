@@ -65,4 +65,3 @@ const CarnivalScene: React.FC = () => {
 };
 
 export default CarnivalScene;
-
