@@ -1,9 +1,7 @@
 import * as React from "react";
 
-const Logo = (props: React.SVGProps<SVGSVGElement>) => (
+const HackBeanpotLogo = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
-    width={163}
-    height={54}
     viewBox="0 0 163 54"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -59,4 +57,4 @@ const Logo = (props: React.SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 );
-export default Logo;
+export default HackBeanpotLogo;
