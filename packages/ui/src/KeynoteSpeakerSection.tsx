@@ -8,7 +8,6 @@ import KeynoteSpeakerPhoto from "./KeynoteSpeakerAssets/KeynoteSpeakerPhoto";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import KeynoteTopSquiggle from "./KeynoteSpeakerAssets/KeynoteTopSquiggle";
 
-
 export default function Keynote(): React.ReactNode {
   const { isMobile } = useDevice();
   const sueData = {
