@@ -33,12 +33,12 @@ export default function Welcome(): React.ReactNode {
         </div>
 
         <div
-          className={"absolute" + (isMobile ? " transform scale-[0.85]" : "")}
+          className={"absolute mobile:hidden mobile-xl:hidden" + (isMobile ? " transform scale-[0.85]" : "")}
           style={{
             marginTop: "350px",
             paddingLeft: "70px",
             width: isMobile ? "8vw" : "35vw",
-            left: isMobile ? "15%" : "60%",
+            left: isMobile ? "15%" : "55%",
             top: isMobile ? "4vw" : "10vh",
             zIndex: 5,
           }}
@@ -50,7 +50,8 @@ export default function Welcome(): React.ReactNode {
           <div
             className="absolute inset-0"
             style={{
-              marginLeft: isMobile ? "2vw" : "22vw",
+              right: "7%",
+              marginLeft: isMobile ? "2vw" : "21vw",
               zIndex: 1,
             }}
           >
@@ -72,7 +73,7 @@ export default function Welcome(): React.ReactNode {
           >
             <p
               className="md:text-lg text-charcoalFogDark font-DMSans-Regular leading-relaxed max-w-3xl"
-              style={{ paddingLeft: isMobile ? "3vw" : "23vw", paddingTop: 25 }}
+              style={{ paddingLeft: isMobile ? "3vw" : "22vw", paddingTop: 25 }}
             >
               At <b>HackBeanpot 2026</b>, we&apos;re hitting the road with a
               community of explorers driven by creativity, learning, and
