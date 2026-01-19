@@ -1,45 +1,54 @@
+"use client";
+
 import React from "react";
-import Section from "@repo/ui/Section";
-import EventScheduleRoad from "../../lib/Assets/SVG/EventScheduleRoad";
 import EventScheduleTabs from "./EventScheduleTabs";
-
-const EventScheduleBackground = () => {
-  return (
-    <div className="bg-orange h-full">
-      <EventScheduleRoad />
-    </div>
-  );
-};
-
-const EventScheduleContent = async () => {
-  return (
-    <div className="py-24 px-48 font-GT-Walsheim-Bold">
-      <div className="flex flex-col py-10 text-xl gap-10">
-        <div className="flex items-center justify-between">
-          <p className="text-[clamp(3rem,7vw,7rem)] text-granolaLite font-bold font-Wilden">
-            Event Schedule
-          </p>
-        </div>
-        <p className="text-white text-xl font-GT-Walsheim-Regular">
-          Dates and times are displayed in your local timezone. Schedule in EST
-          can be found here. The password for all Zoom meetings can be found
-          pinned in the #announcements Slack channel. Please be sure to attend
-          all events labeled &quot;Everyone&quot;.
-        </p>
-      </div>
-      <EventScheduleTabs />
-    </div>
-  );
-};
+import EventScheduleSquiggle from "../../lib/Assets/SVG/EventSchedule/EventScheduleSquiggle.tsx";
+import EventRingToss from "../../lib/Assets/SVG/EventSchedule/EventRingToss.tsx";
+import EventBush from "../../lib/Assets/SVG/EventSchedule/EventBush.tsx";
+import useDevice from "@util/hooks/useDevice";
+import RibbonTitle from "@repo/ui/RibbonTitle";
 
 const EventSchedule = () => {
+  const { isMobile } = useDevice();
   return (
-    <Section
-      name="schedule"
-      background={<EventScheduleBackground />}
-      content={<EventScheduleContent />}
-      height={125}
-    />
+    <div
+      className={`h-[145vh] ${isMobile ? "" : "w-full"} relative font-DMSans-Bold bg-mossGreen`}
+      style={{
+        transform: isMobile ? "scale(0.65)" : "",
+      }}
+    >
+      <EventBush
+        className="absolute z-50"
+        style={{
+          transform: isMobile
+            ? "translate(-20vw, -15vh) scale(0.25)"
+            : "translate(-40vw, 15vw) scale(0.20)",
+        }}
+      />
+
+      <EventRingToss
+        className="absolute z-50"
+        style={{
+          transform: isMobile
+            ? "translate(-20vw, -15vh) scale(0.25)"
+            : "translate(75vw, 55vw) scale(1)",
+        }}
+      />
+      <div
+        className="absolute w-full z-10"
+        style={{
+          transform: isMobile
+            ? "translate(15vw, -15vh) scale(1.25)"
+            : "translate(0vw, -20vh) scale(1.25)",
+        }}
+      >
+        <EventScheduleSquiggle />
+      </div>
+      <div className="px-32 mobile:ml-8 relative flex flex-col justify-center z-40">
+        <RibbonTitle text="EVENT SCHEDULE" />
+        <EventScheduleTabs />
+      </div>
+    </div>
   );
 };
 

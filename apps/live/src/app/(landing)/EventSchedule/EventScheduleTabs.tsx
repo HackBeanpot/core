@@ -1,9 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import FAQDropdown from "@repo/ui/FAQDropdown";
-import LocationDot from "../../lib/Assets/SVG/LocationDot";
+import EventDropdown from "./EventDropdown";
+import CodeIcon from "../../lib/Assets/SVG/Icons/expandIcon.tsx";
+import FoodIcon from "../../lib/Assets/SVG/Icons/foodIcon.tsx";
+import StarIcon from "../../lib/Assets/SVG/Icons/starIcon.tsx";
+import ShareIcon from "../../lib/Assets/SVG/Icons/codeIcon.tsx";
+import ClockIcon from "../../lib/Assets/SVG/Icons/clockIcon.tsx";
+import LocationIcon from "../../lib/Assets/SVG/Icons/locationIcon.tsx";
 import removeHoursFromDate from "@util/functions/removeHoursfromDate";
+import useDevice from "@util/hooks/useDevice.ts";
 
 const HappeningNow = () => (
   <div className="text-green flex items-center gap-2">
@@ -24,6 +30,12 @@ type EventByDate = {
   [date: string]: AirtableRecord[];
 };
 
+const iconTypes: Record<string, React.ComponentType> = {
+  Code: CodeIcon,
+  Food: FoodIcon,
+  Star: StarIcon,
+};
+
 export type AirtableRecord = {
   id: string;
   createdTime: string;
@@ -35,6 +47,7 @@ export type AirtableRecord = {
     difficulty: string;
     description: string;
     eventName: string;
+    iconType: string;
   };
 };
 
@@ -80,17 +93,15 @@ const isHappeningNow = (startTime: string, endTime: string): boolean => {
 };
 
 const Tab = ({ date, onClick, active }: TabProps) => {
-  const raised = active ? "drop-shadow-md bg-grapePurple" : "bg-darkerPurple";
+  const { isMobile } = useDevice();
+  const raised = active ? "bg-starlightBlue" : "bg-starlightBlueDark";
   return (
     <div
       key={date + "-tab"}
       onClick={onClick}
-      className={`pt-5 flex w-[3vw] h-full justify-center ${raised} rounded-l-2xl cursor-pointer text-white hover:bg-grapePurple transition-all shadow-lg hover:translate-x-1`}
+      className={`pt-2 flex  ${isMobile ? "w-[40vw]" : "w-[20vw]"} h-[10vh] justify-center ${raised} z-0 rounded-t-2xl cursor-pointer text-white hover:bg-starlightBlueLight transition-all shadow-lg hover:-translate-y-2`}
     >
-      {date.toLocaleDateString("en-us", { weekday: "short" })}
-      <br />
-      {date.getDate()}
-      <br />
+      {date.toLocaleDateString("en-us", { weekday: "long" })}{" "}
     </div>
   );
 };
@@ -134,8 +145,8 @@ const EventScheduleTabs = () => {
   });
 
   return (
-    <div className="flex flex-row w-full h-[80vh] gap-1 text-lg">
-      <div className="flex flex-col h-full">
+    <div className="flex flex-col w-full h-[80vh] -gap-1 text-lg">
+      <div className="flex flex-row ml-5 mobile:items-center translate-y-10">
         {datesSorted.map((date, index) => {
           const dateObj = new Date(date);
           const isActive = index === selectedTab;
@@ -149,7 +160,7 @@ const EventScheduleTabs = () => {
           );
         })}
       </div>
-      <div className="flex flex-col flex-1 bg-grapePurple w-full p-6 rounded-r-2xl gap-5 max-h-full">
+      <div className="flex flex-col flex-1 bg-starlightBlue mobile:w-[145vw] p-6 rounded-2xl gap-5 max-h-full z-10">
         {loading && <div className="text-white">Loading...</div>}
         {!loading && !data && (
           <button className="text-white" onClick={getScheduleData}>
@@ -184,23 +195,24 @@ const EventScheduleTabs = () => {
                         difficulty,
                         description,
                         eventName,
+                        iconType,
                       } = fields;
                       const startTime = toTime(start_time, false);
                       const endTime = toTime(end_time, true);
+                      const Icon = iconTypes["Food"];
                       const dropdownQuestion = (
-                        <div className="grid grid-cols-[2fr_5fr_3fr] gap-20 items-center w-full">
-                          <div>
-                            <p className="text-xl font-bold">{`${startTime} - ${endTime}`}</p>
-                            <div className="flex items-center gap-1">
-                              <LocationDot /> {eventLocation}
+                        <div className="grid grid-cols-[3fr_4fr_3fr] gap-20 items-center w-full">
+                          <div className="flex flex-row gap-4 ml-4 my-2">
+                            <Icon />
+                            <div className="flex flex-col">
+                              <p className="font-bold text-2xl">{eventName}</p>
+                              <p className="font-bold text-firecrackerRed">{`${startTime} - ${eventLocation}`}</p>
+                              <div className="flex items-center gap-1"></div>
                             </div>
                           </div>
+
                           <div>
-                            <div className="text-sm font-light text-tomato">
-                              {tags}
-                            </div>
                             <div className="flex gap-5">
-                              <p className="text-2xl font-bold">{eventName}</p>
                               {isHappeningNow(start_time, end_time) && (
                                 <HappeningNow />
                               )}
@@ -217,11 +229,11 @@ const EventScheduleTabs = () => {
                         </div>
                       );
                       return (
-                        <FAQDropdown
+                        <EventDropdown
                           key={JSON.stringify(fields)}
                           dropdownQuestion={dropdownQuestion}
                           dropdownAnswer={description}
-                          iconType="Chevron"
+                          iconType="Symbol"
                         />
                       );
                     })}
