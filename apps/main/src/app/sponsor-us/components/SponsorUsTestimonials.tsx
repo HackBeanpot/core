@@ -3,11 +3,12 @@
 import React, { useState } from "react";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import clsx from "clsx";
-import { TestimonialsFerrisWheel, SponsorUsTestimonialsBackground } from "../../lib/Assets/SVG";
+import { SponsorUsTestimonialsBackground } from "../../lib/Assets/SVG";
 import Button from "@repo/ui/Button";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import SponsorUsTestimonialCart from "./SponsorUsTestimonialCart";
 import useDevice from "@util/hooks/useDevice";
+import SponsorUsTestimonialsWheel from "./SponsorUsTestimonialWheel";
 
 const defaultOrder = [
   {
@@ -73,11 +74,11 @@ export default function SponsorUsTestimonials() {
   );
 
   const cartOuterStyles = clsx(
-    "absolute z-20 mobile:top-[15%] mobile-xl:top-[15%] tablet:top-[20%] desktop:top-[30%] desktop-md:top-[35%] desktop-xl:top-[40%]",
+    "absolute z-20 mobile:top-[15%] mobile-xl:top-[15%] tablet:top-[25%] desktop:top-[30%] desktop-md:top-[35%] desktop-xl:top-[40%]",
   );
 
   const buttonsOuterStyles = clsx(
-    "absolute w-full z-20 mobile:top-[60%] mobile-xl:top-[55%] tablet:top-[55%] desktop:top-[60%] desktop-md:top-[45%] desktop-xl:top-[45%]",
+    "absolute w-full z-20 mobile:top-[60%] mobile-xl:top-[55%] tablet:top-[55%] desktop:top-[50%] desktop-md:top-[45%] desktop-xl:top-[45%]",
   );
 
   const buttonsInnerStyles = clsx(
@@ -140,11 +141,9 @@ export default function SponsorUsTestimonials() {
       </div>
 
       {/* Ferris Wheel */}
-      <TestimonialsFerrisWheel
-        className={ferrisWheelStyles}
-        style={{
-          transform: `${ferrisWheelScaling} rotate(${currWheelAngle}deg)`,
-        }}
+      <SponsorUsTestimonialsWheel
+        classname={ferrisWheelStyles} 
+        transformStyle={`${ferrisWheelScaling} rotate(${currWheelAngle}deg)`}
       />
 
       {/* Testimonials Background */}
