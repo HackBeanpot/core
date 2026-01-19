@@ -8,25 +8,65 @@ import PurpleTent from "./PurpleTent";
 import OrangeTent from "./OrangeTent";
 import DartBoard from "./DartBoard";
 import LandingGrass from "./LandingGrass";
+import CabinRace from "./CabinRace";
+import OpeningText from "./OpeningText";
+import useDevice from "@util/hooks/useDevice";
 
 const CarnivalScene: React.FC = () => {
+  const { isMobile, isTablet, isDesktop } = useDevice();
+
+  const getMinHeight = () => {
+    if (isDesktop) return "min-h-[1500px]";
+    if (isTablet) return "min-h-[1300px]";
+    return "min-h-[1100px]";
+  };
+
   return (
-    <div className="relative w-full h-full overflow-hidden min-h-[1100px] md:min-h-[1300px] lg:min-h-[1500px]">
+    <div className={`relative w-full h-full overflow-hidden ${getMinHeight()}`}>
       {/* Background - Night Sky */}
       <div className="absolute inset-0 w-full h-full">
         <HeroBackground />
       </div>
 
+      {/* Cabin Race - Top Left */}
+      <div
+        className={`absolute left-0 top-0 z-30 ${isMobile ? "p-2" : isTablet ? "p-4" : "p-6"}`}
+      >
+        <div className="w-auto h-auto">
+          <CabinRace text="Magicians" />
+        </div>
+      </div>
+
       {/* Fireworks */}
-      {/* Yellow Firework - Left side above purple tent */}
-      <div className="absolute left-[2%] top-[2%] z-30 w-[15vw] max-w-[280px] min-w-[100px] sm:left-[4%] sm:top-[4%] sm:w-[12vw] md:w-[10vw] lg:left-[5%] lg:top-[5%]">
+      {/* Yellow Firework - Left side behind purple tent */}
+      <div
+        className={`absolute z-15 max-w-[280px] min-w-[100px] ${
+          isDesktop
+            ? "left-[0%] top-[32%] w-[10vw]"
+            : isTablet
+              ? "left-[4%] top-[28%] w-[10vw]"
+              : isMobile
+                ? "left-[4%] top-[28%] w-[12vw]"
+                : "left-[0%] top-[25%] w-[15vw]"
+        }`}
+      >
         <div className="w-full h-auto">
           <YellowFirework />
         </div>
       </div>
 
-      {/* Orange Firework - Right side above orange tent */}
-      <div className="absolute right-[2%] top-[2%] z-30 w-[15vw] max-w-[320px] min-w-[100px] sm:right-[4%] sm:top-[4%] sm:w-[12vw] md:w-[10vw] lg:right-[5%] lg:top-[5%]">
+      {/* Orange Firework - Right side behind orange tent */}
+      <div
+        className={`absolute z-0 max-w-[320px] min-w-[100px] ${
+          isDesktop
+            ? "right-[5%] top-[32%] w-[10vw]"
+            : isTablet
+              ? "right-[4%] top-[28%] w-[10vw]"
+              : isMobile
+                ? "right-[4%] top-[28%] w-[12vw]"
+                : "right-[2%] top-[29%] w-[15vw]"
+        }`}
+      >
         <div className="w-full h-auto">
           <OrangeFirework />
         </div>
@@ -34,28 +74,87 @@ const CarnivalScene: React.FC = () => {
 
       {/* Tents */}
       {/* Purple Tent - Left side */}
-      <div className="absolute left-[0%] bottom-[10%] z-20 w-[18vw] max-w-[300px] min-w-[120px] sm:left-[1%] sm:bottom-[12%] sm:w-[16vw] md:w-[14vw] lg:left-[2%] lg:bottom-[15%] lg:w-[12vw] scale-75 origin-center">
+      <div
+        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-50" : "scale-75"} origin-center ${
+          isDesktop
+            ? "left-[2%] bottom-[31%] w-[12vw]"
+            : isTablet
+              ? "left-[1%] bottom-[32%] w-[14vw]"
+              : isMobile
+                ? "left-[1%] bottom-[32%] w-[16vw]"
+                : "left-[0%] bottom-[23%] w-[18vw]"
+        }`}
+      >
         <div className="w-full h-auto">
           <PurpleTent />
         </div>
       </div>
 
       {/* Orange Tent - Right side */}
-      <div className="absolute right-[0%] bottom-[10%] z-20 w-[18vw] max-w-[300px] min-w-[120px] sm:right-[1%] sm:bottom-[12%] sm:w-[16vw] md:w-[14vw] lg:right-[2%] lg:bottom-[15%] lg:w-[12vw] scale-75 origin-center">
+      <div
+        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-50" : "scale-75"} origin-center ${
+          isDesktop
+            ? "right-[2%] bottom-[28%] w-[12vw]"
+            : isTablet
+              ? "right-[1%] bottom-[25%] w-[14vw]"
+              : isMobile
+                ? "right-[1%] bottom-[25%] w-[16vw]"
+                : "right-[0%] bottom-[23%] w-[18vw]"
+        }`}
+      >
         <div className="w-full h-auto">
           <OrangeTent />
         </div>
       </div>
 
+      {/* Opening Text - Above Dart Board */}
+      <div
+        className={`absolute left-[52%] -translate-x-[48%] z-40 ${isMobile ? "scale-[0.75]" : "scale-150"} ${
+          isDesktop
+            ? "bottom-[72%]"
+            : isTablet
+              ? "bottom-[75%]"
+              : isMobile
+                ? "bottom-[73%]"
+                : "bottom-[67%]"
+        }`}
+      >
+        <OpeningText />
+      </div>
+
       {/* Central Dart Board Booth */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 bottom-[15%] z-40 w-[35vw] max-w-[450px] min-w-[200px] sm:bottom-[17%] sm:w-[32vw] md:bottom-[18%] md:w-[28vw] lg:bottom-[20%] lg:w-[25vw] xl:w-[22vw] scale-75 origin-center">
-        <div className="w-full h-auto">
-          <DartBoard />
+      <div
+        className={`absolute left-1/2 -translate-x-1/2 z-40 flex justify-center items-center ${
+          isDesktop
+            ? "bottom-[27%]"
+            : isTablet
+              ? "bottom-[25%]"
+              : isMobile
+                ? "bottom-[24%]"
+                : "bottom-[22%]"
+        }`}
+      >
+        <div
+          className={`max-w-[450px] min-w-[200px] ${
+            isDesktop
+              ? "w-[25vw]"
+              : isTablet
+                ? "w-[28vw]"
+                : isMobile
+                  ? "w-[32vw]"
+                  : "w-[35vw]"
+          }`}
+        >
+          <div
+            className={`${isMobile ? "scale-[0.5]" : "scale-[1.0]"} origin-center`}
+          >
+            <DartBoard />
+          </div>
         </div>
       </div>
 
       {/* Grass - Bottom */}
-      <div className="absolute bottom-0 left-0 w-full z-10 overflow-visible">
+      <div className="absolute bottom-[15%] left-0 w-full z-10 overflow-visible">
         <div className="w-full h-auto">
           <LandingGrass />
         </div>
