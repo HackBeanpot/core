@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import Train from "./Train";
 import Button from "./Button";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -10,36 +10,31 @@ import useDevice from "@repo/util/hooks/useDevice";
 const currBounds = { leftBound: 0, rightBound: 10000, threshold: 21.7 };
 
 export default function TestimonialTrain() {
-  const { isDesktop } = useDevice();
-
   const numCarts = 4;
   const [currCart, setCurrCart] = useState(1);
+  const startingPos = -25.6;
 
-  const startingPos = isDesktop ? -59.7 : -63;
+  const { isDesktop } = useDevice();
   const [pixelPos, setPixelPos] = useState(startingPos);
-
-  useEffect(() => {
-    setPixelPos(startingPos);
-  }, [startingPos]);
-
-  const currBounds = { leftBound: 0, rightBound: 10000, threshold: 21.7 };
 
   const handleLeftClick = useCallback(() => {
     if (currCart < numCarts) {
       setPixelPos((prev) => prev + currBounds.threshold);
       setCurrCart((prev) => prev + 1);
     }
-  }, [currCart, currBounds.threshold]);
+  }, [pixelPos, currBounds]);
 
   const handleRightClick = useCallback(() => {
     if (currCart > 1) {
       setPixelPos((prev) => prev - currBounds.threshold);
       setCurrCart((prev) => prev - 1);
     }
-  }, [currCart, currBounds.threshold]);
+  }, [pixelPos, currBounds]);
 
   return (
-    <div className={`relative w-full ${isDesktop ? "h-[45vw]" : "h-[60vw]"}`}>
+    <div
+      className={`relative w-full ${isDesktop ? "h-[45vw]" : "h-[60vw]"} bg-mossGreen`}
+    >
       <div
         className={`relative ${isDesktop ? "w-[300vw]" : "w-[400vw]"} h-full z-10 p-[3vw]`}
       >
@@ -53,7 +48,7 @@ export default function TestimonialTrain() {
           className={`
               absolute
               flex flex-row items-center justify-center
-              ${isDesktop ? "gap-[65vw]" : "gap-[75vw]"}
+              ${isDesktop ? "gap-[65vw]" : "gap-[80vw]"}
               w-full
               h-auto`}
         >

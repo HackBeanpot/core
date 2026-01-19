@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Icon from "@repo/ui/Icons/MemberIcon";
+import Icon from "../components/Icon";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import useDevice from "@util/hooks/useDevice";
 import clsx from "clsx";
@@ -223,7 +223,7 @@ const TeamSections = ({ team }: TeamSectionsProps) => {
       </div>
       <div className="mb-8 mobile:mt-2 mobile-xl:mt-2 mobile:mb-4 mobile-xl:mb-4 w-1/2 mx-auto gap-6 flex flex-wrap justify-center items-center">
         {members.map((member) => (
-          <Icon key={member.name} {...member} isLive={false} isActive={false} />
+          <Icon key={member.name} {...member} />
         ))}
       </div>
     </div>

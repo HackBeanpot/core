@@ -3,15 +3,14 @@ import {
   Values,
   FAQSection,
   Landing,
-  Keynote,
+  // Keynote,
   Calendar,
   Testimonials,
   Apply,
   About,
   Volunteering,
 } from "./Sections";
-import { Footer } from "../lib/Components";
-import { NavBar } from "../lib/Components";
+import { Footer, NavBar } from "../lib/Components";
 import Head from "next/head";
 import React from "react";
 
@@ -21,7 +20,6 @@ export default function Page(): JSX.Element {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
       <NavBar />
       <Landing />
       <Apply />
@@ -29,7 +27,7 @@ export default function Page(): JSX.Element {
       <Volunteering />
       <Stats />
       <Values />
-      <Keynote />
+      {/* <Keynote /> */}
       <Calendar />
       <Testimonials />
       <FAQSection />

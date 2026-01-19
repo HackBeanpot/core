@@ -5,7 +5,7 @@ import SponsorUsStatsComp from "./Sections/SponsorUsStatsComp";
 import SponsorUsHero from "./Sections/SponsorHero";
 import BenefitsSection from "./Sections/BenefitsSection";
 import { Footer, NavBar } from "../lib/Components";
-import PastSponsors from "./Sections/PastSponsors.tsx";
+import SponsorUsTestimonials from "./components/SponsorUsTestimonials.tsx";
 
 const SponsorUsPage = () => {
   return (
@@ -14,9 +14,8 @@ const SponsorUsPage = () => {
       <SponsorUsHero />
       <SponsorUsStatsComp />
       <BenefitsSection />
-      <PastSponsors />
-      {/* this div shouldn't be needed in 2027 lol */}
-      <div className="mobile:mb-[50vh] tablet:mb-[90vh] desktop:mb-[50vh]"></div>
+      {/* TODO: Past Sponsors Section  */}
+      <SponsorUsTestimonials />
       <Footer />
     </div>
   );

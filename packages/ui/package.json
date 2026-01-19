@@ -5,13 +5,12 @@
     "**/*.css"
   ],
   "files": [
-    "dist", "src/Logos"
+    "dist"
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
     "./Box": "./src/Box.tsx",
     "./FAQDropdown": "./src/FAQDropdown.tsx",
-    "./KeynoteSpeakerSection": "./src/KeynoteSpeakerSection.tsx", 
     "./StreetSign": "./src/StreetSign.tsx",
     "./LinkedInLogo": "./src/LinkedInLogo.tsx",
     "./ArrowButton": "./src/ArrowButton.tsx",
@@ -20,19 +19,13 @@
     "./PassportCard": "./src/PassportCard.tsx",
     "./Typography": "./src/Typography.tsx",
     "./Icons/*": "./src/Icons/*.tsx",
-    "./Logos/*.svg": "./src/Logos/*.svg",
+    "./Logos/*": "./src/Logos/*.tsx",
     "./PaginationDots": "./src/PaginationDots.tsx",
     "./Section": "./src/Section.tsx", 
     "./Placeholder": "./src/Placeholder.tsx", 
     "./Button": "./src/Button.tsx", 
     "./RibbonTitle": "./src/RibbonTitle.tsx",
-    "./LinkedInfoCard": "./src/LinkedInfoCard.tsx",
-    "./Train": "./src/TestimonialTrain.tsx",
-    "./NavBarBase": "./src/NavBar/NavBarBase.tsx",
-    "./SocialsButtonsRow": "./src/SocialsButtonsRow.tsx",
-    "./Footer": "./src/Footer.tsx",
-    "./CarnivalTitle": "./src/CarnivalTitle.tsx", 
-    "./SponsorComponents/*": "./src/SponsorComponents/*.tsx"
+    "./Train": "./src/TestimonialTrain.tsx"
   },
   "license": "MIT",
   "scripts": {
@@ -42,9 +35,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/util": "*",
-    "react-icons": "^5.0.0",
-    "clsx": "^2.0.0"
+    "@repo/util": "*"
   },
   "peerDependencies": {
     "react": "^18.2.0"
