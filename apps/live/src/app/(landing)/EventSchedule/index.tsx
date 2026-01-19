@@ -43,7 +43,6 @@ const EventSchedule = () => {
         </div>
       </div>
     </div>
-    
   );
 };
 

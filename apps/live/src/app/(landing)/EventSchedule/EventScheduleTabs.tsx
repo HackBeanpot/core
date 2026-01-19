@@ -226,9 +226,6 @@ const EventScheduleTabs = () => {
                               {isHappeningNow(start_time, end_time) && (
                                 <HappeningNow />
                               )}
-                              {isHappeningNow(start_time, end_time) && (
-                                <HappeningNow />
-                              )}
                             </div>
                           </div>
                           {difficulty && (
