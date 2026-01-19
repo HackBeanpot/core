@@ -13,16 +13,16 @@ export default function Welcome(): React.ReactNode {
   return (
     <div className="w-full h-800px min-h-screen bg-mossGreen py-8 px-8 md:px-16 flex items-center justify-center relative overflow-visible">
       <div
-        className="absolute"
-        style={{
-          width: isMobile ? "200px" : "350px",
-          left: isMobile ? "5%" : "8%",
-          top: isMobile ? "25%" : "20%",
-          zIndex: 10,
-        }}
-      >
-        <WelcomeDirectionSign />
-      </div>
+      className="absolute mobile:hidden mobile-xl:hidden tablet:hidden"  // hide on small screens
+      style={{
+        width: "350px",
+        left: "8%",
+        top: "20%",
+        zIndex: 10,
+      }}
+    >
+      <WelcomeDirectionSign />
+    </div>
 
       <div
         className="max-w-5xl w-full mx-auto relative"
@@ -33,13 +33,13 @@ export default function Welcome(): React.ReactNode {
         </div>
 
         <div
-          className="absolute"
+          className={"absolute" + (isMobile ? " transform scale-[0.85]" : "")}
           style={{
             marginTop: "350px",
             paddingLeft: "70px",
-            width: isMobile ? "100px" : "180px",
-            right: isMobile ? "15%" : "25%",
-            top: isMobile ? "80px" : "100px",
+            width: isMobile ? "8vw" : "35vw",
+            left: isMobile ? "15%" : "60%",
+            top: isMobile ? "4vw" : "10vh",
             zIndex: 5,
           }}
         >
@@ -49,9 +49,21 @@ export default function Welcome(): React.ReactNode {
         <div className="relative mt-8">
           <div
             className="absolute inset-0"
-            style={{ marginLeft: "330px", zIndex: 1 }}
+            style={{
+              marginLeft: isMobile ? "2vw" : "22vw",
+              zIndex: 1
+            }}
           >
-            <TextBackgroundSign />
+            <TextBackgroundSign 
+              style={{ 
+                transform: isMobile 
+                  ? "scaleX(0.8) scaleY(1.2)"
+                  : "scaleX(0.98) scaleY(1.1)",
+                transformOrigin: "left center",
+                width: "100%",
+                height: "100%"
+              }} 
+            />
           </div>
 
           <div
@@ -60,7 +72,7 @@ export default function Welcome(): React.ReactNode {
           >
             <p
               className="md:text-lg text-charcoalFogDark font-DMSans-Regular leading-relaxed max-w-3xl"
-              style={{ paddingLeft: 340, paddingTop: 25 }}
+              style={{ paddingLeft: isMobile ? "3vw" : "23vw", paddingTop: 25 }}
             >
               At <b>HackBeanpot 2026</b>, we&apos;re hitting the road with a
               community of explorers driven by creativity, learning, and
@@ -84,7 +96,7 @@ export default function Welcome(): React.ReactNode {
               </a>
             </p>
 
-            <div style={{ marginLeft: 340, marginTop: 30 }}>
+            <div style={{ marginLeft: isMobile ? "3vw" : "23vw", marginTop: 30, zIndex: 2000 }}>
               <Button
                 text="Join our Discord"
                 size="medium"
