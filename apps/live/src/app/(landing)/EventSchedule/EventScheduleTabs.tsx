@@ -2,12 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import EventDropdown from "./EventDropdown";
-import CodeIcon from "../../lib/Assets/SVG/Icons/expandIcon.tsx";
 import FoodIcon from "../../lib/Assets/SVG/Icons/foodIcon.tsx";
 import StarIcon from "../../lib/Assets/SVG/Icons/starIcon.tsx";
-import ShareIcon from "../../lib/Assets/SVG/Icons/codeIcon.tsx";
-import ClockIcon from "../../lib/Assets/SVG/Icons/clockIcon.tsx";
-import LocationIcon from "../../lib/Assets/SVG/Icons/locationIcon.tsx";
+import CodeIcon from "../../lib/Assets/SVG/Icons/codeIcon.tsx";
+
+// NOTE: if we want to add these add them to the iconTypes map below and add as an option in AirTable.
+// import ShareIcon from "../../lib/Assets/SVG/Icons/codeIcon.tsx";
+// import ClockIcon from "../../lib/Assets/SVG/Icons/clockIcon.tsx";
+// import LocationIcon from "../../lib/Assets/SVG/Icons/locationIcon.tsx";
+
 import removeHoursFromDate from "@util/functions/removeHoursfromDate";
 import useDevice from "@util/hooks/useDevice.ts";
 
@@ -30,6 +33,7 @@ type EventByDate = {
   [date: string]: AirtableRecord[];
 };
 
+// NOTE: can add more
 const iconTypes: Record<string, React.ComponentType> = {
   Code: CodeIcon,
   Food: FoodIcon,
@@ -176,7 +180,13 @@ const EventScheduleTabs = () => {
                 day: "numeric",
               })}
             </p>
-            <div className="flex flex-col overflow-y-auto px-6 overflow-x-hidden">
+            <div
+              className="flex flex-col overflow-y-auto px-6 overflow-x-hidden [&::-webkit-scrollbar]:w-2
+              [&::-webkit-scrollbar-track]:bg-gray-100
+              [&::-webkit-scrollbar-thumb]:bg-gray-300
+              dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+              dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
+            >
               <div className="flex flex-col w-full gap-3">
                 {eventsByDate &&
                   eventsByDate[datesSorted[selectedTab]]
@@ -191,22 +201,22 @@ const EventScheduleTabs = () => {
                         end_time,
                         eventLocation,
                         start_time,
-                        tags,
+
                         difficulty,
                         description,
                         eventName,
                         iconType,
                       } = fields;
                       const startTime = toTime(start_time, false);
-                      const endTime = toTime(end_time, true);
-                      const Icon = iconTypes["Food"];
+                      // const endTime = toTime(end_time, true);
+                      const Icon = iconTypes[iconType];
                       const dropdownQuestion = (
                         <div className="grid grid-cols-[3fr_4fr_3fr] gap-20 items-center w-full">
                           <div className="flex flex-row gap-4 ml-4 my-2">
                             <Icon />
                             <div className="flex flex-col">
                               <p className="font-bold text-2xl">{eventName}</p>
-                              <p className="font-bold text-firecrackerRed">{`${startTime} - ${eventLocation}`}</p>
+                              <p className="font-bold text-firecrackerRed">{`${startTime} • ${eventLocation}`}</p>
                               <div className="flex items-center gap-1"></div>
                             </div>
                           </div>

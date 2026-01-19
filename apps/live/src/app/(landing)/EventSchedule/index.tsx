@@ -11,44 +11,39 @@ import RibbonTitle from "@repo/ui/RibbonTitle";
 const EventSchedule = () => {
   const { isMobile } = useDevice();
   return (
-    <div
-      className={`h-[145vh] ${isMobile ? "" : "w-full"} relative font-DMSans-Bold bg-mossGreen`}
-      style={{
-        transform: isMobile ? "scale(0.65)" : "",
-      }}
-    >
+    <div className={`relative w-full bg-mossGreen`}>
+      {/* foreground */}
+      <EventScheduleSquiggle
+        className={`absolute z-20 top-0 w-full -mt-[15vh]`}
+      />
       <EventBush
-        className="absolute z-50"
+        className={`absolute z-40`}
         style={{
           transform: isMobile
-            ? "translate(-20vw, -15vh) scale(0.25)"
-            : "translate(-40vw, 15vw) scale(0.20)",
+            ? "translate(-25vw, 52vh) scale(0.45)"
+            : "translate(8vw, 100vh) scale(1)",
         }}
       />
-
       <EventRingToss
-        className="absolute z-50"
+        className={`absolute z-20`}
         style={{
           transform: isMobile
-            ? "translate(-20vw, -15vh) scale(0.25)"
-            : "translate(75vw, 55vw) scale(1)",
+            ? "translate(50vw, 60vh) scale(0.50)"
+            : "translate(75vw, 115vh) scale(1)",
         }}
       />
+      {/* Content */}
       <div
-        className="absolute w-full z-10"
-        style={{
-          transform: isMobile
-            ? "translate(15vw, -15vh) scale(1.25)"
-            : "translate(0vw, -20vh) scale(1.25)",
-        }}
+        className={`relative z-30 flex flex-col items-center ${isMobile ? "h-[110vh] p-12 -mt-[25vh]" : "h-[145vh] w-full p-24"}`}
+        style={{ transform: isMobile ? "scale(0.65)" : "" }}
       >
-        <EventScheduleSquiggle />
-      </div>
-      <div className="px-32 mobile:ml-8 relative flex flex-col justify-center z-40">
         <RibbonTitle text="EVENT SCHEDULE" />
-        <EventScheduleTabs />
+        <div className={`${isMobile ? "" : ""}`}>
+          <EventScheduleTabs />
+        </div>
       </div>
     </div>
+    
   );
 };
 
