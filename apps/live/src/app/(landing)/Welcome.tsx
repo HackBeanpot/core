@@ -13,16 +13,16 @@ export default function Welcome(): React.ReactNode {
   return (
     <div className="w-full h-800px min-h-screen bg-mossGreen py-8 px-8 md:px-16 flex items-center justify-center relative overflow-visible">
       <div
-      className="absolute mobile:hidden mobile-xl:hidden tablet:hidden"  // hide on small screens
-      style={{
-        width: "350px",
-        left: "8%",
-        top: "20%",
-        zIndex: 10,
-      }}
-    >
-      <WelcomeDirectionSign />
-    </div>
+        className="absolute mobile:hidden mobile-xl:hidden tablet:hidden" // hide on small screens
+        style={{
+          width: "350px",
+          left: "8%",
+          top: "20%",
+          zIndex: 10,
+        }}
+      >
+        <WelcomeDirectionSign />
+      </div>
 
       <div
         className="max-w-5xl w-full mx-auto relative"
@@ -51,18 +51,18 @@ export default function Welcome(): React.ReactNode {
             className="absolute inset-0"
             style={{
               marginLeft: isMobile ? "2vw" : "22vw",
-              zIndex: 1
+              zIndex: 1,
             }}
           >
-            <TextBackgroundSign 
-              style={{ 
-                transform: isMobile 
+            <TextBackgroundSign
+              style={{
+                transform: isMobile
                   ? "scaleX(0.8) scaleY(1.2)"
                   : "scaleX(0.98) scaleY(1.1)",
                 transformOrigin: "left center",
                 width: "100%",
-                height: "100%"
-              }} 
+                height: "100%",
+              }}
             />
           </div>
 
@@ -96,7 +96,13 @@ export default function Welcome(): React.ReactNode {
               </a>
             </p>
 
-            <div style={{ marginLeft: isMobile ? "3vw" : "23vw", marginTop: 30, zIndex: 2000 }}>
+            <div
+              style={{
+                marginLeft: isMobile ? "3vw" : "23vw",
+                marginTop: 30,
+                zIndex: 2000,
+              }}
+            >
               <Button
                 text="Join our Discord"
                 size="medium"
