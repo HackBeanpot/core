@@ -29,8 +29,20 @@ const generalQuestions = [
 const appQuestions = [
   {
     question: "How can I be a mentor or judge?",
-    answer:
-      "For more information about becoming a mentor or a judge, please refer to the information found here: … If you are interested, please fill out this form.",
+    answer: (
+      <>
+        For more information about being a mentor or judge, please check out the{" "}
+        <a
+          href="https://forms.gle/43DnJyS3r5CNzXey5"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          Mentor & Judge Application
+        </a>
+        !
+      </>
+    ),
   },
 ];
 

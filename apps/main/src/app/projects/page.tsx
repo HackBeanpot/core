@@ -10,6 +10,7 @@ import OrangeFirework from "./components/orangeFirework";
 import YellowFirework from "./components/yellowFirework";
 import Button from "@repo/ui/Button";
 import { Footer, NavBar } from "../lib/Components";
+import CarnivalTitle from "@repo/ui/CarnivalTitle";
 
 const projectData = [
   {
@@ -80,49 +81,10 @@ export default function Page() {
       >
         <ProjectBackground className={`${isMobile ? "w-full h-full" : ""}`} />
       </div>
+      <div className="mb-40 mobile:mb-12 mobile-xl:mb-12"></div>
+      <CarnivalTitle text="PROJECTS" />
 
-      <div className="relative z-10 max-w-screen flex flex-col items-center pt-14">
-        <svg
-          className=" inset-x-0 w-full pointer-events-none"
-          viewBox="0 0 650 100"
-          preserveAspectRatio="xMaxYMin slice"
-          aria-hidden
-        >
-          <defs>
-            <filter
-              id="titleShadow"
-              x="0"
-              y="0"
-              width="1200"
-              height="160"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feDropShadow dx="0" dy="4" stdDeviation="0" floodOpacity="0.6" />
-            </filter>
-          </defs>
-          <g
-            stroke="#F2E06F"
-            strokeWidth="6"
-            strokeLinejoin="round"
-            paintOrder="stroke fill"
-            vectorEffect="non-scaling-stroke"
-            filter="url(#titleShadow)"
-          >
-            <text
-              x="50%"
-              y="57%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              className="font-Sancreek-Regular"
-              fontSize="80"
-              fill="#CC322D"
-            >
-              2025 PROJECTS
-            </text>
-          </g>
-        </svg>
-
+      <div className="relative z-10 max-w-screen flex flex-col items-center -mt-[10vw]">
         {projectData.map((project, index) => (
           <div
             key={index}
@@ -175,10 +137,10 @@ export default function Page() {
         </div>
 
         <div className="flex flex-col items-center text-center z-10 px-4">
-          <div className="text-carouselCreamLight text-3xl font-['NeulisNeue-Regular'] leading-10 mb-5">
+          <div className="text-carouselCreamLight text-3xl font-['NeulisNeue-bold'] leading-10 mb-5">
             Interested in seeing more past hacker projects?
           </div>
-          <div className="text-carouselCreamLight text-md font-['NeulisNeue-Regular'] leading-tight mb-5">
+          <div className="text-carouselCreamLight text-md font-DMSans-Regular leading-tight mb-5">
             Check out the HackBeanpot Archive!
           </div>
 

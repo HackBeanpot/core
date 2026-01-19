@@ -19,7 +19,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "../../packages/ui/src/Placeholder.tsx"
-  ],
+, "../../packages/ui/src/SponsorComponents/SponsorTicketComp.tsx"  ],
   "exclude": [
     "node_modules"
   ]
