@@ -33,7 +33,10 @@ export default function Welcome(): React.ReactNode {
         </div>
 
         <div
-          className={"absolute mobile:hidden mobile-xl:hidden" + (isMobile ? " transform scale-[0.85]" : "")}
+          className={
+            "absolute mobile:hidden mobile-xl:hidden" +
+            (isMobile ? " transform scale-[0.85]" : "")
+          }
           style={{
             marginTop: "350px",
             paddingLeft: "70px",
