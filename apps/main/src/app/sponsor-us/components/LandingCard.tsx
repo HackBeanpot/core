@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import Impact from "./Impact.tsx";
+import { ImpactSign } from "../../lib/Assets/SVG/index";
 
 const LandingCard = () => {
   return (
-    <div className="mobile:scale-[0.90]">
+    <div className="mobile:scale-[0.90] mobile-xl:scale-[0.70] tablet:scale-[0.70] desktop-xl:scale-[0.80] desktop-2xl:scale-[0.80]">
       <div className="relative flex flex-col items-center">
-        <div className="absolute -top-11 z-10">
-          <Impact />
+        <div className="absolute -top-12 z-10">
+          <ImpactSign />
         </div>
       </div>
 

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 type AccordionInfo = {
   question: string;
-  answer: string;
+  answer: React.ReactNode;
 };
 
 interface AccordionProps {
