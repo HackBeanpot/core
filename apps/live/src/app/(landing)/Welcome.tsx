@@ -40,9 +40,9 @@ export default function Welcome(): React.ReactNode {
           style={{
             marginTop: "350px",
             paddingLeft: "70px",
-            width: isMobile ? "8vw" : "35vw",
-            left: isMobile ? "15%" : "55%",
-            top: isMobile ? "4vw" : "10vh",
+            width: "35vw",
+            left: "39vw",
+            top: "10vh",
             zIndex: 5,
           }}
         >
@@ -54,7 +54,7 @@ export default function Welcome(): React.ReactNode {
             className="absolute inset-0"
             style={{
               right: "7%",
-              marginLeft: isMobile ? "2vw" : "21vw",
+              marginLeft: isMobile ? "" : "21vw",
               zIndex: 1,
             }}
           >
@@ -71,12 +71,12 @@ export default function Welcome(): React.ReactNode {
           </div>
 
           <div
-            className="relative px-12 py-10 md:px-16 md:py-12 lg:px-20 lg:py-14"
+            className="relative px-9 py-10 md:px-16 md:py-12 lg:px-20 lg:py-14"
             style={{ zIndex: 2 }}
           >
             <p
               className="md:text-lg text-charcoalFogDark font-DMSans-Regular leading-relaxed max-w-3xl"
-              style={{ paddingLeft: isMobile ? "3vw" : "22vw", paddingTop: 25 }}
+              style={{ paddingLeft: isMobile ? "3vw" : "23vw", paddingTop: 20 }}
             >
               At <b>HackBeanpot 2026</b>, we&apos;re hitting the road with a
               community of explorers driven by creativity, learning, and
