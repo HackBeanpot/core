@@ -30,7 +30,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Cabin Race - Top Left */}
       <div
-        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-75" : isTablet ? "p-4" : "p-6"}`}
+        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-90" : isTablet ? "p-4" : "p-6"}`}
       >
         <div className="w-auto h-auto">
           <CabinRace text="Magicians" />
@@ -46,8 +46,8 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[2%] top-[20%] w-[12vw]"
-                : "left-[0%] top-[25%] w-[15vw]"
+                ? "left-[-8%] top-[40%] w-[12vw]"
+                : "left-[0%] top-[55%] w-[15vw]"
         }`}
       >
         <div className="w-full h-auto">
@@ -63,8 +63,8 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[2%] top-[20%] w-[12vw]"
-                : "right-[2%] top-[29%] w-[15vw]"
+                ? "right-[2%] top-[50%] w-[12vw]"
+                : "right-[2%] top-[59%] w-[15vw]"
         }`}
       >
         <div className="w-full h-auto">
@@ -75,7 +75,7 @@ const CarnivalScene: React.FC = () => {
       {/* Tents */}
       {/* Purple Tent - Left side */}
       <div
-        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.65]" : "scale-75"} origin-center ${
+        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.45]" : "scale-75"} origin-center ${
           isDesktop
             ? "left-[2%] bottom-[31%] w-[12vw]"
             : isTablet
@@ -117,8 +117,8 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[75%]"
               : isMobile
-                ? "bottom-[80%]"
-                : "bottom-[67%]"
+                ? "bottom-[50%]"
+                : "bottom-[50%]"
         }`}
       >
         <OpeningText />
@@ -148,7 +148,7 @@ const CarnivalScene: React.FC = () => {
           }`}
         >
           <div
-            className={`${isMobile ? "scale-[0.65]" : "scale-[1.0]"} origin-center`}
+            className={`${isMobile ? "scale-[0.45]" : "scale-[1.0]"} origin-center`}
           >
             <DartBoard />
           </div>
@@ -156,7 +156,9 @@ const CarnivalScene: React.FC = () => {
       </div>
 
       {/* Grass - Bottom */}
-      <div className={`absolute ${isMobile ? "bottom-[8%]" : "bottom-[15%]"} left-0 w-full z-10 overflow-visible`}>
+      <div
+        className={`absolute ${isMobile ? "bottom-[8%]" : "bottom-[15%]"} left-0 w-full z-10 overflow-visible`}
+      >
         <div className="w-full h-auto">
           <LandingGrass />
         </div>
