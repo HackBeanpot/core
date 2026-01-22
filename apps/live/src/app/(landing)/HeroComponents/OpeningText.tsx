@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
-import HBPLogo from "/Users/adityapathak/hackbeanpot/core/apps/main/src/app/lib/Assets/SVG/Hero/LandingAssets/HBPLogo.tsx";
+import HBPLogo from "../../../../../main/src/app/lib/Assets/SVG/Hero/LandingAssets/HBPLogo.tsx";
 import CountdownTimer from "./CountdownTimer";
 import UntilSubmissionsClose from "./UntilSubmissionsClose";
+
 const OpeningText: React.FC = () => {
   return (
     <div className="w-96 flex flex-col justify-start items-center gap-2">
