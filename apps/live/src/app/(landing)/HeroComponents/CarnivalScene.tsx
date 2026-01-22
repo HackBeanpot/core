@@ -46,7 +46,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[4%] top-[28%] w-[12vw]"
+                ? "left-[2%] top-[20%] w-[12vw]"
                 : "left-[0%] top-[25%] w-[15vw]"
         }`}
       >
@@ -63,7 +63,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[4%] top-[28%] w-[12vw]"
+                ? "right-[2%] top-[20%] w-[12vw]"
                 : "right-[2%] top-[29%] w-[15vw]"
         }`}
       >
@@ -75,13 +75,13 @@ const CarnivalScene: React.FC = () => {
       {/* Tents */}
       {/* Purple Tent - Left side */}
       <div
-        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-50" : "scale-75"} origin-center ${
+        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.65]" : "scale-75"} origin-center ${
           isDesktop
             ? "left-[2%] bottom-[31%] w-[12vw]"
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[1%] bottom-[32%] w-[16vw]"
+                ? "left-[-8%] bottom-[18%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -92,13 +92,13 @@ const CarnivalScene: React.FC = () => {
 
       {/* Orange Tent - Right side */}
       <div
-        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-50" : "scale-75"} origin-center ${
+        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.65]" : "scale-75"} origin-center ${
           isDesktop
             ? "right-[2%] bottom-[28%] w-[12vw]"
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "right-[1%] bottom-[25%] w-[16vw]"
+                ? "right-[-8%] bottom-[18%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -117,7 +117,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[75%]"
               : isMobile
-                ? "bottom-[73%]"
+                ? "bottom-[80%]"
                 : "bottom-[67%]"
         }`}
       >
@@ -132,7 +132,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[25%]"
               : isMobile
-                ? "bottom-[24%]"
+                ? "bottom-[18%]"
                 : "bottom-[22%]"
         }`}
       >
@@ -143,12 +143,12 @@ const CarnivalScene: React.FC = () => {
               : isTablet
                 ? "w-[28vw]"
                 : isMobile
-                  ? "w-[32vw]"
+                  ? "w-[40vw]"
                   : "w-[35vw]"
           }`}
         >
           <div
-            className={`${isMobile ? "scale-[0.5]" : "scale-[1.0]"} origin-center`}
+            className={`${isMobile ? "scale-[0.65]" : "scale-[1.0]"} origin-center`}
           >
             <DartBoard />
           </div>
@@ -156,7 +156,7 @@ const CarnivalScene: React.FC = () => {
       </div>
 
       {/* Grass - Bottom */}
-      <div className="absolute bottom-[15%] left-0 w-full z-10 overflow-visible">
+      <div className={`absolute ${isMobile ? "bottom-[8%]" : "bottom-[15%]"} left-0 w-full z-10 overflow-visible`}>
         <div className="w-full h-auto">
           <LandingGrass />
         </div>
