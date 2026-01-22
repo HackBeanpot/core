@@ -62,7 +62,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[2%] top-[50%] w-[12vw]"
+                ? "right-[-2%] top-[50%] w-[12vw]"
                 : "right-[2%] top-[59%] w-[15vw]"
         }`}
       >
@@ -80,7 +80,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[-8%] bottom-[18%] w-[20vw]"
+                ? "left-[-12%] bottom-[18%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -91,13 +91,13 @@ const CarnivalScene: React.FC = () => {
 
       {/* Orange Tent - Right side */}
       <div
-        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.65]" : "scale-75"} origin-center ${
+        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.5]" : "scale-75"} origin-center ${
           isDesktop
             ? "right-[3%] bottom-[42%] w-[12vw]"
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "right-[-8%] bottom-[18%] w-[20vw]"
+                ? "right-[-12%] bottom-[18%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -109,14 +109,14 @@ const CarnivalScene: React.FC = () => {
       {/* Opening Text - Above Dart Board */}
       <div
         className={`absolute left-[52%] -translate-x-[48%] z-40 ${
-          isDesktop ? "scale-125" : isTablet ? "scale-100" : "scale-[0.65]"
+          isDesktop ? "scale-125" : isTablet ? "scale-100" : "scale-[0.75]"
         } ${
           isDesktop
             ? "bottom-[75%]"
             : isTablet
               ? "bottom-[75%]"
               : isMobile
-                ? "bottom-[68%]"
+                ? "bottom-[62%]"
                 : "bottom-[68%]"
         }`}
       >
@@ -125,7 +125,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Central Dart Board Booth */}
       <div
-        className={`absolute left-1/2 -translate-x-1/2 z-40 flex justify-center items-center ${
+        className={`absolute ${isMobile ? "left-[48%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
           isDesktop
             ? "bottom-[34%]"
             : isTablet
@@ -153,7 +153,6 @@ const CarnivalScene: React.FC = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
