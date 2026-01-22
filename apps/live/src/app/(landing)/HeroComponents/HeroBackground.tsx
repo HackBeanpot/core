@@ -8,6 +8,7 @@ const HeroBackground: React.FC = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid slice"
+      style={{ display: "block" }}
     >
       <g clipPath="url(#clip0_1_4612)">
         <g clipPath="url(#clip1_1_4612)">
@@ -186,6 +187,17 @@ const HeroBackground: React.FC = () => {
             />
           </g>
         </g>
+      </g>
+      {/* Grass - Positioned at bottom */}
+      <g transform="translate(-140 747)">
+        <path
+          d="M1438 20.5C1655.5 20.499 2200 75.5 2200 75.5V225H-200V0C-200 0 623.6 77.6326 812.5 54.8063C1008.98 31.0646 1220.5 20.501 1438 20.5Z"
+          fill="#4B642E"
+        />
+        <path
+          d="M618.5 80C401 79.999 -200 135.5 -200 135.5V383.593L2200 384V80.4064C2200 80.4064 1306.4 157.632 1117.5 134.806C921.024 111.064 836 80.001 618.5 80Z"
+          fill="#709941"
+        />
       </g>
       <defs>
         <linearGradient
