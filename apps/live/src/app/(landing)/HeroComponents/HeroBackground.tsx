@@ -4,22 +4,23 @@ const HeroBackground: React.FC = () => {
     <svg
       width="2000"
       height="1031"
-      viewBox="0 0 2000 1031"
+      viewBox="-200 -100 2400 1231"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid slice"
     >
       <g clipPath="url(#clip0_1_4612)">
         <g clipPath="url(#clip1_1_4612)">
           <rect
-            width="2120"
-            height="1115"
-            transform="translate(-60)"
+            width="2600"
+            height="1400"
+            transform="translate(-300 -100)"
             fill="white"
           />
           <rect
-            width="2120"
-            height="1115"
-            transform="translate(-60)"
+            width="2600"
+            height="1400"
+            transform="translate(-300 -100)"
             fill="url(#paint0_linear_1_4612)"
           />
           <g style={{ mixBlendMode: "screen" }} opacity="0.03">
@@ -189,24 +190,24 @@ const HeroBackground: React.FC = () => {
       <defs>
         <linearGradient
           id="paint0_linear_1_4612"
-          x1="1060"
-          y1="0"
-          x2="1060"
-          y2="1115"
+          x1="1000"
+          y1="-100"
+          x2="1000"
+          y2="1300"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#091F36" />
           <stop offset="1" stopColor="#173C62" />
         </linearGradient>
         <clipPath id="clip0_1_4612">
-          <rect width="2000" height="1031" fill="white" />
+          <rect x="-200" y="-100" width="2400" height="1231" fill="white" />
         </clipPath>
         <clipPath id="clip1_1_4612">
           <rect
-            width="2120"
-            height="1115"
+            width="2600"
+            height="1400"
             fill="white"
-            transform="translate(-60)"
+            transform="translate(-300 -100)"
           />
         </clipPath>
       </defs>

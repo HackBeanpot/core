@@ -13,7 +13,7 @@ import KlaviyoLogo from "@repo/ui/Logos/KlaviyoLogo.svg";
 import MavenAGILogo from "@repo/ui/Logos/MavenAGILogo.svg";
 import RGLogo from "@repo/ui/Logos/RGLogo.svg";
 import WhoopLogo from "@repo/ui/Logos/WhoopLogo.svg";
-import PureButton from "@repo/ui/Logos/PureButton.svg"
+import PureButton from "@repo/ui/Logos/PureButton.svg";
 
 function makeSponsorRow(
   ticketSizes: number[],

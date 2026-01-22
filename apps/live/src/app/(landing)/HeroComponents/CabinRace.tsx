@@ -37,7 +37,7 @@ const ArrowIcon = () => (
 );
 
 const CabinRace: React.FC<CabinRaceProps> = ({ text }) => {
-  const { isMobile} = useDevice();
+  const { isMobile } = useDevice();
 
   const containerClassName = `relative w-[238px] h-[108px] ${isMobile ? "scale-75" : "scale-100"}`;
 

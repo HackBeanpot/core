@@ -40,7 +40,7 @@ const CarnivalScene: React.FC = () => {
       {/* Fireworks */}
       {/* Yellow Firework - Left side behind purple tent */}
       <div
-        className={`absolute z-15 max-w-[280px] min-w-[100px] ${
+        className={`absolute z-15 max-w-[280px] min-w-[100px] ${isMobile ? "scale-50" : "scale-100"} ${
           isDesktop
             ? "left-[0%] top-[32%] w-[10vw]"
             : isTablet
@@ -57,7 +57,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Orange Firework - Right side behind orange tent */}
       <div
-        className={`absolute z-0 max-w-[320px] min-w-[100px] ${
+        className={`absolute z-0 max-w-[320px] min-w-[100px] ${isMobile ? "scale-50" : "scale-100"} ${
           isDesktop
             ? "right-[5%] top-[32%] w-[10vw]"
             : isTablet
@@ -109,7 +109,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Opening Text - Above Dart Board */}
       <div
-        className={`absolute left-[52%] -translate-x-[48%] z-40 ${isMobile ? "scale-[0.75]" : "scale-150"} ${
+        className={`absolute left-[52%] -translate-x-[48%] z-40 ${isMobile ? "scale-[0.65]" : "scale-150"} ${
           isDesktop
             ? "bottom-[72%]"
             : isTablet
