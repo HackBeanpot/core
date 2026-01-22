@@ -30,7 +30,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Cabin Race - Top Left */}
       <div
-        className={`absolute left-0 top-0 z-30 ${isMobile ? "p-2" : isTablet ? "p-4" : "p-6"}`}
+        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-75" : isTablet ? "p-4" : "p-6"}`}
       >
         <div className="w-auto h-auto">
           <CabinRace text="Magicians" />
@@ -109,7 +109,9 @@ const CarnivalScene: React.FC = () => {
 
       {/* Opening Text - Above Dart Board */}
       <div
-        className={`absolute left-[52%] -translate-x-[48%] z-40 ${isMobile ? "scale-[0.65]" : "scale-150"} ${
+        className={`absolute left-[52%] -translate-x-[48%] z-40 ${
+          isDesktop ? "scale-150" : isTablet ? "scale-100" : "scale-[0.65]"
+        } ${
           isDesktop
             ? "bottom-[72%]"
             : isTablet
