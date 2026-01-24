@@ -50,16 +50,14 @@ const KeynoteCard: React.FC<KeynoteCardProps> = ({
       </div>
 
       <svg
-        // width={405}
-        // height={410}
-        viewBox="0 0 405 475"
-        className="w-[405px] h-[475px]"
+        viewBox="0 0 405 450"
+        className="w-[405px] h-[450px] -mt-8"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
         <path
-          d="M398.193 470V22.7441L6.80664 7.08594V470H398.193Z"
+          d="M398.193 445V22.7441L6.80664 7.08594V445H398.193Z"
           fill="#F7DFBC"
           stroke="white"
           strokeWidth={13.6134}

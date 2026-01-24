@@ -8,7 +8,13 @@ import KeynoteSpeakerPhoto from "./KeynoteSpeakerAssets/KeynoteSpeakerPhoto";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import KeynoteTopSquiggle from "./KeynoteSpeakerAssets/KeynoteTopSquiggle";
 
-export default function Keynote(): React.ReactNode {
+interface KeynoteSpeakerSectionProps {
+  isLive: boolean;
+}
+
+export default function KeynoteSpeakerSection({
+  isLive,
+}: KeynoteSpeakerSectionProps): React.ReactNode {
   const { isMobile } = useDevice();
   const sueData = {
     header: "Sue Harnett",
@@ -70,7 +76,7 @@ export default function Keynote(): React.ReactNode {
             header={sueData.header}
             bio={sueData.bio}
             text={sueData.text}
-            isLive={false}
+            isLive={isLive}
             location={sueData.location}
             time={sueData.time}
           />
@@ -101,7 +107,7 @@ export default function Keynote(): React.ReactNode {
             header={jessicaData.header}
             bio={jessicaData.bio}
             text={jessicaData.text}
-            isLive={false}
+            isLive={isLive}
             location={jessicaData.location}
             time={jessicaData.time}
           />
