@@ -24,7 +24,7 @@ const CarnivalScene: React.FC = () => {
     <div className={`relative w-full h-full overflow-hidden ${getMinHeight()}`}>
       {/* Background - Night Sky */}
       <div
-        className={`absolute ${isMobile ? "left-[-220%] w-[180%]" : "inset-0 w-full"} h-full`}
+        className={`absolute ${isMobile ? "left-[-200%] w-[180%] top-[-5%]" : "inset-0 w-full"} h-full`}
       >
         <HeroBackground />
       </div>
@@ -43,7 +43,7 @@ const CarnivalScene: React.FC = () => {
       {/* Fireworks */}
       {/* Yellow Firework - Left side behind purple tent */}
       <div
-        className={`absolute z-15 max-w-[280px] min-w-[100px] ${isMobile ? "scale-50" : "scale-100"} ${
+        className={`absolute z-15 max-w-[280px] min-w-[100px] ${isMobile ? "scale-[0.45]" : "scale-100"} ${
           isDesktop
             ? "left-[-2%] top-[21%] w-[10vw]"
             : isTablet
@@ -66,7 +66,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[45%] top-[35%] w-[12vw]"
+                ? "right-[-5%] top-[35%] w-[12vw]"
                 : "right-[2%] top-[59%] w-[15vw]"
         }`}
       >
