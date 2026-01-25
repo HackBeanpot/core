@@ -43,13 +43,13 @@ const CarnivalScene: React.FC = () => {
       {/* Fireworks */}
       {/* Yellow Firework - Left side behind purple tent */}
       <div
-        className={`absolute z-15 max-w-[280px] min-w-[100px] ${isMobile ? "scale-[0.45]" : "scale-100"} ${
+        className={`absolute z-15 max-w-[280px] min-w-[100px] ${isMobile ? "scale-50" : "scale-100"} ${
           isDesktop
             ? "left-[-2%] top-[21%] w-[10vw]"
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[-22%] top-[35%] w-[12vw]"
+                ? "left-[-22%] top-[30%] w-[12vw]"
                 : "left-[0%] top-[55%] w-[15vw]"
         }`}
       >
@@ -66,7 +66,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[-5%] top-[35%] w-[12vw]"
+                ? "right-[-5%] top-[30%] w-[12vw]"
                 : "right-[2%] top-[59%] w-[15vw]"
         }`}
       >
@@ -84,7 +84,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[-25%] bottom-[21%] w-[20vw]"
+                ? "left-[-25%] bottom-[26%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -101,7 +101,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "left-[65%] bottom-[22%] w-[20vw]"
+                ? "left-[65%] bottom-[27%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -141,7 +141,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[25%]"
               : isMobile
-                ? "bottom-[12%]"
+                ? "bottom-[17%]"
                 : "bottom-[22%]"
         }`}
       >
