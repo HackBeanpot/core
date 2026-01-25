@@ -23,13 +23,15 @@ const CarnivalScene: React.FC = () => {
   return (
     <div className={`relative w-full h-full overflow-hidden ${getMinHeight()}`}>
       {/* Background - Night Sky */}
-      <div className={`absolute ${isMobile ? "left-[-10%] w-[110%]" : "inset-0 w-full"} h-full`}>
+      <div
+        className={`absolute ${isMobile ? "left-[-30%] w-[130%]" : "inset-0 w-full"} h-full`}
+      >
         <HeroBackground />
       </div>
 
       {/* Cabin Race - Top Left */}
       <div
-        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-[0.75]" : isTablet ? "p-4" : "p-6"}`}
+        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-[0.95]" : isTablet ? "p-4" : "p-6"}`}
       >
         <div className="w-auto h-auto">
           <CabinRace text="Magicians" />
@@ -91,7 +93,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Orange Tent - Right side */}
       <div
-        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.5]" : "scale-75"} origin-center ${
+        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.45]" : "scale-75"} origin-center ${
           isDesktop
             ? "right-[3%] bottom-[42%] w-[12vw]"
             : isTablet
@@ -109,7 +111,7 @@ const CarnivalScene: React.FC = () => {
       {/* Opening Text - Above Dart Board */}
       <div
         className={`absolute left-[52%] -translate-x-[48%] z-40 ${
-          isDesktop ? "scale-125" : isTablet ? "scale-100" : "scale-[0.75]"
+          isDesktop ? "scale-125" : isTablet ? "scale-100" : "scale-[0.85]"
         } ${
           isDesktop
             ? "bottom-[75%]"
