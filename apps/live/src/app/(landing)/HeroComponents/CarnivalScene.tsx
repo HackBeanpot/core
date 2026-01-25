@@ -31,7 +31,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Cabin Race - Top Left */}
       <div
-        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-100" : isTablet ? "p-4" : "p-6"}`}
+        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-125" : isTablet ? "p-4" : "p-6"}`}
       >
         <div className="w-auto h-auto">
           <CabinRace text="Magicians" />
@@ -64,7 +64,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[-18%] top-[35%] w-[12vw]"
+                ? "left-[45%] top-[35%] w-[12vw]"
                 : "right-[2%] top-[59%] w-[15vw]"
         }`}
       >
@@ -99,7 +99,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "left-[65%] bottom-[18%] w-[20vw]"
+                ? "left-[65%] bottom-[22%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
