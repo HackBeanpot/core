@@ -101,7 +101,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "left-[70%] bottom-[32%] w-[20vw]"
+                ? "left-[72%] bottom-[32%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -126,8 +126,8 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[75%]"
               : isMobile
-                ? "bottom-[60%]"
-                : "bottom-[68%]"
+                ? "bottom-[67%]"
+                : "bottom-[67%]"
         }`}
       >
         <OpeningText />
