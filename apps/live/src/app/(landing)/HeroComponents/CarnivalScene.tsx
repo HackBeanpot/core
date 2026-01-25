@@ -45,7 +45,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[-8%] top-[40%] w-[12vw]"
+                ? "left-[-15%] top-[40%] w-[12vw]"
                 : "left-[0%] top-[55%] w-[15vw]"
         }`}
       >
@@ -80,7 +80,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[-12%] bottom-[18%] w-[20vw]"
+                ? "left-[-18%] bottom-[18%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -125,7 +125,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Central Dart Board Booth */}
       <div
-        className={`absolute ${isMobile ? "left-[48%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
+        className={`absolute ${isMobile ? "left-[42%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
           isDesktop
             ? "bottom-[34%]"
             : isTablet
