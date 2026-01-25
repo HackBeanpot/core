@@ -23,13 +23,13 @@ const CarnivalScene: React.FC = () => {
   return (
     <div className={`relative w-full h-full overflow-hidden ${getMinHeight()}`}>
       {/* Background - Night Sky */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className={`absolute ${isMobile ? "left-[-10%] w-[110%]" : "inset-0 w-full"} h-full`}>
         <HeroBackground />
       </div>
 
       {/* Cabin Race - Top Left */}
       <div
-        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-90" : isTablet ? "p-4" : "p-6"}`}
+        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-[0.75]" : isTablet ? "p-4" : "p-6"}`}
       >
         <div className="w-auto h-auto">
           <CabinRace text="Magicians" />
@@ -45,7 +45,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[-15%] top-[40%] w-[12vw]"
+                ? "left-[-22%] top-[40%] w-[12vw]"
                 : "left-[0%] top-[55%] w-[15vw]"
         }`}
       >
@@ -62,7 +62,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[-2%] top-[50%] w-[12vw]"
+                ? "right-[-8%] top-[35%] w-[12vw]"
                 : "right-[2%] top-[59%] w-[15vw]"
         }`}
       >
@@ -80,7 +80,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[-18%] bottom-[18%] w-[20vw]"
+                ? "left-[-25%] bottom-[18%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -97,7 +97,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "right-[-12%] bottom-[18%] w-[20vw]"
+                ? "left-[65%] bottom-[18%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -125,7 +125,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Central Dart Board Booth */}
       <div
-        className={`absolute ${isMobile ? "left-[42%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
+        className={`absolute ${isMobile ? "left-[38%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
           isDesktop
             ? "bottom-[34%]"
             : isTablet
