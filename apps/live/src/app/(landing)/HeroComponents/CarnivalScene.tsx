@@ -31,7 +31,9 @@ const CarnivalScene: React.FC = () => {
 
       {/* Cabin Race - Top Left */}
       <div
-        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-125" : isTablet ? "p-4" : "p-6"}`}
+        className={`absolute ${isMobile ? "-left-4" : "left-10"} top-0 z-30 ${
+          isMobile ? "p-2 scale-125" : isTablet ? "p-4" : "p-6 scale-150"
+        }`}
       >
         <div className="w-auto h-auto">
           <CabinRace text="Magicians" />
