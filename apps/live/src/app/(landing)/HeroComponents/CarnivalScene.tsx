@@ -47,7 +47,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[-22%] top-[30%] w-[12vw]"
+                ? "left-[-22%] top-[35%] w-[12vw]"
                 : "left-[0%] top-[55%] w-[15vw]"
         }`}
       >
@@ -64,7 +64,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[-8%] top-[35%] w-[12vw]"
+                ? "right-[-18%] top-[35%] w-[12vw]"
                 : "right-[2%] top-[59%] w-[15vw]"
         }`}
       >
@@ -82,7 +82,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[-25%] bottom-[25%] w-[20vw]"
+                ? "left-[-25%] bottom-[21%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -111,14 +111,20 @@ const CarnivalScene: React.FC = () => {
       {/* Opening Text - Above Dart Board */}
       <div
         className={`absolute left-[52%] -translate-x-[48%] z-40 ${
-          isDesktop ? "scale-125" : isTablet ? "scale-100" : isMobile ? "scale-100" : "scale-[0.85]"
+          isDesktop
+            ? "scale-125"
+            : isTablet
+              ? "scale-100"
+              : isMobile
+                ? "scale-[0.90]"
+                : "scale-[0.85]"
         } ${
           isDesktop
             ? "bottom-[75%]"
             : isTablet
               ? "bottom-[75%]"
               : isMobile
-                ? "bottom-[62%]"
+                ? "bottom-[58%]"
                 : "bottom-[68%]"
         }`}
       >
@@ -127,7 +133,7 @@ const CarnivalScene: React.FC = () => {
 
       {/* Central Dart Board Booth */}
       <div
-        className={`absolute ${isMobile ? "left-[38%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
+        className={`absolute ${isMobile ? "left-[35%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
           isDesktop
             ? "bottom-[34%]"
             : isTablet
