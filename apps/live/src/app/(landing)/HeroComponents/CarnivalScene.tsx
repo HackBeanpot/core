@@ -24,14 +24,14 @@ const CarnivalScene: React.FC = () => {
     <div className={`relative w-full h-full overflow-hidden ${getMinHeight()}`}>
       {/* Background - Night Sky */}
       <div
-        className={`absolute ${isMobile ? "left-[-30%] w-[130%]" : "inset-0 w-full"} h-full`}
+        className={`absolute ${isMobile ? "left-[-150%] w-[130%]" : "inset-0 w-full"} h-full`}
       >
         <HeroBackground />
       </div>
 
       {/* Cabin Race - Top Left */}
       <div
-        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-[0.95]" : isTablet ? "p-4" : "p-6"}`}
+        className={`absolute ${isMobile ? "-left-4" : "left-0"} top-0 z-30 ${isMobile ? "p-2 scale-100" : isTablet ? "p-4" : "p-6"}`}
       >
         <div className="w-auto h-auto">
           <CabinRace text="Magicians" />
@@ -47,7 +47,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[-22%] top-[40%] w-[12vw]"
+                ? "left-[-22%] top-[30%] w-[12vw]"
                 : "left-[0%] top-[55%] w-[15vw]"
         }`}
       >
@@ -82,7 +82,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[-25%] bottom-[18%] w-[20vw]"
+                ? "left-[-25%] bottom-[25%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -111,7 +111,7 @@ const CarnivalScene: React.FC = () => {
       {/* Opening Text - Above Dart Board */}
       <div
         className={`absolute left-[52%] -translate-x-[48%] z-40 ${
-          isDesktop ? "scale-125" : isTablet ? "scale-100" : "scale-[0.85]"
+          isDesktop ? "scale-125" : isTablet ? "scale-100" : isMobile ? "scale-100" : "scale-[0.85]"
         } ${
           isDesktop
             ? "bottom-[75%]"
@@ -133,7 +133,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[25%]"
               : isMobile
-                ? "bottom-[18%]"
+                ? "bottom-[12%]"
                 : "bottom-[22%]"
         }`}
       >
