@@ -24,7 +24,7 @@ const CarnivalScene: React.FC = () => {
     <div className={`relative w-full h-full overflow-hidden ${getMinHeight()}`}>
       {/* Background - Night Sky */}
       <div
-        className={`absolute ${isMobile ? "left-[-200%] w-[180%] top-[-10%]" : "inset-0 w-full"} h-full`}
+        className={`absolute ${isMobile ? "left-[-200%] w-[180%] top-[-15%]" : "inset-0 w-full"} h-full`}
       >
         <HeroBackground />
       </div>
@@ -49,7 +49,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[-22%] top-[25%] w-[12vw]"
+                ? "left-[-22%] top-[20%] w-[12vw]"
                 : "left-[0%] top-[55%] w-[15vw]"
         }`}
       >
@@ -84,7 +84,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[-25%] bottom-[31%] w-[20vw]"
+                ? "left-[-25%] bottom-[36%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -101,7 +101,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "left-[63%] bottom-[32%] w-[20vw]"
+                ? "left-[65%] bottom-[32%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -126,7 +126,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[75%]"
               : isMobile
-                ? "bottom-[58%]"
+                ? "bottom-[60%]"
                 : "bottom-[68%]"
         }`}
       >
@@ -141,7 +141,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[25%]"
               : isMobile
-                ? "bottom-[22%]"
+                ? "bottom-[27%]"
                 : "bottom-[22%]"
         }`}
       >
