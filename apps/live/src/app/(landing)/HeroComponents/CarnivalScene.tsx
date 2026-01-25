@@ -66,8 +66,8 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[-15%] top-[21%] w-[12vw]"
-                : "right-[2%] top-[59%] w-[15vw]"
+                ? "right-[0%] top-[21%] w-[12vw]"
+                : "right-[0%] top-[59%] w-[15vw]"
         }`}
       >
         <div className="w-full h-auto">
