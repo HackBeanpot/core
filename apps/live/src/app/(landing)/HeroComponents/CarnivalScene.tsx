@@ -49,7 +49,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[-22%] top-[20%] w-[12vw]"
+                ? "left-[-17%] top-[20%] w-[12vw]"
                 : "left-[0%] top-[55%] w-[15vw]"
         }`}
       >
@@ -101,7 +101,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "left-[65%] bottom-[32%] w-[20vw]"
+                ? "left-[70%] bottom-[32%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
