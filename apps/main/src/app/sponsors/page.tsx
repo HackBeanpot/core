@@ -8,11 +8,12 @@ import { SponsorTicketComp, SponsorTicketBoothComp } from "../lib/Components";
 import useDevice from "@util/hooks/useDevice.ts";
 import AWSLogo from "@repo/ui/Logos/AWSLogo.svg";
 import CodeCraftersLogo from "@repo/ui/Logos/CodeCraftersLogo.svg";
-import FlagLogicLogo from "@repo/ui/Logos/FlagLogicLogo.svg";
+import FlagLogicLogo from "@repo/ui/Logos/Appwizzy_logo.svg";
 import KlaviyoLogo from "@repo/ui/Logos/KlaviyoLogo.svg";
 import MavenAGILogo from "@repo/ui/Logos/MavenAGILogo.svg";
 import RGLogo from "@repo/ui/Logos/RGLogo.svg";
 import WhoopLogo from "@repo/ui/Logos/WhoopLogo.svg";
+import PureButton from "@repo/ui/Logos/PureButton.svg"
 
 function makeSponsorRow(
   ticketSizes: number[],
@@ -49,7 +50,7 @@ export default function Page(): JSX.Element {
     [AWSLogo, MavenAGILogo],
     [KlaviyoLogo],
     [WhoopLogo, RGLogo],
-    [CodeCraftersLogo, FlagLogicLogo],
+    [CodeCraftersLogo, FlagLogicLogo, PureButton],
   ];
 
   return (
@@ -85,7 +86,7 @@ export default function Page(): JSX.Element {
                   {makeSponsorRow([30, 30], logos[0], [250, 250])}
                   {makeSponsorRow([25], logos[1], [175])}
                   {makeSponsorRow([21, 21], logos[2], [200, 100])}
-                  {makeSponsorRow([17, 17], logos[3], [200, 200])}
+                  {makeSponsorRow([17, 17, 17], logos[3], [200, 200, 200])}
                 </>
               )}
 
@@ -95,7 +96,7 @@ export default function Page(): JSX.Element {
                   {makeSponsorRow([30, 30], logos[0], [150, 150])}
                   {makeSponsorRow([25], logos[1], [125])}
                   {makeSponsorRow([21, 21], logos[2], [115, 115])}
-                  {makeSponsorRow([17, 17], logos[3], [120, 120])}
+                  {makeSponsorRow([17, 17, 17], logos[3], [120, 120, 120])}
                 </>
               )}
 
@@ -105,7 +106,7 @@ export default function Page(): JSX.Element {
                   {makeSponsorRow([45, 45], logos[0], [85, 110])}
                   {makeSponsorRow([40], logos[1], [75])}
                   {makeSponsorRow([30, 30], logos[2], [115, 45])}
-                  {makeSponsorRow([25, 25], logos[3], [85, 85])}
+                  {makeSponsorRow([25, 25, 25], logos[3], [85, 85, 85])}
                 </>
               )}
             </div>
