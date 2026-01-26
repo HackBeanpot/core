@@ -9,9 +9,8 @@ export type FerrisWheelProps = {
 
 export default function SponsorUsTestimonialsWheel({
   classname,
-  transformStyle
+  transformStyle,
 }: FerrisWheelProps): React.ReactNode {
-
   return (
     <div className={classname} style={{ transform: transformStyle }}>
       <div className="relative flex size-full">

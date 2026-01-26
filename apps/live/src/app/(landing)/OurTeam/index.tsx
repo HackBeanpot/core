@@ -1,48 +1,23 @@
 "use client";
-import React, { useRef } from "react";
-import Section from "@repo/ui/Section";
+import React from "react";
 import OurTeamGrid from "./OurTeamGrid";
-import useContentHeight from "@util/hooks/useContentHeight";
-import useWindowSize from "@util/hooks/useWindowSize";
+import RibbonTitle from "@repo/ui/RibbonTitle";
 
-const OurTeam = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { height: windowHeight, width: windowWidth } = useWindowSize();
-  const [contentHeight] = useContentHeight(ref);
-
-  if (!windowHeight || !windowWidth) return;
-
-  const OurTeamBackground = () => {
-    return <div className="bg-granolaLite h-full"></div>;
-  };
-
-  const OurTeamContent = React.forwardRef<HTMLDivElement>((_, ref) => {
-    return (
-      <div ref={ref} className="py-24 px-48 font-GT-Walsheim-Regular">
-        <p className="text-[clamp(3rem,7vw,7rem)] text-seaFoam font-bold font-Wilden drop-shadow-lg">
-          Our Team
-        </p>
-        <p className="px-2">
-          Need a hand? Our team is here to support you throughout the hackathon!
-          If you have questions, need guidance, or just want to brainstorm,
-          don’t hesitate to reach out. We’re just a ping away and ready to help
-          make your hackathon experience as smooth and successful as possible!
-        </p>
-        <OurTeamGrid />
-      </div>
-    );
-  });
-
-  OurTeamContent.displayName = "OurTeamContent";
-
+export default function OurTeam(): React.ReactNode {
   return (
-    <Section
-      name="team"
-      background={<OurTeamBackground />}
-      content={<OurTeamContent ref={ref} />}
-      height={(contentHeight / windowHeight) * 90}
-    />
+    <div className="py-24 px-48 font-NeulisNeue-Regular flex flex-col gap-8 relative">
+      <RibbonTitle text={"OUR TEAM"} />
+      <div className="bg-carouselCreamLight rounded-xl p-8">
+        <h1 className="font-NeulisNeue-Bold text-firecrackerRed text-[24px]">
+          Need to reach out to a core member?
+        </h1>
+        <p className="font-DM-Sans-Regular">
+          Feel free to reach out to a core member via Discord if you have any
+          questions or concerts about event logistics, applying to be part of
+          the HBP core team, or more!
+        </p>
+      </div>
+      <OurTeamGrid />
+    </div>
   );
-};
-
-export default OurTeam;
+}

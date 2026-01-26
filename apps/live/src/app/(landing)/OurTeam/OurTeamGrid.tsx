@@ -7,185 +7,194 @@ const TeamTable = () => {
   const teams = {
     Directors: [
       {
-        name: "Mike Mundia",
-        src: "/headshots/directors/mike.png",
-        linkedin: "https://www.linkedin.com/in/michael-mundia/",
+        name: "Emma Vonbuelow",
+        src: "/headshots/directors/Emma.jpg",
+        url: "https://www.linkedin.com/in/emma-von/",
       },
-
       {
-        name: "Lisa Jiang",
-        src: "/headshots/directors/lisa.png",
-        linkedin: "https://www.linkedin.com/in/-lisa-jiang/",
+        name: "Rachel Pao",
+        src: "/headshots/directors/Rachel.png",
+        url: "https://www.linkedin.com/in/rachelpaocyber/",
       },
     ],
     Tech: [
       {
-        name: "John Sargent",
-        src: "/headshots/tech/john.png",
-        linkedin: "https://www.linkedin.com/in/john--sargent/",
-      },
-      {
-        name: "Nelson Dong",
-        src: "/headshots/tech/nelson.png",
-        linkedin: "https://www.linkedin.com/in/nelson-dong/",
-      },
-      {
-        name: "Mandy Rodriques",
-        src: "/headshots/tech/mandy.png",
-        linkedin: "https://www.linkedin.com/in/amanda-rodriques/",
-      },
-      {
-        name: "Aaryan Jain",
-        src: "/headshots/tech/aaryan.png",
-        linkedin: "https://www.linkedin.com/in/aaryanja/",
-      },
-      {
-        name: "Lucas Dunker",
-        src: "/headshots/tech/lucas.png",
-        linkedin: "https://www.linkedin.com/in/lucasdunker/",
-      },
-      {
-        name: "Crystal Zhang",
-        src: "/headshots/tech/crystal.png",
-        linkedin: "https://www.linkedin.com/in/cryystalzhang/",
-      },
-      {
-        name: "Aretha Chen",
-        src: "/headshots/tech/aretha.png",
-        linkedin: "https://www.linkedin.com/in/aretha-chen/",
-      },
-      {
         name: "Alina Gonzalez",
-        src: "/headshots/tech/alina.png",
-        linkedin: "https://www.linkedin.com/in/agonzalez26",
+        src: "/headshots/tech/Alina.png",
+        url: "www.linkedin.com/in/agonzalez26",
       },
       {
         name: "Alexander Chen",
-        src: "/headshots/tech/alexander.png",
-        linkedin: "https://www.linkedin.com/in/alexchen04/",
+        src: "/headshots/tech/Alex.png",
+        url: "https://www.linkedin.com/in/alexchen04/",
       },
       {
         name: "Yumiko Chow",
-        src: "/headshots/tech/yumiko.png",
-        linkedin: "https://www.linkedin.com/in/yumiko-chow/",
+        src: "/headshots/tech/Yumi.png",
+        url: "https://www.linkedin.com/in/yumiko-chow/",
+      },
+      {
+        name: "Alexandra Hu",
+        src: "/headshots/tech/Ally.png",
+        url: "https://www.linkedin.com/in/alexandra-hu",
+      },
+      {
+        name: "Khushi Khan",
+        src: "/headshots/tech/Khushi.png",
+        url: "https://www.linkedin.com/in/khushi-khan",
+      },
+      {
+        name: "Aditya Pathak",
+        src: "/headshots/tech/Aditya.png",
+        url: "https://www.linkedin.com/in/aditya-pathak-499962279/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      },
+      {
+        name: "Sophia Yang",
+        src: "/headshots/tech/Sophia.png",
+        url: "https://www.linkedin.com/in/sophia-yang-nu/",
+      },
+      {
+        name: "Angie Che",
+        src: "/headshots/tech/Angie.png",
+        url: "https://www.linkedin.com/in/angie-che-b2398529a/",
+      },
+      {
+        name: "Veronica Song",
+        src: "/headshots/tech/Veronica.png",
+        url: "https://www.linkedin.com/in/veronica-song/",
+      },
+      {
+        name: "Roslyn Maloney",
+        src: "/headshots/tech/Roslyn.png",
+        url: "https://www.linkedin.com/in/roslyn-maloney-nustudent/",
       },
     ],
     Design: [
       {
-        name: "Audrey Wong",
-        src: "/headshots/design/audrey.png",
-        linkedin: "https://www.linkedin.com/in/wong-audrey/",
-      },
-      {
         name: "Zahra Wibisana",
-        src: "/headshots/design/zahra.png",
-        linkedin: "https://www.linkedin.com/in/zahra-wibisana-0b0bb2222/",
-      },
-      {
-        name: "Trisha Garg",
-        src: "/headshots/design/trisha.png",
-        linkedin: "https://www.linkedin.com/in/trishagarg/",
+        src: "/headshots/design/Zahra.png",
+        url: "https://www.linkedin.com/in/zahra-wibisana-0b0bb2222/",
       },
       {
         name: "Isabella Borda",
-        src: "/headshots/design/isabella.png",
-        linkedin: "https://www.linkedin.com/in/isabella-borda-03537b306/",
+        src: "/headshots/design/Isabella.png",
+        url: "https://www.linkedin.com/in/isabella-borda-03537b306/",
       },
       {
         name: "Annabelle Chung",
-        src: "/headshots/design/annabelle.png",
-        linkedin: "https://www.linkedin.com/in/annabelle-c-2ba49327b/",
+        src: "/headshots/design/Annabelle.png",
+        url: "https://www.linkedin.com/in/annabelle-chung-/",
+      },
+      {
+        name: "Cole Abrams",
+        src: "/headshots/design/Cole.png",
+        url: "https://www.linkedin.com/in/coleabrams/",
+      },
+      {
+        name: "Lucy Liu",
+        src: "/headshots/design/Lucy.png",
+        url: "https://www.linkedin.com/in/xinninglucyliu/",
+      },
+      {
+        name: "Yurika Kan",
+        src: "/headshots/design/Yurika.png",
+        url: "https://www.linkedin.com/in/yurika-kan/",
       },
     ],
-    Social: [
+    "Socials&Outreach": [
       {
-        name: "Emma Vonuelow",
-        src: "/headshots/social/emma.png",
-        linkedin: "https://www.linkedin.com/in/emma-von/",
+        name: "Megan Lai",
+        src: "/headshots/socials/Megan.png",
+        url: "https://www.linkedin.com/in/meganplai/",
       },
       {
         name: "Nidhi Bendre",
-        src: "/headshots/social/nidhi.png",
-        linkedin: "https://www.linkedin.com/in/nidhi-bendre-928423218/",
+        src: "/headshots/socials/Nidhi.png",
+        url: "https://www.linkedin.com/in/nidhi-bendre-928423218/",
       },
       {
-        name: "Megan Lai",
-        src: "/headshots/social/megan.png",
-        linkedin: "https://www.linkedin.com/in/meganplai/",
+        name: "Dalton Burkhart",
+        src: "/headshots/socials/Dalton.png",
+        url: "http://www.linkedin.com/in/dalton-burkhart",
       },
       {
-        name: "Nicole Ni",
-        src: "/headshots/social/nicole.png",
-        linkedin: "https://www.linkedin.com/in/nicoleni22/",
+        name: "Katya Luch",
+        src: "/headshots/socials/Katya.png",
+        url: "https://www.linkedin.com/in/katya-luch/",
+      },
+      {
+        name: "Rai Makaraju",
+        src: "/headshots/socials/Rai.png",
+        url: "https://www.linkedin.com/in/ria-makaraju-57b64b343/",
+      },
+      {
+        name: "Sukira Harris",
+        src: "/headshots/socials/Sukira.png",
+        url: "http://www.linkedin.com/in/sukira-harris-9aba9b2a1",
+      },
+      {
+        name: "Susan Chen",
+        src: "/headshots/socials/Susan.png",
+        url: "http://www.linkedin.com/in/susan-42-chen",
       },
     ],
     Sponsorship: [
       {
-        name: "Luke Steimel",
-        src: "/headshots/sponsorship/luke.png",
-        linkedin: "https://www.linkedin.com/in/luke-steimel/",
-      },
-      {
-        name: "Nidhi Pillai",
-        src: "/headshots/sponsorship/nidhi.png",
-        linkedin: "https://www.linkedin.com/in/nidhi-pillai-074a27180/",
+        name: "Jesse James",
+        src: "/headshots/sponsorship/Jesse.png",
+        url: "https://www.linkedin.com/in/jessejamescs/",
       },
       {
         name: "Sammi Chen",
-        src: "/headshots/sponsorship/sammi.png",
-        linkedin: "https://www.linkedin.com/in/chensammi/",
+        src: "/headshots/sponsorship/Sammi.png",
+        url: "https://www.linkedin.com/in/chensammi/",
       },
       {
-        name: "Harini Avula",
-        src: "/headshots/sponsorship/harini.png",
-        linkedin: "https://www.linkedin.com/in/harini-avula/",
+        name: "Aaryan Jain",
+        src: "/headshots/sponsorship/Aaryan.png",
+        url: "https://www.linkedin.com/aaryanja",
       },
       {
-        name: "Swar Kewaiia",
-        src: "/headshots/sponsorship/swar.png",
-        linkedin: "https://www.linkedin.com/in/swarkewalia/",
+        name: "Johny Sargent",
+        src: "/headshots/sponsorship/Johny.png",
+        url: "https://www.linkedin.com/in/john--sargent/",
       },
       {
-        name: "Tiffany Zheng",
-        src: "/headshots/sponsorship/tiffany.png",
-        linkedin: "https://www.linkedin.com/in/tiff-zheng/",
+        name: "Jolin Yang",
+        src: "/headshots/sponsorship/Jolin.png",
+        url: "https://www.linkedin.com/in/jolin-yang-ba8241246/",
+      },
+      {
+        name: "Livia Cutra",
+        src: "/headshots/sponsorship/Livia.png",
+        url: "http://www.linkedin.com/in/liviacutra",
       },
     ],
     Operations: [
       {
-        name: "Katherine Zeng",
-        src: "/headshots/operations/katherine.png",
-        linkedin: "https://www.linkedin.com/in/k-zeng/",
-      },
-      {
-        name: "Alexandra Hu",
-        src: "/headshots/operations/alexandra.png",
-        linkedin: "https://www.linkedin.com/in/alexandra-hu/",
-      },
-      {
         name: "Amy Wang",
-        src: "/headshots/operations/amy.png",
-        linkedin: "https://www.linkedin.com/in/amy-wang-17b526248/",
+        src: "/headshots/operations/Amy.png",
+        url: "https://www.linkedin.com/in/amy-wang-17b526248/",
       },
       {
         name: "Zoe Gao",
-        src: "/headshots/operations/zoe.png",
-        linkedin: "https://www.linkedin.com/in/zoe-gao-khoury/",
+        src: "/headshots/operations/Zoe.png",
+        url: "https://www.linkedin.com/in/zoe-gao-khoury",
       },
       {
-        name: "Rachel Pao",
-        src: "/headshots/operations/rachel.png",
-        linkedin: "https://www.linkedin.com/in/rachelpaocyber/",
+        name: "Nicole Ni",
+        src: "/headshots/operations/Nicole.png",
+        url: "https://www.linkedin.com/in/nicoleni22",
       },
       {
-        name: "Tonatiuh Godinez",
-        src: "/headshots/operations/tonatiuh.png",
-        linkedin: "https://www.linkedin.com/in/godinezsteven/",
+        name: "Fanta Kébé",
+        src: "/headshots/operations/Fanta.png",
+        url: "https://www.linkedin.com/in/fantaa-kebe?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSKzRhbsvTIaBt8MSstJu3w%3D%3D",
       },
       {
-        name: "Jalen Wu",
-        src: "/headshots/operations/jalen.png",
-        linkedin: "https://www.linkedin.com/in/jalen-wu/",
+        name: "Nodoka Shibasaki",
+        src: "/headshots/operations/Nodoka.png",
+        url: "https://www.linkedin.com/in/nodoka2027/",
       },
     ],
   };
@@ -215,7 +224,7 @@ const TeamTable = () => {
         {teams[currTeam].map((member, index) => (
           <a
             key={index}
-            href={member.linkedin}
+            href={member.url}
             className="transition-transform scale-100 hover:scale-105"
           >
             <div className="items-center p-2 rounded-lg ">

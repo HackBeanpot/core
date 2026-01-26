@@ -13,7 +13,7 @@ interface ButtonProps {
 
 const bgColorMap: Record<string, string> = {
   canopyGreenLight: "bg-canopyGreenLight",
-  canopyGreen:"bg-canopyGreen",
+  canopyGreen: "bg-canopyGreen",
   mossGreen: "bg-mossGreen",
   mossGreenDark: "bg-mossGreenDark",
   firecrackerRedLight: "bg-firecrackerRedLight",
@@ -28,7 +28,7 @@ const textColorMap: Record<string, string> = {
 
 const borderColorMap: Record<string, string> = {
   canopyGreenLight: "border-canopyGreenLight",
-  canopyGreen:"bg-canopyGreen",
+  canopyGreen: "bg-canopyGreen",
   mossGreen: "border-mossGreen",
   mossGreenDark: "border-mossGreenDark",
   firecrackerRed: "border-firecrackerRed",
@@ -52,7 +52,7 @@ const hoverTextColorMap: Record<string, string> = {
 const hoverBorderColorMap: Record<string, string> = {
   white: "hover:border-white",
   canopyGreenLight: "hover:border-canopyGreenLight",
-  canopyGreen:"bg-canopyGreen",
+  canopyGreen: "bg-canopyGreen",
   mossGreen: "hover:border-mossGreen",
   mossGreenDark: "hover:border-mossGreenDark",
   firecrackerRed: "hover:border-firecrackerRed",
@@ -83,7 +83,7 @@ const FilterButton: React.FC<ButtonProps> = ({
     ? hoverBorderColorMap[hoverBorderColor]
     : "hover:border-white";
 
-    const baseStyle = `font-NeulisNeue-Bold flex items-center justify-center gap-1 rounded-lg w-auto h-auto py-1 whitespace-nowrap border border-solid transition-transform duration-200 ease-in-out hover:scale-105 hover:border-[1.5px] active:brightness-90
+  const baseStyle = `font-NeulisNeue-Bold flex items-center justify-center gap-1 rounded-lg w-auto h-auto py-1 whitespace-nowrap border border-solid transition-transform duration-200 ease-in-out hover:scale-105 hover:border-[1.5px] active:brightness-90
     ${bgClass}
     ${textClass}
     ${borderClass}
@@ -92,10 +92,9 @@ const FilterButton: React.FC<ButtonProps> = ({
     ${hoverBorderClass}
     ${text ? "px-4" : "px-2"}
     `;
- 
+
   return (
-    <button
-      className={baseStyle} onClick={onClick}>
+    <button className={baseStyle} onClick={onClick}>
       {text}
     </button>
   );
