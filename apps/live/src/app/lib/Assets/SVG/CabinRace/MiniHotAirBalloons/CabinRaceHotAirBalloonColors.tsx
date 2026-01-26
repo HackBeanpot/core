@@ -26,4 +26,4 @@ export const CABIN_RACE_BALLOON_COLORS = {
 } as const;
 
 export type CabinRaceHotAirBalloonTheme =
-    keyof typeof CABIN_RACE_BALLOON_COLORS;
+  keyof typeof CABIN_RACE_BALLOON_COLORS;

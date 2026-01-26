@@ -10,7 +10,6 @@ import Footer from "@repo/ui/Footer";
 import ComingUp from "./ComingUp/ComingUp";
 import OurTeam from "./OurTeam";
 import Keynote from "./Keynote";
-import CabinRace from "./CabinRace/CabinRace.tsx";
 
 export default function Page(): JSX.Element {
   return (
@@ -18,7 +17,6 @@ export default function Page(): JSX.Element {
       <Landing />
       <NavBar />
       <ComingUp />
-      <CabinRace/>
       <HitTheRoad />
       <EventSchedule />
       <Keynote />
