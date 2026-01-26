@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import useDevice from "@util/hooks/useDevice.ts";
 import {
@@ -8,73 +8,10 @@ import {
   CabinRaceSquiggle,
 } from "../../lib/Assets/SVG";
 import CabinRaceCard from "../../components/CabinRaceComponents/CabinRaceCard.tsx";
-import { Cabin, CabinLead } from "./CabinTypes.tsx";
+import { Cabin } from "./CabinTypes.tsx";
 import CabinRaceScoreTent from "../../components/CabinRaceComponents/CabinRaceScoreTent.tsx";
 
-const emma: CabinLead = {
-  name: "Emma Vonbuelow",
-  src: "/headshots/directors/Emma.jpg",
-  url: "https://www.linkedin.com/in/emma-von/",
-};
-
-const alina: CabinLead = {
-  name: "Alina Gonzalez",
-  src: "/headshots/tech/Alina.png",
-  url: "www.linkedin.com/in/agonzalez26",
-};
-const mockCabin1: Cabin = {
-  name: "Magicians",
-  points: 150,
-  description:
-    "A magician never reveals their secrets… especially not their API keys! Need some " +
-    "more tricks up your sleeve? Bond with fellow carnival-goers as you learn all the tricks of " +
-    "the technical trade and prepare to dazzle the crowd by using your new skills in your " +
-    "project!",
-  cabinLeads: [emma, alina],
-};
-
-const mockCabin2: Cabin = {
-  name: "Acrobats",
-  points: 100,
-  description: "woohoo",
-  cabinLeads: [emma, emma],
-};
-const mockCabin3: Cabin = {
-  name: "Illusionist",
-  points: 999,
-  description: "holy try hards!!!!",
-  cabinLeads: [emma, emma],
-};
-const mockCabin4: Cabin = {
-  name: "Contortionist",
-  points: 0,
-  description: "what is happening...",
-  cabinLeads: [emma, emma],
-};
-const mockCabin5: Cabin = {
-  name: "Jugglers",
-  points: 30,
-  description: "not bad",
-  cabinLeads: [emma, emma],
-};
-const mockCabin6: Cabin = {
-  name: "Stilt-Walker",
-  points: 564,
-  description: "net zero",
-  cabinLeads: [emma, emma],
-};
-const mockCabins: Cabin[] = [
-  mockCabin1,
-  mockCabin2,
-  mockCabin3,
-  mockCabin4,
-  mockCabin5,
-  mockCabin6,
-];
-
-{
-  /* Airtable */
-}
+{ /* Airtable */ }
 export type AirTableRecord = {
   id: string;
   createdTime: string;
@@ -91,28 +28,42 @@ export type AirtableData = {
 export default function CabinRace(): JSX.Element {
   const { isDesktop, isTablet, isMobile } = useDevice();
 
-  // const [cabinData, setCabinData] = useState<AirtableData | null>(null);
-  //
-  // async function getCabinPoints() {
-  //   const res = await fetch("/api/cabinPoints");
-  //   const jsonData: AirtableData = await res.json();
-  //   const status = res.status;
-  //
-  //   if (status == 200) {
-  //     setCabinData(jsonData);
-  //   }
-  // }
-  //
-  // useEffect(() => {
-  //   getCabinPoints();
-  // }, []);
+  const [cabinData, setCabinData] = useState<AirtableData | null>(null);
 
-  // TODO: replace mockCabins w whatever API call returns
+  async function getCabinPoints() {
+    const res = await fetch("/api/cabinPoints");
+    const jsonData: AirtableData = await res.json();
+    const status = res.status;
+
+    if (status == 200) {
+      setCabinData(jsonData);
+    }
+  }
+
+  useEffect(() => {
+    const fetchCabins = async () => {
+      await getCabinPoints();
+    };
+
+    void fetchCabins();
+  }, []);
+
+  // TODO: should add cabin lead info and descriptions to airtable
+  const fetchedCabins = useMemo(() => {
+    if (!cabinData) return [];
+    return cabinData.records.map(record => ({
+      name: record.fields.Name,
+      points: record.fields.Points,
+      description: "",
+      cabinLeads: [],
+    }));
+  }, [cabinData]);
+
 
   const cabinsByName: Record<string, Cabin> = Object.fromEntries(
-    mockCabins.map((cabin) => [cabin.name, cabin]),
+      fetchedCabins.map((cabin) => [cabin.name, cabin]),
   );
-  const cabinNames: string[] = mockCabins.map((cabin) => cabin.name);
+  const cabinNames: string[] = fetchedCabins.map((cabin) => cabin.name);
   const [selectedCabinName, setSelectedCabinName] = useState<string | null>(
     null,
   );
@@ -247,7 +198,7 @@ export default function CabinRace(): JSX.Element {
           )}
         </div>
 
-        <CabinRaceScoreTent cabinInfo={mockCabins}></CabinRaceScoreTent>
+        <CabinRaceScoreTent cabinInfo={fetchedCabins}></CabinRaceScoreTent>
       </div>
     </>
   );
