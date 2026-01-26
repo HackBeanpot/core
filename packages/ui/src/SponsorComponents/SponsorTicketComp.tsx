@@ -26,7 +26,7 @@ export default function SponsorTicketComp({
 }: SponsorTicketProps & { ticketWidthVW?: number }): JSX.Element {
   return (
     <div
-      className="flex items-center justify-center relative"
+      className="flex items-center justify-center relative pointer-events-auto transition-transform duration-200 ease-out hover:scale-[1.02]"
       style={{ width: `${ticketWidthVW}vw`, height: "auto" }}
     >
       {logoPath && (
@@ -35,7 +35,7 @@ export default function SponsorTicketComp({
           height={50}
           alt="image of ticket sponsor"
           src={logoPath}
-          className="absolute z-10"
+          className="absolute z-10 pointer-events-none"
         />
       )}
 
