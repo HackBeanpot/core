@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useEffect, useMemo, useState} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import useDevice from "@util/hooks/useDevice.ts";
 import {
@@ -11,7 +11,7 @@ import CabinRaceCard from "../../components/CabinRaceComponents/CabinRaceCard.ts
 import { Cabin } from "./CabinTypes.tsx";
 import CabinRaceScoreTent from "../../components/CabinRaceComponents/CabinRaceScoreTent.tsx";
 
-{ /* Airtable */ }
+{/* Airtable */}
 export type AirTableRecord = {
   id: string;
   createdTime: string;
@@ -31,7 +31,7 @@ export default function CabinRace(): JSX.Element {
   const [cabinData, setCabinData] = useState<AirtableData | null>(null);
 
   async function getCabinPoints() {
-    const res = await fetch("/api/cabinPoints");
+    const res = await fetch("../api/cabinPoints");
     const jsonData: AirtableData = await res.json();
     const status = res.status;
 
@@ -51,7 +51,7 @@ export default function CabinRace(): JSX.Element {
   // TODO: should add cabin lead info and descriptions to airtable
   const fetchedCabins = useMemo(() => {
     if (!cabinData) return [];
-    return cabinData.records.map(record => ({
+    return cabinData.records.map((record) => ({
       name: record.fields.Name,
       points: record.fields.Points,
       description: "",
@@ -59,9 +59,8 @@ export default function CabinRace(): JSX.Element {
     }));
   }, [cabinData]);
 
-
   const cabinsByName: Record<string, Cabin> = Object.fromEntries(
-      fetchedCabins.map((cabin) => [cabin.name, cabin]),
+    fetchedCabins.map((cabin) => [cabin.name, cabin]),
   );
   const cabinNames: string[] = fetchedCabins.map((cabin) => cabin.name);
   const [selectedCabinName, setSelectedCabinName] = useState<string | null>(
