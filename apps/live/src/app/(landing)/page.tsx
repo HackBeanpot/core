@@ -3,6 +3,7 @@ import Landing from "./Landing";
 import EventSchedule from "./EventSchedule";
 import MentorSection from "./Mentors";
 import OurTeamBackground from "./OurTeamBackground";
+import Welcome from "./Welcome";
 import HitTheRoad from "./HitTheRoad";
 import Resources from "./Resources";
 import NavBar from "../lib/Components/NavBar";
@@ -18,6 +19,7 @@ export default function Page(): JSX.Element {
       <NavBar />
       <ComingUp />
       <HitTheRoad />
+      <Welcome />
       <EventSchedule />
       <Keynote />
       <MentorSection />
