@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
   } catch (err) {
     return NextResponse.json(
       { error: `Request to get airtable data failed ${err}` },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
