@@ -8,7 +8,7 @@ import { SponsorTicketComp, SponsorTicketBoothComp } from "../lib/Components";
 import useDevice from "@util/hooks/useDevice.ts";
 import AWSLogo from "@repo/ui/Logos/AWSLogo.svg";
 import CodeCraftersLogo from "@repo/ui/Logos/CodeCraftersLogo.svg";
-import FlagLogicLogo from "@repo/ui/Logos/FlagLogicLogo.svg";
+import FlagLogicLogo from "@repo/ui/Logos/Appwizzy_logo.svg";
 import KlaviyoLogo from "@repo/ui/Logos/KlaviyoLogo.svg";
 import MavenAGILogo from "@repo/ui/Logos/MavenAGILogo.svg";
 import RGLogo from "@repo/ui/Logos/RGLogo.svg";
