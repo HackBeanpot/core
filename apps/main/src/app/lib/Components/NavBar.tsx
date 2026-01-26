@@ -5,7 +5,9 @@ import NavBarBase from "@repo/ui/NavBarBase";
 
 const NavBar = () => {
   const handleApplyClick = () => {
-    alert("Applications for HackBeanpot 2026 are closed! Please follow us on Instagram @HackBeanpot for more updates.");
+    alert(
+      "Applications for HackBeanpot 2026 are closed! Please follow us on Instagram @HackBeanpot for more updates.",
+    );
   };
 
   return (

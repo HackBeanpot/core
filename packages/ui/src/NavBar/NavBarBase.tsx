@@ -14,7 +14,7 @@ export type LinkProps = {
   link: string;
   buttonColor?: string;
   useExternalLink?: boolean;
-  onClick?: () => void;  // ADDED: onClick support
+  onClick?: () => void;
 };
 
 export type NavBarProps = {
