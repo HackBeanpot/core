@@ -14,6 +14,7 @@ import MavenAGILogo from "@repo/ui/Logos/MavenAGILogo.svg";
 import RGLogo from "@repo/ui/Logos/RGLogo.svg";
 import WhoopLogo from "@repo/ui/Logos/WhoopLogo.svg";
 import PureButton from "@repo/ui/Logos/PureButton.svg";
+import Link from "next/link";
 
 function makeSponsorRow(
   ticketSizes: number[],
@@ -27,15 +28,27 @@ function makeSponsorRow(
         gap: `${ticketSizes.length > 1 ? 2 : 5}vw`,
       }}
     >
-      {ticketSizes.map((width, i) => (
-        <SponsorTicketComp
-          key={i}
-          isSponsorUs={false}
-          logoPath={logos?.[i] ?? ""}
-          ticketWidthVW={width}
-          logoWidth={logoSizes?.[i] ?? 50}
-        />
-      ))}
+      {ticketSizes.map((width, i) =>
+        logos?.[i] === PureButton ? (
+          <Link target="_blank" key={i} href="https://mlh.link/MLH-PureButtons-hackathons" className="relative z-10 block">
+            <SponsorTicketComp
+              key={i}
+              isSponsorUs={false}
+              logoPath={logos?.[i] ?? ""}
+              ticketWidthVW={width}
+              logoWidth={logoSizes?.[i] ?? 50}
+            />
+          </Link>
+        ) : (
+          <SponsorTicketComp
+            key={i}
+            isSponsorUs={false}
+            logoPath={logos?.[i] ?? ""}
+            ticketWidthVW={width}
+            logoWidth={logoSizes?.[i] ?? 50}
+          />
+        ),
+      )}
     </div>
   );
 }
