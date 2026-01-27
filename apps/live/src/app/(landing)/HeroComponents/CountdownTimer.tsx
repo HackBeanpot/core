@@ -1,16 +1,48 @@
-import React from "react";
+"use client";
 
-interface CountdownTimerProps {
-  days?: number;
-  hours?: number;
-  minutes?: number;
-}
+import React, { useEffect, useState } from "react";
 
-const CountdownTimer = ({
-  days = 1,
-  hours = 5,
-  minutes = 56,
-}: CountdownTimerProps) => {
+// Feb 13, 2026 8:00 PM EST — Opening ceremony (countdown begins)
+const COUNTDOWN_START = new Date("2026-02-13T20:00:00-05:00");
+// Feb 15, 2026 9:00 AM EST — Countdown ends
+const COUNTDOWN_END = new Date("2026-02-15T09:00:00-05:00");
+
+const CountdownTimer = () => {
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+
+      if (now < COUNTDOWN_START) {
+        setDays(0);
+        setHours(0);
+        setMinutes(0);
+        return;
+      }
+
+      if (now >= COUNTDOWN_END) {
+        setDays(0);
+        setHours(0);
+        setMinutes(0);
+        return;
+      }
+
+      const difference = COUNTDOWN_END.getTime() - now.getTime();
+      setDays(Math.floor(difference / (1000 * 60 * 60 * 24)));
+      setHours(
+        Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      );
+      setMinutes(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)));
+    };
+
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Format numbers to always show 2 digits
   const formatNumber = (num: number) => String(num).padStart(2, "0");
 
