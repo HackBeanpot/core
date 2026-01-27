@@ -47,17 +47,17 @@ const PlusSign = (
   </svg>
 );
 
-interface FAQDropdownProps {
+interface EventDropdownProps {
   dropdownQuestion: React.ReactNode;
   dropdownAnswer: React.ReactNode;
   iconType?: "Chevron" | "Symbol";
 }
 
-export default function FAQDropdown({
+export default function EventDropdown({
   dropdownQuestion,
   dropdownAnswer,
   iconType = "Symbol",
-}: FAQDropdownProps): React.ReactNode {
+}: EventDropdownProps): React.ReactNode {
   const [isOpen, setIsOpen] = useState(false);
 
   const OpenIcon = iconType === "Chevron" ? DownChevron : PlusSign;
@@ -69,7 +69,7 @@ export default function FAQDropdown({
     <div
       onClick={toggleAccordion}
       className={`transition-transform duration-300 transform hover:scale-[102%]
-        cursor-pointer rounded-lg bg-[#FBFBFB] text-[#3F3F3F]
+        cursor-pointer rounded-2xl bg-carouselCreamLight text-charcoalGrey
         grid grid-cols-[95%_5%] place-content-around
         font-GT-Walsheim-Regular py-5
         ${isOpen ? "max-h-screen" : "max-h-80"}
@@ -81,7 +81,7 @@ export default function FAQDropdown({
       </div>
 
       <div
-        className={`w-6 h-6 self-center place-self-end transition-transform duration-500 transform ${
+        className={`w-6 h-6 mr-5 self-center place-self-end transition-transform duration-500 transform ${
           isOpen ? "-rotate-180" : "rotate-0"
         }`}
       >
@@ -91,7 +91,9 @@ export default function FAQDropdown({
       {isOpen && (
         <>
           <div className="w-auto col-span-2 border-t border-[#CFCFCF] flex items-center justify-center m-2"></div>
-          <div className="text-lg col-span-2 break-words">{dropdownAnswer}</div>
+          <div className="ml-4 text-lg col-span-2 break-words">
+            {dropdownAnswer}
+          </div>
         </>
       )}
     </div>
