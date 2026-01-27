@@ -14,6 +14,7 @@ export type LinkProps = {
   link: string;
   buttonColor?: string;
   useExternalLink?: boolean;
+  onClick?: () => void;
 };
 
 export type NavBarProps = {
@@ -29,6 +30,19 @@ const LinkedButton = ({
   useExternalLink: boolean;
   linkInfo: LinkProps;
 }) => {
+  if (linkInfo.onClick) {
+    return (
+      <Button
+        textColor="white"
+        text={linkInfo.pageName}
+        color={linkInfo.buttonColor}
+        size="medium"
+        className="w-fit"
+        onClick={linkInfo.onClick}
+      />
+    );
+  }
+
   return useExternalLink ? (
     <Button
       textColor="white"

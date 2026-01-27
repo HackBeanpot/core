@@ -4,6 +4,12 @@ import React from "react";
 import NavBarBase from "@repo/ui/NavBarBase";
 
 const NavBar = () => {
+  const handleApplyClick = () => {
+    alert(
+      "Applications for HackBeanpot 2026 are closed! Please follow us on Instagram @HackBeanpot for more updates.",
+    );
+  };
+
   return (
     <NavBarBase
       links={[
@@ -16,9 +22,9 @@ const NavBar = () => {
         { pageName: "Sponsor Us", link: "/sponsor-us" },
         {
           pageName: "Apply",
-          link: "https://apply.hackbeanpot.com/",
-          useExternalLink: true,
+          link: "#",
           buttonColor: "firecrackerRedLight",
+          onClick: handleApplyClick,
         },
       ]}
     />
