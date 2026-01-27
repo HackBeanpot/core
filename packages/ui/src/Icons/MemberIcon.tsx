@@ -2,7 +2,7 @@ import React from "react";
 import LinkedinLogo from "../LinkedInLogo";
 import ActiveIcon from "../ActiveIcon";
 import InactiveIcon from "../InactiveIcon";
-import ExpandIcon from "../Expand";
+import ExpandIcon from "./Expand";
 import Image from "next/image";
 
 type IconProps = {
