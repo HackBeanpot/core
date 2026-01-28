@@ -15,7 +15,9 @@ const CarnivalScene: React.FC = () => {
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   const getMinHeight = () => {
-    if (isDesktop) return "min-h-[1500px]";
+    // Reduce overall scene height so the following section
+    // (SponsorFeature) appears closer without a large blank gap.
+    if (isDesktop) return "min-h-[1000px]";
     if (isTablet) return "min-h-[1300px]";
     return "min-h-[1100px]";
   };
@@ -45,7 +47,7 @@ const CarnivalScene: React.FC = () => {
       <div
         className={`absolute z-15 max-w-[280px] min-w-[100px] ${isMobile ? "scale-50" : "scale-100"} ${
           isDesktop
-            ? "left-[-2%] top-[21%] w-[10vw]"
+            ? "left-[-5%] top-[30%] w-[10vw]"
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
@@ -62,7 +64,7 @@ const CarnivalScene: React.FC = () => {
       <div
         className={`absolute z-0 max-w-[320px] min-w-[100px] ${isMobile ? "scale-50" : "scale-100"} ${
           isDesktop
-            ? "right-[6%] top-[20%] w-[10vw]"
+            ? "right-[5%] top-[28%] w-[10vw]"
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
@@ -80,7 +82,7 @@ const CarnivalScene: React.FC = () => {
       <div
         className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.45]" : "scale-75"} origin-center ${
           isDesktop
-            ? "left-[-3%] bottom-[45%] w-[12vw]"
+            ? "left-[0%] bottom-[18%] w-[12vw]"
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
@@ -97,7 +99,7 @@ const CarnivalScene: React.FC = () => {
       <div
         className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.40]" : "scale-75"} origin-center ${
           isDesktop
-            ? "right-[3%] bottom-[42%] w-[12vw]"
+            ? "right-[3%] bottom-[18%] w-[12vw]"
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
@@ -122,7 +124,7 @@ const CarnivalScene: React.FC = () => {
                 : "scale-[0.85]"
         } ${
           isDesktop
-            ? "bottom-[75%]"
+            ? "bottom-[60%]"
             : isTablet
               ? "bottom-[75%]"
               : isMobile
@@ -137,7 +139,7 @@ const CarnivalScene: React.FC = () => {
       <div
         className={`absolute ${isMobile ? "left-[35%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
           isDesktop
-            ? "bottom-[34%]"
+            ? "bottom-[1%]"
             : isTablet
               ? "bottom-[25%]"
               : isMobile
@@ -157,7 +159,7 @@ const CarnivalScene: React.FC = () => {
           }`}
         >
           <div
-            className={`${isMobile ? "scale-[0.45]" : "scale-[1.0]"} origin-center`}
+            className={`${isMobile ? "scale-[0.45]" : "scale-[0.9]"} origin-center`}
           >
             <DartBoard />
           </div>

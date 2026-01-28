@@ -17,7 +17,7 @@ export default function OurTeam(): React.ReactNode {
   const ribbonStyles = clsx(
     isDesktop && "scale-100",
     isTablet && "scale-75",
-    isMobile && "scale-[60%]"
+    isMobile && "scale-[60%]",
   );
 
   const blurbStyles = clsx(
@@ -44,6 +44,5 @@ export default function OurTeam(): React.ReactNode {
         <OurTeamGrid />
       </div>
     </div>
-    
   );
 }
