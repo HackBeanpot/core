@@ -143,8 +143,8 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[25%]"
               : isMobile
-                ? "bottom-[7%]"
-                : "bottom-[7%]"
+                ? "bottom-[0%]"
+                : "bottom-[0%]"
         }`}
       >
         <div
