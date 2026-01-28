@@ -19,7 +19,7 @@ const CarnivalScene: React.FC = () => {
     // (SponsorFeature) appears closer without a large blank gap.
     if (isDesktop) return "min-h-[1000px]";
     if (isTablet) return "min-h-[1300px]";
-    return "min-h-[1000px]";
+    return "min-h-[925px]";
   };
 
   return (
