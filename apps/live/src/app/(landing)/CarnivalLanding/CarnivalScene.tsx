@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import HeroBackground from "./HeroBackground";
-import YellowFirework from "./YellowFirework";
-import OrangeFirework from "./OrangeFirework";
-import PurpleTent from "./PurpleTent";
-import OrangeTent from "./OrangeTent";
-import DartBoard from "./DartBoard";
-import CabinRace from "./CabinRace";
-import OpeningText from "./OpeningText";
+import HeroBackground from "../../lib/Assets/SVG/CarnivalLanding/HeroBackground";
+import YellowFirework from "../../lib/Assets/SVG/CarnivalLanding/YellowFirework";
+import OrangeFirework from "../../lib/Assets/SVG/CarnivalLanding/OrangeFirework";
+import PurpleTent from "../../lib/Assets/SVG/CarnivalLanding/PurpleTent";
+import OrangeTent from "../../lib/Assets/SVG/CarnivalLanding/OrangeTent";
+import DartBoard from "../../lib/Assets/SVG/CarnivalLanding/DartBoard";
+import CabinRace from "./Components/CabinRace";
+import OpeningText from "./Components/OpeningText";
 import useDevice from "@util/hooks/useDevice";
 
 const CarnivalScene: React.FC = () => {

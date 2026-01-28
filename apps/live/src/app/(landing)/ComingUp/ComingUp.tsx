@@ -2,7 +2,7 @@
 
 import React from "react";
 import Section from "@repo/ui/Section";
-import CarnivalScene from "../HeroComponents/CarnivalScene";
+import CarnivalScene from "../CarnivalLanding/CarnivalScene";
 
 const ComingUp = () => {
   const background = null; // CarnivalScene includes its own background
