@@ -142,7 +142,7 @@ export default function SponsorUsTestimonials() {
 
       {/* Ferris Wheel */}
       <SponsorUsTestimonialsWheel
-        classname={ferrisWheelStyles} 
+        classname={ferrisWheelStyles}
         transformStyle={`${ferrisWheelScaling} rotate(${currWheelAngle}deg)`}
       />
 
