@@ -19,7 +19,7 @@ const CarnivalScene: React.FC = () => {
     // (SponsorFeature) appears closer without a large blank gap.
     if (isDesktop) return "min-h-[1000px]";
     if (isTablet) return "min-h-[1300px]";
-    return "min-h-[925px]";
+    return "min-h-[900px]";
   };
 
   return (
@@ -51,8 +51,8 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "left-[-27%] top-[20%] w-[12vw]"
-                : "left-[0%] top-[55%] w-[15vw]"
+                ? "left-[-27%] top-[40%] w-[12vw]"
+                : "left-[0%] top-[65%] w-[15vw]"
         }`}
       >
         <div className="w-full h-auto">
@@ -68,7 +68,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[4%] top-[28%] w-[10vw]"
               : isMobile
-                ? "right-[0%] top-[21%] w-[12vw]"
+                ? "right-[0%] top-[41%] w-[12vw]"
                 : "right-[0%] top-[59%] w-[15vw]"
         }`}
       >
@@ -86,7 +86,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "left-[1%] bottom-[32%] w-[14vw]"
               : isMobile
-                ? "left-[-25%] bottom-[36%] w-[20vw]"
+                ? "left-[-25%] bottom-[16%] w-[20vw]"
                 : "left-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -103,7 +103,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "right-[1%] bottom-[25%] w-[14vw]"
               : isMobile
-                ? "left-[72%] bottom-[36%] w-[20vw]"
+                ? "left-[72%] bottom-[16%] w-[20vw]"
                 : "right-[0%] bottom-[23%] w-[18vw]"
         }`}
       >
@@ -128,7 +128,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[75%]"
               : isMobile
-                ? "bottom-[64%]"
+                ? "bottom-[44%]"
                 : "bottom-[64%]"
         }`}
       >
@@ -143,7 +143,7 @@ const CarnivalScene: React.FC = () => {
             : isTablet
               ? "bottom-[25%]"
               : isMobile
-                ? "bottom-[27%]"
+                ? "bottom-[17%]"
                 : "bottom-[22%]"
         }`}
       >
