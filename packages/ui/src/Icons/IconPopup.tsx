@@ -20,7 +20,6 @@ const IconPopup = () => {
           ${isDesktop ? "w-[850px] h-[490px]" : "w-full mx-4"}
         `}
       >
-
         <div className="absolute top-4 left-4 z-20 cursor-pointer">
           <CloseIcon />
         </div>
@@ -28,9 +27,11 @@ const IconPopup = () => {
         <div
           className={`
             relative z-10 pt-10 pb-10
-            ${isDesktop
-              ? "flex items-center gap-16 pl-20"
-              : "flex flex-col items-center gap-8 px-6"}
+            ${
+              isDesktop
+                ? "flex items-center gap-16 pl-20"
+                : "flex flex-col items-center gap-8 px-6"
+            }
           `}
         >
           <div className="flex flex-col items-center text-center">
