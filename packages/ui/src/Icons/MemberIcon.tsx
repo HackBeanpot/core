@@ -20,7 +20,7 @@ const Icon: React.FC<IconProps> = ({
   url,
   isLive = false,
   isActive = false,
-  textColor = "charcoalFog"
+  textColor = "charcoalFog",
 }) => {
   return (
     <div className="flex flex-col items-center relative">
