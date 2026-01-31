@@ -3,7 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Section from "@repo/ui/Section";
-// import MentorsTable from "./MentorsTable";
+import RibbonTitle from "@repo/ui/RibbonTitle";
+import MentorsTable from "./MentorsTable";
 import useContentHeight from "@util/hooks/useContentHeight";
 import useWindowSize from "@util/hooks/useWindowSize";
 
@@ -42,7 +43,7 @@ const MentorSection = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("/api/mentors");
+      const res = await fetch(`/api/mentors`);
       const jsonData: AirtableData = await res.json();
       setData(jsonData);
     }
@@ -66,18 +67,23 @@ const MentorSection = () => {
 
   const MentorSectionContent = React.forwardRef<HTMLDivElement>((_, ref) => {
     return (
-      <div className="py-24 px-48" ref={ref}>
-        <p className="text-[clamp(3rem,7vw,7rem)] text-[#546ECD] font-bold font-Wilden drop-shadow-lg">
-          Our Mentors
-        </p>
-        <p className="font-GT-Walsheim-Regular text-[#333333]">
-          Need expert advice? Our mentors are here to help! Filter by shift,
-          virtual status, expertise, or company to find the right support.
-          Connect on our hackathon platform and get insights to take your
-          project to the next level!
-        </p>
-        {/* TODO: Add MentorsTable back in when there is data */}
-        {/* <MentorsTable data={data} /> */}
+      <div className="py-24 px-48 flex flex-col items-center gap-10" ref={ref}>
+        <div className="scale-100">
+          <RibbonTitle text="OUR MENTORS" />
+        </div>
+        <div className="flex flex-col bg-carouselCreamLight rounded-3xl gap-2 drop-shadow-[0_6px_0px_rgba(0,0,0,0.25)] p-8 max-w-4xl w-full">
+          <h1 className="font-NeulisNeue-Bold text-firecrackerRed text-[24px]">
+            Need expert advice?
+          </h1>
+          <p className="font-DM-Sans-Regular text-[#333333]">
+            Our mentors are here to help! Filter by shift, virtual status,
+            expertise, or company to find the right support. Connect on our
+            hackathon platform and get insights to take your project to the
+            next level!
+          </p>
+        </div>
+        {/* Mentor listing (renders when Airtable data available) */}
+        <MentorsTable data={data} />
       </div>
     );
   });

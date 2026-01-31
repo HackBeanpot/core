@@ -12,6 +12,7 @@ type IconProps = {
   isLive: boolean;
   isActive: boolean;
   textColor?: string;
+  showLinkedInIcon?: boolean;
 };
 
 const Icon: React.FC<IconProps> = ({
@@ -20,7 +21,8 @@ const Icon: React.FC<IconProps> = ({
   url,
   isLive = false,
   isActive = false,
-  textColor = "charcoalFog"
+  textColor = "charcoalFog",
+  showLinkedInIcon = false
 }) => {
   return (
     <div className="flex flex-col items-center relative">
@@ -47,7 +49,7 @@ const Icon: React.FC<IconProps> = ({
               opacity-0 group-hover:opacity-100
               transition-opacity duration-300F"
         >
-          {isLive ? <ExpandIcon /> : <LinkedinLogo />}
+          {isLive && !showLinkedInIcon ? <ExpandIcon /> : <LinkedinLogo />}
         </a>
       </div>
 

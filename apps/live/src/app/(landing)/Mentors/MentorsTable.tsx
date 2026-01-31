@@ -1,5 +1,206 @@
-// "use client";
+"use client";
 
+import React, { useMemo, useState } from "react";
+import Icon from "@repo/ui/Icons/MemberIcon";
+import clsx from "clsx";
+import isTimeRange from "@util/functions/isTimeRange";
+import useDevice from "@util/hooks/useDevice";
+import { AirtableData } from ".";
+
+type MentorTableProps = {
+  data: AirtableData;
+};
+
+const MentorsTable = ({ data }: MentorTableProps) => {
+  const { isDesktop, isTablet, isMobile } = useDevice();
+  const records = data?.records ?? [];
+  const [skillsFilter, setSkillsFilter] = useState<string[]>([]);
+  const [availabilityFilter, setAvailabilityFilter] = useState<boolean>(false);
+  const [virtualFilter, setVirtualFilter] = useState<boolean>(false);
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+
+  const gridStyles = clsx(
+    "flex flex-wrap justify-center items-center mx-auto gap-6",
+    isDesktop && "w-3/4",
+    isMobile && "grid grid-cols-2",
+    isTablet && "grid grid-cols-3"
+  );
+
+  const date = useMemo(() => new Date(), []);
+
+  const uniqueSkills = useMemo(() => {
+    const skills = new Set<string>();
+    records.forEach((r) => {
+      r.fields.Expertise?.forEach((s) => skills.add(s.trim()));
+    });
+    return Array.from(skills).sort();
+  }, [records]);
+
+  const hasFilter = availabilityFilter || virtualFilter || skillsFilter.length !== 0;
+
+  const toggleSkill = (skill: string) => {
+    setSkillsFilter((prev) => {
+      if (prev.includes(skill)) return prev.filter((s) => s !== skill);
+      return [...prev, skill];
+    });
+  };
+
+  const filtered = useMemo(() => {
+    if (!records.length) return [];
+    return records.filter((rec) => {
+      if (!hasFilter) return true;
+
+      const expertise = new Set(
+        rec.fields.Expertise?.map((s) => s.trim()) ?? [],
+      );
+      const hasSkills =
+        skillsFilter.length === 0 ||
+        skillsFilter.every((skill) => expertise.has(skill));
+
+      let virtualOk = true;
+      if (virtualFilter) {
+        virtualOk = rec.fields.IsVirtual === "True";
+      }
+
+      let availableOk = true;
+      if (availabilityFilter) {
+        availableOk = false;
+        const slots = rec.fields["Time Slots"] || [];
+        for (let i = 0; i < slots.length; i++) {
+          if (isTimeRange(slots[i], date)) {
+            availableOk = true;
+            break;
+          }
+        }
+      }
+
+      return hasSkills && virtualOk && availableOk;
+    });
+  }, [records, skillsFilter, availabilityFilter, virtualFilter, hasFilter, date]);
+
+  if (!records.length) {
+    return <div className="py-6">No mentors available right now.</div>;
+  }
+
+  return (
+    <div className="w-full">
+      <div className={clsx(
+        "flex flex-row gap-4 font-GT-Walsheim-Regular py-4 items-center flex-wrap justify-center",
+        isMobile && "px-4"
+      )}>
+        <div className="relative inline-block text-left">
+          <button
+            className="py-2 px-4 min-w-[140px] transition-transform duration-300 transform scale-100 hover:scale-[102%] rounded-xl font-NeulisNeue-Bold text-[20px] bg-[#2E5B9A] text-white flex items-center justify-between gap-2"
+            onClick={() => setDropdownOpen((p) => !p)}
+            aria-expanded={dropdownOpen}
+          >
+            <span>Expertise</span>
+            <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 7L10 12L15 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          {dropdownOpen && (
+            <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+              <div className="py-2">
+                <button
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => setSkillsFilter([])}
+                >
+                  All
+                </button>
+                {uniqueSkills.map((skill) => (
+                  <button
+                    key={skill}
+                    className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center justify-between ${
+                      skillsFilter.includes(skill) ? "bg-gray-100" : ""
+                    }`}
+                    onClick={() => toggleSkill(skill)}
+                  >
+                    <span>{skill}</span>
+                    {skillsFilter.includes(skill) && <span className="text-green-600">✓</span>}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <button
+          className={`relative py-2 pl-6 pr-3 transition-transform duration-300 transform scale-100 hover:scale-[102%] rounded-xl font-NeulisNeue-Bold text-[20px] ${
+            availabilityFilter
+              ? "bg-firecrackerRed text-white"
+              : "bg-white border border-firecrackerRed text-firecrackerRed"
+          }`}
+          onClick={() => setAvailabilityFilter((p) => !p)}
+        >
+          <span
+            className={`absolute left-3 top-1/2 -translate-y-1/2 inline-block w-2 h-2 rounded-full ${
+              availabilityFilter ? "bg-lime-400" : "bg-firecrackerRed"
+            }`}
+          />
+          <span className="block w-full text-center">Active</span>
+        </button>
+
+        <button
+          className={`py-2 px-3 transition-transform duration-300 transform scale-100 hover:scale-[102%] rounded-xl font-NeulisNeue-Bold text-[20px] flex items-center gap-2 ${
+            virtualFilter
+              ? "bg-[#7DC56A] text-white"
+              : "bg-white border border-[#7DC56A] text-[#7DC56A]"
+          }`}
+          onClick={() => setVirtualFilter((p) => !p)}
+        >
+          <span
+            className={`inline-block w-2 h-2 rounded-full ${
+              virtualFilter ? "bg-white" : "bg-[#7DC56A]"
+            }`}
+          />
+          Virtual
+        </button>
+      </div>
+
+      <div className={clsx(
+        gridStyles,
+        "w-full pb-12"
+      )}>
+        {(hasFilter ? filtered : records).map((record) => {
+          const slots = record.fields["Time Slots"] || [];
+          let isAvailable = false;
+          for (let i = 0; i < slots.length; i++) {
+            if (isTimeRange(slots[i], date)) {
+              isAvailable = true;
+              break;
+            }
+          }
+
+          const imageUrl = record.fields.Image?.[0]?.url || "/headshots/placeholder.png";
+
+          return (
+            <div key={record.id} className="flex flex-col items-center">
+              <Icon
+                src={imageUrl}
+                name={record.fields.Name}
+                url={record.fields.LinkedIn || "#"}
+                isLive={true}
+                isActive={isAvailable}
+                textColor="black"
+                showLinkedInIcon={true}
+              />
+              <div className="text-xs text-gray-200 mt-1 text-center w-full truncate">
+                {record.fields.Expertise?.join(", ")}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default MentorsTable;
+
+// "use client";
+//
 // // import isTimeRange from "@util/functions/isTimeRange";
 // import React, { useEffect, useState } from "react";
 // // import Checkmark from "../../lib/Assets/SVG/Checkmark";
@@ -7,51 +208,51 @@
 // import { AirtableData } from ".";
 // // import Link from "next/link";
 // // import Image from "next/image";
-
+//
 // // const date = new Date();
-
+//
 // export type Filters = {
 //   skills: Set<string>;
 //   avalibility: boolean;
 //   virtual: boolean;
 // };
-
+//
 // // type MentorTableProps = {
 // //   data: AirtableData;
 // // };
-
+//
 // // TODO: Add { data }: MentorTableProps back in
 // const MentorsTable = () => {
 //   const [skillsFilter] = useState<string[]>([]);
 //   const [availabilityFilter] = useState<boolean>(false);
 //   const [virtualFilter] = useState<boolean>(false);
 //   const [, setHasFilter] = useState<boolean>(false);
-
+//
 //   // TODO: Add back in these original consts
 //   // const [skillsFilter, setSkillsFilter] = useState<string[]>([]);
 //   // const [availabilityFilter, setAvailabilityFilter] = useState<boolean>(false);
 //   // const [virtualFilter, setVirtualFilter] = useState<boolean>(false);
 //   // const [hasFilter, setHasFilter] = useState<boolean>(false);
 //   // const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-
+//
 //   // checking if current filter is default or not. if default it means dont have to do any filtering logic.
 //   useEffect(() => {
 //     setHasFilter(
 //       availabilityFilter || virtualFilter || skillsFilter.length !== 0,
 //     );
 //   }, [virtualFilter, availabilityFilter, skillsFilter]);
-
+//
 //   // const { records } = data;
-
+//
 //   // const recordsExist = records != null && records != undefined;
-
+//
 //   // const uniqueSkills = new Set<string>(
 //   //   records
 //   //     ?.map((record) => record.fields.Expertise)
 //   //     .flat()
 //   //     .map((skill) => skill.trim().toUpperCase()),
 //   // );
-
+//
 //   // TODO in MentorsTable: Add this table back in once there is data in the airtable
 //   return (
 //     <div>
@@ -67,7 +268,7 @@
 //               Expertise:{" "}
 //               {skillsFilter.length === 0 ? "All" : skillsFilter.join(", ")}
 //             </div>
-
+//
 //             <svg
 //               className="-mr-1 size-5 text-gray-400"
 //               viewBox="0 0 20 20"
@@ -82,7 +283,7 @@
 //               />
 //             </svg>
 //           </div>
-
+//
 //           {dropdownOpen && (
 //             <div
 //               autoFocus
@@ -140,7 +341,7 @@
 //         >
 //           Available
 //         </button>
-
+//
 //         <button
 //           className={clsx(
 //             "rounded-xl h-8 px-2 w-32 border-[#5062A5] border-[1px] transition-transform duration-300 transform scale-100 hover:scale-[102%]",
@@ -155,14 +356,14 @@
 //           Virtual
 //         </button>
 //       </div>
-
+//
 //       <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-3  py-5">
 //         {records
 //           .filter((filtered) => {
 //             if (!hasFilter) {
 //               return true;
 //             }
-
+//
 //             let virtual = !virtualFilter;
 //             let hasSkills = !skillsFilter.length;
 //             let isAvailable = !availabilityFilter;
@@ -171,20 +372,20 @@
 //                 isTimeRange(filtered.fields["Time Slots"][i], date) ||
 //                 isAvailable;
 //             }
-
+//
 //             for (let i = 0; i < filtered.fields.Expertise.length; i++) {
 //               const cleanedSkill = filtered.fields.Expertise[i]
 //                 .trim()
 //                 .toUpperCase();
-
+//
 //               hasSkills = skillsFilter.includes(cleanedSkill) || hasSkills;
 //             }
-
+//
 //             virtual = filtered.fields.IsVirtual === "True" || virtual;
-
+//
 //             return hasSkills && isAvailable && virtual;
 //           })
-
+//
 //           .map((record, index) => (
 //             <Link
 //               key={index}
@@ -206,8 +407,3 @@
 //             </Link>
 //           ))}
 //       </div> */}
-//     </div>
-//   );
-// };
-
-// export default MentorsTable;
