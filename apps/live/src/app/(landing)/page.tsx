@@ -12,7 +12,7 @@ import Footer from "@repo/ui/Footer";
 import OurTeam from "./OurTeam";
 import Keynote from "./Keynote";
 import SponsorFeature from "./SponsorFeature.tsx";
-
+import CarnivalScene from "./CarnivalLanding/CarnivalScene.tsx";
 export default function Page(): JSX.Element {
   return (
     <main className="flex flex-col items-center">
@@ -20,6 +20,7 @@ export default function Page(): JSX.Element {
       <NavBar />
       {/*<ComingUp />*/}
       {/*<HitTheRoad />*/}
+      <CarnivalScene />
       <SponsorFeature />
       <Welcome />
       <EventSchedule />
