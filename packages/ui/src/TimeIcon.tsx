@@ -1,5 +1,4 @@
 import * as React from "react";
-
 const TimeIcon = () => (
   <svg
     width={40}
