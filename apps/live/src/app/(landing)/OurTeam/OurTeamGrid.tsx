@@ -211,7 +211,7 @@ const TeamTable = () => {
   const iconGridStyles = clsx(
     "flex flex-wrap justify-center items-center mx-auto gap-6",
     isDesktop && "w-3/4",
-    isMobile && "grid grid-cols-2"
+    isMobile && "grid grid-cols-2",
   );
 
   return (
@@ -222,7 +222,9 @@ const TeamTable = () => {
             key={team.toString()}
             onClick={() => changeTeam(teamName as keyof typeof teams)}
             className={`py-2 px-3 transition-transform duration-300 transform scale-100 hover:scale-[102%] rounded-xl font-NeulisNeue-Bold text-[20px] ${
-              currTeam === teamName ? "bg-firecrackerRed" : "border border-white"
+              currTeam === teamName
+                ? "bg-firecrackerRed"
+                : "border border-white"
             }`}
           >
             {teamName.toString()}
@@ -230,14 +232,16 @@ const TeamTable = () => {
         ))}
       </div>
       <div className={iconGridStyles}>
-        {teams[currTeam].map((member, index) => (
-          <a
+        {teams[currTeam].map(({ url, src, name }, index) => (
+          <Icon
             key={index}
-            href={member.url}
-            className="transition-transform scale-100 hover:scale-105"
-          >
-            <Icon src={member.src} name={member.name} isLive={false} isActive={false} textColor="white" />
-          </a>
+            url={url}
+            src={src}
+            name={name}
+            isLive={false}
+            isActive={false}
+            textColor="white"
+          />
         ))}
       </div>
     </div>

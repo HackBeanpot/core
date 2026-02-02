@@ -30,7 +30,12 @@ function makeSponsorRow(
     >
       {ticketSizes.map((width, i) =>
         logos?.[i] === PureButton ? (
-          <Link target="_blank" key={i} href="https://mlh.link/MLH-PureButtons-hackathons" className="relative z-10 block">
+          <Link
+            target="_blank"
+            key={i}
+            href="https://mlh.link/MLH-PureButtons-hackathons"
+            className="relative z-10 block"
+          >
             <SponsorTicketComp
               key={i}
               isSponsorUs={false}
