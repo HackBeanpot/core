@@ -78,8 +78,8 @@ const MentorSection = () => {
           <p className="font-DM-Sans-Regular text-[#333333]">
             Our mentors are here to help! Filter by shift, virtual status,
             expertise, or company to find the right support. Connect on our
-            hackathon platform and get insights to take your project to the
-            next level!
+            hackathon platform and get insights to take your project to the next
+            level!
           </p>
         </div>
         {/* Mentor listing (renders when Airtable data available) */}

@@ -18,7 +18,9 @@ export default function isTimeRange(range: string, currentTime: Date) {
     return currentTime >= startTime && currentTime <= endTime;
   }
 
-  const simpleMatch = range.match(/^(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})$/);
+  const simpleMatch = range.match(
+    /^(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})$/,
+  );
   if (simpleMatch) {
     const startHour = Number(simpleMatch[1]);
     const startMinute = Number(simpleMatch[2]);
