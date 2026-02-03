@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-export PATH="/Users/angieche/.nvm/versions/node/v24.10.0/bin:$PATH"
-
 yarn build
 yarn format
 yarn lint
