@@ -15,24 +15,20 @@ export type AirtableImage = {
   url: string;
 };
 
-export type AirtableRecord = {
+export type MentorData = {
   id: string;
   createdTime: string;
   fields: {
-    Availability: string;
-    Email: string;
     "Time Slots": Array<string>;
     Name: string;
-    Image: Array<{ url: string }>;
+    Image: Array<AirtableImage>;
     Expertise: Array<string>;
-    Certification: string;
-    LinkedIn: string;
-    IsVirtual: "True" | "False";
+    discord: string;
   };
 };
 
 export type AirtableData = {
-  records: AirtableRecord[];
+  records: MentorData[];
 };
 
 const MentorSection = () => {

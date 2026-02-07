@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Icon from "@repo/ui/Icons/MemberIcon";
 import clsx from "clsx";
 import isTimeRange from "@util/functions/isTimeRange";
 import useDevice from "@util/hooks/useDevice";
-import { AirtableData } from ".";
+import { AirtableData, MentorData } from ".";
+import IconPopup from "@repo/ui/Icons/IconPopup";
+import { ModalContext } from "../providers";
 
 type MentorTableProps = {
   data: AirtableData;
@@ -16,9 +18,9 @@ const MentorsTable = ({ data }: MentorTableProps) => {
   const records = useMemo(() => data?.records ?? [], [data]);
   const [skillsFilter, setSkillsFilter] = useState<string[]>([]);
   const [availabilityFilter, setAvailabilityFilter] = useState<boolean>(false);
-  const [virtualFilter, setVirtualFilter] = useState<boolean>(false);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-
+  const [selectedMentor, setSelectedMentor] = useState<MentorData | null>();
+  const { setModal } = useContext(ModalContext);
   const gridStyles = clsx(
     "flex flex-wrap justify-center items-center mx-auto gap-6",
     isDesktop && "w-3/4",
@@ -36,8 +38,7 @@ const MentorsTable = ({ data }: MentorTableProps) => {
     return Array.from(skills).sort();
   }, [records]);
 
-  const hasFilter =
-    availabilityFilter || virtualFilter || skillsFilter.length !== 0;
+  const hasFilter = availabilityFilter || skillsFilter.length !== 0;
 
   const toggleSkill = (skill: string) => {
     setSkillsFilter((prev) => {
@@ -58,11 +59,6 @@ const MentorsTable = ({ data }: MentorTableProps) => {
         skillsFilter.length === 0 ||
         skillsFilter.every((skill) => expertise.has(skill));
 
-      let virtualOk = true;
-      if (virtualFilter) {
-        virtualOk = rec.fields.IsVirtual === "True";
-      }
-
       let availableOk = true;
       if (availabilityFilter) {
         availableOk = false;
@@ -75,16 +71,27 @@ const MentorsTable = ({ data }: MentorTableProps) => {
         }
       }
 
-      return hasSkills && virtualOk && availableOk;
+      return hasSkills && availableOk;
     });
-  }, [
-    records,
-    skillsFilter,
-    availabilityFilter,
-    virtualFilter,
-    hasFilter,
-    date,
-  ]);
+  }, [records, skillsFilter, availabilityFilter, hasFilter, date]);
+
+  useEffect(() => {
+    if (selectedMentor) {
+      setModal(
+        <IconPopup
+          iconSrc={selectedMentor.fields.Image[0].url}
+          iconAltText={selectedMentor.fields.Name}
+          iconTitle={selectedMentor.fields.Name}
+          discord={selectedMentor.fields.discord}
+          expertise={selectedMentor.fields.Expertise}
+          onClose={() => {
+            setSelectedMentor(null);
+            setModal(null);
+          }}
+        />,
+      );
+    }
+  }, [selectedMentor]);
 
   if (!records.length) {
     return <div className="py-6">No mentors available right now.</div>;
@@ -165,22 +172,6 @@ const MentorsTable = ({ data }: MentorTableProps) => {
           />
           <span className="block w-full text-center">Active</span>
         </button>
-
-        <button
-          className={`py-2 px-3 transition-transform duration-300 transform scale-100 hover:scale-[102%] rounded-xl font-NeulisNeue-Bold text-[20px] flex items-center gap-2 ${
-            virtualFilter
-              ? "bg-[#7DC56A] text-white"
-              : "bg-white border border-[#7DC56A] text-[#7DC56A]"
-          }`}
-          onClick={() => setVirtualFilter((p) => !p)}
-        >
-          <span
-            className={`inline-block w-2 h-2 rounded-full ${
-              virtualFilter ? "bg-white" : "bg-[#7DC56A]"
-            }`}
-          />
-          Virtual
-        </button>
       </div>
 
       <div className={clsx(gridStyles, "w-full pb-12")}>
@@ -202,15 +193,12 @@ const MentorsTable = ({ data }: MentorTableProps) => {
               <Icon
                 src={imageUrl}
                 name={record.fields.Name}
-                url={record.fields.LinkedIn || "#"}
                 isLive={true}
                 isActive={isAvailable}
                 textColor="black"
                 showLinkedInIcon={true}
+                onClick={() => setSelectedMentor(record)}
               />
-              <div className="text-xs text-gray-200 mt-1 text-center w-full truncate">
-                {record.fields.Expertise?.join(", ")}
-              </div>
             </div>
           );
         })}

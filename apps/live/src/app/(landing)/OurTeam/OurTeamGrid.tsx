@@ -217,9 +217,9 @@ const TeamTable = () => {
   return (
     <div className="relative text-white flex flex-col gap-8">
       <div className="flex flex-row gap-4 flex-wrap items-center justify-center">
-        {Object.entries(teams).map(([teamName, team]) => (
+        {Object.entries(teams).map(([teamName]) => (
           <button
-            key={team.toString()}
+            key={teamName + "-section"}
             onClick={() => changeTeam(teamName as keyof typeof teams)}
             className={`py-2 px-3 transition-transform duration-300 transform scale-100 hover:scale-[102%] rounded-xl font-NeulisNeue-Bold text-[20px] ${
               currTeam === teamName
@@ -234,7 +234,7 @@ const TeamTable = () => {
       <div className={iconGridStyles}>
         {teams[currTeam].map(({ url, src, name }, index) => (
           <Icon
-            key={index}
+            key={name + "-icon-" + index}
             url={url}
             src={src}
             name={name}

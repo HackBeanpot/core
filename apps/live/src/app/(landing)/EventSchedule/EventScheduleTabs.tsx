@@ -195,7 +195,7 @@ const EventScheduleTabs = () => {
                       const dateB = new Date(b.fields.start_time);
                       return dateA.getTime() - dateB.getTime();
                     })
-                    .map((events) => {
+                    .map((events, i) => {
                       const { fields } = events;
                       const {
                         end_time,
@@ -237,7 +237,7 @@ const EventScheduleTabs = () => {
                       );
                       return (
                         <EventDropdown
-                          key={JSON.stringify(fields)}
+                          key={JSON.stringify(fields) + i}
                           dropdownQuestion={dropdownQuestion}
                           dropdownAnswer={description}
                           iconType="Symbol"
