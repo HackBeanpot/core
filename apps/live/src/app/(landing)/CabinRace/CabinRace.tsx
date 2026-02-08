@@ -8,11 +8,13 @@ import {
   CabinRaceSquiggle,
 } from "../../lib/Assets/SVG";
 import CabinRaceCard from "../../components/CabinRaceComponents/CabinRaceCard.tsx";
-import { Cabin } from "./CabinTypes.tsx";
+import {Cabin, CabinLead} from "./CabinTypes.tsx";
 import CabinRaceScoreTent from "../../components/CabinRaceComponents/CabinRaceScoreTent.tsx";
 
-{/* Airtable */}
-export type AirTableRecord = {
+{
+  /* Airtable */
+}
+export type CabinInfoRecord = {
   id: string;
   createdTime: string;
   fields: {
@@ -20,20 +22,35 @@ export type AirTableRecord = {
     Points: number;
     Description?: string;
     CabinLeads?: string[];
-    };
+  };
 };
-export type AirtableData = { records: AirTableRecord[]; };
 
+export type CabinInfo = {
+  records: CabinInfoRecord[];
+};
 
+export type CabinLeadRecord = {
+  id: string;
+  createdTime: string;
+  fields: {
+    Name: string;
+    src: string;
+    url: string;
+  };
+};
+
+export type CabinLeadInfo = {
+  records: CabinLeadRecord[];
+};
 
 export default function CabinRace(): JSX.Element {
   const { isDesktop, isTablet, isMobile } = useDevice();
 
-  const [cabinData, setCabinData] = useState<AirtableData | null>(null);
+  const [cabinData, setCabinData] = useState<CabinInfo | null>(null);
 
   async function getCabinPoints() {
-    const res = await fetch("../api/cabinPoints");
-    const jsonData: AirtableData = await res.json();
+    const res = await fetch("/api/cabinPoints");
+    const jsonData: CabinInfo = await res.json();
     const status = res.status;
 
     if (status == 200) {
@@ -49,15 +66,52 @@ export default function CabinRace(): JSX.Element {
     void fetchCabins();
   }, []);
 
-  const fetchedCabins = useMemo(() => {
+  const [cabinLeads, setCabinLeads] = useState<CabinLeadRecord[]>([]);
+
+  useEffect(() => {
+    if (!cabinData) return;
+
+    const leadIds = cabinData.records.flatMap(
+        record => record.fields.CabinLeads ?? [],
+    );
+
+    if (!leadIds.length) return;
+
+    const fetchLeads = async () => {
+      const res = await fetch(
+          `/api/cabinLeads?ids=${leadIds.join(",")}`,
+      );
+      const data: CabinLeadInfo = await res.json();
+      setCabinLeads(data.records);
+    };
+
+    void fetchLeads();
+  }, [cabinData]);
+
+  const fetchedCabins = useMemo<Cabin[]>(() => {
     if (!cabinData) return [];
-    return cabinData.records.map((record) => ({
+
+    const leadsById: Record<string, CabinLead> = Object.fromEntries(
+        cabinLeads.map(lead => [
+          lead.id,
+          {
+            name: lead.fields.Name,
+            src: lead.fields.src,
+            url: lead.fields.url,
+          },
+        ]),
+    );
+
+    return cabinData.records.map(record => ({
       name: record.fields.Name,
       points: record.fields.Points,
-      description: "",
-      cabinLeads: [],
+      description: record.fields.Description ?? "",
+      cabinLeads: (record.fields.CabinLeads ?? [])
+      .map(id => leadsById[id])
+      .filter((lead): lead is CabinLead => Boolean(lead)),
     }));
-  }, [cabinData]);
+  }, [cabinData, cabinLeads]);
+
 
   const cabinsByName: Record<string, Cabin> = Object.fromEntries(
     fetchedCabins.map((cabin) => [cabin.name, cabin]),
