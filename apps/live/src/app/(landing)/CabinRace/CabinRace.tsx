@@ -8,7 +8,7 @@ import {
   CabinRaceSquiggle,
 } from "../../lib/Assets/SVG";
 import CabinRaceCard from "../../components/CabinRaceComponents/CabinRaceCard.tsx";
-import {Cabin, CabinLead} from "./CabinTypes.tsx";
+import { Cabin, CabinLead } from "./CabinTypes.tsx";
 import CabinRaceScoreTent from "../../components/CabinRaceComponents/CabinRaceScoreTent.tsx";
 
 {
@@ -72,15 +72,13 @@ export default function CabinRace(): JSX.Element {
     if (!cabinData) return;
 
     const leadIds = cabinData.records.flatMap(
-        record => record.fields.CabinLeads ?? [],
+      (record) => record.fields.CabinLeads ?? [],
     );
 
     if (!leadIds.length) return;
 
     const fetchLeads = async () => {
-      const res = await fetch(
-          `/api/cabinLeads?ids=${leadIds.join(",")}`,
-      );
+      const res = await fetch(`/api/cabinLeads?ids=${leadIds.join(",")}`);
       const data: CabinLeadInfo = await res.json();
       setCabinLeads(data.records);
     };
@@ -92,26 +90,25 @@ export default function CabinRace(): JSX.Element {
     if (!cabinData) return [];
 
     const leadsById: Record<string, CabinLead> = Object.fromEntries(
-        cabinLeads.map(lead => [
-          lead.id,
-          {
-            name: lead.fields.Name,
-            src: lead.fields.src,
-            url: lead.fields.url,
-          },
-        ]),
+      cabinLeads.map((lead) => [
+        lead.id,
+        {
+          name: lead.fields.Name,
+          src: lead.fields.src,
+          url: lead.fields.url,
+        },
+      ]),
     );
 
-    return cabinData.records.map(record => ({
+    return cabinData.records.map((record) => ({
       name: record.fields.Name,
       points: record.fields.Points,
       description: record.fields.Description ?? "",
       cabinLeads: (record.fields.CabinLeads ?? [])
-      .map(id => leadsById[id])
-      .filter((lead): lead is CabinLead => Boolean(lead)),
+        .map((id) => leadsById[id])
+        .filter((lead): lead is CabinLead => Boolean(lead)),
     }));
   }, [cabinData, cabinLeads]);
-
 
   const cabinsByName: Record<string, Cabin> = Object.fromEntries(
     fetchedCabins.map((cabin) => [cabin.name, cabin]),
