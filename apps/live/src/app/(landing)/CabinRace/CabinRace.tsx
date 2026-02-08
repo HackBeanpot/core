@@ -18,12 +18,13 @@ export type AirTableRecord = {
   fields: {
     Name: string;
     Points: number;
-  };
+    Description?: string;
+    CabinLeads?: string[];
+    };
 };
+export type AirtableData = { records: AirTableRecord[]; };
 
-export type AirtableData = {
-  records: AirTableRecord[];
-};
+
 
 export default function CabinRace(): JSX.Element {
   const { isDesktop, isTablet, isMobile } = useDevice();
@@ -48,7 +49,6 @@ export default function CabinRace(): JSX.Element {
     void fetchCabins();
   }, []);
 
-  // TODO: should add cabin lead info and descriptions to airtable
   const fetchedCabins = useMemo(() => {
     if (!cabinData) return [];
     return cabinData.records.map((record) => ({
