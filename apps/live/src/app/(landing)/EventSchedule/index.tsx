@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import EventScheduleTabs from "./EventScheduleTabs";
+// import EventScheduleTabs from "./EventScheduleTabs";
 import EventScheduleSquiggle from "../../lib/Assets/SVG/EventSchedule/EventScheduleSquiggle.tsx";
 import EventRingToss from "../../lib/Assets/SVG/EventSchedule/EventRingToss.tsx";
 import EventBush from "../../lib/Assets/SVG/EventSchedule/EventBush.tsx";
@@ -38,9 +38,9 @@ const EventSchedule = () => {
         style={{ transform: isMobile ? "scale(0.65)" : "" }}
       >
         <RibbonTitle text="EVENT SCHEDULE" />
-        <div className={`${isMobile ? "" : ""}`}>
+        {/* <div className={`${isMobile ? "" : ""}`}>
           <EventScheduleTabs />
-        </div>
+        </div> */}
       </div>
     </div>
   );
