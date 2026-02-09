@@ -33,7 +33,10 @@ export default function KeynoteSpeakerSection({
   };
 
   return (
-    <div className="h-[190vh] mobile:h-[170vh] w-full bg-mossGreen" id="keynote">
+    <div
+      className="h-[190vh] mobile:h-[170vh] w-full bg-mossGreen"
+      id="keynote"
+    >
       <KeynoteTopSquiggle
         className="absolute z-10"
         style={{
