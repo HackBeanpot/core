@@ -65,7 +65,7 @@ const logisticsQuestions = [
   {
     question: "Will there be overnight accommodations?",
     answer:
-      "HackBeanpot is a three day long event, beginning on Friday, February 11th and ending on Sunday, February 13th.",
+      "Unfortunately, we’re not able to provide overnight accomodations for HackBeanpot 2026.",
   },
   {
     question: "Will food be provided?",
