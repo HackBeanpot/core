@@ -26,7 +26,7 @@ export default function OurTeam(): React.ReactNode {
   );
 
   return (
-    <div className="relative bg-mossGreenDark w-full h-full py-20">
+    <div className="relative bg-mossGreenDark w-full h-full py-20" id="team">
       <div className={innerStyles}>
         <div className={ribbonStyles}>
           <RibbonTitle text={"OUR TEAM"} />
