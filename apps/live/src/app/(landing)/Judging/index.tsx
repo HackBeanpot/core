@@ -15,7 +15,7 @@ export default function Judging(): React.ReactNode {
   const { isMobile } = useDevice();
 
   return (
-    <div className="relative w-full min-h-screen z-10 bg-mossGreen">
+    <div className="relative w-full min-h-screen z-10 bg-mossGreen" id="judging">
       <JudgingLiveBackground
         className={`absolute inset-0 w-full h-auto overflow-hidden`}
       />
