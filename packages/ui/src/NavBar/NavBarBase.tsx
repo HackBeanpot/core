@@ -90,7 +90,7 @@ const NavBarBase: React.FC<NavBarProps> = ({
   );
 
   const navBarItemsStyles = clsx(
-    "flex gap-10 w-full items-center z-10 text-md",
+    "flex gap-10 w-full items-center z-10 text-md whitespace-nowrap",
     isDesktop
       ? "flex-row justify-end self-center p-4 text-lg"
       : "flex-col gap-8 bg-starlightBlue top-10 p-10",
