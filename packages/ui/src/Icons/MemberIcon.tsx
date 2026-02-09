@@ -11,6 +11,7 @@ type IconProps = {
   url?: string;
   isLive: boolean;
   isActive: boolean;
+  textColor?: string;
 };
 
 const Icon: React.FC<IconProps> = ({
@@ -19,6 +20,7 @@ const Icon: React.FC<IconProps> = ({
   url,
   isLive = false,
   isActive = false,
+  textColor = "charcoalFog",
 }) => {
   return (
     <div className="flex flex-col items-center relative">
@@ -54,7 +56,7 @@ const Icon: React.FC<IconProps> = ({
           {isActive ? <ActiveIcon /> : <InactiveIcon />}
         </div>
       )}
-      <p className="mt-2 font-NeulisNeue-Bold text-charcoalFog">{name}</p>
+      <p className={`mt-2 font-NeulisNeue-Bold text-${textColor}`}>{name}</p>
     </div>
   );
 };
