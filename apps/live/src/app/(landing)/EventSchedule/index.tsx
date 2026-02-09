@@ -11,7 +11,7 @@ import RibbonTitle from "@repo/ui/RibbonTitle";
 const EventSchedule = () => {
   const { isMobile } = useDevice();
   return (
-    <div className={`relative w-full bg-mossGreen`}>
+    <div className={`relative w-full bg-mossGreen`} id="schedule">
       {/* foreground */}
       <EventScheduleSquiggle
         className={`absolute z-20 top-0 w-full -mt-[15vh]`}
