@@ -11,7 +11,7 @@ import Button from "@repo/ui/Button";
 export default function Welcome(): React.ReactNode {
   const { isMobile } = useDevice();
   return (
-    <div className="w-full h-800px min-h-screen bg-mossGreen py-8 px-8 md:px-16 flex items-center justify-center relative overflow-visible">
+    <div className="w-full h-800px min-h-screen bg-mossGreen py-10 px-8 md:px-16 flex items-center justify-center relative overflow-visible mb-14">
       <div
         className="absolute mobile:hidden mobile-xl:hidden tablet:hidden" // hide on small screens
         style={{
@@ -53,7 +53,7 @@ export default function Welcome(): React.ReactNode {
           <div
             className="absolute inset-0"
             style={{
-              right: "7%",
+              right: "0%",
               marginLeft: isMobile ? "" : "21vw",
               zIndex: 1,
             }}
@@ -62,7 +62,7 @@ export default function Welcome(): React.ReactNode {
               style={{
                 transform: isMobile
                   ? "scaleX(0.8) scaleY(1.2)"
-                  : "scaleX(0.98) scaleY(1.1)",
+                  : "scaleX(1.1) scaleY(1.1)",
                 transformOrigin: "left center",
                 width: "100%",
                 height: "100%",
@@ -75,7 +75,7 @@ export default function Welcome(): React.ReactNode {
             style={{ zIndex: 2 }}
           >
             <p
-              className="md:text-lg text-charcoalFogDark font-DMSans-Regular leading-relaxed max-w-3xl"
+              className="md:text-lg text-charcoalFogDark font-DMSans-Regular leading-relaxed max-w-5xl"
               style={{ paddingLeft: isMobile ? "3vw" : "23vw", paddingTop: 20 }}
             >
               At <b>HackBeanpot 2026</b>, we&apos;re hitting the road with a

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-// import EventScheduleTabs from "./EventScheduleTabs";
+import EventScheduleTabs from "./EventScheduleTabs";
 import EventScheduleSquiggle from "../../lib/Assets/SVG/EventSchedule/EventScheduleSquiggle.tsx";
 import EventRingToss from "../../lib/Assets/SVG/EventSchedule/EventRingToss.tsx";
 import EventBush from "../../lib/Assets/SVG/EventSchedule/EventBush.tsx";
@@ -11,7 +11,7 @@ import RibbonTitle from "@repo/ui/RibbonTitle";
 const EventSchedule = () => {
   const { isMobile } = useDevice();
   return (
-    <div className={`relative w-full bg-mossGreen`} id="schedule">
+    <div className={`relative w-full bg-mossGreen mb-24`} id="schedule">
       {/* foreground */}
       <EventScheduleSquiggle
         className={`absolute z-20 top-0 w-full -mt-[15vh]`}
@@ -38,9 +38,9 @@ const EventSchedule = () => {
         style={{ transform: isMobile ? "scale(0.65)" : "" }}
       >
         <RibbonTitle text="EVENT SCHEDULE" />
-        {/* <div className={`${isMobile ? "" : ""}`}>
+        <div className={`${isMobile ? "" : ""}`}>
           <EventScheduleTabs />
-        </div> */}
+        </div>
       </div>
     </div>
   );
