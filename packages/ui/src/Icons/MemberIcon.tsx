@@ -12,6 +12,8 @@ type IconProps = {
   isLive: boolean;
   isActive: boolean;
   textColor?: string;
+  showLinkedInIcon?: boolean;
+  onClick?: () => void;
 };
 
 const Icon: React.FC<IconProps> = ({
@@ -21,9 +23,11 @@ const Icon: React.FC<IconProps> = ({
   isLive = false,
   isActive = false,
   textColor = "charcoalFog",
+  showLinkedInIcon = false,
+  onClick,
 }) => {
   return (
-    <div className="flex flex-col items-center relative">
+    <div className="flex flex-col items-center relative" onClick={onClick}>
       <div className="relative inline-block rounded-full overflow-hidden group w-40 h-40 hover:scale-105 transition-transform duration-200 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32">
         <Image
           src={src}
@@ -47,7 +51,7 @@ const Icon: React.FC<IconProps> = ({
               opacity-0 group-hover:opacity-100
               transition-opacity duration-300F"
         >
-          {isLive ? <ExpandIcon /> : <LinkedinLogo />}
+          {isLive && !showLinkedInIcon ? <ExpandIcon /> : <LinkedinLogo />}
         </a>
       </div>
 
