@@ -12,7 +12,7 @@ import JudgingTicketBooth from "../../lib/Assets/SVG/Judging/JudgingTicketBooth.
 export default function Judging(): React.ReactNode {
   // const { isMobile } = useDevice();
   //   const [isJudging, setIsJudging] = useState(false);
-  const isJudging = true;
+  const isJudging = false;
 
   return (
     <div className="relative w-full min-h-screen bg-mossGreen">

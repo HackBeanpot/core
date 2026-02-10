@@ -20,7 +20,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
     null,
   );
 
-  console.log(modalComponent);
   return (
     <MobileContext.Provider value={{ isMobile }}>
       <ModalContext.Provider
@@ -34,7 +33,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
                 autoFocus
                 onBlur={() => {
                   setModalComponent(null);
-                  console.log("blurred");
                 }}
               >
                 {modalComponent}

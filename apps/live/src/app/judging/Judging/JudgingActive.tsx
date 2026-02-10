@@ -31,7 +31,7 @@ export default function JudgingActive(): React.ReactNode {
       <div className="absolute top-[37%] left-1/2 -translate-x-1/2 z-20">
         <div className="relative w-[calc(60vw+1.5rem)] mx-auto">
           <div className="absolute -top-20 left-0 z-50">
-            <DropDown
+            {/* <DropDown
               label="Team Name"
               options={[
                 "DevSpace",
@@ -40,7 +40,7 @@ export default function JudgingActive(): React.ReactNode {
                 "Coffee Bean's Last Road Trip",
               ]}
               // onSelect={(team) => setSelectedTeam(team)}
-            />
+            /> */}
           </div>
           <div className="flex justify-center gap-6">
             <InfoCard
