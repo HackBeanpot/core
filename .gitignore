@@ -35,5 +35,7 @@ yarn-error.log*
 # ui
 dist/
 
+# ide
+.idea*
 
 */**/*.env
