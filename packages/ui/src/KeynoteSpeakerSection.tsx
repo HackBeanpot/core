@@ -38,7 +38,7 @@ export default function KeynoteSpeakerSection({
       id="keynote"
     >
       <KeynoteTopSquiggle
-        className="absolute z-10"
+        className="absolute z-10 overflow-x-hidden"
         style={{
           transform: isMobile
             ? "translate(-100vw, -10vh) scale(0.5)"

@@ -63,7 +63,10 @@ const MentorSection = () => {
 
   const MentorSectionContent = React.forwardRef<HTMLDivElement>((_, ref) => {
     return (
-      <div className="py-24 px-48 flex flex-col items-center gap-10 overflow-x-hidden" ref={ref}>
+      <div
+        className="py-24 px-48 flex flex-col items-center gap-10 overflow-x-hidden"
+        ref={ref}
+      >
         <div className="scale-100">
           <RibbonTitle text="OUR MENTORS" />
         </div>
