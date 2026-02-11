@@ -2,7 +2,6 @@ import React from "react";
 import Landing from "./Landing";
 import EventSchedule from "./EventSchedule";
 import MentorSection from "./Mentors";
-import OurTeamBackground from "./OurTeamBackground";
 import Welcome from "./Welcome";
 // import HitTheRoad from "./HitTheRoad";
 import Resources from "./Resources";
@@ -15,6 +14,8 @@ import CabinRace from "./CabinRace/CabinRace.tsx";
 
 import SponsorFeature from "./SponsorFeature.tsx";
 import CarnivalScene from "./CarnivalLanding/CarnivalScene.tsx";
+import Sponsors from "./Sponsors.tsx";
+import Sock from "./Sock.tsx";
 export default function Page(): JSX.Element {
   return (
     <main className="flex flex-col items-center">
@@ -31,7 +32,8 @@ export default function Page(): JSX.Element {
       <MentorSection />
       <Resources />
       <OurTeam />
-      <OurTeamBackground />
+      <Sponsors />
+      <Sock />
       <Footer />
     </main>
   );

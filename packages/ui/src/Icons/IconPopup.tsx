@@ -7,20 +7,41 @@ import CloseIcon from "./CloseIcon";
 import useDevice from "@repo/util/hooks/useDevice";
 import React from "react";
 
-const IconPopup = () => {
+type IconPopupProps = {
+  iconSrc: string;
+  iconAltText: string;
+  iconTitle: string;
+  discord: string;
+  expertise: string[];
+  onClose: () => void;
+};
+
+const IconPopup = ({
+  iconSrc,
+  iconAltText,
+  iconTitle,
+  expertise,
+  onClose,
+}: IconPopupProps) => {
   const { isDesktop } = useDevice();
 
   return (
-    <div className="absolute inset-0 flex justify-center items-center z-50">
+    <div className="absolute inset-0 flex justify-center items-center z-50 bg-black/80 ">
       <div
         className={`
           relative
           bg-[#F4E3C9]
           rounded-2xl
+          h-fit
+          max-h-[80vh]
+          overflow-auto
           ${isDesktop ? "w-[850px] h-[490px]" : "w-full mx-4"}
         `}
       >
-        <div className="absolute top-4 left-4 z-20 cursor-pointer">
+        <div
+          className="sticky top-4 ml-4 z-20 cursor-pointer"
+          onClick={onClose}
+        >
           <CloseIcon />
         </div>
 
@@ -37,8 +58,8 @@ const IconPopup = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative">
               <Image
-                src="/headshots/directors/Emma.jpg"
-                alt="Emma Voneulow"
+                src={iconSrc}
+                alt={iconAltText}
                 width={190}
                 height={190}
                 className="object-cover rounded-full border-6 border-firecrackerRed"
@@ -48,11 +69,11 @@ const IconPopup = () => {
               </div>
             </div>
 
-            <h1 className="font-bold mt-2">Emma Voneulow</h1>
+            <h1 className="font-bold mt-2">{iconTitle}</h1>
 
             <div className="flex items-center gap-2">
               <DiscordIcon />
-              <p>emmavonbeulow</p>
+              <p>{iconAltText}</p>
             </div>
           </div>
 
@@ -62,7 +83,7 @@ const IconPopup = () => {
               <h1 className="font-bold">Expertise</h1>
             </div>
 
-            <p>React, Typescript, Next.js, Tailwind CSS, Python</p>
+            <p>{expertise.join(", ")}</p>
 
             <hr className="border border-carouselCream my-5" />
 

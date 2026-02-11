@@ -44,6 +44,21 @@ function makeSponsorRow(
               logoWidth={logoSizes?.[i] ?? 50}
             />
           </Link>
+        ) : logos?.[i] === FlagLogicLogo ? (
+          <Link
+            target="_blank"
+            key={i}
+            href="https://appwizzy.com/"
+            className="relative z-10 block"
+          >
+            <SponsorTicketComp
+              key={i}
+              isSponsorUs={false}
+              logoPath={logos?.[i] ?? ""}
+              ticketWidthVW={width}
+              logoWidth={logoSizes?.[i] ?? 50}
+            />
+          </Link>
         ) : (
           <SponsorTicketComp
             key={i}

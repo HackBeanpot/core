@@ -1,11 +1,16 @@
 import React from "react";
+import classNames from "clsx";
 type CarnivalTitleProps = {
   text: string;
+  className?: string;
 };
-const CarnivalTitle: React.FC<CarnivalTitleProps> = ({ text }) => {
+const CarnivalTitle: React.FC<CarnivalTitleProps> = ({ text, className }) => {
   return (
     <svg
-      className="inset-x-0 -translate-y-1/2 w-full pointer-events-none"
+      className={classNames(
+        "inset-x-0 -translate-y-1/2 w-full pointer-events-none",
+        className,
+      )}
       viewBox="0 0 1200 160"
       preserveAspectRatio="xMaxYMin slice"
       aria-hidden

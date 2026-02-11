@@ -12,7 +12,7 @@ const Footer = () => {
     setMailingEmail(e.target.value);
   };
 
-  const FooterBackground = <div className="bg-light-yellow w-full h-full" />;
+  const FooterBackground = <div className="bg-mossGreen w-full h-full" />;
 
   const FooterContent = (
     <div className="grid w-full h-full grid-cols-[1fr_1fr_1.1fr] px-[25vw] text-xl text-black font-GT-Walsheim-Regular">

@@ -3,8 +3,8 @@ import { SVGProps } from "react";
 
 const JudgingLiveFireworks = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width={1200}
-    height={600}
+    // width={600}
+    // height={300}
     viewBox="0 0 1200 600"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
