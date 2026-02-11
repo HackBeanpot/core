@@ -130,8 +130,10 @@ export default function CabinRace(): JSX.Element {
 
   return (
     <>
-      <div className="relative w-full bg-mossGreenDark flex flex-col items-center gap-[3vw]
-      py-[6vw] overflow-x-hidden">
+      <div
+        className="relative w-full bg-mossGreenDark flex flex-col items-center gap-[3vw]
+      py-[6vw] overflow-x-hidden"
+      >
         {/* Squiggle at top */}
         <CabinRaceSquiggle
           className={`absolute top-0 w-full -mt-[10vw]`}
