@@ -51,7 +51,7 @@ const CabinRaceScoreTent: React.FC<CabinRaceScoreTentProps> = ({
               : "translate(-35vw, 80vw)",
         }}
       />
-      <div className="relative flex flex-col gap-[1.5vw]">
+      <div className={`relative flex flex-col ${isMobile ? "gap-[3vw]" : isDesktop ? "gap-[3vw]" : "gap-[2vw]"}`}>
         {cabinInfo.map((cabin, index) => (
           <div key={cabin.name} className={`flex items-start gap-[1vw]`}>
             <ProjectStarIcon className="self-start" />
