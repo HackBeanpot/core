@@ -3,6 +3,7 @@ export interface CabinLead {
   name: string;
   src: string;
   url: string;
+  cabinPoints: string[];
 }
 
 export interface Cabin {
@@ -10,4 +11,5 @@ export interface Cabin {
   points: number;
   description: string;
   cabinLeads: CabinLead[];
+  cabinLeadTitle: string;
 }

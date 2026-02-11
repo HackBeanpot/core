@@ -1,27 +1,27 @@
 export const CABIN_RACE_BALLOON_COLORS = {
   blue: {
-    primaryColor: "#2563eb",
-    secondaryColor: "#93c5fd",
+    primaryColor: "#3a638f",
+    secondaryColor: "#173c61",
   },
   green: {
-    primaryColor: "#16a34a",
-    secondaryColor: "#86efac",
+    primaryColor: "#b7c751",
+    secondaryColor: "#6f9840",
   },
   yellow: {
-    primaryColor: "#e74c3c",
-    secondaryColor: "#e74c3c",
+    primaryColor: "#f0de6e",
+    secondaryColor: "#fba729",
   },
   purple: {
-    primaryColor: "#e74c3c",
-    secondaryColor: "#e74c3c",
+    primaryColor: "#d392d7",
+    secondaryColor: "#965f9a",
   },
   white: {
-    primaryColor: "#e74c3c",
-    secondaryColor: "#e74c3c",
+    primaryColor: "#ef6e57",
+    secondaryColor: "#f5ddbb",
   },
   red: {
-    primaryColor: "#e74c3c",
-    secondaryColor: "#e74c3c",
+    primaryColor: "#ef6e57",
+    secondaryColor: "#ca322d",
   },
 } as const;
 
