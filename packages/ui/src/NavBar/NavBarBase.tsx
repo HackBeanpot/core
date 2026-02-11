@@ -14,6 +14,7 @@ export type LinkProps = {
   link: string;
   buttonColor?: string;
   useExternalLink?: boolean;
+  onClick?: () => void;
 };
 
 export type NavBarProps = {
@@ -29,6 +30,19 @@ const LinkedButton = ({
   useExternalLink: boolean;
   linkInfo: LinkProps;
 }) => {
+  if (linkInfo.onClick) {
+    return (
+      <Button
+        textColor="white"
+        text={linkInfo.pageName}
+        color={linkInfo.buttonColor}
+        size="medium"
+        className="w-fit"
+        onClick={linkInfo.onClick}
+      />
+    );
+  }
+
   return useExternalLink ? (
     <Button
       textColor="white"
@@ -76,7 +90,7 @@ const NavBarBase: React.FC<NavBarProps> = ({
   );
 
   const navBarItemsStyles = clsx(
-    "flex gap-10 w-full items-center z-10 text-md",
+    "flex gap-10 w-full items-center z-10 text-md whitespace-nowrap",
     isDesktop
       ? "flex-row justify-end self-center p-4 text-lg"
       : "flex-col gap-8 bg-starlightBlue top-10 p-10",

@@ -4,7 +4,7 @@ import "@repo/ui/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import React from "react";
-import { Providers } from "./providers";
+import { Providers } from "./(landing)/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en" className="w-screen overflow-x-hidden bg-light-yellow">
+    <html lang="en" className="w-screen overflow-x-hidden bg-mossGreen">
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>

@@ -1,48 +1,48 @@
 "use client";
-import React, { useRef } from "react";
-import Section from "@repo/ui/Section";
+import React from "react";
 import OurTeamGrid from "./OurTeamGrid";
-import useContentHeight from "@util/hooks/useContentHeight";
-import useWindowSize from "@util/hooks/useWindowSize";
+import RibbonTitle from "@repo/ui/RibbonTitle";
+import clsx from "clsx";
+import useDevice from "@util/hooks/useDevice";
 
-const OurTeam = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { height: windowHeight, width: windowWidth } = useWindowSize();
-  const [contentHeight] = useContentHeight(ref);
+export default function OurTeam(): React.ReactNode {
+  const { isDesktop, isTablet, isMobile } = useDevice();
 
-  if (!windowHeight || !windowWidth) return;
+  const innerStyles = clsx(
+    "font-NeulisNeue-Regular flex flex-col gap-10 items-center justify-center",
+    isDesktop && "py-16 desktop:px-44 desktop-xl:px-80",
+    isTablet && "px-28",
+  );
 
-  const OurTeamBackground = () => {
-    return <div className="bg-granolaLite h-full"></div>;
-  };
+  const ribbonStyles = clsx(
+    isDesktop && "scale-100",
+    isTablet && "scale-75",
+    isMobile && "scale-[60%]",
+  );
 
-  const OurTeamContent = React.forwardRef<HTMLDivElement>((_, ref) => {
-    return (
-      <div ref={ref} className="py-24 px-48 font-GT-Walsheim-Regular">
-        <p className="text-[clamp(3rem,7vw,7rem)] text-seaFoam font-bold font-Wilden drop-shadow-lg">
-          Our Team
-        </p>
-        <p className="px-2">
-          Need a hand? Our team is here to support you throughout the hackathon!
-          If you have questions, need guidance, or just want to brainstorm,
-          don’t hesitate to reach out. We’re just a ping away and ready to help
-          make your hackathon experience as smooth and successful as possible!
-        </p>
-        <OurTeamGrid />
-      </div>
-    );
-  });
-
-  OurTeamContent.displayName = "OurTeamContent";
+  const blurbStyles = clsx(
+    "flex flex-col bg-carouselCreamLight rounded-3xl gap-2 drop-shadow-[0_6px_0px_rgba(0,0,0,0.25)] p-8",
+    isDesktop && "w-3/4",
+  );
 
   return (
-    <Section
-      name="team"
-      background={<OurTeamBackground />}
-      content={<OurTeamContent ref={ref} />}
-      height={(contentHeight / windowHeight) * 90}
-    />
+    <div className="relative bg-mossGreenDark w-full h-full py-20" id="team">
+      <div className={innerStyles}>
+        <div className={ribbonStyles}>
+          <RibbonTitle text={"OUR TEAM"} />
+        </div>
+        <div className={blurbStyles}>
+          <h1 className="font-NeulisNeue-Bold text-firecrackerRed text-[24px]">
+            Need to reach out to a core member?
+          </h1>
+          <p className="font-DM-Sans-Regular">
+            Feel free to reach out to a core member via Discord if you have any
+            questions or concerts about event logistics, applying to be part of
+            the HBP core team, or more!
+          </p>
+        </div>
+        <OurTeamGrid />
+      </div>
+    </div>
   );
-};
-
-export default OurTeam;
+}
