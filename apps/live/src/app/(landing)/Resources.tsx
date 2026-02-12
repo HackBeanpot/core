@@ -16,7 +16,7 @@ type TicketInfo = {
 const tickets: TicketInfo[] = [
   {
     ticketText: "Hacker Guide >",
-    link: "https://docs.google.com/document/d/15XfcqKupkjGC7WLHvigt_nzUeM7LHQ1-o916hmZkCwo/edit?usp=sharing",
+    link: "https://drive.google.com/file/d/1__rfnuSEtiAaNOZrX-t-NXJc77qK5ncu/view?usp=sharing",
     description:
       "Basic welcome information like map of venue, due dates and more!",
   },
