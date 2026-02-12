@@ -10,6 +10,8 @@ import Footer from "@repo/ui/Footer";
 // import ComingUp from "./ComingUp/ComingUp";
 import OurTeam from "./OurTeam";
 import Keynote from "./Keynote";
+import CabinRace from "./CabinRace/CabinRace.tsx";
+
 import SponsorFeature from "./SponsorFeature.tsx";
 import CarnivalScene from "./CarnivalLanding/CarnivalScene.tsx";
 import Sponsors from "./Sponsors.tsx";
@@ -25,6 +27,7 @@ export default function Page(): JSX.Element {
       <SponsorFeature />
       <Welcome />
       <EventSchedule />
+      <CabinRace />
       <Keynote />
       <MentorSection />
       <Resources />
