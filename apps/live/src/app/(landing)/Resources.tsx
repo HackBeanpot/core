@@ -42,18 +42,18 @@ const tickets: TicketInfo[] = [
 export default function Resources(): React.ReactNode {
   const { isMobile, isTablet, isDesktop } = useDevice();
   const ribbonStyles = clsx(
-      isDesktop && "scale-100",
-      isTablet && "scale-75",
-      isMobile && "scale-[60%]",
-    );
+    isDesktop && "scale-100",
+    isTablet && "scale-75",
+    isMobile && "scale-[60%]",
+  );
 
   return (
-    <div className="relative w-full h-full z-10 -mb-2 -mt-32">
-      <div className="relative w-full max-h-screen overflow-x-hidden">
-        <ResourcesBackground className="w-full h-full" />
+    <div className={`relative bg-mossGreenDark w-full h-full z-10 -mb-2`}>
+      <div className="relative w-full max-h-screen overflow-x-hidden -mt-32">
+        <ResourcesBackground className="w-full h-[100vh]" />
       </div>
       {/* content container */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pt-[20vh] -mb-20">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pt-[20vh]">
         <div className={ribbonStyles}>
           <RibbonTitle text="RESOURCES" />
         </div>

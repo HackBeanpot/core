@@ -19,11 +19,11 @@ const CabinCard: React.FC<CabinCardProps> = ({ cabinInfo }) => {
       : "w-[90vw]";
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center ">
       {/* The Card Itself... */}
       <div className={`relative ${widthClass}`}>
         <div
-          className="relative bg-white p-[1.5vw]"
+          className="relative bg-white p-[1.5vw] "
           style={{
             clipPath: "polygon(0% 8%, 100% 0%, 100% 100%, 0% 100%)",
           }}

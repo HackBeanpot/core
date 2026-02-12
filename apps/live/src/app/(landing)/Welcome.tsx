@@ -11,7 +11,7 @@ import Button from "@repo/ui/Button";
 export default function Welcome(): React.ReactNode {
   const { isMobile } = useDevice();
   return (
-    <div className="w-full h-800px min-h-screen bg-mossGreen py-10 px-8 md:px-16 flex items-center justify-center relative overflow-visible mb-14">
+    <div className="w-full h-800px min-h-screen bg-mossGreen py-10 px-8 md:px-16 flex items-center justify-center relative overflow-visible mb-24">
       <div
         className="absolute mobile:hidden mobile-xl:hidden tablet:hidden" // hide on small screens
         style={{
@@ -49,7 +49,7 @@ export default function Welcome(): React.ReactNode {
           <FrontBush />
         </div>
 
-        <div className="relative mt-8">
+        <div className="relative mt-16">
           <div
             className="absolute inset-0"
             style={{
@@ -61,7 +61,7 @@ export default function Welcome(): React.ReactNode {
             <TextBackgroundSign
               style={{
                 transform: isMobile
-                  ? "scaleX(0.8) scaleY(1.2)"
+                  ? "scaleX(1) scaleY(1.2)"
                   : "scaleX(1.1) scaleY(1.1)",
                 transformOrigin: "left center",
                 width: "100%",
