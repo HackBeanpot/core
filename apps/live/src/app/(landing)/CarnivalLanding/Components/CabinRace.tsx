@@ -41,6 +41,15 @@ const CabinRace: React.FC<CabinRaceProps> = ({ text }) => {
 
   const containerClassName = `relative w-[238px] h-[108px] ${isMobile ? "scale-75" : "scale-100"}`;
 
+  const handleClick = () => {
+    const element = document.getElementById("cabin-race");
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className={containerClassName}>
       <svg
@@ -192,6 +201,7 @@ const CabinRace: React.FC<CabinRaceProps> = ({ text }) => {
           className="!bg-[#173C62] hover:!bg-[#173C62] !rounded-[6.62651px] !px-2 !py-0 !h-full !w-full !text-[12px] !font-NeulisNeue-Regular !font-normal !shadow-none !gap-1 !flex-row-reverse"
           size="small"
           removePadding={true}
+          onClick={handleClick}
         />
       </div>
     </div>

@@ -211,7 +211,7 @@ const EventScheduleTabs = () => {
                       // const endTime = toTime(end_time, true);
                       const Icon = iconTypes[iconType];
                       const dropdownQuestion = (
-                        <div className="grid grid-cols-[3fr_4fr_3fr] gap-20 items-center w-full">
+                        <div className="grid grid-cols-[4fr_3fr_3fr] gap-20 items-center w-full">
                           <div className="flex flex-row gap-4 ml-4 my-2">
                             <Icon />
                             <div className="flex flex-col">
