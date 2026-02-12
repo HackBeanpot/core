@@ -4,7 +4,7 @@ import React from "react";
 import useDevice from "@util/hooks/useDevice.ts";
 import { InfoCard } from "../../components";
 import { ItemName } from "../../components/InfoCard/icons";
-import { DropDown } from "./DropDown";
+// import { DropDown } from "./DropDown";
 
 export default function JudgingActive(): React.ReactNode {
   const { isMobile } = useDevice();
