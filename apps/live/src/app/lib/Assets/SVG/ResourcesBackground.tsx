@@ -1,11 +1,13 @@
 import * as React from "react";
-const ResourcesBackground = () => (
+import { SVGProps } from "react";
+
+const ResourcesBackground = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width={1796}
-    height={1090}
     viewBox="0 0 1796 1090"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+    {...props}
   >
     <path
       d="M407.794 0C100.358 -0.000376408 0 66.8456 0 66.8456V132H1795.14V45.8644C1795.14 45.8644 1390.03 90.1385 1123.02 81.4C845.306 72.3111 715.23 0.000376411 407.794 0Z"

@@ -147,7 +147,7 @@ export default function Sponsors(): JSX.Element {
 
   return (
     <div className="relative bg-mossGreen w-full py-20" id="sponsors">
-      <EventScheduleSquiggle className={`absolute top-0 w-full -mt-[15vh]`} />
+      <EventScheduleSquiggle className={`absolute top-0 w-full -mt-[18vh]`} />
       <div className={innerStyles}>
         {/* Ribbon */}
         <div className={ribbonStyles}>
