@@ -7,6 +7,8 @@ import OrangeFirework from "../../lib/Assets/SVG/CarnivalLanding/OrangeFirework"
 import PurpleTent from "../../lib/Assets/SVG/CarnivalLanding/PurpleTent";
 import OrangeTent from "../../lib/Assets/SVG/CarnivalLanding/OrangeTent";
 import DartBoard from "../../lib/Assets/SVG/CarnivalLanding/DartBoard";
+import FrontBush from "../../lib/Assets/SVG/WelcomeLanding/FrontBush";
+import Grass from "./Components/Grass";
 import CabinRace from "./Components/CabinRace";
 import OpeningText from "./Components/OpeningText";
 import useDevice from "@util/hooks/useDevice";
@@ -33,8 +35,8 @@ const CarnivalScene: React.FC = () => {
 
       {/* Cabin Race - Top Left */}
       <div
-        className={`absolute ${isMobile ? "-left-4" : "left-10"} top-0 z-30 ${
-          isMobile ? "p-2 scale-[1.13]" : isTablet ? "p-4" : "p-6 scale-150"
+        className={`absolute ${isMobile ? "left-1/2 -translate-x-1/2" : "left-10"} top-0 z-30 ${
+          isMobile ? "p-2 scale-[1.5]" : isTablet ? "p-4" : "p-6 scale-150"
         }`}
       >
         <div className="w-auto h-auto">
@@ -45,7 +47,7 @@ const CarnivalScene: React.FC = () => {
       {/* Fireworks */}
       {/* Yellow Firework - Left side behind purple tent */}
       <div
-        className={`absolute z-15 max-w-[280px] min-w-[100px] ${isMobile ? "scale-50" : "scale-100"} ${
+        className={`absolute z-15 max-w-[424px] min-w-[100px] ${isMobile ? "scale-50" : "scale-100"} ${
           isDesktop
             ? "left-[-5%] top-[30%] w-[10vw]"
             : isTablet
@@ -80,31 +82,45 @@ const CarnivalScene: React.FC = () => {
       {/* Tents */}
       {/* Purple Tent - Left side */}
       <div
-        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.45]" : "scale-75"} origin-center ${
+        className={`absolute z-5 max-w-[400px] min-w-[120px] ${isMobile ? "scale-[0.45]" : "scale-100"} origin-center ${
           isDesktop
-            ? "left-[0%] bottom-[18%] w-[12vw]"
+            ? "left-[-3%] bottom-[18%] w-[15vw]"
             : isTablet
-              ? "left-[1%] bottom-[32%] w-[14vw]"
+              ? "left-[1%] bottom-[24%] w-[18vw]"
               : isMobile
-                ? "left-[-25%] bottom-[16%] w-[20vw]"
-                : "left-[0%] bottom-[23%] w-[18vw]"
+                ? "left-[-25%] bottom-[13%] w-[25vw]"
+                : "left-[0%] bottom-[16%] w-[20vw]"
         }`}
       >
         <div className="w-full h-auto">
           <PurpleTent />
         </div>
       </div>
+      {/* Front Bush - In front of purple tent */}
+      <div
+        className={`absolute z-20 ${
+          isDesktop
+            ? "left-[-5%] bottom-[16%] w-[18vw]"
+            : isTablet
+              ? "left-[0%] bottom-[14%] w-[22vw]"
+              : isMobile
+                ? "left-[-15%] bottom-[22%] w-[35vw]"
+                : "left-[0%] bottom-[10%] w-[20vw]"
+        }`}
+      >
+        <FrontBush />
+      </div>
 
       {/* Orange Tent - Right side */}
       <div
-        className={`absolute z-5 max-w-[300px] min-w-[120px] ${isMobile ? "scale-[0.40]" : "scale-75"} origin-center ${
+        className={`absolute z-5 max-w-[400px] min-w-[120px] ${isMobile ? "scale-[0.40]" : "scale-100"} origin-center ${
           isDesktop
-            ? "right-[3%] bottom-[18%] w-[12vw]"
+            ? "right-[5%] bottom-[15%] w-[15vw]"
             : isTablet
-              ? "right-[1%] bottom-[25%] w-[14vw]"
+              ? "right-[1%] bottom-[25%] w-[18vw]"
               : isMobile
-                ? "left-[72%] bottom-[16%] w-[20vw]"
-                : "right-[0%] bottom-[23%] w-[18vw]"
+                ? "left-[72%] bottom-[14%] w-[25vw]"
+                : "right-[0%] bottom-[16%] w-[20vw]"
         }`}
       >
         <div className="w-full h-auto">
@@ -137,13 +153,13 @@ const CarnivalScene: React.FC = () => {
 
       {/* Central Dart Board Booth */}
       <div
-        className={`absolute ${isMobile ? "left-[35%] -translate-x-1/2" : "left-1/2 -translate-x-1/2"} z-40 flex justify-center items-center ${
+        className={`absolute ${isMobile ? "left-[32%] -translate-x-1/2" : "left-[48%] -translate-x-1/2"} z-40 flex justify-center items-center ${
           isDesktop
             ? "bottom-[1%]"
             : isTablet
               ? "bottom-[25%]"
               : isMobile
-                ? "bottom-[0%]"
+                ? "bottom-[-5%]"
                 : "bottom-[0%]"
         }`}
       >
@@ -159,10 +175,24 @@ const CarnivalScene: React.FC = () => {
           }`}
         >
           <div
-            className={`${isMobile ? "scale-[0.45]" : "scale-[0.9]"} origin-center`}
+            className={`${isMobile ? "scale-[0.5]" : "scale-[1.0]"} origin-center`}
           >
             <DartBoard />
           </div>
+        </div>
+      </div>
+      {/* Grass - In front of Dart Board */}
+      <div
+        className={`absolute z-50 ${
+          isMobile
+            ? "left-[-27%] bottom-[3%] w-full"
+            : "left-1/2 -translate-x-[27%] bottom-[0%] w-full"
+        }`}
+      >
+        <div
+          className={`${isMobile ? "scale-[0.4]" : "scale-[1.0]"} origin-center`}
+        >
+          <Grass />
         </div>
       </div>
     </div>

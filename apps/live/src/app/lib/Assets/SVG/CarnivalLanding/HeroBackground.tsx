@@ -4,7 +4,6 @@ const HeroBackground: React.FC = () => {
     <svg
       width="2000"
       height="1031"
-      viewBox="-200 -100 2400 1231"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid slice"

@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
-import Section from "@repo/ui/Section";
+import React from "react";
 import Image from "next/image";
-import useContentHeight from "@repo/util/hooks/useContentHeight";
-import useWindowSize from "@repo/util/hooks/useWindowSize";
+import clsx from "clsx";
 import ResourcesBackground from "../lib/Assets/SVG/ResourcesBackground";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import useDevice from "@repo/util/hooks/useDevice";
@@ -18,74 +16,61 @@ type TicketInfo = {
 const tickets: TicketInfo[] = [
   {
     ticketText: "Hacker Guide >",
-    link: "https://docs.google.com/document/d/15XfcqKupkjGC7WLHvigt_nzUeM7LHQ1-o916hmZkCwo/edit?usp=sharing",
+    link: "https://drive.google.com/file/d/1__rfnuSEtiAaNOZrX-t-NXJc77qK5ncu/view?usp=sharing",
     description:
       "Basic welcome information like map of venue, due dates and more!",
   },
   {
     ticketText: "How to Demo >",
-    link: "https://drive.google.com/file/d/18UrWcSD3gIQZC0W5JggKnVi7w5YBwc1L/view?usp=sharing",
+    link: "https://docs.google.com/document/d/1k4Y_z0CYGAvJYWCUo96JWJOnLNSVUNHfO6CCqg_VxgA/edit?tab=t.0",
     description:
-      "Basic welcome information like map of venue, due dates and more!",
+      "Info on how to submit your project, and how to prepare for the demo!",
   },
   {
-    ticketText: "Resources >",
-    link: "https://docs.google.com/document/d/1JLBsSnUCa7nx5HBpUAV52qTS4-IIsyqkaUPuSXqI8cA/edit?usp=sharing",
+    ticketText: "Beginner Resources >",
+    link: "https://docs.google.com/document/d/1E8doyvYyGSBBQUCYlsjMsvhHOaZG0Uz0YIGgPQp16T4/edit?tab=t.0",
     description:
-      "Basic welcome information like map of venue, due dates and more!",
+      "First time hacker? Look no further! Find everything you need here.",
   },
   {
-    ticketText: "Resources >",
-    link: "https://docs.google.com/document/d/1Zy-EQfEap4irB7vSPygL1uwpsAJ4djqjNRVxP_lluv4/edit?usp=sharing",
-    description:
-      "Basic welcome information like map of venue, due dates and more!",
+    ticketText: "Food Offerings >",
+    link: "https://docs.google.com/document/d/1zwWd33DOnLPea59dkrOl3DXeA6mG4wYnZU0-rer5VVQ/edit?tab=t.0",
+    description: "Menu information for all meals provided!",
   },
 ];
 
-const background = (
-  <div
-    className="absolute inset-0 w-full overflow-hidden pointer-events-none z-10"
-    style={{ transform: "translateY(-10vh)", height: "calc(100% + 10vh)" }}
-  >
-    <ResourcesBackground />
-  </div>
-);
-
 export default function Resources(): React.ReactNode {
-  const ref = useRef<HTMLDivElement>(null);
-  const { height: windowHeight } = useWindowSize();
-  const [contentHeight] = useContentHeight(ref);
-  const { isMobile } = useDevice();
-
-  const height = windowHeight ? (contentHeight / windowHeight) * 100 + 70 : 110;
-  const content = (
-    <div ref={ref}>
-      <div className={`${isMobile ? "transform scale-[0.85]" : ""} mt-5`}>
-        <RibbonTitle text="RESOURCES" />
-      </div>
-
-      <div className="tablet:text-2xl font-semibold text-2xl grid grid-cols-1 mobile:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 tablet:grid-cols-2 desktop:grid-cols-2 gap-8 justify-center mx-auto w-fit mt-20">
-        {tickets.map((ticket) => (
-          <TicketCard
-            key={ticket.link}
-            ticketText={ticket.ticketText}
-            description={ticket.description}
-            onClick={() => {
-              window.open(ticket.link, "_blank");
-            }}
-          ></TicketCard>
-        ))}
-      </div>
-    </div>
-  );
+  const { isMobile, isTablet, isDesktop } = useDevice();
+  const ribbonStyles = clsx(
+      isDesktop && "scale-100",
+      isTablet && "scale-75",
+      isMobile && "scale-[60%]",
+    );
 
   return (
-    <Section
-      name={"resources"}
-      background={background}
-      content={content}
-      height={height}
-    />
+    <div className="relative w-full h-full z-10 -mb-2 -mt-32">
+      <div className="relative w-full max-h-screen overflow-x-hidden">
+        <ResourcesBackground className="w-full h-full" />
+      </div>
+      {/* content container */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pt-[20vh] -mb-20">
+        <div className={ribbonStyles}>
+          <RibbonTitle text="RESOURCES" />
+        </div>
+        <div className="tablet:text-2xl font-semibold text-2xl grid grid-cols-1 mobile:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 tablet:grid-cols-2 desktop:grid-cols-2 gap-8 justify-center mx-auto w-fit mt-20">
+          {tickets.map((ticket) => (
+            <TicketCard
+              key={ticket.link}
+              ticketText={ticket.ticketText}
+              description={ticket.description}
+              onClick={() => {
+                window.open(ticket.link, "_blank");
+              }}
+            ></TicketCard>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

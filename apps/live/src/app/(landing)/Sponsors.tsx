@@ -85,13 +85,13 @@ export default function Sponsors(): JSX.Element {
   const innerStyles = clsx(
     "font-NeulisNeue-Regular flex flex-col items-center justify-center gap-12",
     isDesktop && "py-16 desktop:px-44 desktop-xl:px-80",
-    isTablet && "px-28"
+    isTablet && "px-28",
   );
 
   const ribbonStyles = clsx(
     isDesktop && "scale-100",
     isTablet && "scale-75",
-    isMobile && "scale-[60%]"
+    isMobile && "scale-[60%]",
   );
 
   const desktopRows = [
@@ -147,7 +147,7 @@ export default function Sponsors(): JSX.Element {
 
   return (
     <div className="relative bg-mossGreen w-full py-20" id="sponsors">
-      <EventScheduleSquiggle className={`absolute top-0 w-full -mt-[15vh]`} />
+      <EventScheduleSquiggle className={`absolute top-0 w-full -mt-[18vh]`} />
       <div className={innerStyles}>
         {/* Ribbon */}
         <div className={ribbonStyles}>
