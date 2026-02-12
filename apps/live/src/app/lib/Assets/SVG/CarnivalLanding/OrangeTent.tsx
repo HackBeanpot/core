@@ -2,9 +2,9 @@ import React from "react";
 const OrangeTent: React.FC = () => {
   return (
     <svg
-      width="346"
+      width="550"
       height="373"
-      viewBox="0 0 346 373"
+      viewBox="0 0 550 373"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
