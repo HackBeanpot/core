@@ -196,7 +196,7 @@ const MentorsTable = ({ data }: MentorTableProps) => {
                 isLive={true}
                 isActive={isAvailable}
                 textColor="black"
-                showLinkedInIcon={true}
+                showLinkedInIcon={false}
                 onClick={() => setSelectedMentor(record)}
               />
             </div>
