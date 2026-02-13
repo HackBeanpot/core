@@ -55,7 +55,7 @@ const TeamTable = () => {
     Tech: [
       {
         name: "Alina Gonzalez",
-        src: "/headshots/tech/alina.png",
+        src: "/headshots/tech/Alina.png",
         url: "https://www.linkedin.com/in/agonzalez26",
       },
       {

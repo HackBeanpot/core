@@ -47,7 +47,7 @@ export type CabinLeadInfo = {
 };
 
 export default function CabinRace(): JSX.Element {
-  const { isDesktop, isTablet } = useDevice();
+  const { isMobile, isDesktop, isTablet } = useDevice();
 
   const [cabinData, setCabinData] = useState<CabinInfo | null>(null);
 
@@ -132,11 +132,12 @@ export default function CabinRace(): JSX.Element {
     <>
       <div
         className="relative w-full bg-mossGreenDark flex flex-col items-center gap-[3vw]
-      py-[6vw] overflow-x-hidden"
+      py-[6vw]"
+        id="cabin-race"
       >
         {/* Squiggle at top */}
         <CabinRaceSquiggle
-          className={`absolute top-0 w-full -mt-[10vw]`}
+          className={`absolute top-0 w-full -mt-[10vw] overflow-x-hidden`}
         ></CabinRaceSquiggle>
 
         {/* Ribbon Title */}
@@ -148,7 +149,7 @@ export default function CabinRace(): JSX.Element {
         <div
           className={`relative flex flex-col 
               rounded-2xl bg-carouselCreamLight
-              justify-center px-6
+              justify-center p-10
               ${isDesktop ? "w-[60vw] h-[20vw]" : isTablet ? "w-[80vw] min-h-[40vw]" : "w-[80vw] min-h-[40vh]"}`}
         >
           <p
@@ -230,7 +231,7 @@ export default function CabinRace(): JSX.Element {
           {/* Cabin card */}
           {selectedCabinName && cabinsByName[selectedCabinName] && (
             <div
-              className="relative z-10"
+              className={`relative z-10 ${isMobile ? "h-[70vh]" : ""}`}
               style={{ transform: isDesktop ? "translateX(8rem)" : "none" }}
             >
               <CabinRaceCard cabinInfo={cabinsByName[selectedCabinName]} />

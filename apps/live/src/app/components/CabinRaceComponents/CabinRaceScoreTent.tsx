@@ -30,7 +30,7 @@ const CabinRaceScoreTent: React.FC<CabinRaceScoreTentProps> = ({
 
   return (
     <div
-      className={`relative flex w-full ${isMobile ? "h-[195vw]" : "h-[100vw]"} items-center justify-center`}
+      className={`relative flex w-full overflow-x-hidden ${isMobile ? "h-[195vw]" : "h-[100vw]"} items-center justify-center`}
     >
       <CabinRaceTent
         className={`absolute left-1/2 top-1/2 ${isMobile ? "w-[160vw]" : isTablet ? "w-[80vw]" : "w-[70vw]"} h-auto -translate-x-1/2 -translate-y-1/2`}
@@ -51,7 +51,9 @@ const CabinRaceScoreTent: React.FC<CabinRaceScoreTentProps> = ({
               : "translate(-35vw, 80vw)",
         }}
       />
-      <div className={`relative flex flex-col ${isMobile ? "gap-[3vw]" : isDesktop ? "gap-[3vw]" : "gap-[2vw]"}`}>
+      <div
+        className={`relative flex flex-col ${isMobile ? "gap-[3vw]" : isDesktop ? "gap-[3vw]" : "gap-[2vw]"}`}
+      >
         {cabinInfo.map((cabin, index) => (
           <div key={cabin.name} className={`flex items-start gap-[1vw]`}>
             <ProjectStarIcon className="self-start" />
