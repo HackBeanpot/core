@@ -4,7 +4,7 @@ type RibbonTitleProps = {
 };
 const RibbonTitle: React.FC<RibbonTitleProps> = ({ text }) => {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center z-50">
       <svg
         x="690"
         y="265"

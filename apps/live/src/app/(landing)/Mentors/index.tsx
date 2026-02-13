@@ -7,6 +7,7 @@ import RibbonTitle from "@repo/ui/RibbonTitle";
 import MentorsTable from "./MentorsTable";
 import useContentHeight from "@util/hooks/useContentHeight";
 import useWindowSize from "@util/hooks/useWindowSize";
+import DarkGreenSquiggle from "../../lib/Assets/SVG/DarkGreenSquiggle";
 
 export type AirtableImage = {
   id: string;
@@ -48,25 +49,15 @@ const MentorSection = () => {
 
   if (!windowHeight || !windowWidth || !data) return;
 
-  const MentorSectionBackground = () => {
-    return (
-      <div className="w-full h-full overflow-hidden pointer-events-none relative">
-        <Image
-          src="/MentorSectionBackground.svg"
-          alt="mentorsectionbackground"
-          fill
-          className="object-cover"
-        />
-      </div>
-    );
-  };
-
   const MentorSectionContent = React.forwardRef<HTMLDivElement>((_, ref) => {
     return (
       <div
         className="py-24 px-48 flex flex-col items-center gap-10 overflow-x-hidden"
         ref={ref}
+        id="mentors"
       >
+        <DarkGreenSquiggle className="absolute -top-32 w-full" />
+
         <div className="scale-100">
           <RibbonTitle text="OUR MENTORS" />
         </div>
@@ -92,7 +83,7 @@ const MentorSection = () => {
   return (
     <Section
       name="mentors"
-      background={<MentorSectionBackground />}
+      background={<div className="bg-mossGreenDark h-full w-full"></div>}
       content={<MentorSectionContent ref={ref} />}
       height={(contentHeight / windowHeight) * 100}
     />
