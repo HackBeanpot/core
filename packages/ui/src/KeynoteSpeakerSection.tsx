@@ -33,84 +33,89 @@ export default function KeynoteSpeakerSection({
   };
 
   return (
-    <>
-      <div
-        className="relative h-[150vh] w-full bg-mossGreen overflow-x-hidden"
-        id="keynote"
-      >
-        <KeynoteTopSquiggle className="absolute z-10 w-full top-0 bg-mossGreenDark" />
-        <div className="z-50 mt-72">
-          <RibbonTitle text="GUEST SPEAKERS" />
+    <div
+      className="h-[190vh] mobile:h-[170vh] w-full bg-mossGreen overflow-x-hidden overflow-x-hidden"
+      id="keynote"
+    >
+      <KeynoteTopSquiggle
+        className="absolute z-10 overflow-x-hidden"
+        style={{
+          transform: isMobile
+            ? "translate(-100vw, -10vh) scale(0.5)"
+            : "translate(15vw, -15vh) scale(1.75)",
+        }}
+      />
+      <div className="mt-[10vh]">
+        <RibbonTitle text="GUEST SPEAKERS" />
+      </div>
+
+      {!isMobile && (
+        <div className="absolute">
+          <KeynoteCart />
         </div>
+      )}
 
-        {!isMobile && (
-          <div className="absolute">
-            <KeynoteCart />
-          </div>
-        )}
+      {/* SUE */}
+      <div className="">
+        <KeynoteSpeakerPhoto
+          imageURL="/guest-speakers/Sue.jpg"
+          style={{
+            transform: isMobile
+              ? "translate(-14vw, -8vh) scale(0.6)"
+              : "translate(28vw, 8vw)",
+          }}
+        />
+        {/* The info card has to be its own div thats moved around.. the absolute style messes with the other stylings inside it.  */}
 
-        {/* SUE */}
-        <div className="">
-          <KeynoteSpeakerPhoto
-            imageURL="/guest-speakers/Sue.jpg"
-            style={{
-              transform: isMobile
-                ? "translate(-14vw, -8vh) scale(0.6)"
-                : "translate(28vw, 8vw)",
-            }}
+        <div
+          className="absolute"
+          style={{
+            transform: isMobile
+              ? "translate(7vw, -40vh) scale(0.7)"
+              : "translate(50vw, -18vw)",
+          }}
+        >
+          <KeynoteCard
+            header={sueData.header}
+            bio={sueData.bio}
+            text={sueData.text}
+            isLive={isLive}
+            location={sueData.location}
+            time={sueData.time}
           />
-          {/* The info card has to be its own div thats moved around.. the absolute style messes with the other stylings inside it.  */}
-
-          <div
-            className="absolute"
-            style={{
-              transform: isMobile
-                ? "translate(7vw, -40vh) scale(0.7)"
-                : "translate(50vw, -18vw)",
-            }}
-          >
-            <KeynoteCard
-              header={sueData.header}
-              bio={sueData.bio}
-              text={sueData.text}
-              isLive={isLive}
-              location={sueData.location}
-              time={sueData.time}
-            />
-          </div>
-        </div>
-
-        {/* JESSICA */}
-        <div>
-          <KeynoteSpeakerPhoto
-            imageURL="/guest-speakers/Jessica.jpg"
-            style={{
-              transform: isMobile
-                ? "translate(-14vw, -8vh) scale(0.6)"
-                : "translate(48vw, 14vw)",
-            }}
-          />
-          {/* The info card has to be its own div thats moved around.. the absolute style messes with the other stylings inside it.  */}
-
-          <div
-            className="absolute"
-            style={{
-              transform: isMobile
-                ? "translate(7vw, -40vh) scale(0.7)"
-                : "translate(28vw, -12vw)",
-            }}
-          >
-            <KeynoteCard
-              header={jessicaData.header}
-              bio={jessicaData.bio}
-              text={jessicaData.text}
-              isLive={isLive}
-              location={jessicaData.location}
-              time={jessicaData.time}
-            />
-          </div>
         </div>
       </div>
-    </>
+
+      {/* JESSICA */}
+      <div>
+        <KeynoteSpeakerPhoto
+          imageURL="/guest-speakers/Jessica.jpg"
+          style={{
+            transform: isMobile
+              ? "translate(-14vw, -8vh) scale(0.6)"
+              : "translate(48vw, 14vw)",
+          }}
+        />
+        {/* The info card has to be its own div thats moved around.. the absolute style messes with the other stylings inside it.  */}
+
+        <div
+          className="absolute"
+          style={{
+            transform: isMobile
+              ? "translate(7vw, -40vh) scale(0.7)"
+              : "translate(28vw, -12vw)",
+          }}
+        >
+          <KeynoteCard
+            header={jessicaData.header}
+            bio={jessicaData.bio}
+            text={jessicaData.text}
+            isLive={isLive}
+            location={jessicaData.location}
+            time={jessicaData.time}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

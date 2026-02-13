@@ -45,7 +45,7 @@ export type AirtableRecord = {
   createdTime: string;
   fields: {
     end_time: string;
-    eventLocation: string;
+    eventLocation?: string;
     start_time: string;
     tags: string;
     difficulty: string;
@@ -149,8 +149,8 @@ const EventScheduleTabs = () => {
   });
 
   return (
-    <div className="flex flex-col w-full h-[80vh] -gap-1 text-lg">
-      <div className="flex flex-row ml-5 mobile:items-center translate-y-10">
+    <div className="flex flex-col items-center w-screen h-[80vh] -gap-1 text-lg ">
+      <div className="flex flex-row ml-5 translate-y-10 ">
         {datesSorted.map((date, index) => {
           const dateObj = new Date(date);
           const isActive = index === selectedTab;
@@ -164,7 +164,7 @@ const EventScheduleTabs = () => {
           );
         })}
       </div>
-      <div className="flex flex-col flex-1 bg-starlightBlue mobile:w-[145vw] p-6 rounded-2xl gap-5 max-h-full z-10">
+      <div className="flex flex-col flex-1 bg-starlightBlue mobile:w-[145vw] p-6 rounded-2xl gap-5 max-h-full z-10 w-full max-w-[70vw]">
         {loading && <div className="text-white">Loading...</div>}
         {!loading && !data && (
           <button className="text-white" onClick={getScheduleData}>
@@ -201,22 +201,19 @@ const EventScheduleTabs = () => {
                         end_time,
                         eventLocation,
                         start_time,
-
-                        difficulty,
                         description,
                         eventName,
                         iconType,
                       } = fields;
                       const startTime = toTime(start_time, false);
-                      // const endTime = toTime(end_time, true);
                       const Icon = iconTypes[iconType];
                       const dropdownQuestion = (
-                        <div className="grid grid-cols-[4fr_3fr_3fr] gap-20 items-center w-full">
-                          <div className="flex flex-row gap-4 ml-4 my-2">
+                        <div className="flex gap-20 items-center">
+                          <div className="flex flex-row gap-4 ml-4 my-2 ">
                             <Icon />
-                            <div className="flex flex-col">
+                            <div className="flex flex-col ">
                               <p className="font-bold text-2xl">{eventName}</p>
-                              <p className="font-bold text-firecrackerRed">{`${startTime} • ${eventLocation}`}</p>
+                              <p className="font-bold text-firecrackerRed ">{`${startTime} ${eventLocation ? ` • ${eventLocation}` : ""}`}</p>
                               <div className="flex items-center gap-1"></div>
                             </div>
                           </div>
@@ -228,11 +225,6 @@ const EventScheduleTabs = () => {
                               )}
                             </div>
                           </div>
-                          {difficulty && (
-                            <div className="rounded-full bg-green py-1 px-4 ml-auto ">
-                              {difficulty}
-                            </div>
-                          )}
                         </div>
                       );
                       return (

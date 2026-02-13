@@ -241,8 +241,8 @@ export default function CabinRace(): JSX.Element {
           {/* Balloons */}
           {isDesktop && (
             <CabinRaceRedAirBalloon
-              className="absolute w-[18vw] h-auto top-0"
-              style={{ transform: "translateX(clamp(-6rem, -6.5vw, 5rem))" }}
+              className="absolute z-20 w-[18vw] h-auto top-0"
+              style={{ transform: "translateX(clamp(-10rem, -6.5vw, 5rem))" }}
             />
           )}
           {isTablet && (
