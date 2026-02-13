@@ -48,7 +48,7 @@ export default function Resources(): React.ReactNode {
   );
 
   return (
-    <div className={`relative bg-mossGreenDark w-full z-10 `}>
+    <div className={`relative bg-mossGreenDark w-full z-10 `} id="resources">
       <div className="absolute w-full max-h-screen overflow-x-hidden -mt-32">
         <ResourcesBackground className="w-full h-[100vh]" />
       </div>
