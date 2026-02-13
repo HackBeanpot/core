@@ -34,7 +34,7 @@ export default function KeynoteSpeakerSection({
 
   return (
     <div
-      className="h-[190vh] mobile:h-[170vh] w-full bg-mossGreen overflow-x-hidden mb-32"
+      className="h-[190vh] mobile:h-[170vh] w-full bg-mossGreen overflow-x-hidden mb-52"
       id="keynote"
     >
       <KeynoteTopSquiggle
