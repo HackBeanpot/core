@@ -37,7 +37,7 @@ export default function OurTeam(): React.ReactNode {
           </h1>
           <p className="font-DM-Sans-Regular">
             Feel free to reach out to a core member via Discord if you have any
-            questions or concerts about event logistics, applying to be part of
+            questions or concerns about event logistics, applying to be part of
             the HBP core team, or more!
           </p>
         </div>
