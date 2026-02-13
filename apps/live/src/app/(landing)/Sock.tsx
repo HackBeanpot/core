@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Section from "@repo/ui/Section";
 import FrontRollercoaster from "../lib/Assets/SVG/LandingSock/FrontRollercoaster.tsx";
 import BackRollercoaster from "../lib/Assets/SVG/LandingSock/BackRollercoaster.tsx";
 import BackGrass from "../lib/Assets/SVG/LandingSock/BackGrass.tsx";
@@ -10,10 +9,6 @@ import useIsMobile from "@repo/util/hooks/useIsMobile";
 
 export default function Sock(): JSX.Element {
   const isMobile = useIsMobile();
-
-  const background = (
-    <div className='w-full h-full bg-mossGreen ${isMobile ? "w-[200vw]" : "w-[170vw]"}'></div>
-  );
 
   const content = (
     <div className="relative w-full h-full overflow-hidden">
@@ -75,12 +70,5 @@ export default function Sock(): JSX.Element {
     </div>
   );
 
-  return (
-    <Section
-      name={"sock"}
-      background={background}
-      content={content}
-      height={120}
-    />
-  );
+  return content;
 }

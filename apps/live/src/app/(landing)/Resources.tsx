@@ -48,16 +48,16 @@ export default function Resources(): React.ReactNode {
   );
 
   return (
-    <div className={`relative bg-mossGreenDark w-full h-full z-10 -mb-2`}>
-      <div className="relative w-full max-h-screen overflow-x-hidden -mt-32">
+    <div className={`relative bg-mossGreenDark w-full z-10 `} id="resources">
+      <div className="absolute w-full max-h-screen overflow-x-hidden -mt-32">
         <ResourcesBackground className="w-full h-[100vh]" />
       </div>
       {/* content container */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pt-[20vh]">
+      <div className="relative z-20 flex flex-col items-center mt-16 w-full h-full min-h-[70vh]">
         <div className={ribbonStyles}>
           <RibbonTitle text="RESOURCES" />
         </div>
-        <div className="tablet:text-2xl font-semibold text-2xl grid grid-cols-1 mobile:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 tablet:grid-cols-2 desktop:grid-cols-2 gap-8 justify-center mx-auto w-fit mt-20">
+        <div className="tablet:text-2xl font-semibold text-2xl grid grid-cols-1 mobile:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 tablet:grid-cols-2 desktop:grid-cols-2 gap-8 justify-center mx-auto w-fit mt-20 mb-36 mobile:mb-44">
           {tickets.map((ticket) => (
             <TicketCard
               key={ticket.link}
@@ -105,11 +105,13 @@ export function TicketCard({
           width={24}
           className="w-[24px] h-[24px] flex-shrink-0"
         />
-        <div className="text-sm truncate pr-5">{ticketText}</div>
+        <div className="text-sm truncate pr-5 font-NeulisNeue-Bold text-charcoalFog">
+          {ticketText}
+        </div>
       </div>
 
       <div className="absolute left-5 right-5 top-[45%] text-xs font-normal overflow-hidden">
-        <div className="line-clamp-2">{description}</div>
+        <div className="line-clamp-2 font-DMSans-Regular">{description}</div>
       </div>
 
       {children && (

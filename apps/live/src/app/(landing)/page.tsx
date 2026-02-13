@@ -19,11 +19,11 @@ export default function Page(): JSX.Element {
       <CarnivalScene />
       <SponsorFeature />
       <Welcome />
+      <Resources />
       <EventSchedule />
       <CabinRace />
       <Keynote />
       <MentorSection />
-      <Resources />
       <OurTeam />
       <Sponsors />
       <Sock />
