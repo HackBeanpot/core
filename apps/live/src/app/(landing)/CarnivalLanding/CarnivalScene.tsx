@@ -28,7 +28,7 @@ const CarnivalScene: React.FC = () => {
     <div className={`relative w-full h-full overflow-hidden ${getMinHeight()}`}>
       {/* Background - Night Sky */}
       <div
-        className={`absolute ${isMobile ? "left-[-200%] w-[180%] top-[-15%]" : "inset-0 w-full"} h-full w-ful`}
+        className={`absolute ${isMobile ? "left-[-200%] w-[180%] top-[-15%]" : "inset-0 w-full"} h-full w-full`}
       >
         <HeroBackground />
       </div>
