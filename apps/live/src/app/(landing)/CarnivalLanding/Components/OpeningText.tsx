@@ -8,11 +8,11 @@ import UntilSubmissionsClose from "../../../lib/Assets/SVG/CarnivalLanding/Until
 const OpeningText: React.FC = () => {
   return (
     <div className="w-96 flex flex-col justify-start items-center gap-2">
-      <div className="w-full text-center text-marigoldYellow text-3xl font-bold font-['Neulis_Neue']">
+      <div className="w-full text-center text-marigoldYellow text-3xl font-bold font-['NeulisNeue-Bold']">
         Step on stage,
       </div>
       <HBPLogo className="w-96 h-auto" />
-      <div className="w-full text-center text-marigoldYellow text-3xl font-bold font-['Neulis_Neue']">
+      <div className="w-full text-center text-marigoldYellow text-3xl font-bold font-['NeulisNeue-Bold']">
         is in town!{" "}
       </div>
       <CountdownTimer />
