@@ -105,11 +105,13 @@ export function TicketCard({
           width={24}
           className="w-[24px] h-[24px] flex-shrink-0"
         />
-        <div className="text-sm truncate pr-5">{ticketText}</div>
+        <div className="text-sm truncate pr-5 font-NeulisNeue-Bold text-charcoalFog">
+          {ticketText}
+        </div>
       </div>
 
       <div className="absolute left-5 right-5 top-[45%] text-xs font-normal overflow-hidden">
-        <div className="line-clamp-2">{description}</div>
+        <div className="line-clamp-2 font-DMSans-Regular">{description}</div>
       </div>
 
       {children && (
