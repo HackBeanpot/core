@@ -202,7 +202,7 @@ const TeamTable = () => {
     ],
   };
   type teamKey = keyof typeof teams;
-  const [currTeam, setCurrTeam] = useState<teamKey>("Tech");
+  const [currTeam, setCurrTeam] = useState<teamKey>("Directors");
 
   const changeTeam = (team: teamKey) => {
     setCurrTeam(team);
