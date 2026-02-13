@@ -164,7 +164,7 @@ const EventScheduleTabs = () => {
           );
         })}
       </div>
-      <div className="flex flex-col flex-1 bg-starlightBlue mobile:w-[145vw] p-6 rounded-2xl gap-5 max-h-full z-10 w-full max-w-[70vw]">
+      <div className="flex flex-col flex-1 bg-starlightBlue p-6 rounded-2xl gap-5 max-h-full z-10 w-full max-w-[70vw] mobile:min-w-[550px]">
         {loading && <div className="text-white">Loading...</div>}
         {!loading && !data && (
           <button className="text-white" onClick={getScheduleData}>

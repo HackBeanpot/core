@@ -57,7 +57,7 @@ export default function Resources(): React.ReactNode {
         <div className={ribbonStyles}>
           <RibbonTitle text="RESOURCES" />
         </div>
-        <div className="tablet:text-2xl font-semibold text-2xl grid grid-cols-1 mobile:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 tablet:grid-cols-2 desktop:grid-cols-2 gap-8 justify-center mx-auto w-fit mt-20">
+        <div className="tablet:text-2xl font-semibold text-2xl grid grid-cols-1 mobile:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 tablet:grid-cols-2 desktop:grid-cols-2 gap-8 justify-center mx-auto w-fit mt-20 mb-36 mobile:mb-44">
           {tickets.map((ticket) => (
             <TicketCard
               key={ticket.link}

@@ -60,7 +60,7 @@ const MentorSection = () => {
         <div className="scale-100">
           <RibbonTitle text="OUR MENTORS" />
         </div>
-        <div className="flex flex-col bg-carouselCreamLight rounded-3xl gap-2 drop-shadow-[0_6px_0px_rgba(0,0,0,0.25)] p-8 max-w-4xl w-full">
+        <div className="flex flex-col bg-carouselCreamLight rounded-3xl gap-2 drop-shadow-[0_6px_0px_rgba(0,0,0,0.25)] p-8 min-w-[450px] max-w-4xl w-full">
           <h1 className="font-NeulisNeue-Bold text-firecrackerRed text-[24px]">
             Need expert advice?
           </h1>

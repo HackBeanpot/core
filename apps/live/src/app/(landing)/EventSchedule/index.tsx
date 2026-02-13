@@ -14,7 +14,7 @@ const EventSchedule = () => {
     <div className={`relative w-full bg-mossGreen mb-24`} id="schedule">
       {/* foreground */}
       <EventScheduleSquiggle
-        className={`absolute z-20 top-0 w-full -mt-[15vh]`}
+        className={`absolute z-20 top-0 w-full -mt-[15vh] mobile:-mt-14`}
       />
       <EventBush
         className={`absolute z-40`}
