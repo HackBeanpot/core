@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Section from "@repo/ui/Section";
 import RibbonTitle from "@repo/ui/RibbonTitle";
 import MentorsTable from "./MentorsTable";

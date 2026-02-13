@@ -91,7 +91,7 @@ const MentorsTable = ({ data }: MentorTableProps) => {
         />,
       );
     }
-  }, [selectedMentor]);
+  }, [selectedMentor, setModal]);
 
   if (!records.length) {
     return <div className="py-6">No mentors available right now.</div>;
