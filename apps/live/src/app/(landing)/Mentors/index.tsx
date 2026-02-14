@@ -73,6 +73,7 @@ const MentorSection = () => {
         </div>
         {/* Mentor listing (renders when Airtable data available) */}
         <MentorsTable data={data} />
+        
       </div>
     );
   });
