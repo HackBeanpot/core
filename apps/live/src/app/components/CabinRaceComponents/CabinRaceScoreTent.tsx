@@ -25,7 +25,7 @@ interface CabinRaceScoreTentProps {
 const CabinRaceScoreTent: React.FC<CabinRaceScoreTentProps> = ({
   cabinInfo,
 }) => {
-  const maxPoints = 350;
+  const maxPoints = 50;
   const { isMobile, isTablet, isDesktop } = useDevice();
 
   return (
