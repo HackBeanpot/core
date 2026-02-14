@@ -2,11 +2,12 @@ import * as React from "react";
 import { SVGProps } from "react";
 const KeynoteTopSquiggle = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    width={1200}
-    height={141}
+    // width={1200}
+    // height={141}
     viewBox="0 0 1200 141"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
     {...props}
   >
     <g clipPath="url(#clip0_2719_46940)">
