@@ -13,20 +13,28 @@ type MentorTableProps = {
 };
 
 const MentorsTable = ({ data }: MentorTableProps) => {
-  const { isDesktop, isTablet, isMobile } = useDevice();
+  const { isDesktop, isMobile } = useDevice();
   const records = useMemo(() => data?.records ?? [], [data]);
   const [skillsFilter, setSkillsFilter] = useState<string[]>([]);
   const [availabilityFilter, setAvailabilityFilter] = useState<boolean>(false);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const [selectedMentor, setSelectedMentor] = useState<MentorData | null>();
   const { setModal } = useContext(ModalContext);
-  const gridStyles = clsx(
-    "flex flex-wrap justify-center items-center mx-auto gap-6",
-    isDesktop && "w-3/4",
-    isMobile && "grid grid-cols-2",
-    isTablet && "grid grid-cols-3",
+
+  const outerDivStyles = clsx("w-screen overflow-hidden min-h-[50vh]",
+    isDesktop && "mb-20"
   );
 
+  const innerDivStyles = clsx(
+    "flex flex-row gap-4 font-GT-Walsheim-Regular py-4 items-center flex-wrap justify-center",
+    isMobile && "px-4",
+  );
+
+  const gridStyles = clsx(
+    "flex flex-wrap justify-center items-center mx-auto gap-6 pb-12",
+    isDesktop && "w-3/5",
+    isMobile && "grid grid-cols-2",
+  ); 
   const date = useMemo(() => new Date(), []);
 
   const uniqueSkills = useMemo(() => {
@@ -102,13 +110,10 @@ const MentorsTable = ({ data }: MentorTableProps) => {
 
   return (
     <div
-      className={`w-screen overflow-hidden min-h-[50vh] ${isDesktop ? "mb-20" : ""}`}
+      className={outerDivStyles}
     >
       <div
-        className={clsx(
-          "flex flex-row gap-4 font-GT-Walsheim-Regular py-4 items-center flex-wrap justify-center",
-          isMobile && "px-4",
-        )}
+        className={innerDivStyles}
       >
         <div className="relative inline-block text-left">
           <button
@@ -179,7 +184,7 @@ const MentorsTable = ({ data }: MentorTableProps) => {
         </button>
       </div>
 
-      <div className={clsx(gridStyles, "w-full pb-12")}>
+      <div className={gridStyles}>
         {(hasFilter ? filtered : records).map((record) => {
           const slots = record.fields["Time Slots as Date"] || [];
           let isAvailable = false;
