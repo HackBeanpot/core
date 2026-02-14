@@ -24,6 +24,7 @@ export type MentorData = {
     Image: Array<AirtableImage>;
     Expertise: Array<string>;
     discord: string;
+    "Time Slots as Date": Array<Date>;
   };
 };
 
