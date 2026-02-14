@@ -71,11 +71,6 @@ const MentorsTable = ({ data }: MentorTableProps) => {
             availableOk = true;
             break;
           }
-
-          // if (isTimeRange(slots[i], date)) {
-          //   availableOk = true;
-          //   break;
-          // }
         }
       }
 
@@ -192,16 +187,6 @@ const MentorsTable = ({ data }: MentorTableProps) => {
             const slotDateStart = new Date(slots[i]);
             const slotDateEnd = new Date(slotDateStart.getTime() + 3600000);
             const isMentorAvail = slotDateStart <= date && slotDateEnd >= date;
-
-            console.log(record.fields.Name);
-            console.log(
-              "Slot Date Start: " +
-                slotDateStart +
-                " Slot Date End: " +
-                slotDateEnd,
-            );
-            console.log("Current Date: " + date);
-            console.log("Is mentor available?: " + isMentorAvail);
 
             if (isMentorAvail) {
               isAvailable = true;
