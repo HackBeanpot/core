@@ -1,11 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@repo/ui/Button";
 import useDevice from "@util/hooks/useDevice";
 
+/** Airtable cabinPoints record shape (matches /api/cabinPoints) */
+type CabinPointsRecord = {
+  id: string;
+  fields: { Name?: string; points?: number };
+};
+
 interface CabinRaceProps {
-  text: string;
+  /** Fallback text when leader can't be loaded (e.g. "Leading…") */
+  text?: string;
 }
 
 const ArrowIcon = () => (
@@ -36,8 +43,38 @@ const ArrowIcon = () => (
   </svg>
 );
 
-const CabinRace: React.FC<CabinRaceProps> = ({ text }) => {
+const POLL_MS = 30_000; // refresh leader every 30s when Airtable is updated
+
+const CabinRace: React.FC<CabinRaceProps> = ({
+  text: fallbackText = "Leading…",
+}) => {
   const { isMobile } = useDevice();
+  const [leaderName, setLeaderName] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchLeader() {
+      try {
+        const res = await fetch("/api/cabinPoints");
+        if (!res.ok) return;
+        const data: { records?: CabinPointsRecord[]; error?: string } =
+          await res.json();
+        if (data.error || !data.records?.length) return;
+        const leader = data.records.reduce((best, r) => {
+          const points = r.fields.points ?? 0;
+          return points > (best.fields.points ?? 0) ? r : best;
+        });
+        const name = leader.fields.Name?.trim();
+        if (name) setLeaderName(name);
+      } catch {
+        // keep previous leader or fallback
+      }
+    }
+    void fetchLeader();
+    const interval = setInterval(fetchLeader, POLL_MS);
+    return () => clearInterval(interval);
+  }, []);
+
+  const text = leaderName ?? fallbackText;
 
   const containerClassName = `relative w-[238px] h-[108px] ${isMobile ? "scale-75" : "scale-100"}`;
 

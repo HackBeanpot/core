@@ -98,7 +98,9 @@ const MentorsTable = ({ data }: MentorTableProps) => {
   }
 
   return (
-    <div className={`w-screen overflow-hidden min-h-[50vh] ${isDesktop ? "mb-20" : ""}`}>
+    <div
+      className={`w-screen overflow-hidden min-h-[50vh] ${isDesktop ? "mb-20" : ""}`}
+    >
       <div
         className={clsx(
           "flex flex-row gap-4 font-GT-Walsheim-Regular py-4 items-center flex-wrap justify-center",
