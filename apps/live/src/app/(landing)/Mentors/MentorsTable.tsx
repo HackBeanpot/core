@@ -3,7 +3,6 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import Icon from "@repo/ui/Icons/MemberIcon";
 import clsx from "clsx";
-import isTimeRange from "@util/functions/isTimeRange";
 import useDevice from "@util/hooks/useDevice";
 import { AirtableData, MentorData } from ".";
 import IconPopup from "@repo/ui/Icons/IconPopup";
@@ -62,9 +61,13 @@ const MentorsTable = ({ data }: MentorTableProps) => {
       let availableOk = true;
       if (availabilityFilter) {
         availableOk = false;
-        const slots = rec.fields["Time Slots"] || [];
+        const slots = rec.fields["Time Slots as Date"] || [];
         for (let i = 0; i < slots.length; i++) {
-          if (isTimeRange(slots[i], date)) {
+          const slotDateStart = new Date(slots[i]);
+          const slotDateEnd = new Date(slotDateStart.getTime() + 3600000);
+          const isMentorAvail = slotDateStart <= date && slotDateEnd >= date;
+
+          if (isMentorAvail) {
             availableOk = true;
             break;
           }
@@ -178,10 +181,14 @@ const MentorsTable = ({ data }: MentorTableProps) => {
 
       <div className={clsx(gridStyles, "w-full pb-12")}>
         {(hasFilter ? filtered : records).map((record) => {
-          const slots = record.fields["Time Slots"] || [];
+          const slots = record.fields["Time Slots as Date"] || [];
           let isAvailable = false;
           for (let i = 0; i < slots.length; i++) {
-            if (isTimeRange(slots[i], date)) {
+            const slotDateStart = new Date(slots[i]);
+            const slotDateEnd = new Date(slotDateStart.getTime() + 3600000);
+            const isMentorAvail = slotDateStart <= date && slotDateEnd >= date;
+
+            if (isMentorAvail) {
               isAvailable = true;
               break;
             }
