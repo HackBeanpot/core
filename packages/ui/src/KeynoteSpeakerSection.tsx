@@ -34,18 +34,18 @@ export default function KeynoteSpeakerSection({
 
   return (
     <div
-      className="h-[190vh] mobile:h-[170vh] w-full bg-mossGreen overflow-x-hidden mb-52"
+      className="h-[190vh] mobile:h-[170vh] w-full bg-mossGreen mb-52"
       id="keynote"
     >
       <KeynoteTopSquiggle
-        className="absolute z-10 overflow-x-hidden"
+        className="absolute z-10 w-full overflow-x-hidden"
         style={{
           transform: isMobile
-            ? "translate(-100vw, -10vh) scale(0.5)"
-            : "translate(15vw, -15vh) scale(1.75)",
+            ? "translate(0vw, -8vh) scale(1)"
+            : "translate(0vw, -15vw) scale(1)",
         }}
       />
-      <div className="mt-[10vh]">
+      <div className="mt-[5vw]">
         <RibbonTitle text="GUEST SPEAKERS" />
       </div>
 

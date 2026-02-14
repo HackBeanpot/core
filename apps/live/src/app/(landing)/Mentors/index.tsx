@@ -24,6 +24,7 @@ export type MentorData = {
     Image: Array<AirtableImage>;
     Expertise: Array<string>;
     discord: string;
+    "Time Slots as Date": Array<Date>;
   };
 };
 
@@ -73,6 +74,7 @@ const MentorSection = () => {
         </div>
         {/* Mentor listing (renders when Airtable data available) */}
         <MentorsTable data={data} />
+        
       </div>
     );
   });
