@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 
-// Feb 13, 2026 8:00 PM EST — Opening ceremony (countdown begins)
-const COUNTDOWN_START = new Date("2026-02-13T20:00:00-05:00");
 // Feb 15, 2026 9:00 AM EST — Countdown ends
 const COUNTDOWN_END = new Date("2026-02-15T09:00:00-05:00");
 
@@ -15,13 +13,6 @@ const CountdownTimer = () => {
   useEffect(() => {
     const update = () => {
       const now = new Date();
-
-      if (now < COUNTDOWN_START) {
-        setDays(0);
-        setHours(0);
-        setMinutes(0);
-        return;
-      }
 
       if (now >= COUNTDOWN_END) {
         setDays(0);

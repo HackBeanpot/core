@@ -40,7 +40,7 @@ const CarnivalScene: React.FC = () => {
         }`}
       >
         <div className="w-auto h-auto">
-          <CabinRace text="Magicians" />
+          <CabinRace text="Leading…" />
         </div>
       </div>
 
