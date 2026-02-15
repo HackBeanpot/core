@@ -39,7 +39,7 @@ export default function Judging(): React.ReactNode {
           <JudgingTicketBooth className="w-[80vw]" />
         </div>
       </div>
-      {isJudging && <div className="h-[120vh]"></div>}
+      {isJudging && <div className="h-[170vh]"></div>}
     </div>
   );
 }
