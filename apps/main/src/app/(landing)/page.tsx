@@ -1,17 +1,18 @@
 import {
-  Stats,
-  Values,
-  FAQSection,
-  Landing,
-  Keynote,
-  Calendar,
-  Testimonials,
-  Apply,
-  About,
-  Volunteering,
+  // Stats,
+  // Values,
+  // FAQSection,
+  // Landing,
+  // Keynote,
+  // Calendar,
+  // Testimonials,
+  // Apply,
+  // About,
+  // Volunteering,
 } from "./Sections";
 import { Footer } from "../lib/Components";
 import { NavBar } from "../lib/Components";
+import Placeholder from "@repo/ui/Placeholder";
 import Head from "next/head";
 import React from "react";
 
@@ -22,7 +23,10 @@ export default function Page(): JSX.Element {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <NavBar />
+      <Placeholder />
+
+
+      {/* <NavBar />
       <Landing />
       <Apply />
       <About />
@@ -33,7 +37,7 @@ export default function Page(): JSX.Element {
       <Calendar />
       <Testimonials />
       <FAQSection />
-      <Footer />
+      <Footer /> */}
     </main>
   );
 }
