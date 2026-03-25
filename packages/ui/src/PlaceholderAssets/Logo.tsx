@@ -39,7 +39,7 @@ const Logo: React.FC<LogoProps> = ({ className }) => (
         y={-0.0768127}
         width={201.932}
         height={70.6173}
-        fill="#352A28"
+        fill="#FFFFFF"
       />
     </g>
     <defs>

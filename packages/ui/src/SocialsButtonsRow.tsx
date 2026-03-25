@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./Button.tsx";
 import ExternalLink from "main/src/app/lib/Components/ExternalLink.tsx";
 import Image from "next/image";
+import { SVGProps } from "react";
 
 const imageInfo = [
   {
@@ -41,7 +42,7 @@ const SocialIconButton = ({
   );
 };
 
-const SocialsButtonsRow = () => {
+const SocialsButtonsRow = (props: SVGProps<SVGSVGElement>) => {
   return (
     <div className="flex flex-row gap-2 w-auto h-auto">
       {imageInfo.map((socialIcon, index) => {
