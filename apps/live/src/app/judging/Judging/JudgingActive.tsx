@@ -1,14 +1,70 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useDevice from "@util/hooks/useDevice.ts";
 import { InfoCard } from "../../components";
 import { ItemName } from "../../components/InfoCard/icons";
 // import { DropDown } from "./DropDown";
 
+export type JudgingScheduleRecord = {
+  id: string;
+  createdTime: string;
+  fields: {
+    groupName: string;
+    eventLocation: string;
+    start_time: string;
+  };
+};
+
+export type JudgingSchedule = {
+  records: JudgingScheduleRecord[];
+};
+
 export default function JudgingActive(): React.ReactNode {
   const { isMobile } = useDevice();
+  const [judgingInfo, setJudgingInfo] = useState<JudgingSchedule | null>(null);
   // const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
+
+  async function getJudgingSchedule() {
+    const res = await fetch("/api/judgingSchedule");
+    const jsonData: JudgingSchedule = await res.json();
+    const status = res.status;
+
+    if (status == 200) {
+      setJudgingInfo(jsonData);
+    }
+  }
+
+  useEffect(() => {
+    const fetchJudgingSchedule = async () => {
+      await getJudgingSchedule();
+    };
+
+    void fetchJudgingSchedule();
+  }, []);
+
+  const locationMap: Record<string, string[]> = {};
+  judgingInfo?.records.forEach((record) => {
+    const { eventLocation, groupName, start_time } = record.fields;
+    if (!locationMap[eventLocation]) {
+      locationMap[eventLocation] = [];
+    }
+    locationMap[eventLocation].push(`${groupName} - ${start_time}`);
+  });
+
+  const locationMapSorted: Record<string, string[]> = {};
+  Object.keys(locationMap).forEach((location) => {
+    locationMap[location].sort((a: string, b: string) => {
+      const toMinutes = (time: string) => {
+        const [h, m] = time.match(/\d+/g)!.map(Number);
+        const pm = /pm/.test(time) && h !== 12;
+        const am = /am/.test(time) && h === 12;
+        return (h + (pm ? 12 : 0) - (am ? 12 : 0)) * 60 + m;
+      };
+      return toMinutes(a) - toMinutes(b);
+    });
+    locationMapSorted[location] = locationMap[location];
+  });
 
   return (
     <div className="mt-16 min-h-screen">
@@ -29,39 +85,19 @@ export default function JudgingActive(): React.ReactNode {
 
       {/* insert cards */}
       <div className="absolute top-[37%] left-1/2 -translate-x-1/2 z-20">
-        <div className="relative w-[calc(60vw+1.5rem)] mx-auto">
-          <div className="absolute -top-20 left-0 z-50">
-            {/* <DropDown
-              label="Team Name"
-              options={[
-                "DevSpace",
-                "Memora",
-                "CapyCrew",
-                "Coffee Bean's Last Road Trip",
-              ]}
-              // onSelect={(team) => setSelectedTeam(team)}
-            /> */}
-          </div>
-          <div className="flex justify-center gap-6">
+        <div className="relative flex flex-col items-center gap-24">
+          <div className="flex justify-center gap-24">
             <InfoCard
-              heading="Room #1"
-              text={[
-                "DevSpace – 1:00pm",
-                "Memora – 1:10pm",
-                "CapyCrew – 1:20pm",
-                "Coffee Bean’s Last Road Trip – 1:30pm",
-              ]}
+              heading="Charlestown"
+              text={locationMapSorted["Charlestown"] || ["No judging info available"]}
               icon={ItemName.CottonCandy}
               size="[30vw]"
             />
             <InfoCard
-              heading="Room #2"
-              text={[
-                "DevSpace – 1:00pm",
-                "Memora – 1:10pm",
-                "CapyCrew – 1:20pm",
-                "Coffee Bean’s Last Road Trip – 1:30pm",
-              ]}
+              heading="South Boston"
+              text={
+                locationMapSorted["South Boston"] || ["No judging info available"]
+              }
               icon={ItemName.Popcorn}
               size="[30vw]"
             />
@@ -71,17 +107,12 @@ export default function JudgingActive(): React.ReactNode {
 
       <div className="absolute left-1/2 -translate-x-1/2 top-[55%] z-10 flex justify-center gap-6">
         <InfoCard
-          heading="Room #3"
-          text={[
-            "DevSpace – 1:00pm",
-            "Memora – 1:10pm",
-            "CapyCrew – 1:20pm",
-            "Coffee Bean’s Last Road Trip – 1:30pm",
-          ]}
+          heading="Beacon Hill"
+          text={locationMapSorted["Beacon Hill"] || ["No judging info available"]}
           icon={ItemName.HotDog}
           size="[30vw]"
         />
-        <InfoCard
+        {/* <InfoCard
           heading="Room #4"
           text={[
             "DevSpace – 1:00pm",
@@ -91,7 +122,7 @@ export default function JudgingActive(): React.ReactNode {
           ]}
           icon={ItemName.IceCream}
           size="[30vw]"
-        />
+        /> */}
       </div>
 
       {/* insert bottom bar */}

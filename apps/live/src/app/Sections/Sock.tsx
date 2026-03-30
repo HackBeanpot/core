@@ -12,7 +12,7 @@ export default function Sock(): JSX.Element {
   const isMobile = useIsMobile();
 
   const background = (
-    <div className='w-full h-full bg-mossGreen ${isMobile ? "w-[200vw]" : "w-[170vw]"}'></div>
+    <div className='w-full h-full !bg-mossGreen ${isMobile ? "w-[200vw]" : "w-[170vw]"}'></div>
   );
 
   const content = (

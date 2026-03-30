@@ -21,8 +21,9 @@ const MentorsTable = ({ data }: MentorTableProps) => {
   const [selectedMentor, setSelectedMentor] = useState<MentorData | null>();
   const { setModal } = useContext(ModalContext);
 
-  const outerDivStyles = clsx("w-screen overflow-hidden min-h-[50vh]",
-    isDesktop && "mb-20"
+  const outerDivStyles = clsx(
+    "w-screen overflow-hidden min-h-[50vh]",
+    isDesktop && "mb-20",
   );
 
   const innerDivStyles = clsx(
@@ -34,7 +35,7 @@ const MentorsTable = ({ data }: MentorTableProps) => {
     "flex flex-wrap justify-center items-center mx-auto gap-6 pb-12",
     isDesktop && "w-3/5",
     isMobile && "grid grid-cols-2",
-  ); 
+  );
   const date = useMemo(() => new Date(), []);
 
   const uniqueSkills = useMemo(() => {
@@ -109,12 +110,8 @@ const MentorsTable = ({ data }: MentorTableProps) => {
   }
 
   return (
-    <div
-      className={outerDivStyles}
-    >
-      <div
-        className={innerDivStyles}
-      >
+    <div className={outerDivStyles}>
+      <div className={innerDivStyles}>
         <div className="relative inline-block text-left">
           <button
             className="py-2 px-4 min-w-[140px] transition-transform duration-300 transform scale-100 hover:scale-[102%] rounded-xl font-NeulisNeue-Bold text-[20px] bg-[#2E5B9A] text-white flex items-center justify-between gap-2"

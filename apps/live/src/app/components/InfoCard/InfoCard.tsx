@@ -18,7 +18,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
 }) => {
   return (
     <div
-      className={`relative w-${size} rounded-2xl bg-carouselCreamLight shadow-md overflow-hidden`}
+      className={`relative w-${size} h-auto py-8 rounded-2xl bg-carouselCreamLight shadow-md overflow-hidden`}
     >
       <div className="relative" style={{ paddingTop: `${(157 / 277) * 100}%` }}>
         {/* Content */}
