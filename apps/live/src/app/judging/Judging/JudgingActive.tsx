@@ -89,14 +89,20 @@ export default function JudgingActive(): React.ReactNode {
           <div className="flex justify-center gap-24">
             <InfoCard
               heading="Charlestown"
-              text={locationMapSorted["Charlestown"] || ["No judging info available"]}
+              text={
+                locationMapSorted["Charlestown"] || [
+                  "No judging info available",
+                ]
+              }
               icon={ItemName.CottonCandy}
               size="[30vw]"
             />
             <InfoCard
               heading="South Boston"
               text={
-                locationMapSorted["South Boston"] || ["No judging info available"]
+                locationMapSorted["South Boston"] || [
+                  "No judging info available",
+                ]
               }
               icon={ItemName.Popcorn}
               size="[30vw]"
@@ -108,7 +114,9 @@ export default function JudgingActive(): React.ReactNode {
       <div className="absolute left-1/2 -translate-x-1/2 top-[55%] z-10 flex justify-center gap-6">
         <InfoCard
           heading="Beacon Hill"
-          text={locationMapSorted["Beacon Hill"] || ["No judging info available"]}
+          text={
+            locationMapSorted["Beacon Hill"] || ["No judging info available"]
+          }
           icon={ItemName.HotDog}
           size="[30vw]"
         />
