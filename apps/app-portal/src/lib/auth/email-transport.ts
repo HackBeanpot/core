@@ -1,0 +1,1 @@
+//Nodemailer transport stub for magic-link emails

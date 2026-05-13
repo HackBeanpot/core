@@ -1,3 +1,4 @@
+//magic-link email entry form
 import React from "react";
 
 export default function Page(): JSX.Element {

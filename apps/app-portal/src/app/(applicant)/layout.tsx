@@ -1,0 +1,1 @@
+//applicant shell (header, user menu); placeholder session check

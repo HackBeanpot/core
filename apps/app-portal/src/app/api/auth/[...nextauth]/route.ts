@@ -1,0 +1,1 @@
+//NextAuth handler, email provider + Mongo adapter wired up

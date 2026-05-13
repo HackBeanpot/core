@@ -1,3 +1,4 @@
+//"Check your email" confirmation screen
 import React from "react";
 
 export default function Page(): JSX.Element {
