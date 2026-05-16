@@ -1,8 +1,23 @@
-export type ApplicationStatus = "not-started" | "incomplete" | "submitted";
+export const APPLICATION_STATUSES = [
+  "not-started",
+  "incomplete",
+  "submitted",
+] as const;
+export const DECISION_STATUSES = [
+  "pending",
+  "admitted",
+  "waitlisted",
+  "declined",
+] as const;
+export const RSVP_STATUSES = [
+  "unconfirmed",
+  "confirmed",
+  "not-attending",
+] as const;
 
-export type DecisionStatus = "pending" | "admitted" | "waitlisted" | "declined";
-
-export type RsvpStatus = "unconfirmed" | "confirmed" | "not-attending";
+export type ApplicationStatus = (typeof APPLICATION_STATUSES)[number];
+export type DecisionStatus = (typeof DECISION_STATUSES)[number];
+export type RsvpStatus = (typeof RSVP_STATUSES)[number];
 
 export interface PortalUser {
   email: string;
