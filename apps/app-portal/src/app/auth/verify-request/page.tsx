@@ -1,6 +1,6 @@
+//"Check your email" confirmation screen
 import React from "react";
 
 export default function Page(): JSX.Element {
-  return <>poop</>;
+  return <>hay is for horses</>;
 }
-//TODO: update to redirect authed users to /dashboard
