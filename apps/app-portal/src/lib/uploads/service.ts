@@ -1,17 +1,11 @@
 // createSignedUploadUrl()
 
-export function createSignedUploadUrl() : void {
-    
-}
+export function createSignedUploadUrl(): void {}
 
 // createSignedDownloadUrl()
 
-export function createSignedDownloadUrl() : void {
-
-}
+export function createSignedDownloadUrl(): void {}
 
 // recordUpload()
 
-export function recordUpload() : void {
-
-}
+export function recordUpload(): void {}

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import * as React from "react";
-
+import PropTypes from "prop-types";
 import { cn } from "@/lib/utils";
 
 export type InputProps = React.ComponentProps<"input">;
@@ -21,5 +21,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   },
 );
 Input.displayName = "Input";
+Input.propTypes = {
+  type: PropTypes.string,
+  className: PropTypes.string,
+};
 
 export { Input };

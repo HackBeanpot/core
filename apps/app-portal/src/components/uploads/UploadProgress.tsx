@@ -1,11 +1,7 @@
+import React from "react";
+
 // progress bar during upload
 
-interface UploadProgressProps {
-    // add progress number later
-}
-
-export default function UploadProgress() {
-    return (
-        <></>
-    );
+export default function UploadProgress(): JSX.Element {
+  return <></>;
 }

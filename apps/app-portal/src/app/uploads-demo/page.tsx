@@ -4,5 +4,5 @@ import FileUpload from "@/components/uploads/FileUpload";
 import React from "react";
 
 export default function Page(): JSX.Element {
-    return <FileUpload />;
+  return <FileUpload />;
 }
