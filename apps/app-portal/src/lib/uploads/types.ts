@@ -1,17 +1,11 @@
 // UploadRecord
 
-export function uploadRecord() : void {
-
-}
+export function uploadRecord(): void {}
 
 // SignUploadRequest
 
-export function signUploadRequest() : void {
-
-}
+export function signUploadRequest(): void {}
 
 // SignUploadResponse
 
-export function signUploadResponse() : void {
-    
-}
+export function signUploadResponse(): void {}

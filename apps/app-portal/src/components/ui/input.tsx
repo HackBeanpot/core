@@ -23,7 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 Input.displayName = "Input";
 Input.propTypes = {
   type: PropTypes.string,
-  className: PropTypes.string
-}
+  className: PropTypes.string,
+};
 
 export { Input };
