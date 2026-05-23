@@ -90,9 +90,17 @@ const MOCK_APPLICANTS: ApplicantDetail[] = [
 ];
 
 function toSummary(detail: ApplicantDetail): ApplicantSummary {
+  const first = detail.applicationResponses?.["firstName"];
+  const last = detail.applicationResponses?.["lastName"];
+  const name =
+    first || last
+      ? [first, last].filter(Boolean).join(" ")
+      : undefined;
+
   return {
     id: detail.id,
     email: detail.email,
+    name,
     applicationStatus: detail.applicationStatus,
     decisionStatus: detail.decisionStatus,
     rsvpStatus: detail.rsvpStatus,

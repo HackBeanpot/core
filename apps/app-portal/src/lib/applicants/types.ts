@@ -11,6 +11,7 @@ import type {
 export interface ApplicantSummary {
   id: string;
   email: string;
+  name?: string;
   applicationStatus: ApplicationStatus;
   decisionStatus?: DecisionStatus;
   rsvpStatus: RsvpStatus;

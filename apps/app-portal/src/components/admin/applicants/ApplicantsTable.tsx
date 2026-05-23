@@ -30,6 +30,11 @@ interface ApplicantsTableProps {
 
 const columns: ColumnDef<ApplicantSummary>[] = [
   {
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => row.original.name ?? "—",
+  },
+  {
     accessorKey: "email",
     header: ({ column }) => (
       <Button
