@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import {
   ColumnDef,
@@ -69,22 +69,11 @@ const columns: ColumnDef<ApplicantSummary>[] = [
         ? new Date(row.original.appSubmissionTime).toLocaleDateString()
         : "—",
   },
-  {
-    id: "actions",
-    header: "",
-    cell: ({ row }) => (
-      <Link
-        href={`/admin/applicants/${row.original.id}`}
-        className="text-sm font-medium underline"
-      >
-        View
-      </Link>
-    ),
-  },
 ];
 
 export function ApplicantsTable({ rows }: ApplicantsTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const router = useRouter();
 
   const table = useReactTable({
     data: rows,
@@ -129,7 +118,14 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
               </TableRow>
             ) : (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow
+                  key={row.id}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    if (window.getSelection()?.toString()) return;
+                    router.push(`/admin/applicants/${row.original.id}`);
+                  }}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
