@@ -23,6 +23,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { ApplicantSummary } from "@/lib/applicants/types";
+import { Input } from "@/components/ui/input";
 
 interface ApplicantsTableProps {
   rows: ApplicantSummary[];
@@ -140,7 +141,7 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end gap-2">
+      <div className="flex items-center justify-end gap-3">
         <Button
           variant="outline"
           size="sm"
@@ -149,6 +150,29 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
         >
           Previous
         </Button>
+        <div className="flex items-center gap-1">
+          <Input
+            className="w-10 h-auto m-0 p-1 text-center"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            value={table.getState().pagination.pageIndex + 1}
+            onChange={(e) => {
+              const raw = e.target.value;
+              if (raw === "") {
+                table.setPageIndex(0);
+                return;
+              }
+              if (!/^\d+$/.test(raw)) return;
+
+              const parsed = Number.parseInt(raw, 10);
+              const lastIndex = Math.max(0, table.getPageCount() - 1);
+              const clamped = Math.min(Math.max(parsed - 1, 0), lastIndex);
+              table.setPageIndex(clamped);
+            }}
+          />
+          <div>of {table.getPageCount()}</div>
+        </div>
         <Button
           variant="outline"
           size="sm"
