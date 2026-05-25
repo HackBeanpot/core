@@ -3,6 +3,7 @@
 import React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -40,6 +41,19 @@ export function ApplicantsFilters() {
   const status = searchParams.get("status") ?? ALL;
   const decision = searchParams.get("decision") ?? ALL;
   const rsvp = searchParams.get("rsvp") ?? ALL;
+
+  const hasActiveFilters = status !== ALL || decision !== ALL || rsvp !== ALL;
+
+  const clearFilters = () => {
+    const next = new URLSearchParams(searchParams.toString());
+    next.delete("status");
+    next.delete("decision");
+    next.delete("rsvp");
+    const query = next.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
+  };
 
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -83,6 +97,11 @@ export function ApplicantsFilters() {
           ))}
         </SelectContent>
       </Select>
+      {hasActiveFilters && (
+        <Button variant="outline" size="sm" onClick={clearFilters}>
+          Clear filters
+        </Button>
+      )}
     </div>
   );
 }

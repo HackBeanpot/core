@@ -34,7 +34,15 @@ interface ApplicantsTableProps {
 const columns: ColumnDef<ApplicantSummary>[] = [
   {
     accessorKey: "name",
-    header: "Name",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Name <ArrowUpDown className="ml-2 h-3 w-3" />
+      </Button>
+    ),
     cell: ({ row }) => row.original.name ?? "—",
   },
   {
@@ -80,7 +88,9 @@ const columns: ColumnDef<ApplicantSummary>[] = [
 ];
 
 export function ApplicantsTable({ rows }: ApplicantsTableProps) {
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>([
+    { id: "appSubmissionTime", desc: true },
+  ]);
   const router = useRouter();
   const searchParams = useSearchParams();
 
