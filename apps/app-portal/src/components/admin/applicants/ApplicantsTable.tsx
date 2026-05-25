@@ -1,10 +1,12 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useMemo } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
+  OnChangeFn,
+  PaginationState,
   SortingState,
   flexRender,
   getCoreRowModel,
@@ -87,11 +89,12 @@ const columns: ColumnDef<ApplicantSummary>[] = [
   },
 ];
 
+const PAGE_SIZE = 25;
+const DEFAULT_SORT: SortingState = [{ id: "appSubmissionTime", desc: true }];
+
 export function ApplicantsTable({ rows }: ApplicantsTableProps) {
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: "appSubmissionTime", desc: true },
-  ]);
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const columnFilters: ColumnFiltersState = useMemo(() => {
@@ -105,16 +108,67 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
     return filters;
   }, [searchParams]);
 
+  const sorting: SortingState = useMemo(() => {
+    const sort = searchParams.get("sort");
+    if (!sort) return DEFAULT_SORT;
+    const [id, dir] = sort.split(".");
+    if (!id) return DEFAULT_SORT;
+    return [{ id, desc: dir === "desc" }];
+  }, [searchParams]);
+
+  const pagination: PaginationState = useMemo(() => {
+    const page = searchParams.get("page");
+    const parsed = page ? Number.parseInt(page, 10) : 1;
+    const pageIndex = Number.isFinite(parsed) && parsed > 0 ? parsed - 1 : 0;
+    return { pageIndex, pageSize: PAGE_SIZE };
+  }, [searchParams]);
+
+  const writeParams = (mutate: (p: URLSearchParams) => void) => {
+    const next = new URLSearchParams(searchParams.toString());
+    mutate(next);
+    const query = next.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
+  };
+
+  const onSortingChange: OnChangeFn<SortingState> = (updater) => {
+    const nextSorting =
+      typeof updater === "function" ? updater(sorting) : updater;
+    writeParams((p) => {
+      const s = nextSorting[0];
+      if (!s) {
+        p.delete("sort");
+      } else {
+        p.set("sort", `${s.id}.${s.desc ? "desc" : "asc"}`);
+      }
+      p.delete("page");
+    });
+  };
+
+  const onPaginationChange: OnChangeFn<PaginationState> = (updater) => {
+    const nextPagination =
+      typeof updater === "function" ? updater(pagination) : updater;
+    writeParams((p) => {
+      if (nextPagination.pageIndex <= 0) {
+        p.delete("page");
+      } else {
+        p.set("page", String(nextPagination.pageIndex + 1));
+      }
+    });
+  };
+
   const table = useReactTable({
     data: rows,
     columns,
-    state: { sorting, columnFilters },
-    onSortingChange: setSorting,
+    state: { sorting, columnFilters, pagination },
+    onSortingChange,
+    onPaginationChange,
+    autoResetPageIndex: false,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    initialState: { pagination: { pageSize: 25 } },
   });
 
   return (
@@ -154,7 +208,11 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
                   className="cursor-pointer"
                   onClick={() => {
                     if (window.getSelection()?.toString()) return;
-                    router.push(`/admin/applicants/${row.original.id}`);
+                    const qs = searchParams.toString();
+                    const href = qs
+                      ? `/admin/applicants/${row.original.id}?from=${encodeURIComponent(qs)}`
+                      : `/admin/applicants/${row.original.id}`;
+                    router.push(href);
                   }}
                 >
                   {row.getVisibleCells().map((cell) => (

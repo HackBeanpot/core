@@ -32,6 +32,7 @@ export function ApplicantsFilters() {
     } else {
       next.set(key, value);
     }
+    next.delete("page");
     const query = next.toString();
     router.replace(query ? `${pathname}?${query}` : pathname, {
       scroll: false,
@@ -49,6 +50,7 @@ export function ApplicantsFilters() {
     next.delete("status");
     next.delete("decision");
     next.delete("rsvp");
+    next.delete("page");
     const query = next.toString();
     router.replace(query ? `${pathname}?${query}` : pathname, {
       scroll: false,
