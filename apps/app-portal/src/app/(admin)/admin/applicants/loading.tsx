@@ -1,21 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import { ApplicantsFilters } from "@/components/admin/applicants/ApplicantsFilters";
 import { ApplicantsTable } from "@/components/admin/applicants/ApplicantsTable";
 import { ExportButtons } from "@/components/admin/applicants/ExportButtons";
-import { listApplicants } from "@/lib/applicants/service";
 
-async function ApplicantsData() {
-  const { rows, total } = await listApplicants();
-  return (
-    <>
-      <p className="text-sm text-neutral-500">{total} total</p>
-      <ApplicantsTable rows={rows} />
-    </>
-  );
-}
-
-export default function ApplicantsPage() {
+export default function ApplicantsLoading() {
   return (
     <div className="space-y-6 p-6">
       <header className="flex items-center justify-between">
@@ -25,9 +14,7 @@ export default function ApplicantsPage() {
         <ExportButtons />
       </header>
       <ApplicantsFilters />
-      <Suspense fallback={<ApplicantsTable />}>
-        <ApplicantsData />
-      </Suspense>
+      <ApplicantsTable />
     </div>
   );
 }

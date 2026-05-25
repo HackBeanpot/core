@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,21 +21,26 @@ import {
 const ALL = "all";
 
 export function ApplicantsFilters() {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const setParam = (key: string, value: string) => {
+  const writeParams = (mutate: (p: URLSearchParams) => void) => {
     const next = new URLSearchParams(searchParams.toString());
-    if (!value || value === ALL) {
-      next.delete(key);
-    } else {
-      next.set(key, value);
-    }
-    next.delete("page");
+    mutate(next);
     const query = next.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname, {
-      scroll: false,
+    const url = query ? `${pathname}?${query}` : pathname;
+    // Bypass router.replace to avoid an RSC refetch — filter state is client-only.
+    window.history.replaceState(null, "", url);
+  };
+
+  const setParam = (key: string, value: string) => {
+    writeParams((p) => {
+      if (!value || value === ALL) {
+        p.delete(key);
+      } else {
+        p.set(key, value);
+      }
+      p.delete("page");
     });
   };
 
@@ -46,14 +51,11 @@ export function ApplicantsFilters() {
   const hasActiveFilters = status !== ALL || decision !== ALL || rsvp !== ALL;
 
   const clearFilters = () => {
-    const next = new URLSearchParams(searchParams.toString());
-    next.delete("status");
-    next.delete("decision");
-    next.delete("rsvp");
-    next.delete("page");
-    const query = next.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname, {
-      scroll: false,
+    writeParams((p) => {
+      p.delete("status");
+      p.delete("decision");
+      p.delete("rsvp");
+      p.delete("page");
     });
   };
 

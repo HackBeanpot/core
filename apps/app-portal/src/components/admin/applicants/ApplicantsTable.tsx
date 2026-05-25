@@ -30,8 +30,10 @@ import type { ApplicantSummary } from "@/lib/applicants/types";
 import { Input } from "@/components/ui/input";
 
 interface ApplicantsTableProps {
-  rows: ApplicantSummary[];
+  rows?: ApplicantSummary[];
 }
+
+const SKELETON_ROW_COUNT = 8;
 
 const columns: ColumnDef<ApplicantSummary>[] = [
   {
@@ -96,6 +98,7 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const isLoading = rows === undefined;
 
   const columnFilters: ColumnFiltersState = useMemo(() => {
     const filters: ColumnFiltersState = [];
@@ -127,9 +130,9 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
     const next = new URLSearchParams(searchParams.toString());
     mutate(next);
     const query = next.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname, {
-      scroll: false,
-    });
+    const url = query ? `${pathname}?${query}` : pathname;
+    // Bypass router.replace to avoid an RSC refetch — filter/sort/page state is client-only.
+    window.history.replaceState(null, "", url);
   };
 
   const onSortingChange: OnChangeFn<SortingState> = (updater) => {
@@ -159,7 +162,7 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
   };
 
   const table = useReactTable({
-    data: rows,
+    data: rows ?? [],
     columns,
     state: { sorting, columnFilters, pagination },
     onSortingChange,
@@ -192,7 +195,17 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.length === 0 ? (
+            {isLoading ? (
+              Array.from({ length: SKELETON_ROW_COUNT }).map((_, i) => (
+                <TableRow key={i}>
+                  {columns.map((_col, j) => (
+                    <TableCell key={j}>
+                      <div className="h-4 w-3/4 animate-pulse rounded bg-neutral-200" />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : table.getRowModel().rows.length === 0 ? (
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
@@ -234,7 +247,7 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
+          disabled={isLoading || !table.getCanPreviousPage()}
         >
           Previous
         </Button>
@@ -244,6 +257,7 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"
+            disabled={isLoading}
             value={table.getState().pagination.pageIndex + 1}
             onChange={(e) => {
               const raw = e.target.value;
@@ -259,13 +273,13 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
               table.setPageIndex(clamped);
             }}
           />
-          <div>of {table.getPageCount()}</div>
+          <div>of {isLoading ? "—" : table.getPageCount()}</div>
         </div>
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
+          disabled={isLoading || !table.getCanNextPage()}
         >
           Next
         </Button>
