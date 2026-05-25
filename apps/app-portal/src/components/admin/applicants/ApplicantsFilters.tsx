@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Input } from "@/components/ui/input";
 import {
@@ -10,17 +11,45 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { APPLICATION_STATUSES, DECISION_STATUSES } from "@/lib/types/user";
+import {
+  APPLICATION_STATUSES,
+  DECISION_STATUSES,
+  RSVP_STATUSES,
+} from "@/lib/types/user";
+
+const ALL = "all";
 
 export function ApplicantsFilters() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const setParam = (key: string, value: string) => {
+    const next = new URLSearchParams(searchParams.toString());
+    if (!value || value === ALL) {
+      next.delete(key);
+    } else {
+      next.set(key, value);
+    }
+    const query = next.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
+  };
+
+  const status = searchParams.get("status") ?? ALL;
+  const decision = searchParams.get("decision") ?? ALL;
+  const rsvp = searchParams.get("rsvp") ?? ALL;
+
   return (
     <div className="flex flex-wrap items-center gap-3">
       <Input placeholder="Search" className="max-w-xs" />
-      <Select>
+      <Select value={status} onValueChange={(v) => setParam("status", v)}>
         <SelectTrigger className="w-48">
           <SelectValue placeholder="Status" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value={ALL}>All statuses</SelectItem>
           {APPLICATION_STATUSES.map((s) => (
             <SelectItem key={s} value={s}>
               {s}
@@ -28,12 +57,26 @@ export function ApplicantsFilters() {
           ))}
         </SelectContent>
       </Select>
-      <Select>
+      <Select value={decision} onValueChange={(v) => setParam("decision", v)}>
         <SelectTrigger className="w-48">
           <SelectValue placeholder="Decision" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value={ALL}>All decisions</SelectItem>
           {DECISION_STATUSES.map((s) => (
+            <SelectItem key={s} value={s}>
+              {s}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <Select value={rsvp} onValueChange={(v) => setParam("rsvp", v)}>
+        <SelectTrigger className="w-48">
+          <SelectValue placeholder="RSVP" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value={ALL}>All RSVPs</SelectItem>
+          {RSVP_STATUSES.map((s) => (
             <SelectItem key={s} value={s}>
               {s}
             </SelectItem>

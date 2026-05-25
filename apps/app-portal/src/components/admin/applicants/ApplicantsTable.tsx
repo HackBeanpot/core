@@ -1,12 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useMemo, useState } from "react";
 import {
   ColumnDef,
+  ColumnFiltersState,
   SortingState,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
@@ -47,13 +49,18 @@ const columns: ColumnDef<ApplicantSummary>[] = [
       </Button>
     ),
   },
-  { accessorKey: "applicationStatus", header: "Application" },
+  {
+    accessorKey: "applicationStatus",
+    header: "Application",
+    filterFn: "equalsString",
+  },
   {
     accessorKey: "decisionStatus",
     header: "Decision",
     cell: ({ row }) => row.original.decisionStatus ?? "—",
+    filterFn: "equalsString",
   },
-  { accessorKey: "rsvpStatus", header: "RSVP" },
+  { accessorKey: "rsvpStatus", header: "RSVP", filterFn: "equalsString" },
   {
     accessorKey: "appSubmissionTime",
     header: ({ column }) => (
@@ -75,14 +82,27 @@ const columns: ColumnDef<ApplicantSummary>[] = [
 export function ApplicantsTable({ rows }: ApplicantsTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const columnFilters: ColumnFiltersState = useMemo(() => {
+    const filters: ColumnFiltersState = [];
+    const status = searchParams.get("status");
+    const decision = searchParams.get("decision");
+    const rsvp = searchParams.get("rsvp");
+    if (status) filters.push({ id: "applicationStatus", value: status });
+    if (decision) filters.push({ id: "decisionStatus", value: decision });
+    if (rsvp) filters.push({ id: "rsvpStatus", value: rsvp });
+    return filters;
+  }, [searchParams]);
 
   const table = useReactTable({
     data: rows,
     columns,
-    state: { sorting },
+    state: { sorting, columnFilters },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: { pagination: { pageSize: 25 } },
   });
