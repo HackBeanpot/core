@@ -5,6 +5,7 @@ import React, { useMemo } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
+  FilterFn,
   OnChangeFn,
   PaginationState,
   SortingState,
@@ -94,11 +95,23 @@ const columns: ColumnDef<ApplicantSummary>[] = [
 const PAGE_SIZE = 25;
 const DEFAULT_SORT: SortingState = [{ id: "appSubmissionTime", desc: true }];
 
+const nameEmailFilter: FilterFn<ApplicantSummary> = (row, _columnId, value) => {
+  const q = String(value ?? "")
+    .trim()
+    .toLowerCase();
+  if (!q) return true;
+  const name = row.original.name?.toLowerCase() ?? "";
+  const email = row.original.email.toLowerCase();
+  return name.includes(q) || email.includes(q);
+};
+
 export function ApplicantsTable({ rows }: ApplicantsTableProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const isLoading = rows === undefined;
+
+  const globalFilter = searchParams.get("q") ?? "";
 
   const columnFilters: ColumnFiltersState = useMemo(() => {
     const filters: ColumnFiltersState = [];
@@ -164,9 +177,10 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
   const table = useReactTable({
     data: rows ?? [],
     columns,
-    state: { sorting, columnFilters, pagination },
+    state: { sorting, columnFilters, globalFilter, pagination },
     onSortingChange,
     onPaginationChange,
+    globalFilterFn: nameEmailFilter,
     autoResetPageIndex: false,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),

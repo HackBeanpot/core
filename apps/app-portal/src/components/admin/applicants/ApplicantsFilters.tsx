@@ -44,14 +44,17 @@ export function ApplicantsFilters() {
     });
   };
 
+  const q = searchParams.get("q") ?? "";
   const status = searchParams.get("status") ?? ALL;
   const decision = searchParams.get("decision") ?? ALL;
   const rsvp = searchParams.get("rsvp") ?? ALL;
 
-  const hasActiveFilters = status !== ALL || decision !== ALL || rsvp !== ALL;
+  const hasActiveFilters =
+    q !== "" || status !== ALL || decision !== ALL || rsvp !== ALL;
 
   const clearFilters = () => {
     writeParams((p) => {
+      p.delete("q");
       p.delete("status");
       p.delete("decision");
       p.delete("rsvp");
@@ -61,7 +64,12 @@ export function ApplicantsFilters() {
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <Input placeholder="Search" className="max-w-xs" />
+      <Input
+        placeholder="Search name or email"
+        className="max-w-xs"
+        value={q}
+        onChange={(e) => setParam("q", e.target.value)}
+      />
       <Select value={status} onValueChange={(v) => setParam("status", v)}>
         <SelectTrigger className="w-48">
           <SelectValue placeholder="Status" />
