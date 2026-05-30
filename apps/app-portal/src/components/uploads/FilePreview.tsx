@@ -45,13 +45,13 @@ export default function FilePreview({
       <div className="flex gap-3">
         <button
           onClick={onReplace}
-          className="text-sm text-starlightBlue bg-ribbonBlue px-3 py-1 rounded-md hover:opacity-80"
+          className="text-sm text-starlightBlue bg-ribbonBlue px-4 py-2 rounded-md hover:opacity-80"
         >
           Replace
         </button>
         <button
           onClick={onRemove}
-          className="text-sm text-black bg-firecrackerRedLight px-3 py-1 rounded-md hover:opacity-80"
+          className="text-sm text-black bg-firecrackerRedLight px-4 py-2 rounded-md hover:opacity-80"
         >
           Remove
         </button>
