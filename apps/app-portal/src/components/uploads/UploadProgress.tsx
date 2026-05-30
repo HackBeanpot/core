@@ -18,7 +18,7 @@ export default function UploadProgress({
     totalBytes !== 0 ? Math.round((transferredBytes / totalBytes) * 100) : 0;
 
   return (
-    <div className="flex flex-col p-4 justify-center">
+    <div className="flex flex-col p-4 justify-center w-full max-w-md">
       <div className="w-full bg-heather rounded-full h-2">
         <div
           className="bg-starlightBlue h-2 rounded-full transition-all duration-300"

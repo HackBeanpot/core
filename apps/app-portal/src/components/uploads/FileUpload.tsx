@@ -109,7 +109,7 @@ export default function FileUpload({
   );
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-8">
+    <div className="p-8">
       {uploadedFile === null && !isUploading && (
         <div
           {...getRootProps()}

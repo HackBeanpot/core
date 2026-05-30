@@ -8,7 +8,7 @@ export default function Page(): JSX.Element {
   const [fileName, setFileName] = useState<string | null>(null);
 
   return (
-    <div>
+    <div className="flex min-h-screen flex-col items-center justify-center p-8">
       <FileUpload
         onUploadComplete={(id, fileName) => {
           setUploadId(id);
@@ -20,13 +20,18 @@ export default function Page(): JSX.Element {
         }}
       />
       {uploadId !== null && (
-        <div>
-          <p>Upload ID: {uploadId}</p>
-          <p>File Name: {fileName}</p>
+        <div className="max-w-md mx-auto mt-4 p-4 border border-heather rounded-lg">
+          <p className="text-sm text-gray-600">
+            <span className="font-medium">Upload ID:</span> {uploadId}
+          </p>
+          <p className="text-sm text-gray-600 mt-1">
+            <span className="font-medium">File Name:</span> {fileName}
+          </p>
           <button
             onClick={async () => {
               // TODO: handle download URL response
             }}
+            className="mt-3 px-4 py-2 bg-starlightBlue text-white text-sm rounded-md hover:opacity-80 transition-opacity"
           >
             Download file
           </button>

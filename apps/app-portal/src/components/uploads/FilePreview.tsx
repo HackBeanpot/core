@@ -32,7 +32,7 @@ export default function FilePreview({
     (MIME_TYPE_ICONS as Record<string, React.ElementType>)[mimeType] ??
     DEFAULT_ICON;
   return (
-    <div className="flex items-center justify-between p-4 w-full max-w-md">
+    <div className="flex items-center justify-between p-4 w-full max-w-md gap-8">
       <div className="flex items-center gap-3">
         <Icon className="size-6 shrink-0 text-starlightBlue" />
         <div className="flex flex-col">
