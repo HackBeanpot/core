@@ -37,6 +37,7 @@ export default function FileUpload({
     async (acceptedFiles: File[]) => {
       setTransferredBytes(0);
       setTotalBytes(0);
+      if (acceptedFiles.length === 0) return;
       const firstFile = acceptedFiles[0];
 
       const res = await fetch("/api/v1/uploads/sign", {
