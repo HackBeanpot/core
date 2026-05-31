@@ -391,6 +391,7 @@ export async function updateApplicant(
   id: string,
   update: ApplicantUpdate,
 ): Promise<ApplicantDetail> {
+  await new Promise((resolve) => setTimeout(resolve, 500));
   throw new Error(
     `Not implemented: updateApplicant(${id}, ${JSON.stringify(update)})`,
   );
