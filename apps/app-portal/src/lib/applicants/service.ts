@@ -14,6 +14,7 @@ const MOCK_APPLICANTS: ApplicantDetail[] = [
     rsvpStatus: "confirmed",
     appSubmissionTime: "2026-02-12T14:03:00.000Z",
     rsvpSubmissionTime: "2026-03-01T18:22:00.000Z",
+    resume: { id: "mock-upload-001", filename: "ada-lovelace-resume.pdf" },
     applicationResponses: {
       firstName: "Ada",
       lastName: "Lovelace",
@@ -94,6 +95,7 @@ const MOCK_APPLICANTS: ApplicantDetail[] = [
     decisionStatus: "admitted",
     rsvpStatus: "confirmed",
     appSubmissionTime: "2026-02-09T10:00:00.000Z",
+    resume: { id: "mock-upload-002", filename: "tim-berners-lee-resume.pdf" },
     applicationResponses: {
       firstName: "Tim",
       lastName: "Berners-Lee",
@@ -230,6 +232,7 @@ const MOCK_APPLICANTS: ApplicantDetail[] = [
     decisionStatus: "admitted",
     rsvpStatus: "confirmed",
     appSubmissionTime: "2026-02-07T08:15:00.000Z",
+    resume: { id: "mock-upload-003", filename: "ken-thompson-resume.pdf" },
     applicationResponses: {
       firstName: "Ken",
       lastName: "Thompson",
@@ -373,6 +376,7 @@ function toSummary(detail: ApplicantDetail): ApplicantSummary {
 }
 
 export async function listApplicants(): Promise<ApplicantListResult> {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const rows = MOCK_APPLICANTS.map(toSummary);
   return { rows, total: rows.length, page: 1, pageSize: rows.length };
 }

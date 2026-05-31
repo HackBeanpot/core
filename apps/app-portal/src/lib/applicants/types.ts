@@ -18,10 +18,16 @@ export interface ApplicantSummary {
   appSubmissionTime?: string;
 }
 
+export interface UploadedFile {
+  id: string;
+  filename: string;
+}
+
 export interface ApplicantDetail extends ApplicantSummary {
   applicationResponses?: ApplicationResponse;
   postAcceptanceResponses?: PostAcceptanceResponse;
   rsvpSubmissionTime?: string;
+  resume?: UploadedFile;
 }
 
 export interface ApplicantFilters {
