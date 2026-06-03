@@ -25,12 +25,7 @@ export default function WaitlistedView({
           </p>
         </div>
       }
-      description={
-        <>
-          You&apos;re on the waitlist. That means we liked your application and
-          are keeping you in mind as spots open up.
-        </>
-      }
+      description={<>You&apos;re on the waitlist.</>}
       eyebrow="Waitlist update"
       secondaryAction={
         <Link className={secondaryActionClass} href="/dashboard">

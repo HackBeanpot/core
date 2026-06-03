@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
-import { formatLongDate } from "../../lib/status/format";
+//import { formatLongDate } from "../../lib/status/format";
 import {
-  primaryActionClass,
+  //primaryActionClass,
   secondaryActionClass,
   statCardClass,
 } from "./styles";
@@ -29,27 +29,15 @@ export default function SubmittedView({
             What happens next
           </p>
           <p>
-            The team is reviewing applications and will share decisions on{" "}
-            {formatLongDate(decisionDates.showDecision)}.
+            The team is reviewing applications and will share decisions on XXX.
           </p>
-          <p>
-            Keep an eye on your inbox. When decisions are live, this page will
-            switch over automatically.
-          </p>
+          <p>Keep an eye on your inbox.</p>
         </div>
       }
-      description={
-        <>
-          We&apos;ve received your application and you&apos;re officially in the
-          review queue.
-        </>
-      }
+      description={<>We&apos;ve received your application!</>}
       eyebrow="Application submitted"
       primaryAction={
-        <Link
-          className={primaryActionClass}
-          href={isRegistrationOpen ? "/application" : "/dashboard"}
-        >
+        <Link className="text-blue-600 font-semibold hover:underline" href="/">
           {isRegistrationOpen ? "Edit application" : "Back to dashboard"}
         </Link>
       }
@@ -62,10 +50,7 @@ export default function SubmittedView({
     >
       <div className={statCardClass}>
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
-          Review date
-        </p>
-        <p className="mt-2 text-2xl font-semibold text-slate-950">
-          {formatLongDate(decisionDates.showDecision)}
+          Review date: XXX
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
           {status.rsvpStatus === "submitted"

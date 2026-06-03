@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
-import { formatLongDate } from "../../lib/status/format";
+//import { formatLongDate } from "../../lib/status/format";
 import {
-  primaryActionClass,
+  //primaryActionClass,
   secondaryActionClass,
   statCardClass,
 } from "./styles";
@@ -16,7 +16,7 @@ type AdmittedViewProps = {
 
 export default function AdmittedView({
   status,
-  decisionDates,
+  //decisionDates,
 }: AdmittedViewProps): JSX.Element {
   return (
     <PortalShell
@@ -25,25 +25,21 @@ export default function AdmittedView({
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
             Confirm-by window
           </p>
-          <p>
-            RSVP before {formatLongDate(decisionDates.confirmBy)} to hold your
-            spot.
-          </p>
-          <p>
-            This is the branch where admitted applicants get a clear and urgent
-            next step.
-          </p>
+          <p>RSVP before XXX to hold your spot.</p>
+          <p>Next steps</p>
         </div>
       }
       description={
         <>
-          You&apos;re in. Celebrate for a second, then hop over to RSVP so we
-          can finalize your attendance details.
+          You&apos;re in. Go to RSVP so we can finalize your attendance details.
         </>
       }
       eyebrow="Admission decision"
       primaryAction={
-        <Link className={primaryActionClass} href="/rsvp">
+        <Link
+          className="text-blue-600 font-semibold hover:underline"
+          href="/rsvp"
+        >
           RSVP now
         </Link>
       }

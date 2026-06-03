@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
 import {
-  primaryActionClass,
+  //primaryActionClass,
   secondaryActionClass,
   statCardClass,
 } from "./styles";
@@ -23,13 +23,13 @@ export default function DeclinedView(): JSX.Element {
       }
       description={
         <>
-          We&apos;re sorry this cycle didn&apos;t work out. We appreciate your
-          interest and hope you&apos;ll stay in the orbit for future events.
+          We appreciate your interest and hope you&apos;ll stay in the orbit for
+          future events.
         </>
       }
       eyebrow="Decision update"
       primaryAction={
-        <Link className={primaryActionClass} href="/">
+        <Link className="text-blue-600 font-semibold hover:underline" href="/">
           Join the mailing list
         </Link>
       }

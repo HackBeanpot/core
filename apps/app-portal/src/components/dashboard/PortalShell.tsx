@@ -38,7 +38,7 @@ export default function PortalShell({
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
+        <div className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-[0_28px_80px_rgba(148,163,184,0.24)] backdrop-blur sm:p-8">
             <div className="space-y-8">{children}</div>
             {(primaryAction || secondaryAction) && (
@@ -50,7 +50,7 @@ export default function PortalShell({
           </div>
 
           {aside ? (
-            <aside className="rounded-[2rem] border border-slate-200/80 bg-slate-950 p-6 text-white shadow-[0_28px_80px_rgba(15,23,42,0.2)] sm:p-8">
+            <aside className="rounded-[2rem] border border-slate-200/80 bg-slate-950 p-6 text-slate-100 shadow-[0_28px_80px_rgba(15,23,42,0.2)] sm:p-8">
               {aside}
             </aside>
           ) : (
