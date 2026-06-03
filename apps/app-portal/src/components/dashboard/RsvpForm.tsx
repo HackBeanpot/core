@@ -22,6 +22,7 @@ type RsvpFormValues = z.infer<typeof rsvpSchema>;
 
 type RsvpFormProps = {
   confirmBy: string;
+  inverted?: boolean;
 };
 
 const sizeOptions = [
@@ -32,7 +33,7 @@ const sizeOptions = [
   { value: "xl", label: "XL" },
 ] as const;
 
-export default function RsvpForm({ confirmBy }: RsvpFormProps): JSX.Element {
+export default function RsvpForm({ confirmBy, inverted = false }: RsvpFormProps): JSX.Element {
   const router = useRouter();
   const [toast, setToast] = React.useState<{
     type: "success" | "error";
@@ -40,7 +41,11 @@ export default function RsvpForm({ confirmBy }: RsvpFormProps): JSX.Element {
   } | null>(null);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<RsvpFormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RsvpFormValues>({
     resolver: zodResolver(rsvpSchema),
     defaultValues: {
       attending: "yes",
@@ -117,7 +122,7 @@ export default function RsvpForm({ confirmBy }: RsvpFormProps): JSX.Element {
 
       <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-5 sm:grid-cols-2">
-          <label className="space-y-2 text-sm font-medium text-slate-700">
+          <label className={`space-y-2 text-sm font-medium ${inverted ? 'text-white' : 'text-slate-700'}`}>
             <span>Are you attending?</span>
             <select
               className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-950"
@@ -127,11 +132,13 @@ export default function RsvpForm({ confirmBy }: RsvpFormProps): JSX.Element {
               <option value="no">No, I can’t make it</option>
             </select>
             {errors.attending && (
-              <p className="text-sm text-rose-600">{errors.attending.message}</p>
+              <p className="text-sm text-rose-600">
+                {errors.attending.message}
+              </p>
             )}
           </label>
 
-          <label className="space-y-2 text-sm font-medium text-slate-700">
+          <label className={`space-y-2 text-sm font-medium ${inverted ? 'text-white' : 'text-slate-700'}`}>
             <span>T-shirt size</span>
             <select
               className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-950"
@@ -144,12 +151,14 @@ export default function RsvpForm({ confirmBy }: RsvpFormProps): JSX.Element {
               ))}
             </select>
             {errors.tshirtSize && (
-              <p className="text-sm text-rose-600">{errors.tshirtSize.message}</p>
+              <p className="text-sm text-rose-600">
+                {errors.tshirtSize.message}
+              </p>
             )}
           </label>
         </div>
 
-        <label className="space-y-2 text-sm font-medium text-slate-700">
+        <label className={`space-y-2 text-sm font-medium ${inverted ? 'text-white' : 'text-slate-700'}`}>
           <span>Dietary restrictions</span>
           <input
             className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
@@ -159,7 +168,7 @@ export default function RsvpForm({ confirmBy }: RsvpFormProps): JSX.Element {
           />
         </label>
 
-        <label className="space-y-2 text-sm font-medium text-slate-700">
+        <label className={`space-y-2 text-sm font-medium ${inverted ? 'text-white' : 'text-slate-700'}`}>
           <span>Accessibility needs</span>
           <textarea
             className="min-h-28 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
@@ -168,7 +177,7 @@ export default function RsvpForm({ confirmBy }: RsvpFormProps): JSX.Element {
           />
         </label>
 
-        <label className="space-y-2 text-sm font-medium text-slate-700">
+        <label className={`space-y-2 text-sm font-medium ${inverted ? 'text-white' : 'text-slate-700'}`}>
           <span>Additional notes</span>
           <textarea
             className="min-h-28 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
