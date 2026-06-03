@@ -4,16 +4,40 @@ import type { StatsPayload } from "./types";
 export async function getStats(): Promise<StatsPayload> {
   return {
     metrics: [
-      { label: "Total Applications", value: 412, delta: 38 },
-      { label: "Submitted", value: 287, delta: 24 },
-      { label: "Admitted", value: 142, delta: 12 },
-      { label: "Confirmed", value: 96, delta: 8 },
+      {
+        label: "Total Applications",
+        value: 412,
+        delta: 38,
+        description: "Everyone who has started their application.",
+      },
+      {
+        label: "Submitted",
+        value: 287,
+        delta: 24,
+        description: "Applications fully submitted and ready for review.",
+      },
+      {
+        label: "Admitted",
+        value: 142,
+        delta: -12,
+        description: "Applicants who have received an admit decision.",
+      },
+      {
+        label: "RSVP'd",
+        value: 96,
+        delta: 8,
+        description: "Admitted applicants who have confirmed they'll attend.",
+      },
     ],
     statusBreakdown: {
       application: [
         { status: "not-started", count: 60 },
         { status: "incomplete", count: 65 },
         { status: "submitted", count: 287 },
+        { status: "under-review", count: 48 },
+        { status: "withdrawn", count: 22 },
+        { status: "expired", count: 14 },
+        { status: "deferred", count: 9 },
       ],
       decision: [
         { status: "pending", count: 145 },

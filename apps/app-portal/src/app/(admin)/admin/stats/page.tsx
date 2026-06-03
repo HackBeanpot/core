@@ -7,5 +7,7 @@ export const dynamic = "force-dynamic"; // render on every request
 
 export default async function StatsPage(): Promise<JSX.Element> {
   const payload = await getStats();
-  return <StatsDashboard payload={payload} />;
+  return (
+    <StatsDashboard payload={payload} generatedAt={new Date().toISOString()} />
+  );
 }

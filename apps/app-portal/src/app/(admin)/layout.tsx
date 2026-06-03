@@ -1,7 +1,11 @@
 import React from "react";
 import Link from "next/link";
 
-export default function AdminLayout() {
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element {
   return (
     <div className="flex min-h-screen">
       <aside className="w-64 border-r p-4">
@@ -19,6 +23,7 @@ export default function AdminLayout() {
         <header className="border-b p-4">
           <h1 className="text-xl font-semibold">Admin Portal</h1>
         </header>
+        {children}
       </main>
     </div>
   );

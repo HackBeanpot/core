@@ -29,7 +29,7 @@ export default async function ApplicantDetailPage({ params }: PageProps) {
 
       <ApplicantDetail applicant={applicant} />
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 grid-cols-2 mobile:grid-cols-1 mobile-xl:grid-cols-1">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Edit decision</CardTitle>

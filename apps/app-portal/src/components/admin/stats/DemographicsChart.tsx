@@ -33,6 +33,38 @@ const config: ChartConfig = {
   },
 };
 
+// splits a long label into two balanced lines on a word boundary
+function splitLabel(label: string): [string, string?] {
+  const words = label.split(" ");
+  if (words.length < 2) return [label];
+
+  const mid = Math.ceil(words.length / 2);
+  return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
+}
+
+interface TickProps {
+  x?: number | string;
+  y?: number | string;
+  payload?: { value?: unknown };
+}
+
+// renders X-axis labels across two lines so long names like
+// "Northeastern University" stay readable
+function TwoLineTick({ x, y, payload }: TickProps): JSX.Element {
+  const [line1, line2] = splitLabel(String(payload?.value ?? ""));
+
+  return (
+    <text x={x} y={y} dy={12} textAnchor="middle" fontSize={12} fill="currentColor">
+      <tspan x={x}>{line1}</tspan>
+      {line2 ? (
+        <tspan x={x} dy={14}>
+          {line2}
+        </tspan>
+      ) : null}
+    </text>
+  );
+}
+
 export function DemographicsChart({
   breakdown,
   dimension = "school",
@@ -59,6 +91,9 @@ export function DemographicsChart({
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              interval={0}
+              height={48}
+              tick={(props) => <TwoLineTick {...props} />}
             />
             <YAxis tickLine={false} axisLine={false} width={32} />
             <ChartTooltip content={<ChartTooltipContent />} />

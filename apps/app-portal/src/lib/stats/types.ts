@@ -10,6 +10,7 @@ export interface StatMetric {
   label: string;
   value: number;
   delta: number;
+  description?: string; // shown in the StatCard hover tooltip
 }
 
 export type StatusKind = "application" | "decision" | "rsvp";
