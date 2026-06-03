@@ -1,7 +1,5 @@
 import React from "react";
-import { returnDashboardBranch } from "../../../lib/status/machine";
-import { decisionDates } from "../../../lib/status/mock-singletons";
-import { getApplicantStatus } from "../../../lib/status/service";
+import { fetchPortalStatus } from "../../../lib/status/fetchPortalStatus";
 import PreRegistrationView from "../../../components/dashboard/PreRegistrationView";
 import InProgressView from "../../../components/dashboard/InProgressView";
 import SubmittedView from "../../../components/dashboard/SubmittedView";
@@ -10,24 +8,27 @@ import WaitlistedView from "../../../components/dashboard/WaitlistedView";
 import DeclinedView from "../../../components/dashboard/DeclinedView";
 
 export default async function DashboardPage(): Promise<JSX.Element> {
-  const status = await getApplicantStatus("mock-user");
-  const showDecision = new Date() >= decisionDates.showDecision;
-  const branch = returnDashboardBranch(status, decisionDates, showDecision);
+  const { branch, status, decisionDates } = await fetchPortalStatus();
+  const resolvedDates = {
+    registrationOpen: new Date(decisionDates.registrationOpen),
+    showDecision: new Date(decisionDates.showDecision),
+    confirmBy: new Date(decisionDates.confirmBy),
+  };
 
   switch (branch) {
     case "pre-registration":
-      return <PreRegistrationView />;
+      return <PreRegistrationView decisionDates={resolvedDates} />;
     case "in-progress":
-      return <InProgressView />;
+      return <InProgressView status={status} />;
     case "submitted":
-      return <SubmittedView />;
+      return <SubmittedView decisionDates={resolvedDates} status={status} />;
     case "admitted":
-      return <AdmittedView />;
+      return <AdmittedView decisionDates={resolvedDates} status={status} />;
     case "waitlisted":
-      return <WaitlistedView />;
+      return <WaitlistedView status={status} />;
     case "declined":
       return <DeclinedView />;
     default:
-      return <SubmittedView />;
+      return <SubmittedView decisionDates={resolvedDates} status={status} />;
   }
 }
