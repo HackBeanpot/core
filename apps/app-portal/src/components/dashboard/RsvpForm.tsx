@@ -199,14 +199,13 @@ export default function RsvpForm({
           />
         </label>
 
-<button type="submit">
-  {isExpired
-    ? "RSVP closed"
-    : isSubmitting
-      ? "Submitting..."
-      : "Submit RSVP"}
-</button>
-
+        <button type="submit">
+          {isExpired
+            ? "RSVP closed"
+            : isSubmitting
+              ? "Submitting..."
+              : "Submit RSVP"}
+        </button>
       </form>
     </div>
   );
