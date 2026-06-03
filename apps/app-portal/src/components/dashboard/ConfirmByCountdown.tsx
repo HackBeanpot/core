@@ -15,9 +15,7 @@ export default function ConfirmByCountdown({
       <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
         Confirm-by deadline
       </div>
-      <div className="mt-2 text-base font-medium text-slate-950">
-        {label}
-      </div>
+      <div className="mt-2 text-base font-medium text-slate-950">{label}</div>
       <div className="mt-1 text-sm text-slate-500">
         {expired ? "RSVP is closed." : "The form updates every minute."}
       </div>

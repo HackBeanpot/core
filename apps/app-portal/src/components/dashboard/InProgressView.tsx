@@ -2,14 +2,20 @@ import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
 import { formatPercentComplete } from "../../lib/status/format";
-import { primaryActionClass, secondaryActionClass, statCardClass } from "./styles";
+import {
+  primaryActionClass,
+  secondaryActionClass,
+  statCardClass,
+} from "./styles";
 import type { ApplicantStatus } from "../../lib/status/types";
 
 type InProgressViewProps = {
   status: ApplicantStatus;
 };
 
-export default function InProgressView({ status }: InProgressViewProps): JSX.Element {
+export default function InProgressView({
+  status,
+}: InProgressViewProps): JSX.Element {
   const progressPercent = status.applicationStatus === "in-progress" ? 42 : 100;
 
   return (
@@ -58,8 +64,8 @@ export default function InProgressView({ status }: InProgressViewProps): JSX.Ele
           {formatPercentComplete(progressPercent)}
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          This is a temporary completion value until the application sections are
-          wired up.
+          This is a temporary completion value until the application sections
+          are wired up.
         </p>
       </div>
     </PortalShell>

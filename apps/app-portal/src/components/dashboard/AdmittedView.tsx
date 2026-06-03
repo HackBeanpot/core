@@ -2,7 +2,11 @@ import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
 import { formatLongDate } from "../../lib/status/format";
-import { primaryActionClass, secondaryActionClass, statCardClass } from "./styles";
+import {
+  primaryActionClass,
+  secondaryActionClass,
+  statCardClass,
+} from "./styles";
 import type { ApplicantStatus, DecisionDates } from "../../lib/status/types";
 
 type AdmittedViewProps = {

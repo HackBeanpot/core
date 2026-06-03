@@ -2,7 +2,11 @@ import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
 import { formatLongDate } from "../../lib/status/format";
-import { primaryActionClass, secondaryActionClass, statCardClass } from "./styles";
+import {
+  primaryActionClass,
+  secondaryActionClass,
+  statCardClass,
+} from "./styles";
 import type { ApplicantStatus, DecisionDates } from "../../lib/status/types";
 
 type SubmittedViewProps = {
@@ -14,7 +18,8 @@ export default function SubmittedView({
   status,
   decisionDates,
 }: SubmittedViewProps): JSX.Element {
-  const isRegistrationOpen = Date.now() >= decisionDates.registrationOpen.getTime();
+  const isRegistrationOpen =
+    Date.now() >= decisionDates.registrationOpen.getTime();
 
   return (
     <PortalShell
@@ -24,7 +29,8 @@ export default function SubmittedView({
             What happens next
           </p>
           <p>
-            The team is reviewing applications and will share decisions on {formatLongDate(decisionDates.showDecision)}.
+            The team is reviewing applications and will share decisions on{" "}
+            {formatLongDate(decisionDates.showDecision)}.
           </p>
           <p>
             Keep an eye on your inbox. When decisions are live, this page will
@@ -40,7 +46,10 @@ export default function SubmittedView({
       }
       eyebrow="Application submitted"
       primaryAction={
-        <Link className={primaryActionClass} href={isRegistrationOpen ? "/application" : "/dashboard"}>
+        <Link
+          className={primaryActionClass}
+          href={isRegistrationOpen ? "/application" : "/dashboard"}
+        >
           {isRegistrationOpen ? "Edit application" : "Back to dashboard"}
         </Link>
       }

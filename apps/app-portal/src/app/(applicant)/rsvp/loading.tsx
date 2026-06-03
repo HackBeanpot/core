@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Loading(): JSX.Element {
   return (
     <section className="min-h-screen px-4 py-8 sm:px-6 lg:px-10">

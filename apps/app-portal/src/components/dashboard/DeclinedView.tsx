@@ -1,7 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
-import { primaryActionClass, secondaryActionClass, statCardClass } from "./styles";
+import {
+  primaryActionClass,
+  secondaryActionClass,
+  statCardClass,
+} from "./styles";
 
 export default function DeclinedView(): JSX.Element {
   return (

@@ -12,5 +12,10 @@ export default async function RsvpPage(): Promise<JSX.Element> {
     redirect("/dashboard");
   }
 
-  return <RsvpExperience alreadySubmitted={status.rsvpStatus === "submitted"} confirmBy={confirmBy.toISOString()} />;
+  return (
+    <RsvpExperience
+      alreadySubmitted={status.rsvpStatus === "submitted"}
+      confirmBy={confirmBy.toISOString()}
+    />
+  );
 }

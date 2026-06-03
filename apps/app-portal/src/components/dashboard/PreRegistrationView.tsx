@@ -2,7 +2,11 @@ import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
 import { formatCountdownLabel, formatLongDate } from "../../lib/status/format";
-import { statCardClass, primaryActionClass, secondaryActionClass } from "./styles";
+import {
+  statCardClass,
+  primaryActionClass,
+  secondaryActionClass,
+} from "./styles";
 import type { DecisionDates } from "../../lib/status/types";
 
 type PreRegistrationViewProps = {
@@ -12,7 +16,9 @@ type PreRegistrationViewProps = {
 export default function PreRegistrationView({
   decisionDates,
 }: PreRegistrationViewProps): JSX.Element {
-  const registrationCountdown = formatCountdownLabel(decisionDates.registrationOpen);
+  const registrationCountdown = formatCountdownLabel(
+    decisionDates.registrationOpen,
+  );
 
   return (
     <PortalShell
@@ -28,7 +34,8 @@ export default function PreRegistrationView({
           </div>
           <div className="space-y-3 text-sm leading-6 text-slate-300">
             <p>
-              We’ll open the application on {formatLongDate(decisionDates.registrationOpen)}.
+              We’ll open the application on{" "}
+              {formatLongDate(decisionDates.registrationOpen)}.
             </p>
             <p>
               The portal will switch automatically once registration is live.

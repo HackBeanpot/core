@@ -8,7 +8,10 @@ type WaitlistedViewProps = {
   status: ApplicantStatus;
 };
 
-export default function WaitlistedView({ status }: WaitlistedViewProps): JSX.Element {
+export default function WaitlistedView({
+  status: _status,
+}: WaitlistedViewProps): JSX.Element {
+  void _status;
   return (
     <PortalShell
       aside={
