@@ -23,7 +23,7 @@ export interface FormSection {
   id: string;
   title: string;
   description?: string;
-  questions: readonly Question[];
+  questions: Question[];
 }
 
 export type ApplicationResponses = Record<string, string | string[] | null>;
