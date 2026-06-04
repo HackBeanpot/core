@@ -41,7 +41,9 @@ export function RefreshBar({ generatedAt }: RefreshBarProps): JSX.Element {
         onClick={handleRefresh}
         disabled={isPending}
       >
-        <RefreshCw className={cn("mr-2 h-4 w-4", isPending && "animate-spin")} />
+        <RefreshCw
+          className={cn("mr-2 h-4 w-4", isPending && "animate-spin")}
+        />
         Refresh
       </Button>
     </div>

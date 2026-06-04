@@ -18,22 +18,28 @@ export function StatCard({ metric }: StatCardProps): JSX.Element {
   return (
     <Card>
       <CardContent className="pt-6">
-        <div className="flex items-baseline gap-2">
-          <span className="text-3xl font-semibold tracking-tight">
-            {value.toLocaleString()}
+        {value === null ? (
+          <span className="text-3xl font-semibold tracking-tight text-heather">
+            —
           </span>
-          {delta !== 0 && (
-            <span
-              className={cn(
-                "flex items-center gap-0.5 text-xs font-medium",
-                isNegative ? "text-firecrackerRed" : "text-green",
-              )}
-            >
-              <DeltaArrow className="h-3 w-3" />
-              {Math.abs(delta).toLocaleString()} from yesterday
+        ) : (
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-semibold tracking-tight">
+              {value.toLocaleString()}
             </span>
-          )}
-        </div>
+            {delta !== 0 && (
+              <span
+                className={cn(
+                  "flex items-center gap-0.5 text-xs font-medium",
+                  isNegative ? "text-firecrackerRed" : "text-green",
+                )}
+              >
+                <DeltaArrow className="h-3 w-3" />
+                {Math.abs(delta).toLocaleString()} from yesterday
+              </span>
+            )}
+          </div>
+        )}
 
         <div className="mt-1 flex items-center gap-1 text-sm font-medium text-neutral-500">
           <span>{label}</span>

@@ -8,9 +8,9 @@ export interface StatsPayload {
 // single metric
 export interface StatMetric {
   label: string;
-  value: number;
+  value: number | null; // null = no data yet (distinct from a real count of 0)
   delta: number;
-  description?: string; // shown in the StatCard hover tooltip
+  description?: string; // shown in StatCard hover tooltip
 }
 
 export type StatusKind = "application" | "decision" | "rsvp";
@@ -20,15 +20,18 @@ export type StatusBreakdown = Record<
   { status: string; count: number }[]
 >;
 
-export type DemographicsDimension =
-  | "school"
-  | "education"
-  | "yearOfEducation"
-  | "majors"
-  | "gender"
-  | "races"
-  | "shirtSize"
-  | "hackathonsAttended";
+export const DEMOGRAPHICS_DIMENSIONS = [
+  "school",
+  "education",
+  "year_of_study",
+  "majors",
+  "gender",
+  "races",
+  "shirt_size",
+  "hackathon_experience",
+] as const;
+
+export type DemographicsDimension = (typeof DEMOGRAPHICS_DIMENSIONS)[number];
 
 export type DemographicsBreakdown = Record<
   DemographicsDimension,
@@ -38,5 +41,4 @@ export type DemographicsBreakdown = Record<
 export interface TimelinePoint {
   date: string;
   submissions: number;
-  cumulative: number;
 }
