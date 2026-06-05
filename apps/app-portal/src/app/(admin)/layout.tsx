@@ -1,7 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import UserMenu from "@/components/auth/UserMenu";
 
 export default function AdminLayout() {
+  // TODO: pull the real email from session later
+  const email = "admin@example.com";
+
   return (
     <div className="flex min-h-screen">
       <aside className="w-64 border-r p-4">
@@ -16,8 +20,9 @@ export default function AdminLayout() {
       </aside>
 
       <main className="flex-1">
-        <header className="border-b p-4">
+        <header className="flex items-center justify-between border-b p-4">
           <h1 className="text-xl font-semibold">Admin Portal</h1>
+          <UserMenu email={email} />
         </header>
       </main>
     </div>

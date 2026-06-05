@@ -14,11 +14,11 @@ export default function Page(): JSX.Element {
         <Image src={icon} alt="HackBeanpot logo" width={96} height={96} />
 
         <div className="flex flex-col items-center gap-2">
-          <h1 className="text-4xl font-bold">HackBeanpot Application Portal</h1>
-          <p className="max-w-md text-gray-700">
-            Welcome to HackBeanpot! Find all resources for the competition here
-            <br />
-            in the portal by signing in now.
+          <h1 className="text-4xl">
+            Welcome to HackBeanpot!
+          </h1>
+          <p className="max-w-md text-lg text-gray-700">
+            Find all resources for the competition here in the portal by signing in now.
           </p>
         </div>
 
