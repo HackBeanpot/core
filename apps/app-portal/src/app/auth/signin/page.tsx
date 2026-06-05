@@ -1,10 +1,10 @@
 //magic-link email entry form
 "use client";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import icon from "@/app/icon.ico";
-import {Toaster} from "@/components/ui/sonner";
-import {toast} from "sonner";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //regex email checker
 
@@ -36,8 +36,8 @@ function SignInForm() {
       //TODO: wire to the real endpoint
       const res = await fetch("/api/auth/signin/email", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({email: email.trim()}),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
       });
 
       // rate-limit -> toast
@@ -48,13 +48,14 @@ function SignInForm() {
       }
 
       if (!res.ok) {
-        toast.error("Something went wrong sending your sign-in link. Please try again.");
+        toast.error(
+          "Something went wrong sending your sign-in link. Please try again.",
+        );
         setStatus("idle");
         return;
       }
 
       setStatus("sent");
-
     } catch {
       // network failure (fetch threw err)
       toast.error("Network error. Check your connection and try again.");
@@ -73,7 +74,6 @@ function SignInForm() {
 
         {/*input area*/}
         <div className={"w-[250px]"}>
-
           {/*input*/}
           <input
             placeholder="Email"
@@ -87,7 +87,9 @@ function SignInForm() {
           />
           {/*confirm*/}
           <button
-            className={"w-full bg-starlightBlueLight text-white p-1 px-5 mt-4 border-2 rounded-md disabled:opacity-50"}
+            className={
+              "w-full bg-starlightBlueLight text-white p-1 px-5 mt-4 border-2 rounded-md disabled:opacity-50"
+            }
             onClick={handleSignIn}
             disabled={status === "loading"}
           >
@@ -97,10 +99,13 @@ function SignInForm() {
           {/*status / error message*/}
           <div className={"w-full flex flex-row items-end min-h-[2rem] pb-2"}>
             {emailError ? (
-              <p className={"w-full text-[#FF0000] text-end text-[12px]"}>{emailError}</p> //todo: change the red
+              <p className={"w-full text-[#FF0000] text-end text-[12px]"}>
+                {emailError}
+              </p> //todo: change the red
             ) : status === "loading" ? (
               <p className={"w-full text-[#AAAAAA] text-end"}>
-                Loading{".".repeat(dotCount)}{" ".repeat(4 - dotCount)}
+                Loading{".".repeat(dotCount)}
+                {" ".repeat(4 - dotCount)}
               </p>
             ) : status === "sent" ? (
               <p className={"w-full text-[rgb(120,255,150)] text-end"}>
