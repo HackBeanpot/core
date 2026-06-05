@@ -1,14 +1,13 @@
 "use client";
 //avatar + sign-out dropdown for header
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface UserMenuProps {
   /** Signed-in user's email. Shown in the dropdown; first letter is the avatar. */
   email: string;
 }
 
-
-export default function UserMenu({email}: UserMenuProps): JSX.Element {
+export default function UserMenu({ email }: UserMenuProps): JSX.Element {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -19,7 +18,10 @@ export default function UserMenu({email}: UserMenuProps): JSX.Element {
     if (!open) return;
 
     function onPointerDown(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
         setOpen(false);
       }
     }
@@ -39,7 +41,7 @@ export default function UserMenu({email}: UserMenuProps): JSX.Element {
   async function handleSignOut() {
     setOpen(false);
     // TODO: wire to NextAuth — signOut({ callbackUrl: "/" }) once next-auth is installed.
-    await fetch("/api/auth/signout", {method: "POST"}).catch(() => {});
+    await fetch("/api/auth/signout", { method: "POST" }).catch(() => {});
     window.location.href = "/";
   }
 
@@ -48,7 +50,9 @@ export default function UserMenu({email}: UserMenuProps): JSX.Element {
       {/* avatar button */}
       <button
         type="button"
-        onClick={() => { setOpen((o) => !o); }}
+        onClick={() => {
+          setOpen((o) => !o);
+        }}
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label="Open user menu"
@@ -66,7 +70,10 @@ export default function UserMenu({email}: UserMenuProps): JSX.Element {
           {/* signed-in identity */}
           <div className="px-3 py-2 border-b">
             <p className="text-xs text-gray-500">Signed in as</p>
-            <p className="truncate text-sm font-medium text-gray-900" title={email}>
+            <p
+              className="truncate text-sm font-medium text-gray-900"
+              title={email}
+            >
               {email}
             </p>
           </div>
