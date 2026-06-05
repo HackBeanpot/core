@@ -16,7 +16,7 @@ export default function Page(): JSX.Element {
         <div className="flex flex-col items-center gap-2">
           <h1 className="text-4xl font-bold">HackBeanpot Application Portal</h1>
           <p className="max-w-md text-gray-700">
-            Sign in to the hackathon portal!
+            Welcome to HackBeanpot! Find all resources for the competition here<br/>in the portal by signing in now.
           </p>
         </div>
 

@@ -43,7 +43,7 @@ export default function Page({
 
       {/* back-to-homepage button */}
       <Link
-        href="/"
+        href="/auth/signin"
         className="absolute bottom-6 right-6 z-10 rounded-md bg-[#352A28] px-4 py-2 text-white text-sm font-medium hover:opacity-90 transition-opacity"
       >
         Back to homepage
