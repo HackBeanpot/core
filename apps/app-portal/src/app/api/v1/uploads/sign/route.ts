@@ -2,6 +2,10 @@
 
 import { NextResponse } from "next/server";
 
-export async function POST() {
-  return NextResponse.json({ message: "Not implemented" }, { status: 501 });
+export async function POST(request: Request) {
+  await request.json();
+  return NextResponse.json({
+    uploadId: "mock-upload-id-67",
+    url: "https://mock.gcs.example.com/fake-signed-url",
+  });
 }
