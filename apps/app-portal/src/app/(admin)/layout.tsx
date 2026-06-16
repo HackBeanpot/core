@@ -21,11 +21,6 @@ export default async function AdminLayout({
     redirect("/");
   }
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
   return (
     <div className="flex min-h-screen">
       <AdminSidebar />
@@ -35,8 +30,9 @@ export default function AdminLayout({
           <h1 className="text-xl font-semibold">Admin Portal</h1>
           <UserMenu email={email} />
         </header>
-        {children}
-      </main>
+
+        <main className="flex-1 p-6">{children}</main>
+      </div>
     </div>
   );
 }
