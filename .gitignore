@@ -39,3 +39,6 @@ dist/
 .idea*
 
 */**/*.env
+
+# ignore TypeScript build info files
+**/tsconfig.tsbuildinfo

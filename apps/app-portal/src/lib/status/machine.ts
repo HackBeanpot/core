@@ -5,10 +5,16 @@ export function returnDashboardBranch(
   dates: DecisionDates,
   showDecision: boolean,
 ): DashboardBranch {
-  void dates;
+  const now = new Date();
+
+  if (now < dates.registrationOpen) {
+    return "pre-registration";
+  }
 
   if (!showDecision) {
-    return "pre-registration";
+    return user.applicationStatus === "in-progress"
+      ? "in-progress"
+      : "submitted";
   }
 
   switch (user.decisionStatus) {
@@ -19,6 +25,8 @@ export function returnDashboardBranch(
     case "declined":
       return "declined";
     default:
-      return "submitted";
+      return user.applicationStatus === "in-progress"
+        ? "in-progress"
+        : "submitted";
   }
 }
