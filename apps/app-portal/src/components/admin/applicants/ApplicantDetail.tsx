@@ -27,6 +27,27 @@ function ResponseList({ responses }: { responses?: Record<string, unknown> }) {
   );
 }
 
+function Resume({ resume }: { resume?: ApplicantDetailType["resume"] }) {
+  return (
+    <div className="flex flex-col justify-between border-b border-neutral-100 py-2">
+      <div>
+        <dt className="text-xs font-medium uppercase text-neutral-500">
+          Resume
+        </dt>
+        <dd className="text-sm">{resume?.filename ?? "—"}</dd>
+      </div>
+      {resume ? (
+        <a
+          href={`/api/v1/uploads/${resume.id}`}
+          className="text-sm font-medium text-blue-600 hover:underline"
+        >
+          Download
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
 export function ApplicantDetail({ applicant }: ApplicantDetailProps) {
   return (
     <div className="flex flex-col gap-4">
@@ -64,8 +85,9 @@ export function ApplicantDetail({ applicant }: ApplicantDetailProps) {
         <CardHeader>
           <CardTitle className="text-base">Application responses</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-2">
           <ResponseList responses={applicant.applicationResponses} />
+          <Resume resume={applicant.resume} />
         </CardContent>
       </Card>
 
