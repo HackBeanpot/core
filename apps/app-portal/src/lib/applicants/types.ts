@@ -11,16 +11,23 @@ import type {
 export interface ApplicantSummary {
   id: string;
   email: string;
+  name?: string;
   applicationStatus: ApplicationStatus;
   decisionStatus?: DecisionStatus;
   rsvpStatus: RsvpStatus;
   appSubmissionTime?: string;
 }
 
+export interface UploadedFile {
+  id: string;
+  filename: string;
+}
+
 export interface ApplicantDetail extends ApplicantSummary {
   applicationResponses?: ApplicationResponse;
   postAcceptanceResponses?: PostAcceptanceResponse;
   rsvpSubmissionTime?: string;
+  resume?: UploadedFile;
 }
 
 export interface ApplicantFilters {
