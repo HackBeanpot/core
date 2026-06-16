@@ -30,7 +30,7 @@ export async function fetchPortalStatus(): Promise<PortalStatusResponse> {
     }
 
     return (await response.json()) as PortalStatusResponse;
-  } catch (err) {
+  } catch {
     // Fallback to local in-memory service for dev environments where
     // a network fetch to the same server may fail.
     const status = await getApplicantStatus("mock-user");

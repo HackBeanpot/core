@@ -22,7 +22,9 @@ export default function ApplicantLayout({
         <header className="flex h-16 items-center justify-between border-b bg-white px-6">
           <div className="flex flex-row items-start">
             <Image src={icon.src} alt={"HBP Logo"} width={25} height={25} />
-            <span className="font-semibold pl-2">HackBeanpot Applicant Portal</span>
+            <span className="font-semibold pl-2">
+              HackBeanpot Applicant Portal
+            </span>
           </div>
           <UserMenu email={email} />
         </header>

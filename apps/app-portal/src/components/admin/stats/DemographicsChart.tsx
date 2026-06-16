@@ -89,10 +89,7 @@ export function DemographicsChart({
         {entries.length === 0 ? (
           <ChartEmpty message={EMPTY_MESSAGE} />
         ) : (
-          <ChartContainer
-            config={config}
-            className="aspect-[2] w-full"
-          >
+          <ChartContainer config={config} className="aspect-[2] w-full">
             <BarChart
               data={entries}
               barCategoryGap={8}

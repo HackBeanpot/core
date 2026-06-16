@@ -7,12 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
 const rsvpSchema = z.object({
-  attending: z.enum(["yes", "no"], {
-    required_error: "Please choose whether you’re attending.",
+  attending: z.enum(["yes", "no"] as const, {
+    error: "Please choose whether you’re attending.",
   }),
   dietaryRestrictions: z.string().max(240).optional().or(z.literal("")),
-  tshirtSize: z.enum(["xs", "s", "m", "l", "xl"], {
-    required_error: "Please choose a t-shirt size.",
+  tshirtSize: z.enum(["xs", "s", "m", "l", "xl"] as const, {
+    error: "Please choose a t-shirt size.",
   }),
   accessibilityNeeds: z.string().max(240).optional().or(z.literal("")),
   additionalNotes: z.string().max(400).optional().or(z.literal("")),
