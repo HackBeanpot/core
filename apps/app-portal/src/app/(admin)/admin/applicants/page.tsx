@@ -5,6 +5,8 @@ import { ApplicantsTable } from "@/components/admin/applicants/ApplicantsTable";
 import { ExportButtons } from "@/components/admin/applicants/ExportButtons";
 import { listApplicants } from "@/lib/applicants/service";
 
+export const dynamic = "force-dynamic";
+
 async function ApplicantsData() {
   const { rows, total } = await listApplicants();
   return (
@@ -24,7 +26,9 @@ export default function ApplicantsPage() {
         </div>
         <ExportButtons />
       </header>
-      <ApplicantsFilters />
+      <Suspense fallback={<div className="h-10" />}>
+        <ApplicantsFilters />
+      </Suspense>
       <Suspense fallback={<ApplicantsTable />}>
         <ApplicantsData />
       </Suspense>

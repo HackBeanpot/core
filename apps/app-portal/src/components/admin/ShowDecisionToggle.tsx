@@ -28,6 +28,7 @@ export default function ShowDecisionToggle() {
       }
     } catch (err) {
       setEnabled(previous);
+      // eslint-disable-next-line no-console
       console.error(err);
     } finally {
       setLoading(false);
