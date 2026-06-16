@@ -64,7 +64,13 @@ export function createDefaultValues(): ApplicationSchemaValues {
   const values: Record<string, string | string[] | null> = {};
   for (const section of APPLICATION_SECTIONS) {
     for (const question of section.questions) {
-      values[question.id] = question.type === "multi_select" ? [] : "";
+      if (question.type === "multi_select") {
+        values[question.id] = [];
+      } else if (question.type === "file_upload") {
+        values[question.id] = null; // "" is not in the file_upload union; null is
+      } else {
+        values[question.id] = "";
+      }
     }
   }
   return values as ApplicationSchemaValues;

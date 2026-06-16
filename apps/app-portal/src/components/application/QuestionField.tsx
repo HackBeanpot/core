@@ -38,10 +38,8 @@ export function QuestionField<T extends FieldValues>({
         <FormItem>
           <FormLabel id={`${question.id}-label`}>
             {question.label}
-            {!question.required && (
-              <span className="ml-1 font-normal text-neutral-500">
-                (optional)
-              </span>
+            {!question.required && !question.label.includes("optional") && (
+              <span className="ml-1 font-normal text-black/70">(optional)</span>
             )}
           </FormLabel>
           {question.description ? (
