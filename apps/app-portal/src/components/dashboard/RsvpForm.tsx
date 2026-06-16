@@ -199,12 +199,16 @@ export default function RsvpForm({
           />
         </label>
 
-        <button type="submit">
-          {isExpired
-            ? "RSVP closed"
-            : isSubmitting
-              ? "Submitting..."
-              : "Submit RSVP"}
+        <button
+          type="submit"
+          disabled={isExpired || isSubmitting}
+          className={`inline-flex w-full items-center justify-center rounded-full px-4 py-3 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 ${
+            isExpired || isSubmitting
+              ? "bg-slate-200 text-slate-500 cursor-not-allowed"
+              : "bg-emerald-600 text-white hover:bg-emerald-700"
+          }`}
+        >
+          {isExpired ? "RSVP closed" : isSubmitting ? "Submitting..." : "Submit RSVP"}
         </button>
       </form>
     </div>

@@ -23,7 +23,7 @@ export default function PortalShell({
 }: PortalShellProps): JSX.Element {
   return (
     <section className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(251,146,60,0.18),_transparent_36%),radial-gradient(circle_at_top_right,_rgba(34,197,94,0.12),_transparent_30%),linear-gradient(180deg,_#fff8ef_0%,_#fffdf8_54%,_#ffffff_100%)] px-4 py-8 text-slate-900 sm:px-6 lg:px-10">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
+      <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-8">
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex w-fit rounded-full border border-amber-200 bg-white/75 px-4 py-1 text-sm font-medium tracking-wide text-amber-900 shadow-sm backdrop-blur">
             {eyebrow}
