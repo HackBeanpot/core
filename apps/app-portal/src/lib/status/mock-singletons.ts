@@ -72,15 +72,19 @@ import type { ApplicantStatus, DecisionDates } from "./types";
 // };
 
 //Declined
+// Admitted (mock)
 export const mockApplicantStatus: ApplicantStatus = {
   userId: "mock-user",
   applicationStatus: "submitted",
-  decisionStatus: "declined",
+  decisionStatus: "admitted",
   rsvpStatus: "not-submitted",
 };
 
 export const decisionDates: DecisionDates = {
+  // registration opened in the past
   registrationOpen: new Date(Date.now() - 40 * 24 * 60 * 60 * 1000),
-  showDecision: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
-  confirmBy: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+  // showDecision happened recently
+  showDecision: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+  // confirmBy is in the future so RSVP is open
+  confirmBy: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
 };
