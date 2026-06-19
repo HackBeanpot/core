@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import PlaceBackground from "../placeholder/placeBackground";
-import Rollercoaster from "../placeholder/rollercoaster";
-import HackBeanpotLogo from "../placeholder/HackBeanpotLogo";
+import PlaceBackground from "./placeBackground";
+import Rollercoaster from "./rollercoaster";
+import HackBeanpotLogo from "./HackBeanpotLogo";
 
-export default function Page() {
+export default function PlaceholderPage() {
   return (
     <div className="min-h-screen w-full bg-starlightBlueDark overflow-hidden fixed inset-0">
       {/* Sunburst rays - back layer */}
