@@ -8,6 +8,13 @@ import HackBeanpotLogo from "./HackBeanpotLogo";
 export default function PlaceholderPage() {
   return (
     <div className="min-h-screen w-full bg-starlightBlueDark overflow-hidden fixed inset-0">
+      {/* Cover the green html background (incl. mobile overscroll), scoped to this page */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html:
+            "html,body{background-color:#091F36 !important;overscroll-behavior:none;}",
+        }}
+      />
       {/* Sunburst rays - back layer */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <PlaceBackground />
@@ -82,7 +89,7 @@ export default function PlaceholderPage() {
         </header>
 
         {/* Main Content - Upper center */}
-        <div className="flex-1 flex flex-col items-center justify-start pt-[14vh] tablet:pt-[7vh] mobile-xl:pt-[7vh] mobile:pt-[6vh] px-8 mobile-xl:px-6 mobile:px-5 overflow-hidden">
+        <div className="flex-1 flex flex-col items-center justify-start pt-[7vh] tablet:pt-[7vh] mobile-xl:pt-[7vh] mobile:pt-[6vh] px-8 mobile-xl:px-6 mobile:px-5 overflow-hidden">
           {/* Title */}
           <h1 className="text-6xl tablet:text-5xl mobile-xl:text-4xl mobile:text-3xl font-NeulisNeue-Bold text-carouselCreamLight text-center mb-6 tablet:mb-5 mobile-xl:mb-4 mobile:mb-3 max-w-4xl leading-tight">
             We hope you enjoyed the ride!
