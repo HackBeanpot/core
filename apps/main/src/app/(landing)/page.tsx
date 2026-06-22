@@ -4,6 +4,7 @@ import Link from "next/link";
 import PlaceBackground from "../placeholder/placeBackground";
 import Rollercoaster from "../placeholder/rollercoaster";
 import HackBeanpotLogo from "../placeholder/HackBeanpotLogo";
+import NewsletterSignup from "../placeholder/NewsletterSignup";
 
 export default function Page() {
   return (
@@ -89,7 +90,7 @@ export default function Page() {
         </header>
 
         {/* Main Content - Upper center */}
-        <div className="flex-1 flex flex-col items-center justify-start pt-[7vh] tablet:pt-[7vh] mobile-xl:pt-[7vh] mobile:pt-[6vh] px-8 mobile-xl:px-6 mobile:px-5 overflow-hidden">
+        <div className="flex-1 flex flex-col items-center justify-start pt-[3vh] tablet:pt-[7vh] mobile-xl:pt-[7vh] mobile:pt-[6vh] px-8 mobile-xl:px-6 mobile:px-5 overflow-hidden">
           {/* Title */}
           <h1 className="text-6xl tablet:text-5xl mobile-xl:text-4xl mobile:text-3xl font-NeulisNeue-Bold text-carouselCreamLight text-center mb-6 tablet:mb-5 mobile-xl:mb-4 mobile:mb-3 max-w-4xl leading-tight">
             We hope you enjoyed the ride!
@@ -102,16 +103,7 @@ export default function Page() {
           </p>
 
           {/* Newsletter Signup */}
-          <div className="flex flex-row items-center gap-4 tablet:gap-3 mobile:gap-2 w-auto mobile-xl:w-full mobile:w-full max-w-md mobile-xl:max-w-sm mb-6 tablet:mb-5 mobile-xl:mb-5 mobile:mb-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-96 tablet:w-80 mobile-xl:w-auto mobile-xl:flex-1 mobile-xl:min-w-0 mobile:w-auto mobile:flex-1 mobile:min-w-0 px-6 mobile:px-4 py-4 tablet:py-3.5 mobile:py-3 rounded-full bg-carouselCreamLight text-charcoalFog placeholder-charcoalFog placeholder-opacity-60 focus:outline-none focus:ring-2 focus:ring-firecrackerRed text-lg tablet:text-base mobile:text-sm font-DMSans-Regular"
-            />
-            <button className="px-8 tablet:px-7 mobile:px-5 py-4 tablet:py-3.5 mobile:py-3 flex-shrink-0 bg-marigoldYellow text-charcoalFog font-DMSans-Bold rounded-full hover:bg-marigoldYellowDark transition-colors text-lg tablet:text-base mobile:text-sm whitespace-nowrap">
-              Submit
-            </button>
-          </div>
+          <NewsletterSignup />
 
           {/* Last Year's Site Link */}
           <Link
