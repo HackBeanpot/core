@@ -1,0 +1,25 @@
+# Local MongoDB for app-portal development.
+#
+# Credentials/port are read from the .env in this directory (the MONGO_DEV_*
+# vars), which Compose loads automatically since this file lives alongside it.
+# Use the package.json scripts (run from this dir, or `yarn mongo` from root):
+#
+#   yarn mongo            # start in the background
+#   yarn mongo:down       # stop (keeps data)
+#   yarn mongo:down -v     # stop and wipe the data volume
+#   yarn mongo:logs        # follow logs
+services:
+  mongo:
+    image: mongo:7
+    container_name: hbp-mongo
+    restart: unless-stopped
+    ports:
+      - "${MONGO_DEV_PORT:-27017}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DEV_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DEV_PASSWORD:-password}
+    volumes:
+      - hbp-mongo-data:/data/db
+
+volumes:
+  hbp-mongo-data:

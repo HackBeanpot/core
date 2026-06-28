@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "db-up": "docker compose up -d",
+    "db-down": "docker compose down"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.19.0",
