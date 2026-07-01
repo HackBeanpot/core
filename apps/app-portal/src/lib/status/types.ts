@@ -9,8 +9,17 @@ export type DashboardBranch =
 export type ApplicantStatus = {
   userId: string;
   applicationStatus: ApplicationStatus;
-  decisionStatus: DecisionStatus;
+  decisionStatus?: DecisionStatus;
   rsvpStatus: RsvpStatus;
+}
+export type MachineInput = {
+  user: ApplicantStatus;
+  dates: {
+    registrationOpen: Date;
+    confirmBy: Date;
+  };
+  showDecision: boolean;
+  now: Date;
 };
 
 export type ApplicationStatus = "in-progress" | "submitted";
