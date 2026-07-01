@@ -11,10 +11,12 @@ export function returnDashboardBranch(
     return "pre-registration";
   }
 
-  if (!showDecision) {
-    return user.applicationStatus === "in-progress"
-      ? "in-progress"
-      : "submitted";
+  if (user.applicationStatus !== "submitted") {
+    return "in-progress";
+  }
+
+  if (!showDecision || !user.decisionStatus || user.decisionStatus === "pending") {
+    return "submitted";
   }
 
   switch (user.decisionStatus) {
@@ -25,8 +27,6 @@ export function returnDashboardBranch(
     case "declined":
       return "declined";
     default:
-      return user.applicationStatus === "in-progress"
-        ? "in-progress"
-        : "submitted";
+      return "submitted";
   }
 }
