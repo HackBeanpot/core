@@ -1,7 +1,6 @@
 import { Collection, ObjectId } from "mongodb";
 
 import { getDb, resolveCollectionName } from "@/lib/db";
-import type { ApplicationResponse } from "@/lib/types/application";
 
 import { buildApplicantQuery } from "./queries";
 import type {
@@ -20,20 +19,12 @@ async function applicantCollection(): Promise<Collection<ApplicantDoc>> {
   return db.collection<ApplicantDoc>(APPLICANT_COLLECTION);
 }
 
-function fullName(responses?: ApplicationResponse): string | undefined {
-  const first = responses?.["firstName"];
-  const last = responses?.["lastName"];
-  const parts = [first, last].filter(
-    (v): v is string => typeof v === "string" && v.length > 0,
-  );
-  return parts.length ? parts.join(" ") : undefined;
-}
-
 function docToSummary(doc: ApplicantDoc): ApplicantSummary {
+  const name = doc.applicationResponses?.["name"];
   return {
     id: doc._id.toString(),
     email: doc.email,
-    name: fullName(doc.applicationResponses),
+    name: typeof name === "string" && name.length > 0 ? name : undefined,
     applicationStatus: doc.applicationStatus,
     decisionStatus: doc.decisionStatus,
     rsvpStatus: doc.rsvpStatus,
@@ -49,13 +40,10 @@ export async function listApplicants(
   const col = await applicantCollection();
   const filter = buildApplicantQuery(filters);
   const dir = sortDir === "asc" ? 1 : -1;
-  // `name` is derived from first/last name fields, so sort on those.
+  // `name` lives under the application response, not a top-level doc field.
   const sort: Record<string, 1 | -1> =
     sortBy === "name"
-      ? {
-          "applicationResponses.firstName": dir,
-          "applicationResponses.lastName": dir,
-        }
+      ? { "applicationResponses.name": dir }
       : { [sortBy]: dir };
 
   const [total, docs] = await Promise.all([

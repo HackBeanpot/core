@@ -369,8 +369,7 @@ function toDoc(row: Row) {
     ...(appSubmissionTime ? { appSubmissionTime } : {}),
     lastSavedAt: appSubmissionTime ?? DRAFT_SAVED_AT,
     applicationResponses: {
-      firstName,
-      lastName,
+      name: `${firstName} ${lastName}`,
       school,
       yearOfEducation: year,
     },
