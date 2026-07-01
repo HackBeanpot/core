@@ -1,6 +1,6 @@
 import { Collection, ObjectId } from "mongodb";
 
-import { getDb } from "@/lib/db";
+import { getDb, resolveCollectionName } from "@/lib/db";
 import type { ApplicationResponse } from "@/lib/types/application";
 
 import { buildApplicantQuery } from "./queries";
@@ -13,7 +13,7 @@ import type {
   ApplicantUpdate,
 } from "./types";
 
-const APPLICANT_COLLECTION = "applicant_data";
+const APPLICANT_COLLECTION = resolveCollectionName("applicant_data");
 
 async function applicantCollection(): Promise<Collection<ApplicantDoc>> {
   const db = await getDb();

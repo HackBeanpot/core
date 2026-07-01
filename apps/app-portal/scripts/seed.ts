@@ -1,22 +1,27 @@
 /* eslint-disable no-console -- CLI seed script; console output is intentional. */
 /**
- * Seed the local dev Mongo with sample applicants, then create the indexes the
- * list endpoint relies on.
+ * Seed the `applicant_data_test` collection on the shared Atlas cluster with
+ * sample applicants, then create the indexes the list endpoint relies on.
  *
  * Usage (from apps/app-portal, or `yarn workspace app-portal seed` from root):
- *   yarn db-up      # start the local Docker Mongo
  *   yarn seed
  *
- * Reads connection config from .env (loaded via `node --env-file=.env`).
- * DESTRUCTIVE — clears applicant_data. Refuses to run when
- * MONGO_PROD_CONNECTION_STRING is set.
+ * Reads MONGO_PROD_CONNECTION_STRING from .env (loaded via
+ * `node --env-file=.env`) — this always points at the shared Atlas cluster.
+ * DESTRUCTIVE — clears the target collection. Hardcoded to only ever run
+ * against `applicant_data_test`; refuses to run if NODE_ENV=production would
+ * resolve the real `applicant_data` collection instead (see
+ * resolveCollectionName in src/lib/db.ts). Since this writes to a collection
+ * shared across the team on Atlas (not an isolated local DB), coordinate
+ * before running if others may be relying on its current contents.
  *
  * Statuses are written in canonical enum form (lowercase-hyphen) to match the
  * app enums in src/lib/types/user.ts.
  */
-import { getDb, resolvedUri } from "@/lib/db";
+import { getDb, resolveCollectionName } from "@/lib/db";
 
-const COLLECTION = "applicant_data";
+const TEST_COLLECTION_NAME = "applicant_data_test";
+const COLLECTION = resolveCollectionName("applicant_data");
 const DRAFT_SAVED_AT = "2026-02-01T00:00:00.000Z";
 
 // [email, first, last, school, year, appStatus, decision|null, rsvp, submitTime|null]
@@ -373,13 +378,11 @@ function toDoc(row: Row) {
 }
 
 async function main() {
-  if (
-    !resolvedUri.includes("localhost") &&
-    !resolvedUri.includes("127.0.0.1")
-  ) {
+  if (COLLECTION !== TEST_COLLECTION_NAME) {
     console.error(
-      `Refusing to seed: connected to a non-local Mongo (${resolvedUri}). ` +
-        "This script clears the collection and only runs against local dev Mongo.",
+      `Refusing to seed: resolved collection is "${COLLECTION}", not ` +
+        `"${TEST_COLLECTION_NAME}". This script is destructive and only ` +
+        "ever runs against the test collection.",
     );
     process.exit(1);
   }

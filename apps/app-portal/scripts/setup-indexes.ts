@@ -4,13 +4,16 @@
  * Idempotent: createIndex is a no-op when an index already exists.
  *
  * Usage (from apps/app-portal, or `yarn workspace app-portal setup-indexes`):
- *   yarn db-up                 # if targeting local dev Mongo
  *   yarn setup-indexes
  *
- * Reads connection config from .env (loaded via `node --env-file=.env`).
- * Works against both the local Docker Mongo and prod Atlas.
+ * Reads MONGO_PROD_CONNECTION_STRING from .env (loaded via
+ * `node --env-file=.env`) — this always points at the shared Atlas cluster.
+ * Outside production (NODE_ENV !== "production"), the collection resolves to
+ * `applicant_data_test` instead of the real `applicant_data`; see
+ * resolveCollectionName in src/lib/db.ts. Run with NODE_ENV=production set to
+ * target the real collection when provisioning a new deployment.
  *
- * Required indexes on `applicant_data`:
+ * Required indexes:
  *   { applicationStatus: 1 }   — equality filter (?status=)
  *   { decisionStatus: 1 }      — equality filter (?decision=)
  *   { rsvpStatus: 1 }          — equality filter (?rsvp=)
@@ -19,9 +22,9 @@
  */
 import type { Collection } from "mongodb";
 
-import { getDb } from "@/lib/db";
+import { getDb, resolveCollectionName } from "@/lib/db";
 
-const COLLECTION = "applicant_data";
+const COLLECTION = resolveCollectionName("applicant_data");
 
 export async function ensureApplicantIndexes(col: Collection): Promise<void> {
   await Promise.all([

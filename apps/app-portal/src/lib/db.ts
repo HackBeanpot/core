@@ -1,31 +1,19 @@
 import { Db, MongoClient } from "mongodb";
 
-const DEFAULT_DEV_DBNAME = "HackbeanpotCluster";
+const DEFAULT_DBNAME = "HackbeanpotCluster";
 
-// Prefer an explicit prod connection string; otherwise build a local dev URI
-// from the MONGO_DEV_* vars (matches docker-compose.yml at the repo root).
 function resolveUri(): string {
-  if (process.env.MONGO_PROD_CONNECTION_STRING) {
-    return process.env.MONGO_PROD_CONNECTION_STRING;
+  const uri = process.env.MONGO_PROD_CONNECTION_STRING;
+  if (!uri) {
+    throw new Error(
+      "Missing Mongo connection config: set MONGO_PROD_CONNECTION_STRING.",
+    );
   }
-
-  const { MONGO_DEV_USERNAME, MONGO_DEV_PASSWORD } = process.env;
-  if (MONGO_DEV_USERNAME && MONGO_DEV_PASSWORD) {
-    const host = process.env.MONGO_DEV_HOST ?? "localhost";
-    const port = process.env.MONGO_DEV_PORT ?? "27017";
-    const user = encodeURIComponent(MONGO_DEV_USERNAME);
-    const pass = encodeURIComponent(MONGO_DEV_PASSWORD);
-    return `mongodb://${user}:${pass}@${host}:${port}/?authSource=admin`;
-  }
-
-  throw new Error(
-    "Missing Mongo connection config: set MONGO_PROD_CONNECTION_STRING, " +
-      "or MONGO_DEV_USERNAME and MONGO_DEV_PASSWORD for local dev",
-  );
+  return uri;
 }
 
 const uri = resolveUri();
-const dbName = process.env.MONGO_SERVER_DBNAME ?? DEFAULT_DEV_DBNAME;
+const dbName = process.env.MONGO_SERVER_DBNAME ?? DEFAULT_DBNAME;
 
 declare global {
   // eslint-disable-next-line no-var
@@ -44,5 +32,13 @@ export async function getDb(): Promise<Db> {
   return connectedClient.db(dbName);
 }
 
-/** The resolved connection URI — exported so scripts can verify the target before destructive ops. */
-export const resolvedUri = uri;
+/**
+ * Dev and prod share the same Atlas cluster connection string, so collection
+ * names get a `_test` suffix outside production (NODE_ENV !== "production",
+ * which Next.js sets automatically for `next dev` vs `next build`/`next start`)
+ * to keep local/dev work off real data.
+ */
+export function resolveCollectionName(baseName: string): string {
+  const isDev = process.env.NODE_ENV !== "production";
+  return isDev ? `${baseName}_test` : baseName;
+}
