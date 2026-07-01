@@ -62,7 +62,12 @@ export default function ApplicantsPage({
           the server fetch and shows the table skeleton while it streams. */}
       <Suspense
         key={JSON.stringify(searchParams)}
-        fallback={<ApplicantsTable />}
+        fallback={
+          <>
+            <div className="h-5 w-16 animate-pulse rounded bg-neutral-200" />
+            <ApplicantsTable />
+          </>
+        }
       >
         <ApplicantsData searchParams={searchParams} />
       </Suspense>
