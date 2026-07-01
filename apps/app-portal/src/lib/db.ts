@@ -43,3 +43,6 @@ export async function getDb(): Promise<Db> {
   const connectedClient = await clientPromise;
   return connectedClient.db(dbName);
 }
+
+/** The resolved connection URI — exported so scripts can verify the target before destructive ops. */
+export const resolvedUri = uri;

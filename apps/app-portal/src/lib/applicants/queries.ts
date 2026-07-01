@@ -1,13 +1,40 @@
 import type { Filter } from "mongodb";
-import type { ApplicantFilters } from "./types";
 
+import type { ApplicantDoc, ApplicantFilters } from "./types";
+
+/** Escape regex metacharacters so user input is matched literally. */
+function escapeRegex(input: string): string {
+  return input.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Translate filter inputs into a Mongo filter. Status filters use plain
+ * equality against enum values and `search` matches
+ * email or name case-insensitively.
+ */
 export function buildApplicantQuery(
   filters: ApplicantFilters,
-): Filter<Record<string, unknown>> {
-  const query: Filter<Record<string, unknown>> = {};
-  if (filters.search) query.email = { $regex: filters.search, $options: "i" };
-  if (filters.applicationStatus)
+): Filter<ApplicantDoc> {
+  const query: Filter<ApplicantDoc> = {};
+
+  if (filters.applicationStatus) {
     query.applicationStatus = filters.applicationStatus;
-  if (filters.decisionStatus) query.decisionStatus = filters.decisionStatus;
+  }
+  if (filters.decisionStatus) {
+    query.decisionStatus = filters.decisionStatus;
+  }
+  if (filters.rsvpStatus) {
+    query.rsvpStatus = filters.rsvpStatus;
+  }
+
+  if (filters.search) {
+    const rx = { $regex: escapeRegex(filters.search), $options: "i" };
+    query.$or = [
+      { email: rx },
+      { "applicationResponses.firstName": rx },
+      { "applicationResponses.lastName": rx },
+    ];
+  }
+
   return query;
 }
