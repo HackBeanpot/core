@@ -14,7 +14,7 @@ export default async function RsvpPage(): Promise<JSX.Element> {
 
   return (
     <RsvpExperience
-      alreadySubmitted={status.rsvpStatus === "submitted"}
+    alreadySubmitted={status.rsvpStatus === "confirmed"}
       confirmBy={confirmBy.toISOString()}
     />
   );
