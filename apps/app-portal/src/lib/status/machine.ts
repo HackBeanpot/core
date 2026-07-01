@@ -1,11 +1,7 @@
-import type { ApplicantStatus, DashboardBranch, DecisionDates } from "./types";
+import type { DashboardBranch, MachineInput } from "./types";
 
-export function returnDashboardBranch(
-  user: ApplicantStatus,
-  dates: DecisionDates,
-  showDecision: boolean,
-): DashboardBranch {
-  const now = new Date();
+export function returnDashboardBranch(input: MachineInput): DashboardBranch {
+  const { user, dates, showDecision, now } = input;
 
   if (now < dates.registrationOpen) {
     return "pre-registration";
