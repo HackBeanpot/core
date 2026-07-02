@@ -3,6 +3,8 @@ import { Db, MongoClient } from "mongodb";
 const uri = process.env.MONGO_PROD_CONNECTION_STRING;
 const dbName = process.env.MONGO_SERVER_DBNAME;
 
+console.log(process.env.MONGO_PROD_CONNECTION_STRING);
+
 if (!uri) {
   throw new Error("Missing MONGO_PROD_CONNECTION_STRING");
 }

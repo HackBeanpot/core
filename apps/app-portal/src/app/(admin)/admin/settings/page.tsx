@@ -3,7 +3,19 @@ import ShowDecisionToggle from "@/components/admin/ShowDecisionToggle";
 import DateControls from "@/components/admin/DateControls";
 import FormConfigEditor from "@/components/admin/FormConfigEditor";
 
-export default function Page() {
+export default async function Page() {
+  const [openRes, closeRes, confirmRes] = await Promise.all([
+    fetch("http://localhost:3000/api/v1/dates/registration-open", { cache: "no-store" }),
+    fetch("http://localhost:3000/api/v1/dates/registration-closed", { cache: "no-store" }),
+    fetch("http://localhost:3000/api/v1/dates/confirm-by", { cache: "no-store" }),
+  ]);
+
+  const [openData, closeData, confirmData] = await Promise.all([
+    openRes.json(),
+    closeRes.json(),
+    confirmRes.json(),
+  ]);
+
   return (
     <div>
       <h1 className="text-3xl font-bold">Configure Portal Settings</h1>
@@ -14,20 +26,20 @@ export default function Page() {
           <div className="flex flex-col gap-4">
             <DateControls
               label="Registration Opens:"
-              endpoint="/api/v1/dates/open"
-              initialValue="2026-06-01T00:00:00Z"
+              endpoint="/api/v1/dates/registration-open"
+              initialValue={openData.value}
             />
 
             <DateControls
               label="Registration Closes:"
-              endpoint="/api/v1/dates/close"
-              initialValue="2026-06-10T00:00:00Z"
+              endpoint="/api/v1/dates/registration-closed"
+              initialValue={closeData.value}
             />
 
             <DateControls
               label="Confirm By:"
-              endpoint="/api/v1/dates/rsvp"
-              initialValue="2026-06-15T00:00:00Z"
+              endpoint="/api/v1/dates/confirm-by"
+              initialValue={confirmData.value}
             />
           </div>
         </section>

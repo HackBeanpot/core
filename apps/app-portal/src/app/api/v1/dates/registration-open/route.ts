@@ -1,27 +1,42 @@
 import { NextResponse } from "next/server";
-import { SingletonKey } from "@/lib/admin/singleton-keys";
-
-type SingletonResponse = {
-  key: SingletonKey;
-  value: string;
-};
+import { SingletonKey } from "@/lib/types/singleton";
+import {
+  getSingleton,
+  setSingleton,
+  validateDateSingleton,
+} from "@/lib/admin/singleton-service";
 
 export async function GET() {
-  const data: SingletonResponse = {
-    key: "registration-open",
-    value: "2026-06-15T23:59:00Z",
-  };
+  const value = await getSingleton(SingletonKey.RegistrationOpen);
 
-  return NextResponse.json(data);
+  return NextResponse.json({
+    value,
+  });
 }
 
-export async function POST() {
-  return NextResponse.json(
-    {
-      message: "Not implemented",
-    },
-    {
-      status: 501,
-    },
+export async function POST(req: Request) {
+  const body = await req.json();
+  const { value } = body;
+
+  const result = validateDateSingleton(value);
+
+  if (!result.ok) {
+    return NextResponse.json(
+      { error: result.error },
+      { status: 400 },
+    );
+  }
+
+  const updatedBy = "unknown"; // TODO: gate with requireAdmin() once Ticket 1 ships its helpers
+
+  await setSingleton(
+    SingletonKey.RegistrationOpen,
+    result.value,
+    updatedBy,
   );
+
+  return NextResponse.json({
+    ok: true,
+    value: result.value,
+  });
 }
