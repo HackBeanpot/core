@@ -21,19 +21,12 @@ export async function POST(req: Request) {
   const result = validateDateSingleton(value);
 
   if (!result.ok) {
-    return NextResponse.json(
-      { error: result.error },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: result.error }, { status: 400 });
   }
 
   const updatedBy = "unknown"; // TODO: gate with requireAdmin() once Ticket 1 ships its helpers
 
-  await setSingleton(
-    SingletonKey.RegistrationClosed,
-    result.value,
-    updatedBy,
-  );
+  await setSingleton(SingletonKey.RegistrationClosed, result.value, updatedBy);
 
   return NextResponse.json({
     ok: true,

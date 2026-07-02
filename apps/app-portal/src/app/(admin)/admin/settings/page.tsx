@@ -5,9 +5,15 @@ import FormConfigEditor from "@/components/admin/FormConfigEditor";
 
 export default async function Page() {
   const [openRes, closeRes, confirmRes] = await Promise.all([
-    fetch("http://localhost:3000/api/v1/dates/registration-open", { cache: "no-store" }),
-    fetch("http://localhost:3000/api/v1/dates/registration-closed", { cache: "no-store" }),
-    fetch("http://localhost:3000/api/v1/dates/confirm-by", { cache: "no-store" }),
+    fetch("http://localhost:3000/api/v1/dates/registration-open", {
+      cache: "no-store",
+    }),
+    fetch("http://localhost:3000/api/v1/dates/registration-closed", {
+      cache: "no-store",
+    }),
+    fetch("http://localhost:3000/api/v1/dates/confirm-by", {
+      cache: "no-store",
+    }),
   ]);
 
   const [openData, closeData, confirmData] = await Promise.all([

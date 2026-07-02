@@ -25,8 +25,8 @@ export default function DateControls({ label, endpoint, initialValue }: Props) {
   const [time, setTime] = React.useState<string>(
     initialDate
       ? `${String(initialDate.getHours()).padStart(2, "0")}:${String(
-        initialDate.getMinutes(),
-      ).padStart(2, "0")}`
+          initialDate.getMinutes(),
+        ).padStart(2, "0")}`
       : "",
   );
 
