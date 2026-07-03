@@ -27,3 +27,6 @@ export async function getDb(): Promise<Db> {
   const connectedClient = await clientPromise;
   return connectedClient.db(dbName);
 }
+
+// need client promise for the NextAuth MongoDB adapter
+export const mongoClientPromise = clientPromise;

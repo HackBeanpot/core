@@ -1,10 +1,7 @@
 //NextAuth handler, email provider + Mongo adapter wired up
-import { NextResponse } from "next/server";
+import NextAuth from "next-auth";
+import { authOptions } from "@/lib/auth/config";
 
-export async function GET() {
-  return NextResponse.json({ error: "not implemented" }, { status: 501 });
-}
+const handler = NextAuth(authOptions);
 
-export async function POST() {
-  return NextResponse.json({ error: "not implemented" }, { status: 501 });
-}
+export { handler as GET, handler as POST };
