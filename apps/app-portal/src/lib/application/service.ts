@@ -1,3 +1,4 @@
+import { getDb } from "@/lib/db";
 import type {
   ApplicationDraft,
   ApplicationResponses,
@@ -5,14 +6,28 @@ import type {
   RegistrationState,
 } from "./types";
 
+/*
+ * Mongo collection: applicant_data
+ *
+ * Document shape:
+ *   userId:               string                           — unique per applicant
+ *   applicationResponses: Record<string, string | string[] | null>
+ *   applicationStatus:    'in-progress' | 'submitted'
+ *   lastSavedAt:          Date
+ *   appSubmissionTime:    Date | null                      — null until submitted
+ *
+ * Requires env vars: MONGO_PROD_CONNECTION_STRING, MONGO_SERVER_DBNAME
+ */
+const COLLECTION = "applicant_data";
+
 // Change these values to test every application state end-to-end.
 // registrationStatus: "before_open" | "open" | "closed"
 // applicationStatus:  "draft" | "submitted"
 const MOCK_REGISTRATION_STATE: RegistrationState = {
-  registrationStatus: "closed",
+  registrationStatus: "open",
   opensAt: "2026-09-01T00:00:00Z",
   closesAt: "2026-12-01T00:00:00Z",
-  applicationStatus: "submitted",
+  applicationStatus: "draft",
   responses: {},
   updatedAt: null,
 };
@@ -26,25 +41,40 @@ export async function isRegistrationOpen(): Promise<boolean> {
   return state.registrationStatus === "open";
 }
 
-/** @todo Persist draft to MongoDB */
 export async function getDraft(
   userId: string,
 ): Promise<ApplicationDraft | null> {
-  void userId;
-  return null;
+  const db = await getDb();
+  const doc = await db.collection(COLLECTION).findOne({ userId });
+  if (!doc) return null;
+  return {
+    responses: doc.applicationResponses as ApplicationResponses,
+    updatedAt: (doc.lastSavedAt as Date).toISOString(),
+    status: "draft",
+  };
 }
 
-/** @todo Persist draft to MongoDB */
 export async function saveDraft(
   userId: string,
   responses: ApplicationResponses,
 ): Promise<ApplicationDraft> {
-  void userId;
-  return {
-    responses,
-    updatedAt: new Date().toISOString(),
-    status: "draft",
-  };
+  const db = await getDb();
+  const now = new Date();
+  await db.collection(COLLECTION).updateOne(
+    { userId },
+    {
+      $set: { applicationResponses: responses, lastSavedAt: now },
+      // $setOnInsert never overwrites an existing applicationStatus,
+      // which prevents a draft save from downgrading a submitted application.
+      $setOnInsert: {
+        userId,
+        applicationStatus: "in-progress",
+        appSubmissionTime: null,
+      },
+    },
+    { upsert: true },
+  );
+  return { responses, updatedAt: now.toISOString(), status: "draft" };
 }
 
 /** @todo Persist submission to MongoDB */

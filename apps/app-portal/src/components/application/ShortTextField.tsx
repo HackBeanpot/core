@@ -30,6 +30,7 @@ export function ShortTextField({
       disabled={disabled}
       placeholder={question.label}
       aria-required={question.required}
+      required={question.required}
     />
   );
 }
