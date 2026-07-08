@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import PlaceBackground from "../placeholder/placeBackground";
-import Rollercoaster from "../placeholder/rollercoaster";
-import HackBeanpotLogo from "../placeholder/HackBeanpotLogo";
-import NewsletterSignup from "../placeholder/NewsletterSignup";
+import PlaceBackground from "./placeBackground";
+import Rollercoaster from "./rollercoaster";
+import HackBeanpotLogo from "./HackBeanpotLogo";
+import NewsletterSignup from "./NewsletterSignup";
 
-export default function Page() {
+export default function PlaceholderPage() {
   return (
     <div className="min-h-screen w-full bg-starlightBlueDark overflow-hidden fixed inset-0">
       {/* Cover the green html background (incl. mobile overscroll), scoped to this page */}
