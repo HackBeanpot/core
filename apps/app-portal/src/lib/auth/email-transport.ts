@@ -5,48 +5,24 @@ import { createTransport } from "nodemailer"
 import {Theme} from "next-auth";
 import { readFileSync } from "fs";
 import { join } from "path";
-import { authLog, mask } from "./log";
 
 const TEMPLATE_PATH = join(process.cwd(), "src/lib/auth/email-template.html");
 
 async function customRequest(params: SendVerificationRequestParams) {
   const { identifier, url, provider, theme } = params
   const { host } = new URL(url)
-  const token = new URL(url).searchParams.get("token")
-
-  authLog("email", `sending magic link → ${identifier}`, {
-    host,
-    from: provider.from,
-    token: mask(token),
-  })
-  // DEV AID: the full clickable link. Since email delivery is flaky, you can
-  // copy this straight from the terminal and paste it in the browser to sign in.
-  authLog("email", `magic link URL (dev): ${url}`)
 
   const transport = createTransport(provider.server)
-  try {
-    const result = await transport.sendMail({
-      to: identifier,
-      from: provider.from,
-      subject: `Verify your identity for HackBeanpot`,
-      text: text({ url, host }),
-      html: html({ url, host, theme }),
-    })
-    authLog("email", `SMTP responded for ${identifier}`, {
-      messageId: result.messageId,
-      accepted: result.accepted,
-      rejected: result.rejected,
-      response: result.response,
-    })
-    const failed = result.rejected.concat(result.pending).filter(Boolean)
-    if (failed.length) {
-      authLog("email", `✗ SMTP rejected recipient(s): ${failed.join(", ")}`)
-      throw new Error(`Email(s) (${failed.join(", ")}) could not be sent`)
-    }
-    authLog("email", `✓ accepted by SMTP for ${identifier}`)
-  } catch (err) {
-    authLog("email", `✗ sendMail threw: ${(err as Error).message}`)
-    throw err
+  const result = await transport.sendMail({
+    to: identifier,
+    from: provider.from,
+    subject: `Verify your identity for HackBeanpot`,
+    text: text({ url, host }),
+    html: html({ url, host, theme }),
+  })
+  const failed = result.rejected.concat(result.pending).filter(Boolean)
+  if (failed.length) {
+    throw new Error(`Email(s) (${failed.join(", ")}) could not be sent`)
   }
 }
 
