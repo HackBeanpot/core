@@ -5,23 +5,48 @@ import { createTransport } from "nodemailer"
 import {Theme} from "next-auth";
 import { readFileSync } from "fs";
 import { join } from "path";
+import { authLog, mask } from "./log";
 
 const TEMPLATE_PATH = join(process.cwd(), "src/lib/auth/email-template.html");
 
 async function customRequest(params: SendVerificationRequestParams) {
   const { identifier, url, provider, theme } = params
   const { host } = new URL(url)
-  const transport = createTransport(provider.server)
-  const result = await transport.sendMail({
-    to: identifier,
+  const token = new URL(url).searchParams.get("token")
+
+  authLog("email", `sending magic link → ${identifier}`, {
+    host,
     from: provider.from,
-    subject: `Sign in to ${host}`,
-    text: text({ url, host }),
-    html: html({ url, host, theme }),
+    token: mask(token),
   })
-  const failed = result.rejected.concat(result.pending).filter(Boolean)
-  if (failed.length) {
-    throw new Error(`Email(s) (${failed.join(", ")}) could not be sent`)
+  // DEV AID: the full clickable link. Since email delivery is flaky, you can
+  // copy this straight from the terminal and paste it in the browser to sign in.
+  authLog("email", `magic link URL (dev): ${url}`)
+
+  const transport = createTransport(provider.server)
+  try {
+    const result = await transport.sendMail({
+      to: identifier,
+      from: provider.from,
+      subject: `Verify your identity for HackBeanpot`,
+      text: text({ url, host }),
+      html: html({ url, host, theme }),
+    })
+    authLog("email", `SMTP responded for ${identifier}`, {
+      messageId: result.messageId,
+      accepted: result.accepted,
+      rejected: result.rejected,
+      response: result.response,
+    })
+    const failed = result.rejected.concat(result.pending).filter(Boolean)
+    if (failed.length) {
+      authLog("email", `✗ SMTP rejected recipient(s): ${failed.join(", ")}`)
+      throw new Error(`Email(s) (${failed.join(", ")}) could not be sent`)
+    }
+    authLog("email", `✓ accepted by SMTP for ${identifier}`)
+  } catch (err) {
+    authLog("email", `✗ sendMail threw: ${(err as Error).message}`)
+    throw err
   }
 }
 
@@ -47,7 +72,9 @@ function html(params: { url: string, host: string, theme: Theme }) {
   }
 
   // Logo is served from /public; use an absolute URL so email clients can load it.
-  const logoUrl = `${process.env.NEXTAUTH_URL ?? ""}/email_logo.png`
+  // Derive the origin (NEXTAUTH_URL may carry an /auth path we must strip).
+  const origin = new URL(process.env.NEXTAUTH_URL ?? "http://localhost:3000").origin
+  const logoUrl = `${origin}/email_logo.png`
 
   const replacements: Record<string, string> = {
     url,

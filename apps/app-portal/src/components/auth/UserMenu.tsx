@@ -41,7 +41,7 @@ export default function UserMenu({ email }: UserMenuProps): JSX.Element {
   async function handleSignOut() {
     setOpen(false);
     // TODO: wire to NextAuth — signOut({ callbackUrl: "/" }) once next-auth is installed.
-    await fetch("/api/auth/signout", { method: "POST" }).catch(() => {});
+    await fetch("/auth/signout", { method: "POST" }).catch(() => {});
     window.location.href = "/";
   }
 

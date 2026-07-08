@@ -5,25 +5,24 @@
   it must come from the `url` param, never be hardcoded.
 -->
 <body style="margin: 0; padding: 0;">
-  <table width="100%" border="0" cellspacing="20" cellpadding="0"
-    style="background: {{mainBackground}}; max-width: 600px; margin: auto; border-radius: 10px; font-family: Helvetica, Arial, sans-serif;">
+  <table
+    style="width:100%; border:0; border-spacing:20px; background: {{mainBackground}}; max-width: 600px; margin: auto; border-radius: 10px; font-family: Helvetica, Arial, sans-serif;">
     <tr>
-      <td align="center" style="padding: 10px 0;">
+      <td style="text-align: center; padding: 10px 0;">
         <!-- Logo. alt text acts as the wordmark fallback when images are blocked. -->
-        <img src="{{logoUrl}}" alt="HackBeanpot" width="180" style="display: block; border: 0;" />
+        <img src="{{logoUrl}}" alt="HackBeanpot" width="180" style="display: block; border: 0; margin: 0 auto;" />
       </td>
     </tr>
     <tr>
-      <td align="center"
-        style="padding: 10px 0; font-size: 16px; line-height: 22px; color: {{textColor}};">
+      <td style="text-align:center; padding: 10px 0; font-size: 16px; line-height: 22px; color: {{textColor}};">
         Click the button below to sign in to the HackBeanpot application portal.
       </td>
     </tr>
     <tr>
-      <td align="center" style="padding: 20px 0;">
-        <table border="0" cellspacing="0" cellpadding="0">
+      <td style="text-align:center; padding: 20px 0;">
+        <table style="border:0; margin: 0 auto;">
           <tr>
-            <td align="center" style="border-radius: 5px;" bgcolor="{{buttonBackground}}">
+            <td style="text-align:center; border-radius: 5px; background:{{buttonBackground}}">
               <a href="{{url}}" target="_blank"
                 style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: {{buttonText}}; text-decoration: none; border-radius: 5px; padding: 12px 28px; border: 1px solid {{buttonBorder}}; display: inline-block; font-weight: bold;">
                 Sign in to HackBeanpot
@@ -34,16 +33,16 @@
       </td>
     </tr>
     <tr>
-      <td align="center"
-        style="padding: 0 0 10px; font-size: 13px; line-height: 20px; color: {{textColor}};">
+      <td
+        style="text-align:center; padding: 0 0 10px; font-size: 13px; line-height: 20px; color: {{textColor}};">
         <!-- Fallback plaintext link: works even if the button doesn't render. -->
         Or copy and paste this link into your browser:<br />
         <a href="{{url}}" style="color: {{buttonBackground}}; word-break: break-all;">{{url}}</a>
       </td>
     </tr>
     <tr>
-      <td align="center"
-        style="padding: 0 0 10px; font-size: 14px; line-height: 22px; color: {{textColor}};">
+      <td
+        style="text-align:center; padding: 0 0 10px; font-size: 14px; line-height: 22px; color: {{textColor}};">
         If you did not request this email you can safely ignore it.
       </td>
     </tr>

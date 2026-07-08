@@ -1,6 +1,7 @@
 //email input form, calls signIn("email")
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
 import icon from "@/app/icon.ico";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
@@ -32,21 +33,15 @@ export function SignInForm() {
     setStatus("loading");
 
     try {
-      //TODO: wire to the real endpoint
-      const res = await fetch("/api/auth/signin/email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
+      // signIn() handles CSRF, form-encoding, and the redirect for us.
+      // redirect:false → we drive the UI state ourselves instead of navigating.
+      const res = await signIn("email", {
+        email: email.trim(),
+        redirect: false,
+        callbackUrl: "/",
       });
 
-      // rate-limit -> toast
-      if (res.status === 429) {
-        toast.error("Too many attempts. Please wait a minute and try again.");
-        setStatus("idle");
-        return;
-      }
-
-      if (!res.ok) {
+      if (res?.error) {
         toast.error(
           "Something went wrong sending your sign-in link. Please try again.",
         );
@@ -56,7 +51,7 @@ export function SignInForm() {
 
       setStatus("sent");
     } catch {
-      // network failure (fetch threw err)
+      // network failure (signIn threw)
       toast.error("Network error. Check your connection and try again.");
       setStatus("idle");
     }
@@ -69,7 +64,7 @@ export function SignInForm() {
         {/*icon*/}
         <Image src={icon} alt="HBP Logo" width={64} height={64} />
         {/*title*/}
-        <p className={"mt-4 text-black text-2xl"}>HackBeanpot</p>
+        <p className={"mt-4 text-black text-2xl"}>Login to HackBeanpot!</p>
 
         {/*input area*/}
         <div className={"w-[250px]"}>
