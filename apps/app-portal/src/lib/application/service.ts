@@ -24,8 +24,9 @@ const COLLECTION = "applicant_data";
 // registrationStatus: "before_open" | "open" | "closed"
 // applicationStatus:  "draft" | "submitted"
 const MOCK_REGISTRATION_STATE: RegistrationState = {
+  // For local/testing: set registrationStatus to "open" so the application can be filled out
   registrationStatus: "open",
-  opensAt: "2026-09-01T00:00:00Z",
+  opensAt: "2026-01-01T00:00:00Z",
   closesAt: "2026-12-01T00:00:00Z",
   applicationStatus: "draft",
   responses: {},

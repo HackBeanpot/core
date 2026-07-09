@@ -10,26 +10,31 @@ import { getApplicant } from "@/lib/applicants/service";
 
 interface PageProps {
   params: { id: string };
+  searchParams: { from?: string };
 }
 
-export default async function ApplicantDetailPage({ params }: PageProps) {
+export default async function ApplicantDetailPage({
+  params,
+  searchParams,
+}: PageProps) {
   const applicant = await getApplicant(params.id);
   if (!applicant) notFound();
+
+  const backHref = searchParams.from
+    ? `/admin/applicants?${searchParams.from}`
+    : "/admin/applicants";
 
   return (
     <div className="space-y-6 p-6">
       <div>
-        <Link
-          href="/admin/applicants"
-          className="text-sm text-neutral-500 underline"
-        >
+        <Link href={backHref} className="text-sm text-neutral-500 underline">
           Back to applicants
         </Link>
       </div>
 
       <ApplicantDetail applicant={applicant} />
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 grid-cols-2 mobile:grid-cols-1 mobile-xl:grid-cols-1">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Edit decision</CardTitle>

@@ -1,18 +1,21 @@
 "use client";
 
 import React from "react";
-import { Cell, Pie, PieChart } from "recharts";
+import { Pie, PieChart } from "recharts";
+
+import { colors } from "@repo/tailwind-config/tokens";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart";
 import type { StatusBreakdown, StatusKind } from "@/lib/stats/types";
+
+import { ChartEmpty } from "./ChartEmpty";
+import { TooltipRow } from "./TooltipRow";
 
 interface StatusBreakdownChartProps {
   breakdown: StatusBreakdown;
@@ -25,23 +28,39 @@ const TITLES: Record<StatusKind, string> = {
   rsvp: "RSVPs by Status",
 };
 
-const STATUS_COLORS: Record<string, string> = {
-  "not-started": "#94a3b8",
-  incomplete: "#cbd5e1",
-  submitted: "#0f172a",
+const EMPTY_MESSAGES: Record<StatusKind, string> = {
+  application: "No applications yet",
+  decision: "No decisions yet",
+  rsvp: "No RSVPs yet",
 };
+
+// colors assigned positionally from brand palette
+const PALETTE = [
+  colors.green,
+  colors.torchlightOrange,
+  colors.teal,
+  colors.firecrackerRed,
+  colors.grapePurple,
+  colors.skyBlue,
+  colors.heather,
+];
 
 export function StatusBreakdownChart({
   breakdown,
   kind = "application",
 }: StatusBreakdownChartProps): JSX.Element {
   const entries = breakdown[kind];
+  const total = entries.reduce((sum, e) => sum + e.count, 0);
 
-  const config = entries.reduce<ChartConfig>((acc, e) => {
-    acc[e.status] = {
-      label: e.status.replace("-", " "),
-      color: STATUS_COLORS[e.status] ?? "#94a3b8",
-    };
+  const rows = entries.map((e, i) => ({
+    ...e,
+    label: e.status.replace("-", " "),
+    fill: PALETTE[i % PALETTE.length],
+    pct: total ? Math.round((e.count / total) * 100) : 0,
+  }));
+
+  const config = rows.reduce<ChartConfig>((acc, r) => {
+    acc[r.status] = { label: r.label, color: r.fill };
     return acc;
   }, {});
 
@@ -51,30 +70,63 @@ export function StatusBreakdownChart({
         <CardTitle>{TITLES[kind]}</CardTitle>
       </CardHeader>
       <CardContent>
-        <ChartContainer
-          config={config}
-          className="mx-auto aspect-square max-h-64"
-        >
-          <PieChart>
-            <ChartTooltip content={<ChartTooltipContent nameKey="status" />} />
-            <Pie
-              data={entries}
-              dataKey="count"
-              nameKey="status"
-              innerRadius={50}
-              outerRadius={80}
-              paddingAngle={2}
+        {total === 0 ? (
+          <ChartEmpty message={EMPTY_MESSAGES[kind]} />
+        ) : (
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
+            <ChartContainer
+              config={config}
+              className="aspect-square h-48 w-48 shrink-0"
             >
-              {entries.map((entry) => (
-                <Cell
-                  key={entry.status}
-                  fill={`var(--color-${entry.status})`}
+              <PieChart>
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      nameKey="status"
+                      formatter={(value, _name, _item, _index, payload) => {
+                        const { fill, label, pct } = payload as unknown as {
+                          fill: string;
+                          label: string;
+                          pct: number;
+                        };
+                        return (
+                          <TooltipRow
+                            color={fill}
+                            label={label}
+                            value={`${Number(value).toLocaleString()} (${pct}%)`}
+                          />
+                        );
+                      }}
+                    />
+                  }
                 />
+                <Pie
+                  data={rows}
+                  dataKey="count"
+                  nameKey="status"
+                  innerRadius={50}
+                  outerRadius={80}
+                  paddingAngle={2}
+                />
+              </PieChart>
+            </ChartContainer>
+
+            <ul className="flex w-full flex-col gap-2 text-sm sm:w-auto">
+              {rows.map((row) => (
+                <li key={row.status} className="flex items-center gap-2">
+                  <span
+                    className="h-3 w-3 shrink-0 rounded-sm"
+                    style={{ backgroundColor: row.fill }}
+                  />
+                  <span className="capitalize">{row.label}</span>
+                  <span className="ml-auto pl-4 tabular-nums">
+                    {row.count.toLocaleString()} ({row.pct}%)
+                  </span>
+                </li>
               ))}
-            </Pie>
-            <ChartLegend content={<ChartLegendContent nameKey="status" />} />
-          </PieChart>
-        </ChartContainer>
+            </ul>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
