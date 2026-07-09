@@ -9,10 +9,7 @@ import type { ApplicationResponses } from "@/lib/application/types";
 
 // TODO: replace with session lookup once auth helpers exist (sprint 4)
 function getUserId(req: NextRequest): string | null {
-  return (
-    req.headers.get("x-user-id") ??
-    req.nextUrl.searchParams.get("userId")
-  );
+  return req.headers.get("x-user-id") ?? req.nextUrl.searchParams.get("userId");
 }
 
 export async function GET(req: NextRequest) {

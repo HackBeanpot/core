@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "type-check": "tsc --noEmit",
-    "test:db": "node --experimental-strip-types --test src/lib/application/service.test.mts"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.19.0",
