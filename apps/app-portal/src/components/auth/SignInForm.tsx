@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+import { isAdminEmail } from "@/lib/auth/roles";
 import icon from "@/app/icon.ico";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
@@ -35,10 +36,12 @@ export function SignInForm() {
     try {
       // signIn() handles CSRF, form-encoding, and the redirect for us.
       // redirect:false → we drive the UI state ourselves instead of navigating.
+      // The callbackUrl is baked into the magic link; the admin layout
+      // re-checks the role server-side, so this is routing, not authorization.
       const res = await signIn("email", {
         email: email.trim(),
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl: isAdminEmail(email) ? "/admin" : "/dashboard",
       });
 
       if (res?.error) {

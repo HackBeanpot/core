@@ -11,9 +11,8 @@ export async function requireUser() {
 
 export async function requireAdmin() {
   const user = await requireUser();
-  // if (!(user as { isAdmin?: boolean }).isAdmin) {
-  //   throw new Error("Forbidden");
-  // }
-  //TODO: finish admin role
+  if (!(user as { isAdmin?: boolean }).isAdmin) {
+    throw new Error("Forbidden");
+  }
   return user;
 }

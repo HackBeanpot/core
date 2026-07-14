@@ -3,6 +3,7 @@
 import type { NextAuthOptions } from "next-auth";
 import MainEmailProvider from "./email-transport";
 import { authAdapter } from "./adapter";
+import { isAdminEmail } from "./roles";
 
 export const authOptions: NextAuthOptions = {
   adapter: authAdapter,
@@ -25,13 +26,17 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.isAdmin = isAdminEmail(user.email);
       }
       return token;
     },
     // Runs when app code reads the session; shapes what the app sees.
     async session({ session, token }) {
       if (session.user) {
-        (session.user as { id?: string }).id = token.id as string;
+        (session.user as { id?: string; isAdmin?: boolean }).id =
+          token.id as string;
+        (session.user as { id?: string; isAdmin?: boolean }).isAdmin =
+          token.isAdmin === true;
       }
       return session;
     },
