@@ -77,7 +77,7 @@ export const mockApplicantStatus: ApplicantStatus = {
   userId: "mock-user",
   applicationStatus: "submitted",
   decisionStatus: "admitted",
-  rsvpStatus: "not-submitted",
+  rsvpStatus: "unconfirmed",
 };
 
 export const decisionDates: DecisionDates = {
