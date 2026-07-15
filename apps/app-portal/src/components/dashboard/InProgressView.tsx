@@ -16,7 +16,7 @@ type InProgressViewProps = {
 export default function InProgressView({
   status,
 }: InProgressViewProps): JSX.Element {
-  const progressPercent = status.applicationStatus === "in-progress" ? 60 : 100;
+  const progressPercent = status.applicationStatus === "incomplete" ? 60 : 100;
 
   return (
     <PortalShell
