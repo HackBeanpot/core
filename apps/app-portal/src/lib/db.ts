@@ -1,7 +1,5 @@
 import { Db, MongoClient } from "mongodb";
 
-const DEFAULT_DBNAME = "HackbeanpotCluster";
-
 function resolveUri(): string {
   const uri = process.env.MONGO_PROD_CONNECTION_STRING;
   if (!uri) {
@@ -13,7 +11,6 @@ function resolveUri(): string {
 }
 
 const uri = resolveUri();
-const dbName = process.env.MONGO_SERVER_DBNAME ?? DEFAULT_DBNAME;
 
 declare global {
   // eslint-disable-next-line no-var
@@ -51,3 +48,6 @@ export function resolveCollectionName(baseName: string): string {
   const isDev = process.env.NODE_ENV !== "production";
   return isDev ? `${baseName}_test` : baseName;
 }
+
+// need client promise for the NextAuth MongoDB adapter
+export const mongoClientPromise = getClientPromise(uri);

@@ -15,18 +15,26 @@ export function sanitizeFileName(filename: string): string {
   return cleanName || "unnamed";
 }
 
-export function validateUploadRequest({ mime, size, filename} : {mime: string; size: number; filename: string}) : {ok: true} | {ok: false, error: string} {
+export function validateUploadRequest({
+  mime,
+  size,
+  filename,
+}: {
+  mime: string;
+  size: number;
+  filename: string;
+}): { ok: true } | { ok: false; error: string } {
   if (!(ALLOWED_MIME_TYPES as readonly string[]).includes(mime)) {
-    return {ok: false, error: "Incorrect mime type"};
+    return { ok: false, error: "Incorrect mime type" };
   }
   if (size <= 0) {
-    return {ok: false, error: "File is empty"};
+    return { ok: false, error: "File is empty" };
   }
   if (size > MAX_FILE_SIZE_BYTES) {
-    return {ok: false, error: "Size of file is too large (over 5 MB)"};
+    return { ok: false, error: "Size of file is too large (over 5 MB)" };
   }
   if (!filename || filename.trim().length === 0) {
-    return {ok: false, error: "Filename is required"}
+    return { ok: false, error: "Filename is required" };
   }
-  return {ok: true};
+  return { ok: true };
 }

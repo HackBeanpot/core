@@ -11,7 +11,11 @@ export function returnDashboardBranch(input: MachineInput): DashboardBranch {
     return "in-progress";
   }
 
-  if (!showDecision || !user.decisionStatus || user.decisionStatus === "pending") {
+  if (
+    !showDecision ||
+    !user.decisionStatus ||
+    user.decisionStatus === "pending"
+  ) {
     return "submitted";
   }
 
