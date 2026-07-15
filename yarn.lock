@@ -337,10 +337,10 @@
   resolved "https://registry.npmjs.org/@google-cloud/promisify/-/promisify-4.0.0.tgz"
   integrity sha512-Orxzlfb9c67A15cq2JQEyVc7wEsmFBmHjZWZYQMUyJ1qivXyMwdyNOs9odi79hze+2zqdTtu1E19IM/FtqZ10g==
 
-"@google-cloud/storage@^7.19.0":
-  version "7.19.0"
-  resolved "https://registry.npmjs.org/@google-cloud/storage/-/storage-7.19.0.tgz"
-  integrity sha512-n2FjE7NAOYyshogdc7KQOl/VZb4sneqPjWouSyia9CMDdMhRX5+RIbqalNmC7LOLzuLAN89VlF2HvG8na9G+zQ==
+"@google-cloud/storage@^7.21.0":
+  version "7.21.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-7.21.0.tgz#46b89afbdc3014e18b60afdfba5d9212a23e7b58"
+  integrity sha512-l+IFTkd+6Y5LoAuXyYCKNAKtw/Ci+rAMqgdTB1jv4iZiLhw0rtq+0qjIRbBizXkNzEFmXiXUW0H7sZQQvk1ffA==
   dependencies:
     "@google-cloud/paginator" "^5.0.0"
     "@google-cloud/projectify" "^4.0.0"
@@ -356,7 +356,6 @@
     p-limit "^3.0.1"
     retry-request "^7.0.0"
     teeny-request "^9.0.0"
-    uuid "^8.0.0"
 
 "@hookform/resolvers@^5.2.2":
   version "5.2.2"
@@ -4403,6 +4402,11 @@ semver@^7.3.7, semver@^7.5.4, semver@^7.6.0, semver@^7.6.3:
   resolved "https://registry.npmjs.org/semver/-/semver-7.7.1.tgz"
   integrity sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==
 
+server-only@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/server-only/-/server-only-0.0.1.tgz#0f366bb6afb618c37c9255a314535dc412cd1c9e"
+  integrity sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==
+
 set-function-length@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/set-function-length/-/set-function-length-1.2.2.tgz"
@@ -5114,11 +5118,6 @@ uuid@^14.0.0:
   version "14.0.0"
   resolved "https://registry.npmjs.org/uuid/-/uuid-14.0.0.tgz"
   integrity sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==
-
-uuid@^8.0.0, uuid@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
-  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 uuid@^9.0.0, uuid@^9.0.1:
   version "9.0.1"

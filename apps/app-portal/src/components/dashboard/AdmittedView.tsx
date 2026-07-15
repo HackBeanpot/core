@@ -55,10 +55,10 @@ export default function AdmittedView({
           RSVP status
         </p>
         <p className="mt-2 text-2xl font-semibold text-slate-950">
-          {status.rsvpStatus === "submitted" ? "Confirmed" : "Needs RSVP"}
+          {status.rsvpStatus === "confirmed" ? "Confirmed" : "Needs RSVP"}
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          {status.rsvpStatus === "submitted"
+          {status.rsvpStatus === "confirmed"
             ? "Thanks for confirming your attendance."
             : "Please complete the RSVP form before the deadline."}
         </p>

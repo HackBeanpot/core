@@ -1,4 +1,6 @@
-import { SingletonKey } from "./singleton-keys";
+import { getDb } from "@/lib/db";
+import { SingletonKey, SingletonRecord } from "@/lib/types/singleton";
+import { SingletonValue } from "./types";
 
 type SingletonMap = {
   "registration-open": string;
@@ -7,22 +9,77 @@ type SingletonMap = {
   "show-decision": boolean;
 };
 
-const mockSingletonData: SingletonMap = {
-  "registration-open": "2026-01-01T00:00:00.000Z",
-  "registration-closed": "2026-02-01T00:00:00.000Z",
-  "confirm-by": "2026-02-15T00:00:00.000Z",
-  "show-decision": false,
-};
-
 export async function getSingleton<K extends SingletonKey>(
   key: K,
-): Promise<SingletonMap[K]> {
-  return mockSingletonData[key];
+): Promise<SingletonMap[K] | null> {
+  const db = await getDb();
+  const collection = db.collection<SingletonRecord>("singleton_data");
+
+  const doc = await collection.findOne({
+    _id: key,
+  });
+
+  if (!doc) {
+    return null;
+  }
+
+  return doc.value as SingletonMap[K];
 }
 
 export async function setSingleton<K extends SingletonKey>(
   key: K,
-  value: SingletonMap[K],
+  value: SingletonValue<K>,
+  updatedBy: string,
 ): Promise<void> {
-  mockSingletonData[key] = value;
+  const db = await getDb();
+  const collection = db.collection<SingletonRecord>("singleton_data");
+
+  await collection.updateOne(
+    { _id: key },
+    {
+      $set: {
+        key,
+        value,
+        updatedAt: new Date(),
+        updatedBy,
+      },
+    },
+    {
+      upsert: true,
+    },
+  );
+}
+
+export function validateDateSingleton(
+  value: unknown,
+): { ok: true; value: string } | { ok: false; error: string } {
+  if (typeof value !== "string") {
+    return {
+      ok: false,
+      error: "Value must be a string.",
+    };
+  }
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return {
+      ok: false,
+      error: "Value is not a valid date.",
+    };
+  }
+
+  const normalized = date.toISOString();
+
+  // if (value !== normalized) {
+  //   return {
+  //     ok: false,
+  //     error: "Value must be an ISO 8601 date string.",
+  //   };
+  // }
+
+  return {
+    ok: true,
+    value: normalized,
+  };
 }
