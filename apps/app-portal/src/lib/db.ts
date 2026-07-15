@@ -53,4 +53,4 @@ export function resolveCollectionName(baseName: string): string {
 }
 
 // need client promise for the NextAuth MongoDB adapter
-export const mongoClientPromise = clientPromise;
+export const mongoClientPromise = getClientPromise(uri);

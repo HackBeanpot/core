@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import { fetchPortalStatus } from "../../../lib/status/fetchPortalStatus";
 import RsvpExperience from "../../../components/dashboard/RsvpExperience";
 
+export const dynamic = "force-dynamic";
+
 export default async function RsvpPage(): Promise<JSX.Element> {
   const { branch, status, decisionDates } = await fetchPortalStatus();
   const confirmBy = new Date(decisionDates.confirmBy);
@@ -14,7 +16,7 @@ export default async function RsvpPage(): Promise<JSX.Element> {
 
   return (
     <RsvpExperience
-    alreadySubmitted={status.rsvpStatus === "confirmed"}
+      alreadySubmitted={status.rsvpStatus === "confirmed"}
       confirmBy={confirmBy.toISOString()}
     />
   );

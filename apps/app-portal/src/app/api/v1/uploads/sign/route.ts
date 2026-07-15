@@ -1,6 +1,9 @@
 // POST --> returns signed upload URL for GCS; stub returns 501
 
-import { createSignedUploadUrl, InvalidUploadError } from "@/lib/uploads/service";
+import {
+  createSignedUploadUrl,
+  InvalidUploadError,
+} from "@/lib/uploads/service";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -12,7 +15,10 @@ export async function POST(request: Request) {
 
   try {
     const { uploadId, uploadUrl, expiresAt } = await createSignedUploadUrl({
-      userId, filename, mime, size,
+      userId,
+      filename,
+      mime,
+      size,
     });
     return NextResponse.json({ uploadId, uploadUrl: uploadUrl, expiresAt });
   } catch (err) {

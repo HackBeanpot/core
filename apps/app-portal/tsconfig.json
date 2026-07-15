@@ -5,8 +5,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@util/*": ["../../packages/util/src/*"]
-    },
-    "types": ["jest"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -15,5 +14,5 @@
     ".next/types/**/*.ts",
     "../../packages/ui/src/Placeholder.tsx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "jest.config.ts", "**/*.test.ts", "**/*.test.tsx"]
 }
