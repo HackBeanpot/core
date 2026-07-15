@@ -8,9 +8,7 @@ import type {
   RsvpStatus,
 } from "./types";
 
-export async function getApplicantStatus(
-  userId: string,
-): Promise<ApplicantStatus> {
+export async function getApplicantStatus(userId: string): Promise<ApplicantStatus> {
   const db = await getDb();
   const doc = await db.collection("applicant_data").findOne({ userId });
 
@@ -31,9 +29,7 @@ export async function getApplicantStatus(
   };
 }
 
-export async function getPortalStatus(
-  userId: string,
-): Promise<PortalStatusResponse> {
+export async function getPortalStatus(userId: string): Promise<PortalStatusResponse> {
   const user = await getApplicantStatus(userId);
 
   // TODO: replace with getSingleton() calls once Ticket 5 lands real singleton service

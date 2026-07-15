@@ -4,14 +4,12 @@ import type { ApplicantStatus, MachineInput } from "./types";
 const PAST = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 const FUTURE = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
-function makeInput(
-  overrides: {
-    user?: Partial<ApplicantStatus>;
-    dates?: { registrationOpen: Date; confirmBy: Date };
-    showDecision?: boolean;
-    now?: Date;
-  } = {},
-): MachineInput {
+function makeInput(overrides: {
+  user?: Partial<ApplicantStatus>;
+  dates?: { registrationOpen: Date; confirmBy: Date };
+  showDecision?: boolean;
+  now?: Date;
+} = {}): MachineInput {
   return {
     user: {
       userId: "test-user",

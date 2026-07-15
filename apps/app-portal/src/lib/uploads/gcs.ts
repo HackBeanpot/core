@@ -7,10 +7,11 @@ class GCSClient {
   private storage: Storage;
 
   private constructor() {
+
     const credentials = {
       client_email: process.env.GOOGLE_CLOUD_EMAIL,
       private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-    };
+    }
 
     if (!process.env.GOOGLE_CLOUD_PROJECT_ID) {
       throw new Error("Missing GCS env vars");
@@ -18,7 +19,7 @@ class GCSClient {
 
     this.storage = new Storage({
       projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
-      credentials,
+      credentials
     });
   }
 
@@ -30,13 +31,13 @@ class GCSClient {
   }
 
   public getBucket(): Bucket {
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === 'production') {
       return this.storage.bucket(
-        process.env.GOOGLE_CLOUD_STORAGE_RESUME_BUCKET!,
-      );
+        process.env.GOOGLE_CLOUD_STORAGE_RESUME_BUCKET!
+      )
     }
     return this.storage.bucket(
-      process.env.GOOGLE_CLOUD_STORAGE_RESUME_BUCKET_TEST!,
+      process.env.GOOGLE_CLOUD_STORAGE_RESUME_BUCKET_TEST!
     );
   }
 }
