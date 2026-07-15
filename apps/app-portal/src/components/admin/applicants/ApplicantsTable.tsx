@@ -4,16 +4,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useMemo } from "react";
 import {
   ColumnDef,
-  ColumnFiltersState,
-  FilterFn,
   OnChangeFn,
   PaginationState,
   SortingState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
@@ -32,6 +27,9 @@ import { Input } from "@/components/ui/input";
 
 interface ApplicantsTableProps {
   rows?: ApplicantSummary[];
+  total?: number;
+  page?: number;
+  pageSize?: number;
 }
 
 const SKELETON_ROW_COUNT = 8;
@@ -65,15 +63,13 @@ const columns: ColumnDef<ApplicantSummary>[] = [
   {
     accessorKey: "applicationStatus",
     header: "Application",
-    filterFn: "equalsString",
   },
   {
     accessorKey: "decisionStatus",
     header: "Decision",
     cell: ({ row }) => row.original.decisionStatus ?? "—",
-    filterFn: "equalsString",
   },
-  { accessorKey: "rsvpStatus", header: "RSVP", filterFn: "equalsString" },
+  { accessorKey: "rsvpStatus", header: "RSVP" },
   {
     accessorKey: "appSubmissionTime",
     header: ({ column }) => (
@@ -95,57 +91,39 @@ const columns: ColumnDef<ApplicantSummary>[] = [
 const PAGE_SIZE = 25;
 const DEFAULT_SORT: SortingState = [{ id: "appSubmissionTime", desc: true }];
 
-const nameEmailFilter: FilterFn<ApplicantSummary> = (row, _columnId, value) => {
-  const q = String(value ?? "")
-    .trim()
-    .toLowerCase();
-  if (!q) return true;
-  const name = row.original.name?.toLowerCase() ?? "";
-  const email = row.original.email.toLowerCase();
-  return name.includes(q) || email.includes(q);
-};
-
-export function ApplicantsTable({ rows }: ApplicantsTableProps) {
+export function ApplicantsTable({
+  rows,
+  total = 0,
+  page = 1,
+  pageSize = PAGE_SIZE,
+}: ApplicantsTableProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const isLoading = rows === undefined;
 
-  const globalFilter = searchParams.get("q") ?? "";
-
-  const columnFilters: ColumnFiltersState = useMemo(() => {
-    const filters: ColumnFiltersState = [];
-    const status = searchParams.get("status");
-    const decision = searchParams.get("decision");
-    const rsvp = searchParams.get("rsvp");
-    if (status) filters.push({ id: "applicationStatus", value: status });
-    if (decision) filters.push({ id: "decisionStatus", value: decision });
-    if (rsvp) filters.push({ id: "rsvpStatus", value: rsvp });
-    return filters;
-  }, [searchParams]);
-
+  // Sorting is the URL's source of truth (filtering/pagination are server-side).
   const sorting: SortingState = useMemo(() => {
-    const sort = searchParams.get("sort");
-    if (!sort) return DEFAULT_SORT;
-    const [id, dir] = sort.split(".");
-    if (!id) return DEFAULT_SORT;
-    return [{ id, desc: dir === "desc" }];
+    const sortBy = searchParams.get("sortBy");
+    const sortDir = searchParams.get("sortDir");
+    if (!sortBy) return DEFAULT_SORT;
+    return [{ id: sortBy, desc: sortDir !== "asc" }];
   }, [searchParams]);
 
-  const pagination: PaginationState = useMemo(() => {
-    const page = searchParams.get("page");
-    const parsed = page ? Number.parseInt(page, 10) : 1;
-    const pageIndex = Number.isFinite(parsed) && parsed > 0 ? parsed - 1 : 0;
-    return { pageIndex, pageSize: PAGE_SIZE };
-  }, [searchParams]);
+  const pagination: PaginationState = useMemo(
+    () => ({ pageIndex: Math.max(0, page - 1), pageSize }),
+    [page, pageSize],
+  );
+
+  const pageCount = pageSize > 0 ? Math.ceil(total / pageSize) : 0;
 
   const writeParams = (mutate: (p: URLSearchParams) => void) => {
     const next = new URLSearchParams(searchParams.toString());
     mutate(next);
     const query = next.toString();
     const url = query ? `${pathname}?${query}` : pathname;
-    // Bypass router.replace to avoid an RSC refetch — filter/sort/page state is client-only.
-    window.history.replaceState(null, "", url);
+    // Navigate so the server component refetches the filtered/sorted page.
+    router.replace(url, { scroll: false });
   };
 
   const onSortingChange: OnChangeFn<SortingState> = (updater) => {
@@ -154,9 +132,11 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
     writeParams((p) => {
       const s = nextSorting[0];
       if (!s) {
-        p.delete("sort");
+        p.delete("sortBy");
+        p.delete("sortDir");
       } else {
-        p.set("sort", `${s.id}.${s.desc ? "desc" : "asc"}`);
+        p.set("sortBy", s.id);
+        p.set("sortDir", s.desc ? "desc" : "asc");
       }
       p.delete("page");
     });
@@ -177,15 +157,15 @@ export function ApplicantsTable({ rows }: ApplicantsTableProps) {
   const table = useReactTable({
     data: rows ?? [],
     columns,
-    state: { sorting, columnFilters, globalFilter, pagination },
+    state: { sorting, pagination },
+    manualPagination: true,
+    manualSorting: true,
+    manualFiltering: true,
+    pageCount,
     onSortingChange,
     onPaginationChange,
-    globalFilterFn: nameEmailFilter,
     autoResetPageIndex: false,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (
