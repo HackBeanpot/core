@@ -53,7 +53,7 @@ export default function SubmittedView({
           Review date: XXX
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          {status.rsvpStatus === "submitted"
+          {status.rsvpStatus === "confirmed"
             ? "You&apos;ve already completed post-acceptance RSVP steps."
             : "Your application is ready for the next review stage."}
         </p>

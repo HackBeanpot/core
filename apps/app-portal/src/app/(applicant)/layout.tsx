@@ -20,24 +20,38 @@ export default function ApplicantLayout({
         <div className="flex items-center gap-4">
           <div className="flex items-center">
             <Image src={icon.src} alt={"HBP Logo"} width={25} height={25} />
-            <span className="font-semibold pl-2">HackBeanpot Applicant Portal</span>
+            <span className="font-semibold pl-2">
+              HackBeanpot Applicant Portal
+            </span>
           </div>
 
           <nav className="ml-6 flex items-center gap-2">
-            <Link href="/dashboard" className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50">
+            <Link
+              href="/dashboard"
+              className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
               Dashboard
             </Link>
-            <Link href="/rsvp" className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50">
+            <Link
+              href="/rsvp"
+              className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
               RSVP
             </Link>
-            <Link href="/application" className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50">
+            <Link
+              href="/application"
+              className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
               Application
             </Link>
           </nav>
         </div>
 
         <div className="flex items-center gap-4">
-          <Link href="/application" className="hidden sm:inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50">
+          <Link
+            href="/application"
+            className="hidden sm:inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+          >
             Application
           </Link>
           <UserMenu email={email} />
