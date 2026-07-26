@@ -1,10 +1,21 @@
-// createSignedUploadUrl()
-
 import { sanitizeFileName, validateUploadRequest } from "./validation";
 import { gcsBucket } from "./gcs";
+import { getDb, resolveCollectionName } from "../db";
+import { Collection } from "mongodb";
+import { UploadRecord } from "./types";
 
 export class InvalidUploadError extends Error {}
+export class UploadNotFoundError extends Error {}
 
+
+const UPLOAD_COLLECTION = resolveCollectionName("uploads");
+
+async function uploadCollection(): Promise<Collection<UploadRecord>> {
+  const db = await getDb();
+  return db.collection<UploadRecord>(UPLOAD_COLLECTION);
+}
+
+// creates a signed upload url
 export async function createSignedUploadUrl({
   userId,
   filename,
@@ -35,13 +46,63 @@ export async function createSignedUploadUrl({
     contentType: mime,
   });
 
+  await recordUpload({uploadId, userId, filename, mime, size, gcsPath: path });
+
   return { uploadUrl, uploadId, expiresAt: new Date(expireDate) };
 }
 
-// createSignedDownloadUrl()
+// create signed download url
+export async function createSignedDownloadUrl({uploadId, requester} : {uploadId: string, requester: { userId: string; isAdmin: boolean }}): Promise<{ url: string; expiresAt: Date } | null> {
+  const col = await uploadCollection();
+  const record = await col.findOne({ _id: uploadId });
 
-export function createSignedDownloadUrl(): void {}
+  if (!record) {
+    throw new UploadNotFoundError(`No upload found for id ${uploadId}`);
+  }
 
-// recordUpload()
+  if (requester.userId !== record.userId && !requester.isAdmin) {
+    return null;
+  }
 
-export function recordUpload(): void {}
+  const expireDate = Date.now() + 15 * 60 * 1000;
+
+  const [url] = await gcsBucket().file(record.gcsPath).getSignedUrl({
+    version: "v4",
+    action: "read",
+    expires: expireDate,
+  });
+
+  return { url, expiresAt: new Date(expireDate) };
+}
+
+// inserts a document into the uploads collection
+export async function recordUpload(
+  { uploadId, 
+    userId, 
+    filename, 
+    mime, 
+    size, 
+    gcsPath 
+  } : 
+  {
+  uploadId: string;
+  userId: string;
+  filename: string;
+  mime: string;
+  size: number;
+  gcsPath: string;
+}): Promise<void> {
+  const col = await uploadCollection();
+
+  const doc: UploadRecord = {
+    _id: uploadId, 
+    userId, 
+    filename, 
+    mime, 
+    size, 
+    gcsPath,
+    createdAt: new Date(),
+  };
+
+  await col.insertOne(doc);
+}
