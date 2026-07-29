@@ -1,33 +1,18 @@
-import { NextRequest, NextResponse } from "next/server";
-import { decisionDates } from "../../../../lib/status/mock-singletons";
-import { returnDashboardBranch } from "../../../../lib/status/machine";
-import { getApplicantStatus } from "../../../../lib/status/service";
+import { NextResponse } from "next/server";
+import { requireUser } from "../../../../lib/auth/guards";
+import { getPortalStatus, StatusError } from "../../../../lib/status/service";
 
-// TODO: gate with requireUser() once Ticket 1 ships its helpers
-export async function GET(req: NextRequest) {
-  const userId = req.nextUrl.searchParams.get("userId") ?? "mock-user";
-  const status = await getApplicantStatus(userId);
-  const showDecision = new Date() >= decisionDates.showDecision;
+export async function GET() {
+  try {
+    await requireUser();
+    return NextResponse.json(await getPortalStatus());
+  } catch (error) {
+    if (error instanceof StatusError) {
+      return NextResponse.json({ error: error.message }, { status: error.status });
+    }
 
-  const branch = returnDashboardBranch({
-    user: status,
-    dates: {
-      registrationOpen: decisionDates.registrationOpen,
-      confirmBy: decisionDates.confirmBy,
-    },
-    showDecision,
-    now: new Date(),
-  });
-
-  return NextResponse.json({
-    branch,
-    status,
-    decisionDates: {
-      registrationOpen: decisionDates.registrationOpen.toISOString(),
-      showDecision: decisionDates.showDecision.toISOString(),
-      confirmBy: decisionDates.confirmBy.toISOString(),
-    },
-  });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 }
 
 export async function POST() {
