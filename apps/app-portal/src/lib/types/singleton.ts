@@ -10,6 +10,7 @@ export enum SingletonKey {
   RegistrationClosed = "registration-closed",
   ConfirmBy = "confirm-by",
   ShowDecision = "show-decision",
+  FormConfig = "form-config",
 }
 
 export interface SingletonRecord {
