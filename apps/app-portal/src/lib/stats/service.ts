@@ -66,26 +66,16 @@ export async function getStats(): Promise<StatsPayload> {
         { label: "Tufts University", count: 31 },
         { label: "Harvard University", count: 23 },
       ],
-      education: [
-        { label: "Undergraduate", count: 245 },
-        { label: "Graduate", count: 42 },
-      ],
-      year_of_study: [
+      yearOfEducation: [
         { label: "1st year", count: 78 },
         { label: "2nd year", count: 92 },
         { label: "3rd year", count: 67 },
         { label: "4th year", count: 50 },
       ],
-      majors: [
-        { label: "Computer Science", count: 187 },
-        { label: "Data Science", count: 42 },
-        { label: "Electrical Engineering", count: 28 },
-      ],
       gender: [
         { label: "Male", count: 168 },
         { label: "Female", count: 102 },
         { label: "Non-binary", count: 12 },
-        { label: "Prefer not to say", count: 5 },
       ],
       races: [
         { label: "Asian", count: 140 },
@@ -93,16 +83,22 @@ export async function getStats(): Promise<StatsPayload> {
         { label: "Hispanic or Latino", count: 28 },
         { label: "Black or African American", count: 18 },
       ],
-      shirt_size: [
+      shirtSize: [
         { label: "S", count: 38 },
         { label: "M", count: 112 },
         { label: "L", count: 95 },
         { label: "XL", count: 42 },
       ],
-      hackathon_experience: [
+      hackathonsAttended: [
         { label: "0", count: 132 },
-        { label: "1-3", count: 118 },
-        { label: "4+", count: 37 },
+        { label: "1-2", count: 78 },
+        { label: "3-5", count: 40 },
+        { label: "6+", count: 37 },
+      ],
+      csClassesTaken: [
+        { label: "0", count: 60 },
+        { label: "1-2", count: 150 },
+        { label: "3+", count: 77 },
       ],
     },
     timeline: [

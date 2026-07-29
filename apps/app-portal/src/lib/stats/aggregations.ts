@@ -1,8 +1,19 @@
-import type { Document } from "mongodb";
+import type { Db, Document } from "mongodb";
 
-import type { DemographicsDimension } from "./types";
+import { resolveCollectionName } from "@/lib/db";
+
+import {
+  DEMOGRAPHICS_DIMENSIONS,
+  type BreakdownEntry,
+  type DemographicsBreakdown,
+  type StatsTotals,
+  type TimelinePoint,
+  type DemographicsDimension,
+} from "./types";
 
 type StatusField = "applicationStatus" | "decisionStatus" | "rsvpStatus";
+
+const APPLICANT_COLLECTION = resolveCollectionName("applicant_data");
 
 export function statusBreakdownPipeline(field: StatusField): Document[] {
   return [
@@ -72,3 +83,71 @@ export const topLevelCountsPipeline: Document[] = [
     },
   },
 ];
+
+export async function getTotals(db: Db): Promise<StatsTotals> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const [applicants, submitted, admitted, waitlisted, declined, rsvpYes, rsvpNo] =
+    await Promise.all([
+      col.countDocuments({}),
+      col.countDocuments({ applicationStatus: "submitted" }),
+      col.countDocuments({ decisionStatus: "admitted" }),
+      col.countDocuments({ decisionStatus: "waitlisted" }),
+      col.countDocuments({ decisionStatus: "declined" }),
+      col.countDocuments({ rsvpStatus: "confirmed" }),
+      col.countDocuments({ rsvpStatus: "not-attending" }),
+    ]);
+  return { applicants, submitted, admitted, waitlisted, declined, rsvpYes, rsvpNo };
+}
+
+export async function getStatusBreakdown(db: Db): Promise<BreakdownEntry[]> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  return col
+    .aggregate<BreakdownEntry>(statusBreakdownPipeline("applicationStatus"))
+    .toArray();
+}
+
+export async function getDecisionBreakdown(db: Db): Promise<BreakdownEntry[]> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const pipeline = [
+    { $match: lowerEq("applicationStatus", "submitted") },
+    ...statusBreakdownPipeline("decisionStatus"),
+  ];
+  return col.aggregate<BreakdownEntry>(pipeline).toArray();
+}
+
+export async function getRsvpBreakdown(db: Db): Promise<BreakdownEntry[]> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const pipeline = [
+    { $match: lowerEq("decisionStatus", "admitted") },
+    ...statusBreakdownPipeline("rsvpStatus"),
+  ];
+  return col.aggregate<BreakdownEntry>(pipeline).toArray();
+}
+
+export async function getDemographics(db: Db): Promise<DemographicsBreakdown> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const entries = await Promise.all(
+    DEMOGRAPHICS_DIMENSIONS.map(async (dimension) => {
+      const rows = await col
+        .aggregate<{ label: string; count: number }>(
+          demographicsBreakdownPipeline(dimension),
+        )
+        .toArray();
+      return [dimension, rows] as const;
+    }),
+  );
+  return Object.fromEntries(entries) as DemographicsBreakdown;
+}
+
+export async function getTimeline(db: Db, days: number): Promise<TimelinePoint[]> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const pipeline = [
+    { $match: { appSubmissionTime: { $exists: true, $ne: null, $gte: since.toISOString() } } },
+    ...submissionTimelinePipeline.slice(1),
+  ];
+  const rows = await col
+    .aggregate<{ date: string; submissions: number }>(pipeline)
+    .toArray();
+  return rows.map(({ date, submissions }) => ({ date, count: submissions }));
+}

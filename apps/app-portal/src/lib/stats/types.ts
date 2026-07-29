@@ -34,13 +34,12 @@ export interface BreakdownEntry {
 
 export const DEMOGRAPHICS_DIMENSIONS = [
   "school",
-  "education",
-  "year_of_study",
-  "majors",
+  "yearOfEducation",
   "gender",
   "races",
-  "shirt_size",
-  "hackathon_experience",
+  "shirtSize",
+  "hackathonsAttended",
+  "csClassesTaken",
 ] as const;
 
 export type DemographicsDimension = (typeof DEMOGRAPHICS_DIMENSIONS)[number];
