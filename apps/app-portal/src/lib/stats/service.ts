@@ -29,28 +29,35 @@ export async function getStats(): Promise<StatsPayload> {
         description: "Admitted applicants who have confirmed they'll attend.",
       },
     ],
-    statusBreakdown: {
-      application: [
-        { status: "submitted", count: 287 },
-        { status: "under-review", count: 48 },
-        { status: "incomplete", count: 65 },
-        { status: "withdrawn", count: 22 },
-        { status: "not-started", count: 60 },
-        { status: "deferred", count: 9 },
-        { status: "expired", count: 14 },
-      ],
-      decision: [
-        { status: "pending", count: 145 },
-        { status: "admitted", count: 142 },
-        { status: "waitlisted", count: 50 },
-        { status: "declined", count: 75 },
-      ],
-      rsvp: [
-        { status: "unconfirmed", count: 30 },
-        { status: "confirmed", count: 96 },
-        { status: "not-attending", count: 16 },
-      ],
+    totals: {
+      applicants: 412,
+      submitted: 287,
+      admitted: 142,
+      waitlisted: 50,
+      declined: 75,
+      rsvpYes: 96,
+      rsvpNo: 16,
     },
+    statusBreakdown: [
+      { status: "submitted", count: 287 },
+      { status: "under-review", count: 48 },
+      { status: "incomplete", count: 65 },
+      { status: "withdrawn", count: 22 },
+      { status: "not-started", count: 60 },
+      { status: "deferred", count: 9 },
+      { status: "expired", count: 14 },
+    ],
+    decisionBreakdown: [
+      { status: "pending", count: 145 },
+      { status: "admitted", count: 142 },
+      { status: "waitlisted", count: 50 },
+      { status: "declined", count: 75 },
+    ],
+    rsvpBreakdown: [
+      { status: "unconfirmed", count: 30 },
+      { status: "confirmed", count: 96 },
+      { status: "not-attending", count: 16 },
+    ],
     demographics: {
       school: [
         { label: "Northeastern University", count: 134 },
@@ -99,13 +106,14 @@ export async function getStats(): Promise<StatsPayload> {
       ],
     },
     timeline: [
-      { date: "2026-04-01", submissions: 12 },
-      { date: "2026-04-02", submissions: 28 },
-      { date: "2026-04-03", submissions: 41 },
-      { date: "2026-04-04", submissions: 36 },
-      { date: "2026-04-05", submissions: 55 },
-      { date: "2026-04-06", submissions: 62 },
-      { date: "2026-04-07", submissions: 53 },
+      { date: "2026-04-01", count: 12 },
+      { date: "2026-04-02", count: 28 },
+      { date: "2026-04-03", count: 41 },
+      { date: "2026-04-04", count: 36 },
+      { date: "2026-04-05", count: 55 },
+      { date: "2026-04-06", count: 62 },
+      { date: "2026-04-07", count: 53 },
     ],
+    generatedAt: new Date().toISOString(),
   };
 }

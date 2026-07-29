@@ -22,7 +22,7 @@ interface SubmissionTimelineProps {
 }
 
 const config: ChartConfig = {
-  submissions: {
+  count: {
     label: "Submissions",
     color: colors.green,
   },
@@ -72,8 +72,8 @@ export function SubmissionTimeline({
                 }
               />
               <Line
-                dataKey="submissions"
-                stroke="var(--color-submissions)"
+                dataKey="count"
+                stroke="var(--color-count)"
                 strokeWidth={2}
                 dot={{ r: 3 }}
                 activeDot={{ r: 5 }}
