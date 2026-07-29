@@ -35,6 +35,7 @@ export interface BreakdownEntry {
 export const DEMOGRAPHICS_DIMENSIONS = [
   "school",
   "yearOfEducation",
+  "majors",
   "gender",
   "races",
   "shirtSize",
