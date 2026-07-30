@@ -33,10 +33,19 @@ interface DemographicsChartProps {
   dimension?: DemographicsDimension;
 }
 
-// turns a snake_case dimension key into a readable label
+const DIMENSION_LABELS: Record<DemographicsDimension, string> = {
+  school: "School",
+  yearOfEducation: "Year of Education",
+  majors: "Majors",
+  gender: "Gender",
+  races: "Races",
+  shirtSize: "Shirt Size",
+  hackathonsAttended: "Hackathons Attended",
+  csClassesTaken: "CS Classes Taken",
+};
+
 function formatDimension(key: DemographicsDimension): string {
-  const spaced = key.replace(/_/g, " ");
-  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+  return DIMENSION_LABELS[key];
 }
 
 const config: ChartConfig = {
@@ -48,13 +57,12 @@ const config: ChartConfig = {
 
 const EMPTY_MESSAGE = "No data yet";
 
-// splits a long label into two balanced lines on a word boundary
-function splitLabel(label: string): [string, string?] {
-  const words = label.split(" ");
-  if (words.length < 2) return [label];
+const MAX_LABEL_LENGTH = 14;
 
-  const mid = Math.ceil(words.length / 2);
-  return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
+// truncates a long label with an ellipsis so rotated ticks don't overlap
+function truncateLabel(label: string): string {
+  if (label.length <= MAX_LABEL_LENGTH) return label;
+  return `${label.slice(0, MAX_LABEL_LENGTH - 1)}…`;
 }
 
 export function DemographicsChart({
@@ -93,7 +101,7 @@ export function DemographicsChart({
             <BarChart
               data={entries}
               barCategoryGap={8}
-              margin={{ left: 0, right: 8, top: 8, bottom: 0 }}
+              margin={{ left: 8, right: 24, top: 8, bottom: 16 }}
             >
               <CartesianGrid vertical={false} strokeDasharray="3 3" />
               <XAxis
@@ -101,30 +109,21 @@ export function DemographicsChart({
                 tickLine={false}
                 axisLine={false}
                 interval={0}
-                height={48}
+                height={72}
                 tickMargin={8}
-                tick={({ x, y, payload }) => {
-                  const [line1, line2] = splitLabel(
-                    String(payload.value ?? ""),
-                  );
-                  return (
-                    <text
-                      x={x}
-                      y={y}
-                      dy={12}
-                      textAnchor="middle"
-                      fontSize={12}
-                      fill="currentColor"
-                    >
-                      <tspan x={x}>{line1}</tspan>
-                      {line2 ? (
-                        <tspan x={x} dy={14}>
-                          {line2}
-                        </tspan>
-                      ) : null}
-                    </text>
-                  );
-                }}
+                tick={({ x, y, payload }) => (
+                  <text
+                    x={x}
+                    y={y}
+                    dy={8}
+                    textAnchor="end"
+                    fontSize={12}
+                    fill="currentColor"
+                    transform={`rotate(-35, ${x}, ${y})`}
+                  >
+                    {truncateLabel(String(payload.value ?? ""))}
+                  </text>
+                )}
               />
               <YAxis tickLine={false} axisLine={false} width={32} />
               <ChartTooltip

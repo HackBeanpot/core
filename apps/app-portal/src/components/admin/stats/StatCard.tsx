@@ -17,7 +17,7 @@ export function StatCard({ metric }: StatCardProps): JSX.Element {
 
   return (
     <Card>
-      <CardContent className="pt-6">
+      <CardContent className="!pt-10">
         {value === null ? (
           <span className="text-3xl font-semibold tracking-tight text-heather">
             —

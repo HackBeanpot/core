@@ -30,6 +30,12 @@ const config: ChartConfig = {
 
 const EMPTY_MESSAGE = "No submissions yet";
 
+// formats an ISO date string (yyyy-mm-dd) as mm-dd-yy
+function formatDateTooltip(date: string): string {
+  const [year, month, day] = date.split("-");
+  return `${month}-${day}-${year.slice(2)}`;
+}
+
 export function SubmissionTimeline({
   timeline,
 }: SubmissionTimelineProps): JSX.Element {
@@ -62,6 +68,7 @@ export function SubmissionTimeline({
               <ChartTooltip
                 content={
                   <ChartTooltipContent
+                    labelFormatter={(label) => formatDateTooltip(String(label))}
                     formatter={(value, name) => (
                       <TooltipRow
                         label={config[name as string]?.label ?? name}
