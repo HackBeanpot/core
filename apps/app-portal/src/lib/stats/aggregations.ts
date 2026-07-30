@@ -126,7 +126,7 @@ export async function getStatusBreakdown(db: Db): Promise<BreakdownEntry[]> {
 export async function getDecisionBreakdown(db: Db): Promise<BreakdownEntry[]> {
   const col = db.collection(APPLICANT_COLLECTION);
   const pipeline = [
-    { $match: lowerEq("applicationStatus", "submitted") },
+    { $match: { applicationStatus: "submitted" } },
     ...statusBreakdownPipeline("decisionStatus"),
   ];
   return col.aggregate<BreakdownEntry>(pipeline).toArray();
