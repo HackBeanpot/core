@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
   adapter: authAdapter,
   providers: [MainEmailProvider],
   secret: process.env.NEXTAUTH_SECRET,
-  session: { strategy: "jwt" },
+  session: { strategy: "database", maxAge: 30 * 24 * 60 * 60 },
 
   pages: {
     signIn: "/auth/signin",
@@ -22,21 +22,12 @@ export const authOptions: NextAuthOptions = {
     async signIn() {
       return true;
     },
-    // Runs when the JWT (the cookie's contents) is created/updated.
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.isAdmin = isAdminEmail(user.email);
-      }
-      return token;
-    },
     // Runs when app code reads the session; shapes what the app sees.
-    async session({ session, token }) {
+    async session({ session, user }) {
       if (session.user) {
-        (session.user as { id?: string; isAdmin?: boolean }).id =
-          token.id as string;
+        (session.user as { id?: string; isAdmin?: boolean }).id = user.id;
         (session.user as { id?: string; isAdmin?: boolean }).isAdmin =
-          token.isAdmin === true;
+          isAdminEmail(user.email);
       }
       return session;
     },
