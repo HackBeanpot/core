@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getStats } from "@/lib/stats/service";
 
 // GET aggregate stats
+// TODO: gate with requireAdmin() once Ticket 1 ships its helpers.
 export async function GET() {
   try {
     const payload = await getStats();

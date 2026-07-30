@@ -10,7 +10,17 @@ import {
 } from "./aggregations";
 import type { StatsPayload } from "./types";
 
+const CACHE_TTL_MS = 60_000;
+
+// In-memory cache, per server process only. Fine at this scale (single instance,
+// admin-only traffic); won't stay in sync across multiple instances/replicas.
+let cache: { result: StatsPayload; timestamp: number } | null = null;
+
 export async function getStats(): Promise<StatsPayload> {
+  if (cache && Date.now() - cache.timestamp < CACHE_TTL_MS) {
+    return cache.result;
+  }
+
   const db = await getDb();
 
   const [
@@ -56,7 +66,7 @@ export async function getStats(): Promise<StatsPayload> {
     },
   ];
 
-  return {
+  const result: StatsPayload = {
     metrics,
     totals,
     statusBreakdown,
@@ -66,4 +76,7 @@ export async function getStats(): Promise<StatsPayload> {
     timeline,
     generatedAt: new Date().toISOString(),
   };
+
+  cache = { result, timestamp: Date.now() };
+  return result;
 }
