@@ -94,14 +94,16 @@ export async function getTotals(db: Db): Promise<StatsTotals> {
     declined,
     rsvpYes,
     rsvpNo,
+    rsvpUnconfirmed,
   ] = await Promise.all([
     col.countDocuments({}),
-    col.countDocuments({ applicationStatus: "submitted" }),
-    col.countDocuments({ decisionStatus: "admitted" }),
-    col.countDocuments({ decisionStatus: "waitlisted" }),
-    col.countDocuments({ decisionStatus: "declined" }),
-    col.countDocuments({ rsvpStatus: "confirmed" }),
-    col.countDocuments({ rsvpStatus: "not-attending" }),
+    col.countDocuments(lowerEq("applicationStatus", "submitted")),
+    col.countDocuments(lowerEq("decisionStatus", "admitted")),
+    col.countDocuments(lowerEq("decisionStatus", "waitlisted")),
+    col.countDocuments(lowerEq("decisionStatus", "declined")),
+    col.countDocuments(lowerEq("rsvpStatus", "confirmed")),
+    col.countDocuments(lowerEq("rsvpStatus", "not-attending")),
+    col.countDocuments(lowerEq("rsvpStatus", "unconfirmed")),
   ]);
   return {
     applicants,
@@ -111,6 +113,7 @@ export async function getTotals(db: Db): Promise<StatsTotals> {
     declined,
     rsvpYes,
     rsvpNo,
+    rsvpUnconfirmed,
   };
 }
 

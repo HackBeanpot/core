@@ -25,6 +25,7 @@ export interface StatsTotals {
   declined: number;
   rsvpYes: number;
   rsvpNo: number;
+  rsvpUnconfirmed: number;
 }
 
 export interface BreakdownEntry {
