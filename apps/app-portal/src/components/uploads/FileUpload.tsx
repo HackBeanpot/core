@@ -44,13 +44,14 @@ export default function FileUpload({
         method: "POST",
         body: JSON.stringify({
           filename: sanitizeFileName(firstFile.name),
-          mimeType: firstFile.type,
+          mime: firstFile.type,
+          size: firstFile.size,
         }),
         headers: { "Content-Type": "application/json" },
       });
 
-      const { uploadId, url } = await res.json();
-      if (isMockUrl(url)) {
+      const { uploadId, uploadUrl } = await res.json();
+      if (isMockUrl(uploadUrl)) {
         // fake response
         const INTERVAL_MS = 200;
         const CHUNKS = 20;
@@ -72,18 +73,48 @@ export default function FileUpload({
         setIsUploading(true);
         setTotalBytes(firstFile.size);
       } else {
-        // TODO: PUT to GCS
+        setIsUploading(true);
+        setTotalBytes(firstFile.size);
+
+        try {
+          await new Promise<void>((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("PUT", uploadUrl);
+            xhr.setRequestHeader("Content-Type", firstFile.type);
+
+            xhr.upload.onprogress = (e) => {
+              if (e.lengthComputable) setTransferredBytes(e.loaded);
+            };
+
+            xhr.onload = () => {
+              if (xhr.status >= 200 && xhr.status < 300) {
+                resolve();
+              } else {
+                reject(new Error(`Upload failed with status ${xhr.status}`));
+              }
+            };
+
+            xhr.onerror = () => reject(new Error("Upload failed"));
+
+            xhr.send(firstFile);
+          });
+
+          setTransferredBytes(firstFile.size);
+          setIsUploading(false);
+          setUploadedFile(firstFile);
+          onUploadComplete?.(uploadId, firstFile.name);
+        } catch {
+          setIsUploading(false);
+          // error to user here
+          return;
+        }
       }
     },
     [onUploadComplete],
   );
 
   function isMockUrl(url: string): boolean {
-    if (url.includes("mock") || url.includes("localhost")) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!url && !url.startsWith("https://storage.googleapis.com");
   }
 
   const accept = Object.fromEntries(
@@ -101,7 +132,7 @@ export default function FileUpload({
 
   const errorMessages = fileRejections.flatMap(({ errors }) =>
     errors.map((e) => {
-      if (e.code === "file-too-large") return "File exceeds 10 MB limit.";
+      if (e.code === "file-too-large") return "File exceeds 5 MB limit.";
       if (e.code === "file-invalid-type")
         return "Only PDF, PNG, and JPEG files are accepted.";
       return e.message;

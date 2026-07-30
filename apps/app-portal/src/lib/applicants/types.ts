@@ -1,3 +1,5 @@
+import type { ObjectId } from "mongodb";
+
 import type {
   ApplicationStatus,
   DecisionStatus,
@@ -16,6 +18,21 @@ export interface ApplicantSummary {
   decisionStatus?: DecisionStatus;
   rsvpStatus: RsvpStatus;
   appSubmissionTime?: string;
+  lastSavedAt?: string;
+}
+
+export interface ApplicantDoc {
+  _id: ObjectId;
+  email: string;
+  applicationStatus: ApplicationStatus;
+  decisionStatus?: DecisionStatus;
+  rsvpStatus: RsvpStatus;
+  isAdmin?: boolean;
+  appSubmissionTime?: string;
+  rsvpSubmissionTime?: string;
+  lastSavedAt?: string;
+  applicationResponses?: ApplicationResponse;
+  postAcceptanceResponses?: PostAcceptanceResponse;
 }
 
 export interface UploadedFile {
@@ -34,6 +51,23 @@ export interface ApplicantFilters {
   search?: string;
   applicationStatus?: ApplicationStatus;
   decisionStatus?: DecisionStatus;
+  rsvpStatus?: RsvpStatus;
+}
+
+export const SORT_FIELDS = [
+  "name",
+  "email",
+  "appSubmissionTime",
+  "lastSavedAt",
+] as const;
+export type ApplicantSortField = (typeof SORT_FIELDS)[number];
+
+export interface ApplicantListParams {
+  filters: ApplicantFilters;
+  sortBy: ApplicantSortField;
+  sortDir: "asc" | "desc";
+  page: number;
+  pageSize: number;
 }
 
 export interface ApplicantUpdate {

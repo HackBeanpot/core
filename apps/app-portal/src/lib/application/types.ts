@@ -44,3 +44,14 @@ export type ApplicationFormValues = Record<
   string,
   string | string[] | File | null | undefined
 >;
+
+export type RegistrationStatus = "before_open" | "open" | "closed";
+
+export interface RegistrationState {
+  registrationStatus: RegistrationStatus;
+  opensAt: string;
+  closesAt: string;
+  applicationStatus: "draft" | "submitted";
+  responses: ApplicationResponses;
+  updatedAt: string | null;
+}

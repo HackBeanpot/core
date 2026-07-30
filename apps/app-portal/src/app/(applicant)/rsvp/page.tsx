@@ -1,28 +1,23 @@
 import React from "react";
-import { decisionDates } from "../../../lib/status/mock-singletons";
-import { getApplicantStatus } from "../../../lib/status/service";
-import ConfirmByCountdown from "../../../components/dashboard/ConfirmByCountdown";
-import RsvpForm from "../../../components/dashboard/RsvpForm";
+import { redirect } from "next/navigation";
+import { fetchPortalStatus } from "../../../lib/status/fetchPortalStatus";
+import RsvpExperience from "../../../components/dashboard/RsvpExperience";
+
+export const dynamic = "force-dynamic";
 
 export default async function RsvpPage(): Promise<JSX.Element> {
-  const status = await getApplicantStatus("mock-user");
-  const isAdmitted = status.decisionStatus === "admitted";
-  const isAfterConfirmBy = new Date() > decisionDates.confirmBy;
-  const canRsvp = isAdmitted && !isAfterConfirmBy;
+  const { branch, status, decisionDates } = await fetchPortalStatus();
+  const confirmBy = new Date(decisionDates.confirmBy);
+  const isAfterConfirmBy = Date.now() > confirmBy.getTime();
+
+  if (branch !== "admitted" || isAfterConfirmBy) {
+    redirect("/dashboard");
+  }
 
   return (
-    <section className="p-8">
-      <h1 className="text-2xl font-semibold">Post-acceptance RSVP</h1>
-      <p className="mt-2">confirm your attendance.</p>
-      <div className="mt-4">
-        <ConfirmByCountdown confirmBy={decisionDates.confirmBy} />
-      </div>
-
-      {canRsvp ? (
-        <RsvpForm />
-      ) : (
-        <p className="mt-6 text-gray-600">no RSVP available</p>
-      )}
-    </section>
+    <RsvpExperience
+      alreadySubmitted={status.rsvpStatus === "confirmed"}
+      confirmBy={confirmBy.toISOString()}
+    />
   );
 }
