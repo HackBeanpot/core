@@ -1,4 +1,4 @@
-if pgrep -f "next dev" >/dev/null; then
+if command -v pgrep >/dev/null 2>&1 && pgrep -f "next dev" >/dev/null; then
   echo "A Next.js dev server is running. Stop it before committing (it conflicts with the build)."
   exit 1
 fi
