@@ -165,7 +165,7 @@ export async function getTimeline(
   const match: Document = { appSubmissionTime: { $exists: true, $ne: null } };
   if (days !== undefined) {
     const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
-    match.appSubmissionTime.$gte = since.toISOString();
+    match.appSubmissionTime.$gte = since;
   }
   const pipeline = [{ $match: match }, ...submissionTimelinePipeline.slice(1)];
   const rows = await col
