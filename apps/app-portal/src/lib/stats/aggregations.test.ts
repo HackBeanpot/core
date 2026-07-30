@@ -15,59 +15,61 @@ import {
 // "_test" suffixed collection name.
 const COLLECTION_NAME = "applicant_data_test";
 
+// Status casing mirrors production applicant_data (uppercase-first;
+// rsvp "Not Attending" is space-separated, not hyphenated).
 const APPLICANTS = [
   // 1: not-started, no decision/rsvp, no submission
   { applicationStatus: "not-started" },
   // 2
   {
-    applicationStatus: "submitted",
-    decisionStatus: "admitted",
-    rsvpStatus: "confirmed",
+    applicationStatus: "Submitted",
+    decisionStatus: "Admitted",
+    rsvpStatus: "Confirmed",
     appSubmissionTime: "2024-01-01T00:00:00.000Z",
     applicationResponses: { school: "NEU" },
   },
   // 3
   {
-    applicationStatus: "submitted",
-    decisionStatus: "admitted",
-    rsvpStatus: "confirmed",
+    applicationStatus: "Submitted",
+    decisionStatus: "Admitted",
+    rsvpStatus: "Confirmed",
     appSubmissionTime: "2024-01-02T00:00:00.000Z",
     applicationResponses: { school: "NEU" },
   },
   // 4
   {
-    applicationStatus: "submitted",
-    decisionStatus: "admitted",
-    rsvpStatus: "not-attending",
+    applicationStatus: "Submitted",
+    decisionStatus: "Admitted",
+    rsvpStatus: "Not Attending",
     appSubmissionTime: "2024-01-02T00:00:00.000Z",
     applicationResponses: { school: "BU" },
   },
   // 5
   {
-    applicationStatus: "submitted",
-    decisionStatus: "waitlisted",
+    applicationStatus: "Submitted",
+    decisionStatus: "Waitlisted",
     appSubmissionTime: "2024-01-03T00:00:00.000Z",
     applicationResponses: { school: "BU" },
   },
   // 6
   {
-    applicationStatus: "submitted",
-    decisionStatus: "declined",
+    applicationStatus: "Submitted",
+    decisionStatus: "Declined",
     appSubmissionTime: "2024-01-03T00:00:00.000Z",
     applicationResponses: { school: "MIT" },
   },
   // 7
   {
-    applicationStatus: "submitted",
-    decisionStatus: "declined",
+    applicationStatus: "Submitted",
+    decisionStatus: "Declined",
     appSubmissionTime: "2024-01-04T00:00:00.000Z",
     applicationResponses: { school: "MIT" },
   },
   // 8
   {
-    applicationStatus: "submitted",
-    decisionStatus: "admitted",
-    rsvpStatus: "confirmed",
+    applicationStatus: "Submitted",
+    decisionStatus: "Admitted",
+    rsvpStatus: "Confirmed",
     appSubmissionTime: "2024-01-04T00:00:00.000Z",
     applicationResponses: { school: "NEU" },
   },
@@ -75,9 +77,9 @@ const APPLICANTS = [
   { applicationStatus: "in-progress" },
   // 10
   {
-    applicationStatus: "submitted",
-    decisionStatus: "admitted",
-    rsvpStatus: "unconfirmed",
+    applicationStatus: "Submitted",
+    decisionStatus: "Admitted",
+    rsvpStatus: "Unconfirmed",
     appSubmissionTime: "2024-01-05T00:00:00.000Z",
     applicationResponses: { school: "BU" },
   },
@@ -145,7 +147,7 @@ describe("getRsvpBreakdown", () => {
   it("groups rsvpStatus among admitted applicants", async () => {
     expect(await getRsvpBreakdown(db)).toEqual([
       { status: "confirmed", count: 3 },
-      { status: "not-attending", count: 1 },
+      { status: "not attending", count: 1 },
       { status: "unconfirmed", count: 1 },
     ]);
   });

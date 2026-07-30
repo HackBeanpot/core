@@ -64,26 +64,6 @@ const lowerEq = (field: string, value: string): Document => ({
   $expr: { $eq: [{ $toLower: `$${field}` }, value] },
 });
 
-export const topLevelCountsPipeline: Document[] = [
-  {
-    $facet: {
-      totalApplications: [{ $count: "count" }],
-      submitted: [
-        { $match: lowerEq("applicationStatus", "submitted") },
-        { $count: "count" },
-      ],
-      admitted: [
-        { $match: lowerEq("decisionStatus", "admitted") },
-        { $count: "count" },
-      ],
-      confirmed: [
-        { $match: lowerEq("rsvpStatus", "confirmed") },
-        { $count: "count" },
-      ],
-    },
-  },
-];
-
 export async function getTotals(db: Db): Promise<StatsTotals> {
   const col = db.collection(APPLICANT_COLLECTION);
   const [
@@ -97,13 +77,14 @@ export async function getTotals(db: Db): Promise<StatsTotals> {
     rsvpUnconfirmed,
   ] = await Promise.all([
     col.countDocuments({}),
-    col.countDocuments({ applicationStatus: "submitted" }),
-    col.countDocuments({ decisionStatus: "admitted" }),
-    col.countDocuments({ decisionStatus: "waitlisted" }),
-    col.countDocuments({ decisionStatus: "declined" }),
-    col.countDocuments({ rsvpStatus: "confirmed" }),
-    col.countDocuments({ rsvpStatus: "not-attending" }),
-    col.countDocuments({ rsvpStatus: "unconfirmed" }),
+    col.countDocuments({ applicationStatus: "Submitted" }),
+    col.countDocuments({ decisionStatus: "Admitted" }),
+    col.countDocuments({ decisionStatus: "Waitlisted" }),
+    col.countDocuments({ decisionStatus: "Declined" }),
+    col.countDocuments({ rsvpStatus: "Confirmed" }),
+    col.countDocuments({ rsvpStatus: "Not Attending" }),
+    col.countDocuments({ rsvpStatus: "Unconfirmed" }),
+  ]);
   return {
     applicants,
     submitted,
@@ -126,7 +107,7 @@ export async function getStatusBreakdown(db: Db): Promise<BreakdownEntry[]> {
 export async function getDecisionBreakdown(db: Db): Promise<BreakdownEntry[]> {
   const col = db.collection(APPLICANT_COLLECTION);
   const pipeline = [
-    { $match: { applicationStatus: "submitted" } },
+    { $match: { applicationStatus: "Submitted" } },
     ...statusBreakdownPipeline("decisionStatus"),
   ];
   return col.aggregate<BreakdownEntry>(pipeline).toArray();
