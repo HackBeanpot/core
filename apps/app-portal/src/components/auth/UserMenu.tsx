@@ -2,13 +2,11 @@
 //avatar + sign-out dropdown for header
 import React, { useEffect, useRef, useState } from "react";
 import { signOut } from "next-auth/react";
+import useCurrentUser from "@/lib/auth/useCurrentUser";
 
-interface UserMenuProps {
-  /** Signed-in user's email. Shown in the dropdown; first letter is the avatar. */
-  email: string;
-}
-
-export default function UserMenu({ email }: UserMenuProps): JSX.Element {
+export default function UserMenu(): JSX.Element {
+  const { user } = useCurrentUser();
+  const email = user?.email ?? "";
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 

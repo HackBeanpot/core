@@ -3,19 +3,15 @@ import Link from "next/link";
 import UserMenu from "@/components/auth/UserMenu";
 import Image from "next/image";
 import icon from "@/app/icon.ico";
-import { getSession } from "@/lib/auth/session";
 
 export const metadata = {
   title: "Applicant Portal",
 };
-export default async function ApplicantLayout({
+export default function ApplicantLayout({
   children,
 }: {
   children: React.ReactNode;
-}): Promise<JSX.Element> {
-  const session = await getSession();
-  const email = session?.user?.email ?? "";
-
+}): JSX.Element {
   return (
     <div className="min-h-screen">
       <header className="flex h-16 items-center justify-between border-b bg-white px-6">
@@ -56,7 +52,7 @@ export default async function ApplicantLayout({
           >
             Application
           </Link>
-          <UserMenu email={email} />
+          <UserMenu />
         </div>
       </header>
 
