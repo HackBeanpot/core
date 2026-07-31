@@ -3,16 +3,18 @@ import Link from "next/link";
 import UserMenu from "@/components/auth/UserMenu";
 import Image from "next/image";
 import icon from "@/app/icon.ico";
+import { getSession } from "@/lib/auth/session";
 
 export const metadata = {
   title: "Applicant Portal",
 };
-export default function ApplicantLayout({
+export default async function ApplicantLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
-  const email = "applicant@example.com";
+}): Promise<JSX.Element> {
+  const session = await getSession();
+  const email = session?.user?.email ?? "";
 
   return (
     <div className="min-h-screen">

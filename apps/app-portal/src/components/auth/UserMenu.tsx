@@ -1,6 +1,7 @@
 "use client";
 //avatar + sign-out dropdown for header
 import React, { useEffect, useRef, useState } from "react";
+import { signOut } from "next-auth/react";
 
 interface UserMenuProps {
   /** Signed-in user's email. Shown in the dropdown; first letter is the avatar. */
@@ -40,9 +41,8 @@ export default function UserMenu({ email }: UserMenuProps): JSX.Element {
 
   async function handleSignOut() {
     setOpen(false);
-    // TODO: wire to NextAuth — signOut({ callbackUrl: "/" }) once next-auth is installed.
-    await fetch("/auth/signout", { method: "POST" }).catch(() => {});
-    window.location.href = "/";
+    // hits /auth/signout, NextAuth automatically invalidates the session
+    await signOut({ callbackUrl: "/" });
   }
 
   return (
