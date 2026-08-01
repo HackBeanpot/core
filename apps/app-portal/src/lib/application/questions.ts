@@ -11,12 +11,14 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
         label: "Full legal name",
         type: "short_text",
         required: true,
+        maxLength: 200,
       },
       {
         id: "preferred_name",
         label: "Preferred name (optional)",
         type: "short_text",
         required: false,
+        maxLength: 200,
       },
       {
         id: "email",
@@ -24,6 +26,7 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
         type: "short_text",
         required: true,
         description: "Use the same email you sign in with.",
+        maxLength: 320,
       },
     ],
   },
@@ -36,6 +39,7 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
         label: "University",
         type: "short_text",
         required: true,
+        maxLength: 200,
       },
       {
         id: "year_of_study",
@@ -87,6 +91,7 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
         label: "Why do you want to attend HackBeanpot?",
         type: "long_text",
         required: true,
+        maxLength: 5000,
       },
     ],
   },

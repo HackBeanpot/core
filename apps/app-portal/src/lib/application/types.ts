@@ -17,6 +17,8 @@ export interface Question {
   options?: readonly QuestionOption[];
   required: boolean;
   description?: string;
+  /** Max character length; only meaningful for short_text/long_text. */
+  maxLength?: number;
 }
 
 export interface FormSection {
