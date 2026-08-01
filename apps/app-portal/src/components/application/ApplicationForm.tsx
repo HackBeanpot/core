@@ -332,8 +332,7 @@ export function ApplicationForm() {
       {/* submitted+open banner */}
       {isAlreadySubmitted && (
         <div className="mb-6 rounded-lg border border-green bg-green/20 px-4 py-3 text-sm text-darkGreen">
-          Your application is submitted. You can still edit and re-submit until
-          registration closes.
+          Your application has been submitted. You can still make changes between now and when registration closes.
         </div>
       )}
 
@@ -387,7 +386,7 @@ export function ApplicationForm() {
           <DialogHeader>
             <DialogTitle>Are you sure?</DialogTitle>
             <DialogDescription>
-              You can edit your answers and re-submit until registration closes.
+              You can still edit your answers until registration closes.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

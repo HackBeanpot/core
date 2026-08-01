@@ -30,7 +30,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const state = await getRegistrationState();
+  const state = await getRegistrationState(userId);
   const draft = await getDraft(userId);
   if (draft) {
     return NextResponse.json({

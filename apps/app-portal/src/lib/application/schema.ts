@@ -74,9 +74,7 @@ function fieldSchema(
       if (target === "server") {
         const uploadIdSchema = z.string().min(1, requiredMessage);
         if (required) return uploadIdSchema;
-        return z
-          .union([z.string(), z.null(), z.undefined()])
-          .optional();
+        return z.union([z.string(), z.null(), z.undefined()]).optional();
       }
       return z
         .union([z.instanceof(File), z.null(), z.undefined()])
