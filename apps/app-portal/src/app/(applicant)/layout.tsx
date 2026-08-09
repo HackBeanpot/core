@@ -12,8 +12,6 @@ export default function ApplicantLayout({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  const email = "applicant@example.com";
-
   return (
     <div className="min-h-screen">
       <header className="flex h-16 items-center justify-between border-b bg-white px-6">
@@ -54,7 +52,7 @@ export default function ApplicantLayout({
           >
             Application
           </Link>
-          <UserMenu email={email} />
+          <UserMenu />
         </div>
       </header>
 
