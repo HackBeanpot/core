@@ -29,7 +29,7 @@ export function buildApplicantQuery(
 
   if (filters.search) {
     const rx = { $regex: escapeRegex(filters.search), $options: "i" };
-    query.$or = [{ email: rx }, { "applicationResponses.name": rx }];
+    query.$or = [{ email: rx }, { "applicationResponses.legal_name": rx }];
   }
 
   return query;

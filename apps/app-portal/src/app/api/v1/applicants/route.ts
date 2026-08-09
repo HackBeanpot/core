@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { requireAdmin } from "@/lib/auth/guards";
 import { parseApplicantQuery } from "@/lib/applicants/params";
 import { listApplicants } from "@/lib/applicants/service";
 
 export async function GET(req: NextRequest) {
-  // TODO: gate with requireAdmin() once Ticket 1 ships its helpers
+  try {
+    await requireAdmin();
+  } catch {
+    // Stopgap 403 mapping until the (separate, in-flight) auth ticket lands
+    // typed errors distinguishing unauthenticated (401) from non-admin (403).
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const parsed = parseApplicantQuery(new URL(req.url).searchParams);
   if (!parsed.ok) {
     return NextResponse.json({ error: parsed.error }, { status: 400 });
