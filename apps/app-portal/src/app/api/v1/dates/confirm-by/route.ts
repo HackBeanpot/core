@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { SingletonKey } from "@/lib/types/singleton";
+import { requireAdmin } from "@/lib/auth/guards";
 import {
   getSingleton,
   setSingleton,
@@ -15,6 +16,15 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  const admin = await requireAdmin();
+
+  if (!admin.email) {
+    return NextResponse.json(
+      { error: "Admin email is required." },
+      { status: 400 },
+    );
+  }
+
   const body = await req.json();
   const { value } = body;
 
@@ -24,9 +34,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }
 
-  const updatedBy = "unknown"; // TODO: gate with requireAdmin() once Ticket 1 ships its helpers
-
-  await setSingleton(SingletonKey.ConfirmBy, result.value, updatedBy);
+  await setSingleton(SingletonKey.ConfirmBy, result.value, admin.email);
 
   return NextResponse.json({
     ok: true,
