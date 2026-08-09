@@ -1,3 +1,4 @@
+"use client"
 //email input form, calls signIn("email")
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -102,10 +103,14 @@ export function SignInForm() {
             ) : status === "loading" ? (
               <p className={"w-full text-[#AAAAAA] text-end"}>
                 Loading{".".repeat(dotCount)}
-                {" ".repeat(4 - dotCount)}
+                {" ".repeat(4 - dotCount)}
               </p>
             ) : status === "sent" ? (
-              <p className={"w-full text-[rgb(120,255,150)] text-end"}>
+              <p
+                className={
+                  "w-full text-[rgb(120,255,150)] text-end text-[12px] whitespace-nowrap"
+                }
+              >
                 {/*todo: change the green*/}
                 Check your email for a sign-in link!
               </p>
