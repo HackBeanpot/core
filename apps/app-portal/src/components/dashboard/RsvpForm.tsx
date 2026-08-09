@@ -208,7 +208,11 @@ export default function RsvpForm({
               : "bg-emerald-600 text-white hover:bg-emerald-700"
           }`}
         >
-          {isExpired ? "RSVP closed" : isSubmitting ? "Submitting..." : "Submit RSVP"}
+          {isExpired
+            ? "RSVP closed"
+            : isSubmitting
+              ? "Submitting..."
+              : "Submit RSVP"}
         </button>
       </form>
     </div>

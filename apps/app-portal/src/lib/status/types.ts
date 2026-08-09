@@ -1,3 +1,11 @@
+import type {
+  ApplicationStatus,
+  DecisionStatus,
+  RsvpStatus,
+} from "@/lib/types/user";
+
+export type { ApplicationStatus, DecisionStatus, RsvpStatus };
+
 export type DashboardBranch =
   | "pre-registration"
   | "in-progress"
@@ -9,15 +17,19 @@ export type DashboardBranch =
 export type ApplicantStatus = {
   userId: string;
   applicationStatus: ApplicationStatus;
-  decisionStatus: DecisionStatus;
+  decisionStatus?: DecisionStatus;
   rsvpStatus: RsvpStatus;
 };
 
-export type ApplicationStatus = "in-progress" | "submitted";
-
-export type DecisionStatus = "pending" | "admitted" | "waitlisted" | "declined";
-
-export type RsvpStatus = "not-submitted" | "submitted";
+export type MachineInput = {
+  user: ApplicantStatus;
+  dates: {
+    registrationOpen: Date;
+    confirmBy: Date;
+  };
+  showDecision: boolean;
+  now: Date;
+};
 
 export type RsvpPayload = {
   attending: "yes" | "no";

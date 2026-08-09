@@ -30,7 +30,7 @@ import type {
 
 import { FormSection } from "./FormSection";
 
-const REGISTRATION_API = "/api/v1/registration";
+const REGISTRATION_API = "/api/v1/registration?userId=test-user-1";
 const AUTOSAVE_DELAY_MS = 2000;
 
 export function ApplicationForm() {

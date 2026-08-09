@@ -10,8 +10,6 @@ function getBaseUrl(): string {
   const forwardedHost = headerList.get("x-forwarded-host");
   const host = forwardedHost ?? headerList.get("host");
 
-  // If headers are not available (e.g. some dev environments), fall back
-  // to localhost so server-side fetches still work during local dev.
   if (!host) {
     return `http://localhost:3000`;
   }
@@ -31,11 +29,18 @@ export async function fetchPortalStatus(): Promise<PortalStatusResponse> {
 
     return (await response.json()) as PortalStatusResponse;
   } catch {
-    // Fallback to local in-memory service for dev environments where
-    // a network fetch to the same server may fail.
     const status = await getApplicantStatus("mock-user");
     const showDecision = new Date() >= decisionDates.showDecision;
-    const branch = returnDashboardBranch(status, decisionDates, showDecision);
+
+    const branch = returnDashboardBranch({
+      user: status,
+      dates: {
+        registrationOpen: decisionDates.registrationOpen,
+        confirmBy: decisionDates.confirmBy,
+      },
+      showDecision,
+      now: new Date(),
+    });
 
     return {
       branch,
