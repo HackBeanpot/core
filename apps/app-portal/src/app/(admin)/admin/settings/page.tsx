@@ -1,26 +1,32 @@
 import React from "react";
+import { headers } from "next/headers";
 import ShowDecisionToggle from "@/components/admin/ShowDecisionToggle";
 import DateControls from "@/components/admin/DateControls";
 import FormConfigEditor from "@/components/admin/FormConfigEditor";
 
-export default async function Page() {
-  const [openRes, closeRes, confirmRes] = await Promise.all([
-    fetch("http://localhost:3000/api/v1/dates/registration-open", {
-      cache: "no-store",
-    }),
-    fetch("http://localhost:3000/api/v1/dates/registration-closed", {
-      cache: "no-store",
-    }),
-    fetch("http://localhost:3000/api/v1/dates/confirm-by", {
-      cache: "no-store",
-    }),
-  ]);
+async function fetchJson(url: string, cookie: string) {
+  const res = await fetch(url, {
+    cache: "no-store",
+    headers: { cookie },
+  });
 
-  const [openData, closeData, confirmData] = await Promise.all([
-    openRes.json(),
-    closeRes.json(),
-    confirmRes.json(),
-  ]);
+  if (!res.ok) {
+    return { value: null };
+  }
+
+  return res.json();
+}
+
+export default async function Page() {
+  const cookie = headers().get("cookie") ?? "";
+
+  const [openData, closeData, confirmData, showDecisionData] =
+    await Promise.all([
+      fetchJson("http://localhost:3000/api/v1/dates/registration-open", cookie),
+      fetchJson("http://localhost:3000/api/v1/dates/registration-closed", cookie),
+      fetchJson("http://localhost:3000/api/v1/dates/confirm-by", cookie),
+      fetchJson("http://localhost:3000/api/v1/show-decision", cookie),
+    ]);
 
   return (
     <div>
@@ -52,7 +58,7 @@ export default async function Page() {
 
         <section>
           <h2 className="mb-4 text-xl font-semibold">Display</h2>
-          <ShowDecisionToggle />
+          <ShowDecisionToggle initialValue={showDecisionData.value} />
         </section>
 
         <section>

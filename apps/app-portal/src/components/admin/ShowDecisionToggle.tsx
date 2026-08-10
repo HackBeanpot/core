@@ -4,8 +4,14 @@ import * as React from "react";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
-export default function ShowDecisionToggle() {
-  const [enabled, setEnabled] = React.useState(false);
+type ShowDecisionToggleProps = {
+  initialValue: boolean;
+};
+
+export default function ShowDecisionToggle({
+  initialValue,
+}: ShowDecisionToggleProps) {
+  const [enabled, setEnabled] = React.useState(initialValue);
   const [loading, setLoading] = React.useState(false);
 
   async function updateSetting(nextValue: boolean) {
@@ -20,16 +26,14 @@ export default function ShowDecisionToggle() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ enabled: nextValue }),
+        body: JSON.stringify({ value: nextValue }),
       });
 
       if (!res.ok) {
         throw new Error("Request failed");
       }
-    } catch (err) {
+    } catch {
       setEnabled(previous);
-      // eslint-disable-next-line no-console
-      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -42,11 +46,11 @@ export default function ShowDecisionToggle() {
       </Label>
 
       <Switch
-        style={{ backgroundColor: "#1890ff" }}
         id="show-decisions"
         checked={enabled}
         disabled={loading}
         onCheckedChange={updateSetting}
+        className={enabled ? "bg-[#1890ff]" : "bg-gray-300"}
       />
     </div>
   );

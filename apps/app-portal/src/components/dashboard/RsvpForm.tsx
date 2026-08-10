@@ -5,18 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-
-const rsvpSchema = z.object({
-  attending: z.enum(["yes", "no"] as const, {
-    error: "Please choose whether you’re attending.",
-  }),
-  dietaryRestrictions: z.string().max(240).optional().or(z.literal("")),
-  tshirtSize: z.enum(["xs", "s", "m", "l", "xl"] as const, {
-    error: "Please choose a t-shirt size.",
-  }),
-  accessibilityNeeds: z.string().max(240).optional().or(z.literal("")),
-  additionalNotes: z.string().max(400).optional().or(z.literal("")),
-});
+import { rsvpSchema } from "../../lib/status/rsvp";
 
 type RsvpFormValues = z.infer<typeof rsvpSchema>;
 
@@ -51,7 +40,7 @@ export default function RsvpForm({
   } = useForm<RsvpFormValues>({
     resolver: zodResolver(rsvpSchema),
     defaultValues: {
-      attending: "yes",
+      attending: "confirmed",
       dietaryRestrictions: "",
       tshirtSize: "m",
       accessibilityNeeds: "",
@@ -133,8 +122,8 @@ export default function RsvpForm({
               className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-950"
               {...register("attending")}
             >
-              <option value="yes">Yes, I’m coming</option>
-              <option value="no">No, I can’t make it</option>
+              <option value="confirmed">Yes, I’m coming</option>
+              <option value="unconfirmed">No, I can’t make it</option>
             </select>
             {errors.attending && (
               <p className="text-sm text-rose-600">

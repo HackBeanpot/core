@@ -1,8 +1,12 @@
 export interface StatsPayload {
   metrics: StatMetric[];
-  statusBreakdown: StatusBreakdown;
+  totals: StatsTotals;
+  statusBreakdown: BreakdownEntry[];
+  decisionBreakdown: BreakdownEntry[];
+  rsvpBreakdown: BreakdownEntry[];
   demographics: DemographicsBreakdown;
   timeline: TimelinePoint[];
+  generatedAt: string;
 }
 
 // single metric
@@ -13,22 +17,31 @@ export interface StatMetric {
   description?: string; // shown in StatCard hover tooltip
 }
 
-export type StatusKind = "application" | "decision" | "rsvp";
+export interface StatsTotals {
+  applicants: number;
+  submitted: number;
+  admitted: number;
+  waitlisted: number;
+  declined: number;
+  rsvpYes: number;
+  rsvpNo: number;
+  rsvpUnconfirmed: number;
+}
 
-export type StatusBreakdown = Record<
-  StatusKind,
-  { status: string; count: number }[]
->;
+export interface BreakdownEntry {
+  status: string;
+  count: number;
+}
 
 export const DEMOGRAPHICS_DIMENSIONS = [
   "school",
-  "education",
-  "year_of_study",
+  "yearOfEducation",
   "majors",
   "gender",
   "races",
-  "shirt_size",
-  "hackathon_experience",
+  "shirtSize",
+  "hackathonsAttended",
+  "csClassesTaken",
 ] as const;
 
 export type DemographicsDimension = (typeof DEMOGRAPHICS_DIMENSIONS)[number];
@@ -40,5 +53,5 @@ export type DemographicsBreakdown = Record<
 
 export interface TimelinePoint {
   date: string;
-  submissions: number;
+  count: number;
 }

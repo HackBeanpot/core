@@ -21,8 +21,6 @@ export default async function AdminLayout({
     redirect("/dashboard");
   }
 
-  const email = user.email ?? "";
-
   return (
     <div className="flex min-h-screen">
       <AdminSidebar />
@@ -30,7 +28,7 @@ export default async function AdminLayout({
       <div className="flex flex-1 flex-col desktop:ml-64">
         <header className="flex h-16 items-center justify-between border-b bg-white px-6">
           <h1 className="text-xl font-semibold">Admin Portal</h1>
-          <UserMenu email={email} />
+          <UserMenu />
         </header>
 
         <main className="flex-1 p-6">{children}</main>

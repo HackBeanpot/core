@@ -22,13 +22,19 @@ interface SubmissionTimelineProps {
 }
 
 const config: ChartConfig = {
-  submissions: {
+  count: {
     label: "Submissions",
     color: colors.green,
   },
 };
 
 const EMPTY_MESSAGE = "No submissions yet";
+
+// formats an ISO date string (yyyy-mm-dd) as mm-dd-yy
+function formatDateTooltip(date: string): string {
+  const [year, month, day] = date.split("-");
+  return `${month}-${day}-${year.slice(2)}`;
+}
 
 export function SubmissionTimeline({
   timeline,
@@ -62,6 +68,7 @@ export function SubmissionTimeline({
               <ChartTooltip
                 content={
                   <ChartTooltipContent
+                    labelFormatter={(label) => formatDateTooltip(String(label))}
                     formatter={(value, name) => (
                       <TooltipRow
                         label={config[name as string]?.label ?? name}
@@ -72,8 +79,8 @@ export function SubmissionTimeline({
                 }
               />
               <Line
-                dataKey="submissions"
-                stroke="var(--color-submissions)"
+                dataKey="count"
+                stroke="var(--color-count)"
                 strokeWidth={2}
                 dot={{ r: 3 }}
                 activeDot={{ r: 5 }}

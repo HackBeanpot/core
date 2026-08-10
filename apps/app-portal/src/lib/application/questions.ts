@@ -1,3 +1,4 @@
+import { FormConfig } from "../admin/types";
 import type { FormSection } from "./types";
 
 export const APPLICATION_SECTIONS: readonly FormSection[] = [
@@ -109,3 +110,42 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
     ],
   },
 ] as const;
+
+export const DEFAULT_FORM_CONFIG: FormConfig = {
+  sections: APPLICATION_SECTIONS.map((section) => ({
+    id: section.id,
+    title: section.title,
+    questions: section.questions.map((question, index) => ({
+      id: question.id,
+      label: question.label,
+      type: convertQuestionType(question.type),
+      required: question.required,
+      options: question.options?.map((option) => option.label),
+      order: index + 1,
+    })),
+  })),
+};
+
+function convertQuestionType(
+  type: "short_text" | "long_text" | "select" | "multi_select" | "file_upload",
+): "text" | "textarea" | "select" | "checkbox" {
+  switch (type) {
+    case "short_text":
+      return "text";
+
+    case "long_text":
+      return "textarea";
+
+    case "select":
+      return "select";
+
+    case "multi_select":
+      return "checkbox";
+
+    case "file_upload":
+      return "text";
+
+    default:
+      return "text";
+  }
+}
