@@ -348,7 +348,30 @@ const ROWS: Row[] = [
   ],
 ];
 
-function toDoc(row: Row) {
+// Maps the seed table's free-text `year` to the real `year_of_study`
+// question's enum option values (src/lib/application/questions.ts).
+const YEAR_OF_STUDY_MAP: Record<string, string> = {
+  Junior: "third",
+  Senior: "fourth",
+  Graduate: "graduate",
+};
+
+const HACKATHON_OPTIONS = ["0", "1-2", "3-5", "6+"];
+const INTEREST_OPTIONS = ["web", "mobile", "ai", "hardware", "design", "other"];
+const TSHIRT_OPTIONS = ["xs", "s", "m", "l", "xl"];
+
+// A couple of entries deliberately contain a comma/quote so the CSV export's
+// escaping logic has real data to exercise during manual verification.
+const DIETARY_RESTRICTIONS = [
+  "",
+  "Vegetarian",
+  "Vegetarian, nut allergy",
+  `Allergic to "shellfish"`,
+  "Halal",
+  "Gluten-free",
+];
+
+function toDoc(row: Row, index: number) {
   const [
     email,
     firstName,
@@ -360,6 +383,51 @@ function toDoc(row: Row) {
     rsvpStatus,
     appSubmissionTime,
   ] = row;
+
+  // Keyed by the real application question ids (questions.ts), not
+  // ad hoc names — otherwise seed data silently diverges from what the
+  // real form (and the CSV export/detail page built on top of it) expects.
+  const applicationResponses: Record<string, string | string[]> = {
+    legal_name: `${firstName} ${lastName}`,
+    email,
+    university: school,
+    year_of_study: YEAR_OF_STUDY_MAP[year] ?? "graduate",
+    hackathon_experience: HACKATHON_OPTIONS[index % HACKATHON_OPTIONS.length],
+    interests:
+      index % 2 === 0
+        ? [INTEREST_OPTIONS[index % INTEREST_OPTIONS.length]]
+        : [
+            INTEREST_OPTIONS[index % INTEREST_OPTIONS.length],
+            INTEREST_OPTIONS[(index + 2) % INTEREST_OPTIONS.length],
+          ],
+    why_attend: `${firstName} is excited to build something new at HackBeanpot.`,
+  };
+  if (index % 5 === 0) {
+    applicationResponses.preferred_name = firstName;
+  }
+  if (applicationStatus === "submitted" && index % 4 === 0) {
+    // Placeholder uploadId — no real upload pipeline exists yet (separate,
+    // in-flight uploads ticket); this just gives the detail page's resume
+    // row something to render during manual verification.
+    applicationResponses.resume = `seed-upload-${index}`;
+  }
+
+  // Only applicants who actually reached the RSVP step have post-acceptance
+  // data — "unconfirmed" rows leave this unset, matching reality.
+  const postAcceptanceResponses =
+    rsvpStatus === "confirmed" || rsvpStatus === "not-attending"
+      ? {
+          attending: rsvpStatus === "confirmed" ? "yes" : "no",
+          dietaryRestrictions:
+            DIETARY_RESTRICTIONS[index % DIETARY_RESTRICTIONS.length],
+          tshirtSize: TSHIRT_OPTIONS[index % TSHIRT_OPTIONS.length],
+          accessibilityNeeds:
+            index % 6 === 0 ? "Wheelchair accessible seating" : "",
+          additionalNotes:
+            index % 7 === 0 ? "Arriving a day early for setup." : "",
+        }
+      : undefined;
+
   return {
     email,
     applicationStatus,
@@ -368,11 +436,8 @@ function toDoc(row: Row) {
     isAdmin: false,
     ...(appSubmissionTime ? { appSubmissionTime } : {}),
     lastSavedAt: appSubmissionTime ?? DRAFT_SAVED_AT,
-    applicationResponses: {
-      name: `${firstName} ${lastName}`,
-      school,
-      yearOfEducation: year,
-    },
+    applicationResponses,
+    ...(postAcceptanceResponses ? { postAcceptanceResponses } : {}),
   };
 }
 
@@ -390,7 +455,7 @@ async function main() {
   const col = db.collection(COLLECTION);
 
   await col.deleteMany({});
-  const docs = ROWS.map(toDoc);
+  const docs = ROWS.map((row, index) => toDoc(row, index));
   await col.insertMany(docs);
 
   console.log(`Seeded ${docs.length} applicants into ${COLLECTION}.`);

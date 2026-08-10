@@ -12,27 +12,16 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart";
-import type { StatusBreakdown, StatusKind } from "@/lib/stats/types";
+import type { BreakdownEntry } from "@/lib/stats/types";
 
 import { ChartEmpty } from "./ChartEmpty";
 import { TooltipRow } from "./TooltipRow";
 
 interface StatusBreakdownChartProps {
-  breakdown: StatusBreakdown;
-  kind?: StatusKind;
+  entries: BreakdownEntry[];
+  title: string;
+  emptyMessage: string;
 }
-
-const TITLES: Record<StatusKind, string> = {
-  application: "Applications by Status",
-  decision: "Decisions by Status",
-  rsvp: "RSVPs by Status",
-};
-
-const EMPTY_MESSAGES: Record<StatusKind, string> = {
-  application: "No applications yet",
-  decision: "No decisions yet",
-  rsvp: "No RSVPs yet",
-};
 
 // colors assigned positionally from brand palette
 const PALETTE = [
@@ -46,10 +35,10 @@ const PALETTE = [
 ];
 
 export function StatusBreakdownChart({
-  breakdown,
-  kind = "application",
+  entries,
+  title,
+  emptyMessage,
 }: StatusBreakdownChartProps): JSX.Element {
-  const entries = breakdown[kind];
   const total = entries.reduce((sum, e) => sum + e.count, 0);
 
   const rows = entries.map((e, i) => ({
@@ -67,11 +56,11 @@ export function StatusBreakdownChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{TITLES[kind]}</CardTitle>
+        <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
         {total === 0 ? (
-          <ChartEmpty message={EMPTY_MESSAGES[kind]} />
+          <ChartEmpty message={emptyMessage} />
         ) : (
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
             <ChartContainer

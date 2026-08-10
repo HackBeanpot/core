@@ -1,5 +1,6 @@
-// POST --> returns signed upload URL for GCS; stub returns 501
+// POST --> returns signed upload URL for GCS
 
+import { requireUser } from "@/lib/auth/guards";
 import {
   createSignedUploadUrl,
   InvalidUploadError,
@@ -7,9 +8,15 @@ import {
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  // TODO: gate with requireUser() once Ticket 1 ships its helpers
 
-  const userId = "mock-user-id"; // placeholder until auth lands
+  let user;
+  try {
+    user = await requireUser();
+  } catch {
+    return NextResponse.json({ error: "Requester not allowed" }, { status: 403 });
+  }
+
+  const userId = (user as { id: string }).id;
 
   const { filename, mime, size } = await request.json();
 

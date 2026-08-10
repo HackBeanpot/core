@@ -33,6 +33,8 @@ export interface ApplicantDoc {
   lastSavedAt?: string;
   applicationResponses?: ApplicationResponse;
   postAcceptanceResponses?: PostAcceptanceResponse;
+  updatedAt?: string;
+  updatedBy?: string;
 }
 
 export interface UploadedFile {
@@ -45,6 +47,8 @@ export interface ApplicantDetail extends ApplicantSummary {
   postAcceptanceResponses?: PostAcceptanceResponse;
   rsvpSubmissionTime?: string;
   resume?: UploadedFile;
+  updatedAt?: string;
+  updatedBy?: string;
 }
 
 export interface ApplicantFilters {
