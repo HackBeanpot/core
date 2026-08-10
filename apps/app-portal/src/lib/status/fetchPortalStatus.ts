@@ -1,55 +1,6 @@
-import { headers } from "next/headers";
 import type { PortalStatusResponse } from "./types";
-import { getApplicantStatus } from "./service";
-import { decisionDates } from "./mock-singletons";
-import { returnDashboardBranch } from "./machine";
-
-function getBaseUrl(): string {
-  const headerList = headers();
-  const forwardedProto = headerList.get("x-forwarded-proto");
-  const forwardedHost = headerList.get("x-forwarded-host");
-  const host = forwardedHost ?? headerList.get("host");
-
-  if (!host) {
-    return `http://localhost:3000`;
-  }
-
-  return `${forwardedProto ?? "http"}://${host}`;
-}
+import { getPortalStatus } from "./service";
 
 export async function fetchPortalStatus(): Promise<PortalStatusResponse> {
-  try {
-    const response = await fetch(`${getBaseUrl()}/api/v1/status`, {
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to load portal status");
-    }
-
-    return (await response.json()) as PortalStatusResponse;
-  } catch {
-    const status = await getApplicantStatus("mock-user");
-    const showDecision = new Date() >= decisionDates.showDecision;
-
-    const branch = returnDashboardBranch({
-      user: status,
-      dates: {
-        registrationOpen: decisionDates.registrationOpen,
-        confirmBy: decisionDates.confirmBy,
-      },
-      showDecision,
-      now: new Date(),
-    });
-
-    return {
-      branch,
-      status,
-      decisionDates: {
-        registrationOpen: decisionDates.registrationOpen.toISOString(),
-        showDecision: decisionDates.showDecision.toISOString(),
-        confirmBy: decisionDates.confirmBy.toISOString(),
-      },
-    };
-  }
+  return getPortalStatus();
 }

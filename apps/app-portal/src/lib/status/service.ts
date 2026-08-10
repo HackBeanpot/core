@@ -1,12 +1,45 @@
 import { getDb } from "@/lib/db";
-import { decisionDates, mockApplicantStatus } from "./mock-singletons";
+import { requireUser } from "@/lib/auth/guards";
+import { getSingleton } from "@/lib/admin/singleton-service";
+import { SingletonKey } from "@/lib/types/singleton";
 import { returnDashboardBranch } from "./machine";
+import { rsvpSchema } from "./rsvp";
 import type {
   ApplicantStatus,
   PortalStatusResponse,
-  RsvpPayload,
   RsvpStatus,
 } from "./types";
+
+const DEFAULT_FUTURE_DATE = new Date("9999-12-31T23:59:59.999Z");
+
+export class StatusError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = "StatusError";
+    this.status = status;
+  }
+}
+
+async function loadPortalSettings() {
+  const [registrationOpenValue, confirmByValue, showDecisionValue] =
+    await Promise.all([
+      getSingleton(SingletonKey.RegistrationOpen),
+      getSingleton(SingletonKey.ConfirmBy),
+      getSingleton(SingletonKey.ShowDecision),
+    ]);
+
+  return {
+    registrationOpen:
+      registrationOpenValue !== null
+        ? new Date(registrationOpenValue)
+        : DEFAULT_FUTURE_DATE,
+    confirmBy:
+      confirmByValue !== null ? new Date(confirmByValue) : DEFAULT_FUTURE_DATE,
+    showDecision: showDecisionValue === true,
+  };
+}
 
 export async function getApplicantStatus(
   userId: string,
@@ -31,21 +64,24 @@ export async function getApplicantStatus(
   };
 }
 
-export async function getPortalStatus(
-  userId: string,
-): Promise<PortalStatusResponse> {
-  const user = await getApplicantStatus(userId);
+export async function getPortalStatus(): Promise<PortalStatusResponse> {
+  const sessionUser = await requireUser();
+  const userId = (sessionUser as { id?: string }).id;
 
-  // TODO: replace with getSingleton() calls once Ticket 5 lands real singleton service
-  const showDecision = new Date() >= decisionDates.showDecision;
+  if (!userId) {
+    throw new StatusError("Unauthorized", 401);
+  }
+
+  const user = await getApplicantStatus(userId);
+  const settings = await loadPortalSettings();
 
   const branch = returnDashboardBranch({
     user,
     dates: {
-      registrationOpen: decisionDates.registrationOpen,
-      confirmBy: decisionDates.confirmBy,
+      registrationOpen: settings.registrationOpen,
+      confirmBy: settings.confirmBy,
     },
-    showDecision,
+    showDecision: settings.showDecision,
     now: new Date(),
   });
 
@@ -53,19 +89,55 @@ export async function getPortalStatus(
     branch,
     status: user,
     decisionDates: {
-      registrationOpen: decisionDates.registrationOpen.toISOString(),
-      confirmBy: decisionDates.confirmBy.toISOString(),
-      showDecision: decisionDates.showDecision.toISOString(),
+      registrationOpen: settings.registrationOpen.toISOString(),
+      confirmBy: settings.confirmBy.toISOString(),
+      showDecision: settings.showDecision
+        ? new Date().toISOString()
+        : DEFAULT_FUTURE_DATE.toISOString(),
     },
   };
 }
 
 export async function saveRsvp(
   userId: string,
-  payload: RsvpPayload,
+  payload: unknown,
 ): Promise<RsvpStatus> {
-  void userId;
-  void payload;
-  mockApplicantStatus.rsvpStatus = "confirmed";
-  return "confirmed";
+  const parsedPayload = rsvpSchema.parse(payload);
+  const db = await getDb();
+  const collection = db.collection("applicant_data");
+  const applicant = await collection.findOne({ userId });
+
+  if (!applicant || applicant.decisionStatus !== "admitted") {
+    throw new StatusError("Only admitted users can RSVP.", 403);
+  }
+
+  const confirmByValue = await getSingleton(SingletonKey.ConfirmBy);
+  const confirmBy =
+    confirmByValue !== null ? new Date(confirmByValue) : DEFAULT_FUTURE_DATE;
+
+  if (Date.now() > confirmBy.getTime()) {
+    throw new StatusError("The confirm-by deadline has passed.", 410);
+  }
+
+  const rsvpStatus: RsvpStatus =
+    parsedPayload.attending === "confirmed" ? "confirmed" : "not-attending";
+
+  await collection.updateOne(
+    { userId },
+    {
+      $set: {
+        rsvpStatus,
+        postAcceptanceResponses: {
+          attending: parsedPayload.attending,
+          dietaryRestrictions: parsedPayload.dietaryRestrictions,
+          tshirtSize: parsedPayload.tshirtSize,
+          accessibilityNeeds: parsedPayload.accessibilityNeeds,
+          additionalNotes: parsedPayload.additionalNotes,
+        },
+        rsvpSubmissionTime: new Date().toISOString(),
+      },
+    },
+  );
+
+  return rsvpStatus;
 }

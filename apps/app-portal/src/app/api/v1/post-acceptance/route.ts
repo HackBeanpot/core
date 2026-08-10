@@ -1,24 +1,31 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
-import { saveRsvp } from "../../../../lib/status/service";
-
-const rsvpSchema = z.object({
-  attending: z.enum(["yes", "no"]),
-  dietaryRestrictions: z.string().max(240),
-  tshirtSize: z.enum(["xs", "s", "m", "l", "xl"]),
-  accessibilityNeeds: z.string().max(240),
-  additionalNotes: z.string().max(400),
-});
+import { requireUser } from "../../../../lib/auth/guards";
+import { StatusError, saveRsvp } from "../../../../lib/status/service";
+import { ZodError } from "zod";
 
 export async function POST(request: Request) {
   try {
+    const user = await requireUser();
     const body = await request.json();
-    const parsed = rsvpSchema.parse(body);
+    await saveRsvp((user as { id?: string }).id ?? "", body);
 
-    await saveRsvp("mock-user", parsed);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    if (error instanceof Error && error.message === "Unauthorized") {
+      return NextResponse.json({ error: error.message }, { status: 401 });
+    }
 
-    return NextResponse.json({ success: true });
-  } catch {
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        { error: "Unable to save RSVP right now" },
+        { status: 400 },
+      );
+    }
+
+    if (error instanceof StatusError) {
+      return NextResponse.json({ error: error.message }, { status: error.status });
+    }
+
     return NextResponse.json(
       { error: "Unable to save RSVP right now" },
       { status: 400 },
