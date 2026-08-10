@@ -1,8 +1,19 @@
-import type { Document } from "mongodb";
+import type { Db, Document } from "mongodb";
 
-import type { DemographicsDimension } from "./types";
+import { resolveCollectionName } from "@/lib/db";
+
+import {
+  DEMOGRAPHICS_DIMENSIONS,
+  type BreakdownEntry,
+  type DemographicsBreakdown,
+  type StatsTotals,
+  type TimelinePoint,
+  type DemographicsDimension,
+} from "./types";
 
 type StatusField = "applicationStatus" | "decisionStatus" | "rsvpStatus";
+
+const APPLICANT_COLLECTION = resolveCollectionName("applicant_data");
 
 export function statusBreakdownPipeline(field: StatusField): Document[] {
   return [
@@ -53,22 +64,93 @@ const lowerEq = (field: string, value: string): Document => ({
   $expr: { $eq: [{ $toLower: `$${field}` }, value] },
 });
 
-export const topLevelCountsPipeline: Document[] = [
-  {
-    $facet: {
-      totalApplications: [{ $count: "count" }],
-      submitted: [
-        { $match: lowerEq("applicationStatus", "submitted") },
-        { $count: "count" },
-      ],
-      admitted: [
-        { $match: lowerEq("decisionStatus", "admitted") },
-        { $count: "count" },
-      ],
-      confirmed: [
-        { $match: lowerEq("rsvpStatus", "confirmed") },
-        { $count: "count" },
-      ],
-    },
-  },
-];
+export async function getTotals(db: Db): Promise<StatsTotals> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const [
+    applicants,
+    submitted,
+    admitted,
+    waitlisted,
+    declined,
+    rsvpYes,
+    rsvpNo,
+    rsvpUnconfirmed,
+  ] = await Promise.all([
+    col.countDocuments({}),
+    col.countDocuments({ applicationStatus: "Submitted" }),
+    col.countDocuments({ decisionStatus: "Admitted" }),
+    col.countDocuments({ decisionStatus: "Waitlisted" }),
+    col.countDocuments({ decisionStatus: "Declined" }),
+    col.countDocuments({ rsvpStatus: "Confirmed" }),
+    col.countDocuments({ rsvpStatus: "Not Attending" }),
+    col.countDocuments({ rsvpStatus: "Unconfirmed" }),
+  ]);
+  return {
+    applicants,
+    submitted,
+    admitted,
+    waitlisted,
+    declined,
+    rsvpYes,
+    rsvpNo,
+    rsvpUnconfirmed,
+  };
+}
+
+export async function getStatusBreakdown(db: Db): Promise<BreakdownEntry[]> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  return col
+    .aggregate<BreakdownEntry>(statusBreakdownPipeline("applicationStatus"))
+    .toArray();
+}
+
+export async function getDecisionBreakdown(db: Db): Promise<BreakdownEntry[]> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const pipeline = [
+    { $match: { applicationStatus: "Submitted" } },
+    ...statusBreakdownPipeline("decisionStatus"),
+  ];
+  return col.aggregate<BreakdownEntry>(pipeline).toArray();
+}
+
+export async function getRsvpBreakdown(db: Db): Promise<BreakdownEntry[]> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const pipeline = [
+    { $match: lowerEq("decisionStatus", "admitted") },
+    ...statusBreakdownPipeline("rsvpStatus"),
+  ];
+  return col.aggregate<BreakdownEntry>(pipeline).toArray();
+}
+
+export async function getDemographics(db: Db): Promise<DemographicsBreakdown> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const entries = await Promise.all(
+    DEMOGRAPHICS_DIMENSIONS.map(async (dimension) => {
+      const rows = await col
+        .aggregate<{
+          label: string;
+          count: number;
+        }>(demographicsBreakdownPipeline(dimension))
+        .toArray();
+      return [dimension, rows] as const;
+    }),
+  );
+  return Object.fromEntries(entries) as DemographicsBreakdown;
+}
+
+export async function getTimeline(
+  db: Db,
+  days?: number,
+): Promise<TimelinePoint[]> {
+  const col = db.collection(APPLICANT_COLLECTION);
+  const match: Document = { appSubmissionTime: { $exists: true, $ne: null } };
+  if (days !== undefined) {
+    const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+    match.appSubmissionTime.$gte = since;
+  }
+  const pipeline = [{ $match: match }, ...submissionTimelinePipeline.slice(1)];
+  const rows = await col
+    .aggregate<{ date: string; submissions: number }>(pipeline)
+    .toArray();
+  return rows.map(({ date, submissions }) => ({ date, count: submissions }));
+}
