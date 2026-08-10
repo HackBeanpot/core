@@ -1,30 +1,31 @@
 import React from "react";
+import { headers } from "next/headers";
 import ShowDecisionToggle from "@/components/admin/ShowDecisionToggle";
 import DateControls from "@/components/admin/DateControls";
 import FormConfigEditor from "@/components/admin/FormConfigEditor";
 
+async function fetchJson(url: string, cookie: string) {
+  const res = await fetch(url, {
+    cache: "no-store",
+    headers: { cookie },
+  });
+
+  if (!res.ok) {
+    return { value: null };
+  }
+
+  return res.json();
+}
+
 export default async function Page() {
-  const [openRes, closeRes, confirmRes, showDecisionRes] = await Promise.all([
-    fetch("http://localhost:3000/api/v1/dates/registration-open", {
-      cache: "no-store",
-    }),
-    fetch("http://localhost:3000/api/v1/dates/registration-closed", {
-      cache: "no-store",
-    }),
-    fetch("http://localhost:3000/api/v1/dates/confirm-by", {
-      cache: "no-store",
-    }),
-    fetch("http://localhost:3000/api/v1/show-decision", {
-      cache: "no-store",
-    }),
-  ]);
+  const cookie = headers().get("cookie") ?? "";
 
   const [openData, closeData, confirmData, showDecisionData] =
     await Promise.all([
-      openRes.json(),
-      closeRes.json(),
-      confirmRes.json(),
-      showDecisionRes.json(),
+      fetchJson("http://localhost:3000/api/v1/dates/registration-open", cookie),
+      fetchJson("http://localhost:3000/api/v1/dates/registration-closed", cookie),
+      fetchJson("http://localhost:3000/api/v1/dates/confirm-by", cookie),
+      fetchJson("http://localhost:3000/api/v1/show-decision", cookie),
     ]);
 
   return (

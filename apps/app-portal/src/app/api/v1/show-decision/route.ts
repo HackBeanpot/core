@@ -4,13 +4,21 @@ import { getSingleton, setSingleton } from "@/lib/admin/singleton-service";
 import { SingletonKey } from "@/lib/types/singleton";
 
 export async function GET() {
-  await requireAdmin();
-  const value = await getSingleton(SingletonKey.ShowDecision);
+  try {
+    await requireAdmin();
+    const value = await getSingleton(SingletonKey.ShowDecision);
 
-  return NextResponse.json({
-    key: SingletonKey.ShowDecision,
-    value: value ?? false,
-  });
+    return NextResponse.json({
+      key: SingletonKey.ShowDecision,
+      value: value ?? false,
+    });
+  } catch (error) {
+    if (error instanceof Error && error.message === "Forbidden") {
+      return NextResponse.json({ error: error.message }, { status: 403 });
+    }
+
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 }
 
 export async function POST(req: Request) {
