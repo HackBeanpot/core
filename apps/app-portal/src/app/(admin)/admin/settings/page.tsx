@@ -4,7 +4,7 @@ import DateControls from "@/components/admin/DateControls";
 import FormConfigEditor from "@/components/admin/FormConfigEditor";
 
 export default async function Page() {
-  const [openRes, closeRes, confirmRes] = await Promise.all([
+  const [openRes, closeRes, confirmRes, showDecisionRes] = await Promise.all([
     fetch("http://localhost:3000/api/v1/dates/registration-open", {
       cache: "no-store",
     }),
@@ -14,13 +14,18 @@ export default async function Page() {
     fetch("http://localhost:3000/api/v1/dates/confirm-by", {
       cache: "no-store",
     }),
+    fetch("http://localhost:3000/api/v1/show-decision", {
+      cache: "no-store",
+    }),
   ]);
 
-  const [openData, closeData, confirmData] = await Promise.all([
-    openRes.json(),
-    closeRes.json(),
-    confirmRes.json(),
-  ]);
+  const [openData, closeData, confirmData, showDecisionData] =
+    await Promise.all([
+      openRes.json(),
+      closeRes.json(),
+      confirmRes.json(),
+      showDecisionRes.json(),
+    ]);
 
   return (
     <div>
@@ -52,7 +57,7 @@ export default async function Page() {
 
         <section>
           <h2 className="mb-4 text-xl font-semibold">Display</h2>
-          <ShowDecisionToggle />
+          <ShowDecisionToggle initialValue={showDecisionData.value} />
         </section>
 
         <section>

@@ -1,12 +1,13 @@
 import { getDb } from "@/lib/db";
 import { SingletonKey, SingletonRecord } from "@/lib/types/singleton";
-import { SingletonValue } from "./types";
+import { FormConfig, SingletonValue } from "./types";
 
 type SingletonMap = {
   "registration-open": string;
   "registration-closed": string;
   "confirm-by": string;
   "show-decision": boolean;
+  "form-config": FormConfig;
 };
 
 export async function getSingleton<K extends SingletonKey>(
@@ -81,5 +82,21 @@ export function validateDateSingleton(
   return {
     ok: true,
     value: normalized,
+  };
+}
+
+export function validateBooleanSingleton(
+  value: unknown,
+): { ok: true; value: boolean } | { ok: false; error: string } {
+  if (typeof value !== "boolean") {
+    return {
+      ok: false,
+      error: "Value must be a boolean.",
+    };
+  }
+
+  return {
+    ok: true,
+    value,
   };
 }
