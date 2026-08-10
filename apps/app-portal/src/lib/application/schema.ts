@@ -3,17 +3,36 @@ import { z } from "zod";
 import { APPLICATION_SECTIONS } from "./questions";
 import type { Question, QuestionType } from "./types";
 
-function fieldSchema(question: Question): z.ZodTypeAny {
-  const { type, required, options } = question;
+type SchemaTarget = "client" | "server";
+
+function fieldSchema(
+  question: Question,
+  target: SchemaTarget = "client",
+): z.ZodTypeAny {
+  const { type, required, options, maxLength } = question;
 
   switch (type as QuestionType) {
     case "short_text":
     case "long_text": {
-      let schema = z.string();
-      if (required) {
-        schema = schema.min(1, `${question.label} is required`);
+      const requiredMessage = `${question.label} is required`;
+      let schema = required
+        ? z.string({ message: requiredMessage })
+        : z.string();
+      if (maxLength) {
+        schema = schema.max(
+          maxLength,
+          `${question.label} must be ${maxLength} characters or fewer`,
+        );
       }
-      return required ? schema : schema.optional().or(z.literal(""));
+      if (required) {
+        return schema.min(1, requiredMessage);
+      }
+      if (target === "server") {
+        return z
+          .union([schema, z.literal(""), z.null(), z.undefined()])
+          .optional();
+      }
+      return schema.optional().or(z.literal(""));
     }
     case "select": {
       const values = options?.map((o) => o.value) ?? [];
@@ -23,42 +42,77 @@ function fieldSchema(question: Question): z.ZodTypeAny {
       if (required) {
         return enumSchema;
       }
+      if (target === "server") {
+        return z
+          .union([enumSchema, z.literal(""), z.null(), z.undefined()])
+          .optional();
+      }
       return z.union([enumSchema, z.literal("")]);
     }
     case "multi_select": {
-      let schema = z.array(z.string());
+      const values = options?.map((o) => o.value) ?? [];
+      const enumSchema = z.enum(values as [string, ...string[]], {
+        message: `${question.label} contains an option that is not allowed`,
+      });
+      const requiredMessage = `Select at least one option for ${question.label}`;
+      const schema = required
+        ? z.array(enumSchema, { message: requiredMessage })
+        : z.array(enumSchema);
       if (required) {
-        schema = schema.min(
-          1,
-          `Select at least one option for ${question.label}`,
-        );
+        return schema.min(1, requiredMessage);
       }
-      return required ? schema : schema.optional().default([]);
+      if (target === "server") {
+        return z
+          .union([schema, z.null(), z.undefined()])
+          .optional()
+          .default([]);
+      }
+      return schema.optional().default([]);
     }
-    case "file_upload":
+    case "file_upload": {
+      const requiredMessage = `${question.label} is required`;
+      if (target === "server") {
+        const uploadIdSchema = z.string().min(1, requiredMessage);
+        if (required) return uploadIdSchema;
+        return z.union([z.string(), z.null(), z.undefined()]).optional();
+      }
       return z
         .union([z.instanceof(File), z.null(), z.undefined()])
         .refine((file) => !required || file instanceof File, {
-          message: `${question.label} is required`,
+          message: requiredMessage,
         });
+    }
     default:
       return z.unknown();
   }
 }
 
-function buildShape(): Record<string, z.ZodTypeAny> {
+function buildShape(target: SchemaTarget): Record<string, z.ZodTypeAny> {
   const shape: Record<string, z.ZodTypeAny> = {};
   for (const section of APPLICATION_SECTIONS) {
     for (const question of section.questions) {
-      shape[question.id] = fieldSchema(question);
+      shape[question.id] = fieldSchema(question, target);
     }
   }
   return shape;
 }
 
-export const applicationSchema = z.object(buildShape());
+// Client-facing schema: used by the form's zodResolver, where file_upload
+// fields hold a browser File object.
+export const applicationSchema = z.object(buildShape("client"));
 
 export type ApplicationSchemaValues = z.infer<typeof applicationSchema>;
+
+// Server-facing schema: used to validate a submission payload, where
+// file_upload fields hold an upload ID string instead of a File. Strict so
+// unknown keys in the payload are rejected.
+export const applicationSubmissionSchema = z
+  .object(buildShape("server"))
+  .strict();
+
+export type ApplicationSubmissionValues = z.infer<
+  typeof applicationSubmissionSchema
+>;
 
 export function createDefaultValues(): ApplicationSchemaValues {
   const values: Record<string, string | string[] | null> = {};

@@ -30,7 +30,7 @@ import type {
 
 import { FormSection } from "./FormSection";
 
-const REGISTRATION_API = "/api/v1/registration?userId=test-user-1";
+const REGISTRATION_API = "/api/v1/registration";
 const AUTOSAVE_DELAY_MS = 2000;
 
 export function ApplicationForm() {
@@ -92,7 +92,15 @@ export function ApplicationForm() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ responses: toResponses(form.getValues()) }),
         });
-        if (res.status === 501) return; // backend not wired yet — ignore silently
+        if (res.status === 403) {
+          if (!silent) {
+            const body = (await res.json().catch(() => null)) as {
+              error?: string;
+            } | null;
+            toast.error(body?.error ?? "Registration is not open right now.");
+          }
+          return;
+        }
         if (!res.ok) throw new Error();
         setLastSaved(new Date());
         if (!silent) toast.success("Draft saved.");
@@ -184,13 +192,30 @@ export function ApplicationForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ responses: toResponses(form.getValues()) }),
       });
-      if (res.status === 501) {
-        toast.message("Application submission is not available yet.");
+      if (res.ok) {
+        toast.success("Application submitted!");
+        router.push("/dashboard");
         return;
       }
-      if (!res.ok) throw new Error();
-      toast.success("Application submitted!");
-      router.push("/dashboard");
+      if (res.status === 400) {
+        toast.error(
+          "Please fix the errors in your application before submitting.",
+        );
+        return;
+      }
+      if (res.status === 403) {
+        const body = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        toast.error(body?.error ?? "Registration is not open right now.");
+        return;
+      }
+      if (res.status === 409) {
+        toast.message("Your application has already been submitted.");
+        router.push("/dashboard");
+        return;
+      }
+      throw new Error();
     } catch {
       toast.error("Could not submit your application. Please try again.");
     } finally {
@@ -307,8 +332,7 @@ export function ApplicationForm() {
       {/* submitted+open banner */}
       {isAlreadySubmitted && (
         <div className="mb-6 rounded-lg border border-green bg-green/20 px-4 py-3 text-sm text-darkGreen">
-          Your application is submitted. You can still edit and re-submit until
-          registration closes.
+          Your application has been submitted. You can still make changes between now and when registration closes.
         </div>
       )}
 
@@ -362,7 +386,7 @@ export function ApplicationForm() {
           <DialogHeader>
             <DialogTitle>Are you sure?</DialogTitle>
             <DialogDescription>
-              You can edit your answers and re-submit until registration closes.
+              You can still edit your answers until registration closes.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
