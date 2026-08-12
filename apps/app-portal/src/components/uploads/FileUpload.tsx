@@ -14,17 +14,21 @@ import { formatBytes } from "@/lib/uploads/utils";
 
 /**
  * @param description - Custom dropzone prompt text. Defaults to "Drag or drop files".
+ * @param accept - MIME types this instance accepts. Defaults to the app-wide allow-list
+ *   (PDF/PNG/JPEG); pass a narrower list to restrict a specific field (e.g. PDF-only for resumes).
  * @param onUploadComplete - Called with (uploadId, fileName) after a successful upload.
  * @param onUploadRemoved - Called when the user removes an uploaded file.
  */
 interface FileUploadProps {
   description?: string;
+  accept?: readonly string[];
   onUploadComplete?: (uploadId: string, fileName: string) => void;
   onUploadRemoved?: () => void;
 }
 
 export default function FileUpload({
   description,
+  accept: acceptMimeTypes = ALLOWED_MIME_TYPES,
   onUploadComplete,
   onUploadRemoved,
 }: FileUploadProps): JSX.Element {
@@ -32,11 +36,13 @@ export default function FileUpload({
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [transferredBytes, setTransferredBytes] = useState<number>(0);
   const [totalBytes, setTotalBytes] = useState<number>(0);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       setTransferredBytes(0);
       setTotalBytes(0);
+      setUploadError(null);
       if (acceptedFiles.length === 0) return;
       const firstFile = acceptedFiles[0];
 
@@ -50,75 +56,67 @@ export default function FileUpload({
         headers: { "Content-Type": "application/json" },
       });
 
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        setUploadError(
+          typeof body?.error === "string"
+            ? body.error
+            : "Could not start the upload. Please try again.",
+        );
+        return;
+      }
+
       const { uploadId, uploadUrl } = await res.json();
-      if (isMockUrl(uploadUrl)) {
-        // fake response
-        const INTERVAL_MS = 200;
-        const CHUNKS = 20;
-        const chunkSize = Math.ceil(firstFile.size / CHUNKS);
 
-        const interval = setInterval(() => {
-          setTransferredBytes((prev) => {
-            const next = Math.min(prev + chunkSize, firstFile.size);
-            if (next >= firstFile.size) {
-              clearInterval(interval);
-              setIsUploading(false);
-              setUploadedFile(firstFile);
-              onUploadComplete?.(uploadId, firstFile.name);
+      setIsUploading(true);
+      setTotalBytes(firstFile.size);
+
+      try {
+        await new Promise<void>((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open("PUT", uploadUrl);
+          xhr.setRequestHeader("Content-Type", firstFile.type);
+
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) setTransferredBytes(e.loaded);
+          };
+
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              resolve();
+            } else {
+              reject(new Error(`Upload failed with status ${xhr.status}`));
             }
-            return next;
-          });
-        }, INTERVAL_MS);
+          };
 
-        setIsUploading(true);
-        setTotalBytes(firstFile.size);
-      } else {
-        setIsUploading(true);
-        setTotalBytes(firstFile.size);
+          xhr.onerror = () => reject(new Error("Upload failed"));
 
-        try {
-          await new Promise<void>((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open("PUT", uploadUrl);
-            xhr.setRequestHeader("Content-Type", firstFile.type);
+          xhr.send(firstFile);
+        });
 
-            xhr.upload.onprogress = (e) => {
-              if (e.lengthComputable) setTransferredBytes(e.loaded);
-            };
-
-            xhr.onload = () => {
-              if (xhr.status >= 200 && xhr.status < 300) {
-                resolve();
-              } else {
-                reject(new Error(`Upload failed with status ${xhr.status}`));
-              }
-            };
-
-            xhr.onerror = () => reject(new Error("Upload failed"));
-
-            xhr.send(firstFile);
-          });
-
-          setTransferredBytes(firstFile.size);
-          setIsUploading(false);
-          setUploadedFile(firstFile);
-          onUploadComplete?.(uploadId, firstFile.name);
-        } catch {
-          setIsUploading(false);
-          // error to user here
-          return;
-        }
+        setTransferredBytes(firstFile.size);
+        setIsUploading(false);
+        setUploadedFile(firstFile);
+        onUploadComplete?.(uploadId, firstFile.name);
+      } catch {
+        setIsUploading(false);
+        setUploadError("The upload failed. Please try again.");
       }
     },
     [onUploadComplete],
   );
 
-  function isMockUrl(url: string): boolean {
-    return !!url && !url.startsWith("https://storage.googleapis.com");
-  }
+  const MIME_LABELS: Record<string, string> = {
+    "application/pdf": "PDF",
+    "image/png": "PNG",
+    "image/jpeg": "JPEG",
+  };
+  const acceptedLabel = acceptMimeTypes
+    .map((mime) => MIME_LABELS[mime] ?? mime)
+    .join(", ");
 
   const accept = Object.fromEntries(
-    ALLOWED_MIME_TYPES.map((mime) => [mime, []]),
+    acceptMimeTypes.map((mime) => [mime, []]),
   );
 
   const { getRootProps, getInputProps, isDragActive, fileRejections, open } =
@@ -185,8 +183,14 @@ export default function FileUpload({
             </ul>
           )}
           <p className="text-xs text-gray-400 mt-2">
-            PDF, PNG, JPEG up to {formatBytes(MAX_FILE_SIZE_BYTES)}
+            {acceptedLabel} up to {formatBytes(MAX_FILE_SIZE_BYTES)}
           </p>
+          {uploadError && (
+            <p className="mt-2 flex items-center gap-1 text-sm text-firecrackerRed">
+              <AlertCircle className="h-4 w-4 shrink-0" />
+              {uploadError}
+            </p>
+          )}
         </div>
       )}
       {isUploading && (

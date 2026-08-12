@@ -97,9 +97,9 @@ export function SignInForm() {
           {/*status / error message*/}
           <div className={"w-full flex flex-row items-end min-h-[2rem] pb-2"}>
             {emailError ? (
-              <p className={"w-full text-[#FF0000] text-end text-[12px]"}>
+              <p className={"w-full text-firecrackerRed text-end text-[12px]"}>
                 {emailError}
-              </p> //todo: change the red
+              </p>
             ) : status === "loading" ? (
               <p className={"w-full text-[#AAAAAA] text-end"}>
                 Loading{".".repeat(dotCount)}
@@ -108,10 +108,9 @@ export function SignInForm() {
             ) : status === "sent" ? (
               <p
                 className={
-                  "w-full text-[rgb(120,255,150)] text-end text-[12px] whitespace-nowrap"
+                  "w-full text-darkGreen text-end text-[12px] whitespace-nowrap"
                 }
               >
-                {/*todo: change the green*/}
                 Check your email for a sign-in link!
               </p>
             ) : null}

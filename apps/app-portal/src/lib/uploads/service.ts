@@ -15,6 +15,15 @@ async function uploadCollection(): Promise<Collection<UploadRecord>> {
   return db.collection<UploadRecord>(UPLOAD_COLLECTION);
 }
 
+// fetches an upload's metadata (filename, mime, size) by id — used by the admin
+// applicant detail view to show a real filename instead of the raw upload id.
+export async function getUploadRecord(
+  uploadId: string,
+): Promise<UploadRecord | null> {
+  const col = await uploadCollection();
+  return col.findOne({ _id: uploadId });
+}
+
 // creates a signed upload url
 export async function createSignedUploadUrl({
   userId,

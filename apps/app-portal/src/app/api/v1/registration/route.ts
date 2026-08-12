@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 import { requireUser } from "@/lib/auth/guards";
 import {
@@ -14,6 +15,25 @@ import {
   submit,
 } from "@/lib/application/service";
 import type { ApplicationResponses } from "@/lib/application/types";
+
+// Draft saves skip the full per-question schema (drafts are allowed to be incomplete —
+// submit() is what enforces required/enum/word-count rules against the live form config),
+// but the request body still needs *some* shape validation so garbage (wrong types,
+// nested objects, non-string keys) can't get written straight into Mongo.
+const draftBodySchema = z.object({
+  responses: z.record(
+    z.string(),
+    z.union([z.string(), z.array(z.string()), z.null()]),
+  ),
+});
+
+async function parseJsonBody(req: NextRequest): Promise<unknown> {
+  try {
+    return await req.json();
+  } catch {
+    throw new SyntaxError("Invalid JSON body");
+  }
+}
 
 async function getSessionUserId(): Promise<string | null> {
   try {
@@ -48,11 +68,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = (await req.json()) as { responses: ApplicationResponses };
   try {
-    const draft = await saveDraft(userId, body.responses);
+    const rawBody = await parseJsonBody(req);
+    const parsedBody = draftBodySchema.safeParse(rawBody);
+    if (!parsedBody.success) {
+      return NextResponse.json(
+        { error: "Invalid request body" },
+        { status: 400 },
+      );
+    }
+
+    const draft = await saveDraft(
+      userId,
+      parsedBody.data.responses as ApplicationResponses,
+    );
     return NextResponse.json({ ok: true, savedAt: draft.updatedAt });
   } catch (err) {
+    if (err instanceof SyntaxError) {
+      return NextResponse.json({ error: err.message }, { status: 400 });
+    }
     if (
       err instanceof RegistrationNotOpenError ||
       err instanceof RegistrationClosedError
@@ -69,11 +103,14 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = (await req.json()) as { responses: ApplicationResponses };
   try {
+    const body = (await parseJsonBody(req)) as { responses: ApplicationResponses };
     const result = await submit(userId, body.responses);
     return NextResponse.json({ ok: true, submittedAt: result.submittedAt });
   } catch (err) {
+    if (err instanceof SyntaxError) {
+      return NextResponse.json({ error: err.message }, { status: 400 });
+    }
     if (err instanceof ValidationError) {
       return NextResponse.json(
         { error: "Validation failed", issues: err.issues },

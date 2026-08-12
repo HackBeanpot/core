@@ -9,11 +9,3 @@ export interface UploadRecord {
     gcsPath: string;
     createdAt: Date;
 }
-
-// SignUploadRequest
-
-export function signUploadRequest(): void {}
-
-// SignUploadResponse
-
-export function signUploadResponse(): void {}

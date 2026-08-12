@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
 import { secondaryActionClass, statCardClass } from "./styles";
+import { SUPPORT_EMAIL } from "../../lib/config/site";
 import type { ApplicantStatus } from "../../lib/status/types";
 
 type WaitlistedViewProps = {
@@ -20,8 +21,8 @@ export default function WaitlistedView({
             Questions?
           </p>
           <p>
-            Email applications@hackbeanpot.com and we&apos;ll point you in the
-            right direction.
+            Email {SUPPORT_EMAIL} and we&apos;ll point you in the right
+            direction.
           </p>
         </div>
       }

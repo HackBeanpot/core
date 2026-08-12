@@ -1,15 +1,19 @@
 import { z } from "zod";
 
 import { APPLICATION_SECTIONS } from "./questions";
-import type { Question, QuestionType } from "./types";
+import type { FormSection, Question, QuestionType } from "./types";
 
 type SchemaTarget = "client" | "server";
+
+function countWords(value: string): number {
+  return value.trim().length === 0 ? 0 : value.trim().split(/\s+/).length;
+}
 
 function fieldSchema(
   question: Question,
   target: SchemaTarget = "client",
 ): z.ZodTypeAny {
-  const { type, required, options, maxLength } = question;
+  const { type, required, options, maxLength, maxWords } = question;
 
   switch (type as QuestionType) {
     case "short_text":
@@ -22,6 +26,12 @@ function fieldSchema(
         schema = schema.max(
           maxLength,
           `${question.label} must be ${maxLength} characters or fewer`,
+        );
+      }
+      if (type === "long_text" && maxWords) {
+        schema = schema.refine(
+          (value) => countWords(value) <= maxWords,
+          `${question.label} must be ${maxWords} words or fewer`,
         );
       }
       if (required) {
@@ -70,26 +80,26 @@ function fieldSchema(
       return schema.optional().default([]);
     }
     case "file_upload": {
+      // Both client and server hold the same value here: the upload ID returned by
+      // /api/v1/uploads/sign once the file has actually finished uploading to GCS (see
+      // FileUploadField / FileUpload). There's no separate "browser File object" stage in
+      // the schema — the upload happens before the field's value is ever set.
       const requiredMessage = `${question.label} is required`;
-      if (target === "server") {
-        const uploadIdSchema = z.string().min(1, requiredMessage);
-        if (required) return uploadIdSchema;
-        return z.union([z.string(), z.null(), z.undefined()]).optional();
-      }
-      return z
-        .union([z.instanceof(File), z.null(), z.undefined()])
-        .refine((file) => !required || file instanceof File, {
-          message: requiredMessage,
-        });
+      const uploadIdSchema = z.string().min(1, requiredMessage);
+      if (required) return uploadIdSchema;
+      return z.union([z.string(), z.literal(""), z.null(), z.undefined()]).optional();
     }
     default:
       return z.unknown();
   }
 }
 
-function buildShape(target: SchemaTarget): Record<string, z.ZodTypeAny> {
+function buildShape(
+  sections: readonly FormSection[],
+  target: SchemaTarget,
+): Record<string, z.ZodTypeAny> {
   const shape: Record<string, z.ZodTypeAny> = {};
-  for (const section of APPLICATION_SECTIONS) {
+  for (const section of sections) {
     for (const question of section.questions) {
       shape[question.id] = fieldSchema(question, target);
     }
@@ -97,35 +107,56 @@ function buildShape(target: SchemaTarget): Record<string, z.ZodTypeAny> {
   return shape;
 }
 
-// Client-facing schema: used by the form's zodResolver, where file_upload
-// fields hold a browser File object.
-export const applicationSchema = z.object(buildShape("client"));
+// Builds a zod schema for a given (possibly admin-edited, possibly live-fetched) section list.
+// Used both for the client-facing resolver and the server-facing submission validator, so a
+// form-config change is enforced consistently on both sides.
+export function buildApplicationSchema(
+  sections: readonly FormSection[],
+  target: SchemaTarget,
+): z.ZodObject<Record<string, z.ZodTypeAny>> {
+  const schema = z.object(buildShape(sections, target));
+  return target === "server" ? (schema.strict() as typeof schema) : schema;
+}
+
+export function buildDefaultValues(
+  sections: readonly FormSection[],
+): Record<string, string | string[] | null> {
+  const values: Record<string, string | string[] | null> = {};
+  for (const section of sections) {
+    for (const question of section.questions) {
+      if (question.type === "multi_select") {
+        values[question.id] = [];
+      } else if (question.type === "file_upload") {
+        values[question.id] = null;
+      } else {
+        values[question.id] = "";
+      }
+    }
+  }
+  return values;
+}
+
+// Client-facing schema: used by the form's zodResolver against the static default question set.
+// Call buildApplicationSchema(sections, "client") directly wherever the live (possibly
+// admin-edited) section list is available instead.
+export const applicationSchema = buildApplicationSchema(
+  APPLICATION_SECTIONS,
+  "client",
+);
 
 export type ApplicationSchemaValues = z.infer<typeof applicationSchema>;
 
-// Server-facing schema: used to validate a submission payload, where
-// file_upload fields hold an upload ID string instead of a File. Strict so
-// unknown keys in the payload are rejected.
-export const applicationSubmissionSchema = z
-  .object(buildShape("server"))
-  .strict();
+// Server-facing schema against the static default question set — see submit() in
+// lib/application/service.ts, which validates against the *live* config instead.
+export const applicationSubmissionSchema = buildApplicationSchema(
+  APPLICATION_SECTIONS,
+  "server",
+);
 
 export type ApplicationSubmissionValues = z.infer<
   typeof applicationSubmissionSchema
 >;
 
 export function createDefaultValues(): ApplicationSchemaValues {
-  const values: Record<string, string | string[] | null> = {};
-  for (const section of APPLICATION_SECTIONS) {
-    for (const question of section.questions) {
-      if (question.type === "multi_select") {
-        values[question.id] = [];
-      } else if (question.type === "file_upload") {
-        values[question.id] = null; // "" is not in the file_upload union; null is
-      } else {
-        values[question.id] = "";
-      }
-    }
-  }
-  return values as ApplicationSchemaValues;
+  return buildDefaultValues(APPLICATION_SECTIONS) as ApplicationSchemaValues;
 }

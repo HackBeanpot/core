@@ -1,3 +1,4 @@
+import { getFormConfig } from "@/lib/admin/form-config-service";
 import { getSingleton } from "@/lib/admin/singleton-service";
 import { getDb } from "@/lib/db";
 import { SingletonKey } from "@/lib/types/singleton";
@@ -8,11 +9,12 @@ import {
   RegistrationNotOpenError,
   ValidationError,
 } from "./errors";
-import { applicationSubmissionSchema } from "./schema";
+import { buildApplicationSchema } from "./schema";
 import type {
   ApplicationDraft,
   ApplicationResponses,
   ApplicationSubmission,
+  FormSection,
   RegistrationState,
 } from "./types";
 
@@ -30,15 +32,6 @@ import type {
  */
 const COLLECTION = "applicant_data";
 
-// const MOCK_REGISTRATION_STATE: RegistrationState = {
-//   registrationStatus: "open",
-//   opensAt: "2026-01-01T00:00:00Z",
-//   closesAt: "2026-12-01T00:00:00Z",
-//   applicationStatus: "submitted",
-//   responses: {},
-//   updatedAt: null,
-// };
-
 async function getRegistrationWindow(): Promise<{
   opensAt: string | null;
   closesAt: string | null;
@@ -48,6 +41,13 @@ async function getRegistrationWindow(): Promise<{
     getSingleton(SingletonKey.RegistrationClosed),
   ]);
   return { opensAt, closesAt };
+}
+
+// The live, admin-editable question set (see /admin/settings + FormConfigEditor). Falls back to
+// the code-level default (lib/application/questions.ts) until an admin saves a change.
+async function getSections(): Promise<FormSection[]> {
+  const config = await getFormConfig();
+  return config.sections;
 }
 
 export async function getRegistrationState(
@@ -72,6 +72,8 @@ export async function getRegistrationState(
     }
   }
 
+  const sections = await getSections();
+
   return {
     registrationStatus,
     opensAt: opensAt ?? "",
@@ -79,7 +81,38 @@ export async function getRegistrationState(
     applicationStatus,
     responses: {},
     updatedAt: null,
+    sections,
   };
+}
+
+function isAnswered(value: string | string[] | null | undefined): boolean {
+  if (value === null || value === undefined) return false;
+  if (Array.isArray(value)) return value.length > 0;
+  return value.trim().length > 0;
+}
+
+// Real completion percentage for the dashboard's in-progress view, based on how many of the
+// live form's questions have an answer saved in the applicant's draft.
+export async function getCompletionPercent(userId: string): Promise<number> {
+  const sections = await getSections();
+  const totalQuestions = sections.reduce(
+    (sum, section) => sum + section.questions.length,
+    0,
+  );
+  if (totalQuestions === 0) return 0;
+
+  const draft = await getDraft(userId);
+  if (!draft) return 0;
+
+  const answeredQuestions = sections.reduce(
+    (sum, section) =>
+      sum +
+      section.questions.filter((q) => isAnswered(draft.responses[q.id]))
+        .length,
+    0,
+  );
+
+  return Math.round((answeredQuestions / totalQuestions) * 100);
 }
 
 export async function isRegistrationOpen(): Promise<boolean> {
@@ -118,12 +151,30 @@ export async function saveDraft(
 ): Promise<ApplicationDraft> {
   await assertRegistrationWindowOpen();
   const db = await getDb();
+  const collection = db.collection(COLLECTION);
+  const existing = await collection.findOne({ userId });
+
+  // A submitted application is authoritative. Without this, a stray/delayed autosave
+  // request (e.g. one already in flight when the user clicks Submit) would still land
+  // here and silently overwrite the submitted responses back to whatever stale draft
+  // content was in the field values at the time it was queued — applicationStatus would
+  // stay "submitted" the whole time, so nothing would even look wrong to the applicant.
+  if (existing?.applicationStatus === "submitted") {
+    return {
+      responses: existing.applicationResponses as ApplicationResponses,
+      updatedAt: (existing.lastSavedAt as Date).toISOString(),
+      status: "draft",
+    };
+  }
+
   const now = new Date();
-  await db.collection(COLLECTION).updateOne(
-    { userId },
+  await collection.updateOne(
+    // Re-check applicationStatus in the update filter too (not just the read above) to
+    // narrow the race window between the findOne and this write.
+    { userId, applicationStatus: { $ne: "submitted" } },
     {
       $set: { applicationResponses: responses, lastSavedAt: now },
-      // $setOnInsert never overwrites an existing applicationStatus,which prevents a draft save from downgrading a submitted application.
+      // $setOnInsert never overwrites an existing applicationStatus, which prevents a draft save from downgrading a submitted application.
       $setOnInsert: {
         userId,
         applicationStatus: "in-progress",
@@ -147,7 +198,9 @@ export async function submit(
     throw new AlreadySubmittedError();
   }
 
-  const parsed = applicationSubmissionSchema.safeParse(responses);
+  const sections = await getSections();
+  const submissionSchema = buildApplicationSchema(sections, "server");
+  const parsed = submissionSchema.safeParse(responses);
   if (!parsed.success) {
     throw new ValidationError(parsed.error);
   }

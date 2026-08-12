@@ -28,16 +28,17 @@ export default function SubmittedView({
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
             What happens next
           </p>
-          <p>
-            The team is reviewing applications and will share decisions on XXX.
-          </p>
+          <p>The team is reviewing applications and will share decisions soon.</p>
           <p>Keep an eye on your inbox.</p>
         </div>
       }
       description={<>We&apos;ve received your application!</>}
       eyebrow="Application submitted"
       primaryAction={
-        <Link className="text-blue-600 font-semibold hover:underline" href="/">
+        <Link
+          className="text-blue-600 font-semibold hover:underline"
+          href={isRegistrationOpen ? "/application" : "/dashboard"}
+        >
           {isRegistrationOpen ? "Edit application" : "Back to dashboard"}
         </Link>
       }
@@ -50,7 +51,7 @@ export default function SubmittedView({
     >
       <div className={statCardClass}>
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
-          Review date: XXX
+          Under review
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
           {status.rsvpStatus === "confirmed"

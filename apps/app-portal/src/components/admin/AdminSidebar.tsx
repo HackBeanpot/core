@@ -64,6 +64,16 @@ export default function AdminSidebar() {
       >
         Stats
       </Link>
+
+      <hr className="my-2 border-white/20" />
+
+      <Link
+        href="/dashboard"
+        style={Active("/dashboard")}
+        className="block rounded px-3 py-2 text-lg"
+      >
+        Applicant View
+      </Link>
     </>
   );
 

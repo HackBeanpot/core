@@ -1,11 +1,17 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import icon from "@/app/icon.ico";
 import TiledBackground from "@/components/ui/tiled-background";
+import { getSession } from "@/lib/auth/session";
 
-//TODO: update to redirect authed users to /dashboard
-export default function Page(): JSX.Element {
+export default async function Page(): Promise<JSX.Element> {
+  const session = await getSession();
+  if (session?.user) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="relative w-[100vw] h-[100vh] overflow-hidden">
       <TiledBackground />

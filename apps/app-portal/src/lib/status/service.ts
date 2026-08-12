@@ -1,6 +1,7 @@
 import { getDb } from "@/lib/db";
 import { requireUser } from "@/lib/auth/guards";
 import { getSingleton } from "@/lib/admin/singleton-service";
+import { getCompletionPercent } from "@/lib/application/service";
 import { SingletonKey } from "@/lib/types/singleton";
 import { returnDashboardBranch } from "./machine";
 import { rsvpSchema } from "./rsvp";
@@ -85,6 +86,11 @@ export async function getPortalStatus(): Promise<PortalStatusResponse> {
     now: new Date(),
   });
 
+  // Only the in-progress view actually displays this; everything past it means the
+  // application is done, so there's nothing to compute.
+  const completionPercent =
+    branch === "in-progress" ? await getCompletionPercent(userId) : 100;
+
   return {
     branch,
     status: user,
@@ -95,6 +101,7 @@ export async function getPortalStatus(): Promise<PortalStatusResponse> {
         ? new Date().toISOString()
         : DEFAULT_FUTURE_DATE.toISOString(),
     },
+    completionPercent,
   };
 }
 

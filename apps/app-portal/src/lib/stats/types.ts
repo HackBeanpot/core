@@ -33,15 +33,19 @@ export interface BreakdownEntry {
   count: number;
 }
 
+// Must match real question IDs in lib/application/questions.ts (applicationResponses.<id>) —
+// these previously used names ("yearOfEducation", "majors", "races", "shirtSize",
+// "hackathonsAttended", "csClassesTaken") that don't exist on any applicant document, so
+// those charts were always empty.
 export const DEMOGRAPHICS_DIMENSIONS = [
   "school",
-  "yearOfEducation",
-  "majors",
+  "education_year",
+  "major",
   "gender",
-  "races",
-  "shirtSize",
-  "hackathonsAttended",
-  "csClassesTaken",
+  "race",
+  "tshirt_size",
+  "hackathon_experience",
+  "cs_classes",
 ] as const;
 
 export type DemographicsDimension = (typeof DEMOGRAPHICS_DIMENSIONS)[number];
