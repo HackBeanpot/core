@@ -50,7 +50,9 @@ function docToSummary(doc: ApplicantDoc): ApplicantSummary {
   };
 }
 
-async function resolveResume(doc: ApplicantDoc): Promise<UploadedFile | undefined> {
+async function resolveResume(
+  doc: ApplicantDoc,
+): Promise<UploadedFile | undefined> {
   const uploadId = doc.applicationResponses?.["resume"];
   if (typeof uploadId !== "string" || uploadId.length === 0) return undefined;
   const record = await getUploadRecord(uploadId);
@@ -81,7 +83,10 @@ export async function listApplicants(
   // `name` lives under the application response, not a top-level doc field.
   const sort: Record<string, 1 | -1> =
     sortBy === "name"
-      ? { "applicationResponses.last_name": dir, "applicationResponses.first_name": dir }
+      ? {
+          "applicationResponses.last_name": dir,
+          "applicationResponses.first_name": dir,
+        }
       : { [sortBy]: dir };
 
   const [total, docs] = await Promise.all([

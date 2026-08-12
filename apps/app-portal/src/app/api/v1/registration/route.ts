@@ -104,7 +104,9 @@ export async function PUT(req: NextRequest) {
   }
 
   try {
-    const body = (await parseJsonBody(req)) as { responses: ApplicationResponses };
+    const body = (await parseJsonBody(req)) as {
+      responses: ApplicationResponses;
+    };
     const result = await submit(userId, body.responses);
     return NextResponse.json({ ok: true, submittedAt: result.submittedAt });
   } catch (err) {

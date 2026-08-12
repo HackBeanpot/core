@@ -1,4 +1,4 @@
-"use client"
+"use client";
 //email input form, calls signIn("email")
 import React, { useEffect, useState } from "react";
 import Image from "next/image";

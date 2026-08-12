@@ -28,7 +28,10 @@ export async function POST(request: Request) {
     }
 
     if (error instanceof StatusError) {
-      return NextResponse.json({ error: error.message }, { status: error.status });
+      return NextResponse.json(
+        { error: error.message },
+        { status: error.status },
+      );
     }
 
     return NextResponse.json(

@@ -1,8 +1,5 @@
 import { APPLICATION_SECTIONS } from "./questions";
-import {
-  buildApplicationSchema,
-  buildDefaultValues,
-} from "./schema";
+import { buildApplicationSchema, buildDefaultValues } from "./schema";
 import type { FormSection } from "./types";
 
 describe("buildApplicationSchema", () => {
@@ -38,7 +35,12 @@ describe("buildApplicationSchema", () => {
         id: "s",
         title: "S",
         questions: [
-          { id: "first_name", label: "First name", type: "short_text", required: true },
+          {
+            id: "first_name",
+            label: "First name",
+            type: "short_text",
+            required: true,
+          },
         ],
       },
     ];
@@ -104,7 +106,12 @@ describe("buildApplicationSchema", () => {
         id: "s",
         title: "S",
         questions: [
-          { id: "first_name", label: "First name", type: "short_text", required: false },
+          {
+            id: "first_name",
+            label: "First name",
+            type: "short_text",
+            required: false,
+          },
         ],
       },
     ];
@@ -124,9 +131,9 @@ describe("buildDefaultValues", () => {
     const defaults = buildDefaultValues(APPLICATION_SECTIONS);
     for (const section of APPLICATION_SECTIONS) {
       for (const question of section.questions) {
-        expect(Object.prototype.hasOwnProperty.call(defaults, question.id)).toBe(
-          true,
-        );
+        expect(
+          Object.prototype.hasOwnProperty.call(defaults, question.id),
+        ).toBe(true);
       }
     }
   });
@@ -149,7 +156,9 @@ describe("buildDefaultValues", () => {
 
 describe("APPLICATION_SECTIONS (2026 content)", () => {
   it("has no duplicate question IDs across sections", () => {
-    const ids = APPLICATION_SECTIONS.flatMap((s) => s.questions.map((q) => q.id));
+    const ids = APPLICATION_SECTIONS.flatMap((s) =>
+      s.questions.map((q) => q.id),
+    );
     expect(new Set(ids).size).toBe(ids.length);
   });
 

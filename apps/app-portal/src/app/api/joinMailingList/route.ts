@@ -36,7 +36,9 @@ export async function POST(req: NextRequest) {
     });
 
     if (!response.ok) {
-      throw new Error(`Beehiiv API request failed with status ${response.status}`);
+      throw new Error(
+        `Beehiiv API request failed with status ${response.status}`,
+      );
     }
 
     return NextResponse.json({

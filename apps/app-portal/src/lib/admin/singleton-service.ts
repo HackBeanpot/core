@@ -95,7 +95,9 @@ export async function validateDateOrdering(
     key === SingletonKey.RegistrationClosed
       ? newValue
       : getSingleton(SingletonKey.RegistrationClosed),
-    key === SingletonKey.ConfirmBy ? newValue : getSingleton(SingletonKey.ConfirmBy),
+    key === SingletonKey.ConfirmBy
+      ? newValue
+      : getSingleton(SingletonKey.ConfirmBy),
   ]);
 
   if (

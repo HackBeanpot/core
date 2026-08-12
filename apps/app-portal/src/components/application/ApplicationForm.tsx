@@ -18,7 +18,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
-import { buildApplicationSchema, buildDefaultValues } from "@/lib/application/schema";
+import {
+  buildApplicationSchema,
+  buildDefaultValues,
+} from "@/lib/application/schema";
 import type {
   ApplicationResponses,
   FormSection as FormSectionType,
@@ -355,7 +358,8 @@ export function ApplicationForm() {
       {/* submitted+open banner */}
       {isAlreadySubmitted && (
         <div className="mb-6 rounded-lg border border-green bg-green/20 px-4 py-3 text-sm text-darkGreen">
-          Your application has been submitted. You can still make changes between now and when registration closes.
+          Your application has been submitted. You can still make changes
+          between now and when registration closes.
         </div>
       )}
 

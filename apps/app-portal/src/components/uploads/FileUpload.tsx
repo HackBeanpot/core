@@ -115,9 +115,7 @@ export default function FileUpload({
     .map((mime) => MIME_LABELS[mime] ?? mime)
     .join(", ");
 
-  const accept = Object.fromEntries(
-    acceptMimeTypes.map((mime) => [mime, []]),
-  );
+  const accept = Object.fromEntries(acceptMimeTypes.map((mime) => [mime, []]));
 
   const { getRootProps, getInputProps, isDragActive, fileRejections, open } =
     useDropzone({

@@ -33,8 +33,8 @@ export function FileUploadField({
     <div className="space-y-2">
       {value && (
         <p className="text-xs text-charcoalFogLight">
-          A file is already uploaded for this question. Uploading a new one
-          will replace it.
+          A file is already uploaded for this question. Uploading a new one will
+          replace it.
         </p>
       )}
       <FileUpload

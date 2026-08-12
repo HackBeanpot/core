@@ -95,7 +95,10 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
             value: "asian",
             label: "Asian (East, Southeast, South)",
           },
-          { value: "black_or_african_american", label: "Black or African American" },
+          {
+            value: "black_or_african_american",
+            label: "Black or African American",
+          },
           { value: "hispanic_or_latinx", label: "Hispanic or Latinx" },
           {
             value: "native_hawaiian_or_pacific_islander",
@@ -145,7 +148,10 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
         type: "select",
         required: true,
         options: [
-          { value: "northeastern_university", label: "Northeastern University" },
+          {
+            value: "northeastern_university",
+            label: "Northeastern University",
+          },
           { value: "boston_university", label: "Boston University" },
           { value: "mit", label: "MIT" },
           { value: "harvard_university", label: "Harvard University" },
@@ -193,7 +199,8 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
       },
       {
         id: "school_other",
-        label: "If your school was not listed in the previous question, list it here!",
+        label:
+          "If your school was not listed in the previous question, list it here!",
         type: "short_text",
         required: false,
         maxLength: 200,
@@ -356,7 +363,8 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
       },
       {
         id: "other_disciplines",
-        label: "Were there any disciplines not listed that you'd be interested in?",
+        label:
+          "Were there any disciplines not listed that you'd be interested in?",
         type: "short_text",
         required: false,
         maxLength: 300,
@@ -448,7 +456,7 @@ export const APPLICATION_SECTIONS: readonly FormSection[] = [
       {
         id: "referral_other",
         label:
-          "If you selected \"Other organization\" or \"Other\" above, please specify.",
+          'If you selected "Other organization" or "Other" above, please specify.',
         type: "short_text",
         required: false,
         maxLength: 300,

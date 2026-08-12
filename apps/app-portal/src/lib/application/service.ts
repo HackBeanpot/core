@@ -107,8 +107,7 @@ export async function getCompletionPercent(userId: string): Promise<number> {
   const answeredQuestions = sections.reduce(
     (sum, section) =>
       sum +
-      section.questions.filter((q) => isAnswered(draft.responses[q.id]))
-        .length,
+      section.questions.filter((q) => isAnswered(draft.responses[q.id])).length,
     0,
   );
 

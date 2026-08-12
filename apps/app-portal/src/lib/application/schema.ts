@@ -87,7 +87,9 @@ function fieldSchema(
       const requiredMessage = `${question.label} is required`;
       const uploadIdSchema = z.string().min(1, requiredMessage);
       if (required) return uploadIdSchema;
-      return z.union([z.string(), z.literal(""), z.null(), z.undefined()]).optional();
+      return z
+        .union([z.string(), z.literal(""), z.null(), z.undefined()])
+        .optional();
     }
     default:
       return z.unknown();

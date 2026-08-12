@@ -13,7 +13,10 @@ const sections: FormSection[] = [
         type: "select",
         required: true,
         options: [
-          { value: "northeastern_university", label: "Northeastern University" },
+          {
+            value: "northeastern_university",
+            label: "Northeastern University",
+          },
           { value: "boston_university", label: "Boston University" },
         ],
       },

@@ -28,7 +28,9 @@ export default function SubmittedView({
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
             What happens next
           </p>
-          <p>The team is reviewing applications and will share decisions soon.</p>
+          <p>
+            The team is reviewing applications and will share decisions soon.
+          </p>
           <p>Keep an eye on your inbox.</p>
         </div>
       }

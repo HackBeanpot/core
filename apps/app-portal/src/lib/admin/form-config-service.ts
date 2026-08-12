@@ -39,7 +39,9 @@ function validateNotEmpty(config: FormConfig): void {
     0,
   );
   if (config.sections.length === 0 || totalQuestions === 0) {
-    throw new Error("Form config must have at least one section with at least one question.");
+    throw new Error(
+      "Form config must have at least one section with at least one question.",
+    );
   }
 }
 

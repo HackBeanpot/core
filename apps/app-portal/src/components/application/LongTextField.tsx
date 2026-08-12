@@ -20,7 +20,8 @@ export function LongTextField({
   onBlur,
   disabled,
 }: LongTextFieldProps) {
-  const wordCount = value.trim().length === 0 ? 0 : value.trim().split(/\s+/).length;
+  const wordCount =
+    value.trim().length === 0 ? 0 : value.trim().split(/\s+/).length;
   const overLimit = !!question.maxWords && wordCount > question.maxWords;
 
   return (
