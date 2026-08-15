@@ -1,4 +1,4 @@
-import { getDb } from "@/lib/db";
+import { getDb, resolveCollectionName } from "@/lib/db";
 import { requireUser } from "@/lib/auth/guards";
 import { getSingleton } from "@/lib/admin/singleton-service";
 import { getCompletionPercent } from "@/lib/application/service";
@@ -12,6 +12,8 @@ import type {
 } from "./types";
 
 const DEFAULT_FUTURE_DATE = new Date("9999-12-31T23:59:59.999Z");
+
+const APPLICANT_COLLECTION = resolveCollectionName("applicant_data");
 
 export class StatusError extends Error {
   status: number;
@@ -46,7 +48,7 @@ export async function getApplicantStatus(
   userId: string,
 ): Promise<ApplicantStatus> {
   const db = await getDb();
-  const doc = await db.collection("applicant_data").findOne({ userId });
+  const doc = await db.collection(APPLICANT_COLLECTION).findOne({ userId });
 
   if (!doc) {
     return {
@@ -111,7 +113,7 @@ export async function saveRsvp(
 ): Promise<RsvpStatus> {
   const parsedPayload = rsvpSchema.parse(payload);
   const db = await getDb();
-  const collection = db.collection("applicant_data");
+  const collection = db.collection(APPLICANT_COLLECTION);
   const applicant = await collection.findOne({ userId });
 
   if (!applicant || applicant.decisionStatus !== "admitted") {
