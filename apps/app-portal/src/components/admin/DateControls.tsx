@@ -65,7 +65,9 @@ export default function DateControls({ label, endpoint, initialValue }: Props) {
       // nothing shown on screen.
       if (!res.ok) {
         throw new Error(
-          typeof body?.error === "string" ? body.error : `Failed to save ${label}.`,
+          typeof body?.error === "string"
+            ? body.error
+            : `Failed to save ${label}.`,
         );
       }
 

@@ -68,10 +68,7 @@ function fieldSchema(question: Question): z.ZodTypeAny {
       if (required) {
         return schema.min(1, requiredMessage);
       }
-      return z
-        .union([schema, z.null(), z.undefined()])
-        .optional()
-        .default([]);
+      return z.union([schema, z.null(), z.undefined()]).optional().default([]);
     }
     case "file_upload": {
       // Both client and server hold the same value here: the upload ID returned by
