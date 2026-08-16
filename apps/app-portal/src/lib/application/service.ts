@@ -1,6 +1,6 @@
 import { getFormConfig } from "@/lib/admin/form-config-service";
 import { getSingleton } from "@/lib/admin/singleton-service";
-import { getDb } from "@/lib/db";
+import { getDb, resolveCollectionName } from "@/lib/db";
 import { SingletonKey } from "@/lib/types/singleton";
 
 import {
