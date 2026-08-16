@@ -51,16 +51,10 @@ export default async function ApplicantLayout({
         </div>
 
         <div className="flex items-center gap-4">
-          <Link
-            href="/application"
-            className="hidden sm:inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
-          >
-            Application
-          </Link>
           {isAdmin && (
             <Link
               href="/admin"
-              className="hidden sm:inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+              className="mobile:hidden inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
             >
               Admin View
             </Link>
