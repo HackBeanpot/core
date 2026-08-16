@@ -5,6 +5,7 @@
  *
  * Usage (from apps/app-portal, or `yarn workspace app-portal seed` from root):
  *   yarn seed
+ *   yarn seed --dry-run   — validate and print, write nothing, connect to nothing
  *
  * Reads MONGO_PROD_CONNECTION_STRING from .env (loaded via
  * `node --env-file=.env`) — this always points at the shared Atlas cluster.
@@ -19,6 +20,7 @@
  * app enums in src/lib/types/user.ts.
  */
 import { getDb, resolveCollectionName } from "@/lib/db";
+import { APPLICATION_SECTIONS } from "@/lib/application/questions";
 
 const TEST_COLLECTION_NAME = "applicant_data_test";
 const COLLECTION = resolveCollectionName("applicant_data");
@@ -348,17 +350,87 @@ const ROWS: Row[] = [
   ],
 ];
 
-// Maps the seed table's free-text `year` to the real `year_of_study`
-// question's enum option values (src/lib/application/questions.ts).
-const YEAR_OF_STUDY_MAP: Record<string, string> = {
-  Junior: "third",
-  Senior: "fourth",
-  Graduate: "graduate",
+// Unmapped schools fall through to the question's "other" option, with the raw
+// name in `school_other`.
+const SCHOOL_MAP: Record<string, string> = {
+  "Northeastern University": "northeastern_university",
+  MIT: "mit",
+  Harvard: "harvard_university",
+  "Boston University": "boston_university",
+};
+
+// The seed table's free-text `year` spans two real questions.
+const EDUCATION_MAP: Record<string, { level: string; year: string }> = {
+  Junior: { level: "undergraduate", year: "3rd_year" },
+  Senior: { level: "undergraduate", year: "4th_year" },
+  Graduate: { level: "graduate", year: "1st_year" },
 };
 
 const HACKATHON_OPTIONS = ["0", "1-2", "3-5", "6+"];
-const INTEREST_OPTIONS = ["web", "mobile", "ai", "hardware", "design", "other"];
-const TSHIRT_OPTIONS = ["xs", "s", "m", "l", "xl"];
+const CS_CLASS_OPTIONS = ["0", "1-2", "3-5", "6+"];
+const WORKSHOP_OPTIONS = [
+  "mobile",
+  "web",
+  "design",
+  "backend",
+  "frontend",
+  "data_science",
+  "cybersecurity",
+  "ai_ml",
+  "product_management",
+  "entrepreneurship",
+];
+const IDENTITIES = [
+  { pronouns: "she/her", gender: "female" },
+  { pronouns: "he/him", gender: "male" },
+  { pronouns: "they/them", gender: "non_binary" },
+  { pronouns: "she/they", gender: "genderqueer" },
+  { pronouns: "he/him", gender: "prefer_not_to_say" },
+  { pronouns: "they/them", gender: "unlisted" },
+];
+const RACE_OPTIONS = [
+  "indigenous_american_or_alaska_native",
+  "asian",
+  "black_or_african_american",
+  "hispanic_or_latinx",
+  "native_hawaiian_or_pacific_islander",
+  "white",
+  "unlisted",
+  "prefer_not_to_say",
+];
+const LGBTQ_OPTIONS = ["yes", "no", "unsure", "prefer_not_to_say"];
+const REFERRAL_OPTIONS = [
+  "facebook",
+  "instagram",
+  "linkedin",
+  "twitter",
+  "tiktok",
+  "hbp_email_newsletter",
+  "word_of_mouth",
+  "hbp_outreach_events",
+  "school_communications",
+  "other_organization",
+  "other",
+];
+const HOMETOWNS = [
+  "Boston, MA",
+  "Providence, RI",
+  "Portland, ME",
+  "Hartford, CT",
+  "Nashua, NH",
+];
+const MAJORS = [
+  "Computer Science",
+  "Computer Science and Design",
+  "Data Science",
+  "Electrical Engineering",
+  "Mathematics",
+];
+
+// The application's own `tshirt_size` question allows 2XL; the RSVP payload schema
+// (src/lib/status/rsvp.ts) stops at XL. Kept separate so both match their writer.
+const TSHIRT_SIZES = ["xs", "s", "m", "l", "xl", "2xl"];
+const RSVP_TSHIRT_SIZES = ["xs", "s", "m", "l", "xl"];
 
 // A couple of entries deliberately contain a comma/quote so the CSV export's
 // escaping logic has real data to exercise during manual verification.
@@ -384,32 +456,61 @@ function toDoc(row: Row, index: number) {
     appSubmissionTime,
   ] = row;
 
+  const schoolValue = SCHOOL_MAP[school] ?? "other";
+  const education = EDUCATION_MAP[year] ?? EDUCATION_MAP.Graduate;
+  const identity = IDENTITIES[index % IDENTITIES.length];
+
   // Keyed by the real application question ids (questions.ts), not
   // ad hoc names — otherwise seed data silently diverges from what the
   // real form (and the CSV export/detail page built on top of it) expects.
   const applicationResponses: Record<string, string | string[]> = {
-    legal_name: `${firstName} ${lastName}`,
-    email,
-    university: school,
-    year_of_study: YEAR_OF_STUDY_MAP[year] ?? "graduate",
-    hackathon_experience: HACKATHON_OPTIONS[index % HACKATHON_OPTIONS.length],
-    interests:
-      index % 2 === 0
-        ? [INTEREST_OPTIONS[index % INTEREST_OPTIONS.length]]
+    first_name: firstName,
+    last_name: lastName,
+    hometown: HOMETOWNS[index % HOMETOWNS.length],
+    pronouns: identity.pronouns,
+    gender: identity.gender,
+    race:
+      index % 3 === 0
+        ? [RACE_OPTIONS[index % RACE_OPTIONS.length]]
         : [
-            INTEREST_OPTIONS[index % INTEREST_OPTIONS.length],
-            INTEREST_OPTIONS[(index + 2) % INTEREST_OPTIONS.length],
+            RACE_OPTIONS[index % RACE_OPTIONS.length],
+            RACE_OPTIONS[(index + 3) % RACE_OPTIONS.length],
           ],
-    why_attend: `${firstName} is excited to build something new at HackBeanpot.`,
+    lgbtq: LGBTQ_OPTIONS[index % LGBTQ_OPTIONS.length],
+    school: schoolValue,
+    education_level: education.level,
+    education_year: education.year,
+    major: MAJORS[index % MAJORS.length],
+    tshirt_size: TSHIRT_SIZES[index % TSHIRT_SIZES.length],
+    hackathon_experience: HACKATHON_OPTIONS[index % HACKATHON_OPTIONS.length],
+    cs_classes: CS_CLASS_OPTIONS[(index + 1) % CS_CLASS_OPTIONS.length],
+    workshop_interests:
+      index % 2 === 0
+        ? [WORKSHOP_OPTIONS[index % WORKSHOP_OPTIONS.length]]
+        : [
+            WORKSHOP_OPTIONS[index % WORKSHOP_OPTIONS.length],
+            WORKSHOP_OPTIONS[(index + 2) % WORKSHOP_OPTIONS.length],
+          ],
+    goals_long_answer: `${firstName} wants to ship a project end to end and find people to keep building with afterwards.`,
+    passion_long_answer: `${firstName} could talk for hours about why good developer tooling changes what teams are willing to attempt.`,
+    hackathon_reflection: `${firstName} has been to a few hackathons and wants more time for workshops and less time fighting deploys.`,
+    premade_team: "no",
+    referral_source: [REFERRAL_OPTIONS[index % REFERRAL_OPTIONS.length]],
   };
+  if (schoolValue === "other") {
+    applicationResponses.school_other = school;
+  }
   if (index % 5 === 0) {
     applicationResponses.preferred_name = firstName;
   }
+  if (index % 4 === 0) {
+    applicationResponses.premade_team = "yes";
+    applicationResponses.team_captain_info = `${firstName} ${lastName}, ${email}`;
+  }
   if (applicationStatus === "submitted" && index % 4 === 0) {
-    // Placeholder uploadId — no real upload pipeline exists yet (separate,
-    // in-flight uploads ticket); this just gives the detail page's resume
-    // row something to render during manual verification.
+    // Placeholder ids with no matching row in the uploads collection.
     applicationResponses.resume = `seed-upload-${index}`;
+    applicationResponses.vaccination_card = `seed-vax-${index}`;
   }
 
   // Only applicants who actually reached the RSVP step have post-acceptance
@@ -417,10 +518,12 @@ function toDoc(row: Row, index: number) {
   const postAcceptanceResponses =
     rsvpStatus === "confirmed" || rsvpStatus === "not-attending"
       ? {
-          attending: rsvpStatus === "confirmed" ? "yes" : "no",
+          // saveRsvp writes the parsed payload verbatim, so `attending` holds the
+          // rsvpSchema enum value ("confirmed"/"unconfirmed"), not a yes/no string.
+          attending: rsvpStatus === "confirmed" ? "confirmed" : "unconfirmed",
           dietaryRestrictions:
             DIETARY_RESTRICTIONS[index % DIETARY_RESTRICTIONS.length],
-          tshirtSize: TSHIRT_OPTIONS[index % TSHIRT_OPTIONS.length],
+          tshirtSize: RSVP_TSHIRT_SIZES[index % RSVP_TSHIRT_SIZES.length],
           accessibilityNeeds:
             index % 6 === 0 ? "Wheelchair accessible seating" : "",
           additionalNotes:
@@ -441,8 +544,38 @@ function toDoc(row: Row, index: number) {
   };
 }
 
+function validate(docs: ReturnType<typeof toDoc>[]): string[] {
+  const questions = new Map(
+    APPLICATION_SECTIONS.flatMap((section) =>
+      section.questions.map((q) => [q.id, q] as const),
+    ),
+  );
+  const errors: string[] = [];
+
+  for (const doc of docs) {
+    for (const [id, value] of Object.entries(doc.applicationResponses)) {
+      const question = questions.get(id);
+      if (!question) {
+        errors.push(`${doc.email}: no question with id "${id}"`);
+        continue;
+      }
+      if (!question.options) continue;
+      const allowed = new Set(question.options.map((o) => o.value));
+      for (const v of Array.isArray(value) ? value : [value]) {
+        if (!allowed.has(v)) {
+          errors.push(`${doc.email}: "${v}" is not an option of "${id}"`);
+        }
+      }
+    }
+  }
+
+  return errors;
+}
+
 async function main() {
-  if (COLLECTION !== TEST_COLLECTION_NAME) {
+  const dryRun = process.argv.includes("--dry-run");
+
+  if (!dryRun && COLLECTION !== TEST_COLLECTION_NAME) {
     console.error(
       `Refusing to seed: resolved collection is "${COLLECTION}", not ` +
         `"${TEST_COLLECTION_NAME}". This script is destructive and only ` +
@@ -451,11 +584,28 @@ async function main() {
     process.exit(1);
   }
 
+  const docs = ROWS.map((row, index) => toDoc(row, index));
+
+  const errors = validate(docs);
+  if (errors.length > 0) {
+    console.error("Seed data does not match the questions in questions.ts:");
+    errors.forEach((e) => console.error(`  - ${e}`));
+    process.exit(1);
+  }
+
+  if (dryRun) {
+    console.log(
+      `Dry run: ${docs.length} applicants validated against ` +
+        `${APPLICATION_SECTIONS.length} sections. Target would be "${COLLECTION}".`,
+    );
+    console.log(JSON.stringify(docs[0], null, 2));
+    process.exit(0);
+  }
+
   const db = await getDb();
   const col = db.collection(COLLECTION);
 
   await col.deleteMany({});
-  const docs = ROWS.map((row, index) => toDoc(row, index));
   await col.insertMany(docs);
 
   console.log(`Seeded ${docs.length} applicants into ${COLLECTION}.`);
