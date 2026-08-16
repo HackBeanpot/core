@@ -107,7 +107,7 @@ export default function AdminSidebar() {
   return (
     <div
       style={{ backgroundColor: "#001529" }}
-      className="fixed left-0 top-0 h-full shadow desktop:w-64 border-r p-4"
+      className="fixed left-0 top-0 h-full w-64 shadow border-r p-4"
     >
       <NavLinks />
     </div>

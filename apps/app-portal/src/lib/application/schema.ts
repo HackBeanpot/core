@@ -9,10 +9,7 @@ function countWords(value: string): number {
   return value.trim().length === 0 ? 0 : value.trim().split(/\s+/).length;
 }
 
-function fieldSchema(
-  question: Question,
-  target: SchemaTarget = "client",
-): z.ZodTypeAny {
+function fieldSchema(question: Question): z.ZodTypeAny {
   const { type, required, options, maxLength, maxWords } = question;
 
   switch (type as QuestionType) {
@@ -37,12 +34,15 @@ function fieldSchema(
       if (required) {
         return schema.min(1, requiredMessage);
       }
-      if (target === "server") {
-        return z
-          .union([schema, z.literal(""), z.null(), z.undefined()])
-          .optional();
-      }
-      return schema.optional().or(z.literal(""));
+      // Optional fields round-trip through Mongo as `null` — ApplicationForm's
+      // toResponses() converts an untouched "" to null before every autosave — so both
+      // client and server need to accept that shape. Without this, reloading a saved
+      // draft (e.g. after a refresh) would populate untouched optional fields with
+      // `null`, which the client schema rejected, making them block "Next" as if they
+      // were required — even though the very same value validates fine on submit.
+      return z
+        .union([schema, z.literal(""), z.null(), z.undefined()])
+        .optional();
     }
     case "select": {
       const values = options?.map((o) => o.value) ?? [];
@@ -52,12 +52,9 @@ function fieldSchema(
       if (required) {
         return enumSchema;
       }
-      if (target === "server") {
-        return z
-          .union([enumSchema, z.literal(""), z.null(), z.undefined()])
-          .optional();
-      }
-      return z.union([enumSchema, z.literal("")]);
+      return z
+        .union([enumSchema, z.literal(""), z.null(), z.undefined()])
+        .optional();
     }
     case "multi_select": {
       const values = options?.map((o) => o.value) ?? [];
@@ -71,13 +68,10 @@ function fieldSchema(
       if (required) {
         return schema.min(1, requiredMessage);
       }
-      if (target === "server") {
-        return z
-          .union([schema, z.null(), z.undefined()])
-          .optional()
-          .default([]);
-      }
-      return schema.optional().default([]);
+      return z
+        .union([schema, z.null(), z.undefined()])
+        .optional()
+        .default([]);
     }
     case "file_upload": {
       // Both client and server hold the same value here: the upload ID returned by
@@ -98,25 +92,25 @@ function fieldSchema(
 
 function buildShape(
   sections: readonly FormSection[],
-  target: SchemaTarget,
 ): Record<string, z.ZodTypeAny> {
   const shape: Record<string, z.ZodTypeAny> = {};
   for (const section of sections) {
     for (const question of section.questions) {
-      shape[question.id] = fieldSchema(question, target);
+      shape[question.id] = fieldSchema(question);
     }
   }
   return shape;
 }
 
 // Builds a zod schema for a given (possibly admin-edited, possibly live-fetched) section list.
-// Used both for the client-facing resolver and the server-facing submission validator, so a
-// form-config change is enforced consistently on both sides.
+// Used both for the client-facing resolver and the server-facing submission validator — per-field
+// validation is identical either way (see fieldSchema); "server" only additionally rejects
+// unknown keys via .strict(), since the client resolver has no such need.
 export function buildApplicationSchema(
   sections: readonly FormSection[],
   target: SchemaTarget,
 ): z.ZodObject<Record<string, z.ZodTypeAny>> {
-  const schema = z.object(buildShape(sections, target));
+  const schema = z.object(buildShape(sections));
   return target === "server" ? (schema.strict() as typeof schema) : schema;
 }
 

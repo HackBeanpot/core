@@ -10,7 +10,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { toast } from "sonner";
 
 type Props = {
   label: string;
@@ -31,11 +30,15 @@ export default function DateControls({ label, endpoint, initialValue }: Props) {
   );
 
   const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+  const [savedMessage, setSavedMessage] = React.useState<string | null>(null);
 
   async function handleSave() {
     if (!date || !time) return;
 
     setLoading(true);
+    setError(null);
+    setSavedMessage(null);
 
     const previousDate = date;
     const previousTime = time;
@@ -53,13 +56,24 @@ export default function DateControls({ label, endpoint, initialValue }: Props) {
         body: JSON.stringify({ value: combined.toISOString() }),
       });
 
-      if (!res.ok) throw new Error("Failed to save");
+      const body = await res.json().catch(() => null);
 
-      toast.success(`${label} saved`);
-    } catch {
+      // Show the real server error (e.g. "Registration cannot close before it opens.")
+      // instead of a generic message — this previously relied on sonner's toast, but
+      // no <Toaster /> is mounted anywhere in the admin layout, so those calls were
+      // silent no-ops: the request failed (visible in the console/network tab) with
+      // nothing shown on screen.
+      if (!res.ok) {
+        throw new Error(
+          typeof body?.error === "string" ? body.error : `Failed to save ${label}.`,
+        );
+      }
+
+      setSavedMessage(`${label} saved.`);
+    } catch (err) {
       setDate(previousDate);
       setTime(previousTime);
-      toast.error(`Failed to save ${label}`);
+      setError(err instanceof Error ? err.message : `Failed to save ${label}.`);
     } finally {
       setLoading(false);
     }
@@ -101,6 +115,9 @@ export default function DateControls({ label, endpoint, initialValue }: Props) {
           {loading ? "Saving..." : "Save"}
         </Button>
       </div>
+
+      {error && <p className="text-sm text-firecrackerRed">{error}</p>}
+      {savedMessage && <p className="text-sm text-darkGreen">{savedMessage}</p>}
     </div>
   );
 }

@@ -130,7 +130,7 @@ export default function FileUpload({
     errors.map((e) => {
       if (e.code === "file-too-large") return "File exceeds 5 MB limit.";
       if (e.code === "file-invalid-type")
-        return "Only PDF, PNG, and JPEG files are accepted.";
+        return `Only ${acceptedLabel} files are accepted.`;
       return e.message;
     }),
   );
