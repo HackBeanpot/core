@@ -100,6 +100,45 @@ describe("buildApplicationSchema", () => {
     ).toBe(true);
   });
 
+  it("accepts null on optional fields — the shape a saved draft reloads as after a refresh", () => {
+    // ApplicationForm's toResponses() converts an untouched "" to null before every
+    // autosave, so any optional field left blank comes back from Mongo as null once the
+    // page is reloaded. The client schema (used by the "Next" button's per-section
+    // validation) must accept that shape or a refresh makes optional fields block
+    // navigation as if they were required, even though nothing was actually filled in
+    // differently. Covers short_text/long_text, select, and multi_select.
+    const sections: FormSection[] = [
+      {
+        id: "s",
+        title: "S",
+        questions: [
+          { id: "text", label: "Text", type: "short_text", required: false },
+          {
+            id: "select",
+            label: "Select",
+            type: "select",
+            required: false,
+            options: [{ value: "a", label: "A" }],
+          },
+          {
+            id: "multi",
+            label: "Multi",
+            type: "multi_select",
+            required: false,
+            options: [{ value: "a", label: "A" }],
+          },
+        ],
+      },
+    ];
+    const clientSchema = buildApplicationSchema(sections, "client");
+    const result = clientSchema.safeParse({
+      text: null,
+      select: null,
+      multi: null,
+    });
+    expect(result.success).toBe(true);
+  });
+
   it("rejects unknown keys on the server (strict mode) but not on the client", () => {
     const sections: FormSection[] = [
       {

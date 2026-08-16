@@ -1,6 +1,6 @@
 import React from "react";
-import UserMenu from "@/components/auth/UserMenu";
 import AdminSidebar from "@/components/admin/AdminSidebar";
+import AdminContentArea from "@/components/admin/AdminContentArea";
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth/session";
 
@@ -24,15 +24,7 @@ export default async function AdminLayout({
   return (
     <div className="flex min-h-screen">
       <AdminSidebar />
-
-      <div className="flex flex-1 flex-col desktop:ml-64">
-        <header className="flex h-16 items-center justify-between border-b bg-white px-6">
-          <h1 className="text-xl font-semibold">Admin Portal</h1>
-          <UserMenu />
-        </header>
-
-        <main className="flex-1 p-6">{children}</main>
-      </div>
+      <AdminContentArea>{children}</AdminContentArea>
     </div>
   );
 }
