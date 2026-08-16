@@ -30,7 +30,7 @@ import type {
  *
  * Requires env vars: MONGO_PROD_CONNECTION_STRING, MONGO_SERVER_DBNAME
  */
-const COLLECTION = "applicant_data";
+const COLLECTION = resolveCollectionName("applicant_data");
 
 async function getRegistrationWindow(): Promise<{
   opensAt: string | null;
