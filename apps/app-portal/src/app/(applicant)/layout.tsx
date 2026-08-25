@@ -3,15 +3,20 @@ import Link from "next/link";
 import UserMenu from "@/components/auth/UserMenu";
 import Image from "next/image";
 import icon from "@/app/icon.ico";
+import { getSession } from "@/lib/auth/session";
 
 export const metadata = {
   title: "Applicant Portal",
 };
-export default function ApplicantLayout({
+export default async function ApplicantLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}): Promise<JSX.Element> {
+  const session = await getSession();
+  const isAdmin = !!(session?.user as { isAdmin?: boolean } | undefined)
+    ?.isAdmin;
+
   return (
     <div className="min-h-screen">
       <header className="flex h-16 items-center justify-between border-b bg-white px-6">
@@ -46,12 +51,14 @@ export default function ApplicantLayout({
         </div>
 
         <div className="flex items-center gap-4">
-          <Link
-            href="/application"
-            className="hidden sm:inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
-          >
-            Application
-          </Link>
+          {isAdmin && (
+            <Link
+              href="/admin"
+              className="mobile:hidden inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+            >
+              Admin View
+            </Link>
+          )}
           <UserMenu />
         </div>
       </header>

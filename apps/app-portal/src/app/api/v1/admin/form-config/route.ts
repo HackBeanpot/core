@@ -5,25 +5,16 @@ import {
   updateFormConfig,
 } from "@/lib/admin/form-config-service";
 
-// type QuestionType = "text" | "textarea";
-
-// type Question = {
-//   id: string;
-//   label: string;
-//   type: QuestionType;
-// };
-
-// type Section = {
-//   id: string;
-//   title: string;
-//   questions: Question[];
-// };
-
-// // type FormConfig = {
-// //   sections: Section[];
-// // };
-
 export async function GET() {
+  try {
+    await requireAdmin();
+  } catch (error) {
+    if (error instanceof Error && error.message === "Forbidden") {
+      return NextResponse.json({ error: error.message }, { status: 403 });
+    }
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const config = await getFormConfig();
 
   return NextResponse.json(config);

@@ -20,12 +20,14 @@ declare global {
 // Lazily creates and caches the connection so importing this module
 // doesn't throw when MONGO_PROD_CONNECTION_STRING is absent (e.g. in dev
 // without a local Mongo instance). The error surfaces only when getDb() is called.
+//
+// The cache is always stored on `global` (not just outside production): in dev this
+// survives Next.js's module reloads across HMR; in production it's what stops every
+// getDb() call from opening a brand-new MongoClient connection that's never closed.
 function getClientPromise(uri: string): Promise<MongoClient> {
   if (global.__mongoClientPromise__) return global.__mongoClientPromise__;
   const promise = new MongoClient(uri).connect();
-  if (process.env.NODE_ENV !== "production") {
-    global.__mongoClientPromise__ = promise;
-  }
+  global.__mongoClientPromise__ = promise;
   return promise;
 }
 

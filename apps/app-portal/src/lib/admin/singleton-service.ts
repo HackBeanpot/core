@@ -72,17 +72,68 @@ export function validateDateSingleton(
 
   const normalized = date.toISOString();
 
-  // if (value !== normalized) {
-  //   return {
-  //     ok: false,
-  //     error: "Value must be an ISO 8601 date string.",
-  //   };
-  // }
-
   return {
     ok: true,
     value: normalized,
   };
+}
+
+/**
+ * Cross-checks a proposed date singleton against the other two (registrationOpen ≤
+ * registrationClosed ≤ confirmBy) so an admin can't independently set one date route
+ * into an order that breaks downstream eligibility-window logic (e.g. closing
+ * registration before it opens, or confirm-by before registration even closes).
+ */
+export async function validateDateOrdering(
+  key: SingletonKey,
+  newValue: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const [registrationOpen, registrationClosed, confirmBy] = await Promise.all([
+    key === SingletonKey.RegistrationOpen
+      ? newValue
+      : getSingleton(SingletonKey.RegistrationOpen),
+    key === SingletonKey.RegistrationClosed
+      ? newValue
+      : getSingleton(SingletonKey.RegistrationClosed),
+    key === SingletonKey.ConfirmBy
+      ? newValue
+      : getSingleton(SingletonKey.ConfirmBy),
+  ]);
+
+  if (
+    registrationOpen &&
+    registrationClosed &&
+    new Date(registrationOpen) > new Date(registrationClosed)
+  ) {
+    return {
+      ok: false,
+      error: "Registration cannot close before it opens.",
+    };
+  }
+
+  if (
+    registrationClosed &&
+    confirmBy &&
+    new Date(registrationClosed) > new Date(confirmBy)
+  ) {
+    return {
+      ok: false,
+      error: "The confirm-by deadline cannot be before registration closes.",
+    };
+  }
+
+  if (
+    registrationOpen &&
+    confirmBy &&
+    new Date(registrationOpen) > new Date(confirmBy)
+  ) {
+    return {
+      ok: false,
+      error: "The confirm-by deadline cannot be before registration opens.",
+    };
+  }
+
+  return { ok: true };
 }
 
 export function validateBooleanSingleton(

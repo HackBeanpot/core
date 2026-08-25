@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/auth/guards";
-import { getApplicantCursor } from "@/lib/applicants/service";
+import { getApplicantCursor, getApplicantName } from "@/lib/applicants/service";
 import { toCsv, responseField, type CsvColumn } from "@/lib/applicants/csv";
 import { APPLICATION_SECTIONS } from "@/lib/application/questions";
 import type { ApplicantDoc } from "@/lib/applicants/types";
@@ -21,7 +21,7 @@ const COLUMNS: CsvColumn<ApplicantDoc>[] = [
   { header: "Email", value: (d) => d.email },
   {
     header: "Name",
-    value: (d) => responseField(d.applicationResponses, "legal_name"),
+    value: (d) => getApplicantName(d.applicationResponses) ?? "",
   },
   { header: "Status", value: (d) => d.applicationStatus },
   { header: "Decision", value: (d) => d.decisionStatus ?? "" },

@@ -1,32 +1,28 @@
 import React from "react";
-import { headers } from "next/headers";
 import ShowDecisionToggle from "@/components/admin/ShowDecisionToggle";
 import DateControls from "@/components/admin/DateControls";
 import FormConfigEditor from "@/components/admin/FormConfigEditor";
+import { getSingleton } from "@/lib/admin/singleton-service";
+import { SingletonKey } from "@/lib/types/singleton";
 
-async function fetchJson(url: string, cookie: string) {
-  const res = await fetch(url, {
-    cache: "no-store",
-    headers: { cookie },
-  });
-
-  if (!res.ok) {
-    return { value: null };
-  }
-
-  return res.json();
-}
+export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const cookie = headers().get("cookie") ?? "";
-
-  const [openData, closeData, confirmData, showDecisionData] =
+  // Read singletons directly (same pattern as admin/stats and admin/applicants) instead of
+  // self-fetching our own API routes over HTTP — that previously relied on a hardcoded
+  // http://localhost:3000 origin, which breaks in every deployed environment.
+  const [openValue, closeValue, confirmValue, showDecisionValue] =
     await Promise.all([
-      fetchJson("http://localhost:3000/api/v1/dates/registration-open", cookie),
-      fetchJson("http://localhost:3000/api/v1/dates/registration-closed", cookie),
-      fetchJson("http://localhost:3000/api/v1/dates/confirm-by", cookie),
-      fetchJson("http://localhost:3000/api/v1/show-decision", cookie),
+      getSingleton(SingletonKey.RegistrationOpen),
+      getSingleton(SingletonKey.RegistrationClosed),
+      getSingleton(SingletonKey.ConfirmBy),
+      getSingleton(SingletonKey.ShowDecision),
     ]);
+
+  const openData = { value: openValue ?? undefined };
+  const closeData = { value: closeValue ?? undefined };
+  const confirmData = { value: confirmValue ?? undefined };
+  const showDecisionData = { value: showDecisionValue ?? false };
 
   return (
     <div>

@@ -55,4 +55,6 @@ export type PortalStatusResponse = {
   branch: DashboardBranch;
   status: ApplicantStatus;
   decisionDates: SerializedDecisionDates;
+  /** Real completion % of the application draft; only meaningful for the "in-progress" branch. */
+  completionPercent: number;
 };

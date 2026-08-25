@@ -105,7 +105,7 @@ function renderInput(
       return (
         <FileUploadField
           question={question}
-          value={field.value as File | null | undefined}
+          value={field.value as string | null | undefined}
           onChange={field.onChange}
           disabled={disabled}
         />

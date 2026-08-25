@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import PortalShell from "./PortalShell";
-//import { formatLongDate } from "../../lib/status/format";
+import { formatLongDate } from "../../lib/status/format";
 import {
   //primaryActionClass,
   secondaryActionClass,
@@ -16,7 +16,7 @@ type AdmittedViewProps = {
 
 export default function AdmittedView({
   status,
-  //decisionDates,
+  decisionDates,
 }: AdmittedViewProps): JSX.Element {
   return (
     <PortalShell
@@ -25,7 +25,10 @@ export default function AdmittedView({
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
             Confirm-by window
           </p>
-          <p>RSVP before XXX to hold your spot.</p>
+          <p>
+            RSVP before {formatLongDate(decisionDates.confirmBy)} to hold your
+            spot.
+          </p>
           <p>Next steps</p>
         </div>
       }

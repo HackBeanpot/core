@@ -27,13 +27,18 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     if (typeof body.enabled !== "boolean") {
-      return NextResponse.json({ error: "enabled must be a boolean" }, { status: 400 });
+      return NextResponse.json(
+        { error: "enabled must be a boolean" },
+        { status: 400 },
+      );
     }
 
     await setSingleton(
       SingletonKey.ShowDecision,
       body.enabled,
-      (user as { id?: string; email?: string }).email ?? (user as { id?: string }).id ?? "unknown",
+      (user as { id?: string; email?: string }).email ??
+        (user as { id?: string }).id ??
+        "unknown",
     );
 
     return NextResponse.json({ ok: true, value: body.enabled });
