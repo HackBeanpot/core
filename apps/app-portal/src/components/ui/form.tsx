@@ -94,7 +94,9 @@ const FormLabel = React.forwardRef<
   // Labels intentionally don't turn red on error — the message below the field is
   // enough of a signal, and coloring every label on the page at once makes it harder
   // to tell which question is actually being asked, not just which one has an error.
-  return <Label ref={ref} className={className} htmlFor={formItemId} {...props} />;
+  return (
+    <Label ref={ref} className={className} htmlFor={formItemId} {...props} />
+  );
 });
 FormLabel.displayName = "FormLabel";
 

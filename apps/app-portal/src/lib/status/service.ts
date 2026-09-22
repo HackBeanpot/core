@@ -118,7 +118,9 @@ export async function getRsvpResponses(
   const applicant = await db
     .collection(APPLICANT_COLLECTION)
     .findOne({ userId });
-  return (applicant?.postAcceptanceResponses as RsvpSubmission | undefined) ?? null;
+  return (
+    (applicant?.postAcceptanceResponses as RsvpSubmission | undefined) ?? null
+  );
 }
 
 export async function saveRsvp(
@@ -155,7 +157,11 @@ export async function saveRsvp(
   // Past the deadline, lock the attendance decision itself (not just block new RSVPs)
   // to avoid last-minute cancellations/no-shows — this is enforced here too, not just
   // by disabling the field client-side, since the client check alone can be bypassed.
-  if (isAfterConfirmBy && hasExistingRsvp && rsvpStatus !== applicant.rsvpStatus) {
+  if (
+    isAfterConfirmBy &&
+    hasExistingRsvp &&
+    rsvpStatus !== applicant.rsvpStatus
+  ) {
     throw new StatusError(
       `Attendance is locked this close to the event — email ${SUPPORT_EMAIL} if your plans have changed.`,
       403,

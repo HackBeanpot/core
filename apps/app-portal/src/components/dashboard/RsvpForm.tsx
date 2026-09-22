@@ -80,7 +80,9 @@ export default function RsvpForm({
       if (!response.ok) {
         const body = await response.json().catch(() => null);
         throw new Error(
-          typeof body?.error === "string" ? body.error : "Unable to submit RSVP",
+          typeof body?.error === "string"
+            ? body.error
+            : "Unable to submit RSVP",
         );
       }
 
