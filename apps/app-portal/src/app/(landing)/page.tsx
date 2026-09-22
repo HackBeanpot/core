@@ -3,9 +3,17 @@ import Link from "next/link";
 import Image from "next/image";
 import icon from "@/app/icon.ico";
 import TiledBackground from "@/components/ui/tiled-background";
+import {redirect} from "next/navigation";
+import {isAdminEmail} from "@/lib/auth/roles.ts";
+import {getSession} from "@/lib/auth/session.ts";
 
-//TODO: update to redirect authed users to /dashboard
-export default function Page(): JSX.Element {
+export default async function Page(): Promise<JSX.Element> {
+
+  const session = await getSession();
+  if (session?.user) {
+    redirect(isAdminEmail(session.user.email) ? "/admin" : "/dashboard");
+  }
+
   return (
     <div className="relative w-[100vw] h-[100vh] overflow-hidden">
       <TiledBackground />

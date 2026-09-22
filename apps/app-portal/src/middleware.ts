@@ -5,11 +5,22 @@
 //  having needed to login in advance.
 //Unauthenticated requests to matched routes are redirected to sign-in
 
-import { NextResponse } from "next/server";
+import { withAuth } from "next-auth/middleware";
 
-export default function middleware() {
-  return NextResponse.next();
-}
+export default withAuth({
+  callbacks: {
+    authorized({ req }) {
+      return Boolean(
+        req.cookies.get("next-auth.session-token") ??
+          req.cookies.get("__Secure-next-auth.session-token"),
+      );
+    },
+  },
+  pages: {
+    signIn: "/auth/signin",
+    error: "/auth/error",
+  },
+});
 
 //the matcher was written with assistance of AI
 export const config = {
@@ -21,6 +32,6 @@ export const config = {
      *  - the landing page "/" and /login             public entry points
      * Add any other public path to this negative lookahead as you build it.
      */
-    "/((?!auth|_next/static|_next/image|favicon.ico|login$|$).*)",
+    "/((?!api/auth|_next/static|_next/image|favicon.ico|login$|$).*)",
   ],
 };

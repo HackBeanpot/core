@@ -20,12 +20,14 @@ export default async function DashboardPage(): Promise<JSX.Element> {
     showDecision: new Date().toISOString(),
     confirmBy: new Date().toISOString(),
   };
+  let completionPercent = 0;
 
   try {
     const res = await fetchPortalStatus();
     branch = res.branch;
     status = res.status;
     decisionDates = res.decisionDates;
+    completionPercent = res.completionPercent;
   } catch (err) {
     // If fetch fails, render a simple error view instead of crashing the page.
     return (
@@ -53,7 +55,9 @@ export default async function DashboardPage(): Promise<JSX.Element> {
     case "pre-registration":
       return <PreRegistrationView decisionDates={resolvedDates} />;
     case "in-progress":
-      return <InProgressView status={status} />;
+      return (
+        <InProgressView status={status} completionPercent={completionPercent} />
+      );
     case "submitted":
       return <SubmittedView decisionDates={resolvedDates} status={status} />;
     case "admitted":

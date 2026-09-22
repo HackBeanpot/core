@@ -64,6 +64,16 @@ export default function AdminSidebar() {
       >
         Stats
       </Link>
+
+      <hr className="my-2 border-white/20" />
+
+      <Link
+        href="/dashboard"
+        style={Active("/dashboard")}
+        className="block rounded px-3 py-2 text-lg"
+      >
+        Applicant View
+      </Link>
     </>
   );
 
@@ -97,7 +107,7 @@ export default function AdminSidebar() {
   return (
     <div
       style={{ backgroundColor: "#001529" }}
-      className="fixed left-0 top-0 h-full shadow desktop:w-64 border-r p-4"
+      className="fixed left-0 top-0 h-full w-64 shadow border-r p-4"
     >
       <NavLinks />
     </div>

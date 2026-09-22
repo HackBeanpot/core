@@ -19,6 +19,10 @@ export interface Question {
   description?: string;
   /** Max character length; only meaningful for short_text/long_text. */
   maxLength?: number;
+  /** Max word count; only meaningful for long_text. */
+  maxWords?: number;
+  /** Accepted MIME types; only meaningful for file_upload. Defaults to the app-wide allow-list. */
+  accept?: readonly string[];
 }
 
 export interface FormSection {
@@ -44,7 +48,7 @@ export interface ApplicationSubmission {
 
 export type ApplicationFormValues = Record<
   string,
-  string | string[] | File | null | undefined
+  string | string[] | null | undefined
 >;
 
 export type RegistrationStatus = "before_open" | "open" | "closed";
@@ -56,4 +60,6 @@ export interface RegistrationState {
   applicationStatus: "draft" | "submitted";
   responses: ApplicationResponses;
   updatedAt: string | null;
+  /** The live, admin-editable question set this application should render/validate against. */
+  sections: FormSection[];
 }

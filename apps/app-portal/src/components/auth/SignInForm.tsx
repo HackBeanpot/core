@@ -12,7 +12,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //regex email checker
 
 type Status = "idle" | "loading" | "sent";
 
-export function SignInForm() {
+export function SignInForm({
+  callbackUrl,
+}: {
+  callbackUrl?: string;
+}) {
   const [dotCount, setDotCount] = useState(1);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -24,6 +28,14 @@ export function SignInForm() {
     }, 800);
     return () => clearInterval(id);
   }, []);
+
+  // Prompt users who were bounced here from a protected route (callbackUrl set).
+  useEffect(() => {
+    if (callbackUrl) {
+      // stable id so StrictMode's double-invoke shows one toast, not two
+      toast.info("Sign in before accessing the portal!", { id: "auth-required" });
+    }
+  }, [callbackUrl]);
 
   async function handleSignIn() {
     // invalid email -> inline error, no request sent
@@ -37,12 +49,14 @@ export function SignInForm() {
     try {
       // signIn() handles CSRF, form-encoding, and the redirect for us.
       // redirect:false → we drive the UI state ourselves instead of navigating.
-      // The callbackUrl is baked into the magic link; the admin layout
-      // re-checks the role server-side, so this is routing, not authorization.
+      // The callbackUrl is baked into the magic link. If the user was bounced
+      // here from a protected route, send them back to it; otherwise fall back
+      // to their default landing. The admin layout re-checks the role
+      // server-side, so this is routing, not authorization.
       const res = await signIn("email", {
         email: email.trim(),
         redirect: false,
-        callbackUrl: isAdminEmail(email) ? "/admin" : "/dashboard",
+        callbackUrl: callbackUrl ?? (isAdminEmail(email) ? "/admin" : "/dashboard"),
       });
 
       if (res?.error) {
@@ -81,10 +95,14 @@ export function SignInForm() {
               setEmail(e.target.value);
               if (emailError) setEmailError(null);
             }}
+            onKeyDown={(e)=>{
+              if (e.key === "Enter") document.getElementById("submit")?.click()
+            }}
             className={"w-full p-1 mt-4 border-2 rounded-md"}
           />
           {/*confirm*/}
           <button
+            id={"submit"}
             className={
               "w-full bg-starlightBlueLight text-white p-1 px-5 mt-4 border-2 rounded-md disabled:opacity-50"
             }
@@ -97,9 +115,9 @@ export function SignInForm() {
           {/*status / error message*/}
           <div className={"w-full flex flex-row items-end min-h-[2rem] pb-2"}>
             {emailError ? (
-              <p className={"w-full text-[#FF0000] text-end text-[12px]"}>
+              <p className={"w-full text-[#bf3d3d] text-end text-[12px]"}>
                 {emailError}
-              </p> //todo: change the red
+              </p>
             ) : status === "loading" ? (
               <p className={"w-full text-[#AAAAAA] text-end"}>
                 Loading{".".repeat(dotCount)}
@@ -108,10 +126,9 @@ export function SignInForm() {
             ) : status === "sent" ? (
               <p
                 className={
-                  "w-full text-[rgb(120,255,150)] text-end text-[12px] whitespace-nowrap"
+                  "w-full text-[#319948] text-end text-[12px] whitespace-nowrap"
                 }
               >
-                {/*todo: change the green*/}
                 Check your email for a sign-in link!
               </p>
             ) : null}

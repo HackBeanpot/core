@@ -7,6 +7,7 @@ import QuestionsList from "./QuestionsList";
 export default function FormConfigEditor() {
   const [sections, setSections] = React.useState<FormSection[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [saveError, setSaveError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     async function loadConfig() {
@@ -22,6 +23,8 @@ export default function FormConfigEditor() {
   }, []);
 
   async function handleSave() {
+    setSaveError(null);
+
     const res = await fetch("/api/v1/admin/form-config", {
       method: "POST",
       headers: {
@@ -33,7 +36,7 @@ export default function FormConfigEditor() {
     const data = await res.json();
 
     if (!res.ok) {
-      alert(data.error);
+      setSaveError(data.error ?? "Failed to save form configuration.");
       return;
     }
   }
@@ -53,6 +56,8 @@ export default function FormConfigEditor() {
       >
         Save Form Configuration
       </button>
+
+      {saveError && <p className="text-sm text-firecrackerRed">{saveError}</p>}
     </div>
   );
 }

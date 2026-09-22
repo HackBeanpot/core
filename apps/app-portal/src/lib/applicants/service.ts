@@ -2,6 +2,7 @@ import { Collection, FindCursor, ObjectId } from "mongodb";
 import { z } from "zod";
 
 import { getDb, resolveCollectionName } from "@/lib/db";
+import { getUploadRecord } from "@/lib/uploads/service";
 import { DECISION_STATUSES, RSVP_STATUSES } from "@/lib/types/user";
 
 import { buildApplicantQuery } from "./queries";
@@ -22,12 +23,25 @@ async function applicantCollection(): Promise<Collection<ApplicantDoc>> {
   return db.collection<ApplicantDoc>(APPLICANT_COLLECTION);
 }
 
+// The 2026 application form splits name into "first_name"/"last_name" (the older
+// "legal_name" single-field question no longer exists) — combine them for display,
+// sorting, search, and CSV export so all of those stay in sync with the live form.
+export function getApplicantName(
+  responses: ApplicantDoc["applicationResponses"],
+): string | undefined {
+  const first = responses?.["first_name"];
+  const last = responses?.["last_name"];
+  const parts = [first, last].filter(
+    (v): v is string => typeof v === "string" && v.length > 0,
+  );
+  return parts.length > 0 ? parts.join(" ") : undefined;
+}
+
 function docToSummary(doc: ApplicantDoc): ApplicantSummary {
-  const name = doc.applicationResponses?.["legal_name"];
   return {
     id: doc._id.toString(),
     email: doc.email,
-    name: typeof name === "string" && name.length > 0 ? name : undefined,
+    name: getApplicantName(doc.applicationResponses),
     applicationStatus: doc.applicationStatus,
     decisionStatus: doc.decisionStatus,
     rsvpStatus: doc.rsvpStatus,
@@ -36,22 +50,24 @@ function docToSummary(doc: ApplicantDoc): ApplicantSummary {
   };
 }
 
-function resolveResume(doc: ApplicantDoc): UploadedFile | undefined {
+async function resolveResume(
+  doc: ApplicantDoc,
+): Promise<UploadedFile | undefined> {
   const uploadId = doc.applicationResponses?.["resume"];
   if (typeof uploadId !== "string" || uploadId.length === 0) return undefined;
-  // Placeholder filename until the (separate, in-flight) uploads ticket lands
-  // real upload-record metadata — the id doubles as the displayed label.
-  // TODO: fill out with real call to the uploads collection once that ticket lands.
-  return { id: uploadId, filename: uploadId };
+  const record = await getUploadRecord(uploadId);
+  // Fall back to the raw id as the label if the upload record is missing (e.g. it
+  // was somehow deleted) rather than hiding the resume link entirely.
+  return { id: uploadId, filename: record?.filename ?? uploadId };
 }
 
-function docToDetail(doc: ApplicantDoc): ApplicantDetail {
+async function docToDetail(doc: ApplicantDoc): Promise<ApplicantDetail> {
   return {
     ...docToSummary(doc),
     applicationResponses: doc.applicationResponses,
     postAcceptanceResponses: doc.postAcceptanceResponses,
     rsvpSubmissionTime: doc.rsvpSubmissionTime,
-    resume: resolveResume(doc),
+    resume: await resolveResume(doc),
     updatedAt: doc.updatedAt,
     updatedBy: doc.updatedBy,
   };
@@ -67,7 +83,10 @@ export async function listApplicants(
   // `name` lives under the application response, not a top-level doc field.
   const sort: Record<string, 1 | -1> =
     sortBy === "name"
-      ? { "applicationResponses.legal_name": dir }
+      ? {
+          "applicationResponses.last_name": dir,
+          "applicationResponses.first_name": dir,
+        }
       : { [sortBy]: dir };
 
   const [total, docs] = await Promise.all([
@@ -95,10 +114,14 @@ export async function getApplicant(
   const col = await applicantCollection();
   const doc = await col.findOne({ _id: new ObjectId(id) });
   if (!doc) return null;
-  return docToDetail(doc);
+  return await docToDetail(doc);
 }
 
 export class InvalidApplicantUpdateError extends Error {}
+// Thrown when a patch would put an applicant into an inconsistent state — e.g. giving
+// them an RSVP status without them actually being admitted (mirrors the same rule the
+// applicant-facing RSVP flow enforces in lib/status/service.ts's saveRsvp).
+export class InvalidApplicantStateError extends Error {}
 
 const updateSchema = z
   .object({
@@ -125,8 +148,20 @@ export async function updateApplicant(
   }
 
   const patchValue: ApplicantUpdate = parsed.data;
-
   const col = await applicantCollection();
+
+  if (patchValue.rsvpStatus && patchValue.rsvpStatus !== "unconfirmed") {
+    const existing = await col.findOne({ _id: new ObjectId(id) });
+    if (!existing) return null;
+    const resultingDecisionStatus =
+      patchValue.decisionStatus ?? existing.decisionStatus;
+    if (resultingDecisionStatus !== "admitted") {
+      throw new InvalidApplicantStateError(
+        "Only admitted applicants can have an RSVP status other than unconfirmed.",
+      );
+    }
+  }
+
   const updatedAt = new Date().toISOString();
   const result = await col.findOneAndUpdate(
     { _id: new ObjectId(id) },
@@ -134,7 +169,7 @@ export async function updateApplicant(
     { returnDocument: "after" },
   );
   if (!result.value) return null;
-  return docToDetail(result.value);
+  return await docToDetail(result.value);
 }
 
 /** Full, unfiltered cursor for streaming CSV export — never buffer into an array. */

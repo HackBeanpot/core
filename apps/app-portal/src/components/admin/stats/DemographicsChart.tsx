@@ -35,13 +35,13 @@ interface DemographicsChartProps {
 
 const DIMENSION_LABELS: Record<DemographicsDimension, string> = {
   school: "School",
-  yearOfEducation: "Year of Education",
-  majors: "Majors",
+  education_year: "Year of Education",
+  major: "Major",
   gender: "Gender",
-  races: "Races",
-  shirtSize: "Shirt Size",
-  hackathonsAttended: "Hackathons Attended",
-  csClassesTaken: "CS Classes Taken",
+  race: "Race",
+  tshirt_size: "Shirt Size",
+  hackathon_experience: "Hackathons Attended",
+  cs_classes: "CS Classes Taken",
 };
 
 function formatDimension(key: DemographicsDimension): string {

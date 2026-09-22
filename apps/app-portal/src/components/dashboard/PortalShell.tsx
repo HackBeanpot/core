@@ -55,10 +55,7 @@ export default function PortalShell({
             </aside>
           ) : (
             <div className="rounded-[2rem] border border-dashed border-slate-200 bg-white/60 p-6 text-sm text-slate-500 shadow-sm sm:p-8">
-              <p>
-                Review the status mock in the route handler to preview the other
-                branches.
-              </p>
+              <p>Nothing new to show here right now.</p>
               <Link
                 className="mt-4 inline-flex rounded-full border border-slate-300 px-4 py-2 font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
                 href="/dashboard"

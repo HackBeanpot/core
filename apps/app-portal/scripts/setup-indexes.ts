@@ -43,7 +43,9 @@ export async function ensureApplicantIndexes(col: Collection): Promise<void> {
 
 export async function ensureUploadsCollection(): Promise<void> {
   const db = await getDb();
-  const existing = await db.listCollections({ name: UPLOADS_COLLECTION }).toArray();
+  const existing = await db
+    .listCollections({ name: UPLOADS_COLLECTION })
+    .toArray();
 
   if (existing.length === 0) {
     await db.createCollection(UPLOADS_COLLECTION);
@@ -60,7 +62,7 @@ export async function ensureUploadIndexes(col: Collection): Promise<void> {
 async function main() {
   const db = await getDb();
   const col = db.collection(APPLICANT_COLLECTION);
-  
+
   await ensureApplicantIndexes(col);
   await ensureUploadsCollection();
   await ensureUploadIndexes(db.collection(UPLOADS_COLLECTION));

@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd ../.. && npx turbo run build --filter=app-portal",
+  "installCommand": "cd ../.. && yarn install --frozen-lockfile",
+  "ignoreCommand": "cd ../.. && npx turbo-ignore app-portal"
+}

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/auth/guards";
 import {
+  InvalidApplicantStateError,
   InvalidApplicantUpdateError,
   getApplicant,
   updateApplicant,
@@ -54,6 +55,9 @@ export async function POST(
   } catch (err) {
     if (err instanceof InvalidApplicantUpdateError) {
       return NextResponse.json({ error: err.message }, { status: 400 });
+    }
+    if (err instanceof InvalidApplicantStateError) {
+      return NextResponse.json({ error: err.message }, { status: 409 });
     }
     throw err;
   }

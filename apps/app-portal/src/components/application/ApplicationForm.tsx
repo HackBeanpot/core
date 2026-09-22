@@ -3,9 +3,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { Path } from "react-hook-form";
+import type { Path, Resolver } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { toast, Toaster } from "sonner";
+import type { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,14 +18,13 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
-import { APPLICATION_SECTIONS } from "@/lib/application/questions";
 import {
-  applicationSchema,
-  createDefaultValues,
-  type ApplicationSchemaValues,
+  buildApplicationSchema,
+  buildDefaultValues,
 } from "@/lib/application/schema";
 import type {
   ApplicationResponses,
+  FormSection as FormSectionType,
   RegistrationState,
 } from "@/lib/application/types";
 
@@ -33,12 +33,15 @@ import { FormSection } from "./FormSection";
 const REGISTRATION_API = "/api/v1/registration";
 const AUTOSAVE_DELAY_MS = 2000;
 
+type ApplicationSchemaValues = Record<string, string | string[] | null>;
+
 export function ApplicationForm() {
   const router = useRouter();
 
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [regState, setRegState] = useState<RegistrationState | null>(null);
+  const [sections, setSections] = useState<FormSectionType[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -48,9 +51,23 @@ export function ApplicationForm() {
 
   const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
+  // The question set is only known once /api/v1/registration returns the live (possibly
+  // admin-edited) form config, so the zod schema has to be built dynamically. This ref lets the
+  // resolver always read whatever schema was most recently built, without having to recreate the
+  // whole useForm() instance (which would lose in-progress field state) once sections load.
+  const schemaRef = useRef<z.ZodTypeAny>(buildApplicationSchema([], "client"));
+
   const form = useForm<ApplicationSchemaValues>({
-    resolver: zodResolver(applicationSchema),
-    defaultValues: createDefaultValues(),
+    resolver: (values, context, options) => {
+      // The schema is only known at runtime (built from the live, possibly admin-edited
+      // section list — see the effect below), so it can't be statically typed against
+      // ApplicationSchemaValues the way a module-level zod schema normally would be.
+      const resolve = zodResolver(
+        schemaRef.current as unknown as Parameters<typeof zodResolver>[0],
+      ) as Resolver<ApplicationSchemaValues>;
+      return resolve(values, context, options);
+    },
+    defaultValues: {},
     mode: "onTouched",
   });
 
@@ -62,9 +79,12 @@ export function ApplicationForm() {
         if (!res.ok) throw new Error();
         const state = (await res.json()) as RegistrationState;
         setRegState(state);
-        if (state.responses && Object.keys(state.responses).length > 0) {
-          form.reset({ ...createDefaultValues(), ...state.responses });
-        }
+        setSections(state.sections);
+        schemaRef.current = buildApplicationSchema(state.sections, "client");
+        form.reset({
+          ...buildDefaultValues(state.sections),
+          ...state.responses,
+        });
         if (state.updatedAt) setLastSaved(new Date(state.updatedAt));
       } catch {
         toast.error("Could not load your application. Please refresh.");
@@ -129,9 +149,9 @@ export function ApplicationForm() {
     };
   }, [form, isLoading, doSave]);
 
-  const currentSection = APPLICATION_SECTIONS[currentSectionIndex];
+  const currentSection = sections[currentSectionIndex];
   const isFirstSection = currentSectionIndex === 0;
-  const isLastSection = currentSectionIndex === APPLICATION_SECTIONS.length - 1;
+  const isLastSection = currentSectionIndex === sections.length - 1;
 
   const handleSaveDraft = async () => {
     clearTimeout(saveTimerRef.current);
@@ -153,6 +173,12 @@ export function ApplicationForm() {
       setIsNavigating(false);
       return;
     }
+    // trigger() validates the *entire* schema when a resolver is used (documented
+    // react-hook-form behavior) regardless of which field names are passed in, which
+    // sets "required" errors for every other untouched section too. This section is
+    // confirmed valid, so clear those premature errors — later sections get validated
+    // for real when the user actually tries to leave them (or on final submit).
+    form.clearErrors();
     clearTimeout(saveTimerRef.current);
     await doSave(true);
     setCurrentSectionIndex((i) => i + 1);
@@ -166,8 +192,8 @@ export function ApplicationForm() {
     if (!isValid) {
       // Navigate to the first section that has errors
       const errors = form.formState.errors;
-      for (let i = 0; i < APPLICATION_SECTIONS.length; i++) {
-        const hasError = APPLICATION_SECTIONS[i].questions.some(
+      for (let i = 0; i < sections.length; i++) {
+        const hasError = sections[i].questions.some(
           (q) => errors[q.id as keyof ApplicationSchemaValues],
         );
         if (hasError) {
@@ -255,14 +281,14 @@ export function ApplicationForm() {
         </div>
         <Form {...form}>
           <form className="space-y-8">
-            {APPLICATION_SECTIONS.map((section, i) => (
+            {sections.map((section, i) => (
               <FormSection
                 key={section.id}
                 section={section}
                 control={form.control}
                 disabled={true}
                 sectionIndex={i}
-                totalSections={APPLICATION_SECTIONS.length}
+                totalSections={sections.length}
               />
             ))}
           </form>
@@ -289,7 +315,7 @@ export function ApplicationForm() {
       {/* top bar: section label + autosave status + Save Draft */}
       <div className="mb-4 flex items-center justify-between gap-4">
         <p className="text-sm font-medium text-pavement">
-          Section {currentSectionIndex + 1} of {APPLICATION_SECTIONS.length}
+          Section {currentSectionIndex + 1} of {sections.length}
           <span className="ml-1 font-normal text-charcoalFogLight">
             · {currentSection.title}
           </span>
@@ -314,7 +340,7 @@ export function ApplicationForm() {
 
       {/* progress bar */}
       <div className="mb-8 flex gap-1.5">
-        {APPLICATION_SECTIONS.map((_, i) => (
+        {sections.map((_, i) => (
           <div
             key={i}
             className={[
@@ -332,7 +358,8 @@ export function ApplicationForm() {
       {/* submitted+open banner */}
       {isAlreadySubmitted && (
         <div className="mb-6 rounded-lg border border-green bg-green/20 px-4 py-3 text-sm text-darkGreen">
-          Your application has been submitted. You can still make changes between now and when registration closes.
+          Your application has been submitted. You can still make changes
+          between now and when registration closes.
         </div>
       )}
 
@@ -343,7 +370,7 @@ export function ApplicationForm() {
             control={form.control}
             disabled={false}
             sectionIndex={currentSectionIndex}
-            totalSections={APPLICATION_SECTIONS.length}
+            totalSections={sections.length}
           />
 
           {/* bottom navigation */}
@@ -413,7 +440,6 @@ export function ApplicationForm() {
 function toResponses(values: ApplicationSchemaValues): ApplicationResponses {
   const responses: ApplicationResponses = {};
   for (const [key, value] of Object.entries(values)) {
-    if (value instanceof File) continue;
     if (Array.isArray(value)) {
       responses[key] = value;
     } else if (typeof value === "string") {
