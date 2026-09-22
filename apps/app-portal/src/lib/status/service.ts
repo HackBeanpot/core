@@ -3,8 +3,10 @@ import { requireUser } from "@/lib/auth/guards";
 import { getSingleton } from "@/lib/admin/singleton-service";
 import { getCompletionPercent } from "@/lib/application/service";
 import { SingletonKey } from "@/lib/types/singleton";
+import { SUPPORT_EMAIL } from "@/lib/config/site";
 import { returnDashboardBranch } from "./machine";
 import { rsvpSchema } from "./rsvp";
+import type { RsvpSubmission } from "./rsvp";
 import type {
   ApplicantStatus,
   PortalStatusResponse,
@@ -107,6 +109,18 @@ export async function getPortalStatus(): Promise<PortalStatusResponse> {
   };
 }
 
+// The saved RSVP responses, if any — used to pre-fill the form when an applicant comes
+// back to edit their dietary/accessibility/logistics details.
+export async function getRsvpResponses(
+  userId: string,
+): Promise<RsvpSubmission | null> {
+  const db = await getDb();
+  const applicant = await db
+    .collection(APPLICANT_COLLECTION)
+    .findOne({ userId });
+  return (applicant?.postAcceptanceResponses as RsvpSubmission | undefined) ?? null;
+}
+
 export async function saveRsvp(
   userId: string,
   payload: unknown,
@@ -123,13 +137,30 @@ export async function saveRsvp(
   const confirmByValue = await getSingleton(SingletonKey.ConfirmBy);
   const confirmBy =
     confirmByValue !== null ? new Date(confirmByValue) : DEFAULT_FUTURE_DATE;
+  const isAfterConfirmBy = Date.now() > confirmBy.getTime();
+  const hasExistingRsvp =
+    !!applicant.rsvpStatus && applicant.rsvpStatus !== "unconfirmed";
 
-  if (Date.now() > confirmBy.getTime()) {
+  // Someone who never RSVP'd at all has missed the window entirely once the deadline
+  // passes. Someone who already RSVP'd can still come back to update logistics details
+  // (dietary restrictions, accessibility needs, t-shirt size) — see the attending-lock
+  // check below for why the attendance decision itself is still frozen at that point.
+  if (isAfterConfirmBy && !hasExistingRsvp) {
     throw new StatusError("The confirm-by deadline has passed.", 410);
   }
 
   const rsvpStatus: RsvpStatus =
     parsedPayload.attending === "confirmed" ? "confirmed" : "not-attending";
+
+  // Past the deadline, lock the attendance decision itself (not just block new RSVPs)
+  // to avoid last-minute cancellations/no-shows — this is enforced here too, not just
+  // by disabling the field client-side, since the client check alone can be bypassed.
+  if (isAfterConfirmBy && hasExistingRsvp && rsvpStatus !== applicant.rsvpStatus) {
+    throw new StatusError(
+      `Attendance is locked this close to the event — email ${SUPPORT_EMAIL} if your plans have changed.`,
+      403,
+    );
+  }
 
   await collection.updateOne(
     { userId },

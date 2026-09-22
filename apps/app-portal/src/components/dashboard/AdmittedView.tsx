@@ -43,7 +43,7 @@ export default function AdmittedView({
           className="text-blue-600 font-semibold hover:underline"
           href="/rsvp"
         >
-          RSVP now
+          {status.rsvpStatus === "unconfirmed" ? "RSVP now" : "Edit RSVP"}
         </Link>
       }
       secondaryAction={
@@ -58,12 +58,18 @@ export default function AdmittedView({
           RSVP status
         </p>
         <p className="mt-2 text-2xl font-semibold text-slate-950">
-          {status.rsvpStatus === "confirmed" ? "Confirmed" : "Needs RSVP"}
+          {status.rsvpStatus === "confirmed"
+            ? "Confirmed"
+            : status.rsvpStatus === "not-attending"
+              ? "Not attending"
+              : "Needs RSVP"}
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
           {status.rsvpStatus === "confirmed"
             ? "Thanks for confirming your attendance."
-            : "Please complete the RSVP form before the deadline."}
+            : status.rsvpStatus === "not-attending"
+              ? "You've let us know you can't make it this time."
+              : "Please complete the RSVP form before the deadline."}
         </p>
       </div>
     </PortalShell>

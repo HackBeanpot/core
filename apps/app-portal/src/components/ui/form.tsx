@@ -89,16 +89,12 @@ const FormLabel = React.forwardRef<
   React.ElementRef<typeof Label>,
   React.ComponentPropsWithoutRef<typeof Label>
 >(({ className, ...props }, ref) => {
-  const { error, formItemId } = useFormField();
+  const { formItemId } = useFormField();
 
-  return (
-    <Label
-      ref={ref}
-      className={cn(error && "text-firecrackerRed", className)}
-      htmlFor={formItemId}
-      {...props}
-    />
-  );
+  // Labels intentionally don't turn red on error — the message below the field is
+  // enough of a signal, and coloring every label on the page at once makes it harder
+  // to tell which question is actually being asked, not just which one has an error.
+  return <Label ref={ref} className={className} htmlFor={formItemId} {...props} />;
 });
 FormLabel.displayName = "FormLabel";
 

@@ -220,17 +220,28 @@ export default function QuestionsList({
           </DialogHeader>
 
           <div className="space-y-3">
-            <Input
-              placeholder="ID"
-              value={form.id}
-              onChange={(e) => setForm({ ...form, id: e.target.value })}
-            />
+            <div className="space-y-1">
+              <Input
+                placeholder="e.g. favorite_hackathon_snack"
+                value={form.id}
+                onChange={(e) => setForm({ ...form, id: e.target.value })}
+              />
+              <p className="text-xs text-gray-500">
+                Internal name used to store answers — lowercase with
+                underscores, no spaces. Applicants never see this.
+              </p>
+            </div>
 
-            <Input
-              placeholder="Label"
-              value={form.label}
-              onChange={(e) => setForm({ ...form, label: e.target.value })}
-            />
+            <div className="space-y-1">
+              <Input
+                placeholder="e.g. What's your favorite hackathon snack?"
+                value={form.label}
+                onChange={(e) => setForm({ ...form, label: e.target.value })}
+              />
+              <p className="text-xs text-gray-500">
+                The actual question text applicants will read and answer.
+              </p>
+            </div>
 
             <Select
               value={form.type}
