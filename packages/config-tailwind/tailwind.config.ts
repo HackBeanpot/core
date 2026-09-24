@@ -39,6 +39,9 @@ const config: Omit<Config, "content"> = {
         "Wilden-Regular": ["'Wilden-Regular'"],
         "DMSans-Regular": ["'DMSans-Regular'"],
         "DMSans-Medium": ["'DMSans-Medium'"],
+        "SpecialGothicCondensedOne-Regular": [
+          "'SpecialGothicCondensedOne-Regular'",
+        ],
       },
       transitionProperty: {
         "max-height": "max-height",

@@ -87,4 +87,12 @@
     src: url("./Sancreek-Regular.ttf")
       format("truetype");
   }
+  @font-face {
+    font-family: "SpecialGothicCondensedOne-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./SpecialGothicCondensedOne-Regular.ttf")
+      format("truetype");
+  }
 }
