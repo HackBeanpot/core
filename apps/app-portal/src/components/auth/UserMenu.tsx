@@ -39,7 +39,7 @@ export default function UserMenu(): JSX.Element {
 
   async function handleSignOut() {
     setOpen(false);
-    // hits /auth/signout, NextAuth automatically invalidates the session
+    // hits /api/auth/signout, NextAuth automatically invalidates the session
     await signOut({ callbackUrl: "/" });
   }
 

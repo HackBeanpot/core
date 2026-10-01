@@ -10,9 +10,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const isMobile = useIsMobile();
 
   return (
-    // basePath MUST match the auth route location (/auth). Without this, the
-    // next-auth/react client (signIn/signOut/useSession) posts to /api/auth → 404.
-    <SessionProvider basePath="/auth">
+    // Auth route lives at the default /api/auth. On Vercel, NextAuth derives its URL
+    // from the request host and ignores any path in NEXTAUTH_URL, so it must stay there.
+    <SessionProvider>
       <MobileContext.Provider value={{ isMobile }}>
         {children}
       </MobileContext.Provider>
