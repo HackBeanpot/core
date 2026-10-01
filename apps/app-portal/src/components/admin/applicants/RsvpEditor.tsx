@@ -11,17 +11,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RSVP_STATUSES, type RsvpStatus } from "@/lib/types/user";
+import {
+  RSVP_STATUSES,
+  type DecisionStatus,
+  type RsvpStatus,
+} from "@/lib/types/user";
+
+const GATED_REASON =
+  "Only admitted applicants can have an RSVP status other than unconfirmed.";
 
 interface RsvpEditorProps {
   applicantId: string;
   value: RsvpStatus;
+  decisionStatus?: DecisionStatus;
 }
 
-export function RsvpEditor({ applicantId, value }: RsvpEditorProps) {
+export function RsvpEditor({
+  applicantId,
+  value,
+  decisionStatus,
+}: RsvpEditorProps) {
   const router = useRouter();
   const [current, setCurrent] = React.useState<RsvpStatus>(value);
   const [isSaving, setIsSaving] = React.useState(false);
+
+  const isAdmitted = decisionStatus === "admitted";
 
   async function handleChange(next: RsvpStatus) {
     const prev = current;
@@ -45,19 +59,26 @@ export function RsvpEditor({ applicantId, value }: RsvpEditorProps) {
   }
 
   return (
-    <>
-      <Select value={current} onValueChange={handleChange} disabled={isSaving}>
-        <SelectTrigger className="w-48">
-          <SelectValue placeholder="RSVP" />
-        </SelectTrigger>
-        <SelectContent>
-          {RSVP_STATUSES.map((s) => (
-            <SelectItem key={s} value={s}>
-              {s}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </>
+    <Select value={current} onValueChange={handleChange} disabled={isSaving}>
+      <SelectTrigger className="w-48">
+        <SelectValue placeholder="RSVP" />
+      </SelectTrigger>
+      <SelectContent>
+        {RSVP_STATUSES.map((s) => {
+          const disabled = !isAdmitted && s !== "unconfirmed";
+          return (
+            <span
+              key={s}
+              className="block"
+              title={disabled ? GATED_REASON : undefined}
+            >
+              <SelectItem value={s} disabled={disabled}>
+                {s}
+              </SelectItem>
+            </span>
+          );
+        })}
+      </SelectContent>
+    </Select>
   );
 }

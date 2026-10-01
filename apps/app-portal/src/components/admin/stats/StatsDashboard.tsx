@@ -33,7 +33,21 @@ export function StatsDashboard({
       </section>
 
       <section className="grid grid-cols-2 gap-4 mobile:grid-cols-1 mobile-xl:grid-cols-1">
-        <StatusBreakdownChart breakdown={payload.statusBreakdown} />
+        <StatusBreakdownChart
+          entries={payload.statusBreakdown}
+          title="Applications by Status"
+          emptyMessage="No applications yet"
+        />
+        <StatusBreakdownChart
+          entries={payload.decisionBreakdown}
+          title="Decisions by Status"
+          emptyMessage="No decisions yet"
+        />
+        <StatusBreakdownChart
+          entries={payload.rsvpBreakdown}
+          title="RSVPs by Status"
+          emptyMessage="No RSVPs yet"
+        />
         <DemographicsChart breakdown={payload.demographics} />
         <div className="col-span-2">
           <SubmissionTimeline timeline={payload.timeline} />

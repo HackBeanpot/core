@@ -1,8 +1,12 @@
 export interface StatsPayload {
   metrics: StatMetric[];
-  statusBreakdown: StatusBreakdown;
+  totals: StatsTotals;
+  statusBreakdown: BreakdownEntry[];
+  decisionBreakdown: BreakdownEntry[];
+  rsvpBreakdown: BreakdownEntry[];
   demographics: DemographicsBreakdown;
   timeline: TimelinePoint[];
+  generatedAt: string;
 }
 
 // single metric
@@ -13,22 +17,35 @@ export interface StatMetric {
   description?: string; // shown in StatCard hover tooltip
 }
 
-export type StatusKind = "application" | "decision" | "rsvp";
+export interface StatsTotals {
+  applicants: number;
+  submitted: number;
+  admitted: number;
+  waitlisted: number;
+  declined: number;
+  rsvpYes: number;
+  rsvpNo: number;
+  rsvpUnconfirmed: number;
+}
 
-export type StatusBreakdown = Record<
-  StatusKind,
-  { status: string; count: number }[]
->;
+export interface BreakdownEntry {
+  status: string;
+  count: number;
+}
 
+// Must match real question IDs in lib/application/questions.ts (applicationResponses.<id>) —
+// these previously used names ("yearOfEducation", "majors", "races", "shirtSize",
+// "hackathonsAttended", "csClassesTaken") that don't exist on any applicant document, so
+// those charts were always empty.
 export const DEMOGRAPHICS_DIMENSIONS = [
   "school",
-  "education",
-  "year_of_study",
-  "majors",
+  "education_year",
+  "major",
   "gender",
-  "races",
-  "shirt_size",
+  "race",
+  "tshirt_size",
   "hackathon_experience",
+  "cs_classes",
 ] as const;
 
 export type DemographicsDimension = (typeof DEMOGRAPHICS_DIMENSIONS)[number];
@@ -40,5 +57,5 @@ export type DemographicsBreakdown = Record<
 
 export interface TimelinePoint {
   date: string;
-  submissions: number;
+  count: number;
 }

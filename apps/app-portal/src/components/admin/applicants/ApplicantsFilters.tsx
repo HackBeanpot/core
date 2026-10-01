@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,19 +19,24 @@ import {
 } from "@/lib/types/user";
 
 const ALL = "all";
+const SEARCH_DEBOUNCE_MS = 300;
 
 export function ApplicantsFilters() {
+  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const writeParams = (mutate: (p: URLSearchParams) => void) => {
-    const next = new URLSearchParams(searchParams.toString());
-    mutate(next);
-    const query = next.toString();
-    const url = query ? `${pathname}?${query}` : pathname;
-    // Bypass router.replace to avoid an RSC refetch — filter state is client-only.
-    window.history.replaceState(null, "", url);
-  };
+  const writeParams = React.useCallback(
+    (mutate: (p: URLSearchParams) => void) => {
+      const next = new URLSearchParams(searchParams.toString());
+      mutate(next);
+      const query = next.toString();
+      const url = query ? `${pathname}?${query}` : pathname;
+      // Navigate so the server component refetches with the new filters.
+      router.replace(url, { scroll: false });
+    },
+    [router, pathname, searchParams],
+  );
 
   const setParam = (key: string, value: string) => {
     writeParams((p) => {
@@ -44,17 +49,37 @@ export function ApplicantsFilters() {
     });
   };
 
-  const q = searchParams.get("q") ?? "";
   const status = searchParams.get("status") ?? ALL;
   const decision = searchParams.get("decision") ?? ALL;
   const rsvp = searchParams.get("rsvp") ?? ALL;
+  const urlQuery = searchParams.get("search") ?? "";
+
+  // Local input state so typing stays responsive; pushed to the URL (which
+  // drives the server query) after a short debounce.
+  const [searchInput, setSearchInput] = React.useState(urlQuery);
+
+  React.useEffect(() => {
+    if (searchInput === urlQuery) return;
+    const timeout = setTimeout(() => {
+      writeParams((p) => {
+        if (!searchInput) {
+          p.delete("search");
+        } else {
+          p.set("search", searchInput);
+        }
+        p.delete("page");
+      });
+    }, SEARCH_DEBOUNCE_MS);
+    return () => clearTimeout(timeout);
+  }, [searchInput, urlQuery, writeParams]);
 
   const hasActiveFilters =
-    q !== "" || status !== ALL || decision !== ALL || rsvp !== ALL;
+    searchInput !== "" || status !== ALL || decision !== ALL || rsvp !== ALL;
 
   const clearFilters = () => {
+    setSearchInput("");
     writeParams((p) => {
-      p.delete("q");
+      p.delete("search");
       p.delete("status");
       p.delete("decision");
       p.delete("rsvp");
@@ -67,8 +92,8 @@ export function ApplicantsFilters() {
       <Input
         placeholder="Search name or email"
         className="max-w-xs"
-        value={q}
-        onChange={(e) => setParam("q", e.target.value)}
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
       <Select value={status} onValueChange={(v) => setParam("status", v)}>
         <SelectTrigger className="w-48">

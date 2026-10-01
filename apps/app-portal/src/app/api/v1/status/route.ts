@@ -1,22 +1,21 @@
 import { NextResponse } from "next/server";
-import { decisionDates } from "../../../../lib/status/mock-singletons";
-import { returnDashboardBranch } from "../../../../lib/status/machine";
-import { getApplicantStatus } from "../../../../lib/status/service";
+import { requireUser } from "../../../../lib/auth/guards";
+import { getPortalStatus, StatusError } from "../../../../lib/status/service";
 
 export async function GET() {
-  const status = await getApplicantStatus("mock-user");
-  const showDecision = new Date() >= decisionDates.showDecision;
-  const branch = returnDashboardBranch(status, decisionDates, showDecision);
+  try {
+    await requireUser();
+    return NextResponse.json(await getPortalStatus());
+  } catch (error) {
+    if (error instanceof StatusError) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: error.status },
+      );
+    }
 
-  return NextResponse.json({
-    branch,
-    status,
-    decisionDates: {
-      registrationOpen: decisionDates.registrationOpen.toISOString(),
-      showDecision: decisionDates.showDecision.toISOString(),
-      confirmBy: decisionDates.confirmBy.toISOString(),
-    },
-  });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 }
 
 export async function POST() {

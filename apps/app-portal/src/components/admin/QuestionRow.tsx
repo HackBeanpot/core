@@ -6,7 +6,17 @@ import { CSS } from "@dnd-kit/utilities";
 
 import type { Question } from "@/lib/application/types";
 
-export default function QuestionRow({ question }: { question: Question }) {
+type QuestionRowProps = {
+  question: Question;
+  onDelete: (questionId: string) => void;
+  onEdit: (question: Question) => void;
+};
+
+export default function QuestionRow({
+  question,
+  onDelete,
+  onEdit,
+}: QuestionRowProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: question.id });
 
@@ -37,10 +47,17 @@ export default function QuestionRow({ question }: { question: Question }) {
       </div>
 
       <div className="flex gap-2">
-        <button className="border px-2 py-1 rounded text-sm">Edit</button>
+        <button
+          className="border px-2 py-1 rounded text-sm"
+          onClick={() => onEdit(question)}
+        >
+          Edit
+        </button>
+
         <button
           style={{ backgroundColor: "crimson" }}
           className="border px-2 py-1 text-white rounded text-sm"
+          onClick={() => onDelete(question.id)}
         >
           Delete
         </button>

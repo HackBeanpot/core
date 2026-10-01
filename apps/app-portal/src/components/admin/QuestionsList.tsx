@@ -12,7 +12,11 @@ import {
 
 import QuestionRow from "./QuestionRow";
 
-import type { FormSection, QuestionType } from "@/lib/application/types";
+import type {
+  FormSection,
+  Question,
+  QuestionType,
+} from "@/lib/application/types";
 
 import {
   Dialog,
@@ -47,6 +51,9 @@ export default function QuestionsList({
   setSections: React.Dispatch<React.SetStateAction<FormSection[]>>;
 }) {
   const [open, setOpen] = React.useState(false);
+  const [editingQuestionId, setEditingQuestionId] = React.useState<
+    string | null
+  >(null);
   const [activeSectionId, setActiveSectionId] = React.useState<string | null>(
     null,
   );
@@ -76,6 +83,32 @@ export default function QuestionsList({
         };
       }),
     );
+  }
+
+  function deleteQuestion(questionId: string) {
+    setSections((current) =>
+      current.map((section) => ({
+        ...section,
+        questions: section.questions.filter(
+          (question) => question.id !== questionId,
+        ),
+      })),
+    );
+  }
+
+  function openEditDialog(question: Question, sectionId: string) {
+    setActiveSectionId(sectionId);
+
+    setEditingQuestionId(question.id);
+
+    setForm({
+      id: question.id,
+      label: question.label,
+      type: question.type,
+      required: question.required,
+    });
+
+    setOpen(true);
   }
 
   function openDialog(sectionId: string) {
@@ -116,6 +149,33 @@ export default function QuestionsList({
     setOpen(false);
   }
 
+  function handleEditQuestion() {
+    if (!activeSectionId || !editingQuestionId) return;
+
+    setSections((prev) =>
+      prev.map((section) => {
+        if (section.id !== activeSectionId) return section;
+
+        return {
+          ...section,
+          questions: section.questions.map((question) =>
+            question.id === editingQuestionId
+              ? {
+                  ...question,
+                  label: form.label,
+                  type: form.type,
+                  required: form.required,
+                }
+              : question,
+          ),
+        };
+      }),
+    );
+
+    setEditingQuestionId(null);
+    setOpen(false);
+  }
+
   return (
     <div className="space-y-6">
       {sections.map((section) => (
@@ -138,7 +198,12 @@ export default function QuestionsList({
             >
               <div className="space-y-2">
                 {section.questions.map((q) => (
-                  <QuestionRow key={q.id} question={q} />
+                  <QuestionRow
+                    key={q.id}
+                    question={q}
+                    onDelete={deleteQuestion}
+                    onEdit={() => openEditDialog(q, section.id)}
+                  />
                 ))}
               </div>
             </SortableContext>
@@ -149,21 +214,34 @@ export default function QuestionsList({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add Question</DialogTitle>
+            <DialogTitle>
+              {editingQuestionId ? "Edit Question" : "Add Question"}
+            </DialogTitle>
           </DialogHeader>
 
           <div className="space-y-3">
-            <Input
-              placeholder="ID"
-              value={form.id}
-              onChange={(e) => setForm({ ...form, id: e.target.value })}
-            />
+            <div className="space-y-1">
+              <Input
+                placeholder="e.g. favorite_hackathon_snack"
+                value={form.id}
+                onChange={(e) => setForm({ ...form, id: e.target.value })}
+              />
+              <p className="text-xs text-gray-500">
+                Internal name used to store answers — lowercase with
+                underscores, no spaces. Applicants never see this.
+              </p>
+            </div>
 
-            <Input
-              placeholder="Label"
-              value={form.label}
-              onChange={(e) => setForm({ ...form, label: e.target.value })}
-            />
+            <div className="space-y-1">
+              <Input
+                placeholder="e.g. What's your favorite hackathon snack?"
+                value={form.label}
+                onChange={(e) => setForm({ ...form, label: e.target.value })}
+              />
+              <p className="text-xs text-gray-500">
+                The actual question text applicants will read and answer.
+              </p>
+            </div>
 
             <Select
               value={form.type}
@@ -191,7 +269,13 @@ export default function QuestionsList({
               <span>Required</span>
             </div>
 
-            <Button onClick={handleAddQuestion}>Add Question</Button>
+            <Button
+              onClick={
+                editingQuestionId ? handleEditQuestion : handleAddQuestion
+              }
+            >
+              {editingQuestionId ? "Save Question" : "Add Question"}
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

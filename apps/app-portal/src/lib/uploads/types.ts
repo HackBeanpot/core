@@ -1,11 +1,11 @@
 // UploadRecord
 
-export function uploadRecord(): void {}
-
-// SignUploadRequest
-
-export function signUploadRequest(): void {}
-
-// SignUploadResponse
-
-export function signUploadResponse(): void {}
+export interface UploadRecord {
+  _id: string;
+  userId: string;
+  filename: string;
+  mime: string;
+  size: number;
+  gcsPath: string;
+  createdAt: Date;
+}
