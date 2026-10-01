@@ -3,7 +3,7 @@ import React from "react";
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth/session";
 import { SignInForm } from "@/components/auth/SignInForm";
-import {isAdminEmail} from "@/lib/auth/roles.ts";
+import { isAdminEmail } from "@/lib/auth/roles.ts";
 
 export default async function Page(): Promise<JSX.Element> {
   // read cookie - see if valid session in DB - if so, automatically redir user to logged in part
