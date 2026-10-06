@@ -1,10 +1,14 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useRef } from "react";
-import { MOTION_SPEC, previousScene } from "../../scenes/motionSpec";
-import { SCENE_IDS, type DevSceneId, type SceneId } from "../../scenes/types";
+import { gsap, useGSAP } from "../../(landing)/scenes/gsap";
+import { MOTION_SPEC, previousScene } from "../../(landing)/scenes/motionSpec";
+import {
+  SCENE_IDS,
+  type DevSceneId,
+  type SceneId,
+} from "../../(landing)/scenes/types";
 import { SCENE_MAP } from "./sceneMap";
 
 const WIDTHS = [1512, 1000] as const;
@@ -45,10 +49,10 @@ export function SceneHarness() {
     () => {
       const root = stage.current;
       if (!entry || !root) return;
-      const timeline = enter
-        ? entry.animation.enter?.(root)
-        : entry.animation.build(root);
-      timeline?.pause().progress(progress);
+      const tl = gsap.timeline({ paused: true });
+      if (enter) entry.animation.enter?.(root, tl);
+      else entry.animation.build(root, tl);
+      tl.progress(progress);
     },
     {
       scope: stage,
@@ -58,7 +62,7 @@ export function SceneHarness() {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-900 text-white">
+    <div className="min-h-screen bg-[#171717] text-white">
       <div className="sticky top-0 z-50 flex flex-wrap items-center gap-4 bg-black/80 p-3 text-sm">
         <label className="flex items-center gap-2">
           scene
@@ -97,7 +101,7 @@ export function SceneHarness() {
             <button
               key={w}
               onClick={() => update({ w: String(w) })}
-              className={`rounded px-2 py-1 ${forced && w === width ? "bg-amber-400 text-black" : "bg-neutral-700"}`}
+              className={`rounded px-2 py-1 ${forced && w === width ? "bg-[#fbbf24] text-black" : "bg-[#404040]"}`}
             >
               {w}
             </button>

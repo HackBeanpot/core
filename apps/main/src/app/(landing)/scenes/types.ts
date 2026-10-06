@@ -28,9 +28,9 @@ export interface SceneSpec {
 }
 
 /**
- * The two timelines a scene exports. The orchestrator (MS-201) and the dev
- * harness (`/dev/scenes`) both consume this shape, so scenes never touch
- * ScrollTrigger themselves.
+ * A scene's animation, exported from `<name>.animation.ts`. The orchestrator
+ * (MS-201) and the dev harness (`/dev/scenes`) both consume this shape, so
+ * scenes never touch ScrollTrigger themselves.
  *
  * ## How to write a scene
  *
@@ -45,19 +45,33 @@ export interface SceneSpec {
  * 4. **Build with the harness.** Run `/dev/scenes?scene=<id>&progress=0.5`
  *    (and `&enter=1` for the enter transition) and add your scene to
  *    `dev/scenes/sceneMap.ts` before opening a PR.
- * 5. **Timelines are paused and unit-less.** Return a timeline with a total
- *    duration of ~1 and position tweens as fractions of it with
- *    `ease: "none"`; the caller scrubs it. Don't set `scrollTrigger` yourself.
+ * 5. **Add tweens to the timeline you're given; don't create or play one.**
+ *    The caller (the orchestrator in MS-201, or the harness) creates it
+ *    paused, attaches it to ScrollTrigger, and scrubs it. Position tweens as
+ *    fractions of a total duration of 1, with `ease: "none"`, and never set
+ *    `scrollTrigger` yourself.
  * 6. **Size with `u(n)` / `var(--u)`** from `lib/scroll/units.ts` so the scene
  *    scales with the artboard.
+ *
+ * @example
+ * export const aboutAnimation: SceneAnimation = {
+ *   id: "about",
+ *   enter: (root, tl) => {
+ *     tl.from(root.querySelector('[data-anim="about-plaque"]'), { autoAlpha: 0, y: 40 });
+ *   },
+ *   build: (root, tl) => {
+ *     tl.to(root.querySelector('[data-anim="about-frame"]'), { x: 0, duration: 1 });
+ *   },
+ * };
  */
 export interface SceneAnimation {
+  id: DevSceneId;
   /**
-   * Transition in from the previous scene's `exitColor`. Fade/slide the
-   * scene's own layers over the color already behind them. Optional: scenes
-   * with no special enter (e.g. `hero`) omit it.
+   * Transition in from the previous scene's `exitColor`: fade/slide this
+   * scene's layers over the color already behind them. Optional (the hero
+   * has no enter).
    */
-  enter?: (root: HTMLElement) => gsap.core.Timeline;
-  /** The scrubbed build while the scene is pinned. Must be returned paused. */
-  build: (root: HTMLElement) => gsap.core.Timeline;
+  enter?: (root: HTMLElement, tl: gsap.core.Timeline) => void;
+  /** The in-scene animation, scrubbed while the scene is pinned. */
+  build: (root: HTMLElement, tl: gsap.core.Timeline) => void;
 }

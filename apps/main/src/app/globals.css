@@ -9,19 +9,34 @@
  * Artboard units for pinned scenes. --u is one Figma pixel: the artboard is
  * contained in the viewport, so scenes keep their proportions at any size.
  * --vw / --vh default to the real viewport; the dev harness overrides them.
+ *
+ * --u is declared again on every scene root ([data-scene], set by SceneFrame)
+ * because a custom property resolves its var()s where it's declared: without
+ * this, overriding --ab-w / --vw on an ancestor wouldn't change --u.
  */
-:root {
-  --ab-w: 1512;
-  --ab-h: 982;
+:root,
+[data-scene] {
   --u: min(
     calc(100 * var(--vw, 1vw) / var(--ab-w)),
     calc(100 * var(--vh, 1svh) / var(--ab-h))
   );
 }
 
-@media (max-width: 1023px) {
+:root {
+  --ab-w: 1512; /* LG artboard */
+  --ab-h: 982;
+}
+
+/* MD (640–1279px, Tailwind `tablet:`) */
+@media (min-width: 640px) and (max-width: 1279px) {
   :root {
     --ab-w: 1000;
     --ab-h: 982;
   }
+}
+
+/* packages/ui sets `html { scroll-behavior: smooth }`, which fights Lenis. */
+html.lenis,
+html.lenis body {
+  scroll-behavior: auto;
 }

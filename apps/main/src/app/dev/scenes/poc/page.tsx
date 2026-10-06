@@ -1,14 +1,13 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import { notFound } from "next/navigation";
 import React, { useRef } from "react";
 import { SmoothScroll } from "../../../lib/scroll/SmoothScroll";
-import { ScrollTrigger } from "../../../scenes/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "../../../(landing)/scenes/gsap";
 import {
   PlaceholderScene,
   placeholderAnimation,
-} from "../../../scenes/placeholder/PlaceholderScene";
+} from "../../../(landing)/scenes/placeholder/PlaceholderScene";
 
 /**
  * Proof of concept: one pinned scene on Lenis, scrubbing a box.
@@ -21,7 +20,8 @@ export default function PocPage() {
   useGSAP(
     () => {
       if (!root.current) return;
-      const tl = placeholderAnimation.build(root.current);
+      const tl = gsap.timeline({ paused: true });
+      placeholderAnimation.build(root.current, tl);
       ScrollTrigger.create({
         trigger: root.current,
         start: "top top",

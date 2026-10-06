@@ -1,11 +1,7 @@
 import React from "react";
-import { u } from "../../lib/scroll/units";
-import { gsap } from "../gsap";
+import { u } from "../../../lib/scroll/units";
 import { SceneFrame } from "../SceneFrame";
 import type { SceneAnimation } from "../types";
-
-/** Exit color of the placeholder, standing in for a `motionSpec.ts` entry. */
-export const PLACEHOLDER_EXIT_COLOR = "#1f6f96";
 
 export function PlaceholderScene() {
   return (
@@ -25,7 +21,7 @@ export function PlaceholderScene() {
           />
           <div
             data-anim="box"
-            className="absolute rounded-md bg-amber-400"
+            className="absolute rounded-md bg-[#fbbf24]"
             style={{ left: u(100), top: u(391), width: u(200), height: u(200) }}
           />
         </>
@@ -35,20 +31,19 @@ export function PlaceholderScene() {
 }
 
 export const placeholderAnimation: SceneAnimation = {
-  enter: (root) =>
-    gsap
-      .timeline({ paused: true })
-      .fromTo(
-        root.querySelectorAll('[data-anim="background"]'),
-        { opacity: 0 },
-        { opacity: 1, ease: "none", duration: 1 },
-      ),
-  build: (root) =>
-    gsap
-      .timeline({ paused: true, defaults: { ease: "none" } })
-      .fromTo(
-        root.querySelector('[data-anim="box"]'),
-        { xPercent: 0, rotate: 0 },
-        { xPercent: 600, rotate: 360, duration: 1 },
-      ),
+  id: "placeholder",
+  enter: (root, tl) => {
+    tl.fromTo(
+      root.querySelectorAll('[data-anim="background"]'),
+      { opacity: 0 },
+      { opacity: 1, ease: "none", duration: 1 },
+    );
+  },
+  build: (root, tl) => {
+    tl.fromTo(
+      root.querySelector('[data-anim="box"]'),
+      { xPercent: 0, rotate: 0 },
+      { xPercent: 600, rotate: 360, ease: "none", duration: 1 },
+    );
+  },
 };

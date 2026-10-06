@@ -1,10 +1,10 @@
 "use client";
 
 import Lenis from "lenis";
-// Overrides the global `html { scroll-behavior: smooth }`, which fights Lenis.
+// Lenis' required base styles. The `scroll-behavior` override is in globals.css.
 import "lenis/dist/lenis.css";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { gsap, ScrollTrigger } from "../../scenes/gsap";
+import { gsap, ScrollTrigger } from "../../(landing)/scenes/gsap";
 
 const LenisContext = createContext<Lenis | null>(null);
 
