@@ -1,0 +1,114 @@
+/*
+ * Idle motion for the decor primitives (Fog, Sparkle, Candle, Spotlight, Starfield).
+ *
+ * Rules:
+ * - Keyframes only touch `transform` and `opacity` so they stay on the compositor.
+ * - Every primitive puts `data-anim` on its root: "idle" when animating, "static" when
+ *   `animate={false}`. Static roots and reduced-motion users get no animation at all,
+ *   and every element's un-animated base style is its intended resting look.
+ * - Durations and delays come from CSS vars so components can set them per element.
+ */
+
+.decor-part {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ---------- Fog ---------- */
+@keyframes decor-fog-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(var(--decor-drift-x, 2%), var(--decor-drift-y, 1%))
+      scale(1.03);
+  }
+}
+.decor-fog-drift {
+  animation: decor-fog-drift var(--decor-duration, 16s) ease-in-out
+    var(--decor-delay, 0s) infinite;
+}
+
+/* ---------- Sparkle / Starfield ---------- */
+@keyframes decor-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+}
+.decor-twinkle {
+  animation: decor-twinkle var(--decor-duration, 2.4s) ease-in-out
+    var(--decor-delay, 0s) infinite;
+}
+
+/* ---------- Candle ---------- */
+@keyframes decor-flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) rotate(0deg);
+  }
+  20% {
+    transform: scale(0.94, 1.06) rotate(-2deg);
+  }
+  45% {
+    transform: scale(1.04, 0.95) rotate(1.5deg);
+  }
+  70% {
+    transform: scale(0.97, 1.04) rotate(-1deg);
+  }
+}
+.decor-flicker {
+  transform-origin: 50% 100%;
+  animation: decor-flicker var(--decor-duration, 1.6s) ease-in-out
+    var(--decor-delay, 0s) infinite;
+}
+
+@keyframes decor-glow {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+.decor-glow {
+  animation: decor-glow var(--decor-duration, 3.2s) ease-in-out
+    var(--decor-delay, 0s) infinite;
+}
+
+/* ---------- Spotlight ---------- */
+@keyframes decor-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+.decor-breathe {
+  animation: decor-breathe var(--decor-duration, 6s) ease-in-out
+    var(--decor-delay, 0s) infinite;
+}
+
+/* ---------- Off switches ---------- */
+[data-anim="static"],
+[data-anim="static"] * {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anim],
+  [data-anim] * {
+    animation: none !important;
+  }
+}
