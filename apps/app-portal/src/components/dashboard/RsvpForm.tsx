@@ -6,12 +6,18 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { rsvpSchema } from "../../lib/status/rsvp";
+import type { RsvpSubmission } from "../../lib/status/rsvp";
 
 type RsvpFormValues = z.infer<typeof rsvpSchema>;
 
 type RsvpFormProps = {
-  confirmBy: string;
   inverted?: boolean;
+  alreadySubmitted?: boolean;
+  /** Past the confirm-by deadline, the attendance decision itself is frozen — see
+   * saveRsvp() in lib/status/service.ts, which enforces this server-side too. */
+  attendingLocked?: boolean;
+  /** Pre-fills the form when the applicant already has a saved RSVP to edit. */
+  initialValues?: Partial<RsvpSubmission>;
 };
 
 const sizeOptions = [
@@ -23,8 +29,10 @@ const sizeOptions = [
 ] as const;
 
 export default function RsvpForm({
-  confirmBy,
   inverted = false,
+  alreadySubmitted = false,
+  attendingLocked = false,
+  initialValues,
 }: RsvpFormProps): JSX.Element {
   const router = useRouter();
   const [toast, setToast] = React.useState<{
@@ -40,11 +48,11 @@ export default function RsvpForm({
   } = useForm<RsvpFormValues>({
     resolver: zodResolver(rsvpSchema),
     defaultValues: {
-      attending: "confirmed",
-      dietaryRestrictions: "",
-      tshirtSize: "m",
-      accessibilityNeeds: "",
-      additionalNotes: "",
+      attending: initialValues?.attending ?? "confirmed",
+      dietaryRestrictions: initialValues?.dietaryRestrictions ?? "",
+      tshirtSize: initialValues?.tshirtSize ?? "m",
+      accessibilityNeeds: initialValues?.accessibilityNeeds ?? "",
+      additionalNotes: initialValues?.additionalNotes ?? "",
     },
   });
 
@@ -57,17 +65,7 @@ export default function RsvpForm({
     return () => window.clearTimeout(timer);
   }, [toast]);
 
-  const isExpired = new Date() > new Date(confirmBy);
-
   const onSubmit = async (values: RsvpFormValues) => {
-    if (isExpired) {
-      setToast({
-        type: "error",
-        message: "The confirm-by deadline has passed.",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
@@ -80,22 +78,32 @@ export default function RsvpForm({
       });
 
       if (!response.ok) {
-        throw new Error("Unable to submit RSVP");
+        const body = await response.json().catch(() => null);
+        throw new Error(
+          typeof body?.error === "string"
+            ? body.error
+            : "Unable to submit RSVP",
+        );
       }
 
       setToast({
         type: "success",
-        message: "RSVP submitted successfully. Redirecting to your dashboard.",
+        message: alreadySubmitted
+          ? "RSVP updated successfully. Redirecting to your dashboard."
+          : "RSVP submitted successfully. Redirecting to your dashboard.",
       });
 
       window.setTimeout(() => {
         router.push("/dashboard");
         router.refresh();
       }, 1000);
-    } catch {
+    } catch (err) {
       setToast({
         type: "error",
-        message: "We couldn’t submit your RSVP. Please try again.",
+        message:
+          err instanceof Error
+            ? err.message
+            : "We couldn’t submit your RSVP. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -119,16 +127,23 @@ export default function RsvpForm({
           >
             <span>Are you attending?</span>
             <select
-              className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-950"
+              className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
+              disabled={attendingLocked}
               {...register("attending")}
             >
               <option value="confirmed">Yes, I’m coming</option>
               <option value="unconfirmed">No, I can’t make it</option>
             </select>
-            {errors.attending && (
-              <p className="text-sm text-rose-600">
-                {errors.attending.message}
+            {attendingLocked ? (
+              <p className="text-xs text-slate-500">
+                Locked this close to the event.
               </p>
+            ) : (
+              errors.attending && (
+                <p className="text-sm text-rose-600">
+                  {errors.attending.message}
+                </p>
+              )
             )}
           </label>
 
@@ -190,17 +205,17 @@ export default function RsvpForm({
 
         <button
           type="submit"
-          disabled={isExpired || isSubmitting}
+          disabled={isSubmitting}
           className={`inline-flex w-full items-center justify-center rounded-full px-4 py-3 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 ${
-            isExpired || isSubmitting
+            isSubmitting
               ? "bg-slate-200 text-slate-500 cursor-not-allowed"
               : "bg-emerald-600 text-white hover:bg-emerald-700"
           }`}
         >
-          {isExpired
-            ? "RSVP closed"
-            : isSubmitting
-              ? "Submitting..."
+          {isSubmitting
+            ? "Saving..."
+            : alreadySubmitted
+              ? "Save changes"
               : "Submit RSVP"}
         </button>
       </form>

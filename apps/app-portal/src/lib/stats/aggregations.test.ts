@@ -15,12 +15,18 @@ import {
 // "_test" suffixed collection name.
 const COLLECTION_NAME = "applicant_data_test";
 
-// Status casing mirrors production applicant_data (uppercase-first;
-// rsvp "Not Attending" is space-separated, not hyphenated).
+// Canonical lowercase-hyphenated casing — matches the real enums in lib/types/user.ts and
+// the values every actual write path (submit(), admin decision/RSVP edits, saveRsvp()) is
+// restricted to via zod z.enum(...). A previous version of this fixture used
+// capitalized/space-separated values ("Submitted", "Not Attending") that no real write path
+// can ever produce — that happened to make the aggregations bug (matching those same wrong
+// literals) look like it passed, without actually exercising real-world data shapes. One
+// record below keeps mixed casing (see #2) specifically to prove getTotals/getDecisionBreakdown
+// are still case-insensitive, not just literal-matching the canonical casing.
 const APPLICANTS = [
   // 1: not-started, no decision/rsvp, no submission
   { applicationStatus: "not-started" },
-  // 2
+  // 2 — mixed casing, to prove case-insensitivity rather than just canonical-casing matching
   {
     applicationStatus: "Submitted",
     decisionStatus: "Admitted",
@@ -30,46 +36,47 @@ const APPLICANTS = [
   },
   // 3
   {
-    applicationStatus: "Submitted",
-    decisionStatus: "Admitted",
-    rsvpStatus: "Confirmed",
+    applicationStatus: "submitted",
+    decisionStatus: "admitted",
+    rsvpStatus: "confirmed",
     appSubmissionTime: "2024-01-02T00:00:00.000Z",
     applicationResponses: { school: "NEU" },
   },
-  // 4
+  // 4 — includes a multi_select ("race") field to exercise the $unwind path for the
+  // now-corrected demographics dimension name (was "races", doesn't exist on real docs)
   {
-    applicationStatus: "Submitted",
-    decisionStatus: "Admitted",
-    rsvpStatus: "Not Attending",
+    applicationStatus: "submitted",
+    decisionStatus: "admitted",
+    rsvpStatus: "not-attending",
     appSubmissionTime: "2024-01-02T00:00:00.000Z",
-    applicationResponses: { school: "BU" },
+    applicationResponses: { school: "BU", race: ["white", "asian"] },
   },
   // 5
   {
-    applicationStatus: "Submitted",
-    decisionStatus: "Waitlisted",
+    applicationStatus: "submitted",
+    decisionStatus: "waitlisted",
     appSubmissionTime: "2024-01-03T00:00:00.000Z",
     applicationResponses: { school: "BU" },
   },
   // 6
   {
-    applicationStatus: "Submitted",
-    decisionStatus: "Declined",
+    applicationStatus: "submitted",
+    decisionStatus: "declined",
     appSubmissionTime: "2024-01-03T00:00:00.000Z",
     applicationResponses: { school: "MIT" },
   },
   // 7
   {
-    applicationStatus: "Submitted",
-    decisionStatus: "Declined",
+    applicationStatus: "submitted",
+    decisionStatus: "declined",
     appSubmissionTime: "2024-01-04T00:00:00.000Z",
     applicationResponses: { school: "MIT" },
   },
   // 8
   {
-    applicationStatus: "Submitted",
-    decisionStatus: "Admitted",
-    rsvpStatus: "Confirmed",
+    applicationStatus: "submitted",
+    decisionStatus: "admitted",
+    rsvpStatus: "confirmed",
     appSubmissionTime: "2024-01-04T00:00:00.000Z",
     applicationResponses: { school: "NEU" },
   },
@@ -77,9 +84,9 @@ const APPLICANTS = [
   { applicationStatus: "in-progress" },
   // 10
   {
-    applicationStatus: "Submitted",
-    decisionStatus: "Admitted",
-    rsvpStatus: "Unconfirmed",
+    applicationStatus: "submitted",
+    decisionStatus: "admitted",
+    rsvpStatus: "unconfirmed",
     appSubmissionTime: "2024-01-05T00:00:00.000Z",
     applicationResponses: { school: "BU" },
   },
@@ -147,7 +154,7 @@ describe("getRsvpBreakdown", () => {
   it("groups rsvpStatus among admitted applicants", async () => {
     expect(await getRsvpBreakdown(db)).toEqual([
       { status: "confirmed", count: 3 },
-      { status: "not attending", count: 1 },
+      { status: "not-attending", count: 1 },
       { status: "unconfirmed", count: 1 },
     ]);
   });
@@ -178,5 +185,13 @@ describe("getDemographics", () => {
   it("returns no rows for dimensions with no data", async () => {
     const demographics = await getDemographics(db);
     expect(demographics.gender).toEqual([]);
+  });
+
+  it("unwinds the multi_select race dimension", async () => {
+    const demographics = await getDemographics(db);
+    expect(byLabel(demographics.race)).toEqual([
+      { label: "asian", count: 1 },
+      { label: "white", count: 1 },
+    ]);
   });
 });

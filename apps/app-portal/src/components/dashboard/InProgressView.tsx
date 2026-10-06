@@ -11,12 +11,14 @@ import type { ApplicantStatus } from "../../lib/status/types";
 
 type InProgressViewProps = {
   status: ApplicantStatus;
+  completionPercent: number;
 };
 
 export default function InProgressView({
-  status,
+  status: _status,
+  completionPercent,
 }: InProgressViewProps): JSX.Element {
-  const progressPercent = status.applicationStatus === "incomplete" ? 60 : 100;
+  void _status;
 
   return (
     <PortalShell
@@ -28,7 +30,7 @@ export default function InProgressView({
           <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
             <p className="text-sm text-slate-300">Current state</p>
             <p className="mt-2 text-2xl font-semibold text-black">
-              {formatPercentComplete(progressPercent)}
+              {formatPercentComplete(completionPercent)}
             </p>
           </div>
           <p className="text-sm leading-6 text-slate-300"></p>
@@ -37,7 +39,10 @@ export default function InProgressView({
       description={<>You&apos;ve started your application.</>}
       eyebrow="Application draft"
       primaryAction={
-        <Link className="text-blue-600 font-semibold hover:underline" href="/">
+        <Link
+          className="text-blue-600 font-semibold hover:underline"
+          href="/application"
+        >
           Continue application
         </Link>
       }
@@ -53,10 +58,10 @@ export default function InProgressView({
           Completion
         </p>
         <p className="mt-2 text-3xl font-semibold text-slate-950">
-          {formatPercentComplete(progressPercent)}
+          {formatPercentComplete(completionPercent)}
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          This is a temporary completion value
+          Based on how many application questions you&apos;ve answered so far.
         </p>
       </div>
     </PortalShell>

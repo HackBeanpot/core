@@ -66,6 +66,11 @@ const lowerEq = (field: string, value: string): Document => ({
 
 export async function getTotals(db: Db): Promise<StatsTotals> {
   const col = db.collection(APPLICANT_COLLECTION);
+  // Real stored values are lowercase-hyphenated (see the enums in lib/types/user.ts, e.g.
+  // "submitted", "not-attending") — these previously used capitalized/spaced literals
+  // ("Submitted", "Not Attending") that never matched, so every count except the raw
+  // total was always 0. lowerEq does a case-insensitive comparison as a safety net on
+  // top of using the correct canonical values.
   const [
     applicants,
     submitted,
@@ -77,13 +82,13 @@ export async function getTotals(db: Db): Promise<StatsTotals> {
     rsvpUnconfirmed,
   ] = await Promise.all([
     col.countDocuments({}),
-    col.countDocuments({ applicationStatus: "Submitted" }),
-    col.countDocuments({ decisionStatus: "Admitted" }),
-    col.countDocuments({ decisionStatus: "Waitlisted" }),
-    col.countDocuments({ decisionStatus: "Declined" }),
-    col.countDocuments({ rsvpStatus: "Confirmed" }),
-    col.countDocuments({ rsvpStatus: "Not Attending" }),
-    col.countDocuments({ rsvpStatus: "Unconfirmed" }),
+    col.countDocuments(lowerEq("applicationStatus", "submitted")),
+    col.countDocuments(lowerEq("decisionStatus", "admitted")),
+    col.countDocuments(lowerEq("decisionStatus", "waitlisted")),
+    col.countDocuments(lowerEq("decisionStatus", "declined")),
+    col.countDocuments(lowerEq("rsvpStatus", "confirmed")),
+    col.countDocuments(lowerEq("rsvpStatus", "not-attending")),
+    col.countDocuments(lowerEq("rsvpStatus", "unconfirmed")),
   ]);
   return {
     applicants,
@@ -107,7 +112,7 @@ export async function getStatusBreakdown(db: Db): Promise<BreakdownEntry[]> {
 export async function getDecisionBreakdown(db: Db): Promise<BreakdownEntry[]> {
   const col = db.collection(APPLICANT_COLLECTION);
   const pipeline = [
-    { $match: { applicationStatus: "Submitted" } },
+    { $match: lowerEq("applicationStatus", "submitted") },
     ...statusBreakdownPipeline("decisionStatus"),
   ];
   return col.aggregate<BreakdownEntry>(pipeline).toArray();

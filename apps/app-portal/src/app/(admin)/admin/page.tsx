@@ -42,7 +42,6 @@ export default function AdminPage() {
 
             <Link
               href={t.link}
-              style={{ backgroundColor: "#1890ff" }}
               className="mt-4 inline-block rounded border bg-blue-400 px-3 py-1 text-white"
             >
               Open
