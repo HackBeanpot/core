@@ -6,8 +6,13 @@ import { ZodError } from "zod";
 export async function POST(request: Request) {
   try {
     const user = await requireUser();
+    const userId = (user as { id?: string }).id;
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const body = await request.json();
-    await saveRsvp((user as { id?: string }).id ?? "", body);
+    await saveRsvp(userId, body);
 
     return NextResponse.json({ ok: true });
   } catch (error) {

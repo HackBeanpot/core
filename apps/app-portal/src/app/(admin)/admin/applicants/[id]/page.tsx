@@ -54,6 +54,7 @@ export default async function ApplicantDetailPage({
             <RsvpEditor
               applicantId={applicant.id}
               value={applicant.rsvpStatus}
+              decisionStatus={applicant.decisionStatus}
             />
           </CardContent>
         </Card>

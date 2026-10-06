@@ -27,6 +27,11 @@ export function validateUploadRequest({
   if (!(ALLOWED_MIME_TYPES as readonly string[]).includes(mime)) {
     return { ok: false, error: "Incorrect mime type" };
   }
+  // `size <= 0` / `size > MAX` are both false for undefined/NaN, which would otherwise let
+  // a request with a missing or non-numeric size skip size validation entirely.
+  if (typeof size !== "number" || !Number.isFinite(size)) {
+    return { ok: false, error: "File size is required" };
+  }
   if (size <= 0) {
     return { ok: false, error: "File is empty" };
   }

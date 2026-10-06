@@ -8,6 +8,22 @@ import { join } from "path";
 
 const TEMPLATE_PATH = join(process.cwd(), "src/lib/auth/email-template.html");
 
+// Derive the origin (NEXTAUTH_URL may carry an /auth path we must strip). Falling back to
+// localhost silently would ship magic-link emails with a broken logo/link in production, so
+// that fallback is only allowed outside of it.
+function resolveOrigin(): string {
+  const nextAuthUrl = process.env.NEXTAUTH_URL;
+  if (!nextAuthUrl) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "Missing NEXTAUTH_URL: required in production to build absolute email URLs.",
+      );
+    }
+    return "http://localhost:3000";
+  }
+  return new URL(nextAuthUrl).origin;
+}
+
 async function customRequest(params: SendVerificationRequestParams) {
   const { identifier, url, provider, theme } = params;
   const { host } = new URL(url);
@@ -48,10 +64,7 @@ function html(params: { url: string; host: string; theme: Theme }) {
   };
 
   // Logo is served from /public; use an absolute URL so email clients can load it.
-  // Derive the origin (NEXTAUTH_URL may carry an /auth path we must strip).
-  const origin = new URL(process.env.NEXTAUTH_URL ?? "http://localhost:3000")
-    .origin;
-  const logoUrl = `${origin}/email_logo.png`;
+  const logoUrl = `${resolveOrigin()}/email_logo.png`;
 
   const replacements: Record<string, string> = {
     url,
