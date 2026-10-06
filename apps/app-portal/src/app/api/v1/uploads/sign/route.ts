@@ -8,12 +8,14 @@ import {
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-
   let user;
   try {
     user = await requireUser();
   } catch {
-    return NextResponse.json({ error: "Requester not allowed" }, { status: 403 });
+    return NextResponse.json(
+      { error: "Requester not allowed" },
+      { status: 403 },
+    );
   }
 
   const userId = (user as { id: string }).id;

@@ -23,7 +23,10 @@ export default async function Page() {
   const [openData, closeData, confirmData, showDecisionData] =
     await Promise.all([
       fetchJson("http://localhost:3000/api/v1/dates/registration-open", cookie),
-      fetchJson("http://localhost:3000/api/v1/dates/registration-closed", cookie),
+      fetchJson(
+        "http://localhost:3000/api/v1/dates/registration-closed",
+        cookie,
+      ),
       fetchJson("http://localhost:3000/api/v1/dates/confirm-by", cookie),
       fetchJson("http://localhost:3000/api/v1/show-decision", cookie),
     ]);

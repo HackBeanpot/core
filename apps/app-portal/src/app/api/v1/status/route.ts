@@ -8,7 +8,10 @@ export async function GET() {
     return NextResponse.json(await getPortalStatus());
   } catch (error) {
     if (error instanceof StatusError) {
-      return NextResponse.json({ error: error.message }, { status: error.status });
+      return NextResponse.json(
+        { error: error.message },
+        { status: error.status },
+      );
     }
 
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

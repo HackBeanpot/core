@@ -4,6 +4,22 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "env": [
+        "EMAIL_SERVER_USER",
+        "EMAIL_SERVER_PASSWORD",
+        "EMAIL_SERVER_HOST",
+        "EMAIL_SERVER_PORT",
+        "EMAIL_FROM",
+        "NEXTAUTH_URL",
+        "NEXTAUTH_SECRET",
+        "MONGO_SERVER_DBNAME",
+        "MONGO_PROD_CONNECTION_STRING",
+        "GOOGLE_CLOUD_PROJECT_ID",
+        "GOOGLE_CLOUD_STORAGE_RESUME_BUCKET",
+        "GOOGLE_CLOUD_STORAGE_RESUME_BUCKET_TEST",
+        "GOOGLE_CLOUD_PRIVATE_KEY",
+        "GOOGLE_CLOUD_EMAIL"
+      ],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "lint": {},
