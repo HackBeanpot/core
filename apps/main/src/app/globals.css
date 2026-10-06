@@ -3,5 +3,25 @@
 @tailwind utilities;
 
 @layer base {
+}
 
+/*
+ * Artboard units for pinned scenes. --u is one Figma pixel: the artboard is
+ * contained in the viewport, so scenes keep their proportions at any size.
+ * --vw / --vh default to the real viewport; the dev harness overrides them.
+ */
+:root {
+  --ab-w: 1512;
+  --ab-h: 982;
+  --u: min(
+    calc(100 * var(--vw, 1vw) / var(--ab-w)),
+    calc(100 * var(--vh, 1svh) / var(--ab-h))
+  );
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --ab-w: 1000;
+    --ab-h: 982;
+  }
 }
