@@ -1,4 +1,4 @@
-"use client"
+"use client";
 //email input form, calls signIn("email")
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -12,11 +12,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //regex email checker
 
 type Status = "idle" | "loading" | "sent";
 
-export function SignInForm({
-  callbackUrl,
-}: {
-  callbackUrl?: string;
-}) {
+export function SignInForm({ callbackUrl }: { callbackUrl?: string }) {
   const [dotCount, setDotCount] = useState(1);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -33,7 +29,9 @@ export function SignInForm({
   useEffect(() => {
     if (callbackUrl) {
       // stable id so StrictMode's double-invoke shows one toast, not two
-      toast.info("Sign in before accessing the portal!", { id: "auth-required" });
+      toast.info("Sign in before accessing the portal!", {
+        id: "auth-required",
+      });
     }
   }, [callbackUrl]);
 
@@ -56,7 +54,8 @@ export function SignInForm({
       const res = await signIn("email", {
         email: email.trim(),
         redirect: false,
-        callbackUrl: callbackUrl ?? (isAdminEmail(email) ? "/admin" : "/dashboard"),
+        callbackUrl:
+          callbackUrl ?? (isAdminEmail(email) ? "/admin" : "/dashboard"),
       });
 
       if (res?.error) {
@@ -95,8 +94,8 @@ export function SignInForm({
               setEmail(e.target.value);
               if (emailError) setEmailError(null);
             }}
-            onKeyDown={(e)=>{
-              if (e.key === "Enter") document.getElementById("submit")?.click()
+            onKeyDown={(e) => {
+              if (e.key === "Enter") document.getElementById("submit")?.click();
             }}
             className={"w-full p-1 mt-4 border-2 rounded-md"}
           />
