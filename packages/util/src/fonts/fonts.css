@@ -10,6 +10,7 @@
     font-display: swap;
     src: url("./Wilden.otf") format("opentype");
   }
+
   @font-face {
     font-family: "GT-Walsheim-Regular";
     font-style: normal;
@@ -17,6 +18,7 @@
     font-display: swap;
     src: url("./GT-Walsheim-Regular.woff") format("woff2");
   }
+
   @font-face {
     font-family: "GT-Walsheim-Bold";
     font-style: bold;
@@ -24,6 +26,7 @@
     font-display: swap;
     src: url("./GT-Walsheim-Bold.woff") format("woff2");
   }
+
   @font-face {
     font-family: "Wilden-Regular";
     font-style: normal;
@@ -31,60 +34,60 @@
     font-display: swap;
     src: url("./Wilden-Regular.ttf") format("truetype");
   }
+
   @font-face {
     font-family: "Big-Shoulders-Display";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("./BigShouldersDisplay-Regular.ttf")
-      format("truetype");
+    src: url("./BigShouldersDisplay-Regular.ttf") format("truetype");
   }
+
   @font-face {
     font-family: "DMSans-Medium";
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url("./DMSans-Medium.ttf")
-      format("truetype");
+    src: url("./DMSans-Medium.ttf") format("truetype");
   }
+
   @font-face {
     font-family: "DMSans-Regular";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("./DMSans-Regular.ttf")
-      format("truetype");
+    src: url("./DMSans-Regular.ttf") format("truetype");
   }
+
   @font-face {
     font-family: "DMSans-Bold";
-    font-style:  bold;
+    font-style: bold;
     font-weight: 700;
     font-display: swap;
-    src: url("./DMSans-Bold.ttf")
-      format("truetype");
+    src: url("./DMSans-Bold.ttf") format("truetype");
   }
+
   @font-face {
     font-family: "NeulisNeue-Regular";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("./NeulisNeue-Regular.otf")
-      format("truetype");
+    src: url("./NeulisNeue-Regular.otf") format("truetype");
   }
+
   @font-face {
     font-family: "NeulisNeue-Bold";
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url("./NeulisNeue-Bold.otf")
-      format("truetype");
+    src: url("./NeulisNeue-Bold.otf") format("truetype");
   }
+
   @font-face {
     font-family: "Sancreek-Regular";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("./Sancreek-Regular.ttf")
-      format("truetype");
+    src: url("./Sancreek-Regular.ttf") format("truetype");
   }
 }

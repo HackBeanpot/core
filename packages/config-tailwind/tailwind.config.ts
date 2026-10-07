@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimated from "tailwindcss-animated";
 import { colors, screens } from "./theme-tokens";
 import { wiggle, popAndShrink } from "./animations";
 
@@ -39,6 +40,10 @@ const config: Omit<Config, "content"> = {
         "Wilden-Regular": ["'Wilden-Regular'"],
         "DMSans-Regular": ["'DMSans-Regular'"],
         "DMSans-Medium": ["'DMSans-Medium'"],
+
+        amarante: ["var(--font-amarante)"],
+        gothic: ["var(--font-gothic)"],
+        merriweather: ["var(--font-merriweather)"],
       },
       transitionProperty: {
         "max-height": "max-height",
@@ -58,6 +63,6 @@ const config: Omit<Config, "content"> = {
     colors,
     screens,
   },
-  plugins: [require("tailwindcss-animated")],
+  plugins: [tailwindcssAnimated],
 };
 export default config;

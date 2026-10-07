@@ -2,11 +2,21 @@ import "@repo/ui/styles.css";
 import "../../../../packages/util/src/fonts/fonts.css";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Amarante, Merriweather } from "next/font/google";
 import React from "react";
 import { Providers } from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const amarante = Amarante({
+  weight: ["400"],
+  variable: "--font-amarante",
+  subsets: ["latin"],
+});
+
+const merriweather = Merriweather({
+  weight: ["300", "400", "700"],
+  variable: "--font-merriweather",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "HackBeanpot",
@@ -21,7 +31,10 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en" className="w-screen overflow-x-hidden bg-canopyGreen">
-      <body className={inter.className}>
+      <body
+        className={`${amarante.variable} ${merriweather.variable}`}
+        style={{ fontFamily: "var(--font-merriweather)" }}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
