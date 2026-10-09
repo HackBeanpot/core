@@ -76,6 +76,51 @@ const colors = {
   ribbonBlueDark: "#62A0A6",
   starlightBlueDark: "#091F36",
   mysticPurpleDark: "#59225D",
+
+  // Museum-Primary
+  "museum-black": "#090912",
+  "museum-DarkBlue": "#15173b",
+  "museum-purple": "#310d46",
+  "museum-indigo": "#3842b1",
+  "museum-teal": "#017b9d",
+  "museum-green": "#0f7c1e",
+  "museum-LightIndigo": "#9aadd8",
+  "museum-ivory": "#dddddd",
+  "museum-yellow": "#ffd391",
+  "museum-gold": "#e9ac1d",
+  "museum-terracotta": "#ca6330",
+  "museum-red": "#a52c28",
+  "museum-brown": "#512309",
+
+  // Museum-Dark
+  "museum-black-dark": "#090912",
+  "museum-DarkBlue-dark": "#060825",
+  "museum-purple-dark": "#1d032c",
+  "museum-indigo-dark": "#070f68",
+  "museum-teal-dark": "#024354",
+  "museum-green-dark": "#094600",
+  "museum-LightIndigo-dark": "#637bb2",
+  "museum-ivory-dark": "#cabfbf",
+  "museum-yellow-dark": "#ffb647",
+  "museum-gold-dark": "#d08000",
+  "museum-terracotta-dark": "#833711",
+  "museum-red-dark": "#71120f",
+  "museum-brown-dark": "#2c1304",
+
+  // Museum-Light
+  "museum-black-light": "#24253b",
+  "museum-DarkBlue-light": "#33357d",
+  "museum-purple-light": "#5f2666",
+  "museum-indigo-light": "#5d68e6",
+  "museum-teal-light": "#37a9c9",
+  "museum-green-light": "#68bf5b",
+  "museum-LightIndigo-light": "#cedcfc",
+  "museum-ivory-light": "#fdfbfb",
+  "museum-yellow-light": "#fdebcc",
+  "museum-gold-light": "#ffd268",
+  "museum-terracotta-light": "#f08854",
+  "museum-red-light": "#e65752",
+  "museum-brown-light": "#894a3c",
 };
 
 export default colors;

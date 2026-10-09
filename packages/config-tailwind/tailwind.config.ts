@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimated from "tailwindcss-animated";
 import { colors, screens } from "./theme-tokens";
 import { wiggle, popAndShrink } from "./animations";
 
@@ -42,6 +43,10 @@ const config: Omit<Config, "content"> = {
         "SpecialGothicCondensedOne-Regular": [
           "'SpecialGothicCondensedOne-Regular'",
         ],
+
+        amarante: ["var(--font-amarante)"],
+        gothic: ["'SpecialGothicCondensedOne-Regular'"],
+        merriweather: ["var(--font-merriweather)"],
       },
       transitionProperty: {
         "max-height": "max-height",
@@ -61,6 +66,6 @@ const config: Omit<Config, "content"> = {
     colors,
     screens,
   },
-  plugins: [require("tailwindcss-animated")],
+  plugins: [tailwindcssAnimated],
 };
 export default config;
