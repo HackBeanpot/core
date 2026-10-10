@@ -1,6 +1,21 @@
 import React from "react";
 import type { ReactNode } from "react";
 
+// Class strings are written out in full (not built from pieces) so Tailwind picks them up.
+const TONES = {
+  default: {
+    background:
+      "bg-[radial-gradient(circle_at_top_left,_rgba(251,146,60,0.18),_transparent_36%),radial-gradient(circle_at_top_right,_rgba(34,197,94,0.12),_transparent_30%),linear-gradient(180deg,_#fff8ef_0%,_#fffdf8_54%,_#ffffff_100%)]",
+    eyebrow: "border-amber-200 text-amber-900",
+  },
+  // Used once an applicant is accepted.
+  success: {
+    background:
+      "bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.2),_transparent_36%),radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_#effbf3_0%,_#f7fdf9_54%,_#ffffff_100%)]",
+    eyebrow: "border-green-200 text-green-900",
+  },
+} as const;
+
 type PortalShellProps = {
   eyebrow: string;
   title: ReactNode;
@@ -9,6 +24,7 @@ type PortalShellProps = {
   secondaryAction?: ReactNode;
   aside?: ReactNode;
   children?: ReactNode;
+  tone?: keyof typeof TONES;
 };
 
 export default function PortalShell({
@@ -19,12 +35,19 @@ export default function PortalShell({
   secondaryAction,
   aside,
   children,
+  tone = "default",
 }: PortalShellProps): JSX.Element {
+  const { background, eyebrow: eyebrowColors } = TONES[tone];
+
   return (
-    <section className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(251,146,60,0.18),_transparent_36%),radial-gradient(circle_at_top_right,_rgba(34,197,94,0.12),_transparent_30%),linear-gradient(180deg,_#fff8ef_0%,_#fffdf8_54%,_#ffffff_100%)] px-4 py-8 text-slate-900 sm:px-6 lg:px-10">
+    <section
+      className={`min-h-screen ${background} px-4 py-8 text-slate-900 sm:px-6 lg:px-10`}
+    >
       <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-8">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex w-fit rounded-full border border-amber-200 bg-white/75 px-4 py-1 text-sm font-medium tracking-wide text-amber-900 shadow-sm backdrop-blur">
+          <div
+            className={`inline-flex w-fit rounded-full border ${eyebrowColors} bg-white/75 px-4 py-1 text-sm font-medium tracking-wide shadow-sm backdrop-blur`}
+          >
             {eyebrow}
           </div>
           <div className="space-y-3">
