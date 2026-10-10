@@ -1,20 +1,7 @@
-import { getDb, resolveCollectionName } from "@/lib/db";
 import { SingletonKey } from "@/lib/types/singleton";
 import { DEFAULT_FORM_CONFIG } from "@/lib/application/questions";
 import { getSingleton, setSingleton } from "./singleton-service";
 import { FormConfig } from "./types";
-
-function getQuestionIds(config: FormConfig): Set<string> {
-  const ids = new Set<string>();
-
-  for (const section of config.sections) {
-    for (const question of section.questions) {
-      ids.add(question.id);
-    }
-  }
-
-  return ids;
-}
 
 function validateUniqueQuestionIds(config: FormConfig): void {
   const ids = new Set<string>();
@@ -30,9 +17,8 @@ function validateUniqueQuestionIds(config: FormConfig): void {
   }
 }
 
-// Without this, POSTing {"sections": []} (or sections that are all empty) passes every
-// other check — no duplicate IDs, no in-use IDs removed — and silently wipes the live
-// application form down to zero questions.
+// Without this, POSTing {"sections": []} (or sections that are all empty) passes the
+// duplicate-ID check and silently wipes the live application form down to zero questions.
 function validateNotEmpty(config: FormConfig): void {
   const totalQuestions = config.sections.reduce(
     (sum, section) => sum + section.questions.length,
@@ -45,29 +31,20 @@ function validateNotEmpty(config: FormConfig): void {
   }
 }
 
-async function getUsedQuestionIds(): Promise<Set<string>> {
-  const db = await getDb();
-
-  const collection = db.collection(resolveCollectionName("applicant_data"));
-
-  const applicants = await collection
-    .find({})
-    .project({
-      applicationResponses: 1,
-    })
-    .toArray();
-
-  const usedIds = new Set<string>();
-
-  for (const applicant of applicants) {
-    const responses = applicant.applicationResponses ?? {};
-
-    Object.keys(responses).forEach((id) => {
-      usedIds.add(id);
-    });
+// The admin editor blocks this too, but a select/multi_select with no options can't be
+// answered — and if it's required, no applicant can submit — so reject it here as well.
+function validateChoiceOptions(config: FormConfig): void {
+  for (const section of config.sections) {
+    for (const question of section.questions) {
+      const isChoice =
+        question.type === "select" || question.type === "multi_select";
+      if (isChoice && !question.options?.length) {
+        throw new Error(
+          `Question "${question.label}" needs at least one option.`,
+        );
+      }
+    }
   }
-
-  return usedIds;
 }
 
 export async function getFormConfig(): Promise<FormConfig> {
@@ -86,18 +63,7 @@ export async function updateFormConfig(
 ): Promise<void> {
   validateNotEmpty(config);
   validateUniqueQuestionIds(config);
-
-  const newQuestionIds = getQuestionIds(config);
-
-  const usedQuestionIds = await getUsedQuestionIds();
-
-  for (const id of usedQuestionIds) {
-    if (!newQuestionIds.has(id)) {
-      throw new Error(
-        `Cannot remove question "${id}" because applicants have responses for it.`,
-      );
-    }
-  }
+  validateChoiceOptions(config);
 
   await setSingleton(SingletonKey.FormConfig, config, updatedBy);
 }

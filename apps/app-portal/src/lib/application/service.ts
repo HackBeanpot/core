@@ -199,7 +199,16 @@ export async function submit(
 
   const sections = await getSections();
   const submissionSchema = buildApplicationSchema(sections, "server");
-  const parsed = submissionSchema.safeParse(responses);
+  // Questions can be removed in /admin/settings after applicants have started, so a draft may
+  // still carry answers to questions that no longer exist. Drop those rather than letting the
+  // strict server schema reject the whole submission over them.
+  const questionIds = new Set(
+    sections.flatMap((section) => section.questions.map((q) => q.id)),
+  );
+  const currentResponses = Object.fromEntries(
+    Object.entries(responses).filter(([id]) => questionIds.has(id)),
+  );
+  const parsed = submissionSchema.safeParse(currentResponses);
   if (!parsed.success) {
     throw new ValidationError(parsed.error);
   }
