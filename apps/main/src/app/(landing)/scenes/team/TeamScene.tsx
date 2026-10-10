@@ -68,12 +68,14 @@ const AB_WIDTH: Record<Artboard, number> = { lg: 1512, md: 1000 };
 const AB_HEIGHT = 982;
 const ARROW = { size: 74, inset: 40 };
 
-// Viewport width and the artboard's left edge inside it. --vw is overridden by
-// the dev harness for `&w=1000`, so this follows it.
+// The strip and arrows hang off the viewport edges, not the artboard's: on a
+// screen wider than the artboard's ratio the artboard is centered with empty
+// bands either side, and the strip should still run edge to edge. --vw is
+// overridden by the dev harness for `&w=1000`, so this follows it.
 const VIEWPORT_W = "calc(100 * var(--vw, 1vw))";
-const BLEED_LEFT = "calc(50% - 50 * var(--vw, 1vw))";
-const artboardOffset = (n: number) =>
-  `calc(${n} * var(--u) + (100 * var(--vw, 1vw) - var(--ab-w) * var(--u)) / 2)`;
+/** Distance from the artboard edge to the viewport edge (<= 0). */
+const BLEED = "calc(50% - 50 * var(--vw, 1vw))";
+const fromViewportEdge = (n: number) => `calc(${BLEED} + ${n} * var(--u))`;
 
 const shuffle = <T,>(items: readonly T[]): T[] => {
   const out = [...items];
@@ -213,7 +215,7 @@ function TeamContent({
       <div
         data-anim="team-strip"
         className="absolute"
-        style={{ top: u(layout.stripTop), left: BLEED_LEFT, width: VIEWPORT_W }}
+        style={{ top: u(layout.stripTop), left: BLEED, width: VIEWPORT_W }}
       >
         <div
           ref={trackRef}
@@ -234,8 +236,8 @@ function TeamContent({
                 style={{
                   height: u(layout.rowHeight),
                   gap: u(layout.itemGap[row]),
-                  paddingLeft: artboardOffset(layout.rowStart[row]),
-                  paddingRight: artboardOffset(layout.rowStart[row]),
+                  paddingLeft: u(layout.rowStart[row]),
+                  paddingRight: u(layout.rowStart[row]),
                 }}
               >
                 {items.map(({ member, index }) => (
@@ -258,11 +260,7 @@ function TeamContent({
           className="absolute z-10"
           style={{
             top: u(layout.arrowTop),
-            left: u(
-              direction === "left"
-                ? ARROW.inset
-                : AB_WIDTH[artboard] - ARROW.inset - ARROW.size,
-            ),
+            [direction]: fromViewportEdge(ARROW.inset),
             width: u(ARROW.size),
             height: u(ARROW.size),
           }}
