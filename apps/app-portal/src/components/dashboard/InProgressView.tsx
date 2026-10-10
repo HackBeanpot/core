@@ -3,7 +3,7 @@ import Link from "next/link";
 import PortalShell from "./PortalShell";
 import { formatPercentComplete } from "../../lib/status/format";
 import {
-  //primaryActionClass,
+  primaryActionClass,
   secondaryActionClass,
   statCardClass,
 } from "./styles";
@@ -22,33 +22,17 @@ export default function InProgressView({
 
   return (
     <PortalShell
-      aside={
-        <div className="space-y-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
-            Status snapshot
-          </p>
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-            <p className="text-sm text-slate-300">Current state</p>
-            <p className="mt-2 text-2xl font-semibold text-black">
-              {formatPercentComplete(completionPercent)}
-            </p>
-          </div>
-          <p className="text-sm leading-6 text-slate-300"></p>
-        </div>
-      }
       description={<>You&apos;ve started your application.</>}
       eyebrow="Application draft"
+      // Refresh comes first so the main call to action sits on the right.
       primaryAction={
-        <Link
-          className="text-blue-600 font-semibold hover:underline"
-          href="/application"
-        >
-          Continue application
+        <Link className={secondaryActionClass} href="/dashboard">
+          Refresh status
         </Link>
       }
       secondaryAction={
-        <Link className={secondaryActionClass} href="/dashboard">
-          Refresh status
+        <Link className={primaryActionClass} href="/application">
+          Continue application
         </Link>
       }
       title={<>You&apos;ve started your application</>}
