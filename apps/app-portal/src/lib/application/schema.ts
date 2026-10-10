@@ -5,6 +5,8 @@ import type { FormSection, Question, QuestionType } from "./types";
 
 type SchemaTarget = "client" | "server";
 
+const REQUIRED_MESSAGE = "This question is required";
+
 function countWords(value: string): number {
   return value.trim().length === 0 ? 0 : value.trim().split(/\s+/).length;
 }
@@ -15,7 +17,7 @@ function fieldSchema(question: Question): z.ZodTypeAny {
   switch (type as QuestionType) {
     case "short_text":
     case "long_text": {
-      const requiredMessage = `${question.label} is required`;
+      const requiredMessage = REQUIRED_MESSAGE;
       let schema = required
         ? z.string({ message: requiredMessage })
         : z.string();
@@ -47,7 +49,7 @@ function fieldSchema(question: Question): z.ZodTypeAny {
     case "select": {
       const values = options?.map((o) => o.value) ?? [];
       const enumSchema = z.enum(values as [string, ...string[]], {
-        message: `${question.label} is required`,
+        message: REQUIRED_MESSAGE,
       });
       if (required) {
         return enumSchema;
@@ -61,7 +63,7 @@ function fieldSchema(question: Question): z.ZodTypeAny {
       const enumSchema = z.enum(values as [string, ...string[]], {
         message: `${question.label} contains an option that is not allowed`,
       });
-      const requiredMessage = `Select at least one option for ${question.label}`;
+      const requiredMessage = REQUIRED_MESSAGE;
       const schema = required
         ? z.array(enumSchema, { message: requiredMessage })
         : z.array(enumSchema);
@@ -75,7 +77,7 @@ function fieldSchema(question: Question): z.ZodTypeAny {
       // /api/v1/uploads/sign once the file has actually finished uploading to GCS (see
       // FileUploadField / FileUpload). There's no separate "browser File object" stage in
       // the schema — the upload happens before the field's value is ever set.
-      const requiredMessage = `${question.label} is required`;
+      const requiredMessage = REQUIRED_MESSAGE;
       const uploadIdSchema = z.string().min(1, requiredMessage);
       if (required) return uploadIdSchema;
       return z
