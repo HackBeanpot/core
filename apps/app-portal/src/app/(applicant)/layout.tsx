@@ -24,16 +24,16 @@ export default async function ApplicantLayout({
 
   return (
     <div className="min-h-screen">
-      <header className="flex h-16 items-center justify-between border-b bg-white px-6">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center">
+      <header className="flex flex-wrap items-center justify-between gap-y-2 border-b bg-white px-6 py-3 sm:h-16 sm:flex-nowrap sm:py-0">
+        <div className="contents sm:flex sm:items-center sm:gap-4">
+          <div className="flex shrink-0 items-center whitespace-nowrap">
           <Image src={icon.src} alt={"HBP Logo"} width={25} height={25} />
             <span className="font-semibold pl-2">
             HackBeanpot Applicant Portal
           </span>
         </div>
 
-          <nav className="ml-6 flex items-center gap-2">
+          <nav className="order-last -ml-3 flex w-full items-center gap-2 sm:order-none sm:ml-6 sm:w-auto">
           <Link
             href="/dashboard"
             className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50"
@@ -61,7 +61,7 @@ export default async function ApplicantLayout({
           {isAdmin && (
             <Link
               href="/admin"
-              className="hidden sm:inline-flex items-center whitespace-nowrap rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+              className="hidden md:inline-flex items-center whitespace-nowrap rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
             >
               Admin View
             </Link>
