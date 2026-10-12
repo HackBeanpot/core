@@ -1,24 +1,30 @@
-import React from "react";
+import React, { type CSSProperties } from "react";
+import { u } from "../../scroll/units";
+
+// Set by next/font in app/layout.tsx.
+const AMARANTE = "var(--font-amarante)";
+const GOTHIC = "var(--font-gothic)";
+const MERRIWEATHER = "var(--font-merriweather)";
 
 export const typographyVariants = {
   heroTitle: {
     // Figma node: Hero Title
     lg: {
-      fontFamily: "Amarante",
+      fontFamily: AMARANTE,
       fontWeight: 400,
-      fontSize: "64px",
+      fontSize: u(64),
       lineHeight: "100%",
       letterSpacing: "0%",
     },
     md: {
-      fontFamily: "Amarante",
+      fontFamily: AMARANTE,
       fontWeight: 400,
-      fontSize: "64px",
+      fontSize: u(64),
       lineHeight: "100%",
       letterSpacing: "0%",
     },
     sm: {
-      fontFamily: "Amarante",
+      fontFamily: AMARANTE,
       fontWeight: 400,
       fontSize: "56.91px",
       lineHeight: "100%",
@@ -29,23 +35,23 @@ export const typographyVariants = {
   sectionTitle: {
     // Figma node: Section Title
     lg: {
-      fontFamily: "Amarante",
+      fontFamily: AMARANTE,
       fontWeight: 400,
-      fontSize: "50px",
+      fontSize: u(50),
       lineHeight: "100%",
       letterSpacing: "0%",
       textAlign: "center",
     },
     md: {
-      fontFamily: "Amarante",
+      fontFamily: AMARANTE,
       fontWeight: 400,
-      fontSize: "50px",
+      fontSize: u(50),
       lineHeight: "100%",
       letterSpacing: "0%",
       textAlign: "center",
     },
     sm: {
-      fontFamily: "Amarante",
+      fontFamily: AMARANTE,
       fontWeight: 400,
       fontSize: "32px",
       lineHeight: "100%",
@@ -57,23 +63,23 @@ export const typographyVariants = {
   displayName: {
     // Figma node: Display Name
     lg: {
-      fontFamily: "Special Gothic Condensed One",
+      fontFamily: GOTHIC,
       fontWeight: 400,
-      fontSize: "20.34px",
+      fontSize: u(20.34),
       lineHeight: "100%",
       letterSpacing: "0%",
       textAlign: "center",
     },
     md: {
-      fontFamily: "Special Gothic Condensed One",
+      fontFamily: GOTHIC,
       fontWeight: 400,
-      fontSize: "20.34px",
+      fontSize: u(20.34),
       lineHeight: "100%",
       letterSpacing: "0%",
       textAlign: "center",
     },
     sm: {
-      fontFamily: "Special Gothic Condensed One",
+      fontFamily: GOTHIC,
       fontWeight: 400,
       fontSize: "22px",
       lineHeight: "100%",
@@ -85,23 +91,23 @@ export const typographyVariants = {
   cardTitle: {
     // Figma node: Card Title
     lg: {
-      fontFamily: "Special Gothic Condensed One",
+      fontFamily: GOTHIC,
       fontWeight: 400,
-      fontSize: "30px",
+      fontSize: u(30),
       lineHeight: "100%",
       letterSpacing: "0%",
       textTransform: "uppercase",
     },
     md: {
-      fontFamily: "Special Gothic Condensed One",
+      fontFamily: GOTHIC,
       fontWeight: 400,
-      fontSize: "30px",
+      fontSize: u(30),
       lineHeight: "100%",
       letterSpacing: "0%",
       textTransform: "uppercase",
     },
     sm: {
-      fontFamily: "Special Gothic Condensed One",
+      fontFamily: GOTHIC,
       fontWeight: 400,
       fontSize: "30px",
       lineHeight: "100%",
@@ -113,21 +119,21 @@ export const typographyVariants = {
   label: {
     // Figma node: Label
     lg: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
-      fontSize: "16px",
+      fontSize: u(16),
       lineHeight: "100%",
       letterSpacing: "0%",
     },
     md: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
-      fontSize: "16px",
+      fontSize: u(16),
       lineHeight: "100%",
       letterSpacing: "0%",
     },
     sm: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
       fontSize: "16px",
       lineHeight: "100%",
@@ -138,21 +144,21 @@ export const typographyVariants = {
   body: {
     // Figma node: Body
     lg: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
-      fontSize: "18px",
+      fontSize: u(18),
       lineHeight: "140%",
       letterSpacing: "0%",
     },
     md: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
-      fontSize: "18px",
+      fontSize: u(18),
       lineHeight: "140%",
       letterSpacing: "0%",
     },
     sm: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
       fontSize: "18px",
       lineHeight: "140%",
@@ -163,23 +169,23 @@ export const typographyVariants = {
   bodySmall: {
     // Figma node: Body Small
     lg: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
-      fontSize: "16px",
+      fontSize: u(16),
       lineHeight: "100%",
       letterSpacing: "0%",
       textAlign: "center",
     },
     md: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
-      fontSize: "16px",
+      fontSize: u(16),
       lineHeight: "100%",
       letterSpacing: "0%",
       textAlign: "center",
     },
     sm: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
       fontSize: "16px",
       lineHeight: "100%",
@@ -191,23 +197,23 @@ export const typographyVariants = {
   role: {
     // Figma node: Role
     lg: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
-      fontSize: "14.79px",
+      fontSize: u(14.79),
       lineHeight: "140%",
       letterSpacing: "0%",
       textAlign: "center",
     },
     md: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
-      fontSize: "14.79px",
+      fontSize: u(14.79),
       lineHeight: "140%",
       letterSpacing: "0%",
       textAlign: "center",
     },
     sm: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 300,
       fontSize: "16px",
       lineHeight: "140%",
@@ -219,21 +225,21 @@ export const typographyVariants = {
   faqQuestion: {
     // Figma node: FAQ Question
     lg: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 600,
-      fontSize: "18px",
+      fontSize: u(18),
       lineHeight: "100%",
       letterSpacing: "0%",
     },
     md: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 400,
-      fontSize: "18px",
+      fontSize: u(18),
       lineHeight: "100%",
       letterSpacing: "0%",
     },
     sm: {
-      fontFamily: "Merriweather",
+      fontFamily: MERRIWEATHER,
       fontWeight: 400,
       fontSize: "18px",
       lineHeight: "100%",
@@ -242,21 +248,21 @@ export const typographyVariants = {
     open: {
       // Figma node: FAQ opened
       lg: {
-        fontFamily: "Merriweather",
+        fontFamily: MERRIWEATHER,
         fontWeight: 300,
-        fontSize: "16px",
+        fontSize: u(16),
         lineHeight: "140%",
         letterSpacing: "0%",
       },
       md: {
-        fontFamily: "Merriweather",
+        fontFamily: MERRIWEATHER,
         fontWeight: 300,
-        fontSize: "16px",
+        fontSize: u(16),
         lineHeight: "140%",
         letterSpacing: "0%",
       },
       sm: {
-        fontFamily: "Merriweather",
+        fontFamily: MERRIWEATHER,
         fontWeight: 300,
         fontSize: "16px",
         lineHeight: "140%",
@@ -274,26 +280,27 @@ type TypographyProps = {
   children: React.ReactNode;
 };
 
+const BREAKPOINTS = ["sm", "md", "lg"] as const;
+
+// Each breakpoint's values become custom properties (`--type-font-size-md`);
+// `.museum-type` in globals.css picks the current one with media queries.
+const breakpointVars = (variant: TypographyVariant): CSSProperties =>
+  Object.fromEntries(
+    BREAKPOINTS.flatMap((bp) =>
+      Object.entries(typographyVariants[variant][bp]).map(([key, value]) => [
+        `--type-${key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}-${bp}`,
+        value,
+      ]),
+    ),
+  );
+
 export function Typography({
   variant,
   as: Component = "p",
   children,
 }: TypographyProps) {
-  const styles = typographyVariants[variant];
-
   return (
-    <Component
-      style={{
-        fontFamily: styles.lg.fontFamily,
-        fontWeight: styles.lg.fontWeight,
-        fontSize: styles.lg.fontSize,
-        lineHeight: styles.lg.lineHeight,
-        letterSpacing: styles.lg.letterSpacing,
-        textAlign: "textAlign" in styles.lg ? styles.lg.textAlign : undefined,
-        textTransform:
-          "textTransform" in styles.lg ? styles.lg.textTransform : undefined,
-      }}
-    >
+    <Component className="museum-type" style={breakpointVars(variant)}>
       {children}
     </Component>
   );

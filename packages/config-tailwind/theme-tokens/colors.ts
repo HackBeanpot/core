@@ -79,12 +79,12 @@ const colors = {
 
   // Museum-Primary
   "museum-black": "#090912",
-  "museum-DarkBlue": "#15173b",
+  "museum-dark-blue": "#15173b",
   "museum-purple": "#310d46",
   "museum-indigo": "#3842b1",
   "museum-teal": "#017b9d",
   "museum-green": "#0f7c1e",
-  "museum-LightIndigo": "#9aadd8",
+  "museum-light-indigo": "#9aadd8",
   "museum-ivory": "#dddddd",
   "museum-yellow": "#ffd391",
   "museum-gold": "#e9ac1d",
@@ -94,12 +94,12 @@ const colors = {
 
   // Museum-Dark
   "museum-black-dark": "#090912",
-  "museum-DarkBlue-dark": "#060825",
+  "museum-dark-blue-dark": "#060825",
   "museum-purple-dark": "#1d032c",
   "museum-indigo-dark": "#070f68",
   "museum-teal-dark": "#024354",
   "museum-green-dark": "#094600",
-  "museum-LightIndigo-dark": "#637bb2",
+  "museum-light-indigo-dark": "#637bb2",
   "museum-ivory-dark": "#cabfbf",
   "museum-yellow-dark": "#ffb647",
   "museum-gold-dark": "#d08000",
@@ -109,12 +109,12 @@ const colors = {
 
   // Museum-Light
   "museum-black-light": "#24253b",
-  "museum-DarkBlue-light": "#33357d",
+  "museum-dark-blue-light": "#33357d",
   "museum-purple-light": "#5f2666",
   "museum-indigo-light": "#5d68e6",
   "museum-teal-light": "#37a9c9",
   "museum-green-light": "#68bf5b",
-  "museum-LightIndigo-light": "#cedcfc",
+  "museum-light-indigo-light": "#cedcfc",
   "museum-ivory-light": "#fdfbfb",
   "museum-yellow-light": "#fdebcc",
   "museum-gold-light": "#ffd268",
