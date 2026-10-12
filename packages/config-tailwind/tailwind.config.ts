@@ -40,12 +40,10 @@ const config: Omit<Config, "content"> = {
         "Wilden-Regular": ["'Wilden-Regular'"],
         "DMSans-Regular": ["'DMSans-Regular'"],
         "DMSans-Medium": ["'DMSans-Medium'"],
-        "SpecialGothicCondensedOne-Regular": [
-          "'SpecialGothicCondensedOne-Regular'",
-        ],
+        "SpecialGothicCondensedOne-Regular": ["var(--font-gothic)"],
 
         amarante: ["var(--font-amarante)"],
-        gothic: ["'SpecialGothicCondensedOne-Regular'"],
+        gothic: ["var(--font-gothic)"],
         merriweather: ["var(--font-merriweather)"],
       },
       transitionProperty: {
