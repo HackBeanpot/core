@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimated from "tailwindcss-animated";
-import { colors, screens } from "./theme-tokens";
+import { colors } from "./theme-tokens";
 import { wiggle, popAndShrink } from "./animations";
 
 // We want each package to be responsible for its own content.
@@ -64,7 +64,6 @@ const config: Omit<Config, "content"> = {
       },
     },
     colors,
-    screens,
   },
   plugins: [tailwindcssAnimated],
 };
