@@ -103,13 +103,13 @@ const Header = ({ activeSection, visible = true }: HeaderProps) => {
   return (
     <header
       className={clsx(
-        "fixed inset-x-0 top-0 z-50 w-full transition-[opacity,transform] duration-300 ease-out mobile-xl:absolute mobile:absolute",
+        "absolute inset-x-0 top-0 z-50 w-full transition-[opacity,transform] duration-300 ease-out sm:fixed",
         !visible && "pointer-events-none -translate-y-2 opacity-0",
       )}
       ref={headerRef}
       aria-hidden={visible ? undefined : true}
     >
-      <div className="flex items-center justify-between px-8 py-5 tablet:px-5 tablet:py-4 mobile-xl:p-5 mobile:p-5">
+      <div className="flex items-center justify-between p-5 sm:py-4 xl:px-8 xl:py-5">
         <a
           href="#"
           aria-label="HackBeanpot home"
@@ -121,10 +121,10 @@ const Header = ({ activeSection, visible = true }: HeaderProps) => {
             width={163}
             height={52.395}
             priority
-            className="h-[52.395px] w-[163px] object-cover mobile-xl:hidden mobile:hidden"
+            className="h-[52.395px] w-[163px] object-cover hidden sm:block"
           />
           {/* SM uses the Mobile Menu navbar logo (5847:800) */}
-          <span className="hidden items-center gap-2 font-SpecialGothicCondensedOne-Regular text-[28px] leading-normal text-white mobile-xl:flex mobile:flex">
+          <span className="flex items-center gap-2 font-SpecialGothicCondensedOne-Regular text-[28px] leading-normal text-white sm:hidden">
             <Image
               src="/header/mobile-menu/logo-mark.svg"
               alt=""
@@ -138,7 +138,7 @@ const Header = ({ activeSection, visible = true }: HeaderProps) => {
 
         <nav
           aria-label="Sections"
-          className="flex items-center justify-end gap-9 [@media(max-width:1399px)]:gap-6 tablet:hidden mobile-xl:hidden mobile:hidden"
+          className="hidden items-center justify-end gap-9 [@media(max-width:1399px)]:gap-6 xl:flex"
         >
           {headerTabs.map((tab) => (
             <Tab key={tab.id} {...tab} active={activeSection === tab.id} />
@@ -146,8 +146,8 @@ const Header = ({ activeSection, visible = true }: HeaderProps) => {
           <HeaderButtons />
         </nav>
 
-        <div className="hidden items-center gap-5 tablet:flex mobile-xl:flex mobile:flex">
-          <div className="mobile-xl:hidden mobile:hidden">
+        <div className="flex items-center gap-5 xl:hidden">
+          <div className="hidden sm:block">
             <HeaderButtons />
           </div>
           <button

@@ -28,9 +28,9 @@ export default function About(): React.ReactNode {
         </div>
       }
 
-      <div className="mt-[15vh] mobile:mt-20 flex desktop:flex-row mobile:flex-col mobile:items-center items-start justify-center scale-125">
-        <div className="relative flex h-auto mobile:w-3/5">
-          <p className="z-10 text-charcoalFogDark mobile:text-xs font-DMSans-Regular absolute h-full mobile:-mr-16 desktop:py-20 desktop:px-16 desktop-xl:py-20 desktop-xl:px-16 self-center">
+      <div className="mt-20 flex flex-col items-center justify-center scale-125 sm:mt-[15vh] sm:flex-row sm:items-start">
+        <div className="relative flex h-auto w-3/5 sm:w-auto">
+          <p className="z-10 text-charcoalFogDark text-xs font-DMSans-Regular absolute h-full -mr-16 px-16 py-20 self-center sm:mr-0 sm:text-base xl:p-0">
             We&apos;re a non-profit organization in the Boston area that
             organizes an annual undergraduate hackathon. Our goal is to expand
             and nurture the hacker culture that exists in Boston and the
@@ -45,7 +45,7 @@ export default function About(): React.ReactNode {
           />
         </div>
 
-        <div className="flex mobile:-mt-16 mobile:-ml-0 desktop:-ml-14 desktop:mt-8 transform mobile:scale-[50%] mobile:items-center">
+        <div className="flex -mt-16 transform scale-50 items-center sm:mt-8 sm:-ml-14 sm:scale-100 sm:items-stretch lg:m-0">
           <TeamPicture />
         </div>
       </div>
