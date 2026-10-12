@@ -163,7 +163,7 @@ const Footer = () => {
 
   return (
     <footer className="relative w-full bg-transparent">
-      <div className="flex flex-row items-center justify-between gap-10 px-20 pb-[93px] pt-[70px] tablet:px-12 tablet:pb-16 mobile-xl:flex-col mobile-xl:items-start mobile-xl:px-5 mobile-xl:pb-12 mobile:flex-col mobile:items-start mobile:px-5 mobile:pb-12">
+      <div className="flex flex-col items-start justify-between gap-10 px-5 pb-12 pt-[70px] sm:flex-row sm:items-center sm:px-12 sm:pb-16 xl:px-20 xl:pb-[93px]">
         <div className="flex w-[343px] max-w-full shrink-0 flex-col items-start gap-4">
           <Button variant="ghost" onClick={handleBackToTop}>
             Back to top

@@ -29,7 +29,7 @@ export default function Volunteering(): React.ReactNode {
 
   return (
     <div className="relative w-full mt-[-50vh] mb-[30vh] p-[5vh] z-10">
-      <VolunteeringBackground className="absolute inset-0 left-1/2 w-[100vw] mobile:w-[175vw] h-[60vh] mobile:h-[100vh] -translate-x-1/2" />
+      <VolunteeringBackground className="absolute inset-0 left-1/2 w-[175vw] h-[100vh] sm:w-[100vw] sm:h-[60vh] -translate-x-1/2" />
       {/* <div className="relative">
         <RibbonTitle text="VOLUNTEERING" />
       </div>
