@@ -18,4 +18,17 @@ export const projects: Project[] = [
       alt: "Memora logo: a brain with a puzzle piece",
     },
   },
+  // TODO(content): placeholder embed project; replace with a real past project
+  {
+    title: "HackBeanpot 2013 Demos",
+    url: "https://www.youtube.com/watch?v=EelyPZ4sfow",
+    members: ["HackBeanpot 2013 hackers"],
+    description:
+      "Recorded demos from the first HackBeanpot, a hackathon for students in Boston.",
+    media: {
+      type: "embed",
+      url: "https://www.youtube-nocookie.com/embed/EelyPZ4sfow",
+      title: "HackBeanpot 2013 demo livestream",
+    },
+  },
 ];
