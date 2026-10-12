@@ -2,10 +2,12 @@
 
 import type { Config } from "tailwindcss";
 import sharedConfig from "@repo/tailwind-config";
+import { screens } from "@repo/tailwind-config/tokens";
 
-const config: Pick<Config, "content" | "presets"> = {
+const config: Pick<Config, "content" | "presets" | "theme"> = {
   content: ["./src/app/**/*.tsx"],
   presets: [sharedConfig],
+  theme: { screens },
 };
 
 export default config;
