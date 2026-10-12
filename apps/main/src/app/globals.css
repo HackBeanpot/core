@@ -27,46 +27,11 @@
   --ab-h: 982;
 }
 
-/* MD (640–1279px, Tailwind `tablet:`) */
+/* MD (640–1279px, Tailwind `sm:` until `xl:`) */
 @media (min-width: 640px) and (max-width: 1279px) {
   :root {
     --ab-w: 1000;
     --ab-h: 982;
-  }
-}
-
-/* Typography (lib/Components/museum/Typography.tsx): LG, MD below 1280px, SM below 640px. */
-.museum-type {
-  font-family: var(--type-font-family-lg);
-  font-weight: var(--type-font-weight-lg);
-  font-size: var(--type-font-size-lg);
-  line-height: var(--type-line-height-lg);
-  letter-spacing: var(--type-letter-spacing-lg);
-  text-align: var(--type-text-align-lg);
-  text-transform: var(--type-text-transform-lg);
-}
-
-@media (max-width: 1279px) {
-  .museum-type {
-    font-family: var(--type-font-family-md);
-    font-weight: var(--type-font-weight-md);
-    font-size: var(--type-font-size-md);
-    line-height: var(--type-line-height-md);
-    letter-spacing: var(--type-letter-spacing-md);
-    text-align: var(--type-text-align-md);
-    text-transform: var(--type-text-transform-md);
-  }
-}
-
-@media (max-width: 639px) {
-  .museum-type {
-    font-family: var(--type-font-family-sm);
-    font-weight: var(--type-font-weight-sm);
-    font-size: var(--type-font-size-sm);
-    line-height: var(--type-line-height-sm);
-    letter-spacing: var(--type-letter-spacing-sm);
-    text-align: var(--type-text-align-sm);
-    text-transform: var(--type-text-transform-sm);
   }
 }
 

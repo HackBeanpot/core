@@ -1,278 +1,32 @@
-import React, { type CSSProperties } from "react";
-import { u } from "../../scroll/units";
+import React from "react";
 
-// Set by next/font in app/layout.tsx.
-const AMARANTE = "var(--font-amarante)";
-const GOTHIC = "var(--font-gothic)";
-const MERRIWEATHER = "var(--font-merriweather)";
-
+/**
+ * Museum text styles. SM is the base, MD starts at `sm:` and LG at `xl:`.
+ * MD/LG sizes are artboard px (`--u`), so text scales with the scenes; SM is
+ * plain px. 100% line height is `leading-none`, 140% is `leading-[1.4]`.
+ */
 export const typographyVariants = {
-  heroTitle: {
-    // Figma node: Hero Title
-    lg: {
-      fontFamily: AMARANTE,
-      fontWeight: 400,
-      fontSize: u(64),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-    md: {
-      fontFamily: AMARANTE,
-      fontWeight: 400,
-      fontSize: u(64),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-    sm: {
-      fontFamily: AMARANTE,
-      fontWeight: 400,
-      fontSize: "56.91px",
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-  },
-
-  sectionTitle: {
-    // Figma node: Section Title
-    lg: {
-      fontFamily: AMARANTE,
-      fontWeight: 400,
-      fontSize: u(50),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-    md: {
-      fontFamily: AMARANTE,
-      fontWeight: 400,
-      fontSize: u(50),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-    sm: {
-      fontFamily: AMARANTE,
-      fontWeight: 400,
-      fontSize: "32px",
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-  },
-
-  displayName: {
-    // Figma node: Display Name
-    lg: {
-      fontFamily: GOTHIC,
-      fontWeight: 400,
-      fontSize: u(20.34),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-    md: {
-      fontFamily: GOTHIC,
-      fontWeight: 400,
-      fontSize: u(20.34),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-    sm: {
-      fontFamily: GOTHIC,
-      fontWeight: 400,
-      fontSize: "22px",
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-  },
-
-  cardTitle: {
-    // Figma node: Card Title
-    lg: {
-      fontFamily: GOTHIC,
-      fontWeight: 400,
-      fontSize: u(30),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textTransform: "uppercase",
-    },
-    md: {
-      fontFamily: GOTHIC,
-      fontWeight: 400,
-      fontSize: u(30),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textTransform: "uppercase",
-    },
-    sm: {
-      fontFamily: GOTHIC,
-      fontWeight: 400,
-      fontSize: "30px",
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textTransform: "uppercase",
-    },
-  },
-
-  label: {
-    // Figma node: Label
-    lg: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: u(16),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-    md: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: u(16),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-    sm: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: "16px",
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-  },
-
-  body: {
-    // Figma node: Body
-    lg: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: u(18),
-      lineHeight: "140%",
-      letterSpacing: "0%",
-    },
-    md: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: u(18),
-      lineHeight: "140%",
-      letterSpacing: "0%",
-    },
-    sm: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: "18px",
-      lineHeight: "140%",
-      letterSpacing: "0%",
-    },
-  },
-
-  bodySmall: {
-    // Figma node: Body Small
-    lg: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: u(16),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-    md: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: u(16),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-    sm: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: "16px",
-      lineHeight: "100%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-  },
-
-  role: {
-    // Figma node: Role
-    lg: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: u(14.79),
-      lineHeight: "140%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-    md: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: u(14.79),
-      lineHeight: "140%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-    sm: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 300,
-      fontSize: "16px",
-      lineHeight: "140%",
-      letterSpacing: "0%",
-      textAlign: "center",
-    },
-  },
-
-  faqQuestion: {
-    // Figma node: FAQ Question
-    lg: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 600,
-      fontSize: u(18),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-    md: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 400,
-      fontSize: u(18),
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-    sm: {
-      fontFamily: MERRIWEATHER,
-      fontWeight: 400,
-      fontSize: "18px",
-      lineHeight: "100%",
-      letterSpacing: "0%",
-    },
-    open: {
-      // Figma node: FAQ opened
-      lg: {
-        fontFamily: MERRIWEATHER,
-        fontWeight: 300,
-        fontSize: u(16),
-        lineHeight: "140%",
-        letterSpacing: "0%",
-      },
-      md: {
-        fontFamily: MERRIWEATHER,
-        fontWeight: 300,
-        fontSize: u(16),
-        lineHeight: "140%",
-        letterSpacing: "0%",
-      },
-      sm: {
-        fontFamily: MERRIWEATHER,
-        fontWeight: 300,
-        fontSize: "16px",
-        lineHeight: "140%",
-        letterSpacing: "0%",
-      },
-    },
-  },
+  heroTitle:
+    "font-amarante font-normal leading-none text-[56.91px] sm:text-[calc(64*var(--u))]",
+  sectionTitle:
+    "font-amarante font-normal leading-none text-center text-[32px] sm:text-[calc(50*var(--u))]",
+  displayName:
+    "font-gothic font-normal leading-none text-center text-[22px] sm:text-[calc(20.34*var(--u))]",
+  cardTitle:
+    "font-gothic font-normal leading-none uppercase text-[30px] sm:text-[calc(30*var(--u))]",
+  label:
+    "font-merriweather font-light leading-none text-[16px] sm:text-[calc(16*var(--u))]",
+  body: "font-merriweather font-light leading-[1.4] text-[18px] sm:text-[calc(18*var(--u))]",
+  bodySmall:
+    "font-merriweather font-light leading-none text-center text-[16px] sm:text-[calc(16*var(--u))]",
+  role: "font-merriweather font-light leading-[1.4] text-center text-[16px] sm:text-[calc(14.79*var(--u))]",
+  faqQuestion:
+    "font-merriweather font-normal leading-none text-[18px] sm:text-[calc(18*var(--u))] xl:font-semibold",
+  faqQuestionOpen:
+    "font-merriweather font-light leading-[1.4] text-[16px] sm:text-[calc(16*var(--u))]",
 } as const;
 
-type TypographyVariant = keyof typeof typographyVariants;
+export type TypographyVariant = keyof typeof typographyVariants;
 
 type TypographyProps = {
   variant: TypographyVariant;
@@ -280,28 +34,12 @@ type TypographyProps = {
   children: React.ReactNode;
 };
 
-const BREAKPOINTS = ["sm", "md", "lg"] as const;
-
-// Each breakpoint's values become custom properties (`--type-font-size-md`);
-// `.museum-type` in globals.css picks the current one with media queries.
-const breakpointVars = (variant: TypographyVariant): CSSProperties =>
-  Object.fromEntries(
-    BREAKPOINTS.flatMap((bp) =>
-      Object.entries(typographyVariants[variant][bp]).map(([key, value]) => [
-        `--type-${key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}-${bp}`,
-        value,
-      ]),
-    ),
-  );
-
 export function Typography({
   variant,
   as: Component = "p",
   children,
 }: TypographyProps) {
   return (
-    <Component className="museum-type" style={breakpointVars(variant)}>
-      {children}
-    </Component>
+    <Component className={typographyVariants[variant]}>{children}</Component>
   );
 }
