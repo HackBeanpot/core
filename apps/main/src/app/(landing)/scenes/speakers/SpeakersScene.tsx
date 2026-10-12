@@ -126,7 +126,10 @@ function ArchClip({
 
 // Baluster spacing inside balustrade.svg per breakpoint (Figma 5624:1086 LG, 5687:2143 MD),
 // used to extend the railing past the artboard's left edge without a visible seam.
-const RAIL: Record<Breakpoint, { pitch: number; first: number; count: number }> = {
+const RAIL: Record<
+  Breakpoint,
+  { pitch: number; first: number; count: number }
+> = {
   lg: { pitch: 113.07, first: 19.31, count: 9 },
   md: { pitch: 87.605, first: 14.96, count: 9 },
 };
@@ -149,7 +152,10 @@ const BACKGROUND: Record<Breakpoint, string> = {
 };
 
 // Text column "Frame 933" (Figma 5624:1449 LG, 5687:2506 MD)
-const TEXT_BOX: Record<Breakpoint, { left: number; top: number; width: number; gap: number }> = {
+const TEXT_BOX: Record<
+  Breakpoint,
+  { left: number; top: number; width: number; gap: number }
+> = {
   lg: { left: 724, top: 202, width: 499.5, gap: 32 },
   md: { left: 455, top: 200, width: 390, gap: 16 },
 };
@@ -183,11 +189,16 @@ export function SpeakersScene() {
 
   const opening = layout["gazebo-opening"];
   const openingPath = OPENING_PATH[bp];
-  const leftRail = "balustrade-left" in layout ? layout["balustrade-left"] : null;
+  const leftRail =
+    "balustrade-left" in layout ? layout["balustrade-left"] : null;
   // LG continues from balustrade-left's first baluster; MD from the main railing's first one.
   const railExt = leftRail
     ? railExtension(layout.balustrade, leftRail.x + LEFT_FIRST_BALUSTER, bp)
-    : railExtension(layout.balustrade, layout.balustrade.x + RAIL[bp].first, bp);
+    : railExtension(
+        layout.balustrade,
+        layout.balustrade.x + RAIL[bp].first,
+        bp,
+      );
   // MD's railing stands alone at the bottom, so it follows the screen's bottom edge.
   // LG's gazebo base sits among the railings, so LG stays on the artboard.
   const railToBottom = bp === "md";
@@ -210,7 +221,11 @@ export function SpeakersScene() {
           {/* 1. Main railing (bottom layer); on MD it also carries the extension */}
           <div data-anim="speakers-balustrade" className="absolute inset-0">
             {!leftRail && (
-              <Decor src={asset("balustrade")} box={railExt} toBottom={railToBottom} />
+              <Decor
+                src={asset("balustrade")}
+                box={railExt}
+                toBottom={railToBottom}
+              />
             )}
             <Decor
               src={asset("balustrade")}
@@ -235,8 +250,14 @@ export function SpeakersScene() {
           {/* 4. Gazebo arch with the photo clipped to its opening, above the railings */}
           <div data-anim="speakers-arch" className="absolute inset-0">
             <Decor src={asset("gazebo")} box={layout.gazebo} />
-            <ArchClip path={openingPath} gazebo={layout.gazebo} opening={opening} />
-            <div style={{ ...place(opening), clipPath: `url(#${ARCH_CLIP_ID})` }}>
+            <ArchClip
+              path={openingPath}
+              gazebo={layout.gazebo}
+              opening={opening}
+            />
+            <div
+              style={{ ...place(opening), clipPath: `url(#${ARCH_CLIP_ID})` }}
+            >
               {/* object-cover fills the arch with portrait or landscape photos */}
               <CarouselSwap
                 swapKey={index}
@@ -267,7 +288,11 @@ export function SpeakersScene() {
             <h2
               data-anim="speakers-title"
               className="whitespace-nowrap text-[#FDFBFB]"
-              style={{ fontFamily: FONT.title, fontSize: u(50), lineHeight: "normal" }}
+              style={{
+                fontFamily: FONT.title,
+                fontSize: u(50),
+                lineHeight: "normal",
+              }}
             >
               {speakersSection.title}
             </h2>
@@ -283,22 +308,38 @@ export function SpeakersScene() {
                 animated
                 className="w-full"
               >
-                <div aria-live="polite" className="flex flex-col" style={{ gap: u(10) }}>
+                <div
+                  aria-live="polite"
+                  className="flex flex-col"
+                  style={{ gap: u(10) }}
+                >
                   <h3
                     className="text-white"
-                    style={{ fontFamily: FONT.name, fontSize: u(40), lineHeight: "normal" }}
+                    style={{
+                      fontFamily: FONT.name,
+                      fontSize: u(40),
+                      lineHeight: "normal",
+                    }}
                   >
                     {item.name}
                   </h3>
                   <p
                     className="font-light text-[#E8B1A5]"
-                    style={{ fontFamily: FONT.body, fontSize: u(20), lineHeight: "normal" }}
+                    style={{
+                      fontFamily: FONT.body,
+                      fontSize: u(20),
+                      lineHeight: "normal",
+                    }}
                   >
                     {item.role}
                   </p>
                   <p
                     className="font-light text-white"
-                    style={{ fontFamily: FONT.body, fontSize: u(18), lineHeight: 1.4 }}
+                    style={{
+                      fontFamily: FONT.body,
+                      fontSize: u(18),
+                      lineHeight: 1.4,
+                    }}
                   >
                     {item.bio}
                   </p>
