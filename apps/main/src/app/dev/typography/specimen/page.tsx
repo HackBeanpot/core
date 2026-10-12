@@ -38,6 +38,10 @@ const variants = [
     name: "faqQuestion",
     text: "What is HackBeanpot?",
   },
+  {
+    name: "faqQuestionOpen",
+    text: "What is HackBeanpot?",
+  },
 ] as const;
 
 /** Every variant at the current breakpoint; `/dev/typography` frames it at each width. */
