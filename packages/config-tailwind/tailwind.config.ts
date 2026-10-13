@@ -40,10 +40,14 @@ const config: Omit<Config, "content"> = {
         "Wilden-Regular": ["'Wilden-Regular'"],
         "DMSans-Regular": ["'DMSans-Regular'"],
         "DMSans-Medium": ["'DMSans-Medium'"],
-        "SpecialGothicCondensedOne-Regular": ["var(--font-gothic)"],
+        "SpecialGothicCondensedOne-Regular": [
+          "'SpecialGothicCondensedOne-Regular'",
+        ],
 
         amarante: ["var(--font-amarante)"],
-        gothic: ["var(--font-gothic)"],
+        // apps/main sets --font-gothic with next/font; elsewhere this falls
+        // back to the fonts.css face.
+        gothic: ["var(--font-gothic, 'SpecialGothicCondensedOne-Regular')"],
         merriweather: ["var(--font-merriweather)"],
       },
       transitionProperty: {

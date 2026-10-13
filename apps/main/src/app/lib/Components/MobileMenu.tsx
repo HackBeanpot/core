@@ -11,7 +11,7 @@ const FOCUSABLE =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 const itemStyles =
-  "rounded-sm font-SpecialGothicCondensedOne-Regular text-[28px] uppercase leading-normal whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
+  "rounded-sm font-gothic text-[28px] uppercase leading-normal whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
 
 type MobileMenuProps = {
   id: string;

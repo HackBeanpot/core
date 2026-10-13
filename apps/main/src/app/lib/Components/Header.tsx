@@ -40,7 +40,7 @@ const Tab = ({ label, id, active }: HeaderTab & { active: boolean }) => (
   <a
     href={`#${id}`}
     aria-current={active ? "true" : undefined}
-    className="group flex flex-col items-center justify-center gap-1 rounded-sm pt-1 font-SpecialGothicCondensedOne-Regular text-xl uppercase leading-normal whitespace-nowrap text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+    className="group flex flex-col items-center justify-center gap-1 rounded-sm pt-1 font-gothic text-xl uppercase leading-normal whitespace-nowrap text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
   >
     {label}
     <span aria-hidden className="relative h-0 w-full">
@@ -124,7 +124,7 @@ const Header = ({ activeSection, visible = true }: HeaderProps) => {
             className="h-[52.395px] w-[163px] object-cover hidden sm:block"
           />
           {/* SM uses the Mobile Menu navbar logo (5847:800) */}
-          <span className="flex items-center gap-2 font-SpecialGothicCondensedOne-Regular text-[28px] leading-normal text-white sm:hidden">
+          <span className="flex items-center gap-2 font-gothic text-[28px] leading-normal text-white sm:hidden">
             <Image
               src="/header/mobile-menu/logo-mark.svg"
               alt=""

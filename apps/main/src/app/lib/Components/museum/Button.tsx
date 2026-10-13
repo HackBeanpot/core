@@ -62,7 +62,7 @@ const Button = ({
   ...rest
 }: ButtonProps) => {
   const classes = clsx(
-    "relative inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-xl border border-[#ffda82] font-SpecialGothicCondensedOne-Regular uppercase leading-normal transition-[filter] hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:brightness-100",
+    "relative inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-xl border border-[#ffda82] font-gothic uppercase leading-normal transition-[filter] hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:brightness-100",
     variantStyles[variant],
     sizeStyles[size],
     className,

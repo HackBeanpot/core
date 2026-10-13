@@ -95,7 +95,7 @@ const MailingListForm = () => {
       <div className="flex w-full flex-col items-start gap-1 text-white">
         <h2
           id={`${messageId}-heading`}
-          className="font-SpecialGothicCondensedOne-Regular text-[28px] uppercase leading-[1.4]"
+          className="font-gothic text-[28px] uppercase leading-[1.4]"
         >
           Join our mailing list
         </h2>
