@@ -3,6 +3,8 @@ import {
   PlaceholderScene,
   placeholderAnimation,
 } from "../../(landing)/scenes/placeholder/PlaceholderScene";
+import { SpeakersScene } from "../../(landing)/scenes/speakers/SpeakersScene";
+import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
 
 export interface SceneMapEntry {
@@ -16,4 +18,11 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
     Component: PlaceholderScene,
     animation: placeholderAnimation,
   },
+  speakers: {
+    Component: SpeakersScene,
+    // Static scene only; the animation ticket replaces this with speakersAnimation.
+    animation: { id: "speakers", build: () => {} },
+  },
+  // Static until the team animation ticket adds `team.animation.ts`.
+  team: { Component: TeamScene, animation: { id: "team", build: () => {} } },
 };
