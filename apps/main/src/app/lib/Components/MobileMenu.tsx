@@ -4,7 +4,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import type { SceneId } from "../../(landing)/scenes/types";
-import { APPLICATION_URL, SPONSOR_US_HREF } from "../siteConfig";
+import { site } from "../content/site";
 import { headerTabs, showApplicationsClosed } from "./navigation";
 
 const FOCUSABLE =
@@ -187,7 +187,7 @@ const MobileMenu = ({ id, activeSection, onClose }: MobileMenuProps) => {
           })}
           <li>
             <a
-              href={SPONSOR_US_HREF}
+              href={site.sponsorUsHref}
               onClick={closeAfterNavigate}
               className={clsx(itemStyles, "text-white/75 hover:text-white")}
             >
@@ -195,9 +195,9 @@ const MobileMenu = ({ id, activeSection, onClose }: MobileMenuProps) => {
             </a>
           </li>
           <li>
-            {APPLICATION_URL ? (
+            {site.applicationUrl ? (
               <a
-                href={APPLICATION_URL}
+                href={site.applicationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={clsx(itemStyles, "text-white/75 hover:text-white")}

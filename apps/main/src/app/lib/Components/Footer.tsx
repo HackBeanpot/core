@@ -5,7 +5,8 @@ import Image from "next/image";
 import { Merriweather } from "next/font/google";
 import clsx from "clsx";
 import isValidEmail from "@repo/util/functions/isValidEmail";
-import { SOCIAL_LINKS } from "../siteConfig";
+import { site } from "../content/site";
+import type { SocialPlatform } from "../content/types";
 import ExternalLink from "./ExternalLink";
 import { Button } from "./museum";
 
@@ -13,6 +14,9 @@ const merriweather = Merriweather({
   weight: ["300", "400"],
   subsets: ["latin"],
 });
+
+const socialUrl = (platform: SocialPlatform) =>
+  site.socials.find((s) => s.platform === platform)?.url ?? "#";
 
 type MailingStatus = "idle" | "loading" | "success" | "error" | "invalid";
 
@@ -166,19 +170,19 @@ const Footer = () => {
           </Button>
           <div className="flex items-center gap-2">
             <BakedSocialButton
-              href={SOCIAL_LINKS.instagram}
+              href={socialUrl("instagram")}
               label="HackBeanpot on Instagram"
               src="/footer/instagram-ghost.svg"
             />
             <BakedSocialButton
-              href={SOCIAL_LINKS.linkedin}
+              href={socialUrl("linkedin")}
               label="HackBeanpot on LinkedIn"
               src="/footer/linkedin-ghost.svg"
             />
             <Button
               variant="ghost"
               size="icon"
-              href={SOCIAL_LINKS.tiktok}
+              href={socialUrl("tiktok")}
               external
               aria-label="HackBeanpot on TikTok"
             >

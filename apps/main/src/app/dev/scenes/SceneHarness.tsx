@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useRef } from "react";
 import { gsap, useGSAP } from "../../(landing)/scenes/gsap";
 import { MOTION_SPEC, previousScene } from "../../(landing)/scenes/motionSpec";
+import { SceneSlot } from "../../(landing)/scenes/SceneSlot";
 import {
   SCENE_IDS,
   type DevSceneId,
@@ -19,6 +20,7 @@ const isRealScene = (id: string): id is SceneId =>
 /**
  * `/dev/scenes?scene=<id>&progress=0..1[&enter=1][&w=1000]`
  * Renders one scene with its timeline paused at `progress`.
+ * `?transition=<name>` switches to `TransitionHarness`.
  */
 export function SceneHarness() {
   const params = useSearchParams();
@@ -50,8 +52,12 @@ export function SceneHarness() {
       const root = stage.current;
       if (!entry || !root) return;
       const tl = gsap.timeline({ paused: true });
-      if (enter) entry.animation.enter?.(root, tl);
-      else entry.animation.build(root, tl);
+      if (enter) {
+        entry.animation.enter?.(root, tl, {
+          prevRoot: null,
+          fromColor: prevColor,
+        });
+      } else entry.animation.build(root, tl);
       tl.progress(progress);
     },
     {
@@ -110,9 +116,9 @@ export function SceneHarness() {
       </div>
 
       {entry ? (
-        <div
-          ref={stage}
-          className="mx-auto"
+        <SceneSlot
+          slotRef={stage}
+          className="relative mx-auto overflow-hidden"
           style={
             {
               ...(forced && {
@@ -125,7 +131,7 @@ export function SceneHarness() {
           }
         >
           <entry.Component />
-        </div>
+        </SceneSlot>
       ) : (
         <p className="p-6">
           No scene &quot;{sceneId}&quot; in <code>sceneMap.ts</code>.

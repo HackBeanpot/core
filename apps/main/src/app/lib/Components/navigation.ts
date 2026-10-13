@@ -1,5 +1,5 @@
 import type { SceneId } from "../../(landing)/scenes/types";
-import { APPLICATIONS_CLOSED_MESSAGE } from "../siteConfig";
+import { site } from "../content/site";
 
 export type HeaderTab = { label: string; id: Exclude<SceneId, "hero"> };
 
@@ -15,5 +15,6 @@ export const headerTabs: HeaderTab[] = [
   { label: "FAQs", id: "faq" },
 ];
 
-/** Apply fallback while `APPLICATION_URL` is unset. */
-export const showApplicationsClosed = () => alert(APPLICATIONS_CLOSED_MESSAGE);
+/** Apply fallback while `site.applicationUrl` is unset. */
+export const showApplicationsClosed = () =>
+  alert(site.applicationsClosedMessage);

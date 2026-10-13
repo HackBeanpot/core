@@ -1,10 +1,15 @@
 import type { Site } from "./types";
 
 export const site: Site = {
-  // TODO(content): 2027 application portal URL
-  applicationUrl: "#",
+  // TODO(content): 2027 application portal URL, once the directors confirm it
+  // (last year's was https://apply.hackbeanpot.com/).
+  applicationUrl: null,
+  applicationsClosedMessage:
+    "Applications for HackBeanpot 2027 aren't open yet! Follow us on Instagram @hackbeanpot for updates.",
   // TODO(content): 2027 sponsorship packet URL
   sponsorshipPacketUrl: "#",
+  // The landing Sponsors section (swap for the packet URL if the directors prefer).
+  sponsorUsHref: "/#sponsors",
   contactEmail: "core@hackbeanpot.com",
   socials: [
     {
