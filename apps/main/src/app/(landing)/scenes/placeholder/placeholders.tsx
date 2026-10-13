@@ -31,7 +31,7 @@ export function placeholder(
           <div className="absolute inset-0 border-2 border-dashed border-white/30" />
           <p
             data-anim="label"
-            className="absolute inset-x-0 text-center font-SpecialGothicCondensedOne-Regular uppercase text-white"
+            className="absolute inset-x-0 text-center font-gothic uppercase text-white"
             style={{ top: u(380), fontSize: u(120), lineHeight: 1 }}
           >
             {id}

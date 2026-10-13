@@ -19,8 +19,11 @@ const merriweather = Merriweather({
   subsets: ["latin"],
 });
 
+// Also declared in packages/util fonts.css, but loading it there means no
+// preload and no size-matched fallback, so text visibly swaps and shifts
+// once the font arrives. next/font provides both, like the Google fonts above.
 const specialGothic = localFont({
-  src: "../../../../packages/util/src/fonts/SpecialGothicCondensedOne-Regular.ttf",
+  src: "./fonts/SpecialGothicCondensedOne-Regular.ttf",
   weight: "400",
   variable: "--font-gothic",
 });

@@ -51,7 +51,7 @@ const HeaderDemo = () => {
             <section
               key={id}
               id={id}
-              className="flex h-screen items-center justify-center font-SpecialGothicCondensedOne-Regular text-5xl uppercase text-white/20"
+              className="flex h-screen items-center justify-center font-gothic text-5xl uppercase text-white/20"
             >
               {label}
             </section>
