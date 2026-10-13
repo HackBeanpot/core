@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 import { Footer, Header } from "../lib/Components";
 import { headerTabs } from "../lib/Components/navigation";
+import { TeamScene } from "./scenes/team/TeamScene";
 import type { SceneId } from "./scenes/types";
 
 const sceneIds: SceneId[] = ["hero", ...headerTabs.map(({ id }) => id)];
@@ -43,15 +44,19 @@ const HeaderDemo = () => {
       )}
 
       <main>
-        {headerTabs.map(({ id, label }) => (
-          <section
-            key={id}
-            id={id}
-            className="flex h-screen items-center justify-center font-SpecialGothicCondensedOne-Regular text-5xl uppercase text-white/20"
-          >
-            {label}
-          </section>
-        ))}
+        {headerTabs.map(({ id, label }) =>
+          id === "team" ? (
+            <TeamScene key={id} />
+          ) : (
+            <section
+              key={id}
+              id={id}
+              className="flex h-screen items-center justify-center font-SpecialGothicCondensedOne-Regular text-5xl uppercase text-white/20"
+            >
+              {label}
+            </section>
+          ),
+        )}
       </main>
       <Footer />
     </div>
