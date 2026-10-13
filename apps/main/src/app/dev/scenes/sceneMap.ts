@@ -3,6 +3,7 @@ import {
   PlaceholderScene,
   placeholderAnimation,
 } from "../../(landing)/scenes/placeholder/PlaceholderScene";
+import { AboutScene } from "../../(landing)/scenes/about/AboutScene";
 import { SpeakersScene } from "../../(landing)/scenes/speakers/SpeakersScene";
 import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
@@ -17,6 +18,10 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
   placeholder: {
     Component: PlaceholderScene,
     animation: placeholderAnimation,
+  },
+  about: {
+    Component: AboutScene,
+    animation: { id: "about", build: () => {} },
   },
   speakers: {
     Component: SpeakersScene,
