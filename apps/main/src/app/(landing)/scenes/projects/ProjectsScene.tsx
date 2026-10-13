@@ -56,7 +56,7 @@ const ARROW = { size: 48, gap: 9 };
 
 /**
  * LG or MD, read from `--ab-w` so the harness's forced width (`&w=1000`) picks
- * MD even on a wide screen, which a `tablet:` media query wouldn't.
+ * MD even on a wide screen, which a media query wouldn't.
  */
 const useArtboard = (ref: React.RefObject<HTMLElement | null>): Artboard => {
   const [artboard, setArtboard] = useState<Artboard>("lg");
@@ -298,7 +298,10 @@ function ProjectSlide({
       <PictureFrame
         variant="copper"
         width={u(layout.card.w)}
-        innerClassName="bg-museum-ivory-light"
+        // Logos sit on white; video and embeds on black while they load.
+        innerClassName={
+          project.media.type === "image" ? "bg-museum-ivory-light" : "bg-black"
+        }
       >
         <ProjectMediaView media={project.media} />
       </PictureFrame>
@@ -333,7 +336,11 @@ function ProjectSlide({
               />
             </a>
           </Typography>
-          <Typography variant="label">{project.members.join(", ")}</Typography>
+          <div className="[&>p]:leading-[1.25]">
+            <Typography variant="label">
+              {project.members.join(", ")}
+            </Typography>
+          </div>
         </div>
         {/* The outer box takes whatever space is left; the inner one clamps
             to the whole lines that fit in it. */}
