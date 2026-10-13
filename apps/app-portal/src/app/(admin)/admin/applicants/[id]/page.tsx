@@ -34,7 +34,7 @@ export default async function ApplicantDetailPage({
 
       <ApplicantDetail applicant={applicant} />
 
-      <div className="grid gap-4 grid-cols-2 mobile:grid-cols-1 mobile-xl:grid-cols-1">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Edit decision</CardTitle>
