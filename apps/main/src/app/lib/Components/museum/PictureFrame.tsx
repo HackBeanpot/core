@@ -86,8 +86,8 @@ const FRAME_SPECS: Record<PictureFrameVariant, FrameSpec> = {
   },
   copperRect: {
     src: "/frames/copperRect.svg",
-    viewBox: { w: 172, h: 220 },
-    opening: { x: 15, y: 15, w: 142, h: 190 },
+    viewBox: { w: 220, h: 172 },
+    opening: { x: 15, y: 15, w: 190, h: 142 },
     shape: "rect",
     shadow: 4.26,
   },
@@ -139,21 +139,21 @@ const FRAME_SPECS: Record<PictureFrameVariant, FrameSpec> = {
 
 type PictureFrameContent =
   | {
-      src: string;
-      alt: string;
-      /** next/image `sizes`; frames top out at 500px wide. */
-      sizes?: string;
-      priority?: boolean;
-      children?: never;
-    }
+    src: string;
+    alt: string;
+    /** next/image `sizes`; frames top out at 500px wide. */
+    sizes?: string;
+    priority?: boolean;
+    children?: never;
+  }
   | {
-      /** Logo on white, video, iframe… fills the opening. */
-      children: ReactNode;
-      src?: never;
-      alt?: never;
-      sizes?: never;
-      priority?: never;
-    };
+    /** Logo on white, video, iframe… fills the opening. */
+    children: ReactNode;
+    src?: never;
+    alt?: never;
+    sizes?: never;
+    priority?: never;
+  };
 
 export type PictureFrameProps = PictureFrameContent & {
   variant: PictureFrameVariant;
