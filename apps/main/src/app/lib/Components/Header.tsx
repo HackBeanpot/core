@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import type { SceneId } from "../../(landing)/scenes/types";
-import { APPLICATION_URL, SPONSOR_US_HREF } from "../siteConfig";
+import { site } from "../content/site";
 import { Button } from "./museum";
 import MobileMenu from "./MobileMenu";
 import {
@@ -15,8 +15,8 @@ import {
 
 /** Apply button: links to the portal, or falls back to the closed alert. */
 const ApplyButton = () =>
-  APPLICATION_URL ? (
-    <Button variant="gold" href={APPLICATION_URL} external>
+  site.applicationUrl ? (
+    <Button variant="gold" href={site.applicationUrl} external>
       Apply
     </Button>
   ) : (
@@ -27,7 +27,7 @@ const ApplyButton = () =>
 
 const HeaderButtons = () => (
   <div className="flex items-center gap-3">
-    <Button variant="ghost" href={SPONSOR_US_HREF}>
+    <Button variant="ghost" href={site.sponsorUsHref}>
       Sponsor us
     </Button>
     <ApplyButton />
