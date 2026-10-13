@@ -20,6 +20,9 @@ const isRealScene = (id: string): id is SceneId =>
 /**
  * `/dev/scenes?scene=<id>&progress=0..1[&enter=1][&w=1000]`
  * Renders one scene with its timeline paused at `progress`.
+ * `&state=<name>` first puts the scene in a named state, for scenes whose
+ * `sceneMap.ts` entry has `states` (the hero's intro moments); `progress`
+ * then scrubs the timeline from there.
  * `?transition=<name>` switches to `TransitionHarness`.
  */
 export function SceneHarness() {
@@ -37,6 +40,7 @@ export function SceneHarness() {
   const forced = params.get("w");
   const width = Number(forced) === 1000 ? 1000 : 1512;
   const entry = SCENE_MAP[sceneId];
+  const state = entry?.states && (params.get("state") || entry.states.default);
 
   const prevId = isRealScene(sceneId) ? previousScene(sceneId) : undefined;
   const prevColor = prevId ? MOTION_SPEC[prevId].exitColor : "#000";
@@ -51,6 +55,7 @@ export function SceneHarness() {
     () => {
       const root = stage.current;
       if (!entry || !root) return;
+      if (state) entry.states!.apply(root, state);
       const tl = gsap.timeline({ paused: true });
       if (enter) {
         entry.animation.enter?.(root, tl, {
@@ -62,7 +67,7 @@ export function SceneHarness() {
     },
     {
       scope: stage,
-      dependencies: [sceneId, progress, enter, forced],
+      dependencies: [sceneId, progress, enter, forced, state],
       revertOnUpdate: true,
     },
   );
@@ -82,6 +87,20 @@ export function SceneHarness() {
             ))}
           </select>
         </label>
+        {entry?.states && (
+          <label className="flex items-center gap-2">
+            state
+            <select
+              className="rounded bg-white p-1 text-black"
+              value={state || ""}
+              onChange={(e) => update({ state: e.target.value })}
+            >
+              {entry.states.names.map((name) => (
+                <option key={name}>{name}</option>
+              ))}
+            </select>
+          </label>
+        )}
         <label className="flex flex-1 items-center gap-2">
           progress {progress.toFixed(2)}
           <input
@@ -118,6 +137,8 @@ export function SceneHarness() {
       {entry ? (
         <SceneSlot
           slotRef={stage}
+          data-harness
+          data-artboard={width}
           className="relative mx-auto overflow-hidden"
           style={
             {

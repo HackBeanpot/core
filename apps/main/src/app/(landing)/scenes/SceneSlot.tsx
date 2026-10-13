@@ -15,14 +15,23 @@ export function SceneSlot({
   className,
   style,
   slotRef,
+  ...data
 }: {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
   slotRef?: React.Ref<HTMLDivElement>;
+  /** `data-*` attributes, passed through to the root (the harness marks itself). */
+  [data: `data-${string}`]: string | number | boolean | undefined;
 }) {
   return (
-    <div ref={slotRef} data-stage-slot className={className} style={style}>
+    <div
+      ref={slotRef}
+      data-stage-slot
+      className={className}
+      style={style}
+      {...data}
+    >
       <div data-stage-scene className="relative h-full w-full">
         {children}
       </div>
