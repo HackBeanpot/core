@@ -119,6 +119,8 @@ export type Site = {
   sponsorshipPacketUrl: string;
   /** Where the header / mobile menu "Sponsor us" links go. */
   sponsorUsHref: string;
+  /** The hero's MLH trust badge links here (MLH's badge rules). */
+  mlhBadgeUrl: string;
   contactEmail: string;
   socials: SocialLink[];
 };

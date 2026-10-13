@@ -30,6 +30,8 @@ interface SceneRange {
   pinned: boolean;
   start: number;
   enterEnd: number;
+  /** Where `build` finishes. */
+  buildEnd: number;
   /** Resting point: build finished, nothing else on screen. `scrollToScene` lands here. */
   restAt: number;
   /** `useActiveScene()` switches to this scene halfway through its enter. */
@@ -61,6 +63,7 @@ function layoutScenes(scenes: SceneEntry[]) {
         pinned: false,
         start,
         enterEnd: start + UNPINNED_ENTER,
+        buildEnd: start + UNPINNED_ENTER,
         restAt: start + UNPINNED_ENTER,
         activeFrom: start + UNPINNED_ENTER / 2,
       });
@@ -82,6 +85,8 @@ function layoutScenes(scenes: SceneEntry[]) {
       pinned: true,
       start,
       enterEnd: start + enter,
+      buildEnd: start + length - hold,
+      // The first scene rests at the very top (its build plays as you scroll).
       restAt: i === 0 ? 0 : start + length - hold,
       activeFrom: start + enter / 2,
     });
@@ -275,7 +280,7 @@ function Stage({
           if (tl.duration()) master.add(tl.duration(enterLength), range.start);
         }
 
-        const buildLength = range.restAt - range.enterEnd;
+        const buildLength = range.buildEnd - range.enterEnd;
         if (animation && range.pinned && buildLength > 0) {
           const tl = gsap.timeline();
           animation.build(root, tl);
