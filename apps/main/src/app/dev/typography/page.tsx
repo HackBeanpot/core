@@ -1,32 +1,63 @@
 import React from "react";
+import { Typography } from "../../lib/Components/museum/Typography";
 
-// Frames are at least the artboard height, so LG and MD render at --u = 1.
-const BREAKPOINTS = [
-  { name: "LG", width: 1512, height: 1100 },
-  { name: "MD", width: 1000, height: 1100 },
-  { name: "SM", width: 390, height: 1100 },
-];
+const variants = [
+  {
+    name: "heroTitle",
+    text: "HackBeanpot",
+  },
+  {
+    name: "sectionTitle",
+    text: "Section Title",
+  },
+  {
+    name: "displayName",
+    text: "Jane Doe",
+  },
+  {
+    name: "cardTitle",
+    text: "Card Title",
+  },
+  {
+    name: "label",
+    text: "Label Text",
+  },
+  {
+    name: "body",
+    text: "This is an example of body text so we can see the font size and line height.",
+  },
+  {
+    name: "bodySmall",
+    text: "This is smaller body text.",
+  },
+  {
+    name: "role",
+    text: "Software Engineer",
+  },
+  {
+    name: "faqQuestion",
+    text: "What is HackBeanpot?",
+  },
+] as const;
 
-/** Each frame has its own viewport, so the real media queries apply. */
 export default function TypographyDevPage() {
   return (
-    <main className="space-y-8 bg-[#15173b] p-8">
-      {BREAKPOINTS.map(({ name, width, height }) => (
-        <section key={name} className="space-y-3">
-          <h2 className="font-bold text-white">
-            {name} ({width}px)
-          </h2>
-          <div className="overflow-x-auto">
-            <iframe
-              src="/dev/typography/specimen"
-              title={`Typography at ${name}`}
-              width={width}
-              height={height}
-              className="bg-white"
-            />
-          </div>
-        </section>
-      ))}
+    <main className="min-h-screen p-8">
+      <Typography variant="heroTitle" as="h1">
+        Typography
+      </Typography>
+
+      <div className="mt-12 space-y-12">
+        {variants.map(({ name, text }) => (
+          <section key={name} className="border-b border-gray-300 pb-8">
+            <p className="mb-3 text-sm text-gray-500">{name}</p>
+
+            <Typography variant={name} as="p">
+              {text}
+            </Typography>
+          </section>
+        ))}
+      </div>
     </main>
   );
 }
