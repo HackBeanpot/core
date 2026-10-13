@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { Amarante, Merriweather } from "next/font/google";
 import localFont from "next/font/local";
 import React from "react";
-import { Providers } from "./providers";
 
 const amarante = Amarante({
   weight: ["400"],
@@ -40,12 +39,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en" className="w-screen overflow-x-hidden bg-canopyGreen">
+    <html lang="en" className="w-screen overflow-x-hidden bg-museum-black">
       <body
-        className={`${amarante.variable} ${merriweather.variable} ${specialGothic.variable}`}
-        style={{ fontFamily: "var(--font-merriweather)" }}
+        className={`${amarante.variable} ${merriweather.variable} ${specialGothic.variable} font-merriweather`}
       >
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );

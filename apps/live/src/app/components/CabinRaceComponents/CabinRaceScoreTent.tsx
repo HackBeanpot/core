@@ -1,7 +1,7 @@
 import { Cabin } from "../../(landing)/CabinRace/CabinTypes.tsx";
 import * as React from "react";
 import { CabinRaceTent, CabinRaceYellowAirBalloon } from "../../lib/Assets/SVG";
-import { ProjectStarIcon } from "main/src/app/lib/Assets/SVG";
+import ProjectStarIcon from "../../lib/Assets/SVG/ProjectStarIcon";
 import ProgressBar from "./ProgressBar.tsx";
 import { CabinRaceHotAirBalloonTheme } from "../../lib/Assets/SVG/CabinRace/MiniHotAirBalloons/CabinRaceHotAirBalloonColors.tsx";
 import useDevice from "@util/hooks/useDevice.ts";

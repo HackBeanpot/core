@@ -8,6 +8,11 @@ import { SCENE_IDS, type SceneId, type SceneSpec } from "./types";
  * recordings and are STILL TO BE CONFIRMED with Cole and Lucy (ticket step 1).
  * Update the numbers here when the Slack thread settles, and link it in the PR.
  *
+ * MS-301 tuned the lengths so the whole page is ~20 wheel flicks (one flick is
+ * about a viewport): every scene but the hero went down by 50vh, so the
+ * pinned stage is ~1865vh instead of ~2190vh. The hero kept 500 so the door
+ * dive keeps its pace.
+ *
  * Mobile (<640px) is static: none of this runs there.
  */
 
@@ -29,7 +34,7 @@ export const HERO: SceneSpec = {
  * build: plaque rises into place, then the framed photo; candles flicker on.
  */
 export const ABOUT: SceneSpec = {
-  scrollLength: 250,
+  scrollLength: 200,
   exitColor: "#14124a",
   pinned: true,
 };
@@ -41,7 +46,7 @@ export const ABOUT: SceneSpec = {
  * them left to right, one value highlighted at a time.
  */
 export const VALUES: SceneSpec = {
-  scrollLength: 250,
+  scrollLength: 200,
   exitColor: "#1f6f96",
   pinned: true,
 };
@@ -54,7 +59,7 @@ export const VALUES: SceneSpec = {
  * shows a single layout whose portrait and text swap per speaker.
  */
 export const SPEAKERS: SceneSpec = {
-  scrollLength: 300,
+  scrollLength: 250,
   exitColor: "#c2602c",
   pinned: true,
 };
@@ -66,7 +71,7 @@ export const SPEAKERS: SceneSpec = {
  * fade in, ribbons sweep across, stars twinkle.
  */
 export const TESTIMONIALS: SceneSpec = {
-  scrollLength: 300,
+  scrollLength: 250,
   exitColor: "#3c1a5e",
   pinned: true,
 };
@@ -77,7 +82,7 @@ export const TESTIMONIALS: SceneSpec = {
  * build: title, project frame and description fade in beside the arch.
  */
 export const PROJECTS: SceneSpec = {
-  scrollLength: 250,
+  scrollLength: 200,
   exitColor: "#6f5f9c",
   pinned: true,
 };
@@ -88,7 +93,7 @@ export const PROJECTS: SceneSpec = {
  * build: lights come up, the six sponsor frames and the CTA fade in.
  */
 export const SPONSORS: SceneSpec = {
-  scrollLength: 250,
+  scrollLength: 200,
   exitColor: "#2a2d6a",
   pinned: true,
 };
@@ -99,7 +104,7 @@ export const SPONSORS: SceneSpec = {
  * build: the two portrait rails slide in; benches rise from the floor.
  */
 export const TEAM: SceneSpec = {
-  scrollLength: 250,
+  scrollLength: 200,
   exitColor: "#1f5f6f",
   pinned: true,
 };

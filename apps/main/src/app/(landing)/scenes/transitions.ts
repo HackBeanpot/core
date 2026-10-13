@@ -1,4 +1,5 @@
 import type { gsap } from "./gsap";
+import type { SceneAnimation } from "./types";
 
 /**
  * Shared `enter` transitions. Call one from a scene's `enter`:
@@ -207,3 +208,17 @@ export const TRANSITIONS = {
 } satisfies Record<string, Transition>;
 
 export type TransitionName = keyof typeof TRANSITIONS;
+
+/**
+ * A scene `enter` that runs one of the transitions above with fixed options.
+ *
+ * @example
+ * enter: enterWith("fogWipe", { direction: "down" }),
+ */
+export const enterWith =
+  (
+    name: TransitionName,
+    opts: Record<string, unknown> = {},
+  ): NonNullable<SceneAnimation["enter"]> =>
+  (root, tl, { prevRoot, fromColor }) =>
+    TRANSITIONS[name](tl, prevRoot, root, { fromColor, ...opts });
