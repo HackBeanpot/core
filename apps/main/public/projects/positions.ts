@@ -34,6 +34,13 @@ export const projectsAssets = {
       w: 1104,
       h: 797,
     },
+    eyeGlow: {
+      src: "/projects/lg/eye-glow.svg",
+      x: 380.001,
+      y: 742.404,
+      w: 47.838,
+      h: 47.838,
+    },
     wall: { src: "/projects/lg/wall.svg", x: 0, y: 0, w: 1512, h: 982 },
     archLeft: {
       src: "/projects/lg/arch-left.svg",
@@ -92,6 +99,13 @@ export const projectsAssets = {
       y: 185,
       w: 891,
       h: 797,
+    },
+    eyeGlow: {
+      src: "/projects/md/eye-glow.svg",
+      x: 167.645,
+      y: 742.404,
+      w: 47.838,
+      h: 47.838,
     },
     wall: { src: "/projects/md/wall.svg", x: 0, y: 0, w: 1000, h: 982 },
     archLeft: {

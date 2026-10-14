@@ -53,9 +53,10 @@ const ART_BOARD_WIDTH: Record<Artboard, number> = { lg: 1512, md: 1000 };
 const ART_BOARD_HEIGHT = 982;
 const CARD_GAP = 32;
 const ARROW = { size: 48, gap: 9 };
+const CEILING_BOTTOM = 113;
 
 /**
- * LG or MD, read from `--ab-w` so the harness's forced width (`&w=1000`) picks
+ * LG or MD, read from `--ab-w` so the dev harness's forced width (`&w=1000`) picks
  * MD even on a wide screen, which a media query wouldn't.
  */
 const useArtboard = (ref: React.RefObject<HTMLElement | null>): Artboard => {
@@ -78,33 +79,6 @@ const useArtboard = (ref: React.RefObject<HTMLElement | null>): Artboard => {
   return artboard;
 };
 
-/**
- * How many whole lines of `ref`'s text fit in its box, so a line clamp ends on
- * a full line wherever a wrapped title or the screen size leaves the space.
- */
-const useLinesThatFit = (
-  ref: React.RefObject<HTMLElement | null>,
-): number | undefined => {
-  const [lines, setLines] = useState<number>();
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const fit = () => {
-      let text: Element = el;
-      while (text.firstElementChild) text = text.firstElementChild;
-      const lineHeight = parseFloat(getComputedStyle(text).lineHeight);
-      setLines(Math.max(1, Math.floor(el.clientHeight / lineHeight)));
-    };
-    fit();
-    const observer = new ResizeObserver(fit);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [ref]);
-
-  return lines;
-};
-
 // The exhibit art is clipped at the artboard's left edge, so it hangs off the
 // viewport's left and bottom edges instead of the artboard's; on a screen wider
 // or taller than the artboard's ratio it would otherwise float mid-wall.
@@ -118,12 +92,18 @@ const anchored = ({ x, y, w, h }: Box): CSSProperties => ({
 function Layer({
   asset,
   anim,
+  className = "",
 }: {
   asset: Box & { src: string };
   anim?: string;
+  className?: string;
 }) {
   return (
-    <div data-anim={anim} className="absolute" style={anchored(asset)}>
+    <div
+      data-anim={anim}
+      className={`absolute ${className}`}
+      style={anchored(asset)}
+    >
       <Image src={asset.src} alt="" fill unoptimized />
     </div>
   );
@@ -136,34 +116,33 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
   const panel = layout.wallPanel;
 
   return (
-    <div
-      className="relative h-full w-full"
-      style={{
-        background: "linear-gradient(179deg, #060825 0%, #602a80 100%)",
-      }}
-    >
-      <Layer asset={assets.doorwayPlinth} />
-      <Layer asset={assets.dinosaur} anim="projects-dino" />
-      <Layer asset={assets.ropeStanchions} anim="projects-ropes" />
-      {/* The design uses linear-burn at 50%, which CSS lacks (plus-darker is
-          Safari-only). Color-burn at 25% then multiply at 50% fits it closely:
-          multiply alone leaves the dark interior too light, and color-burn
-          alone leaves the bones untinted. */}
-      {(
-        [
-          "opacity-25 mix-blend-color-burn",
-          "opacity-50 mix-blend-multiply",
-        ] as const
-      ).map((blend) => (
+    <div className="relative h-full w-full">
+      {/* The warm doorway light is linear burn at 50%, which CSS lacks
+          outside Safari (plus-darker). Linear burn is plus-lighter on inverted
+          colors, so the exhibit is drawn inverted, the light is added in its
+          inverted colors (#ca6330 → #5f2666), and the outer invert undoes it. */}
+      <div className="absolute inset-0 invert">
         <div
-          key={blend}
-          className={`absolute ${blend}`}
+          className="absolute inset-0 invert"
+          // The design's gradient runs from 4px above the artboard to 872px
+          // below it, so the doorway stays near black. Stops are measured from
+          // the bottom, where the exhibit is anchored.
+          style={{
+            background: `linear-gradient(179deg, #060825 calc(100% - ${u(986.3)}), #602a80 calc(100% + ${u(872)}))`,
+          }}
+        >
+          <Layer asset={assets.doorwayPlinth} />
+          <Layer asset={assets.dinosaur} anim="projects-dino" />
+          <Layer asset={assets.ropeStanchions} anim="projects-ropes" />
+        </div>
+        <div
+          className="absolute opacity-50 mix-blend-plus-lighter"
           style={{
             ...anchored(layout.lightWarm),
-            background: "linear-gradient(180deg, #ca6330, #5f2666)",
+            background: "linear-gradient(180deg, #359ccf, #a0d999)",
           }}
         />
-      ))}
+      </div>
       {/* The design fades the color toward the transparent stop's blue; CSS
           interpolates premultiplied and would stay cream, so the midpoints
           are spelled out. */}
@@ -176,6 +155,9 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
         }}
       />
       <Layer asset={assets.doorwayFog} anim="projects-fog" />
+      {/* Its own file: blending inside the fog SVG only reaches the SVG's
+          own transparent backdrop, so the glow drew at full strength. */}
+      <Layer asset={assets.eyeGlow} className="mix-blend-overlay" />
 
       {/* `wall.svg` has no viewBox, so it can't scale; it's two rects that
           also need to reach the viewport edges. */}
@@ -196,12 +178,25 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
         <Layer asset={assets.archLeft} />
         <Layer asset={assets.archRight} />
       </div>
+      {/* The strip's art blends with plus-darker, which browsers ignore inside
+          an image, so it would lighten the wall. Over this wall, difference
+          with the inverted art computes the same thing. */}
       <div
-        className="absolute inset-x-0 top-0 bg-repeat-x"
+        className="absolute inset-x-0 top-0 bg-repeat-x mix-blend-difference invert"
         style={{
           height: u(assets.ceilingStrip.h),
           backgroundImage: `url("${assets.ceilingStrip.src}")`,
           backgroundSize: `${u(assets.ceilingStrip.w)} 100%`,
+        }}
+      />
+      {/* The art's drop shadow, which the inversion above would turn light.
+          Plus-darker subtracts its 4.5% (25% × the strip's 18%) from each
+          channel; over this wall, that's black at about 10%. */}
+      <div
+        className="absolute inset-x-0 top-0"
+        style={{
+          height: u(CEILING_BOTTOM),
+          boxShadow: `0 ${u(2.055)} ${u(2.055)} rgb(0 0 0 / 0.1)`,
         }}
       />
       <div
@@ -260,7 +255,6 @@ function ProjectMediaView({ media }: { media: ProjectMedia }) {
           alt={media.alt}
           fill
           sizes="(max-width: 1279px) 400px, 600px"
-          // Logos sit on white; cropping would cut them.
           className="object-contain"
         />
       );
@@ -290,8 +284,6 @@ function ProjectSlide({
 }) {
   const layout = LAYOUT[artboard];
   const { externalLink } = projectsAssets[artboard];
-  const descriptionRef = useRef<HTMLDivElement>(null);
-  const descriptionLines = useLinesThatFit(descriptionRef);
 
   return (
     <div className="flex flex-col" style={{ gap: u(CARD_GAP) }}>
@@ -342,23 +334,7 @@ function ProjectSlide({
             </Typography>
           </div>
         </div>
-        {/* The outer box takes whatever space is left; the inner one clamps
-            to the whole lines that fit in it. */}
-        <div
-          ref={descriptionRef}
-          className="min-h-0 flex-1 basis-0 overflow-hidden"
-        >
-          <div
-            className="overflow-hidden"
-            style={{
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: descriptionLines,
-            }}
-          >
-            <Typography variant="body">{project.description}</Typography>
-          </div>
-        </div>
+        <Typography variant="body">{project.description}</Typography>
       </div>
     </div>
   );
