@@ -1,8 +1,4 @@
 import type { ComponentType } from "react";
-import {
-  PlaceholderScene,
-  placeholderAnimation,
-} from "../../(landing)/scenes/placeholder/PlaceholderScene";
 import { AboutScene } from "../../(landing)/scenes/about/AboutScene";
 import {
   HERO_PREVIEW,
@@ -11,11 +7,13 @@ import {
 import { HeroScene } from "../../(landing)/scenes/hero/HeroScene";
 import { SpeakersScene } from "../../(landing)/scenes/speakers/SpeakersScene";
 import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
+import { TestimonialsScene } from "../../(landing)/scenes/testimonials/TestimonialsScene";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
 
 export interface SceneMapEntry {
   Component: ComponentType;
-  animation: SceneAnimation;
+  /** Leave out while the scene is static; the harness then hides progress/enter. */
+  animation?: SceneAnimation;
   /** Named states for `&state=<name>` (e.g. moments in the hero's intro). */
   states?: {
     names: readonly string[];
@@ -27,10 +25,6 @@ export interface SceneMapEntry {
 
 /** Each scene ticket adds one line here to show up in `/dev/scenes`. */
 export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
-  placeholder: {
-    Component: PlaceholderScene,
-    animation: placeholderAnimation,
-  },
   hero: {
     Component: HeroScene,
     animation: heroAnimation,
@@ -44,6 +38,11 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
     Component: SpeakersScene,
     // Static scene only; the animation ticket replaces this with speakersAnimation.
     animation: { id: "speakers", build: () => {} },
+  },
+  testimonials: {
+    Component: TestimonialsScene,
+    // Static for now; MS-306 replaces this with testimonialsAnimation.
+    animation: { id: "testimonials", build: () => {} },
   },
   // Static until the team animation ticket adds `team.animation.ts`.
   team: { Component: TeamScene, animation: { id: "team", build: () => {} } },
