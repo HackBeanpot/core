@@ -44,6 +44,7 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
   projects: {
     Component: ProjectsScene,
     animation: { id: "projects", build: () => {} },
+  },
   testimonials: {
     Component: TestimonialsScene,
     // Static for now; MS-306 replaces this with testimonialsAnimation.
