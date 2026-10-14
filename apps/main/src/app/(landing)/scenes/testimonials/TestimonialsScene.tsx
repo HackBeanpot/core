@@ -213,6 +213,7 @@ export function TestimonialsScene({
   items?: Testimonial[];
 }) {
   const artboardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const bp = useArtboardBreakpoint(artboardRef);
   const layout = LAYOUT[bp];
   const box = positions[bp];
@@ -224,6 +225,20 @@ export function TestimonialsScene({
   if (!item) return null;
 
   const quoteSize = item.quote.length > LONG_QUOTE ? 16 : 18;
+
+  // A focused button that becomes disabled drops focus to <body>, which would
+  // stop ←/→ working after clicking to the first/last item. Keep focus on the
+  // carousel region instead.
+  const focusRegion = () =>
+    cardRef.current?.querySelector<HTMLElement>('[role="region"]')?.focus();
+  const onPrev = () => {
+    prev();
+    if (index - 1 <= 0) focusRegion();
+  };
+  const onNext = () => {
+    next();
+    if (index + 1 >= items.length - 1) focusRegion();
+  };
 
   const fog = (f: FogPlacement) => (
     <div
@@ -317,6 +332,7 @@ export function TestimonialsScene({
           </h2>
 
           <div
+            ref={cardRef}
             data-anim="testimonials-card"
             className="absolute"
             style={{
@@ -404,13 +420,13 @@ export function TestimonialsScene({
                 <CarouselArrow
                   direction="left"
                   disabled={!canPrev}
-                  onClick={prev}
+                  onClick={onPrev}
                   aria-label="Previous testimonial"
                 />
                 <CarouselArrow
                   direction="right"
                   disabled={!canNext}
-                  onClick={next}
+                  onClick={onNext}
                   aria-label="Next testimonial"
                 />
               </div>
