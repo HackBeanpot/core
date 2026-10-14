@@ -113,8 +113,14 @@ export type SocialLink = {
 };
 
 export type Site = {
-  applicationUrl: string;
+  /** `null` until applications open; Apply then shows `applicationsClosedMessage`. */
+  applicationUrl: string | null;
+  applicationsClosedMessage: string;
   sponsorshipPacketUrl: string;
+  /** Where the header / mobile menu "Sponsor us" links go. */
+  sponsorUsHref: string;
+  /** The hero's MLH trust badge links here (MLH's badge rules). */
+  mlhBadgeUrl: string;
   contactEmail: string;
   socials: SocialLink[];
 };

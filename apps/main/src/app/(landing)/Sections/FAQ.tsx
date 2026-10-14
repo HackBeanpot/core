@@ -104,8 +104,7 @@ export default function FAQ() {
   const bannerStyles = clsx(
     "relative w-full pointer-events-none flex items-center justify-center z-10",
     isDesktop && "h-[45vh] pt-20",
-    isTablet &&
-      "h-[35vh] pt-10 mobile-xl:h-[30vh] mobile-xl:pt-40 mobile-xl:mb-20",
+    isTablet && "h-[30vh] pt-40 mb-20 sm:h-[35vh] sm:pt-10 sm:mb-0",
     isMobile && "h-[20vh] pt-10",
   );
 

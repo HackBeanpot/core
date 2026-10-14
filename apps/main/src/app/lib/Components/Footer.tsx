@@ -5,7 +5,8 @@ import Image from "next/image";
 import { Merriweather } from "next/font/google";
 import clsx from "clsx";
 import isValidEmail from "@repo/util/functions/isValidEmail";
-import { SOCIAL_LINKS } from "../siteConfig";
+import { site } from "../content/site";
+import type { SocialPlatform } from "../content/types";
 import ExternalLink from "./ExternalLink";
 import { Button } from "./museum";
 
@@ -13,6 +14,9 @@ const merriweather = Merriweather({
   weight: ["300", "400"],
   subsets: ["latin"],
 });
+
+const socialUrl = (platform: SocialPlatform) =>
+  site.socials.find((s) => s.platform === platform)?.url ?? "#";
 
 type MailingStatus = "idle" | "loading" | "success" | "error" | "invalid";
 
@@ -91,7 +95,7 @@ const MailingListForm = () => {
       <div className="flex w-full flex-col items-start gap-1 text-white">
         <h2
           id={`${messageId}-heading`}
-          className="font-SpecialGothicCondensedOne-Regular text-[28px] uppercase leading-[1.4]"
+          className="font-gothic text-[28px] uppercase leading-[1.4]"
         >
           Join our mailing list
         </h2>
@@ -159,26 +163,26 @@ const Footer = () => {
 
   return (
     <footer className="relative w-full bg-transparent">
-      <div className="flex flex-row items-center justify-between gap-10 px-20 pb-[93px] pt-[70px] tablet:px-12 tablet:pb-16 mobile-xl:flex-col mobile-xl:items-start mobile-xl:px-5 mobile-xl:pb-12 mobile:flex-col mobile:items-start mobile:px-5 mobile:pb-12">
+      <div className="flex flex-col items-start justify-between gap-10 px-5 pb-12 pt-[70px] sm:flex-row sm:items-center sm:px-12 sm:pb-16 xl:px-20 xl:pb-[93px]">
         <div className="flex w-[343px] max-w-full shrink-0 flex-col items-start gap-4">
           <Button variant="ghost" onClick={handleBackToTop}>
             Back to top
           </Button>
           <div className="flex items-center gap-2">
             <BakedSocialButton
-              href={SOCIAL_LINKS.instagram}
+              href={socialUrl("instagram")}
               label="HackBeanpot on Instagram"
               src="/footer/instagram-ghost.svg"
             />
             <BakedSocialButton
-              href={SOCIAL_LINKS.linkedin}
+              href={socialUrl("linkedin")}
               label="HackBeanpot on LinkedIn"
               src="/footer/linkedin-ghost.svg"
             />
             <Button
               variant="ghost"
               size="icon"
-              href={SOCIAL_LINKS.tiktok}
+              href={socialUrl("tiktok")}
               external
               aria-label="HackBeanpot on TikTok"
             >

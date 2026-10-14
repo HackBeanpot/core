@@ -27,6 +27,14 @@ export interface SceneSpec {
   pinned: boolean;
 }
 
+/** Passed to `SceneAnimation.enter` by the orchestrator and the harness. */
+export interface EnterContext {
+  /** The previous scene's root (`null` in the harness or for the first scene). */
+  prevRoot: HTMLElement | null;
+  /** The previous scene's `exitColor` from `motionSpec.ts`. */
+  fromColor: string;
+}
+
 /**
  * A scene's animation, exported from `<name>.animation.ts`. The orchestrator
  * (MS-201) and the dev harness (`/dev/scenes`) both consume this shape, so
@@ -56,8 +64,9 @@ export interface SceneSpec {
  * @example
  * export const aboutAnimation: SceneAnimation = {
  *   id: "about",
- *   enter: (root, tl) => {
- *     tl.from(root.querySelector('[data-anim="about-plaque"]'), { autoAlpha: 0, y: 40 });
+ *   enter: (root, tl, ctx) => {
+ *     crossfade(tl, ctx.prevRoot, root, { fromColor: ctx.fromColor });
+ *     tl.from(root.querySelector('[data-anim="about-plaque"]'), { autoAlpha: 0, y: 40 }, 0.5);
  *   },
  *   build: (root, tl) => {
  *     tl.to(root.querySelector('[data-anim="about-frame"]'), { x: 0, duration: 1 });
@@ -69,9 +78,13 @@ export interface SceneAnimation {
   /**
    * Transition in from the previous scene's `exitColor`: fade/slide this
    * scene's layers over the color already behind them. Optional (the hero
-   * has no enter).
+   * has no enter). `ctx` carries what a helper from `transitions.ts` needs.
    */
-  enter?: (root: HTMLElement, tl: gsap.core.Timeline) => void;
+  enter?: (
+    root: HTMLElement,
+    tl: gsap.core.Timeline,
+    ctx: EnterContext,
+  ) => void;
   /** The in-scene animation, scrubbed while the scene is pinned. */
   build: (root: HTMLElement, tl: gsap.core.Timeline) => void;
 }

@@ -27,7 +27,7 @@
   --ab-h: 982;
 }
 
-/* MD (640–1279px, Tailwind `tablet:`) */
+/* MD (640–1279px, Tailwind `sm:` until `xl:`) */
 @media (min-width: 640px) and (max-width: 1279px) {
   :root {
     --ab-w: 1000;

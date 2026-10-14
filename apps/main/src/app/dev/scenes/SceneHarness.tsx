@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useRef } from "react";
 import { gsap, useGSAP } from "../../(landing)/scenes/gsap";
 import { MOTION_SPEC, previousScene } from "../../(landing)/scenes/motionSpec";
+import { SceneSlot } from "../../(landing)/scenes/SceneSlot";
 import {
   SCENE_IDS,
   type DevSceneId,
@@ -19,6 +20,10 @@ const isRealScene = (id: string): id is SceneId =>
 /**
  * `/dev/scenes?scene=<id>&progress=0..1[&enter=1][&w=1000]`
  * Renders one scene with its timeline paused at `progress`.
+ * `&state=<name>` first puts the scene in a named state, for scenes whose
+ * `sceneMap.ts` entry has `states` (the hero's intro moments); `progress`
+ * then scrubs the timeline from there.
+ * `?transition=<name>` switches to `TransitionHarness`.
  */
 export function SceneHarness() {
   const params = useSearchParams();
@@ -38,6 +43,7 @@ export function SceneHarness() {
   const entry = SCENE_MAP[sceneId];
   const sceneIds = Object.keys(SCENE_MAP);
   const animation = entry?.animation;
+  const state = entry?.states && (params.get("state") || entry.states.default);
 
   const prevId = isRealScene(sceneId) ? previousScene(sceneId) : undefined;
   const prevColor = prevId ? MOTION_SPEC[prevId].exitColor : "#000";
@@ -54,15 +60,21 @@ export function SceneHarness() {
   useGSAP(
     () => {
       const root = stage.current;
-      if (!animation || !root) return;
+      if (!entry || !root) return;
+      if (state) entry.states!.apply(root, state);
+      if (!animation) return;
       const tl = gsap.timeline({ paused: true });
-      if (enter) animation.enter?.(root, tl);
-      else animation.build(root, tl);
+      if (enter) {
+        animation.enter?.(root, tl, {
+          prevRoot: null,
+          fromColor: prevColor,
+        });
+      } else animation.build(root, tl);
       tl.progress(progress);
     },
     {
       scope: stage,
-      dependencies: [sceneId, progress, enter, forced],
+      dependencies: [sceneId, progress, enter, forced, state],
       revertOnUpdate: true,
     },
   );
@@ -83,6 +95,20 @@ export function SceneHarness() {
             >
               {sceneIds.map((id) => (
                 <option key={id}>{id}</option>
+              ))}
+            </select>
+          </label>
+        )}
+        {entry?.states && (
+          <label className="flex items-center gap-2">
+            state
+            <select
+              className="rounded bg-white p-1 text-black"
+              value={state || ""}
+              onChange={(e) => update({ state: e.target.value })}
+            >
+              {entry.states.names.map((name) => (
+                <option key={name}>{name}</option>
               ))}
             </select>
           </label>
@@ -135,9 +161,11 @@ export function SceneHarness() {
       </div>
 
       {entry ? (
-        <div
-          ref={stage}
-          className="mx-auto"
+        <SceneSlot
+          slotRef={stage}
+          data-harness
+          data-artboard={width}
+          className="relative mx-auto overflow-hidden"
           style={
             {
               ...(forced && {
@@ -150,7 +178,7 @@ export function SceneHarness() {
           }
         >
           <entry.Component />
-        </div>
+        </SceneSlot>
       ) : (
         <p className="p-6 pt-20">
           No scene &quot;{sceneId}&quot; in <code>sceneMap.ts</code>.
