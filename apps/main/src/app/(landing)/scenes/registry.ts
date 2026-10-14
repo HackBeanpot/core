@@ -2,6 +2,8 @@ import type { ComponentType } from "react";
 import { heroAnimation } from "./hero/hero.animation";
 import { HeroScene } from "./hero/HeroScene";
 import { placeholder } from "./placeholder/placeholders";
+import { testimonialsAnimation } from "./testimonials/testimonials.animation";
+import { TestimonialsScene } from "./testimonials/TestimonialsScene";
 import type { SceneAnimation, SceneId } from "./types";
 
 export interface SceneEntry {
@@ -28,7 +30,11 @@ export const SCENES: SceneEntry[] = [
   placeholder("about", "crossfade"),
   placeholder("values", "fogWipe"),
   placeholder("speakers", "curtain", { color: "#8f1d1a" }),
-  placeholder("testimonials", "zoomThrough"),
+  {
+    id: "testimonials",
+    Component: TestimonialsScene,
+    animation: testimonialsAnimation,
+  },
   placeholder("projects", "pan"),
   placeholder("sponsors", "crossfade", { scaleFrom: 1.08 }),
   placeholder("team", "fogWipe", { direction: "down" }),
