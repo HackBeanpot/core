@@ -41,7 +41,8 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
   },
   testimonials: {
     Component: TestimonialsScene,
-    // Static for now; MS-306 adds testimonials.animation.ts here.
+    // Static for now; MS-306 replaces this with testimonialsAnimation.
+    animation: { id: "testimonials", build: () => {} },
   },
   // Static until the team animation ticket adds `team.animation.ts`.
   team: { Component: TeamScene, animation: { id: "team", build: () => {} } },
