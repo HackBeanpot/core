@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { heroAnimation } from "./hero/hero.animation";
 import { HeroScene } from "./hero/HeroScene";
 import { placeholder } from "./placeholder/placeholders";
+import { ProjectsScene } from "./projects/ProjectsScene";
 import { testimonialsAnimation } from "./testimonials/testimonials.animation";
 import { TestimonialsScene } from "./testimonials/TestimonialsScene";
 import type { SceneAnimation, SceneId } from "./types";
@@ -35,7 +36,7 @@ export const SCENES: SceneEntry[] = [
     Component: TestimonialsScene,
     animation: testimonialsAnimation,
   },
-  placeholder("projects", "pan"),
+  { id: "projects", Component: ProjectsScene },
   placeholder("sponsors", "crossfade", { scaleFrom: 1.08 }),
   placeholder("team", "fogWipe", { direction: "down" }),
   placeholder("faq", "crossfade"),

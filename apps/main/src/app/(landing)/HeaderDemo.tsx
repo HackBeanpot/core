@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 import { Footer, Header } from "../lib/Components";
 import { headerTabs } from "../lib/Components/navigation";
+import { ProjectsScene } from "./scenes/projects/ProjectsScene";
 import { TeamScene } from "./scenes/team/TeamScene";
 import type { SceneId } from "./scenes/types";
 
@@ -47,6 +48,8 @@ const HeaderDemo = () => {
         {headerTabs.map(({ id, label }) =>
           id === "team" ? (
             <TeamScene key={id} />
+          ) : id === "projects" ? (
+            <ProjectsScene key={id} />
           ) : (
             <section
               key={id}

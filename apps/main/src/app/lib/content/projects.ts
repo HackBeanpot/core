@@ -5,17 +5,34 @@ export const projectsSection: SectionHeading = {
 };
 
 export const projects: Project[] = [
-  // TODO(content): placeholder project; replace with real past projects, media and URLs
   {
-    title: "Memora",
-    url: "#",
-    members: ["Kaleb Cole", "Yaroslav Petrashko", "Shrey Agarwal", "Aditya"],
+    title: "Impact Trail",
+    url: "https://devpost.com/software/impact-trail",
+    members: [
+      "Jackson Zheng",
+      "Matt Eng",
+      "Seifer Mathias",
+      "Yash Kishore Maheshwari",
+      "Rida Malik",
+    ],
     description:
-      "Memora acts as a personalized road map through memories, designed for individuals in the early to moderate stages of dementia and their families. Using personal family photos, Memora stimulates memory recall through engaging quizzes and a user-friendly interface.",
+      "Impact Trail allows people to connect to their community after receiving a daily quest. Regardless of where you stand in the community, a citizen, business, or a organization we have a place for you.",
     media: {
-      type: "image",
-      src: "/projects/media/placeholder.webp",
-      alt: "Memora logo: a brain with a puzzle piece",
+      type: "embed",
+      url: "https://www.youtube-nocookie.com/embed/XVDpaBWwDxI",
+      title: "Impact Trail demo video",
+    },
+  },
+  {
+    title: "FairOps",
+    url: "https://devpost.com/software/fairops",
+    members: ["Henry Lodge", "Shiv Patel"],
+    description:
+      "FairOps is an AI-powered operations platform for events that replaces spreadsheets, paper maps, and cash handshakes with AI-optimized layouts, on-chain vendor payments, and dashboards to manage it all",
+    media: {
+      type: "embed",
+      url: "https://www.youtube-nocookie.com/embed/ChBEzdS4zik",
+      title: "FairOps demo video",
     },
   },
 ];
