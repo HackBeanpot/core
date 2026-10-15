@@ -125,7 +125,7 @@ export function SignInForm({ callbackUrl }: { callbackUrl?: string }) {
             ) : status === "sent" ? (
               <p
                 className={
-                  "w-full text-[#319948] text-end text-[12px] whitespace-nowrap"
+                  "w-full text-[#319948] text-center text-[12px] whitespace-nowrap"
                 }
               >
                 Check your email for a sign-in link!
