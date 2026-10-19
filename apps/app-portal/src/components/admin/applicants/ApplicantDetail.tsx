@@ -52,7 +52,9 @@ function FileAnswer({
   const filename = resume?.id === value ? resume.filename : value;
   return (
     <a
-      href={`/api/v1/uploads/${value}`}
+      href={`/api/v1/uploads/${value}?redirect=1`}
+      target="_blank"
+      rel="noopener noreferrer"
       className="font-medium text-blue-600 hover:underline"
     >
       {filename}
