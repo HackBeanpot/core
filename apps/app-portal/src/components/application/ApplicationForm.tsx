@@ -21,6 +21,7 @@ import { Form } from "@/components/ui/form";
 import {
   buildApplicationSchema,
   buildDefaultValues,
+  coerceResponse,
   exceedsLimit,
 } from "@/lib/application/schema";
 import type {
@@ -91,9 +92,20 @@ export function ApplicationForm() {
         setRegState(state);
         setSections(state.sections);
         schemaRef.current = buildApplicationSchema(state.sections, "client");
+        const responses = { ...state.responses };
+        for (const section of state.sections) {
+          for (const question of section.questions) {
+            if (question.id in responses) {
+              responses[question.id] = coerceResponse(
+                question,
+                responses[question.id],
+              );
+            }
+          }
+        }
         form.reset({
           ...buildDefaultValues(state.sections),
-          ...state.responses,
+          ...responses,
         });
         const savedIndex = state.sections.findIndex(
           (section) => section.id === state.lastSectionId,

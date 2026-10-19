@@ -128,6 +128,30 @@ export function buildApplicationSchema(
   return target === "server" ? (schema.strict() as typeof schema) : schema;
 }
 
+// Converts a saved answer to the shape its question currently expects. Admins can change a
+// question's type in /admin/settings after applicants have answered it (the ID stays the same),
+// so a draft can hold e.g. an array for what's now a text question — which crashed the text
+// inputs — or a single string for what's now a multi-select, which the checkboxes would
+// then split into characters on the next toggle.
+export function coerceResponse(
+  question: Question,
+  value: string | string[] | null | undefined,
+): string | string[] | null {
+  const strings = (Array.isArray(value) ? value : [value]).filter(
+    (v): v is string => typeof v === "string" && v !== "",
+  );
+  switch (question.type) {
+    case "multi_select":
+      return strings;
+    case "file_upload":
+      return strings[0] ?? null;
+    case "select":
+      return strings.length === 1 ? strings[0] : "";
+    default:
+      return strings.join(", ");
+  }
+}
+
 export function buildDefaultValues(
   sections: readonly FormSection[],
 ): Record<string, string | string[] | null> {

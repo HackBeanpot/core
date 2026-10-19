@@ -1,6 +1,10 @@
 import { APPLICATION_SECTIONS } from "./questions";
-import { buildApplicationSchema, buildDefaultValues } from "./schema";
-import type { FormSection } from "./types";
+import {
+  buildApplicationSchema,
+  buildDefaultValues,
+  coerceResponse,
+} from "./schema";
+import type { FormSection, Question } from "./types";
 
 describe("buildApplicationSchema", () => {
   it("builds a schema from the live 2026 question set with no required fields missing", () => {
@@ -209,5 +213,35 @@ describe("APPLICATION_SECTIONS (2026 content)", () => {
         }
       }
     }
+  });
+});
+
+describe("coerceResponse", () => {
+  const question = (type: Question["type"]): Question => ({
+    id: "q",
+    label: "Q",
+    type,
+    required: false,
+  });
+
+  it("turns a saved array into text for a question that is now text", () => {
+    expect(coerceResponse(question("long_text"), ["a", "b"])).toBe("a, b");
+    expect(coerceResponse(question("short_text"), null)).toBe("");
+  });
+
+  it("wraps a saved string for a question that is now a multi-select", () => {
+    expect(coerceResponse(question("multi_select"), "asian")).toEqual([
+      "asian",
+    ]);
+    expect(coerceResponse(question("multi_select"), null)).toEqual([]);
+  });
+
+  it("leaves answers that already match the question type alone", () => {
+    expect(coerceResponse(question("long_text"), "hello")).toBe("hello");
+    expect(coerceResponse(question("multi_select"), ["a"])).toEqual(["a"]);
+    expect(coerceResponse(question("select"), "yes")).toBe("yes");
+    expect(coerceResponse(question("file_upload"), "upload-1")).toBe(
+      "upload-1",
+    );
   });
 });
