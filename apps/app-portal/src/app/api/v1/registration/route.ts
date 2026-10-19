@@ -25,6 +25,7 @@ const draftBodySchema = z.object({
     z.string(),
     z.union([z.string(), z.array(z.string()), z.null()]),
   ),
+  lastSectionId: z.string().min(1).max(200).optional(),
 });
 
 async function parseJsonBody(req: NextRequest): Promise<unknown> {
@@ -57,6 +58,7 @@ export async function GET() {
       ...state,
       responses: draft.responses,
       updatedAt: draft.updatedAt,
+      lastSectionId: draft.lastSectionId,
     });
   }
   return NextResponse.json(state);
@@ -81,6 +83,7 @@ export async function POST(req: NextRequest) {
     const draft = await saveDraft(
       userId,
       parsedBody.data.responses as ApplicationResponses,
+      parsedBody.data.lastSectionId,
     );
     return NextResponse.json({ ok: true, savedAt: draft.updatedAt });
   } catch (err) {

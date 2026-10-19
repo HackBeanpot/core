@@ -6,6 +6,7 @@ import { ApplicantDetail } from "@/components/admin/applicants/ApplicantDetail";
 import { DecisionEditor } from "@/components/admin/applicants/DecisionEditor";
 import { RsvpEditor } from "@/components/admin/applicants/RsvpEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getFormConfig } from "@/lib/admin/form-config-service";
 import { getApplicant } from "@/lib/applicants/service";
 
 interface PageProps {
@@ -17,7 +18,10 @@ export default async function ApplicantDetailPage({
   params,
   searchParams,
 }: PageProps) {
-  const applicant = await getApplicant(params.id);
+  const [applicant, formConfig] = await Promise.all([
+    getApplicant(params.id),
+    getFormConfig(),
+  ]);
   if (!applicant) notFound();
 
   const backHref = searchParams.from
@@ -32,7 +36,7 @@ export default async function ApplicantDetailPage({
         </Link>
       </div>
 
-      <ApplicantDetail applicant={applicant} />
+      <ApplicantDetail applicant={applicant} sections={formConfig.sections} />
 
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
         <Card>

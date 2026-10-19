@@ -38,6 +38,8 @@ export interface ApplicationDraft {
   responses: ApplicationResponses;
   updatedAt: string;
   status: "draft";
+  /** ID of the form section the applicant was last on, so they can pick up where they left off. */
+  lastSectionId: string | null;
 }
 
 export interface ApplicationSubmission {
@@ -60,6 +62,8 @@ export interface RegistrationState {
   applicationStatus: "draft" | "submitted";
   responses: ApplicationResponses;
   updatedAt: string | null;
+  /** ID of the form section the applicant was last on; null if they haven't started. */
+  lastSectionId: string | null;
   /** The live, admin-editable question set this application should render/validate against. */
   sections: FormSection[];
 }
