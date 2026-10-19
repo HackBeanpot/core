@@ -38,7 +38,9 @@ function parseArgs(): { origins: string[]; apply: boolean } {
     .map((origin) => origin.trim().replace(/\/+$/, ""))
     .filter(Boolean);
   if (origins.length === 0) {
-    throw new Error("Pass --origins=<origin>[,<origin>...] or set NEXTAUTH_URL.");
+    throw new Error(
+      "Pass --origins=<origin>[,<origin>...] or set NEXTAUTH_URL.",
+    );
   }
 
   return { origins, apply: args.apply === "true" };
