@@ -27,6 +27,7 @@ import type {
  *   applicationStatus:    'in-progress' | 'submitted'
  *   lastSavedAt:          Date
  *   appSubmissionTime:    Date | null                      — null until submitted
+ *   lastSectionId:        string | undefined               — form section the applicant was last on
  *
  * Requires env vars: MONGO_PROD_CONNECTION_STRING, MONGO_SERVER_DBNAME
  */
@@ -45,9 +46,11 @@ async function getRegistrationWindow(): Promise<{
 
 // The live, admin-editable question set (see /admin/settings + FormConfigEditor). Falls back to
 // the code-level default (lib/application/questions.ts) until an admin saves a change.
+// Sections with no questions (e.g. one whose questions were all removed) are dropped so they
+// don't show up as a blank page in the application.
 async function getSections(): Promise<FormSection[]> {
   const config = await getFormConfig();
-  return config.sections;
+  return config.sections.filter((section) => section.questions.length > 0);
 }
 
 export async function getRegistrationState(
@@ -81,6 +84,7 @@ export async function getRegistrationState(
     applicationStatus,
     responses: {},
     updatedAt: null,
+    lastSectionId: null,
     sections,
   };
 }
@@ -92,26 +96,25 @@ function isAnswered(value: string | string[] | null | undefined): boolean {
 }
 
 // Real completion percentage for the dashboard's in-progress view, based on how many of the
-// live form's questions have an answer saved in the applicant's draft.
+// live form's required questions have an answer saved in the applicant's draft — so filling in
+// every required question reads as 100%, whether or not the optional ones were answered. Falls
+// back to counting every question if the form has no required ones.
 export async function getCompletionPercent(userId: string): Promise<number> {
   const sections = await getSections();
-  const totalQuestions = sections.reduce(
-    (sum, section) => sum + section.questions.length,
-    0,
-  );
-  if (totalQuestions === 0) return 0;
+  const allQuestions = sections.flatMap((section) => section.questions);
+  const requiredQuestions = allQuestions.filter((q) => q.required);
+  const countedQuestions =
+    requiredQuestions.length > 0 ? requiredQuestions : allQuestions;
+  if (countedQuestions.length === 0) return 0;
 
   const draft = await getDraft(userId);
   if (!draft) return 0;
 
-  const answeredQuestions = sections.reduce(
-    (sum, section) =>
-      sum +
-      section.questions.filter((q) => isAnswered(draft.responses[q.id])).length,
-    0,
-  );
+  const answeredQuestions = countedQuestions.filter((q) =>
+    isAnswered(draft.responses[q.id]),
+  ).length;
 
-  return Math.round((answeredQuestions / totalQuestions) * 100);
+  return Math.round((answeredQuestions / countedQuestions.length) * 100);
 }
 
 export async function isRegistrationOpen(): Promise<boolean> {
@@ -141,12 +144,14 @@ export async function getDraft(
     responses: doc.applicationResponses as ApplicationResponses,
     updatedAt: (doc.lastSavedAt as Date).toISOString(),
     status: "draft",
+    lastSectionId: (doc.lastSectionId as string | undefined) ?? null,
   };
 }
 
 export async function saveDraft(
   userId: string,
   responses: ApplicationResponses,
+  lastSectionId?: string,
 ): Promise<ApplicationDraft> {
   await assertRegistrationWindowOpen();
   const db = await getDb();
@@ -159,10 +164,16 @@ export async function saveDraft(
   // content was in the field values at the time it was queued — applicationStatus would
   // stay "submitted" the whole time, so nothing would even look wrong to the applicant.
   if (existing?.applicationStatus === "submitted") {
+    // Still remember which section they're on, so a reload while editing a submitted
+    // application doesn't bounce them back to the first page.
+    if (lastSectionId) {
+      await collection.updateOne({ userId }, { $set: { lastSectionId } });
+    }
     return {
       responses: existing.applicationResponses as ApplicationResponses,
       updatedAt: (existing.lastSavedAt as Date).toISOString(),
       status: "draft",
+      lastSectionId: lastSectionId ?? existing.lastSectionId ?? null,
     };
   }
 
@@ -172,7 +183,11 @@ export async function saveDraft(
     // narrow the race window between the findOne and this write.
     { userId, applicationStatus: { $ne: "submitted" } },
     {
-      $set: { applicationResponses: responses, lastSavedAt: now },
+      $set: {
+        applicationResponses: responses,
+        lastSavedAt: now,
+        ...(lastSectionId ? { lastSectionId } : {}),
+      },
       // $setOnInsert never overwrites an existing applicationStatus, which prevents a draft save from downgrading a submitted application.
       $setOnInsert: {
         userId,
@@ -182,7 +197,12 @@ export async function saveDraft(
     },
     { upsert: true },
   );
-  return { responses, updatedAt: now.toISOString(), status: "draft" };
+  return {
+    responses,
+    updatedAt: now.toISOString(),
+    status: "draft",
+    lastSectionId: lastSectionId ?? null,
+  };
 }
 
 export async function submit(

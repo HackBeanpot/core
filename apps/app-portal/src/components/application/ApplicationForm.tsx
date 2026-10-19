@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Path, Resolver } from "react-hook-form";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { toast, Toaster } from "sonner";
 import type { z } from "zod";
 
@@ -21,6 +21,7 @@ import { Form } from "@/components/ui/form";
 import {
   buildApplicationSchema,
   buildDefaultValues,
+  exceedsLimit,
 } from "@/lib/application/schema";
 import type {
   ApplicationResponses,
@@ -50,6 +51,12 @@ export function ApplicationForm() {
   const [saveTick, setSaveTick] = useState(0);
 
   const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  // True while a debounced autosave is queued but hasn't been sent yet, so it can be flushed
+  // if the page is reloaded/closed before the timer fires.
+  const hasPendingSaveRef = useRef(false);
+  // The section the applicant is on, sent with every save so a reload (or "Continue
+  // application" from the dashboard) brings them back to it.
+  const sectionIdRef = useRef<string>();
 
   // The question set is only known once /api/v1/registration returns the live (possibly
   // admin-edited) form config, so the zod schema has to be built dynamically. This ref lets the
@@ -68,7 +75,10 @@ export function ApplicationForm() {
       return resolve(values, context, options);
     },
     defaultValues: {},
-    mode: "onTouched",
+    // Errors only appear once the applicant tries to leave a section (see handleNext) — not
+    // just from clicking into a field and back out. Fields that already show an error are
+    // re-validated as they change (see the watch effect below) so the error clears once fixed.
+    mode: "onSubmit",
   });
 
   // Hydrate from API on mount
@@ -85,6 +95,10 @@ export function ApplicationForm() {
           ...buildDefaultValues(state.sections),
           ...state.responses,
         });
+        const savedIndex = state.sections.findIndex(
+          (section) => section.id === state.lastSectionId,
+        );
+        if (savedIndex > 0) setCurrentSectionIndex(savedIndex);
         if (state.updatedAt) setLastSaved(new Date(state.updatedAt));
       } catch {
         toast.error("Could not load your application. Please refresh.");
@@ -102,15 +116,32 @@ export function ApplicationForm() {
     return () => clearInterval(id);
   }, [lastSaved]);
 
+  useEffect(() => {
+    sectionIdRef.current = sections[currentSectionIndex]?.id;
+  }, [sections, currentSectionIndex]);
+
+  const buildSaveBody = useCallback(
+    (sectionId: string | undefined) =>
+      JSON.stringify({
+        responses: toResponses(form.getValues()),
+        lastSectionId: sectionId,
+      }),
+    [form],
+  );
+
   // Core save — used by both autosave and the manual Save Draft button
   const doSave = useCallback(
-    async (silent: boolean): Promise<void> => {
+    async (
+      silent: boolean,
+      sectionId: string | undefined = sectionIdRef.current,
+    ): Promise<void> => {
+      hasPendingSaveRef.current = false;
       setIsSaving(true);
       try {
         const res = await fetch(REGISTRATION_API, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ responses: toResponses(form.getValues()) }),
+          body: buildSaveBody(sectionId),
         });
         if (res.status === 403) {
           if (!silent) {
@@ -130,13 +161,18 @@ export function ApplicationForm() {
         setIsSaving(false);
       }
     },
-    [form],
+    [buildSaveBody],
   );
 
   // Debounced autosave: fires 2s after any field change
   useEffect(() => {
     if (isLoading) return;
-    const { unsubscribe } = form.watch(() => {
+    const { unsubscribe } = form.watch((_values, { name }) => {
+      // With validation deferred to "Next", re-check a field that's already showing an
+      // error as it changes, so the message goes away (or updates) once it's fixed.
+      if (name && form.getFieldState(name).error) void form.trigger(name);
+
+      hasPendingSaveRef.current = true;
       clearTimeout(saveTimerRef.current);
       saveTimerRef.current = setTimeout(
         () => void doSave(true),
@@ -149,9 +185,44 @@ export function ApplicationForm() {
     };
   }, [form, isLoading, doSave]);
 
+  // Without this, reloading or closing the tab within the 2s autosave window silently drops
+  // the last change — easiest to hit with one-click inputs like checkboxes. keepalive lets
+  // the request finish even as the page unloads.
+  useEffect(() => {
+    if (isLoading) return;
+    const flush = () => {
+      if (!hasPendingSaveRef.current) return;
+      hasPendingSaveRef.current = false;
+      clearTimeout(saveTimerRef.current);
+      void fetch(REGISTRATION_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: buildSaveBody(sectionIdRef.current),
+        keepalive: true,
+      }).catch(() => undefined);
+    };
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "hidden") flush();
+    };
+    window.addEventListener("pagehide", flush);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      window.removeEventListener("pagehide", flush);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [isLoading, buildSaveBody]);
+
+  const watchedValues = useWatch({ control: form.control });
+
   const currentSection = sections[currentSectionIndex];
   const isFirstSection = currentSectionIndex === 0;
   const isLastSection = currentSectionIndex === sections.length - 1;
+
+  // Answers past their character/word limit can't be submitted, so hide the "Save draft"
+  // button and saved status while any exist rather than implying the draft is good to go.
+  const hasOverLimitAnswer = sections.some((section) =>
+    section.questions.some((q) => exceedsLimit(q, watchedValues[q.id])),
+  );
 
   const handleSaveDraft = async () => {
     clearTimeout(saveTimerRef.current);
@@ -159,7 +230,10 @@ export function ApplicationForm() {
   };
 
   const handleBack = () => {
-    setCurrentSectionIndex((i) => i - 1);
+    const previousIndex = currentSectionIndex - 1;
+    clearTimeout(saveTimerRef.current);
+    void doSave(true, sections[previousIndex]?.id);
+    setCurrentSectionIndex(previousIndex);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -180,8 +254,9 @@ export function ApplicationForm() {
     // for real when the user actually tries to leave them (or on final submit).
     form.clearErrors();
     clearTimeout(saveTimerRef.current);
-    await doSave(true);
-    setCurrentSectionIndex((i) => i + 1);
+    const nextIndex = currentSectionIndex + 1;
+    await doSave(true, sections[nextIndex]?.id);
+    setCurrentSectionIndex(nextIndex);
     setIsNavigating(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -320,22 +395,24 @@ export function ApplicationForm() {
             · {currentSection.title}
           </span>
         </p>
-        <div className="flex shrink-0 items-center gap-3">
-          {saveStatusLabel && (
-            <span className="text-xs text-charcoalFogLight">
-              {saveStatusLabel}
-            </span>
-          )}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => void handleSaveDraft()}
-            disabled={isSaving || isLoading}
-          >
-            {isSaving ? "Saving…" : "Save draft"}
-          </Button>
-        </div>
+        {!hasOverLimitAnswer && (
+          <div className="flex shrink-0 items-center gap-3">
+            {saveStatusLabel && (
+              <span className="text-xs text-charcoalFogLight">
+                {saveStatusLabel}
+              </span>
+            )}
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => void handleSaveDraft()}
+              disabled={isSaving || isLoading}
+            >
+              {isSaving ? "Saving…" : "Save draft"}
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* progress bar */}
@@ -416,7 +493,7 @@ export function ApplicationForm() {
               You can still edit your answers until registration closes.
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter>
+          <DialogFooter className="sm:justify-center">
             <Button
               variant="outline"
               onClick={() => setShowConfirmDialog(false)}

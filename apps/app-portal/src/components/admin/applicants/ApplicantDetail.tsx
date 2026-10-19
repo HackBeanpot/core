@@ -2,9 +2,12 @@ import React from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ApplicantDetail as ApplicantDetailType } from "@/lib/applicants/types";
+import type { FormSection, Question } from "@/lib/application/types";
 
 interface ApplicantDetailProps {
   applicant: ApplicantDetailType;
+  /** The live form config, which decides which questions are shown. */
+  sections: FormSection[];
 }
 
 function ResponseList({ responses }: { responses?: Record<string, unknown> }) {
@@ -27,28 +30,90 @@ function ResponseList({ responses }: { responses?: Record<string, unknown> }) {
   );
 }
 
-function Resume({ resume }: { resume?: ApplicantDetailType["resume"] }) {
+function formatAnswer(value: unknown, question?: Question): string {
+  if (value === null || value === undefined || value === "") return "—";
+  const labelFor = (v: unknown) =>
+    question?.options?.find((o) => o.value === v)?.label ?? String(v);
+  if (Array.isArray(value)) {
+    return value.length > 0 ? value.map(labelFor).join(", ") : "—";
+  }
+  return labelFor(value);
+}
+
+function FileAnswer({
+  value,
+  resume,
+}: {
+  value: unknown;
+  resume?: ApplicantDetailType["resume"];
+}) {
+  if (typeof value !== "string" || value.length === 0) return <>—</>;
+  // Only the resume has its upload record resolved (for the original filename).
+  const filename = resume?.id === value ? resume.filename : value;
   return (
-    <div className="flex flex-col justify-between border-b border-neutral-100 py-2">
-      <div>
-        <dt className="text-xs font-medium uppercase text-neutral-500">
-          Resume
-        </dt>
-        <dd className="text-sm">{resume?.filename ?? "—"}</dd>
-      </div>
-      {resume ? (
-        <a
-          href={`/api/v1/uploads/${resume.id}`}
-          className="text-sm font-medium text-blue-600 hover:underline"
-        >
-          Download
-        </a>
-      ) : null}
+    <a
+      href={`/api/v1/uploads/${value}`}
+      className="font-medium text-blue-600 hover:underline"
+    >
+      {filename}
+    </a>
+  );
+}
+
+// Driven by the live form config (not the stored keys) so questions added since an
+// applicant saved still show up, and answers to deleted questions don't mix in.
+function CurrentResponses({
+  sections,
+  responses,
+  resume,
+}: {
+  sections: FormSection[];
+  responses: Record<string, unknown>;
+  resume?: ApplicantDetailType["resume"];
+}) {
+  return (
+    <div className="flex flex-col gap-6">
+      {sections.map((section) => (
+        <section key={section.id} className="flex flex-col gap-2">
+          <h3 className="text-sm font-semibold">{section.title}</h3>
+          <dl className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
+            {section.questions.map((question) => (
+              <div
+                key={question.id}
+                className="border-b border-neutral-100 py-2"
+              >
+                <dt className="text-xs font-medium text-neutral-500">
+                  {question.label}
+                </dt>
+                <dd className="whitespace-pre-wrap text-sm">
+                  {question.type === "file_upload" ? (
+                    <FileAnswer
+                      value={responses[question.id]}
+                      resume={resume}
+                    />
+                  ) : (
+                    formatAnswer(responses[question.id], question)
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ))}
     </div>
   );
 }
 
-export function ApplicantDetail({ applicant }: ApplicantDetailProps) {
+export function ApplicantDetail({ applicant, sections }: ApplicantDetailProps) {
+  const responses = applicant.applicationResponses ?? {};
+  const currentIds = new Set(
+    sections.flatMap((section) => section.questions.map((q) => q.id)),
+  );
+  const removedResponses = Object.fromEntries(
+    Object.entries(responses).filter(([id]) => !currentIds.has(id)),
+  );
+  const hasRemoved = Object.keys(removedResponses).length > 0;
+
   return (
     <div className="flex flex-col gap-4">
       <Card>
@@ -85,11 +150,30 @@ export function ApplicantDetail({ applicant }: ApplicantDetailProps) {
         <CardHeader>
           <CardTitle className="text-base">Application responses</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col gap-2">
-          <ResponseList responses={applicant.applicationResponses} />
-          <Resume resume={applicant.resume} />
+        <CardContent>
+          <CurrentResponses
+            sections={sections}
+            responses={responses}
+            resume={applicant.resume}
+          />
         </CardContent>
       </Card>
+
+      {hasRemoved && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">
+              Answers to removed questions
+            </CardTitle>
+            <p className="text-sm text-neutral-500">
+              Saved against questions that are no longer on the form.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <ResponseList responses={removedResponses} />
+          </CardContent>
+        </Card>
+      )}
 
       <Card>
         <CardHeader>

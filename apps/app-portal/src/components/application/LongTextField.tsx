@@ -32,7 +32,6 @@ export function LongTextField({
         onChange={(e) => onChange(e.target.value)}
         onBlur={onBlur}
         disabled={disabled}
-        placeholder={question.label}
         rows={5}
         aria-required={question.required}
       />
