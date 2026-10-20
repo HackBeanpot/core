@@ -183,7 +183,12 @@ function SwapLine({
 }) {
   return (
     <div data-anim="speakers-text" className="w-full">
-      <CarouselSwap swapKey={index} direction={direction} animated className="w-full">
+      <CarouselSwap
+        swapKey={index}
+        direction={direction}
+        animated
+        className="w-full"
+      >
         {children}
       </CarouselSwap>
     </div>
@@ -261,7 +266,11 @@ export function SpeakersScene() {
           </div>
 
           {/* 2. Curtain, above the main railing */}
-          <Decor anim="speakers-curtain" src={asset("curtain")} box={layout.curtain} />
+          <Decor
+            anim="speakers-curtain"
+            src={asset("curtain")}
+            box={layout.curtain}
+          />
 
           {/* 3. Left railing, extended to the viewport edge (LG only) */}
           {leftRail && (
@@ -327,41 +336,74 @@ export function SpeakersScene() {
               {speakersSection.title}
             </h2>
 
-            <div className="flex w-full flex-col items-start" style={{ gap: u(textBox.gap) }}>
-            <div aria-live="polite" className="flex w-full flex-col" style={{ gap: u(10) }}>
-              <SwapLine index={index} direction={direction}>
-                <h3
-                  className="text-white"
-                  style={{ fontFamily: FONT.name, fontSize: u(40), lineHeight: "normal" }}
-                >
-                  {item.name}
-                </h3>
-              </SwapLine>
-              <SwapLine index={index} direction={direction}>
-                <p
-                  className="font-light text-[#E8B1A5]"
-                  style={{ fontFamily: FONT.body, fontSize: u(20), lineHeight: "normal" }}
-                >
-                  {item.role}
-                </p>
-              </SwapLine>
-              <SwapLine index={index} direction={direction}>
-                <p
-                  className="font-light text-white"
-                  style={{ fontFamily: FONT.body, fontSize: u(18), lineHeight: 1.4 }}
-                >
-                  {item.bio}
-                </p>
-              </SwapLine>
-            </div>
-
-            {speakers.length > 1 && (
-              <div data-anim="speakers-text" className="flex items-center" style={{ gap: u(9) }}>
-                <CarouselArrow direction="left" disabled={!canPrev} onClick={prev} aria-label="Previous speaker" />
-                <CarouselArrow direction="right" disabled={!canNext} onClick={next} aria-label="Next speaker" />
+            <div
+              className="flex w-full flex-col items-start"
+              style={{ gap: u(textBox.gap) }}
+            >
+              <div
+                aria-live="polite"
+                className="flex w-full flex-col"
+                style={{ gap: u(10) }}
+              >
+                <SwapLine index={index} direction={direction}>
+                  <h3
+                    className="text-white"
+                    style={{
+                      fontFamily: FONT.name,
+                      fontSize: u(40),
+                      lineHeight: "normal",
+                    }}
+                  >
+                    {item.name}
+                  </h3>
+                </SwapLine>
+                <SwapLine index={index} direction={direction}>
+                  <p
+                    className="font-light text-[#E8B1A5]"
+                    style={{
+                      fontFamily: FONT.body,
+                      fontSize: u(20),
+                      lineHeight: "normal",
+                    }}
+                  >
+                    {item.role}
+                  </p>
+                </SwapLine>
+                <SwapLine index={index} direction={direction}>
+                  <p
+                    className="font-light text-white"
+                    style={{
+                      fontFamily: FONT.body,
+                      fontSize: u(18),
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {item.bio}
+                  </p>
+                </SwapLine>
               </div>
-            )}
-          </div>
+
+              {speakers.length > 1 && (
+                <div
+                  data-anim="speakers-text"
+                  className="flex items-center"
+                  style={{ gap: u(9) }}
+                >
+                  <CarouselArrow
+                    direction="left"
+                    disabled={!canPrev}
+                    onClick={prev}
+                    aria-label="Previous speaker"
+                  />
+                  <CarouselArrow
+                    direction="right"
+                    disabled={!canNext}
+                    onClick={next}
+                    aria-label="Next speaker"
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </>
       }

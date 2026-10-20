@@ -1,7 +1,6 @@
 import { gsap } from "../gsap";
 import type { SceneAnimation } from "../types";
 
-
 /**
  * true only if motionSpec.ts SPEAKERS settles the open question as
  * frames B → A (title starts centered, then moves into the column).
@@ -36,7 +35,12 @@ export const speakersAnimation: SceneAnimation = {
     if (curtain.length === 0 || stage.length === 0) return;
 
     // Values' blue cross-fades to the orange stage.
-    tl.fromTo(stage, { autoAlpha: 0 }, { autoAlpha: 1, ease: "none", duration: 0.6 }, 0)
+    tl.fromTo(
+      stage,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, ease: "none", duration: 0.6 },
+      0,
+    )
       // Curtain slides in from the right while fading up, then settles at rest.
       .fromTo(
         curtain,
@@ -53,10 +57,17 @@ export const speakersAnimation: SceneAnimation = {
     const text = q(root, "speakers-text"); // name, role, bio, arrows (DOM order)
     const lift = () => 24 * unit(root);
 
-    tl.from(arch, {
-        yPercent: 40, scale: 0.9, autoAlpha: 0, ease: "none", duration: 0.35,
-      }, 0)
-        .from(rails, { yPercent: 100, ease: "none", duration: 0.3 }, 0.1);
+    tl.from(
+      arch,
+      {
+        yPercent: 40,
+        scale: 0.9,
+        autoAlpha: 0,
+        ease: "none",
+        duration: 0.35,
+      },
+      0,
+    ).from(rails, { yPercent: 100, ease: "none", duration: 0.3 }, 0.1);
 
     if (title) {
       if (TITLE_FROM_CENTER) {
@@ -72,14 +83,25 @@ export const speakersAnimation: SceneAnimation = {
           0.3,
         ).to(title, { x: 0, y: 0, ease: "none", duration: 0.2 }, 0.4);
       } else {
-        tl.from(title, { autoAlpha: 0, y: lift, ease: "none", duration: 0.15 }, 0.4);
+        tl.from(
+          title,
+          { autoAlpha: 0, y: lift, ease: "none", duration: 0.15 },
+          0.4,
+        );
       }
     }
 
     // stagger.amount keeps the run ending at 1 however many items there are.
-    tl.from(text, {
-      autoAlpha: 0, y: lift, ease: "none",
-      duration: 0.1, stagger: { amount: 0.3 },
-    }, 0.6);
+    tl.from(
+      text,
+      {
+        autoAlpha: 0,
+        y: lift,
+        ease: "none",
+        duration: 0.1,
+        stagger: { amount: 0.3 },
+      },
+      0.6,
+    );
   },
 };
