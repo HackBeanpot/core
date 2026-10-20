@@ -6,6 +6,7 @@ import { placeholder } from "./placeholder/placeholders";
 import { ProjectsScene } from "./projects/ProjectsScene";
 import { SpeakersScene } from "./speakers/SpeakersScene";
 import { TeamScene } from "./team/TeamScene";
+import { testimonialsAnimation } from "./testimonials/testimonials.animation";
 import { TestimonialsScene } from "./testimonials/TestimonialsScene";
 import { enterWith, type TransitionName } from "./transitions";
 import type { SceneAnimation, SceneId } from "./types";
@@ -53,7 +54,11 @@ export const SCENES: SceneEntry[] = [
   interim("about", AboutScene, "crossfade"), // MS-303
   placeholder("values", "fogWipe"), // MS-205, MS-304
   interim("speakers", SpeakersScene, "curtain", { color: "#8f1d1a" }), // MS-305
-  interim("testimonials", TestimonialsScene, "zoomThrough"), // MS-306
+  {
+    id: "testimonials",
+    Component: TestimonialsScene,
+    animation: testimonialsAnimation,
+  },
   interim("projects", ProjectsScene, "pan"), // MS-307
   placeholder("sponsors", "crossfade", { scaleFrom: 1.08 }), // MS-203, MS-402
   interim("team", TeamScene, "fogWipe", { direction: "down" }), // MS-308

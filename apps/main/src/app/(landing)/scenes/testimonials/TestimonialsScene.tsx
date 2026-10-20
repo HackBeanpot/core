@@ -21,6 +21,7 @@ import {
 } from "../../../lib/scroll/useArtboardBreakpoint";
 import { u } from "../../../lib/scroll/units";
 import { SceneFrame } from "../SceneFrame";
+import { FOOTPRINT_TRAIL } from "./footprintTrail";
 
 type Box = { x: number; y: number; w: number; h: number };
 
@@ -91,7 +92,7 @@ const LAYOUT: Record<
   {
     /** Frame 928: medallion, quote, name/school, arrows. Grows downward. */
     card: { x: number; y: number };
-    /** Group 235, cropped by the artboard bottom (footprint-trail.svg). */
+    /** Group 235, cropped by the artboard bottom (`footprintTrail.ts`). */
     trail: Box;
     /**
      * Vectors 264 / 265 / 263. LG is the Decor exports' frames as-is. MD
@@ -203,8 +204,9 @@ function curlyQuote(text: string) {
  * instead of overflowing sideways. Quotes over LONG_QUOTE characters drop one
  * size step.
  *
- * `data-anim` hooks for MS-306: testimonials-far / -mid / -near, -trail,
- * -fog-{variant}, -card, -medallion, -title.
+ * `data-anim` hooks (used by `testimonials.animation.ts`): testimonials-far /
+ * -mid / -near (corridor), -foot-{i} (footprints, farthest first), -sparkle
+ * (one per star), -fog-{variant}, -title, -card, -medallion, -quote, -arrows.
  */
 export function TestimonialsScene({
   items = defaultTestimonials,
@@ -290,22 +292,34 @@ export function TestimonialsScene({
             </div>
           </div>
 
-          {/* Footprints along the floor; one <g> per print in the SVG */}
-          <div
-            data-anim="testimonials-trail"
-            className="absolute inset-0"
-            style={{ opacity: box["footprint-pair"].opacity }}
+          {/* Footprints along the floor, inline so each print can fade in */}
+          <svg
+            aria-hidden
+            focusable={false}
+            viewBox={`0 0 ${FOOTPRINT_TRAIL[bp].w} ${FOOTPRINT_TRAIL[bp].h}`}
+            fill="#D08000"
+            className="pointer-events-none"
+            style={{
+              ...place(layout.trail),
+              opacity: box["footprint-pair"].opacity,
+            }}
           >
-            <Art src={asset("footprint-trail")} box={layout.trail} />
-          </div>
+            {FOOTPRINT_TRAIL[bp].prints.map((paths, i) => (
+              <g key={i} data-anim={`testimonials-foot-${i}`}>
+                {paths.map((d, j) => (
+                  <path key={j} d={d} />
+                ))}
+              </g>
+            ))}
+          </svg>
 
           {fog(fogTopLeft)}
 
+          {/* Wrapped: Sparkle's own data-anim switches its twinkle on/off */}
           {layout.sparkles.map((s, i) => (
-            <Sparkle
+            <div
               key={i}
-              size={s.size}
-              delay={(i % 5) * 0.6}
+              data-anim="testimonials-sparkle"
               className="absolute"
               style={{
                 left: u(s.x - s.size / 2),
@@ -313,7 +327,13 @@ export function TestimonialsScene({
                 width: u(s.size),
                 height: u(s.size),
               }}
-            />
+            >
+              <Sparkle
+                size={s.size}
+                delay={(i % 5) * 0.6}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
           ))}
 
           {fogsAboveSparkles.map(fog)}
@@ -369,7 +389,11 @@ export function TestimonialsScene({
                 </PictureFrame>
               </div>
 
-              <div className="w-full" style={{ marginTop: u(CARD.gap) }}>
+              <div
+                data-anim="testimonials-quote"
+                className="w-full"
+                style={{ marginTop: u(CARD.gap) }}
+              >
                 <CarouselSwap
                   swapKey={index}
                   direction={direction}
@@ -414,6 +438,7 @@ export function TestimonialsScene({
 
               {/* Always shown, as in Figma; both dim with a single testimonial */}
               <div
+                data-anim="testimonials-arrows"
                 className="flex items-center"
                 style={{ marginTop: u(CARD.gap), gap: u(CARD.arrowGap) }}
               >
