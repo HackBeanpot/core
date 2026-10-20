@@ -11,8 +11,8 @@ import type { SceneAnimation } from "../types";
  *   into the hall.
  * - `build`: the fog drifts in from the edges, sparkles pop in, the medallion
  *   swings down on its top point and settles, footprints appear one by one
- *   from the bottom up, walking into the hall, then the quote and arrows fade up. Everything is at rest
- *   (the Figma frame) by 0.9; the last 0.1 holds.
+ *   from the bottom up, walking into the hall, then the quote and arrows fade
+ *   up. It plays by itself (`buildSeconds`) once the walk-in ends.
  */
 
 /** Starting scale of each corridor layer in `enter`; all end at 1. */
@@ -28,6 +28,8 @@ const FOG_DRIFT = 35;
 
 export const testimonialsAnimation: SceneAnimation = {
   id: "testimonials",
+  // Plays in full as soon as the walk-in ends; no extra scrolling.
+  buildSeconds: 1.6,
 
   enter: (root, tl, ctx) => {
     const q = gsap.utils.selector(root);
@@ -114,8 +116,5 @@ export const testimonialsAnimation: SceneAnimation = {
       { autoAlpha: 1, yPercent: 0, duration: 0.15, ease },
       0.6,
     );
-
-    // Hold the finished frame for the rest of the scroll.
-    tl.to({}, { duration: 1 }, 0);
   },
 };

@@ -87,4 +87,13 @@ export interface SceneAnimation {
   ) => void;
   /** The in-scene animation, scrubbed while the scene is pinned. */
   build: (root: HTMLElement, tl: gsap.core.Timeline) => void;
+  /**
+   * Plays `build` by itself, over this many seconds, the moment `enter`
+   * finishes, instead of scrubbing it with scroll, so the whole scene is on
+   * screen as soon as the user arrives. Scrolling back into the enter plays
+   * it in reverse. The scene then has no build range on the page (just its
+   * enter and hold), so the next scroll moves on to the next scene. The
+   * harness still scrubs it with `&progress=`.
+   */
+  buildSeconds?: number;
 }

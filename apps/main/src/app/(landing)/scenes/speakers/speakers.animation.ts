@@ -28,6 +28,8 @@ function restingBox(el: HTMLElement, root: HTMLElement) {
 
 export const speakersAnimation: SceneAnimation = {
   id: "speakers",
+  // Plays in full as soon as the curtain settles; no extra scrolling.
+  buildSeconds: 1.2,
 
   enter: (root, tl) => {
     const stage = q(root, "speakers-stage");

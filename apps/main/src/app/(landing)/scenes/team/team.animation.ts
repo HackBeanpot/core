@@ -10,7 +10,7 @@ import type { SceneAnimation } from "../types";
  * - `build`: the title drops; the top row slides in from the right, then the
  *   bottom row; the portraits settle from ±2° to straight; the benches rise
  *   from the floor. The arrows aren't animated, so they page the strip at any
- *   progress. Everything is at rest (the Figma frame) by 0.8; the rest holds.
+ *   progress. It plays by itself (`buildSeconds`) once the wipe ends.
  *
  * The scroll track owns `scrollLeft`, so nothing here transforms it. The
  * strip slides on its wrapper (`team-strip`), and the top row only ever moves
@@ -27,6 +27,8 @@ const TILT = 2;
 
 export const teamAnimation: SceneAnimation = {
   id: "team",
+  // Plays in full as soon as the fog wipe ends; no extra scrolling.
+  buildSeconds: 1.4,
 
   enter: (root, tl, ctx) => {
     fogWipe(tl, ctx.prevRoot, root, {
@@ -108,8 +110,5 @@ export const teamAnimation: SceneAnimation = {
       { autoAlpha: 1, yPercent: 0, duration: 0.2, stagger: 0.05, ease },
       0.55,
     );
-
-    // Hold the finished frame for the rest of the scroll.
-    tl.to({}, { duration: 1 }, 0);
   },
 };
