@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import HBPLogo from "main/src/app/lib/Assets/SVG/Hero/LandingAssets/HBPLogo.tsx";
+import HBPLogo from "../../../lib/Assets/SVG/HBPLogo";
 import CountdownTimer from "./CountdownTimer.tsx";
 import UntilSubmissionsClose from "../../../lib/Assets/SVG/CarnivalLanding/UntilSubmissionsClose.tsx";
 

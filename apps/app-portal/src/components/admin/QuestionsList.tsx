@@ -200,6 +200,17 @@ export default function QuestionsList({
     );
   }
 
+  // Takes effect (removes the page from the application) once the config is saved.
+  function deleteSection(section: FormSection) {
+    const message =
+      section.questions.length > 0
+        ? `Remove the "${section.title}" section and its ${section.questions.length} question(s)? Applicants' existing answers to them will no longer be shown.`
+        : `Remove the empty "${section.title}" section?`;
+    if (!window.confirm(message)) return;
+
+    setSections((current) => current.filter((s) => s.id !== section.id));
+  }
+
   function openEditDialog(question: Question, sectionId: string) {
     setActiveSectionId(sectionId);
 
@@ -327,11 +338,27 @@ export default function QuestionsList({
       {sections.map((section) => (
         <div key={section.id} className="border p-3 rounded space-y-2">
           <div className="flex justify-between">
-            <h3 className="font-semibold">{section.title}</h3>
+            <h3 className="font-semibold">
+              {section.title}
+              {section.questions.length === 0 && (
+                <span className="ml-2 text-xs font-normal text-gray-500">
+                  (no questions — hidden from applicants)
+                </span>
+              )}
+            </h3>
 
-            <Button variant="outline" onClick={() => openDialog(section.id)}>
-              Add Question
-            </Button>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => openDialog(section.id)}>
+                Add Question
+              </Button>
+              <Button
+                variant="outline"
+                className="text-firecrackerRed"
+                onClick={() => deleteSection(section)}
+              >
+                Remove Section
+              </Button>
+            </div>
           </div>
 
           <DndContext

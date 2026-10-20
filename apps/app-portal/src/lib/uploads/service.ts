@@ -66,7 +66,13 @@ export async function createSignedDownloadUrl({
 }: {
   uploadId: string;
   requester: { userId: string; isAdmin: boolean };
-}): Promise<{ url: string; expiresAt: Date } | null> {
+}): Promise<{
+  url: string;
+  expiresAt: Date;
+  filename: string;
+  mime: string;
+  size: number;
+} | null> {
   const col = await uploadCollection();
   const record = await col.findOne({ _id: uploadId });
 
@@ -86,7 +92,15 @@ export async function createSignedDownloadUrl({
     expires: expireDate,
   });
 
-  return { url, expiresAt: new Date(expireDate) };
+  // The file's metadata rides along so the application form can show what's already
+  // uploaded (name/size) when an applicant comes back to the resume question.
+  return {
+    url,
+    expiresAt: new Date(expireDate),
+    filename: record.filename,
+    mime: record.mime,
+    size: record.size,
+  };
 }
 
 // inserts a document into the uploads collection

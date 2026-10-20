@@ -1,10 +1,8 @@
 import React from "react";
-import Link from "next/link";
 import PortalShell from "./PortalShell";
 import JoinMailingListButton from "./JoinMailingListButton";
 import {
   //primaryActionClass,
-  secondaryActionClass,
   statCardClass,
 } from "./styles";
 
@@ -30,11 +28,6 @@ export default function DeclinedView(): JSX.Element {
       }
       eyebrow="Decision update"
       primaryAction={<JoinMailingListButton />}
-      secondaryAction={
-        <Link className={secondaryActionClass} href="/dashboard">
-          Refresh status
-        </Link>
-      }
       title={<>We hope to see you next year</>}
     >
       <div className={statCardClass}>

@@ -28,7 +28,6 @@ export function ShortTextField({
       onChange={(e) => onChange(e.target.value)}
       onBlur={onBlur}
       disabled={disabled}
-      placeholder={question.label}
       aria-required={question.required}
       required={question.required}
     />

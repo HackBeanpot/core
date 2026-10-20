@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Cabin } from "../../(landing)/CabinRace/CabinTypes.tsx";
-import { ProjectStarIcon } from "main/src/app/lib/Assets/SVG";
+import ProjectStarIcon from "../../lib/Assets/SVG/ProjectStarIcon";
 import Icon from "@repo/ui/Icons/MemberIcon";
 import useDevice from "@util/hooks/useDevice.ts";
 

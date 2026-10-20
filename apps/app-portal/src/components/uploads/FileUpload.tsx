@@ -5,7 +5,7 @@ import {
   sanitizeFileName,
 } from "@/lib/uploads/validation";
 import { cn } from "@/lib/utils";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { AlertCircle, UploadCloud } from "lucide-react";
 import UploadProgress from "./UploadProgress";
@@ -14,13 +14,22 @@ import { formatBytes } from "@/lib/uploads/utils";
 
 /**
  * @param description - Custom dropzone prompt text. Defaults to "Drag or drop files".
+ * @param uploadId - ID of a file that's already uploaded (e.g. from a saved draft). Its name
+ *   and size are fetched so it shows with Replace/Remove, the same as a fresh upload.
  * @param accept - MIME types this instance accepts. Defaults to the app-wide allow-list
  *   (PDF/PNG/JPEG); pass a narrower list to restrict a specific field (e.g. PDF-only for resumes).
  * @param onUploadComplete - Called with (uploadId, fileName) after a successful upload.
  * @param onUploadRemoved - Called when the user removes an uploaded file.
  */
+interface UploadedFileInfo {
+  name: string;
+  size?: number;
+  type: string;
+}
+
 interface FileUploadProps {
   description?: string;
+  uploadId?: string | null;
   accept?: readonly string[];
   onUploadComplete?: (uploadId: string, fileName: string) => void;
   onUploadRemoved?: () => void;
@@ -28,15 +37,46 @@ interface FileUploadProps {
 
 export default function FileUpload({
   description,
+  uploadId,
   accept: acceptMimeTypes = ALLOWED_MIME_TYPES,
   onUploadComplete,
   onUploadRemoved,
 }: FileUploadProps): JSX.Element {
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  // Kept as plain info rather than the File itself, since a file uploaded in an earlier
+  // visit only exists as an upload ID + server-side metadata.
+  const [uploadedFile, setUploadedFile] = useState<UploadedFileInfo | null>(
+    null,
+  );
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [transferredBytes, setTransferredBytes] = useState<number>(0);
   const [totalBytes, setTotalBytes] = useState<number>(0);
   const [uploadError, setUploadError] = useState<string | null>(null);
+
+  // This component unmounts whenever the applicant changes page, so on the way back the
+  // only thing left is the upload ID in form state — look up its details to show it again.
+  useEffect(() => {
+    if (!uploadId || uploadedFile) return;
+    let cancelled = false;
+    void (async () => {
+      const res = await fetch(`/api/v1/uploads/${uploadId}`).catch(() => null);
+      const body = res?.ok
+        ? ((await res.json().catch(() => null)) as {
+            filename?: string;
+            mime?: string;
+            size?: number;
+          } | null)
+        : null;
+      if (cancelled) return;
+      setUploadedFile({
+        name: body?.filename ?? "Uploaded file",
+        size: body?.size,
+        type: body?.mime ?? "",
+      });
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [uploadId, uploadedFile]);
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
@@ -96,7 +136,11 @@ export default function FileUpload({
 
         setTransferredBytes(firstFile.size);
         setIsUploading(false);
-        setUploadedFile(firstFile);
+        setUploadedFile({
+          name: firstFile.name,
+          size: firstFile.size,
+          type: firstFile.type,
+        });
         onUploadComplete?.(uploadId, firstFile.name);
       } catch {
         setIsUploading(false);
@@ -137,6 +181,8 @@ export default function FileUpload({
 
   return (
     <div className="p-8">
+      {/* Always mounted so Replace can open the file picker from the preview. */}
+      <input {...getInputProps()} />
       {uploadedFile === null && !isUploading && (
         <div
           {...getRootProps()}
@@ -151,7 +197,6 @@ export default function FileUpload({
                 : "border-heather",
           )}
         >
-          <input {...getInputProps()} />
           {isDragActive ? (
             <p>Drop the file here ...</p>
           ) : fileRejections.length > 0 ? (
@@ -198,23 +243,28 @@ export default function FileUpload({
         />
       )}
       {!isUploading && uploadedFile !== null && (
-        <FilePreview
-          fileName={uploadedFile.name}
-          fileSize={uploadedFile.size}
-          mimeType={uploadedFile.type}
-          onRemove={() => {
-            setUploadedFile(null);
-            setTransferredBytes(0);
-            setTotalBytes(0);
-            onUploadRemoved?.();
-          }}
-          onReplace={() => {
-            setUploadedFile(null);
-            setTransferredBytes(0);
-            setTotalBytes(0);
-            open();
-          }}
-        />
+        <>
+          <FilePreview
+            fileName={uploadedFile.name}
+            fileSize={uploadedFile.size}
+            mimeType={uploadedFile.type}
+            onRemove={() => {
+              setUploadedFile(null);
+              setTransferredBytes(0);
+              setTotalBytes(0);
+              onUploadRemoved?.();
+            }}
+            // The current file stays until a new one finishes uploading, so cancelling
+            // the picker doesn't leave the question looking empty while it still has a file.
+            onReplace={open}
+          />
+          {uploadError && (
+            <p className="mt-2 flex items-center gap-1 text-sm text-firecrackerRed">
+              <AlertCircle className="h-4 w-4 shrink-0" />
+              {uploadError}
+            </p>
+          )}
+        </>
       )}
     </div>
   );
