@@ -2,18 +2,13 @@
 
 import React, { FormEvent, useId, useState } from "react";
 import Image from "next/image";
-import { Merriweather } from "next/font/google";
 import clsx from "clsx";
 import isValidEmail from "@repo/util/functions/isValidEmail";
 import { site } from "../content/site";
 import type { SocialPlatform } from "../content/types";
+import { useLenis } from "../scroll/SmoothScroll";
 import ExternalLink from "./ExternalLink";
 import { Button } from "./museum";
-
-const merriweather = Merriweather({
-  weight: ["300", "400"],
-  subsets: ["latin"],
-});
 
 const socialUrl = (platform: SocialPlatform) =>
   site.socials.find((s) => s.platform === platform)?.url ?? "#";
@@ -99,7 +94,7 @@ const MailingListForm = () => {
         >
           Join our mailing list
         </h2>
-        <p className={clsx(merriweather.className, "text-base font-light")}>
+        <p className="font-merriweather text-base font-light">
           Stay up to date with HackBeanpot by signing up for our mailing list!
         </p>
       </div>
@@ -119,7 +114,7 @@ const MailingListForm = () => {
             if (status !== "loading") setStatus("idle");
           }}
           className={clsx(
-            merriweather.className,
+            "font-merriweather",
             "min-w-0 flex-1 rounded-lg border bg-[rgba(244,244,244,0.2)] px-4 py-3 text-base text-white shadow-[0px_0px_20px_0px_rgba(0,0,0,0.1),inset_0px_0px_20px_0px_rgba(255,255,255,0.1)] backdrop-blur-[4px] placeholder:text-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
             status === "invalid" ? "border-[#ff9d8a]" : "border-[#ffda82]",
           )}
@@ -137,7 +132,7 @@ const MailingListForm = () => {
           role="status"
           aria-live="polite"
           className={clsx(
-            merriweather.className,
+            "font-merriweather",
             "absolute left-0 top-full mt-2 text-sm",
             status === "success" ? "text-[#ffd268]" : "text-[#ff9d8a]",
           )}
@@ -158,8 +153,17 @@ const MailingListForm = () => {
  * bottom of LG FAQ (5597:20877).
  */
 const Footer = () => {
-  // TODO(MS-401): swap for the Lenis scrollTo.
-  const handleBackToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const lenis = useLenis();
+  // Lenis on LG/MD (the scroll stage); native smooth scroll on SM.
+  const handleBackToTop = () => {
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search,
+    );
+    if (lenis) lenis.scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className="relative w-full bg-transparent">
@@ -196,7 +200,7 @@ const Footer = () => {
           </div>
           <p
             className={clsx(
-              merriweather.className,
+              "font-merriweather",
               "text-sm font-light text-[#cecece]",
             )}
           >

@@ -181,6 +181,36 @@ const qa = (root: ParentNode, sel: string) => [
   ...root.querySelectorAll<HTMLElement>(sel),
 ];
 
+// ---------------------------------------------------------------- header
+
+/**
+ * Whether the hero wants the site header shown: from the moment the intro
+ * brings in the MLH badge until the camera starts moving toward the door.
+ * `LandingHeader` reads it with `useSyncExternalStore`.
+ */
+let introTitled = false;
+let diving = false;
+const navListeners = new Set<() => void>();
+
+function setHeroNav(next: { introTitled?: boolean; diving?: boolean }) {
+  const before = introTitled && !diving;
+  introTitled = next.introTitled ?? introTitled;
+  diving = next.diving ?? diving;
+  if (before !== (introTitled && !diving)) navListeners.forEach((fn) => fn());
+}
+
+export const heroNav = {
+  shown: () => introTitled && !diving,
+  subscribe(fn: () => void) {
+    navListeners.add(fn);
+    return () => {
+      navListeners.delete(fn);
+    };
+  },
+};
+
+// ---------------------------------------------------------------- scroll
+
 export const heroAnimation: SceneAnimation = {
   id: "hero",
   build: (root, tl) => {
@@ -202,10 +232,19 @@ export const heroAnimation: SceneAnimation = {
     // door crop (2.12x) and again near the resting size (~1x).
     REBUILD_AT.forEach((at) => tl.call(() => rebuildLayer(scroll), [], at));
 
-    // The title and sponsors fade as soon as the camera starts moving.
+    // The title and sponsors fade as soon as the camera starts moving, and
+    // the header goes with them (it's back once About is on screen).
     tl.to(
       q(root, '[data-anim="hero-hud"]'),
-      { opacity: 0, duration: 1.1 / T_END, ease: "power1.in" },
+      {
+        opacity: 0,
+        duration: 1.1 / T_END,
+        ease: "power1.in",
+        onUpdate() {
+          setHeroNav({ diving: this.progress() > 0 });
+        },
+        onReverseComplete: () => setHeroNav({ diving: false }),
+      },
       0.15 / T_END,
     );
     // The doorway is full bleed by T ~9.97; then hand off on the exit color.
@@ -422,7 +461,9 @@ export function createHeroIntro(root: HTMLElement) {
       5.1,
     )
     .to(sponsors, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 5.3)
-    .to(banner, { y: 0, duration: 0.85, ease: "back.out(1.3)" }, 5.45);
+    .to(banner, { y: 0, duration: 0.85, ease: "back.out(1.3)" }, 5.45)
+    // The header fades in with the badge.
+    .call(() => setHeroNav({ introTitled: true }), [], 5.45);
 
   // Settled: shrink the front plane's clip box and drop the intro-only
   // compositor layers, so only the camera group stays promoted.
@@ -508,15 +549,15 @@ export function playHeroIntro(root: HTMLElement) {
   const intro = createHeroIntro(root);
   const wide = window.matchMedia("(min-width: 640px)").matches;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!wide || reduced) {
+  const reset = () => setHeroNav({ introTitled: false });
+  const skip = () => {
     intro.progress(1);
-    return;
-  }
+    setHeroNav({ introTitled: true });
+    return reset;
+  };
+  if (!wide || reduced) return skip();
   startAmbient(root);
-  if (window.location.hash || window.scrollY > 10) {
-    intro.progress(1);
-    return;
-  }
+  if (window.location.hash || window.scrollY > 10) return skip();
 
   const start = () => intro.play();
   if (document.readyState === "complete") start();
@@ -529,6 +570,7 @@ export function playHeroIntro(root: HTMLElement) {
   return () => {
     window.removeEventListener("load", start);
     window.removeEventListener("scroll", hurry);
+    reset();
   };
 }
 

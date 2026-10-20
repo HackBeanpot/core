@@ -313,6 +313,7 @@ function TeamBackground({ artboard }: { artboard: Artboard }) {
         {[benchLeft, benchRight].map((bench) => (
           <div
             key={bench.x}
+            data-anim="team-bench"
             className="absolute"
             style={{
               left: fromCenter(bench.x),
@@ -338,7 +339,8 @@ function TeamBackground({ artboard }: { artboard: Artboard }) {
  * scroll the strip natively.
  *
  * Hooks: `team-title`, `team-strip` (wrapper around the scroll track),
- * `team-row-{0,1}`, `team-member-{i}`, `team-benches`.
+ * `team-row-{0,1}`, `team-member-{i}`, `team-benches`, `team-bench`.
+ * Animated by `team.animation.ts` (MS-308).
  */
 export function TeamScene() {
   const artboardRef = useRef<HTMLDivElement>(null);

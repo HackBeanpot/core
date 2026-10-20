@@ -3,6 +3,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import clsx from "clsx";
+import { useScrollToScene } from "../../(landing)/scenes/ScrollStage";
 import type { SceneId } from "../../(landing)/scenes/types";
 import { site } from "../content/site";
 import { headerTabs, showApplicationsClosed } from "./navigation";
@@ -27,6 +28,7 @@ type MobileMenuProps = {
 const MobileMenu = ({ id, activeSection, onClose }: MobileMenuProps) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const scrollToScene = useScrollToScene();
 
   useLayoutEffect(() => {
     const { overflow } = document.body.style;
@@ -68,9 +70,11 @@ const MobileMenu = ({ id, activeSection, onClose }: MobileMenuProps) => {
     e.preventDefault();
     onClose({ restoreFocus: false });
     requestAnimationFrame(() => {
-      window.history.pushState(null, "", hash || window.location.pathname);
-      if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
-      else window.scrollTo({ top: 0 });
+      const { pathname, search } = window.location;
+      window.history.replaceState(null, "", hash || pathname + search);
+      // Scenes on LG/MD don't sit at their element's offset; this routes
+      // through the scroll stage there and scrolls the element into view on SM.
+      scrollToScene((hash.slice(1) || "hero") as SceneId);
     });
   };
 
