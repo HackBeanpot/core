@@ -4,6 +4,7 @@ import { heroAnimation } from "./hero/hero.animation";
 import { HeroScene } from "./hero/HeroScene";
 import { placeholder } from "./placeholder/placeholders";
 import { ProjectsScene } from "./projects/ProjectsScene";
+import { speakersAnimation } from "./speakers/speakers.animation";
 import { SpeakersScene } from "./speakers/SpeakersScene";
 import { TeamScene } from "./team/TeamScene";
 import { testimonialsAnimation } from "./testimonials/testimonials.animation";
@@ -53,7 +54,7 @@ export const SCENES: SceneEntry[] = [
   { id: "hero", Component: HeroScene, animation: heroAnimation },
   interim("about", AboutScene, "crossfade"), // MS-303
   placeholder("values", "fogWipe"), // MS-205, MS-304
-  interim("speakers", SpeakersScene, "curtain", { color: "#8f1d1a" }), // MS-305
+  { id: "speakers", Component: SpeakersScene, animation: speakersAnimation },
   {
     id: "testimonials",
     Component: TestimonialsScene,
