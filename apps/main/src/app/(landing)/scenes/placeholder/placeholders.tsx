@@ -2,7 +2,7 @@ import React from "react";
 import { u } from "../../../lib/scroll/units";
 import { MOTION_SPEC } from "../motionSpec";
 import { SceneFrame } from "../SceneFrame";
-import { TRANSITIONS, type TransitionName } from "../transitions";
+import { enterWith, type TransitionName } from "../transitions";
 import type { SceneAnimation, SceneId } from "../types";
 import type { SceneEntry } from "../registry";
 
@@ -55,13 +55,7 @@ export function placeholder(
 
   const animation: SceneAnimation = {
     id,
-    ...(transition && {
-      enter: (root, tl, { prevRoot, fromColor }) =>
-        TRANSITIONS[transition](tl, prevRoot, root, {
-          fromColor,
-          ...transitionOpts,
-        }),
-    }),
+    ...(transition && { enter: enterWith(transition, transitionOpts) }),
     build: (root, tl) => {
       tl.fromTo(
         root.querySelector('[data-anim="box"]'),
