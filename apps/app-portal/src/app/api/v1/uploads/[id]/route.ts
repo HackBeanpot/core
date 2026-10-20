@@ -1,4 +1,5 @@
-// GET --> returns signed download URL for an uploaded file
+// GET --> returns signed download URL (plus filename/mime/size) for an uploaded file.
+// With ?redirect=1 it redirects straight to the file instead, so it can be used as a link.
 
 import { requireUser } from "@/lib/auth/guards";
 import {
@@ -35,6 +36,9 @@ export async function GET(
         { error: "Requester not allowed" },
         { status: 403 },
       );
+    }
+    if (new URL(request.url).searchParams.has("redirect")) {
+      return NextResponse.redirect(res.url);
     }
     return NextResponse.json(res);
   } catch (err) {

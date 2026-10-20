@@ -3,7 +3,6 @@ import Link from "next/link";
 import PortalShell from "./PortalShell";
 import {
   //primaryActionClass,
-  secondaryActionClass,
   statCardClass,
 } from "./styles";
 import type { ApplicantStatus } from "../../lib/status/types";
@@ -36,11 +35,6 @@ export default function AdmittedView({
             {status.rsvpStatus === "unconfirmed" ? "RSVP now" : "Edit RSVP"}
           </Link>
         )
-      }
-      secondaryAction={
-        <Link className={secondaryActionClass} href="/dashboard">
-          Refresh status
-        </Link>
       }
       title={<>You&apos;re in!</>}
       tone="success"
