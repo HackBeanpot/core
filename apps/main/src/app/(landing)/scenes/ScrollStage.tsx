@@ -126,9 +126,10 @@ export function useScrollToScene(): StageContextValue["scrollToScene"] {
 }
 
 function fallbackScrollToScene(id: SceneId, opts: ScrollToSceneOptions = {}) {
-  document
-    .getElementById(id)
-    ?.scrollIntoView({ behavior: opts.immediate ? "instant" : "smooth" });
+  const behavior = opts.immediate ? "instant" : "smooth";
+  // The hero's element is hidden on SM (MobileHero has no id); it's the top.
+  if (id === "hero") window.scrollTo({ top: 0, behavior });
+  else document.getElementById(id)?.scrollIntoView({ behavior });
 }
 
 function useMediaQuery(query: string) {
@@ -335,10 +336,17 @@ function Stage({
       if (!href || !trigger.current) return;
       const url = new URL(href, window.location.href);
       if (url.pathname !== window.location.pathname) return;
-      const id = sceneFromHash(url.hash, layout.ranges);
+      // A bare `#` (the header logo) means the top of the page.
+      const id =
+        href === "#" ? scenes[0]!.id : sceneFromHash(url.hash, layout.ranges);
       if (!id) return;
       e.preventDefault();
-      window.history.pushState(null, "", `#${id}`);
+      // Replace, not push: Back should leave the page, not step through tabs.
+      window.history.replaceState(
+        null,
+        "",
+        href === "#" ? url.pathname + url.search : `#${id}`,
+      );
       scrollToScene(id);
     };
     const onHashChange = () => {
@@ -351,14 +359,24 @@ function Stage({
       document.removeEventListener("click", onClick);
       window.removeEventListener("hashchange", onHashChange);
     };
-  }, [layout, scrollToScene]);
+  }, [layout, scenes, scrollToScene]);
+
+  // Restoring a mid-page scroll position on reload would land between scene
+  // states; reloads start at the top (or at the `#hash` scene, above).
+  useEffect(() => {
+    const { scrollRestoration } = window.history;
+    window.history.scrollRestoration = "manual";
+    return () => {
+      window.history.scrollRestoration = scrollRestoration;
+    };
+  }, []);
 
   const markup = useMemo(() => {
     const slotRef = (i: number) => (el: HTMLDivElement | null) => {
       slots.current[i] = el;
     };
     return (
-      <div className="mobile-xl:hidden mobile:hidden">
+      <div className="max-sm:hidden">
         <div
           ref={container}
           className="relative"

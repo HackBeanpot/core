@@ -1,8 +1,14 @@
 import type { ComponentType } from "react";
+import { AboutScene } from "./about/AboutScene";
 import { heroAnimation } from "./hero/hero.animation";
 import { HeroScene } from "./hero/HeroScene";
 import { placeholder } from "./placeholder/placeholders";
 import { ProjectsScene } from "./projects/ProjectsScene";
+import { SpeakersScene } from "./speakers/SpeakersScene";
+import { TeamScene } from "./team/TeamScene";
+import { testimonialsAnimation } from "./testimonials/testimonials.animation";
+import { TestimonialsScene } from "./testimonials/TestimonialsScene";
+import { enterWith, type TransitionName } from "./transitions";
 import type { SceneAnimation, SceneId } from "./types";
 
 export interface SceneEntry {
@@ -14,24 +20,47 @@ export interface SceneEntry {
 }
 
 /**
+ * A real scene whose animation ticket hasn't merged yet: it rests in its
+ * final state and comes in with a stand-in transition, so the page has no
+ * hard cuts in the meantime. The animation ticket replaces the whole call
+ * with `{ id, Component, animation }`.
+ */
+function interim(
+  id: SceneId,
+  Component: ComponentType,
+  transition: TransitionName,
+  opts?: Record<string, unknown>,
+): SceneEntry {
+  return {
+    id,
+    Component,
+    animation: { id, enter: enterWith(transition, opts), build: () => {} },
+  };
+}
+
+/**
  * Every landing scene, in page order. `ScrollStage` plays them top to bottom
  * using `MOTION_SPEC[id]` for each scene's scroll length and exit color.
  *
  * Swap your placeholder for the real scene with a one-line change:
- *   placeholder("about", "crossfade"),
- *   -> { id: "about", Component: AboutScene },                       // static ticket
- *   -> { id: "about", Component: AboutScene, animation: aboutAnimation }, // animation ticket
+ *   placeholder("values", "fogWipe"),
+ *   -> interim("values", ValuesScene, "fogWipe"),                    // static ticket
+ *   -> { id: "values", Component: ValuesScene, animation: valuesAnimation }, // animation ticket
  *
  * Unpinned scenes (`pinned: false` in the motion spec, i.e. FAQ) must be last.
  */
 export const SCENES: SceneEntry[] = [
   { id: "hero", Component: HeroScene, animation: heroAnimation },
-  placeholder("about", "crossfade"),
-  placeholder("values", "fogWipe"),
-  placeholder("speakers", "curtain", { color: "#8f1d1a" }),
-  placeholder("testimonials", "zoomThrough"),
-  { id: "projects", Component: ProjectsScene },
-  placeholder("sponsors", "crossfade", { scaleFrom: 1.08 }),
-  placeholder("team", "fogWipe", { direction: "down" }),
-  placeholder("faq", "crossfade"),
+  interim("about", AboutScene, "crossfade"), // MS-303
+  placeholder("values", "fogWipe"), // MS-205, MS-304
+  interim("speakers", SpeakersScene, "curtain", { color: "#8f1d1a" }), // MS-305
+  {
+    id: "testimonials",
+    Component: TestimonialsScene,
+    animation: testimonialsAnimation,
+  },
+  interim("projects", ProjectsScene, "pan"), // MS-307
+  placeholder("sponsors", "crossfade", { scaleFrom: 1.08 }), // MS-203, MS-402
+  interim("team", TeamScene, "fogWipe", { direction: "down" }), // MS-308
+  placeholder("faq", "crossfade"), // MS-302
 ];

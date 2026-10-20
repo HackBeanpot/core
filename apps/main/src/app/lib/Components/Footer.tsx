@@ -7,6 +7,7 @@ import clsx from "clsx";
 import isValidEmail from "@repo/util/functions/isValidEmail";
 import { site } from "../content/site";
 import type { SocialPlatform } from "../content/types";
+import { useLenis } from "../scroll/SmoothScroll";
 import ExternalLink from "./ExternalLink";
 import { Button } from "./museum";
 
@@ -158,8 +159,17 @@ const MailingListForm = () => {
  * bottom of LG FAQ (5597:20877).
  */
 const Footer = () => {
-  // TODO(MS-401): swap for the Lenis scrollTo.
-  const handleBackToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const lenis = useLenis();
+  // Lenis on LG/MD (the scroll stage); native smooth scroll on SM.
+  const handleBackToTop = () => {
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search,
+    );
+    if (lenis) lenis.scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className="relative w-full bg-transparent">

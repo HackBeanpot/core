@@ -70,6 +70,12 @@ type HeaderProps = {
    * pointer events. The hero sets this; MS-401 wires it to scroll.
    */
   visible?: boolean;
+  /**
+   * `false` hides the logo below 640px. The landing page's SM header sits
+   * over the hero, whose MLH badge takes the logo's corner (SM hero
+   * `5615:22626` shows only the menu button).
+   */
+  smLogo?: boolean;
 };
 
 /**
@@ -82,7 +88,11 @@ type HeaderProps = {
  * The hamburger opens `MobileMenu`. The header is fixed over the scenes on
  * LG/MD and sits at the top of the page on SM (SM scrolls normally).
  */
-const Header = ({ activeSection, visible = true }: HeaderProps) => {
+const Header = ({
+  activeSection,
+  visible = true,
+  smLogo = true,
+}: HeaderProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -113,7 +123,10 @@ const Header = ({ activeSection, visible = true }: HeaderProps) => {
         <a
           href="#"
           aria-label="HackBeanpot home"
-          className="shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          className={clsx(
+            "shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white",
+            !smLogo && "max-sm:invisible",
+          )}
         >
           <Image
             src="/header/logo.png"
