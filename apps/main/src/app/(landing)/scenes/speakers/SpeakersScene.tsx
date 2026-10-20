@@ -41,14 +41,17 @@ function Decor({
   src,
   box,
   toBottom = false,
+  anim,
 }: {
   src: string;
   box: Box;
   toBottom?: boolean;
+  anim?: string;
 }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element -- static decorative SVG
     <img
+      data-anim={anim}
       src={src}
       alt=""
       aria-hidden
@@ -168,6 +171,30 @@ const FONT = {
   body: "var(--font-merriweather), serif",
 };
 
+/** One carousel line with a stable hook outside the swap, so GSAP's target survives a speaker change. */
+function SwapLine({
+  index,
+  direction,
+  children,
+}: {
+  index: number;
+  direction: ReturnType<typeof useCarousel>["direction"];
+  children: React.ReactNode;
+}) {
+  return (
+    <div data-anim="speakers-text" className="w-full">
+      <CarouselSwap
+        swapKey={index}
+        direction={direction}
+        animated
+        className="w-full"
+      >
+        {children}
+      </CarouselSwap>
+    </div>
+  );
+}
+
 /**
  * Speakers scene (static, S2), layout A (Figma 5624:1085 LG, 5687:2142 MD).
  * The A/B layout question is still open in motionSpec.ts (SPEAKERS); B is a follow-up.
@@ -207,7 +234,11 @@ export function SpeakersScene() {
     <SceneFrame
       sceneId="speakers"
       background={
-        <div className="h-full w-full" style={{ background: BACKGROUND[bp] }} />
+        <div
+          data-anim="speakers-stage"
+          className="h-full w-full"
+          style={{ background: BACKGROUND[bp] }}
+        />
       }
       content={
         <>
@@ -235,9 +266,11 @@ export function SpeakersScene() {
           </div>
 
           {/* 2. Curtain, above the main railing */}
-          <div data-anim="speakers-curtain" className="absolute inset-0">
-            <Decor src={asset("curtain")} box={layout.curtain} />
-          </div>
+          <Decor
+            anim="speakers-curtain"
+            src={asset("curtain")}
+            box={layout.curtain}
+          />
 
           {/* 3. Left railing, extended to the viewport edge (LG only) */}
           {leftRail && (
@@ -248,7 +281,13 @@ export function SpeakersScene() {
           )}
 
           {/* 4. Gazebo arch with the photo clipped to its opening, above the railings */}
-          <div data-anim="speakers-arch" className="absolute inset-0">
+          <div
+            data-anim="speakers-arch"
+            className="absolute inset-0"
+            style={{
+              transformOrigin: `${u(layout.gazebo.x + layout.gazebo.w / 2)} ${u(layout.gazebo.y + layout.gazebo.h)}`,
+            }}
+          >
             <Decor src={asset("gazebo")} box={layout.gazebo} />
             <ArchClip
               path={openingPath}
@@ -298,21 +337,15 @@ export function SpeakersScene() {
             </h2>
 
             <div
-              data-anim="speakers-text"
               className="flex w-full flex-col items-start"
               style={{ gap: u(textBox.gap) }}
             >
-              <CarouselSwap
-                swapKey={index}
-                direction={direction}
-                animated
-                className="w-full"
+              <div
+                aria-live="polite"
+                className="flex w-full flex-col"
+                style={{ gap: u(10) }}
               >
-                <div
-                  aria-live="polite"
-                  className="flex flex-col"
-                  style={{ gap: u(10) }}
-                >
+                <SwapLine index={index} direction={direction}>
                   <h3
                     className="text-white"
                     style={{
@@ -323,6 +356,8 @@ export function SpeakersScene() {
                   >
                     {item.name}
                   </h3>
+                </SwapLine>
+                <SwapLine index={index} direction={direction}>
                   <p
                     className="font-light text-[#E8B1A5]"
                     style={{
@@ -333,6 +368,8 @@ export function SpeakersScene() {
                   >
                     {item.role}
                   </p>
+                </SwapLine>
+                <SwapLine index={index} direction={direction}>
                   <p
                     className="font-light text-white"
                     style={{
@@ -343,11 +380,15 @@ export function SpeakersScene() {
                   >
                     {item.bio}
                   </p>
-                </div>
-              </CarouselSwap>
+                </SwapLine>
+              </div>
 
               {speakers.length > 1 && (
-                <div className="flex items-center" style={{ gap: u(9) }}>
+                <div
+                  data-anim="speakers-text"
+                  className="flex items-center"
+                  style={{ gap: u(9) }}
+                >
                   <CarouselArrow
                     direction="left"
                     disabled={!canPrev}
