@@ -7,6 +7,7 @@ import {
 import { HeroScene } from "../../(landing)/scenes/hero/HeroScene";
 import { ProjectsScene } from "../../(landing)/scenes/projects/ProjectsScene";
 import { SpeakersScene } from "../../(landing)/scenes/speakers/SpeakersScene";
+import { speakersAnimation } from "../../(landing)/scenes/speakers/speakers.animation";
 import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
 import { TestimonialsScene } from "../../(landing)/scenes/testimonials/TestimonialsScene";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
@@ -37,8 +38,7 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
   },
   speakers: {
     Component: SpeakersScene,
-    // Static scene only; the animation ticket replaces this with speakersAnimation.
-    animation: { id: "speakers", build: () => {} },
+    animation: speakersAnimation,
   },
   // Static until the projects animation ticket adds `projects.animation.ts`.
   projects: {
