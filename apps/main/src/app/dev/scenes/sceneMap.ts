@@ -8,6 +8,7 @@ import { HeroScene } from "../../(landing)/scenes/hero/HeroScene";
 import { ProjectsScene } from "../../(landing)/scenes/projects/ProjectsScene";
 import { SpeakersScene } from "../../(landing)/scenes/speakers/SpeakersScene";
 import { speakersAnimation } from "../../(landing)/scenes/speakers/speakers.animation";
+import { teamAnimation } from "../../(landing)/scenes/team/team.animation";
 import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
 import { testimonialsAnimation } from "../../(landing)/scenes/testimonials/testimonials.animation";
 import { TestimonialsScene } from "../../(landing)/scenes/testimonials/TestimonialsScene";
@@ -50,6 +51,5 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
     Component: TestimonialsScene,
     animation: testimonialsAnimation,
   },
-  // Static until the team animation ticket adds `team.animation.ts`.
-  team: { Component: TeamScene, animation: { id: "team", build: () => {} } },
+  team: { Component: TeamScene, animation: teamAnimation },
 };

@@ -4,7 +4,9 @@ import React from "react";
  * The root a scene's `enter` / `build` receive, in `ScrollStage` and in the
  * dev harness. It holds two siblings that `transitions.ts` animates:
  *
- * - `[data-stage-scene]`: the scene itself (its `SceneFrame`).
+ * - `[data-stage-scene]`: the scene itself (its `SceneFrame`). It isolates
+ *   the scene's own `z-index`es, so a raised layer (e.g. Team's arrows) can't
+ *   poke through the transition layer.
  * - `[data-transition-layer]`: an empty full-viewport layer above the scene,
  *   invisible until a transition paints the previous scene's `exitColor` on it.
  *
@@ -32,7 +34,7 @@ export function SceneSlot({
       style={style}
       {...data}
     >
-      <div data-stage-scene className="relative h-full w-full">
+      <div data-stage-scene className="relative isolate h-full w-full">
         {children}
       </div>
       <div

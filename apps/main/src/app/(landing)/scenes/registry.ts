@@ -6,6 +6,7 @@ import { placeholder } from "./placeholder/placeholders";
 import { ProjectsScene } from "./projects/ProjectsScene";
 import { speakersAnimation } from "./speakers/speakers.animation";
 import { SpeakersScene } from "./speakers/SpeakersScene";
+import { teamAnimation } from "./team/team.animation";
 import { TeamScene } from "./team/TeamScene";
 import { testimonialsAnimation } from "./testimonials/testimonials.animation";
 import { TestimonialsScene } from "./testimonials/TestimonialsScene";
@@ -62,6 +63,6 @@ export const SCENES: SceneEntry[] = [
   },
   interim("projects", ProjectsScene, "pan"), // MS-307
   placeholder("sponsors", "crossfade", { scaleFrom: 1.08 }), // MS-203, MS-402
-  interim("team", TeamScene, "fogWipe", { direction: "down" }), // MS-308
+  { id: "team", Component: TeamScene, animation: teamAnimation },
   placeholder("faq", "crossfade"), // MS-302
 ];
