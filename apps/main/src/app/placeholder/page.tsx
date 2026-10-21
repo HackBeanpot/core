@@ -90,9 +90,9 @@ export default function PlaceholderPage() {
         </header>
 
         {/* Main Content - Upper center */}
-        <div className="flex-1 flex flex-col items-center justify-start pt-[3vh] tablet:pt-[7vh] mobile-xl:pt-[7vh] mobile:pt-[6vh] px-8 mobile-xl:px-6 mobile:px-5 overflow-hidden">
+        <div className="flex-1 flex flex-col items-center justify-start -mt-10 tablet:mt-0 mobile-xl:mt-0 mobile:mt-0 pt-0 tablet:pt-[4vh] mobile-xl:pt-[4vh] mobile:pt-[3vh] px-8 mobile-xl:px-6 mobile:px-5 overflow-hidden">
           {/* Title */}
-          <h1 className="text-6xl tablet:text-5xl mobile-xl:text-4xl mobile:text-3xl font-NeulisNeue-Bold text-carouselCreamLight text-center mb-6 tablet:mb-5 mobile-xl:mb-4 mobile:mb-3 max-w-4xl leading-tight">
+          <h1 className="text-6xl tablet:text-5xl mobile-xl:text-4xl mobile:text-3xl font-NeulisNeue-Bold text-carouselCreamLight text-center mb-4 tablet:mb-4 mobile-xl:mb-3 mobile:mb-2 max-w-4xl leading-tight">
             We hope you enjoyed the ride!
           </h1>
 
@@ -127,6 +127,17 @@ export default function PlaceholderPage() {
               />
             </svg>
           </Link>
+
+          {/* Sponsorship Contact */}
+          <p className="mt-4 mobile:mt-3 text-lg tablet:text-base mobile:text-sm font-DMSans-Regular text-white text-center max-w-2xl mobile-xl:max-w-md mobile:max-w-xs">
+            Interested in sponsoring us? Reach out to{" "}
+            <Link
+              href="mailto:sponsorship@hackbeanpot.com"
+              className="font-DMSans-Bold underline hover:text-carouselCreamLight transition-colors"
+            >
+              sponsorship@hackbeanpot.com
+            </Link>
+          </p>
         </div>
       </div>
     </div>
