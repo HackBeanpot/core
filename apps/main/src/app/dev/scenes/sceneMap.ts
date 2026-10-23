@@ -8,6 +8,7 @@ import { HeroScene } from "../../(landing)/scenes/hero/HeroScene";
 import { ProjectsScene } from "../../(landing)/scenes/projects/ProjectsScene";
 import { SpeakersScene } from "../../(landing)/scenes/speakers/SpeakersScene";
 import { speakersAnimation } from "../../(landing)/scenes/speakers/speakers.animation";
+import { SponsorsScene } from "../../(landing)/scenes/sponsors/SponsorsScene";
 import { teamAnimation } from "../../(landing)/scenes/team/team.animation";
 import { aboutAnimation } from "../../(landing)/scenes/about/About.animation";
 import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
@@ -51,6 +52,11 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
   testimonials: {
     Component: TestimonialsScene,
     animation: testimonialsAnimation,
+  },
+  // Static for now; MS-402 replaces this with sponsorsAnimation.
+  sponsors: {
+    Component: SponsorsScene,
+    animation: { id: "sponsors", build: () => {} },
   },
   team: { Component: TeamScene, animation: teamAnimation },
 };
