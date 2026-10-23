@@ -3,6 +3,7 @@ import {
   PlaceholderScene,
   placeholderAnimation,
 } from "../../(landing)/scenes/placeholder/PlaceholderScene";
+import { SponsorsScene } from "../../(landing)/scenes/sponsors/SponsorsScene";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
 
 export interface SceneMapEntry {
@@ -15,5 +16,9 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
   placeholder: {
     Component: PlaceholderScene,
     animation: placeholderAnimation,
+  },
+  sponsors: {
+    Component: SponsorsScene,
+    animation: { id: "sponsors", build: () => {} },
   },
 };
