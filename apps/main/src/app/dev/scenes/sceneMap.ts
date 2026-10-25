@@ -9,6 +9,7 @@ import { ProjectsScene } from "../../(landing)/scenes/projects/ProjectsScene";
 import { SpeakersScene } from "../../(landing)/scenes/speakers/SpeakersScene";
 import { speakersAnimation } from "../../(landing)/scenes/speakers/speakers.animation";
 import { teamAnimation } from "../../(landing)/scenes/team/team.animation";
+import { aboutAnimation } from "../../(landing)/scenes/about/About.animation";
 import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
 import { testimonialsAnimation } from "../../(landing)/scenes/testimonials/testimonials.animation";
 import { TestimonialsScene } from "../../(landing)/scenes/testimonials/TestimonialsScene";
@@ -36,7 +37,7 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
   },
   about: {
     Component: AboutScene,
-    animation: { id: "about", build: () => {} },
+    animation: aboutAnimation,
   },
   speakers: {
     Component: SpeakersScene,

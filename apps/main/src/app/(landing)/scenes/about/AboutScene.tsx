@@ -16,6 +16,22 @@ const BACKGROUND: Record<ScreenSize, string> = {
   md: "linear-gradient(180deg, #15173b 0%, #060825 100%)",
 };
 
+
+function bottomFogStyle(box: {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}): React.CSSProperties {
+  return {
+    position: "absolute",
+    left: u(box.x),
+    top: `calc(${u(box.y)} + ${u(360)})`,
+    width: u(box.w),
+    height: u(box.h),
+  };
+}
+
 // Plaque component
 function Plaque({
   title,
@@ -55,10 +71,13 @@ function Plaque({
       />
 
       <div className="flex flex-col gap-4">
-        <Typography variant="sectionTitle" as="h2">
-          {title}
-        </Typography>
-        {children}
+        <div data-anim="about-text-line">
+          <Typography variant="sectionTitle" as="h2">
+            {title}
+          </Typography>
+        </div>
+
+        <div data-anim="about-text-line">{children}</div>
       </div>
     </div>
   );
@@ -87,6 +106,9 @@ export function AboutScene() {
   const candle1 = positions[ss]["candle-1"];
   const candle2 = positions[ss]["candle-2"];
 
+  const bottomFog1 = positions.lg["cloud-bottom-1"];
+  const bottomFog2 = positions.lg["cloud-bottom-2"];
+
   return (
     <SceneFrame
       sceneId="about"
@@ -110,6 +132,7 @@ export function AboutScene() {
           </div>
 
           <div
+            data-anim="about-fog-tl-2"
             className="pointer-events-none absolute z-0"
             style={{
               left: u(upperFog2.x),
@@ -128,25 +151,16 @@ export function AboutScene() {
               <div
                 data-anim="about-fog-br"
                 className="pointer-events-none absolute z-0"
-                style={{
-                  left: u(470),
-                  bottom: 0,
-                  width: u(1173.6),
-                  height: u(300),
-                }}
+                style={bottomFogStyle(bottomFog1)}
               >
                 <Fog variant="cornerBottomRight" />
               </div>
 
               {/* Bottom fog on the right side */}
               <div
+                data-anim="about-fog-br-2"
                 className="pointer-events-none absolute z-0"
-                style={{
-                  right: u(-415),
-                  bottom: 0,
-                  width: u(927),
-                  height: u(300),
-                }}
+                style={bottomFogStyle(bottomFog2)}
               >
                 <Fog variant="cornerBottomRight" />
               </div>
