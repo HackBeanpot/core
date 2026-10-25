@@ -7,23 +7,23 @@ import React from "react";
  */
 export const typographyVariants = {
   heroTitle:
-    "font-amarante font-normal leading-none text-[56.91px] sm:text-[calc(64*var(--u))]",
+    "font-amarante font-normal leading-none text-[#FDFBFB] text-[56.91px] sm:text-[calc(64*var(--u))]",
   sectionTitle:
-    "font-amarante font-normal leading-none text-center text-[32px] sm:text-[calc(50*var(--u))]",
+    "font-amarante font-normal leading-none text-[#FDFBFB] text-center text-[32px] sm:text-[calc(50*var(--u))]",
   displayName:
-    "font-gothic font-normal leading-none text-center text-[22px] sm:text-[calc(20.34*var(--u))]",
+    "font-gothic font-normal leading-none text-[#FDFBFB] text-center text-[22px] sm:text-[calc(20.34*var(--u))]",
   cardTitle:
-    "font-gothic font-normal leading-none uppercase text-[30px] sm:text-[calc(30*var(--u))]",
+    "font-gothic font-normal leading-none uppercase text-[#FDFBFB] text-[30px] sm:text-[calc(30*var(--u))]",
   label:
-    "font-merriweather font-light leading-none text-[16px] sm:text-[calc(16*var(--u))]",
-  body: "font-merriweather font-light leading-[1.4] text-[18px] sm:text-[calc(18*var(--u))]",
+    "font-merriweather font-light leading-none text-[#FDFBFB] text-[16px] sm:text-[calc(16*var(--u))]",
+  body: "font-merriweather font-light leading-[1.4] text-[#FDFBFB] text-[18px] sm:text-[calc(18*var(--u))]",
   bodySmall:
-    "font-merriweather font-light leading-none text-center text-[16px] sm:text-[calc(16*var(--u))]",
-  role: "font-merriweather font-light leading-[1.4] text-center text-[16px] sm:text-[calc(14.79*var(--u))]",
+    "font-merriweather font-light leading-none text-[#FDFBFB] text-center text-[16px] sm:text-[calc(16*var(--u))]",
+  role: "font-merriweather font-light leading-[1.4] text-[#FDFBFB] text-center text-[16px] sm:text-[calc(14.79*var(--u))]",
   faqQuestion:
-    "font-merriweather font-normal leading-none text-[18px] sm:text-[calc(18*var(--u))] xl:font-semibold",
+    "font-merriweather font-normal leading-none text-[#FDFBFB]text-[18px] sm:text-[calc(18*var(--u))] xl:font-semibold",
   faqQuestionOpen:
-    "font-merriweather font-light leading-[1.4] text-[16px] sm:text-[calc(16*var(--u))]",
+    "font-merriweather font-light leading-[1.4] text-[#FDFBFB] text-[16px] sm:text-[calc(16*var(--u))]",
 } as const;
 
 export type TypographyVariant = keyof typeof typographyVariants;

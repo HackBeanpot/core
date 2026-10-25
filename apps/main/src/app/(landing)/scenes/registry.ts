@@ -12,6 +12,7 @@ import { testimonialsAnimation } from "./testimonials/testimonials.animation";
 import { TestimonialsScene } from "./testimonials/TestimonialsScene";
 import { enterWith, type TransitionName } from "./transitions";
 import type { SceneAnimation, SceneId } from "./types";
+import { aboutAnimation } from "./about/About.animation";
 
 export interface SceneEntry {
   id: SceneId;
@@ -53,7 +54,7 @@ function interim(
  */
 export const SCENES: SceneEntry[] = [
   { id: "hero", Component: HeroScene, animation: heroAnimation },
-  interim("about", AboutScene, "crossfade"), // MS-303
+  { id: "about", Component: AboutScene, animation: aboutAnimation },
   placeholder("values", "fogWipe"), // MS-205, MS-304
   { id: "speakers", Component: SpeakersScene, animation: speakersAnimation },
   {

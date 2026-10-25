@@ -226,7 +226,7 @@ const Fog = forwardRef<SVGSVGElement, FogProps>(
         data-decor="fog"
         viewBox={`0 0 ${shape.w} ${shape.h}`}
         width="100%"
-        preserveAspectRatio={`${shape.align} slice`}
+        preserveAspectRatio={`${shape.align} meet`}
         fill="none"
         aria-hidden
         focusable={false}
