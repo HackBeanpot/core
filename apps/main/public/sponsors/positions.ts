@@ -1,28 +1,48 @@
 // Figma export positions (artboard px, frame-relative, clipped to the frame).
 // LG 1512×982 (5597:19671), MD 1000×982 (5687:3854), SM 402×874 (5615:28693).
-// LG/MD files are artboard-sized canvases with the art in place, so every
-// layer sits at 0,0 and stacks in this order (first = bottom). `blend` is CSS
-// the builder must put on the <img> (blends inside a file don't reach other
-// files). SM is one flattened background.
-const lg = { x: 0, y: 0, w: 1512, h: 982 } as const;
-const md = { x: 0, y: 0, w: 1000, h: 982 } as const;
-
+// LG/MD are the frame's whole "bg image" group (LG 5597:19672, MD 5687:3855)
+// exported flat at 2x. The marble pillars rely on Figma blend modes that
+// browsers can't reproduce from a layered SVG export, so don't split it.
+// `edge` is the left/right edge colour top to bottom, for the viewport bleed.
+// SM is one flattened background.
 export const sponsorsAssets = {
   lg: {
-    hallBackground: { src: "/sponsors/lg/hall-background.svg", ...lg },
-    windows: { src: "/sponsors/lg/windows.svg", ...lg }, // art bbox 232,521 1046×389
-    statues: { src: "/sponsors/lg/statues.svg", ...lg }, // masked to the window panes
-    pillars: { src: "/sponsors/lg/pillars.svg", ...lg }, // marble columns, frieze, plinths
-    vignette: { src: "/sponsors/lg/vignette.svg", ...lg },
-    glow: { src: "/sponsors/lg/glow.svg", ...lg, blend: "plus-lighter" },
+    background: {
+      src: "/sponsors/lg/background.webp",
+      x: 0,
+      y: 0,
+      w: 1512,
+      h: 982,
+    },
+    edge: [
+      "#2a315f",
+      "#1d234c",
+      "#1b1f44",
+      "#191d3e",
+      "#181a38",
+      "#151733",
+      "#10122d",
+      "#0d0f2a",
+    ],
   },
   md: {
-    hallBackground: { src: "/sponsors/md/hall-background.svg", ...md },
-    windows: { src: "/sponsors/md/windows.svg", ...md }, // art bbox 2,495 994×370
-    statues: { src: "/sponsors/md/statues.svg", ...md },
-    pillars: { src: "/sponsors/md/pillars.svg", ...md },
-    vignette: { src: "/sponsors/md/vignette.svg", ...md },
-    glow: { src: "/sponsors/md/glow.svg", ...md, blend: "plus-lighter" },
+    background: {
+      src: "/sponsors/md/background.webp",
+      x: 0,
+      y: 0,
+      w: 1000,
+      h: 982,
+    },
+    edge: [
+      "#272e5b",
+      "#212449",
+      "#252544",
+      "#343245",
+      "#433c49",
+      "#433a45",
+      "#322c3c",
+      "#1e1b31",
+    ],
   },
   sm: {
     background: {
