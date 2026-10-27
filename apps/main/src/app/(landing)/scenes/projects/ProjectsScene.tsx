@@ -14,6 +14,7 @@ import {
 } from "../../../lib/Components/museum";
 import PictureFrame from "../../../lib/Components/museum/PictureFrame";
 import { Typography } from "../../../lib/Components/museum/Typography";
+import { Sparkle } from "../../../lib/Components/Decor";
 import { u } from "../../../lib/scroll/units";
 import { SceneFrame } from "../SceneFrame";
 
@@ -36,6 +37,15 @@ const LAYOUT = {
     /** Doorway lighting. */
     lightWarm: { x: -208.97, y: 309.39, w: 1016.94, h: 683.32 },
     lightCool: { x: -203.38, y: 244.35, w: 1016.94, h: 837.89 },
+    /** Stars in the doorway fog: centers and sizes (from `doorway-fog`'s export). */
+    sparkles: [
+      { x: 505.1, y: 917.6, size: 31.3 },
+      { x: 539.5, y: 900.8, size: 20 },
+      { x: 136.5, y: 933.3, size: 15.9 },
+      { x: 617.7, y: 775.8, size: 15.9 },
+      { x: 413.6, y: 823.4, size: 15.9 },
+      { x: 403.1, y: 764.5, size: 12.8 },
+    ],
   },
   md: {
     title: { x: 80, y: 154 },
@@ -46,6 +56,13 @@ const LAYOUT = {
     wallPanel: { x: 474.65, y: 120, w: 1045, h: 865 },
     lightWarm: { x: -421.33, y: 309.39, w: 1016.94, h: 683.32 },
     lightCool: { x: -415.74, y: 244.35, w: 1016.94, h: 837.89 },
+    sparkles: [
+      { x: 292.8, y: 917.6, size: 31.3 },
+      { x: 327.2, y: 900.8, size: 20 },
+      { x: 405.3, y: 775.8, size: 15.9 },
+      { x: 201.2, y: 823.4, size: 15.9 },
+      { x: 190.8, y: 764.5, size: 12.8 },
+    ],
   },
 } as const;
 
@@ -55,20 +72,67 @@ const CARD_GAP = 32;
 const ARROW = { size: 48, gap: 9 };
 const CEILING_BOTTOM = 113;
 
+/** The wall panel's gradient; `at` is percent along its gradient line. */
+const WALL = {
+  angle: 195,
+  stops: [
+    { color: "#73678d", at: 52.3 },
+    { color: "#352f5a", at: 99.7 },
+  ],
+} as const;
+const WALL_COLOR = WALL.stops[0].color;
+const WALL_GRADIENT = `linear-gradient(${WALL.angle}deg, ${WALL.stops
+  .map(({ color, at }) => `${color} ${at}%`)
+  .join(", ")})`;
+const LIGHTING_OPACITY = 0.2;
+const lighting = (alpha = 1) =>
+  `linear-gradient(180deg, rgb(255 229 178 / ${alpha}), rgb(50 18 124 / ${alpha}))`;
+
+/**
+ * The panel's colors down its on-screen right edge, stretched across a
+ * full-viewport layer. The panel's gradient is tilted, so its edge sliding
+ * over a copy of it would always show a seam; repeating that one column
+ * doesn't. Each stop is the height at which the panel's gradient line
+ * (CSS Images 3) reaches it on that edge.
+ */
+function wallEdge({ x, y, w, h }: Box) {
+  const tilt = Math.tan(((WALL.angle - 180) * Math.PI) / 180);
+  const edge = `(100 * var(--vw, 1vw) - ${u(x)})`;
+  const width = `max(${u(w)}, ${edge})`;
+  const stops = WALL.stops.map(({ color, at }) => {
+    const t = at / 100;
+    const top = u(ART_BOARD_HEIGHT - y - t * h);
+    return `${color} calc(100% - ${top} + ${tilt} * (${edge} - ${1 - t} * ${width}))`;
+  });
+  return `linear-gradient(180deg, ${stops.join(", ")})`;
+}
+
+/**
+ * The bare wall under the lighting overlay: what the camera flies over in
+ * `enter`, so the wall's leading edge blends in. A translucent blended
+ * background layer composites like the overlay's opacity.
+ */
+export const wallBackdrop = (artboard: Artboard) => ({
+  background: `${lighting(LIGHTING_OPACITY)}, ${wallEdge(LAYOUT[artboard].wallPanel)}`,
+  backgroundBlendMode: "color-burn, normal",
+});
+
 /**
  * LG or MD, read from `--ab-w` so the dev harness's forced width (`&w=1000`) picks
  * MD even on a wide screen, which a media query wouldn't.
  */
+export const artboardOf = (el: Element): Artboard =>
+  Number(getComputedStyle(el).getPropertyValue("--ab-w")) === ART_BOARD_WIDTH.md
+    ? "md"
+    : "lg";
+
 const useArtboard = (ref: React.RefObject<HTMLElement | null>): Artboard => {
   const [artboard, setArtboard] = useState<Artboard>("lg");
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const read = () => {
-      const abW = Number(getComputedStyle(el).getPropertyValue("--ab-w"));
-      setArtboard(abW === ART_BOARD_WIDTH.md ? "md" : "lg");
-    };
+    const read = () => setArtboard(artboardOf(el));
     read();
     // The artboard box resizes whenever --u or --ab-w changes.
     const observer = new ResizeObserver(read);
@@ -131,7 +195,7 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
             background: `linear-gradient(179deg, #060825 calc(100% - ${u(986.3)}), #602a80 calc(100% + ${u(872)}))`,
           }}
         >
-          <Layer asset={assets.doorwayPlinth} />
+          <Layer asset={assets.doorwayPlinth} anim="projects-plinth" />
           <Layer asset={assets.dinosaur} anim="projects-dino" />
           <Layer asset={assets.ropeStanchions} anim="projects-ropes" />
         </div>
@@ -155,22 +219,49 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
         }}
       />
       <Layer asset={assets.doorwayFog} anim="projects-fog" />
+      {/* Wrapped: Sparkle's own data-anim switches its twinkle on/off */}
+      {layout.sparkles.map((s, i) => (
+        <div
+          key={i}
+          data-anim="projects-sparkle"
+          className="absolute"
+          style={anchored({
+            x: s.x - s.size / 2,
+            y: s.y - s.size / 2,
+            w: s.size,
+            h: s.size,
+          })}
+        >
+          <Sparkle
+            size={s.size}
+            delay={(i % 5) * 0.6}
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
+      ))}
       {/* Its own file: blending inside the fog SVG only reaches the SVG's
           own transparent backdrop, so the glow drew at full strength. */}
-      <Layer asset={assets.eyeGlow} className="mix-blend-overlay" />
+      <Layer
+        asset={assets.eyeGlow}
+        anim="projects-eye-glow"
+        className="mix-blend-overlay"
+      />
 
       {/* `wall.svg` has no viewBox, so it can't scale; it's two rects that
           also need to reach the viewport edges. */}
       <div
-        className="absolute inset-x-0 top-0 bg-[#73678d]"
-        style={{ bottom: u(ART_BOARD_HEIGHT - layout.wallBandBottom) }}
+        className="absolute inset-x-0 top-0"
+        style={{
+          bottom: u(ART_BOARD_HEIGHT - layout.wallBandBottom),
+          background: WALL_COLOR,
+        }}
       />
       <div
         className="absolute"
         style={{
           ...anchored(panel),
           width: `max(${u(panel.w)}, calc(100% - ${u(panel.x)}))`,
-          background: "linear-gradient(195deg, #73678d 52.3%, #352f5a 99.7%)",
+          background: WALL_GRADIENT,
         }}
       />
 
@@ -182,6 +273,7 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
           an image, so it would lighten the wall. Over this wall, difference
           with the inverted art computes the same thing. */}
       <div
+        data-anim="projects-ceiling"
         className="absolute inset-x-0 top-0 bg-repeat-x mix-blend-difference invert"
         style={{
           height: u(assets.ceilingStrip.h),
@@ -193,6 +285,7 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
           Plus-darker subtracts its 4.5% (25% × the strip's 18%) from each
           channel; over this wall, that's black at about 10%. */}
       <div
+        data-anim="projects-ceiling"
         className="absolute inset-x-0 top-0"
         style={{
           height: u(CEILING_BOTTOM),
@@ -200,8 +293,8 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-20 mix-blend-color-burn"
-        style={{ background: "linear-gradient(180deg, #ffe5b2, #32127c)" }}
+        className="pointer-events-none absolute inset-0 mix-blend-color-burn"
+        style={{ background: lighting(), opacity: LIGHTING_OPACITY }}
       />
     </div>
   );
@@ -418,8 +511,10 @@ function ProjectsContent({
 /**
  * Past Projects, final resting state.
  *
- * Hooks: `projects-title`, `projects-card`, `projects-arches`, `projects-dino`,
- * `projects-ropes`, `projects-fog`.
+ * Hooks: `projects-title`, `projects-card`, `projects-arches`, `projects-plinth`,
+ * `projects-dino`, `projects-eye-glow`, `projects-ropes`, `projects-fog`,
+ * `projects-sparkle` (one per star), `projects-ceiling` (the strip and its
+ * shadow).
  */
 export function ProjectsScene() {
   const artboardRef = useRef<HTMLDivElement>(null);
