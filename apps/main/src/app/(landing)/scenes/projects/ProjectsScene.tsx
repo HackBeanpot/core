@@ -15,6 +15,7 @@ import {
 import PictureFrame from "../../../lib/Components/museum/PictureFrame";
 import { Typography } from "../../../lib/Components/museum/Typography";
 import { Sparkle } from "../../../lib/Components/Decor";
+import "../../../lib/Components/Decor/decor.css";
 import { u } from "../../../lib/scroll/units";
 import { SceneFrame } from "../SceneFrame";
 
@@ -157,10 +158,13 @@ function Layer({
   asset,
   anim,
   className = "",
+  imageClassName,
 }: {
   asset: Box & { src: string };
   anim?: string;
   className?: string;
+  /** On the image itself, so it can move without fighting `anim`'s tweens. */
+  imageClassName?: string;
 }) {
   return (
     <div
@@ -168,7 +172,13 @@ function Layer({
       className={`absolute ${className}`}
       style={anchored(asset)}
     >
-      <Image src={asset.src} alt="" fill unoptimized />
+      <Image
+        src={asset.src}
+        alt=""
+        fill
+        unoptimized
+        className={imageClassName}
+      />
     </div>
   );
 }
@@ -218,7 +228,13 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
             "linear-gradient(180deg, rgb(253 235 204), rgb(214 207 198 / 0.75), rgb(176 179 191 / 0.5), rgb(138 151 185 / 0.25), rgb(99 123 178 / 0))",
         }}
       />
-      <Layer asset={assets.doorwayFog} anim="projects-fog" />
+      <Layer
+        asset={assets.doorwayFog}
+        anim="projects-fog"
+        // Left and down only: the image starts at the viewport's left and
+        // bottom edges, and its right edge is under the wall.
+        imageClassName="decor-fog-drift [--decor-drift-x:-0.7%] [--decor-drift-y:0.7%]"
+      />
       {/* Wrapped: Sparkle's own data-anim switches its twinkle on/off */}
       {layout.sparkles.map((s, i) => (
         <div
