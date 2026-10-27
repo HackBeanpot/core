@@ -4,7 +4,7 @@ import type { SceneAnimation } from "../types";
 import { artboardOf, wallBackdrop } from "./ProjectsScene";
 
 /**
- * Past Projects motion (MS-307). Hooks are the `data-anim` names on
+ * Past Projects motion. Hooks are the `data-anim` names on
  * `ProjectsScene`; positions are fractions of a 0..1 timeline.
  *
  * - `enter`: Testimonials' content fades off its purple, the purple fades to
