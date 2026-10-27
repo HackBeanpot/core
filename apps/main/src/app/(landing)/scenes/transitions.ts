@@ -16,7 +16,7 @@ import type { SceneAnimation } from "./types";
  *   enter range), so add your own `enter` tweens at positions inside 0..1;
  * - animates only transform / opacity / visibility of the root's two layers
  *   (`[data-stage-scene]` and `[data-transition-layer]`, see `SceneSlot`) and,
- *   for `zoomThrough` / `pan`, of the previous scene;
+ *   for `zoomThrough` / `pan` / `flyIn`, of the previous scene;
  * - accepts `prevRoot: null` (the harness, or no previous scene).
  *
  * Preview each one at `/dev/scenes?transition=<name>&progress=0.5`.
@@ -175,7 +175,7 @@ export const curtain: Transition<{
 
 /**
  * A horizontal camera pan: the previous scene slides out as this one slides
- * in beside it, like walking into the next room (Projects).
+ * in beside it, like walking into the next room.
  *
  * @param opts.direction Direction the content moves. `"left"` (default)
  *   brings this scene in from the right.
@@ -199,12 +199,83 @@ export const pan: Transition<{ direction?: "left" | "right" }> = (
   );
 };
 
+/** `flyIn`'s phases on the 0..1 timeline. Time parallax layers to `pan`. */
+export const FLY_IN = {
+  fade: { start: 0, duration: 0.25 },
+  backdrop: { start: 0.2, duration: 0.25 },
+  pan: { start: 0.4, duration: 0.6 },
+} as const;
+
+/**
+ * The previous scene's content fades off its background, the background
+ * fades to `backdrop`, then the camera flies sideways over it onto this
+ * scene (Projects, which parallaxes its layers during `FLY_IN.pan`).
+ *
+ * @param opts.backdrop CSS (`background`, ...) of what the camera flies over,
+ *   usually this scene's own, so its leading edge blends in. Default
+ *   `{ background: fromColor }`.
+ * @param opts.from Side this scene arrives from. `"left"` (default): the
+ *   camera flies left.
+ */
+export const flyIn: Transition<{
+  backdrop?: gsap.TweenVars;
+  from?: "left" | "right";
+}> = (
+  tl,
+  prevRoot,
+  root,
+  {
+    fromColor,
+    ease = "none",
+    backdrop = { background: fromColor },
+    from = "left",
+  },
+) => {
+  const layer = layerOf(root);
+  const scene = sceneOf(root);
+  const prevContent = sceneOf(prevRoot)?.querySelector(
+    ':scope > [data-scene] > [data-anim="content"]',
+  );
+  const sign = from === "left" ? -1 : 1;
+  if (prevContent) {
+    tl.to(
+      prevContent,
+      { autoAlpha: 0, ease, duration: FLY_IN.fade.duration },
+      FLY_IN.fade.start,
+    );
+  }
+  // The backdrop goes under this scene, which flies in over it.
+  tl.set(scene, { zIndex: 1 }, 0);
+  paintLayer(tl, layer, { ...backdrop, opacity: 0 });
+  if (layer)
+    tl.to(
+      layer,
+      { opacity: 1, ease, duration: FLY_IN.backdrop.duration },
+      FLY_IN.backdrop.start,
+    );
+  // On whole device pixels: on a fractional one, each of the scene's stacked
+  // layers antialiases its leading edge, and the darker ones show through as
+  // a hairline against the backdrop.
+  tl.fromTo(
+    scene,
+    { x: () => sign * root.clientWidth },
+    {
+      x: 0,
+      ease,
+      duration: FLY_IN.pan.duration,
+      snap: { x: 1 / window.devicePixelRatio },
+    },
+    FLY_IN.pan.start,
+  );
+};
+
 export const TRANSITIONS = {
   fogWipe,
   crossfade,
   zoomThrough,
   curtain,
   pan,
+  flyIn,
 } satisfies Record<string, Transition>;
 
 export type TransitionName = keyof typeof TRANSITIONS;

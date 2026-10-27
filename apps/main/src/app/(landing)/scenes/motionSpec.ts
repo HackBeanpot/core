@@ -83,7 +83,8 @@ export const TESTIMONIALS: SceneSpec = {
 
 /**
  * Projects.
- * enter: purple cross-fades to lavender; the arch with the skeleton rises.
+ * enter: Testimonials' content fades, its purple fades to the lavender wall,
+ * then the camera flies left onto the doorway, layers parallaxing by depth.
  * build: title, project frame and description fade in beside the arch.
  */
 export const PROJECTS: SceneSpec = {
