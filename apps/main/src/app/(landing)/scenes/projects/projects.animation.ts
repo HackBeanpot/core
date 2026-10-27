@@ -11,8 +11,7 @@ import { artboardOf, wallBackdrop } from "./ProjectsScene";
  *   the gallery wall's lavender, then the camera flies left onto the doorway.
  *   The scene's layers travel by depth (parallax): the wall and arches cover
  *   the most ground, the exhibit seen through the doorway the least. The
- *   ceiling strip fades in as the dinosaur comes into view. The title and
- *   card stay hidden.
+ *   ceiling strip fades in as the dinosaur comes into view.
  * - `build`: after a beat, the title and card fade in together. It plays by
  *   itself (`buildSeconds`) once the fly-in ends.
  */
@@ -68,7 +67,6 @@ export const projectsAnimation: SceneAnimation = {
       { autoAlpha: 1, ease: "none", duration: CEILING_FADE.duration },
       CEILING_FADE.start,
     );
-    tl.set(q(FOREGROUND), { autoAlpha: 0 }, 0);
   },
 
   build: (root, tl) => {
