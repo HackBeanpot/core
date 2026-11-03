@@ -1,12 +1,10 @@
-
 import React from "react";
 import decor from "../../../../public/about/sm/decor.svg";
 import { about } from "../../lib/content/about";
 import PictureFrame from "../../lib/Components/museum/PictureFrame";
 import { Typography } from "../../lib/Components/museum/Typography";
 
-const BACKGROUND =
-  "linear-gradient(180deg, #15173b 0%, #060825 100%)";
+const BACKGROUND = "linear-gradient(180deg, #15173b 0%, #060825 100%)";
 
 export function MobileAboutUS() {
   return (
@@ -22,11 +20,7 @@ export function MobileAboutUS() {
       />
 
       <div className="relative z-10 flex h-full w-full flex-col items-center px-4 pt-4">
-
-        <div
-          data-anim="about-frame"
-          className="relative z-10 w-full"
-        >
+        <div data-anim="about-frame" className="relative z-10 w-full">
           <PictureFrame
             variant="copperRect"
             width="370px"
