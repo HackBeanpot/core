@@ -2,6 +2,10 @@ import React from "react";
 import { Footer } from "../lib/Components";
 import { LandingHeader } from "./LandingHeader";
 import { MobileHero } from "./mobile/MobileHero";
+import { MobileAboutUS } from "./mobile/MobileAbout";
+import { MobileValues } from "./mobile/MobileValues";
+
+
 import { ScrollStage } from "./scenes/ScrollStage";
 
 /**
@@ -15,6 +19,8 @@ export default function Page() {
       <LandingHeader />
       <div className="sm:hidden">
         <MobileHero />
+        <MobileAboutUS/>
+        <MobileValues/>
       </div>
       <Footer />
     </ScrollStage>
