@@ -15,7 +15,7 @@ import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
 import { testimonialsAnimation } from "../../(landing)/scenes/testimonials/testimonials.animation";
 import { TestimonialsScene } from "../../(landing)/scenes/testimonials/TestimonialsScene";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
-
+import { sponsorsAnimation } from "../../(landing)/scenes/sponsors/sponsors.animation";
 export interface SceneMapEntry {
   Component: ComponentType;
   /** Leave out while the scene is static; the harness then hides progress/enter. */
@@ -53,10 +53,9 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
     Component: TestimonialsScene,
     animation: testimonialsAnimation,
   },
-  // Static for now; MS-402 replaces this with sponsorsAnimation.
   sponsors: {
     Component: SponsorsScene,
-    animation: { id: "sponsors", build: () => {} },
+    animation: sponsorsAnimation,
   },
   team: { Component: TeamScene, animation: teamAnimation },
 };

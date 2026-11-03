@@ -111,13 +111,13 @@ function SponsorTierRow({
       }}
     >
       {items.map((sponsor, i) => (
-        <li key={sponsor.name} data-anim={`sponsor-${tier}-${i}`}>
+        <li key={sponsor.name} data-anim={`sponsor-${tier}-${i}`} className="group">
           <a
             href={sponsor.url}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${sponsor.name} (opens in a new tab)`}
-            className="block transition-[filter] hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="block transition-[filter,transform] duration-200 ease-out group-hover:-translate-y-[calc(6*var(--u))] group-hover:brightness-110 focus-visible:-translate-y-[calc(6*var(--u))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:group-hover:translate-y-0"
           >
             <PictureFrame
               variant={tier === "gold" ? "goldBevel" : "silverBevel"}

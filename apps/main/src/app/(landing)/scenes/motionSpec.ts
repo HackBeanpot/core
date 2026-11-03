@@ -94,8 +94,11 @@ export const PROJECTS: SceneSpec = {
 
 /**
  * Sponsors.
- * enter: lavender cross-fades to dark navy; gallery wall is dimmed.
- * build: lights come up, the six sponsor frames and the CTA fade in.
+ * enter: lavender cross-fades to the hall; the scene settles from 1.08 zoom.
+ * build: title fades down, gold frames drop in one by one, then silver
+ * (stagger adapts to sponsor count), then the CTA fades up.
+ * OPEN: windows/statues parallax needs those layers split out of the
+ * flattened background (see public/sponsors/positions.ts).
  */
 export const SPONSORS: SceneSpec = {
   scrollLength: 300,
