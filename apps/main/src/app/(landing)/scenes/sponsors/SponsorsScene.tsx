@@ -111,7 +111,11 @@ function SponsorTierRow({
       }}
     >
       {items.map((sponsor, i) => (
-        <li key={sponsor.name} data-anim={`sponsor-${tier}-${i}`} className="group">
+        <li
+          key={sponsor.name}
+          data-anim={`sponsor-${tier}-${i}`}
+          className="group"
+        >
           <a
             href={sponsor.url}
             target="_blank"

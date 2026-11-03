@@ -6,7 +6,9 @@ const q = (root: HTMLElement, name: string) =>
 
 /** Frames are hooked `sponsor-gold-0`, `sponsor-gold-1`, ... in DOM order. */
 const tierFrames = (root: HTMLElement, tier: "gold" | "silver") =>
-  Array.from(root.querySelectorAll<HTMLElement>(`[data-anim^="sponsor-${tier}-"]`));
+  Array.from(
+    root.querySelectorAll<HTMLElement>(`[data-anim^="sponsor-${tier}-"]`),
+  );
 
 /** px per artboard unit, so offsets scale like u(n). */
 const unit = (root: HTMLElement) =>
@@ -36,27 +38,44 @@ export const sponsorsAnimation: SceneAnimation = {
     // decision on re-exporting those layers.
 
     if (title) {
-      tl.from(title, { autoAlpha: 0, y: () => -24 * u(), ease: "none", duration: TITLE.dur }, TITLE.at);
+      tl.from(
+        title,
+        { autoAlpha: 0, y: () => -24 * u(), ease: "none", duration: TITLE.dur },
+        TITLE.at,
+      );
     }
 
     // Gold first, then silver, one at a time. The gap shrinks as the count
     // grows, so the last frame always lands by FRAMES.end.
     const frames = [...tierFrames(root, "gold"), ...tierFrames(root, "silver")];
     const span = FRAMES.end - FRAMES.start - FRAME_DUR;
-    const gap = frames.length > 1 ? Math.min(MAX_GAP, span / (frames.length - 1)) : 0;
+    const gap =
+      frames.length > 1 ? Math.min(MAX_GAP, span / (frames.length - 1)) : 0;
 
     frames.forEach((frame, i) => {
       const at = FRAMES.start + i * gap;
       // Drop and settle: back.out overshoots slightly, which reads as landing.
-      tl.from(frame, {
-        y: () => -40 * u(),
-        ease: "back.out(1.7)",
-        duration: FRAME_DUR,
-      }, at)
+      tl.from(
+        frame,
+        {
+          y: () => -40 * u(),
+          ease: "back.out(1.7)",
+          duration: FRAME_DUR,
+        },
+        at,
+      )
         // Opacity gets its own linear tween so back.out doesn't push it past 1.
-        .from(frame, { autoAlpha: 0, ease: "none", duration: FRAME_DUR * 0.4 }, at);
+        .from(
+          frame,
+          { autoAlpha: 0, ease: "none", duration: FRAME_DUR * 0.4 },
+          at,
+        );
     });
 
-    tl.from(cta, { autoAlpha: 0, y: () => 24 * u(), ease: "none", duration: CTA.dur }, CTA.at);
+    tl.from(
+      cta,
+      { autoAlpha: 0, y: () => 24 * u(), ease: "none", duration: CTA.dur },
+      CTA.at,
+    );
   },
 };
