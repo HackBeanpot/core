@@ -31,7 +31,10 @@ export function SceneFrame({
       <div data-anim="background" className="absolute inset-0">
         {background}
       </div>
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div
+        data-anim="content"
+        className="absolute inset-0 flex items-center justify-center"
+      >
         <div
           className="relative shrink-0"
           style={{
