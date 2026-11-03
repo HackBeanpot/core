@@ -3,6 +3,7 @@ import { AboutScene } from "./about/AboutScene";
 import { heroAnimation } from "./hero/hero.animation";
 import { HeroScene } from "./hero/HeroScene";
 import { placeholder } from "./placeholder/placeholders";
+import { projectsAnimation } from "./projects/projects.animation";
 import { ProjectsScene } from "./projects/ProjectsScene";
 import { speakersAnimation } from "./speakers/speakers.animation";
 import { SpeakersScene } from "./speakers/SpeakersScene";
@@ -28,7 +29,7 @@ export interface SceneEntry {
  * hard cuts in the meantime. The animation ticket replaces the whole call
  * with `{ id, Component, animation }`.
  */
-function interim(
+export function interim(
   id: SceneId,
   Component: ComponentType,
   transition: TransitionName,
@@ -62,7 +63,7 @@ export const SCENES: SceneEntry[] = [
     Component: TestimonialsScene,
     animation: testimonialsAnimation,
   },
-  interim("projects", ProjectsScene, "pan"), // MS-307
+  { id: "projects", Component: ProjectsScene, animation: projectsAnimation },
   placeholder("sponsors", "crossfade", { scaleFrom: 1.08 }), // MS-203, MS-402
   { id: "team", Component: TeamScene, animation: teamAnimation },
   placeholder("faq", "crossfade"), // MS-302
