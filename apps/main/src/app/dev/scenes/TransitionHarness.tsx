@@ -17,6 +17,7 @@ const NEXT = placeholder("values");
 /** Options that make a demo visible; a curtain in `fromColor` would vanish over PREV. */
 const DEMO_OPTS: Partial<Record<TransitionName, Record<string, unknown>>> = {
   curtain: { color: "#8f1d1a" },
+  flyIn: { backdrop: { background: "#73678d" } },
 };
 
 const isTransition = (name: string | null): name is TransitionName =>

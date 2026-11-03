@@ -5,6 +5,7 @@ import {
   heroAnimation,
 } from "../../(landing)/scenes/hero/hero.animation";
 import { HeroScene } from "../../(landing)/scenes/hero/HeroScene";
+import { projectsAnimation } from "../../(landing)/scenes/projects/projects.animation";
 import { ProjectsScene } from "../../(landing)/scenes/projects/ProjectsScene";
 import { SpeakersScene } from "../../(landing)/scenes/speakers/SpeakersScene";
 import { speakersAnimation } from "../../(landing)/scenes/speakers/speakers.animation";
@@ -13,6 +14,8 @@ import { aboutAnimation } from "../../(landing)/scenes/about/About.animation";
 import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
 import { testimonialsAnimation } from "../../(landing)/scenes/testimonials/testimonials.animation";
 import { TestimonialsScene } from "../../(landing)/scenes/testimonials/TestimonialsScene";
+import { SponsorsScene } from "../../(landing)/scenes/sponsors/SponsorsScene";
+import { sponsorsAnimation } from "../../(landing)/scenes/sponsors/sponsors.animation";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
 
 export interface SceneMapEntry {
@@ -43,14 +46,14 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
     Component: SpeakersScene,
     animation: speakersAnimation,
   },
-  // Static until the projects animation ticket adds `projects.animation.ts`.
-  projects: {
-    Component: ProjectsScene,
-    animation: { id: "projects", build: () => {} },
-  },
+  projects: { Component: ProjectsScene, animation: projectsAnimation },
   testimonials: {
     Component: TestimonialsScene,
     animation: testimonialsAnimation,
+  },
+  sponsors: {
+    Component: SponsorsScene,
+    animation: sponsorsAnimation,
   },
   team: { Component: TeamScene, animation: teamAnimation },
 };
