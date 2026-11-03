@@ -15,6 +15,7 @@ import { TeamScene } from "../../(landing)/scenes/team/TeamScene";
 import { testimonialsAnimation } from "../../(landing)/scenes/testimonials/testimonials.animation";
 import { TestimonialsScene } from "../../(landing)/scenes/testimonials/TestimonialsScene";
 import { SponsorsScene } from "../../(landing)/scenes/sponsors/SponsorsScene";
+import { sponsorsAnimation } from "../../(landing)/scenes/sponsors/sponsors.animation";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
 
 export interface SceneMapEntry {
@@ -52,7 +53,7 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
   },
   sponsors: {
     Component: SponsorsScene,
-    animation: { id: "sponsors", build: () => {} },
+    animation: sponsorsAnimation,
   },
   team: { Component: TeamScene, animation: teamAnimation },
 };

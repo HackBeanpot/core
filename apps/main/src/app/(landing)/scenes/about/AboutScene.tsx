@@ -16,7 +16,6 @@ const BACKGROUND: Record<ScreenSize, string> = {
   md: "linear-gradient(180deg, #15173b 0%, #060825 100%)",
 };
 
-
 function bottomFogStyle(box: {
   x: number;
   y: number;

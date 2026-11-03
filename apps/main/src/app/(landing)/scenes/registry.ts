@@ -7,6 +7,8 @@ import { projectsAnimation } from "./projects/projects.animation";
 import { ProjectsScene } from "./projects/ProjectsScene";
 import { speakersAnimation } from "./speakers/speakers.animation";
 import { SpeakersScene } from "./speakers/SpeakersScene";
+import { sponsorsAnimation } from "./sponsors/sponsors.animation";
+import { SponsorsScene } from "./sponsors/SponsorsScene";
 import { teamAnimation } from "./team/team.animation";
 import { TeamScene } from "./team/TeamScene";
 import { testimonialsAnimation } from "./testimonials/testimonials.animation";
@@ -64,7 +66,7 @@ export const SCENES: SceneEntry[] = [
     animation: testimonialsAnimation,
   },
   { id: "projects", Component: ProjectsScene, animation: projectsAnimation },
-  placeholder("sponsors", "crossfade", { scaleFrom: 1.08 }), // MS-203, MS-402
+  { id: "sponsors", Component: SponsorsScene, animation: sponsorsAnimation },
   { id: "team", Component: TeamScene, animation: teamAnimation },
   placeholder("faq", "crossfade"), // MS-302
 ];
