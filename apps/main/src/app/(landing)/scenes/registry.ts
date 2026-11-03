@@ -29,7 +29,7 @@ export interface SceneEntry {
  * hard cuts in the meantime. The animation ticket replaces the whole call
  * with `{ id, Component, animation }`.
  */
-function interim(
+export function interim(
   id: SceneId,
   Component: ComponentType,
   transition: TransitionName,
