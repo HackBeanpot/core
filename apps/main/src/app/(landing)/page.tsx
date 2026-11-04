@@ -6,6 +6,7 @@ import { MobileAboutUS } from "./mobile/MobileAbout";
 import { MobileValues } from "./mobile/MobileValues";
 import { MobileSpeakers } from "./mobile/MobileSpeakers";
 import { MobileTestimonials } from "./mobile/MobileTestimonials";
+import { MobileTeam } from "./mobile/MobileTeam";
 
 import { ScrollStage } from "./scenes/ScrollStage";
 
@@ -24,6 +25,7 @@ export default function Page() {
         <MobileValues />
         <MobileSpeakers />
         <MobileTestimonials />
+        <MobileTeam />
       </div>
       <Footer />
     </ScrollStage>

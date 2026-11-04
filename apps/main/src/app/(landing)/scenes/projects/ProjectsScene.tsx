@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState, type CSSProperties } from "react";
 import { projectsAssets } from "../../../../../public/projects/positions";
 import { projects, projectsSection } from "../../../lib/content";
-import type { Project, ProjectMedia } from "../../../lib/content/types";
+import type { Project } from "../../../lib/content/types";
 import {
   CarouselArrow,
   CarouselRegion,
@@ -18,6 +18,7 @@ import { Sparkle } from "../../../lib/Components/Decor";
 import "../../../lib/Components/Decor/decor.css";
 import { u } from "../../../lib/scroll/units";
 import { SceneFrame } from "../SceneFrame";
+import { ProjectMediaView } from "./ProjectMedia";
 
 type Artboard = "lg" | "md";
 type Box = { x: number; y: number; w: number; h: number };
@@ -314,74 +315,6 @@ function ProjectsBackground({ artboard }: { artboard: Artboard }) {
       />
     </div>
   );
-}
-
-/** Pauses under reduced motion and shows controls instead. */
-function ProjectVideo({
-  media,
-}: {
-  media: Extract<ProjectMedia, { type: "video" }>;
-}) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const [controls, setControls] = useState(false);
-
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setControls(true);
-      return;
-    }
-    // Rejects when the browser blocks autoplay; the poster stays up.
-    video.play().catch(() => setControls(true));
-  }, []);
-
-  return (
-    <video
-      ref={ref}
-      src={media.src}
-      poster={media.poster}
-      aria-label={media.alt}
-      muted
-      loop
-      playsInline
-      controls={controls}
-      className="h-full w-full object-cover"
-    />
-  );
-}
-
-/**
- * Fills the frame's opening. Only the current slide stays mounted (the
- * outgoing one unmounts after the swap), so off-screen videos aren't playing.
- */
-function ProjectMediaView({ media }: { media: ProjectMedia }) {
-  switch (media.type) {
-    case "image":
-      return (
-        <Image
-          src={media.src}
-          alt={media.alt}
-          fill
-          sizes="(max-width: 1279px) 400px, 600px"
-          className="object-contain"
-        />
-      );
-    case "video":
-      return <ProjectVideo media={media} />;
-    case "embed":
-      return (
-        <iframe
-          src={media.url}
-          title={media.title}
-          loading="lazy"
-          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-          allowFullScreen
-          referrerPolicy="strict-origin-when-cross-origin"
-          className="h-full w-full"
-        />
-      );
-  }
 }
 
 function ProjectSlide({

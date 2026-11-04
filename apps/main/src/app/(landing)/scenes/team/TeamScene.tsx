@@ -21,7 +21,7 @@ type Artboard = "lg" | "md";
  * (`5847:2138`): every frame is 220 tall except the medallion (240).
  * MD draws them at 90% (`frameScale`).
  */
-const FRAME_WIDTH: Record<PictureFrameVariant, number> = {
+export const FRAME_WIDTH: Record<PictureFrameVariant, number> = {
   goldBevel: 200,
   blueMedallion: 198,
   copperRect: 172,
