@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { AboutScene } from "../../(landing)/scenes/about/AboutScene";
+import { FaqScene } from "../../(landing)/scenes/faq/FaqScene";
 import {
   HERO_PREVIEW,
   heroAnimation,
@@ -56,4 +57,5 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
     animation: sponsorsAnimation,
   },
   team: { Component: TeamScene, animation: teamAnimation },
+  faq: { Component: FaqScene },
 };

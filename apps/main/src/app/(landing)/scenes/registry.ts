@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { AboutScene } from "./about/AboutScene";
+import { FaqScene } from "./faq/FaqScene";
 import { heroAnimation } from "./hero/hero.animation";
 import { HeroScene } from "./hero/HeroScene";
 import { placeholder } from "./placeholder/placeholders";
@@ -68,5 +69,5 @@ export const SCENES: SceneEntry[] = [
   { id: "projects", Component: ProjectsScene, animation: projectsAnimation },
   { id: "sponsors", Component: SponsorsScene, animation: sponsorsAnimation },
   { id: "team", Component: TeamScene, animation: teamAnimation },
-  placeholder("faq", "crossfade"), // MS-302
+  interim("faq", FaqScene, "crossfade"), // MS-403
 ];
