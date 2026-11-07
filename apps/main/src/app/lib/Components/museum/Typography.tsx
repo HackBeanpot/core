@@ -21,7 +21,7 @@ export const typographyVariants = {
     "font-merriweather font-light leading-none text-[#FDFBFB] text-center text-[16px] sm:text-[calc(16*var(--u))]",
   role: "font-merriweather font-light leading-[1.4] text-[#FDFBFB] text-center text-[16px] sm:text-[calc(14.79*var(--u))]",
   faqQuestion:
-    "font-merriweather font-normal leading-none text-[#FDFBFB]text-[18px] sm:text-[calc(18*var(--u))] xl:font-semibold",
+    "font-merriweather font-normal leading-none text-[#FDFBFB] text-[18px] sm:text-[calc(18*var(--u))] xl:font-semibold",
   faqQuestionOpen:
     "font-merriweather font-light leading-[1.4] text-[#FDFBFB] text-[16px] sm:text-[calc(16*var(--u))]",
 } as const;

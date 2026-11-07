@@ -12,7 +12,7 @@ import { ScrollStage } from "./scenes/ScrollStage";
 
 /**
  * The landing page. LG/MD (>= 640px): every scene in `scenes/registry.ts`,
- * played by `ScrollStage`, with the FAQ and footer scrolling normally after it.
+ * played by `ScrollStage`, with the FAQ (which owns the footer) scrolling normally after it.
  * SM: static sections (MS-502 adds the rest of the SM page).
  */
 export default function Page() {
@@ -26,8 +26,9 @@ export default function Page() {
         <MobileSpeakers />
         <MobileTestimonials />
         <MobileTeam />
+        {/* LG/MD get the footer from the FAQ scene. */}
+        <Footer />
       </div>
-      <Footer />
     </ScrollStage>
   );
 }
