@@ -3,7 +3,6 @@ import { AboutScene } from "./about/AboutScene";
 import { FaqScene } from "./faq/FaqScene";
 import { heroAnimation } from "./hero/hero.animation";
 import { HeroScene } from "./hero/HeroScene";
-import { placeholder } from "./placeholder/placeholders";
 import { projectsAnimation } from "./projects/projects.animation";
 import { ProjectsScene } from "./projects/ProjectsScene";
 import { speakersAnimation } from "./speakers/speakers.animation";
@@ -14,6 +13,8 @@ import { teamAnimation } from "./team/team.animation";
 import { TeamScene } from "./team/TeamScene";
 import { testimonialsAnimation } from "./testimonials/testimonials.animation";
 import { TestimonialsScene } from "./testimonials/TestimonialsScene";
+import { valuesAnimation } from "./values/values.animation";
+import { ValuesScene } from "./values/ValuesScene";
 import { enterWith, type TransitionName } from "./transitions";
 import type { SceneAnimation, SceneId } from "./types";
 import { aboutAnimation } from "./about/About.animation";
@@ -59,7 +60,7 @@ export function interim(
 export const SCENES: SceneEntry[] = [
   { id: "hero", Component: HeroScene, animation: heroAnimation },
   { id: "about", Component: AboutScene, animation: aboutAnimation },
-  placeholder("values", "fogWipe"), // MS-205, MS-304
+  { id: "values", Component: ValuesScene, animation: valuesAnimation },
   { id: "speakers", Component: SpeakersScene, animation: speakersAnimation },
   {
     id: "testimonials",

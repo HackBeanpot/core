@@ -17,6 +17,8 @@ import { testimonialsAnimation } from "../../(landing)/scenes/testimonials/testi
 import { TestimonialsScene } from "../../(landing)/scenes/testimonials/TestimonialsScene";
 import { SponsorsScene } from "../../(landing)/scenes/sponsors/SponsorsScene";
 import { sponsorsAnimation } from "../../(landing)/scenes/sponsors/sponsors.animation";
+import { ValuesScene } from "../../(landing)/scenes/values/ValuesScene";
+import { valuesAnimation } from "../../(landing)/scenes/values/values.animation";
 import type { DevSceneId, SceneAnimation } from "../../(landing)/scenes/types";
 
 export interface SceneMapEntry {
@@ -43,6 +45,7 @@ export const SCENE_MAP: Partial<Record<DevSceneId, SceneMapEntry>> = {
     Component: AboutScene,
     animation: aboutAnimation,
   },
+  values: { Component: ValuesScene, animation: valuesAnimation },
   speakers: {
     Component: SpeakersScene,
     animation: speakersAnimation,
