@@ -46,9 +46,10 @@ export const ABOUT: SceneSpec = {
 
 /**
  * Values.
- * enter: navy cross-fades through to a flat blue, then the title appears.
- * build: three columns rise with their values; a spotlight sweeps across
- * them left to right, one value highlighted at a time.
+ * enter: About's navy fog-wipes upward off the teal room.
+ * build: spotlight switches on with a flicker; pillars rise left to right,
+ * each stone pops as its pillar lands and its text fades up; vases slide up.
+ * OPEN (ask Cole): spotlight sweeping across the values while scrolling.
  */
 export const VALUES: SceneSpec = {
   scrollLength: 300,
