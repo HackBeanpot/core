@@ -449,14 +449,9 @@
   padding-top: calc(calc(4 * var(--hu)) * var(--k));
 }
 
-[data-scene="hero"] .lockup__amazon {
+[data-scene="hero"] .lockup__klaviyo {
   display: block;
-  height: calc(calc(16.56 * var(--hu)) * var(--k));
-}
-
-[data-scene="hero"] .lockup__maven {
-  display: block;
-  height: calc(calc(12.39 * var(--hu)) * var(--k));
+  height: calc(calc(22 * var(--hu)) * var(--k));
 }
 
 /* MD (640–1279px): Figma 1000x982 moon/badge/title spots at the MD framing. */
