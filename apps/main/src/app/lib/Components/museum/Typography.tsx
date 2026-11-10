@@ -14,6 +14,8 @@ export const typographyVariants = {
     "font-gothic font-normal leading-none text-[#FDFBFB] text-center text-[22px] sm:text-[calc(20.34*var(--u))]",
   cardTitle:
     "font-gothic font-normal leading-none uppercase text-[#FDFBFB] text-[30px] sm:text-[calc(30*var(--u))]",
+  categoryTitle:
+    "font-gothic font-normal leading-[1.4] uppercase text-[#FDFBFB] text-[28px]",
   label:
     "font-merriweather font-light leading-none text-[#FDFBFB] text-[16px] sm:text-[calc(16*var(--u))]",
   body: "font-merriweather font-light leading-[1.4] text-[#FDFBFB] text-[18px] sm:text-[calc(18*var(--u))]",
