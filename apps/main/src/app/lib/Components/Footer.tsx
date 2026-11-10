@@ -116,7 +116,7 @@ const MailingListForm = () => {
           className={clsx(
             "font-merriweather",
             "min-w-0 flex-1 rounded-lg border bg-[rgba(244,244,244,0.2)] px-4 py-3 text-base text-white shadow-[0px_0px_20px_0px_rgba(0,0,0,0.1),inset_0px_0px_20px_0px_rgba(255,255,255,0.1)] backdrop-blur-[4px] placeholder:text-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
-            status === "invalid" ? "border-[#ff9d8a]" : "border-[#ffda82]",
+            status === "invalid" ? "border-[#ff9d8a]" : "border-[#ffda82]/10",
           )}
         />
         <Button
