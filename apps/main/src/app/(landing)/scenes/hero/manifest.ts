@@ -443,28 +443,19 @@ export const HERO_LAYERS = {
   heroTagline: {
     kind: "text",
     text: "Brought to you by",
-    rect: { x: 619, y: 106, w: 127, h: 29 },
+    rect: { x: 650.8, y: 106, w: 127, h: 29 },
     font: "gothic",
     size: 22,
     align: "center",
     group: "ui",
     states: states({}, only(["title"]), "ui"),
   },
-  /** Raster (flagged to Cole: the source was 2560px wide for a 55px slot). */
-  amazonLogo: {
+  /** White copy of `packages/ui/src/Logos/KlaviyoLogo.svg` (581×172). */
+  klaviyoLogo: {
     kind: "image",
-    src: "/hero/lg/amazon.webp",
-    alt: "amazon",
-    rect: { x: 755, y: 115, w: 54.841, h: 16.559 },
-    group: "ui",
-    states: states({}, only(["title"]), "ui"),
-  },
-  /** Raster (flagged to Cole). */
-  mavenLogo: {
-    kind: "image",
-    src: "/hero/lg/maven.webp",
-    alt: "Maven AGI",
-    rect: { x: 819.841, y: 115, w: 73.84, h: 12.389 },
+    src: "/hero/lg/klaviyo.svg",
+    alt: "Klaviyo",
+    rect: { x: 786.8, y: 112, w: 74.3, h: 22 },
     group: "ui",
     states: states({}, only(["title"]), "ui"),
   },
@@ -610,17 +601,13 @@ export const HERO_SM = {
   },
   tagline: {
     text: "Brought to you by",
-    rect: { x: 60, y: 254.34, w: 131, h: 29 },
+    rect: { x: 92.7, y: 254.34, w: 131, h: 29 },
     font: "gothic",
     size: 22.645,
   },
-  amazonLogo: {
-    src: "/hero/lg/amazon.webp",
-    rect: { x: 199.99, y: 263.61, w: 56.45, h: 17.05 },
-  },
-  mavenLogo: {
-    src: "/hero/lg/maven.webp",
-    rect: { x: 266.73, y: 263.61, w: 76.01, h: 12.75 },
+  klaviyoLogo: {
+    src: "/hero/lg/klaviyo.svg",
+    rect: { x: 232.7, y: 260, w: 76.5, h: 22.65 },
   },
   badge: {
     src: "/hero/lg/mlhBadge.webp",

@@ -119,6 +119,42 @@ export const fogWipe: Transition<{
 };
 
 /**
+ * The background changes color as if it's being replaced, with nothing
+ * layered or wiping across (Values, Team; the prototype's "gradient morph").
+ * The previous scene's content first fades away over its own background,
+ * then that background blends into this scene's. Use it on a scene whose
+ * `build` brings its content in, so only its background shows meanwhile.
+ *
+ * @param opts.fromBackground The previous scene's resting background (CSS
+ *   `background`, e.g. its gradient), so the first phase only removes its
+ *   content. Default `fromColor`.
+ * @param opts.contentFade Share of the timeline spent fading the previous
+ *   content. Default `0.35`.
+ */
+export const morph: Transition<{
+  fromBackground?: string;
+  contentFade?: number;
+}> = (
+  tl,
+  _prevRoot,
+  root,
+  { fromColor, ease = "none", fromBackground = fromColor, contentFade = 0.35 },
+) => {
+  const layer = layerOf(root);
+  const scene = sceneOf(root);
+  if (!layer) return;
+  paintLayer(tl, layer, { background: fromBackground, opacity: 0 });
+  // This scene stays hidden while the layer fades in over the previous one,
+  // which hides only the previous scene's content.
+  tl.set(scene, { autoAlpha: 0 }, 0);
+  tl.to(layer, { opacity: 1, ease, duration: contentFade }, 0);
+  tl.set(scene, { autoAlpha: 1 }, contentFade);
+  // Fading out over this scene's background is a straight color blend,
+  // pixel for pixel, from one gradient to the other.
+  tl.to(layer, { opacity: 0, ease, duration: 1 - contentFade }, contentFade);
+};
+
+/**
  * The camera pushes through the previous scene: it scales up as the screen
  * fills with its exit color, then this scene arrives from a slight zoom
  * (Testimonials' "walk in").
@@ -272,6 +308,7 @@ export const flyIn: Transition<{
 export const TRANSITIONS = {
   fogWipe,
   crossfade,
+  morph,
   zoomThrough,
   curtain,
   pan,

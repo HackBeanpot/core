@@ -257,6 +257,7 @@ function TeamContent({
       {(["left", "right"] as const).map((direction) => (
         <div
           key={direction}
+          data-anim="team-arrows"
           className="absolute z-10"
           style={{
             top: u(layout.arrowTop),
@@ -301,6 +302,7 @@ function TeamBackground({ artboard }: { artboard: Artboard }) {
       }}
     >
       <div
+        data-anim="team-floor"
         className="absolute inset-x-0 bottom-0 bg-repeat-x"
         style={{
           height: u(floor.h),
@@ -339,7 +341,8 @@ function TeamBackground({ artboard }: { artboard: Artboard }) {
  * scroll the strip natively.
  *
  * Hooks: `team-title`, `team-strip` (wrapper around the scroll track),
- * `team-row-{0,1}`, `team-member-{i}`, `team-benches`, `team-bench`.
+ * `team-row-{0,1}`, `team-member-{i}`, `team-arrows`, `team-floor`,
+ * `team-benches`, `team-bench`.
  * Animated by `team.animation.ts` (MS-308).
  */
 export function TeamScene() {

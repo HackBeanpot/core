@@ -73,6 +73,14 @@ const HOVER_LIFT = 16;
 const VASE_COLUMN = [0, 0, 0, 1, 1, 2] as const;
 const VASES = [1, 2, 3, 4, 5, 6] as const;
 const DIMMED = 0.8;
+/**
+ * The strip between the artboard's bottom edge and the screen's. The vases
+ * stand on the screen's bottom edge as in Figma (they run off the frame), so
+ * on a window taller than the artboard they move down by this instead of
+ * floating above the bottom.
+ */
+const BOTTOM_STRIP =
+  "max(0px, calc((100 * var(--vh, 1svh) - var(--ab-h) * var(--u)) / 2))";
 
 /** `Spotlight` draws a 10-wide lip at the origin, then widens by `spread`. */
 const SPOTLIGHT_LIP = 10;
@@ -244,7 +252,10 @@ export function ValuesScene() {
                 key={n}
                 data-anim={`values-vase-${i}`}
                 className="pointer-events-none absolute"
-                style={{ left: u(box.x), top: u(box.y) }}
+                style={{
+                  left: u(box.x),
+                  top: `calc(${u(box.y)} + ${BOTTOM_STRIP})`,
+                }}
               >
                 <div
                   className={transition}

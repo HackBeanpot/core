@@ -84,22 +84,15 @@ export function MobileHero() {
         >
           {HERO_SM.tagline.text}
         </p>
-        {(
-          [
-            [HERO_SM.amazonLogo, "amazon"],
-            [HERO_SM.mavenLogo, "Maven AGI"],
-          ] as const
-        ).map(([logo, alt]) => (
-          <div key={alt} className="absolute" style={box(logo.rect)}>
-            <Image
-              src={logo.src}
-              alt={alt}
-              fill
-              unoptimized
-              className="object-cover"
-            />
-          </div>
-        ))}
+        <div className="absolute" style={box(HERO_SM.klaviyoLogo.rect)}>
+          <Image
+            src={HERO_SM.klaviyoLogo.src}
+            alt="Klaviyo"
+            fill
+            unoptimized
+            className="object-contain"
+          />
+        </div>
       </div>
     </section>
   );

@@ -1,16 +1,18 @@
 import { gsap } from "../gsap";
-import { fogWipe } from "../transitions";
+import { ABOUT_BACKGROUND } from "../about/AboutScene";
+import { morph } from "../transitions";
 import type { SceneAnimation } from "../types";
 
 /**
  * Our Values motion (MS-304). Hooks are the `data-anim` names on
  * `ValuesScene`; positions are fractions of a 0..1 timeline.
  *
- * - `enter`: About's exit color fog-wipes upward off the teal room.
+ * - `enter`: About's content fades off its navy, which then blends into
+ *   the teal room (`morph`).
  * - `build`: the spotlight switches on (drops open from its lamp, with a
  *   flicker); the pillars rise from below, left → middle → right; each stone
  *   pops as its pillar lands, then its text fades up; the vases slide up in
- *   a stagger. It plays by itself (`buildSeconds`) once the wipe ends.
+ *   a stagger. It plays by itself (`buildSeconds`) once the morph ends.
  *
  * Not done (optional in the ticket, waiting on Cole): the spotlight sweeping
  * across the three values while scrolling.
@@ -28,16 +30,18 @@ export const valuesAnimation: SceneAnimation = {
   buildSeconds: 1.8,
 
   enter: (root, tl, ctx) => {
-    fogWipe(tl, ctx.prevRoot, root, {
+    // About's navy becomes the teal room in place, rather than a second
+    // gradient wiping across it.
+    morph(tl, ctx.prevRoot, root, {
       fromColor: ctx.fromColor,
-      direction: "up",
+      fromBackground: ABOUT_BACKGROUND,
     });
   },
 
   build: (root, tl) => {
     const q = gsap.utils.selector(root);
 
-    // Title is up as soon as the wipe clears.
+    // Title is up as soon as the morph ends.
     tl.fromTo(
       q('[data-anim="values-title"]'),
       { autoAlpha: 0, y: -20 },

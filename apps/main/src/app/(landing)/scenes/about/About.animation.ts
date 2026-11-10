@@ -7,7 +7,7 @@ const q = (root: HTMLElement, name: string) =>
 
 export const aboutAnimation: SceneAnimation = {
   id: "about",
-  buildSeconds: 1.3,
+  buildSeconds: 1.55,
 
   enter: (root, tl, ctx) => {
     const topFog = q(root, "about-fog-tl");
@@ -45,116 +45,64 @@ export const aboutAnimation: SceneAnimation = {
       );
   },
 
+  /**
+   * Matches the prototype recording: everything fades up into place with no
+   * rotation, so nothing shakes. The plaque, then its title and text, rise
+   * in; the photo frame fades up from a slight scale; the candles rise from
+   * below. Positions are the prototype's seconds over `TOTAL`, so the
+   * timeline stays length 1.
+   */
   build: (root, tl) => {
     const q = gsap.utils.selector(root);
-    const ease = "power2.out";
-
-    const plaque = q('[data-anim="about-plaque"]');
-    const frame = q('[data-anim="about-frame"]');
-    const candle1 = q('[data-anim="about-candle-left"]');
-    const candle2 = q('[data-anim="about-candle-right"]');
+    const TOTAL = 1.55;
+    const at = (seconds: number) => seconds / TOTAL;
+    const len = (seconds: number) => seconds / TOTAL;
+    const rise = (n: number) => () =>
+      n * (parseFloat(getComputedStyle(root).getPropertyValue("--u")) || 1);
 
     tl.fromTo(
-      plaque,
-      {
-        autoAlpha: 0,
-        yPercent: -100,
-        rotation: -3,
-        transformOrigin: "50% 0%",
-      },
-      {
-        autoAlpha: 1,
-        yPercent: 0,
-        rotation: 2,
-        duration: 0.55,
-        ease: "power2.out",
-      },
-      0,
-    );
-
-    tl.to(
-      plaque,
-      {
-        rotation: 0,
-        duration: 0.25,
-        ease: "sine.out",
-      },
-      0.55,
+      q('[data-anim="about-plaque"]'),
+      { autoAlpha: 0, y: rise(30) },
+      { autoAlpha: 1, y: 0, duration: len(0.6), ease: "power3.out" },
+      at(0.08),
     );
 
     tl.fromTo(
-      frame,
-      {
-        autoAlpha: 0,
-        xPercent: 100,
-        rotation: 4,
-        transformOrigin: "50% 50%",
-      },
-      {
-        autoAlpha: 1,
-        xPercent: 0,
-        rotation: -2,
-        duration: 0.65,
-        ease: "power2.out",
-      },
-      0.25,
-    );
-
-    tl.to(
-      frame,
-      {
-        rotation: 0,
-        duration: 0.25,
-        ease: "sine.out",
-      },
-      0.9,
-    );
-
-    const textLines = q('[data-anim="about-text-line"]');
-
-    tl.fromTo(
-      textLines,
-      {
-        autoAlpha: 0,
-        y: 15,
-      },
+      q('[data-anim="about-text-line"]'),
+      { autoAlpha: 0, y: rise(30) },
       {
         autoAlpha: 1,
         y: 0,
-        duration: 0.35,
-        stagger: 0.2,
-        ease: "power2.out",
+        duration: len(0.6),
+        stagger: len(0.13),
+        ease: "power3.out",
       },
-      0.65,
+      at(0.15),
     );
 
     tl.fromTo(
-      candle1,
-      {
-        autoAlpha: 0,
-        yPercent: 100,
-      },
+      q('[data-anim="about-frame"]'),
+      { autoAlpha: 0, y: rise(26), scale: 0.95, transformOrigin: "50% 50%" },
       {
         autoAlpha: 1,
-        yPercent: 0,
-        duration: 0.5,
-        ease,
+        y: 0,
+        scale: 1,
+        duration: len(0.75),
+        ease: "back.out(1.3)",
       },
-      0.75,
+      at(0.3),
     );
+
     tl.fromTo(
-      candle2,
+      q('[data-anim="about-candle-left"], [data-anim="about-candle-right"]'),
+      { yPercent: 55 },
       {
-        autoAlpha: 0,
-        yPercent: 100,
-      },
-      {
-        autoAlpha: 1,
         yPercent: 0,
-        duration: 0.5,
-        ease,
+        duration: len(0.9),
+        stagger: len(0.18),
+        ease: "power2.out",
       },
-      0.75,
+      at(0.45),
     );
 
     tl.to({}, { duration: 1 }, 0);

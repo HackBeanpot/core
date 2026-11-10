@@ -5,11 +5,12 @@ export type ButtonVariant = "gold" | "ghost";
 export type ButtonSize = "md" | "sm" | "icon";
 
 const variantStyles: Record<ButtonVariant, string> = {
-  // Figma "Primary Button" (5346:6033)
-  gold: "bg-gradient-to-t from-[#e9ac1d] to-[#ffd268] text-[#512309] shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1),inset_0px_0px_20px_0px_rgba(255,255,255,0.1)]",
-  // Figma "Secondary Button" (5346:6034)
+  // Figma "Primary Button" (5346:6033): full-strength gold stroke
+  gold: "border-[#ffda82] bg-gradient-to-t from-[#e9ac1d] to-[#ffd268] text-[#512309] shadow-[0px_0px_10px_0px_rgba(0,0,0,0.1),inset_0px_0px_20px_0px_rgba(255,255,255,0.1)]",
+  // Figma "Secondary Button" (5346:6034): the same stroke at 10% opacity,
+  // so it reads as no outline
   ghost:
-    "bg-gradient-to-t from-[rgba(233,172,29,0.2)] to-[rgba(255,210,104,0.2)] text-white backdrop-blur-[4px] shadow-[0px_0px_20px_0px_rgba(0,0,0,0.1),inset_0px_0px_20px_0px_rgba(255,255,255,0.1)]",
+    "border-[rgba(255,218,130,0.1)] bg-gradient-to-t from-[rgba(233,172,29,0.2)] to-[rgba(255,210,104,0.2)] text-white backdrop-blur-[4px] shadow-[0px_0px_20px_0px_rgba(0,0,0,0.1),inset_0px_0px_20px_0px_rgba(255,255,255,0.1)]",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -62,7 +63,7 @@ const Button = ({
   ...rest
 }: ButtonProps) => {
   const classes = clsx(
-    "relative inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-xl border border-[#ffda82] font-gothic uppercase leading-normal transition-[filter] hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:brightness-100",
+    "relative inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-xl border font-gothic uppercase leading-normal transition-[filter] hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:brightness-100",
     variantStyles[variant],
     sizeStyles[size],
     className,
