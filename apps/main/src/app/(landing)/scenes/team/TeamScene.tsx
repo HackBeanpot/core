@@ -311,7 +311,10 @@ function TeamBackground({ artboard }: { artboard: Artboard }) {
           backgroundPosition: "center bottom",
         }}
       />
-      <div data-anim="team-benches">
+      {/* Fills the room so the benches' `bottom` still measures from the
+          floor while the animation transforms this wrapper (a transform
+          makes it their containing block). */}
+      <div data-anim="team-benches" className="absolute inset-0">
         {[benchLeft, benchRight].map((bench) => (
           <div
             key={bench.x}
