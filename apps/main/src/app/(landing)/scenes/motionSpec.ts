@@ -46,7 +46,8 @@ export const ABOUT: SceneSpec = {
 
 /**
  * Values.
- * enter: About's navy fog-wipes upward off the teal room.
+ * enter: About's content fades off its navy, which then blends into the
+ * teal room in place (`morph`), with no second gradient wiping across.
  * build: spotlight switches on with a flicker; pillars rise left to right,
  * each stone pops as its pillar lands and its text fades up; vases slide up.
  * OPEN (ask Cole): spotlight sweeping across the values while scrolling.
@@ -110,8 +111,9 @@ export const SPONSORS: SceneSpec = {
 
 /**
  * Team.
- * enter: navy cross-fades to teal; title appears.
- * build: the two portrait rails slide in; benches rise from the floor.
+ * enter: Sponsors' content fades off, then its navy blends into teal (`morph`).
+ * build (per the prototype recording): title rises in, the rows fade up one
+ * after the other, the arrows fade in, the floor and benches slide up.
  */
 export const TEAM: SceneSpec = {
   scrollLength: 300,

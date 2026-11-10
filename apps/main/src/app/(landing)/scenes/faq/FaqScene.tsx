@@ -25,7 +25,7 @@ const LAYOUT = {
     content: { top: 120, width: 1062, titleGap: 48 },
     columns: [["general", "application"], ["logistics"]],
     columnWidth: 500,
-      // bg: { h: 2194, bottom: -165 },
+    // bg: { h: 2194, bottom: -165 },
     bg: { h: 2194, bottom: -865 },
     ribbon: { x: 597, y: 1463, w: 915 },
     tint: {
@@ -115,6 +115,8 @@ function SockArt({ bp }: { bp: ArtboardBreakpoint }) {
       <div data-anim="faq-skeleton-ptero">
         <Layer asset={a.pterodactyl} tint={tint.warm} />
         <Layer asset={a.pterodactylBack} tint={tint.warm} />
+        {/* The socket sits on the skull it belongs to (Figma `Vector 338`). */}
+        <Layer asset={a.eyeSocket} />
       </div>
       <Layer asset={a.dinoSkeleton} anim="faq-skeleton-dino" tint={tint.warm} />
       <div
@@ -124,7 +126,9 @@ function SockArt({ bp }: { bp: ArtboardBreakpoint }) {
           background: `linear-gradient(${tint.shadeAngle}deg, rgb(154 173 216 / 0) 28.015%, rgb(49 13 70 / 0.75) 99.287%)`,
         }}
       />
+      {/* Only the glow rings blend; the star sits on top of them unblended. */}
       <Layer asset={a.eyeGlow} blend="mix-blend-overlay" />
+      <Layer asset={a.eyeStar} />
       {[a.beam1, a.beam2, a.beam3].map((beam, i) => (
         <Layer
           key={beam.src}

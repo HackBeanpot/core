@@ -10,7 +10,7 @@ import type { SceneAnimation } from "../types";
  *   settles from a zoom, nearest layer most (parallax), so it reads as stepping
  *   into the hall.
  * - `build`: the fog drifts in from the edges, sparkles pop in, the medallion
- *   swings down on its top point and settles, footprints appear one by one
+ *   fades up into place, footprints appear one by one
  *   from the bottom up, walking into the hall, then the quote and arrows fade
  *   up. It plays by itself (`buildSeconds`) once the walk-in ends.
  */
@@ -72,24 +72,14 @@ export const testimonialsAnimation: SceneAnimation = {
       0.1,
     );
 
-    // The medallion drops in and swings on its top point: past center, back,
-    // then still.
-    const medallion = q('[data-anim="testimonials-medallion"]');
+    // The portrait medallion fades up into place, like the prototype
+    // recording; no swing, so it doesn't shake on entrance.
     tl.fromTo(
-      medallion,
-      { autoAlpha: 0, yPercent: -20 },
-      { autoAlpha: 1, yPercent: 0, duration: 0.15, ease },
-      0.1,
+      q('[data-anim="testimonials-medallion"]'),
+      { autoAlpha: 0, yPercent: 8 },
+      { autoAlpha: 1, yPercent: 0, duration: 0.2, ease: "power2.out" },
+      0.15,
     );
-    const swing = { ease: "sine.inOut", duration: 0.1 };
-    tl.fromTo(
-      medallion,
-      { rotation: -16, transformOrigin: "50% 0%" },
-      { ...swing, rotation: 8, duration: 0.15 },
-      0.1,
-    );
-    tl.to(medallion, { ...swing, rotation: -3 }, 0.25);
-    tl.to(medallion, { ...swing, rotation: 0 }, 0.35);
 
     // Footprints appear one by one from the bottom of the screen up, walking
     // into the hall. The hooks are numbered farthest first, so reverse them.

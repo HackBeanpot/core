@@ -85,7 +85,7 @@ const MailingListForm = () => {
       noValidate
       onSubmit={handleSubmit}
       aria-labelledby={`${messageId}-heading`}
-      className="flex w-[411px] max-w-full shrink-0 flex-col items-start gap-5"
+      className="flex w-full shrink-0 flex-col items-start gap-5 sm:w-[411px] sm:max-w-full"
     >
       <div className="flex w-full flex-col items-start gap-1 text-white">
         <h2
@@ -94,7 +94,7 @@ const MailingListForm = () => {
         >
           Join our mailing list
         </h2>
-        <p className="font-merriweather text-base font-light">
+        <p className="font-merriweather text-base font-light max-sm:leading-tight">
           Stay up to date with HackBeanpot by signing up for our mailing list!
         </p>
       </div>
@@ -116,7 +116,7 @@ const MailingListForm = () => {
           className={clsx(
             "font-merriweather",
             "min-w-0 flex-1 rounded-lg border bg-[rgba(244,244,244,0.2)] px-4 py-3 text-base text-white shadow-[0px_0px_20px_0px_rgba(0,0,0,0.1),inset_0px_0px_20px_0px_rgba(255,255,255,0.1)] backdrop-blur-[4px] placeholder:text-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
-            status === "invalid" ? "border-[#ff9d8a]" : "border-[#ffda82]",
+            status === "invalid" ? "border-[#ff9d8a]" : "border-[#ffda82]/10",
           )}
         />
         <Button
@@ -167,36 +167,39 @@ const Footer = () => {
 
   return (
     <footer className="relative w-full bg-transparent">
-      <div className="flex flex-col items-start justify-between gap-10 px-5 pb-12 pt-[70px] sm:flex-row sm:items-center sm:px-12 sm:pb-16 xl:px-20 xl:pb-[93px]">
-        <div className="flex w-[343px] max-w-full shrink-0 flex-col items-start gap-4">
-          <Button variant="ghost" onClick={handleBackToTop}>
-            Back to top
-          </Button>
-          <div className="flex items-center gap-2">
-            <BakedSocialButton
-              href={socialUrl("instagram")}
-              label="HackBeanpot on Instagram"
-              src="/footer/instagram-ghost.svg"
-            />
-            <BakedSocialButton
-              href={socialUrl("linkedin")}
-              label="HackBeanpot on LinkedIn"
-              src="/footer/linkedin-ghost.svg"
-            />
-            <Button
-              variant="ghost"
-              size="icon"
-              href={socialUrl("tiktok")}
-              external
-              aria-label="HackBeanpot on TikTok"
-            >
-              <Image
-                src="/footer/tiktok-icon-white.svg"
-                alt=""
-                width={20}
-                height={20}
-              />
+      <div className="flex flex-col items-start justify-between gap-10 px-5 pb-[max(20px,env(safe-area-inset-bottom))] pt-5 sm:flex-row sm:items-center sm:px-12 sm:pb-16 sm:pt-[70px] xl:px-20 xl:pb-[93px]">
+        {/* SM: mailing list first, then Back to top and the socials in one row. */}
+        <div className="order-last flex w-full shrink-0 flex-col items-start gap-4 sm:order-none sm:w-[343px] sm:max-w-full">
+          <div className="flex w-full items-start justify-between sm:flex-col sm:justify-start sm:gap-4">
+            <Button variant="ghost" onClick={handleBackToTop}>
+              Back to top
             </Button>
+            <div className="flex items-center gap-2">
+              <BakedSocialButton
+                href={socialUrl("instagram")}
+                label="HackBeanpot on Instagram"
+                src="/footer/instagram-ghost.svg"
+              />
+              <BakedSocialButton
+                href={socialUrl("linkedin")}
+                label="HackBeanpot on LinkedIn"
+                src="/footer/linkedin-ghost.svg"
+              />
+              <Button
+                variant="ghost"
+                size="icon"
+                href={socialUrl("tiktok")}
+                external
+                aria-label="HackBeanpot on TikTok"
+              >
+                <Image
+                  src="/footer/tiktok-icon-white.svg"
+                  alt=""
+                  width={20}
+                  height={20}
+                />
+              </Button>
+            </div>
           </div>
           <p
             className={clsx(

@@ -276,20 +276,11 @@ export function HeroScene() {
                           </span>
                           <span className="lockup__logos">
                             <Image
-                              className="lockup__amazon"
-                              src="/hero/lg/amazon.webp"
-                              alt="Amazon"
-                              width={55}
-                              height={17}
-                              unoptimized
-                              style={{ width: "auto" }}
-                            />
-                            <Image
-                              className="lockup__maven"
-                              src="/hero/lg/maven.webp"
-                              alt="Maven AGI"
+                              className="lockup__klaviyo"
+                              src="/hero/lg/klaviyo.svg"
+                              alt="Klaviyo"
                               width={74}
-                              height={12}
+                              height={22}
                               unoptimized
                               style={{ width: "auto" }}
                             />

@@ -1,35 +1,92 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { about } from "../../../lib/content/about";
 import { u } from "../../../lib/scroll/units";
 import { SceneFrame } from "../SceneFrame";
-import { Fog, Candle } from "../../../lib/Components/Decor";
+import { Candle } from "../../../lib/Components/Decor";
+import "../../../lib/Components/Decor/decor.css";
+import { useArtboardBreakpoint } from "../../../lib/scroll/useArtboardBreakpoint";
 import PictureFrame from "../../../lib/Components/museum/PictureFrame";
 import { Typography } from "../../../lib/Components/museum/Typography";
 import { positions } from "../../../../../public/about/positions";
 
-type ScreenSize = "lg" | "md";
+/** Also where Values' enter morphs from. */
+export const ABOUT_BACKGROUND =
+  "linear-gradient(180deg, #15173b 0%, #060825 100%)";
 
-const BACKGROUND: Record<ScreenSize, string> = {
-  lg: "linear-gradient(180deg, #15173b 0%, #060825 100%)",
-  md: "linear-gradient(180deg, #15173b 0%, #060825 100%)",
-};
+type Box = { x: number; y: number; w: number; h: number };
 
-function bottomFogStyle(box: {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-}): React.CSSProperties {
+/**
+ * The strips between the artboard and the screen edges. SceneFrame centers
+ * the artboard, so when the window's shape differs from it these are half the
+ * leftover height / width, else 0. The fogs run off the Figma frame's edges,
+ * so they're pushed out by these to keep running off the screen's edges
+ * instead of ending (or showing their cut tops) in the letterbox.
+ */
+const V_STRIP =
+  "max(0px, calc((100 * var(--vh, 1svh) - var(--ab-h) * var(--u)) / 2))";
+const H_STRIP =
+  "max(0px, calc((100 * var(--vw, 1vw) - var(--ab-w) * var(--u)) / 2))";
+
+/**
+ * Places a Figma fog export. Top fogs hang off the screen's top-left corner,
+ * bottom fogs rise from its bottom-right.
+ */
+function fogStyle(
+  box: Box,
+  corner: "top-left" | "bottom-right",
+): React.CSSProperties {
+  const top = corner === "top-left";
   return {
     position: "absolute",
-    left: u(box.x),
-    top: `calc(${u(box.y)} + ${u(360)})`,
+    left: `calc(${u(box.x)} ${top ? "-" : "+"} ${H_STRIP})`,
+    top: `calc(${u(box.y)} ${top ? "-" : "+"} ${V_STRIP})`,
     width: u(box.w),
     height: u(box.h),
   };
 }
+
+/** A fog SVG exported from Figma, with the shared slow drift on top. */
+function FogImage({
+  src,
+  drift,
+  duration,
+}: {
+  src: string;
+  drift: [string, string];
+  duration: string;
+}) {
+  return (
+    <div
+      className="decor-fog-drift h-full w-full"
+      style={
+        {
+          "--decor-duration": duration,
+          "--decor-drift-x": drift[0],
+          "--decor-drift-y": drift[1],
+        } as React.CSSProperties
+      }
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element -- static decorative SVG */}
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="block h-full w-full max-w-none select-none"
+      />
+    </div>
+  );
+}
+
+/** Figma `Group 282`: the photo frame is 646×504 on both artboards. */
+const FRAME = {
+  lg: { x: 785.76, y: 222 },
+  md: { x: 321, y: 101 },
+  w: 646,
+  h: 504,
+} as const;
 
 // Plaque component
 function Plaque({
@@ -84,87 +141,89 @@ function Plaque({
 
 export function AboutScene() {
   const sceneRef = useRef<HTMLDivElement>(null);
-  const [ss, setSs] = useState<ScreenSize>("lg");
+  const ss = useArtboardBreakpoint(sceneRef);
+  const pos = positions[ss];
+  const lg = positions.lg;
 
-  useEffect(() => {
-    const scene = sceneRef.current;
-    if (!scene) return;
+  const topFogs = [
+    {
+      key: "cloud-top-1",
+      anim: "about-fog-tl",
+      drift: ["-1%", "1%"],
+      duration: "14s",
+    },
+    {
+      key: "cloud-top-2",
+      anim: "about-fog-tl-2",
+      drift: ["1.5%", "1%"],
+      duration: "18s",
+    },
+  ] as const;
+  // LG only (MD's frame has no bottom fog). Always rendered, so the
+  // animation's targets survive an LG ↔ MD switch.
+  const bottomFogs = [
+    {
+      key: "cloud-bottom-1",
+      anim: "about-fog-br",
+      drift: ["1.5%", "1%"],
+      duration: "20s",
+    },
+    {
+      key: "cloud-bottom-2",
+      anim: "about-fog-br-2",
+      drift: ["-1%", "1%"],
+      duration: "16s",
+    },
+  ] as const;
 
-    const observer = new ResizeObserver(([entry]) => {
-      setSs(entry.contentRect.width >= 1000 ? "lg" : "md");
-    });
-
-    observer.observe(scene);
-
-    return () => observer.disconnect();
-  }, []);
-
-  const upperFog = positions[ss]["cloud-top-1"];
-  const upperFog2 = positions[ss]["cloud-top-2"];
-
-  const candle1 = positions[ss]["candle-1"];
-  const candle2 = positions[ss]["candle-2"];
-
-  const bottomFog1 = positions.lg["cloud-bottom-1"];
-  const bottomFog2 = positions.lg["cloud-bottom-2"];
+  const candle1 = pos["candle-1"];
+  const candle2 = pos["candle-2"];
 
   return (
     <SceneFrame
       sceneId="about"
       background={
-        <div className="h-full w-full" style={{ background: BACKGROUND[ss] }} />
+        <div
+          className="h-full w-full"
+          style={{ background: ABOUT_BACKGROUND }}
+        />
       }
       content={
         <div ref={sceneRef} className="relative h-full w-full">
-          {/* Upper fogs  */}
-          <div
-            data-anim="about-fog-tl"
-            className="pointer-events-none absolute z-0"
-            style={{
-              left: u(upperFog.x),
-              top: u(upperFog.y),
-              width: u(upperFog.w),
-              height: u(upperFog.h),
-            }}
-          >
-            <Fog variant="cornerTopRight" />
-          </div>
+          {/* Upper fogs, hanging off the screen's top-left corner */}
+          {topFogs.map((fog) => (
+            <div
+              key={fog.key}
+              data-anim={fog.anim}
+              className="pointer-events-none absolute z-0"
+              style={fogStyle(pos[fog.key], "top-left")}
+            >
+              <FogImage
+                src={`/about/${ss}/${fog.key}.svg`}
+                drift={[...fog.drift]}
+                duration={fog.duration}
+              />
+            </div>
+          ))}
 
-          <div
-            data-anim="about-fog-tl-2"
-            className="pointer-events-none absolute z-0"
-            style={{
-              left: u(upperFog2.x),
-              top: u(upperFog2.y),
-              width: u(upperFog2.w),
-              height: u(upperFog2.h),
-            }}
-          >
-            <Fog variant="cornerTopRight" />
-          </div>
-
-          {/* Lower fogs - should only show on lg */}
-          {ss === "lg" && (
-            <>
-              {/* Bottom fog on the left side */}
-              <div
-                data-anim="about-fog-br"
-                className="pointer-events-none absolute z-0"
-                style={bottomFogStyle(bottomFog1)}
-              >
-                <Fog variant="cornerBottomRight" />
-              </div>
-
-              {/* Bottom fog on the right side */}
-              <div
-                data-anim="about-fog-br-2"
-                className="pointer-events-none absolute z-0"
-                style={bottomFogStyle(bottomFog2)}
-              >
-                <Fog variant="cornerBottomRight" />
-              </div>
-            </>
-          )}
+          {/* Lower fogs (LG), rising from the screen's bottom-right corner */}
+          {bottomFogs.map((fog) => (
+            <div
+              key={fog.key}
+              data-anim={fog.anim}
+              className="pointer-events-none absolute z-0"
+              style={{
+                ...fogStyle(lg[fog.key], "bottom-right"),
+                display: ss === "lg" ? undefined : "none",
+              }}
+            >
+              <FogImage
+                src={`/about/lg/${fog.key}.svg`}
+                drift={[...fog.drift]}
+                duration={fog.duration}
+              />
+            </div>
+          ))}
 
           {/* First candle */}
           <div
@@ -212,20 +271,21 @@ export function AboutScene() {
             </Plaque>
           </div>
 
-          {/* Picture frame */}
+          {/* Picture frame, sized in artboard units so it scales with the
+              scene (a fixed px width ran off the right edge on MD). */}
           <div
             data-anim="about-frame"
             className="absolute z-15"
             style={{
-              left: u(ss === "lg" ? 785.76 : 321),
-              top: u(ss === "lg" ? 222 : 101),
-              width: u(504.0000305175786),
-              height: u(646.4348754882818),
+              left: u(FRAME[ss].x),
+              top: u(FRAME[ss].y),
+              width: u(FRAME.w),
             }}
           >
             <PictureFrame
               variant="copperRect"
-              width="504.0000305175786px"
+              width="100%"
+              aspect={FRAME.w / FRAME.h}
               src={about.photo.src}
               alt={about.photo.alt}
             />

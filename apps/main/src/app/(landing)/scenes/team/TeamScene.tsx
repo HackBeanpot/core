@@ -257,6 +257,7 @@ function TeamContent({
       {(["left", "right"] as const).map((direction) => (
         <div
           key={direction}
+          data-anim="team-arrows"
           className="absolute z-10"
           style={{
             top: u(layout.arrowTop),
@@ -301,6 +302,7 @@ function TeamBackground({ artboard }: { artboard: Artboard }) {
       }}
     >
       <div
+        data-anim="team-floor"
         className="absolute inset-x-0 bottom-0 bg-repeat-x"
         style={{
           height: u(floor.h),
@@ -309,7 +311,10 @@ function TeamBackground({ artboard }: { artboard: Artboard }) {
           backgroundPosition: "center bottom",
         }}
       />
-      <div data-anim="team-benches">
+      {/* Fills the room so the benches' `bottom` still measures from the
+          floor while the animation transforms this wrapper (a transform
+          makes it their containing block). */}
+      <div data-anim="team-benches" className="absolute inset-0">
         {[benchLeft, benchRight].map((bench) => (
           <div
             key={bench.x}
@@ -339,7 +344,8 @@ function TeamBackground({ artboard }: { artboard: Artboard }) {
  * scroll the strip natively.
  *
  * Hooks: `team-title`, `team-strip` (wrapper around the scroll track),
- * `team-row-{0,1}`, `team-member-{i}`, `team-benches`, `team-bench`.
+ * `team-row-{0,1}`, `team-member-{i}`, `team-arrows`, `team-floor`,
+ * `team-benches`, `team-bench`.
  * Animated by `team.animation.ts` (MS-308).
  */
 export function TeamScene() {
