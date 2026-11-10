@@ -71,9 +71,10 @@ type HeaderProps = {
    */
   visible?: boolean;
   /**
-   * `false` hides the logo below 640px. The landing page's SM header sits
-   * over the hero, whose MLH badge takes the logo's corner (SM hero
-   * `5615:22626` shows only the menu button).
+   * `false` hides the logo below 640px while the header is over the page's
+   * first screen. The landing page's SM hero has its MLH badge in the logo's
+   * corner (SM hero `5615:22626` shows only the menu button); once the hero
+   * scrolls away the logo comes back.
    */
   smLogo?: boolean;
 };
@@ -85,9 +86,30 @@ type HeaderProps = {
  * - MD (640–1279): logo, Sponsor Us + Apply, hamburger
  * - SM (<640): logo, hamburger
  *
- * The hamburger opens `MobileMenu`. The header is fixed over the scenes on
- * LG/MD and sits at the top of the page on SM (SM scrolls normally).
+ * The hamburger opens `MobileMenu`. The header is fixed at every size. On SM
+ * (which scrolls normally) it's transparent over the first screen, then a
+ * tinted, blurred bar so it stays readable over the sections below.
  */
+/** True while the page is scrolled less than one screen (minus the bar). */
+function useOverFirstScreen() {
+  const [over, setOver] = useState(true);
+  useEffect(() => {
+    const update = () =>
+      setOver(window.scrollY < window.innerHeight - HEADER_HEIGHT);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+  return over;
+}
+
+/** Height of the SM bar (20px padding around the 40px menu button). */
+const HEADER_HEIGHT = 80;
+
 const Header = ({
   activeSection,
   visible = true,
@@ -103,6 +125,9 @@ const Header = ({
     if (headerRef.current) headerRef.current.inert = !visible;
   }, [visible]);
 
+  // SM: whether the bar still sits over the first screen (the hero).
+  const overTop = useOverFirstScreen();
+
   // Restore focus on Esc/close, but not after a link click: focusing the
   // hamburger would scroll SM back to the top.
   const closeMenu = ({ restoreFocus }: { restoreFocus: boolean }) => {
@@ -113,7 +138,8 @@ const Header = ({
   return (
     <header
       className={clsx(
-        "absolute inset-x-0 top-0 z-50 w-full transition-[opacity,transform] duration-300 ease-out sm:fixed",
+        "fixed inset-x-0 top-0 z-50 w-full transition-[opacity,transform,background-color] duration-300 ease-out",
+        !overTop && "max-sm:bg-[rgba(6,8,37,0.72)] max-sm:backdrop-blur-[8px]",
         !visible && "pointer-events-none -translate-y-2 opacity-0",
       )}
       ref={headerRef}
@@ -125,7 +151,8 @@ const Header = ({
           aria-label="HackBeanpot home"
           className={clsx(
             "shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white",
-            !smLogo && "max-sm:invisible",
+            "transition-[opacity,visibility] duration-300",
+            !smLogo && overTop && "max-sm:invisible max-sm:opacity-0",
           )}
         >
           <Image

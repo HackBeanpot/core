@@ -427,7 +427,14 @@ function ProjectsContent({
             className="flex h-full flex-col justify-between"
           >
             <div ref={swipeRef}>
-              <CarouselSwap swapKey={index} direction={direction}>
+              {/* CarouselSwap clips its slides, so pad it out (and pull it
+                  back by the same) to leave room for the frame's corner bolts
+                  and its down-left drop shadow. */}
+              <CarouselSwap
+                swapKey={index}
+                direction={direction}
+                className="-mb-[calc(16*var(--u))] -ml-[calc(16*var(--u))] pb-[calc(16*var(--u))] pl-[calc(16*var(--u))]"
+              >
                 <ProjectSlide project={item} artboard={artboard} />
               </CarouselSwap>
             </div>

@@ -374,7 +374,19 @@ function Stage({
         onUpdate: (self) => sync(self.progress),
       });
       trigger.current = st;
-      sync(st.progress, true);
+      // A trigger created during a resize hasn't measured itself yet, so its
+      // progress reads 0; seeded with that, every played build would reset
+      // and play again. Seed from the real scroll offset instead.
+      const top = container.current
+        ? container.current.getBoundingClientRect().top + window.scrollY
+        : 0;
+      const length = total * vhPx();
+      sync(
+        length > 0
+          ? gsap.utils.clamp(0, 1, (window.scrollY - top) / length)
+          : st.progress,
+        true,
+      );
 
       if (!deepLinked.current) {
         deepLinked.current = true;
