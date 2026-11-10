@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import clsx from "clsx";
 import type { SceneId } from "../../(landing)/scenes/types";
@@ -210,13 +211,18 @@ const Header = ({
         </div>
       </div>
 
-      {isMenuOpen && (
-        <MobileMenu
-          id="mobile-menu"
-          activeSection={activeSection}
-          onClose={closeMenu}
-        />
-      )}
+      {/* Portaled out of the header: its SM backdrop-filter (once scrolled
+          past the first screen) makes it the containing block for fixed
+          children, which would shrink the full-screen menu to the bar. */}
+      {isMenuOpen &&
+        createPortal(
+          <MobileMenu
+            id="mobile-menu"
+            activeSection={activeSection}
+            onClose={closeMenu}
+          />,
+          document.body,
+        )}
     </header>
   );
 };
