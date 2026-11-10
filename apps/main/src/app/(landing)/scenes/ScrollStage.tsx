@@ -146,18 +146,7 @@ function fallbackScrollToScene(id: SceneId, opts: ScrollToSceneOptions = {}) {
   const behavior = opts.immediate ? "instant" : "smooth";
   // The hero's element is hidden on SM (MobileHero has no id); it's the top.
   if (id === "hero") window.scrollTo({ top: 0, behavior });
-  else sceneElement(id)?.scrollIntoView({ behavior });
-}
-
-/**
- * The rendered element for a scene: its SceneFrame (`id`) on LG/MD, or its SM
- * section (`data-sm-scene`) below 640px, where the stage is `display: none`.
- */
-function sceneElement(id: SceneId) {
-  const candidates = document.querySelectorAll<HTMLElement>(
-    `#${CSS.escape(id)}, [data-sm-scene="${CSS.escape(id)}"]`,
-  );
-  return Array.from(candidates).find((el) => el.getClientRects().length > 0);
+  else document.getElementById(id)?.scrollIntoView({ behavior });
 }
 
 function useMediaQuery(query: string) {
@@ -425,8 +414,7 @@ function Stage({
         return;
       const link = (e.target as Element | null)?.closest?.("a[href]");
       const href = link?.getAttribute("href");
-      // Before the master trigger exists on LG/MD, leave links to the browser.
-      if (!href || (enabled && !trigger.current)) return;
+      if (!href || !trigger.current) return;
       const url = new URL(href, window.location.href);
       if (url.pathname !== window.location.pathname) return;
       // A bare `#` (the header logo) means the top of the page.
@@ -444,7 +432,7 @@ function Stage({
     };
     const onHashChange = () => {
       const id = sceneFromHash(window.location.hash, layout.ranges);
-      if (id && (trigger.current || !enabled)) scrollToScene(id);
+      if (id && trigger.current) scrollToScene(id);
     };
     document.addEventListener("click", onClick);
     window.addEventListener("hashchange", onHashChange);
@@ -452,18 +440,7 @@ function Stage({
       document.removeEventListener("click", onClick);
       window.removeEventListener("hashchange", onHashChange);
     };
-  }, [enabled, layout, scenes, scrollToScene]);
-
-  // SM has no master trigger to deep link from, and the browser's own jump
-  // targets the hidden LG/MD element.
-  useEffect(() => {
-    if (window.matchMedia("(min-width: 640px)").matches) return;
-    const id = sceneFromHash(window.location.hash, layout.ranges);
-    if (id)
-      requestAnimationFrame(() =>
-        fallbackScrollToScene(id, { immediate: true }),
-      );
-  }, [layout]);
+  }, [layout, scenes, scrollToScene]);
 
   // Restoring a mid-page scroll position on reload would land between scene
   // states; reloads start at the top (or at the `#hash` scene, above).

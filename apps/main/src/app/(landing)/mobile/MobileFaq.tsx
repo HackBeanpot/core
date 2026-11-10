@@ -20,16 +20,13 @@ const SOCK_BELOW_FOOTER = sock.y + sock.h - 1654;
 const FOOTER_PAD_TOP = 20;
 
 /**
- * SM FAQ (`5615:30055`), static: categories in one column, then the sock art
+ * SM FAQ, static: categories in one column, then the sock art
  * with the footer over its lower half.
- *
- * Tagged `data-sm-scene` rather than `id="faq"`: the LG/MD SceneFrame owns
- * that anchor, and `fallbackScrollToScene` routes SM links here.
  */
 export function MobileFaq() {
   return (
+    // No `id="faq"`: the LG/MD SceneFrame owns that anchor and both are in the DOM.
     <section
-      data-sm-scene="faq"
       aria-labelledby="faq-title-sm"
       className="relative overflow-hidden bg-[#060825]"
     >
