@@ -181,10 +181,12 @@ export function MobileTestimonials({
   const [fogTopLeft, fogBottomRight] = FOGS;
 
   return (
-    // No `id="testimonials"`: the LG/MD SceneFrame owns that anchor and both are in the DOM.
+    // `data-sm-scene`, not `id="testimonials"`: the LG/MD SceneFrame owns that id and both
+    // are in the DOM. Header links and `/#testimonials` find this via `fallbackScrollToScene`.
     <section
+      data-sm-scene="testimonials"
       aria-labelledby="testimonials-title-sm"
-      className="relative w-full overflow-hidden bg-museum-purple-dark"
+      className="scroll-mt-20 relative w-full overflow-hidden bg-museum-purple-dark"
       style={{ ...smUnitVar, minHeight: sm(artboard.h) }}
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">

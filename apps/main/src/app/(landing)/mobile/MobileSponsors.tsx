@@ -7,7 +7,9 @@ import {
   sponsorsSection,
 } from "../../lib/content";
 import type { Sponsor, SponsorTier } from "../../lib/content/types";
-import { Button } from "../../lib/Components/museum";
+// Not the `museum` barrel: it re-exports client hooks (`useCarousel`), and
+// this section is a server component.
+import Button from "../../lib/Components/museum/Button";
 import PictureFrame from "../../lib/Components/museum/PictureFrame";
 import { Typography } from "../../lib/Components/museum/Typography";
 
@@ -38,10 +40,12 @@ export function MobileSponsors({
   items?: Sponsor[];
 }) {
   return (
-    // No `id="sponsors"`: the LG/MD SceneFrame owns that anchor and both are in the DOM.
+    // `data-sm-scene`, not `id="sponsors"`: the LG/MD SceneFrame owns that id and both
+    // are in the DOM. Header links and `/#sponsors` find this via `fallbackScrollToScene`.
     <section
+      data-sm-scene="sponsors"
       aria-labelledby="sponsors-title-sm"
-      className="relative overflow-hidden bg-[#3a2f52]"
+      className="scroll-mt-20 relative overflow-hidden bg-[#3a2f52]"
     >
       <Image
         src={background.src}

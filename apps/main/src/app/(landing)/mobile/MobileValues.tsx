@@ -17,7 +17,11 @@ export function MobileValues() {
   return (
     // The section fills the screen's width; the 402-wide Figma frame is
     // centered inside it.
-    <section className="relative w-full" style={{ background: BACKGROUND }}>
+    <section
+      data-sm-scene="values"
+      className="scroll-mt-20 relative w-full"
+      style={{ background: BACKGROUND }}
+    >
       <div className="relative mx-auto aspect-[402/1244] w-full max-w-[402px] overflow-hidden">
         <div className="absolute top-[98px] left-0 z-20 w-full">
           <Typography variant="sectionTitle" as="h2">

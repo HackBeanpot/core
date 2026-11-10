@@ -87,10 +87,12 @@ export function MobileSpeakers() {
   };
 
   return (
-    // No `id="speakers"`: the LG/MD SceneFrame owns that anchor and both are in the DOM.
+    // `data-sm-scene`, not `id="speakers"`: the LG/MD SceneFrame owns that id and both
+    // are in the DOM. Header links and `/#speakers` find this via `fallbackScrollToScene`.
     <section
+      data-sm-scene="speakers"
       aria-labelledby="speakers-title-sm"
-      className="relative w-full overflow-hidden bg-[linear-gradient(180deg,theme(colors.museum-terracotta-light)_0%,theme(colors.museum-gold-dark)_78.818%)]"
+      className="scroll-mt-20 relative w-full overflow-hidden bg-[linear-gradient(180deg,theme(colors.museum-terracotta-light)_0%,theme(colors.museum-gold-dark)_78.818%)]"
       // Height comes from the art plus the bio (874 at 402 with Figma's bio).
       style={smUnitVar}
     >
