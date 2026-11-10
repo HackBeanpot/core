@@ -70,8 +70,9 @@ export const faqAssets = {
     sparkles: { src: "/faq/md/sparkles.svg", x: 769, y: 1636, w: 217, h: 185 },
   },
   sm: {
-    // Flattened: skeletons, beams, eye glow, ribbon + sparkles (SM is static).
-    sock: { src: "/faq/sm/sock.svg", x: 0, y: 1152, w: 402, h: 751 },
+    // 2× raster of the frame minus text and footer: the tint uses Linear Burn,
+    // which CSS can't reproduce, so it's baked in over the section background.
+    sock: { src: "/faq/sm/sock.webp", x: 0, y: 1152, w: 402, h: 689 },
   },
   // Accordion icons, identical at every size (20×20, white).
   icons: { plus: "/faq/plus.svg", minus: "/faq/minus.svg" },
