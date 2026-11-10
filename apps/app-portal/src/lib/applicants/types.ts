@@ -10,6 +10,8 @@ import type {
   PostAcceptanceResponse,
 } from "@/lib/types/application";
 
+import type { SeasonFilter } from "./season";
+
 export interface ApplicantSummary {
   id: string;
   email: string;
@@ -52,6 +54,8 @@ export interface ApplicantDetail extends ApplicantSummary {
 }
 
 export interface ApplicantFilters {
+  /** Defaults to the current season when omitted; see ./season.ts. */
+  season?: SeasonFilter;
   search?: string;
   applicationStatus?: ApplicationStatus;
   decisionStatus?: DecisionStatus;

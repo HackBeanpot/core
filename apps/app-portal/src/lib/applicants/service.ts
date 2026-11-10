@@ -8,6 +8,7 @@ import { DECISION_STATUSES, RSVP_STATUSES } from "@/lib/types/user";
 import { buildApplicantQuery } from "./queries";
 import type {
   ApplicantDetail,
+  ApplicantFilters,
   ApplicantListParams,
   ApplicantListResult,
   ApplicantSummary,
@@ -172,10 +173,27 @@ export async function updateApplicant(
   return await docToDetail(result.value);
 }
 
-/** Full, unfiltered cursor for streaming CSV export — never buffer into an array. */
-export async function getApplicantCursor(): Promise<FindCursor<ApplicantDoc>> {
+/**
+ * Permanently removes an applicant's record. Their sign-in account (NextAuth `users`)
+ * and uploaded files are kept, so if they sign in again they start a fresh application.
+ * Returns false when there was no such record.
+ */
+export async function deleteApplicant(id: string): Promise<boolean> {
+  if (!ObjectId.isValid(id)) return false;
   const col = await applicantCollection();
-  return col.find({}).sort({ _id: 1 });
+  const { deletedCount } = await col.deleteOne({ _id: new ObjectId(id) });
+  return deletedCount === 1;
+}
+
+/**
+ * Cursor for streaming export, using the same filters as the admin list (season
+ * defaults to current). Iterate it. Don't buffer it into an array.
+ */
+export async function getApplicantCursor(
+  filters: ApplicantFilters = {},
+): Promise<FindCursor<ApplicantDoc>> {
+  const col = await applicantCollection();
+  return col.find(buildApplicantQuery(filters)).sort({ _id: 1 });
 }
 
 // Indexes for this collection are managed in scripts/setup-indexes.ts.
