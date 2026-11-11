@@ -192,7 +192,9 @@ const MobileMenu = ({ id, activeSection, onClose }: MobileMenuProps) => {
           <li>
             <a
               href={site.sponsorUsHref}
-              onClick={closeAfterNavigate}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => onClose({ restoreFocus: false })}
               className={clsx(itemStyles, "text-white/75 hover:text-white")}
             >
               Sponsor us

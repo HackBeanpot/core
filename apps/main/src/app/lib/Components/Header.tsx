@@ -28,7 +28,7 @@ const ApplyButton = () =>
 
 const HeaderButtons = () => (
   <div className="flex items-center gap-3">
-    <Button variant="ghost" href={site.sponsorUsHref}>
+    <Button variant="ghost" href={site.sponsorUsHref} external>
       Sponsor us
     </Button>
     <ApplyButton />
