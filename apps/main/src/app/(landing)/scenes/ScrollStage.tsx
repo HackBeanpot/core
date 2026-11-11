@@ -23,6 +23,8 @@ const HOLD_FRACTION = 0.15;
 /** The unpinned last scene (FAQ) enters over one viewport as it scrolls up. */
 const UNPINNED_ENTER = 100;
 const RESIZE_DEBOUNCE_MS = 200;
+/** The stage runs at this width and up; below it SM is static. */
+const WIDE = "(min-width: 640px)";
 /**
  * Hold, in vh, of a scene whose build plays by itself. It has no build range,
  * so this is all the scroll between arriving and the next scene's enter
@@ -144,10 +146,27 @@ export function useScrollToScene(): StageContextValue["scrollToScene"] {
 
 function fallbackScrollToScene(id: SceneId, opts: ScrollToSceneOptions = {}) {
   const behavior = opts.immediate ? "instant" : "smooth";
-  // The hero's element is hidden on SM (MobileHero has no id); it's the top.
+  // The hero is always the top of the page (MobileHero isn't tagged).
   if (id === "hero") window.scrollTo({ top: 0, behavior });
-  else document.getElementById(id)?.scrollIntoView({ behavior });
+  else sceneElement(id)?.scrollIntoView({ behavior });
 }
+
+/**
+ * The rendered element for a scene: its SceneFrame (`id`) on LG/MD, or its SM
+ * section (`data-sm-scene`) below 640px, where the stage is `display: none`.
+ */
+function sceneElement(id: SceneId) {
+  const candidates = document.querySelectorAll<HTMLElement>(
+    `#${CSS.escape(id)}, [data-sm-scene="${CSS.escape(id)}"]`,
+  );
+  return Array.from(candidates).find((el) => el.getClientRects().length > 0);
+}
+
+/**
+ * Read live rather than from `useMediaQuery`, which is `false` until its
+ * effect runs and would treat LG/MD as SM for the first frame.
+ */
+const isWide = () => window.matchMedia(WIDE).matches;
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);
@@ -242,7 +261,7 @@ function Stage({
   const lenisRef = useRef(lenis);
   lenisRef.current = lenis;
 
-  const enabled = useMediaQuery("(min-width: 640px)");
+  const enabled = useMediaQuery(WIDE);
   const lg = useMediaQuery("(min-width: 1280px)");
   const widthKey = useWidthKey();
   const [activeScene, setActiveScene] = useState<SceneId>(scenes[0]!.id);
@@ -414,7 +433,9 @@ function Stage({
         return;
       const link = (e.target as Element | null)?.closest?.("a[href]");
       const href = link?.getAttribute("href");
-      if (!href || !trigger.current) return;
+      // Before the master trigger exists on LG/MD, leave links to the browser.
+      // SM has no trigger: links go to `fallbackScrollToScene`.
+      if (!href || (isWide() && !trigger.current)) return;
       const url = new URL(href, window.location.href);
       if (url.pathname !== window.location.pathname) return;
       // A bare `#` (the header logo) means the top of the page.
@@ -432,7 +453,7 @@ function Stage({
     };
     const onHashChange = () => {
       const id = sceneFromHash(window.location.hash, layout.ranges);
-      if (id && trigger.current) scrollToScene(id);
+      if (id && (trigger.current || !isWide())) scrollToScene(id);
     };
     document.addEventListener("click", onClick);
     window.addEventListener("hashchange", onHashChange);
@@ -441,6 +462,17 @@ function Stage({
       window.removeEventListener("hashchange", onHashChange);
     };
   }, [layout, scenes, scrollToScene]);
+
+  // SM has no master trigger to deep link from, and the browser's own jump
+  // targets the hidden LG/MD element.
+  useEffect(() => {
+    if (isWide()) return;
+    const id = sceneFromHash(window.location.hash, layout.ranges);
+    if (id)
+      requestAnimationFrame(() =>
+        fallbackScrollToScene(id, { immediate: true }),
+      );
+  }, [layout]);
 
   // Restoring a mid-page scroll position on reload would land between scene
   // states; reloads start at the top (or at the `#hash` scene, above).

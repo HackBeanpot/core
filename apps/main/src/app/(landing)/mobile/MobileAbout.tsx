@@ -10,7 +10,11 @@ export function MobileAboutUS() {
   return (
     // Fills the screen's width: the 402-wide Figma frame (5615:26129)
     // scales up, so its edge-to-edge decor never stops short of the edges.
-    <section className="relative w-full" style={{ background: BACKGROUND }}>
+    <section
+      data-sm-scene="about"
+      className="scroll-mt-20 relative w-full"
+      style={{ background: BACKGROUND }}
+    >
       <div className="relative aspect-[402/874] w-full overflow-hidden">
         <img
           src={decor.src}

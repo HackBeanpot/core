@@ -45,10 +45,12 @@ export function MobileProjects({
   useSwipe(swipeRef, { onLeft: next, onRight: prev });
 
   return (
-    // No `id="projects"`: the LG/MD SceneFrame owns that anchor and both are in the DOM.
+    // `data-sm-scene`, not `id="projects"`: the LG/MD SceneFrame owns that id and both
+    // are in the DOM. Header links and `/#projects` find this via `fallbackScrollToScene`.
     <section
+      data-sm-scene="projects"
       aria-labelledby="projects-title-sm"
-      className="relative overflow-hidden bg-[#5a4c86]"
+      className="scroll-mt-20 relative overflow-hidden bg-[#5a4c86]"
     >
       <Image
         src={background.src}

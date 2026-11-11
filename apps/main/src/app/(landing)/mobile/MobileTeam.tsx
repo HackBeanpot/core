@@ -151,9 +151,11 @@ export function MobileTeam() {
   const floor = teamAssets.sm.floor;
 
   return (
-    // No `id="team"`: the LG/MD SceneFrame owns that anchor and both are in the DOM.
+    // `data-sm-scene`, not `id="team"`: the LG/MD SceneFrame owns that id and both
+    // are in the DOM. Header links and `/#team` find this via `fallbackScrollToScene`.
     <section
-      className="relative flex min-h-[874px] w-full flex-col items-center overflow-hidden pb-[124px]"
+      data-sm-scene="team"
+      className="scroll-mt-20 relative flex min-h-[874px] w-full flex-col items-center overflow-hidden pb-[124px]"
       style={{
         background: "linear-gradient(180deg, #37a9c9 0%, #024354 90.793%)",
       }}

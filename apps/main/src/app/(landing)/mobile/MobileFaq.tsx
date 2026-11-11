@@ -25,10 +25,12 @@ const FOOTER_PAD_TOP = 20;
  */
 export function MobileFaq() {
   return (
-    // No `id="faq"`: the LG/MD SceneFrame owns that anchor and both are in the DOM.
+    // `data-sm-scene`, not `id="faq"`: the LG/MD SceneFrame owns that id and both
+    // are in the DOM. Header links and `/#faq` find this via `fallbackScrollToScene`.
     <section
+      data-sm-scene="faq"
       aria-labelledby="faq-title-sm"
-      className="relative overflow-hidden bg-[#060825]"
+      className="scroll-mt-20 relative overflow-hidden bg-[#060825]"
     >
       {/* Ends on the art's top row so the two meet without a seam. */}
       <div className="relative flex flex-col items-center gap-10 bg-[linear-gradient(180deg,#00000b_0%,#000011_39%,#00000e_63%,#000020_87%,#000029_100%)] px-5 pb-2 pt-[39px]">
