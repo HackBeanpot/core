@@ -4,6 +4,7 @@ import { requireAdmin } from "@/lib/auth/guards";
 import {
   InvalidApplicantStateError,
   InvalidApplicantUpdateError,
+  deleteApplicant,
   getApplicant,
   updateApplicant,
 } from "@/lib/applicants/service";
@@ -61,4 +62,21 @@ export async function POST(
     }
     throw err;
   }
+}
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: { id: string } },
+) {
+  try {
+    await requireAdmin();
+  } catch {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  const deleted = await deleteApplicant(params.id);
+  if (!deleted) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+  return new NextResponse(null, { status: 204 });
 }
