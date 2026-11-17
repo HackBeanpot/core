@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useId, useState } from "react";
 import { faqAssets } from "../../../../../public/faq/positions";
 import type { FaqItem } from "../../../lib/content";
+import ExternalLink from "../../../lib/Components/ExternalLink";
 import { Typography } from "../../../lib/Components/museum/Typography";
 
 const ICON = 20;
@@ -61,7 +62,19 @@ export function FaqAccordion({
               <div className="min-h-0 overflow-hidden">
                 <div className="pt-1 sm:pt-[calc(4*var(--u))]">
                   <Typography variant="faqQuestionOpen">
-                    {item.answer}
+                    {item.answer.map((segment, j) =>
+                      typeof segment === "string" ? (
+                        segment
+                      ) : (
+                        <ExternalLink
+                          key={j}
+                          href={segment.href}
+                          className="underline underline-offset-2 hover:text-museum-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-museum-gold"
+                        >
+                          {segment.text}
+                        </ExternalLink>
+                      ),
+                    )}
                   </Typography>
                 </div>
                 <div className="mt-4 h-px bg-white/10 sm:mt-[calc(16*var(--u))]" />
