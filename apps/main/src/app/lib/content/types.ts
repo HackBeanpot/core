@@ -93,10 +93,12 @@ export type TeamMember = {
 
 export type FaqCategory = "general" | "application" | "logistics";
 
+export type FaqAnswerSegment = string | { text: string; href: string };
+
 export type FaqItem = {
   category: FaqCategory;
   question: string;
-  answer: string;
+  answer: FaqAnswerSegment[];
 };
 
 export type Labeled<Id extends string> = {
