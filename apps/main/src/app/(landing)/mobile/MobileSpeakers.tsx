@@ -130,7 +130,7 @@ export function MobileSpeakers() {
               </CarouselSwap>
             </div>
 
-            {/* Name plate with the arrows (5615:26365) */}
+            {/* Name plate with the arrows (5615:26365); arrows hidden with one speaker */}
             <div
               className="absolute inset-x-0 flex items-center justify-center bg-[linear-gradient(-73.57deg,theme(colors.museum-gold)_18.913%,theme(colors.museum-gold-light)_91.976%)]"
               style={{
@@ -139,12 +139,14 @@ export function MobileSpeakers() {
                 padding: `${sm(12)} ${sm(10)}`,
               }}
             >
-              <CarouselArrow
-                direction="left"
-                disabled={!canPrev}
-                onClick={onPrev}
-                aria-label="Previous speaker"
-              />
+              {speakers.length > 1 && (
+                <CarouselArrow
+                  direction="left"
+                  disabled={!canPrev}
+                  onClick={onPrev}
+                  aria-label="Previous speaker"
+                />
+              )}
               {/* Shrinks below 267 artboard px when the fixed 48px arrows need the room (320px) */}
               <CarouselSwap
                 swapKey={index}
@@ -170,12 +172,14 @@ export function MobileSpeakers() {
                   </p>
                 </div>
               </CarouselSwap>
-              <CarouselArrow
-                direction="right"
-                disabled={!canNext}
-                onClick={onNext}
-                aria-label="Next speaker"
-              />
+              {speakers.length > 1 && (
+                <CarouselArrow
+                  direction="right"
+                  disabled={!canNext}
+                  onClick={onNext}
+                  aria-label="Next speaker"
+                />
+              )}
             </div>
 
             <Art src="/speakers/sm/curtain.svg" style={smBox(ARTBOARD_BOX)} />

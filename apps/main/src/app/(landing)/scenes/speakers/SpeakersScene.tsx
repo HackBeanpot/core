@@ -383,26 +383,27 @@ export function SpeakersScene() {
                 </SwapLine>
               </div>
 
-              {/* Always shown, as in the design: with one speaker both are
-                  simply disabled. */}
-              <div
-                data-anim="speakers-text"
-                className="flex items-center"
-                style={{ gap: u(9) }}
-              >
-                <CarouselArrow
-                  direction="left"
-                  disabled={!canPrev}
-                  onClick={prev}
-                  aria-label="Previous speaker"
-                />
-                <CarouselArrow
-                  direction="right"
-                  disabled={!canNext}
-                  onClick={next}
-                  aria-label="Next speaker"
-                />
-              </div>
+              {/* Hidden while there is only one speaker. */}
+              {speakers.length > 1 && (
+                <div
+                  data-anim="speakers-text"
+                  className="flex items-center"
+                  style={{ gap: u(9) }}
+                >
+                  <CarouselArrow
+                    direction="left"
+                    disabled={!canPrev}
+                    onClick={prev}
+                    aria-label="Previous speaker"
+                  />
+                  <CarouselArrow
+                    direction="right"
+                    disabled={!canNext}
+                    onClick={next}
+                    aria-label="Next speaker"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </>

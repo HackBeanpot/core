@@ -5,14 +5,13 @@ export const speakersSection: SectionHeading = {
 };
 
 export const speakers: Speaker[] = [
-  // TODO(content): placeholder speaker
   {
-    name: "Jessica Cao",
-    role: "Founder of Rewriting the Code",
-    bio: "Sue Harnett is the Founder & CEO of Rewriting the Code, the nonprofit she launched in 2017 that has grown into a global community of 38,000+ university and early-career women in tech, offering mentorship, education, and career-readiness programs. She will be speaking about women in technology, and the value of community, teamwork, and thoughtful leadership!",
+    name: "Kara Peterson",
+    role: "Co-founder & CEO of Descrybe",
+    bio: "Kara Peterson is an AI entrepreneur, CEO, and community builder working at the intersection of technology, business, law, and social impact. She is co-founder and CEO of Descrybe, co-founder and co-host of Building AI Boston, an Apple Podcasts Top 200 show, and a speaker and advocate for responsible, human-centered innovation. She connects people and ideas, turning emerging technology into meaningful impact and making its benefits more accessible.",
     photo: {
-      src: "/speakers/photos/jessica-cao.webp",
-      alt: "Jessica Cao",
+      src: "/speakers/photos/kara.png",
+      alt: "Kara Peterson",
     },
   },
 ];
