@@ -27,13 +27,25 @@ export class StatusError extends Error {
   }
 }
 
+// Applications count as still open until a close date is set and has passed. RSVPs stay
+// hidden/blocked until then, even for applicants who've already been admitted.
+async function isRegistrationClosed(): Promise<boolean> {
+  const closesAt = await getSingleton(SingletonKey.RegistrationClosed);
+  return closesAt !== null && Date.now() > new Date(closesAt).getTime();
+}
+
 async function loadPortalSettings() {
-  const [registrationOpenValue, confirmByValue, showDecisionValue] =
-    await Promise.all([
-      getSingleton(SingletonKey.RegistrationOpen),
-      getSingleton(SingletonKey.ConfirmBy),
-      getSingleton(SingletonKey.ShowDecision),
-    ]);
+  const [
+    registrationOpenValue,
+    confirmByValue,
+    showDecisionValue,
+    registrationClosed,
+  ] = await Promise.all([
+    getSingleton(SingletonKey.RegistrationOpen),
+    getSingleton(SingletonKey.ConfirmBy),
+    getSingleton(SingletonKey.ShowDecision),
+    isRegistrationClosed(),
+  ]);
 
   return {
     registrationOpen:
@@ -43,6 +55,7 @@ async function loadPortalSettings() {
     confirmBy:
       confirmByValue !== null ? new Date(confirmByValue) : DEFAULT_FUTURE_DATE,
     showDecision: showDecisionValue === true,
+    registrationClosed,
   };
 }
 
@@ -106,6 +119,7 @@ export async function getPortalStatus(): Promise<PortalStatusResponse> {
         : DEFAULT_FUTURE_DATE.toISOString(),
     },
     completionPercent,
+    rsvpAvailable: branch === "admitted" && settings.registrationClosed,
   };
 }
 
@@ -134,6 +148,15 @@ export async function saveRsvp(
 
   if (!applicant || applicant.decisionStatus !== "admitted") {
     throw new StatusError("Only admitted users can RSVP.", 403);
+  }
+
+  if (!(await isRegistrationClosed())) {
+    throw new StatusError("RSVPs open once applications close.", 403);
+  }
+
+  // decisionStatus can be set before decisions are released; don't let applicants act on it early.
+  if ((await getSingleton(SingletonKey.ShowDecision)) !== true) {
+    throw new StatusError("Decisions haven't been released yet.", 403);
   }
 
   const confirmByValue = await getSingleton(SingletonKey.ConfirmBy);

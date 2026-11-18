@@ -10,9 +10,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const isMobile = useIsMobile();
 
   return (
-    // basePath MUST match the auth route location (/auth). Without this, the
-    // next-auth/react client (signIn/signOut/useSession) posts to /api/auth → 404.
-    <SessionProvider basePath="/auth">
+    <SessionProvider>
       <MobileContext.Provider value={{ isMobile }}>
         {children}
       </MobileContext.Provider>

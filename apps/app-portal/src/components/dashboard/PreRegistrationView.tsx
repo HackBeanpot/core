@@ -5,7 +5,6 @@ import { formatCountdownLabel, formatLongDate } from "../../lib/status/format";
 import {
   statCardClass,
   //primaryActionClass,
-  secondaryActionClass,
 } from "./styles";
 import type { DecisionDates } from "../../lib/status/types";
 
@@ -56,11 +55,6 @@ export default function PreRegistrationView({
           href="https://hackbeanpot.com"
         >
           Learn more about HackBeanpot
-        </Link>
-      }
-      secondaryAction={
-        <Link className={secondaryActionClass} href="/dashboard">
-          Refresh status
         </Link>
       }
       title={<>Applications open in {registrationCountdown}</>}

@@ -31,7 +31,7 @@ export function SelectField({
       disabled={disabled}
     >
       <SelectTrigger id={question.id} aria-required={question.required}>
-        <SelectValue placeholder={`Select ${question.label.toLowerCase()}`} />
+        <SelectValue placeholder="Select an option" />
       </SelectTrigger>
       <SelectContent>
         {question.options?.map((option) => (

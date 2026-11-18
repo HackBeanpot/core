@@ -7,7 +7,7 @@ import RsvpExperience from "../../../components/dashboard/RsvpExperience";
 export const dynamic = "force-dynamic";
 
 export default async function RsvpPage(): Promise<JSX.Element> {
-  const { branch, status, decisionDates } = await fetchPortalStatus();
+  const { rsvpAvailable, status, decisionDates } = await fetchPortalStatus();
   const confirmBy = new Date(decisionDates.confirmBy);
   const isAfterConfirmBy = Date.now() > confirmBy.getTime();
   const alreadySubmitted = status.rsvpStatus !== "unconfirmed";
@@ -16,7 +16,7 @@ export default async function RsvpPage(): Promise<JSX.Element> {
   // Already RSVP'd: let them back in even past the deadline to update logistics details
   // (dietary restrictions, accessibility needs, etc.) — attendance itself gets locked
   // instead (see attendingLocked below and saveRsvp()'s server-side enforcement).
-  if (branch !== "admitted" || (isAfterConfirmBy && !alreadySubmitted)) {
+  if (!rsvpAvailable || (isAfterConfirmBy && !alreadySubmitted)) {
     redirect("/dashboard");
   }
 

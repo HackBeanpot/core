@@ -5,8 +5,25 @@ import type { FormSection, Question, QuestionType } from "./types";
 
 type SchemaTarget = "client" | "server";
 
+const REQUIRED_MESSAGE = "This question is required";
+
 function countWords(value: string): number {
   return value.trim().length === 0 ? 0 : value.trim().split(/\s+/).length;
+}
+
+// True when a text answer is past the question's character or word limit — i.e. it would
+// fail validation on "Next"/submit even though drafts still save it.
+export function exceedsLimit(question: Question, value: unknown): boolean {
+  if (typeof value !== "string") return false;
+  if (question.type !== "short_text" && question.type !== "long_text") {
+    return false;
+  }
+  if (question.maxLength && value.length > question.maxLength) return true;
+  return (
+    question.type === "long_text" &&
+    !!question.maxWords &&
+    countWords(value) > question.maxWords
+  );
 }
 
 function fieldSchema(question: Question): z.ZodTypeAny {
@@ -15,20 +32,20 @@ function fieldSchema(question: Question): z.ZodTypeAny {
   switch (type as QuestionType) {
     case "short_text":
     case "long_text": {
-      const requiredMessage = `${question.label} is required`;
+      const requiredMessage = REQUIRED_MESSAGE;
       let schema = required
         ? z.string({ message: requiredMessage })
         : z.string();
       if (maxLength) {
         schema = schema.max(
           maxLength,
-          `${question.label} must be ${maxLength} characters or fewer`,
+          `Please answer in ${maxLength} characters or fewer`,
         );
       }
       if (type === "long_text" && maxWords) {
         schema = schema.refine(
           (value) => countWords(value) <= maxWords,
-          `${question.label} must be ${maxWords} words or fewer`,
+          `Please answer in ${maxWords} words or fewer`,
         );
       }
       if (required) {
@@ -47,7 +64,7 @@ function fieldSchema(question: Question): z.ZodTypeAny {
     case "select": {
       const values = options?.map((o) => o.value) ?? [];
       const enumSchema = z.enum(values as [string, ...string[]], {
-        message: `${question.label} is required`,
+        message: REQUIRED_MESSAGE,
       });
       if (required) {
         return enumSchema;
@@ -59,9 +76,9 @@ function fieldSchema(question: Question): z.ZodTypeAny {
     case "multi_select": {
       const values = options?.map((o) => o.value) ?? [];
       const enumSchema = z.enum(values as [string, ...string[]], {
-        message: `${question.label} contains an option that is not allowed`,
+        message: "Please only select from the listed options",
       });
-      const requiredMessage = `Select at least one option for ${question.label}`;
+      const requiredMessage = REQUIRED_MESSAGE;
       const schema = required
         ? z.array(enumSchema, { message: requiredMessage })
         : z.array(enumSchema);
@@ -75,7 +92,7 @@ function fieldSchema(question: Question): z.ZodTypeAny {
       // /api/v1/uploads/sign once the file has actually finished uploading to GCS (see
       // FileUploadField / FileUpload). There's no separate "browser File object" stage in
       // the schema — the upload happens before the field's value is ever set.
-      const requiredMessage = `${question.label} is required`;
+      const requiredMessage = REQUIRED_MESSAGE;
       const uploadIdSchema = z.string().min(1, requiredMessage);
       if (required) return uploadIdSchema;
       return z
@@ -109,6 +126,30 @@ export function buildApplicationSchema(
 ): z.ZodObject<Record<string, z.ZodTypeAny>> {
   const schema = z.object(buildShape(sections));
   return target === "server" ? (schema.strict() as typeof schema) : schema;
+}
+
+// Converts a saved answer to the shape its question currently expects. Admins can change a
+// question's type in /admin/settings after applicants have answered it (the ID stays the same),
+// so a draft can hold e.g. an array for what's now a text question — which crashed the text
+// inputs — or a single string for what's now a multi-select, which the checkboxes would
+// then split into characters on the next toggle.
+export function coerceResponse(
+  question: Question,
+  value: string | string[] | null | undefined,
+): string | string[] | null {
+  const strings = (Array.isArray(value) ? value : [value]).filter(
+    (v): v is string => typeof v === "string" && v !== "",
+  );
+  switch (question.type) {
+    case "multi_select":
+      return strings;
+    case "file_upload":
+      return strings[0] ?? null;
+    case "select":
+      return strings.length === 1 ? strings[0] : "";
+    default:
+      return strings.join(", ");
+  }
 }
 
 export function buildDefaultValues(

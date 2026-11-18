@@ -57,4 +57,6 @@ export type PortalStatusResponse = {
   decisionDates: SerializedDecisionDates;
   /** Real completion % of the application draft; only meaningful for the "in-progress" branch. */
   completionPercent: number;
+  /** Admitted and applications have closed — gates the RSVP nav link, page, and API. */
+  rsvpAvailable: boolean;
 };

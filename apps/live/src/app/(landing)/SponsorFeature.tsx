@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SponsorTicketComp } from "../../../../main/src/app/lib/Components/index.ts";
+import SponsorTicketComp from "@repo/ui/SponsorComponents/SponsorTicketComp";
 import Section from "@repo/ui/Section";
 import useDevice from "@repo/util/hooks/useDevice";
 

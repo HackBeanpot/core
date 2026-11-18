@@ -1,0 +1,11 @@
+export { default as Fog } from "./Fog";
+export type { FogProps, FogVariant } from "./Fog";
+export { Sparkle, SparkleCluster } from "./Sparkle";
+export type { SparkleProps, SparkleClusterProps } from "./Sparkle";
+export { default as Candle } from "./Candle";
+export type { CandleProps } from "./Candle";
+export { default as Spotlight } from "./Spotlight";
+export type { SpotlightProps } from "./Spotlight";
+export { default as Starfield, generateStars } from "./Starfield";
+export type { StarfieldProps } from "./Starfield";
+export type { DecorBaseProps } from "./shared";

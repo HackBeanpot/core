@@ -1,7 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import PortalShell from "./PortalShell";
-import { secondaryActionClass, statCardClass } from "./styles";
+import { statCardClass } from "./styles";
 import { SUPPORT_EMAIL } from "../../lib/config/site";
 import type { ApplicantStatus } from "../../lib/status/types";
 
@@ -28,11 +27,6 @@ export default function WaitlistedView({
       }
       description={<>You&apos;re on the waitlist.</>}
       eyebrow="Waitlist update"
-      secondaryAction={
-        <Link className={secondaryActionClass} href="/dashboard">
-          Refresh status
-        </Link>
-      }
       title={<>You&apos;re on the waitlist</>}
     >
       <div className={statCardClass}>

@@ -1,6 +1,6 @@
 // packages/ui/src/InfoCard.tsx
 import React from "react";
-import { ProjectStarIcon } from "main/src/app/lib/Assets/SVG";
+import ProjectStarIcon from "../../lib/Assets/SVG/ProjectStarIcon";
 import { itemIconMap, ItemName } from "./icons.tsx";
 
 type InfoCardProps = {

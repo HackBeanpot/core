@@ -4,7 +4,6 @@ import PortalShell from "./PortalShell";
 //import { formatLongDate } from "../../lib/status/format";
 import {
   //primaryActionClass,
-  secondaryActionClass,
   statCardClass,
 } from "./styles";
 import type { ApplicantStatus, DecisionDates } from "../../lib/status/types";
@@ -42,11 +41,6 @@ export default function SubmittedView({
           href={isRegistrationOpen ? "/application" : "/dashboard"}
         >
           {isRegistrationOpen ? "Edit application" : "Back to dashboard"}
-        </Link>
-      }
-      secondaryAction={
-        <Link className={secondaryActionClass} href="/dashboard">
-          Refresh status
         </Link>
       }
       title={<>We&apos;ve received your application</>}

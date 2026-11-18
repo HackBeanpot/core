@@ -31,13 +31,8 @@ export function FileUploadField({
 
   return (
     <div className="space-y-2">
-      {value && (
-        <p className="text-xs text-charcoalFogLight">
-          A file is already uploaded for this question. Uploading a new one will
-          replace it.
-        </p>
-      )}
       <FileUpload
+        uploadId={value}
         accept={question.accept}
         onUploadComplete={(uploadId) => onChange(uploadId)}
         onUploadRemoved={() => onChange(null)}

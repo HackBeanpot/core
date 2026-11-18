@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
-import { colors, screens } from "./theme-tokens";
+import tailwindcssAnimated from "tailwindcss-animated";
+import { colors } from "./theme-tokens";
 import { wiggle, popAndShrink } from "./animations";
 
 // We want each package to be responsible for its own content.
@@ -39,6 +40,15 @@ const config: Omit<Config, "content"> = {
         "Wilden-Regular": ["'Wilden-Regular'"],
         "DMSans-Regular": ["'DMSans-Regular'"],
         "DMSans-Medium": ["'DMSans-Medium'"],
+        "SpecialGothicCondensedOne-Regular": [
+          "'SpecialGothicCondensedOne-Regular'",
+        ],
+
+        amarante: ["var(--font-amarante)"],
+        // apps/main sets --font-gothic with next/font; elsewhere this falls
+        // back to the fonts.css face.
+        gothic: ["var(--font-gothic, 'SpecialGothicCondensedOne-Regular')"],
+        merriweather: ["var(--font-merriweather)"],
       },
       transitionProperty: {
         "max-height": "max-height",
@@ -56,8 +66,7 @@ const config: Omit<Config, "content"> = {
       },
     },
     colors,
-    screens,
   },
-  plugins: [require("tailwindcss-animated")],
+  plugins: [tailwindcssAnimated],
 };
 export default config;

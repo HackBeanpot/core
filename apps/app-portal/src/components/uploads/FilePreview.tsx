@@ -8,14 +8,14 @@ import React from "react";
 
 /**
  * @param fileName - Name of the uploaded file.
- * @param fileSize - Size of the uploaded file in bytes.
+ * @param fileSize - Size of the uploaded file in bytes; omitted when it isn't known.
  * @param mimeType - MIME type of the uploaded file (e.g. "application/pdf").
  * @param onReplace - Called when the user clicks Replace; reopens the file picker.
  * @param onRemove - Called when the user clicks Remove; clears the upload from form state.
  */
 interface FilePreviewProps {
   fileName: string;
-  fileSize: number;
+  fileSize?: number;
   mimeType: string;
   onReplace: () => void;
   onRemove: () => void;
@@ -38,18 +38,21 @@ export default function FilePreview({
         <div className="flex flex-col">
           <span className="text-sm font-medium">{fileName}</span>
           <span className="text-xs text-gray-500">
-            {formatBytes(fileSize)} · {mimeType}
+            {fileSize !== undefined && `${formatBytes(fileSize)} · `}
+            {mimeType}
           </span>
         </div>
       </div>
       <div className="flex gap-3">
         <button
+          type="button"
           onClick={onReplace}
           className="text-sm text-starlightBlue bg-ribbonBlue px-4 py-2 rounded-md hover:opacity-80"
         >
           Replace
         </button>
         <button
+          type="button"
           onClick={onRemove}
           className="text-sm text-black bg-firecrackerRedLight px-4 py-2 rounded-md hover:opacity-80"
         >

@@ -1,0 +1,151 @@
+import { SCENE_IDS, type SceneId, type SceneSpec } from "./types";
+
+/**
+ * Confirmed motion spec (§3.5), one constant per scene.
+ *
+ * Source: the 2026-10-05 scroll recordings of the prototype (desktop, tablet
+ * and mobile menu). `scrollLength` and `exitColor` are read off those
+ * recordings and are STILL TO BE CONFIRMED with Cole and Lucy (ticket step 1).
+ * Update the numbers here when the Slack thread settles, and link it in the PR.
+ *
+ * MS-301 tuned the lengths so the whole page is ~20 wheel flicks (one flick is
+ * about a viewport): every scene but the hero went down by 50vh, so the
+ * pinned stage is ~1865vh instead of ~2190vh. The hero kept 500 so the door
+ * dive keeps its pace.
+ *
+ * 2026-10-20: section-to-section scrolling felt too short once Speakers,
+ * Testimonials and Team started playing their builds by themselves, so every
+ * scene but the hero went up 1.5× (with `PLAYED_BUILD_HOLD` in ScrollStage,
+ * 80 → 120). The pinned stage is now ~2130vh.
+ *
+ * Mobile (<640px) is static: none of this runs there.
+ */
+
+/**
+ * Hero.
+ * enter: none, it is the first scene.
+ * build: sky shifts day to night (sun becomes moon, stars appear), camera
+ * pushes into the museum, title and MLH badge appear, spotlights sweep in.
+ */
+export const HERO: SceneSpec = {
+  scrollLength: 500,
+  exitColor: "#0b0b22",
+  pinned: true,
+};
+
+/**
+ * About.
+ * enter: fades up from the hero's night navy; wavy silhouettes slide in.
+ * build: plaque rises into place, then the framed photo; candles flicker on.
+ */
+export const ABOUT: SceneSpec = {
+  scrollLength: 300,
+  exitColor: "#14124a",
+  pinned: true,
+};
+
+/**
+ * Values.
+ * enter: About's content fades off its navy, which then blends into the
+ * teal room in place (`morph`), with no second gradient wiping across.
+ * build: spotlight switches on with a flicker; pillars rise left to right,
+ * each stone pops as its pillar lands and its text fades up; vases slide up.
+ * OPEN (ask Cole): spotlight sweeping across the values while scrolling.
+ */
+export const VALUES: SceneSpec = {
+  scrollLength: 300,
+  exitColor: "#1f6f96",
+  pinned: true,
+};
+
+/**
+ * Speakers.
+ * enter: blue cross-fades through to flat orange; curtain slides in at right.
+ * build: arch and portrait rise from the balcony, title, name and bio fade in.
+ * OPEN: two-frame question (final layout vs. animation pair). The recording
+ * shows a single layout whose portrait and text swap per speaker.
+ */
+export const SPEAKERS: SceneSpec = {
+  scrollLength: 375,
+  exitColor: "#c2602c",
+  pinned: true,
+};
+
+/**
+ * Testimonials.
+ * enter: orange cross-fades to purple; the hall corridor is pushed through.
+ * build: camera travels down the hall, the portrait medallion and quote
+ * fade in, ribbons sweep across, stars twinkle.
+ */
+export const TESTIMONIALS: SceneSpec = {
+  scrollLength: 375,
+  exitColor: "#3c1a5e",
+  pinned: true,
+};
+
+/**
+ * Projects.
+ * enter: Testimonials' content fades, its purple fades to the lavender wall,
+ * then the camera flies left onto the doorway, layers parallaxing by depth.
+ * build: title, project frame and description fade in beside the arch.
+ */
+export const PROJECTS: SceneSpec = {
+  scrollLength: 300,
+  exitColor: "#6f5f9c",
+  pinned: true,
+};
+
+/**
+ * Sponsors.
+ * enter: lavender cross-fades to the hall; the scene settles from 1.08 zoom.
+ * build: title fades down, gold frames drop in one by one, then silver
+ * (stagger adapts to sponsor count), then the CTA fades up.
+ * OPEN: windows/statues parallax needs those layers split out of the
+ * flattened background (see public/sponsors/positions.ts).
+ */
+export const SPONSORS: SceneSpec = {
+  scrollLength: 300,
+  exitColor: "#2a2d6a",
+  pinned: true,
+};
+
+/**
+ * Team.
+ * enter: Sponsors' content fades off, then its navy blends into teal (`morph`).
+ * build (per the prototype recording): title rises in, the rows fade up one
+ * after the other, the arrows fade in, the floor and benches slide up.
+ */
+export const TEAM: SceneSpec = {
+  scrollLength: 300,
+  exitColor: "#1f5f6f",
+  pinned: true,
+};
+
+/**
+ * FAQ.
+ * enter: teal cross-fades to near-black.
+ * build: none. Content scrolls normally, so the scene is not pinned.
+ */
+export const FAQ: SceneSpec = {
+  scrollLength: 150,
+  exitColor: "#06060f",
+  pinned: false,
+};
+
+export const MOTION_SPEC: Record<SceneId, SceneSpec> = {
+  hero: HERO,
+  about: ABOUT,
+  values: VALUES,
+  speakers: SPEAKERS,
+  testimonials: TESTIMONIALS,
+  projects: PROJECTS,
+  sponsors: SPONSORS,
+  team: TEAM,
+  faq: FAQ,
+};
+
+/** The scene before `id` in page order, or `undefined` for the first one. */
+export function previousScene(id: SceneId): SceneId | undefined {
+  const i = SCENE_IDS.indexOf(id);
+  return i > 0 ? SCENE_IDS[i - 1] : undefined;
+}

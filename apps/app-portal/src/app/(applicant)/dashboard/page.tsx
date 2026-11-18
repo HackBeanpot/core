@@ -21,6 +21,7 @@ export default async function DashboardPage(): Promise<JSX.Element> {
     confirmBy: new Date().toISOString(),
   };
   let completionPercent = 0;
+  let rsvpAvailable = false;
 
   try {
     const res = await fetchPortalStatus();
@@ -28,6 +29,7 @@ export default async function DashboardPage(): Promise<JSX.Element> {
     status = res.status;
     decisionDates = res.decisionDates;
     completionPercent = res.completionPercent;
+    rsvpAvailable = res.rsvpAvailable;
   } catch (err) {
     // If fetch fails, render a simple error view instead of crashing the page.
     return (
@@ -61,7 +63,7 @@ export default async function DashboardPage(): Promise<JSX.Element> {
     case "submitted":
       return <SubmittedView decisionDates={resolvedDates} status={status} />;
     case "admitted":
-      return <AdmittedView decisionDates={resolvedDates} status={status} />;
+      return <AdmittedView status={status} rsvpAvailable={rsvpAvailable} />;
     case "waitlisted":
       return <WaitlistedView status={status} />;
     case "declined":

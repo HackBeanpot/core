@@ -10,6 +10,8 @@
     "type-check": "tsc --noEmit",
     "seed": "node --env-file=.env --import tsx scripts/seed.ts",
     "setup-indexes": "node --env-file=.env --import tsx scripts/setup-indexes.ts",
+    "archive-applicants": "node --env-file=.env --import tsx scripts/archive-applicants.ts",
+    "setup-cors": "node --env-file=.env --import tsx scripts/setup-cors.ts",
     "test": "jest"
   },
   "dependencies": {

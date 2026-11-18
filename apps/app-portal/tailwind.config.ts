@@ -6,7 +6,7 @@ import sharedConfig from "@repo/tailwind-config";
 import { colors as projectColors } from "@repo/tailwind-config/tokens";
 
 const config: Pick<Config, "content" | "presets" | "theme"> = {
-  content: ["./src/app/**/*.tsx", "./src/components/**/*.tsx"],
+  content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
   presets: [sharedConfig],
   theme: {
     colors: {

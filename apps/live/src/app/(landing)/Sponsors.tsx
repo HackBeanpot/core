@@ -5,7 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import useDevice from "@util/hooks/useDevice";
 import RibbonTitle from "@repo/ui/RibbonTitle";
-import { SponsorTicketComp } from "../../../../main/src/app/lib/Components/index.ts";
+import SponsorTicketComp from "@repo/ui/SponsorComponents/SponsorTicketComp";
 
 import AWSLogo from "@repo/ui/Logos/AWSLogo.svg";
 import MavenAGILogo from "@repo/ui/Logos/MavenAGILogo.svg";

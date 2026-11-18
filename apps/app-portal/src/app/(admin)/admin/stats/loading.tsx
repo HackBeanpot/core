@@ -12,7 +12,7 @@ export default function StatsLoading(): JSX.Element {
         <Skeleton className="h-9 w-40" />
       </header>
 
-      <section className="grid grid-cols-4 gap-4 tablet:grid-cols-2 mobile-xl:grid-cols-2 mobile:grid-cols-2">
+      <section className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         {["a", "b", "c", "d"].map((key) => (
           <Card key={key}>
             <CardContent className="pt-6">
@@ -23,7 +23,7 @@ export default function StatsLoading(): JSX.Element {
         ))}
       </section>
 
-      <section className="grid grid-cols-2 gap-4 mobile:grid-cols-1 mobile-xl:grid-cols-1">
+      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <ChartCardSkeleton />
         <ChartCardSkeleton />
         <div className="col-span-2">
