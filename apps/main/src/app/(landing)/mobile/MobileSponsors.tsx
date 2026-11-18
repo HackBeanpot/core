@@ -93,6 +93,7 @@ export function MobileSponsors({
                       >
                         <Image
                           src={sponsor.logo.src}
+                          unoptimized={sponsor.logo.src.endsWith(".svg")}
                           alt={sponsor.logo.alt}
                           fill
                           sizes="130px"

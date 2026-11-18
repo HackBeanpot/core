@@ -132,6 +132,7 @@ function SponsorTierRow({
               <div className="absolute inset-[18%_14%]">
                 <Image
                   src={sponsor.logo.src}
+                  unoptimized={sponsor.logo.src.endsWith(".svg")}
                   alt=""
                   fill
                   sizes="250px"

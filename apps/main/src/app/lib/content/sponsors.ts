@@ -7,44 +7,20 @@ export const sponsorsSection: SponsorsSection = {
   inquiry: { before: "Reach out to ", after: " for more inquiries!" },
 };
 
-// TODO(content): placeholder sponsors sharing one logo; replace with the confirmed 2027 sponsors, tiers and logos
-const PLACEHOLDER_LOGO = "/sponsors/logos/placeholder.webp";
-
 export const sponsors: Sponsor[] = [
   {
-    name: "Google",
-    url: "https://www.google.com",
+    name: "Klaviyo",
+    url: "https://www.klaviyo.com",
     tier: "gold",
-    logo: { src: PLACEHOLDER_LOGO, alt: "Google" },
+    logo: { src: "/sponsors/logos/Klaviyo-Logo.svg", alt: "Klaviyo" },
   },
   {
-    name: "CarGurus",
-    url: "https://www.cargurus.com",
-    tier: "gold",
-    logo: { src: PLACEHOLDER_LOGO, alt: "CarGurus" },
-  },
-  {
-    name: "Meta",
-    url: "https://www.meta.com",
-    tier: "gold",
-    logo: { src: PLACEHOLDER_LOGO, alt: "Meta" },
-  },
-  {
-    name: "Datadog",
-    url: "https://www.datadoghq.com",
+    name: "Sweeney Merrigan",
+    url: "https://www.sweeneymerrigan.com",
     tier: "silver",
-    logo: { src: PLACEHOLDER_LOGO, alt: "Datadog" },
-  },
-  {
-    name: "SimpliSafe",
-    url: "https://simplisafe.com",
-    tier: "silver",
-    logo: { src: PLACEHOLDER_LOGO, alt: "SimpliSafe" },
-  },
-  {
-    name: "Yelp",
-    url: "https://www.yelp.com",
-    tier: "silver",
-    logo: { src: PLACEHOLDER_LOGO, alt: "Yelp" },
+    logo: {
+      src: "/sponsors/logos/sweeney-merrigan.svg",
+      alt: "Sweeney Merrigan",
+    },
   },
 ];
