@@ -123,6 +123,8 @@ export type Site = {
   sponsorUsHref: string;
   /** The hero's MLH trust badge links here (MLH's badge rules). */
   mlhBadgeUrl: string;
+  /** Venue address, shown on the hero's sponsor plaque. */
+  venueAddress: string;
   contactEmail: string;
   socials: SocialLink[];
 };

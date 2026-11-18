@@ -421,13 +421,69 @@
   will-change: transform, opacity;
 }
 
+/*
+ * The sponsor plaque sits on the front steps, so it lives in front-plane
+ * coordinates (no --hud-k scaling). LG sits higher up the stairs; MD
+ * overrides the top below.
+ */
 [data-scene="hero"] .sponsor-lockup {
   z-index: 14;
-  top: calc(106 * var(--hu));
-  left: calc(619 * var(--hu));
+  top: calc(756 * var(--hu));
+  left: calc(552 * var(--hu));
   opacity: 0;
   will-change: transform, opacity;
 }
+
+[data-scene="hero"] .plaque {
+  --k: 1;
+  --plaque-edge: #5b63e6;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(7 * var(--hu));
+  width: calc(408 * var(--hu));
+  height: calc(108 * var(--hu));
+  border: calc(4.5 * var(--hu)) solid var(--plaque-edge);
+  background:
+    radial-gradient(120% 140% at 15% 110%, rgb(91 99 230 / 0.18), transparent 55%),
+    radial-gradient(90% 120% at 95% 0%, rgb(91 99 230 / 0.12), transparent 60%),
+    #0b0d2b;
+}
+
+[data-scene="hero"] .plaque .lockup {
+  --k: 1;
+  gap: calc(10 * var(--hu));
+  font-size: calc(26 * var(--hu));
+  text-transform: uppercase;
+}
+
+[data-scene="hero"] .plaque .lockup__klaviyo {
+  height: calc(30 * var(--hu));
+}
+
+[data-scene="hero"] .plaque__address {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-merriweather), serif;
+  font-size: calc(14 * var(--hu));
+  font-weight: 300;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+[data-scene="hero"] .plaque__dot {
+  position: absolute;
+  width: calc(9 * var(--hu));
+  height: calc(9 * var(--hu));
+  border-radius: 50%;
+  background: var(--plaque-edge);
+}
+[data-scene="hero"] .plaque__dot--tl { top: calc(-2 * var(--hu)); left: calc(-2 * var(--hu)); }
+[data-scene="hero"] .plaque__dot--tr { top: calc(-2 * var(--hu)); right: calc(-2 * var(--hu)); }
+[data-scene="hero"] .plaque__dot--bl { bottom: calc(-2 * var(--hu)); left: calc(-2 * var(--hu)); }
+[data-scene="hero"] .plaque__dot--br { bottom: calc(-2 * var(--hu)); right: calc(-2 * var(--hu)); }
 
 [data-scene="hero"] .lockup {
   --k: var(--hud-k, 1);
@@ -500,8 +556,7 @@
   }
 
   [data-scene="hero"] .sponsor-lockup {
-    top: calc(115.1 * var(--hu));
-    left: calc(599.5 * var(--hu));
+    top: calc(816 * var(--hu));
   }
 }
 
@@ -550,8 +605,7 @@
 }
 
 [data-artboard="1000"] [data-scene="hero"] .sponsor-lockup {
-  top: calc(115.1 * var(--hu));
-  left: calc(599.5 * var(--hu));
+  top: calc(816 * var(--hu));
 }
 
 /* ---------- Day state before the intro starts (its t=0 values; after the layer rules so they win) ---------- */

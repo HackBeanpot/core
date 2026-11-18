@@ -358,9 +358,14 @@ function Stage({
       // links, first sync) and scenes already hidden behind a later one snap
       // instead of playing.
       const syncPlayed = (pos: number, snap: boolean) => {
+        const slack = 1 / vhPx();
         played.forEach((p) => {
           const { enterEnd, activeFrom } = p.range;
-          const past = pos >= (p.arrived ? activeFrom : enterEnd);
+          // `scrollToScene` lands exactly on enterEnd (its restAt), but the
+          // smooth scroll's last update can stop a fraction of a px short
+          // (seen at 1366x768), which left the build unplayed until the next
+          // scroll. Allow 1px of slack.
+          const past = pos >= (p.arrived ? activeFrom : enterEnd) - slack;
           if (past === p.arrived) return;
           p.arrived = past;
           p.tween?.kill();

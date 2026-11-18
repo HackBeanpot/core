@@ -270,22 +270,30 @@ export function HeroScene() {
                         <p className="layer event-title" aria-hidden>
                           HACKBEANPOT
                         </p>
-                        <p className="layer sponsor-lockup lockup">
-                          <span className="lockup__text">
-                            Brought to you by
-                          </span>
-                          <span className="lockup__logos">
-                            <Image
-                              className="lockup__klaviyo"
-                              src="/hero/lg/klaviyo.svg"
-                              alt="Klaviyo"
-                              width={74}
-                              height={22}
-                              unoptimized
-                              style={{ width: "auto" }}
-                            />
-                          </span>
-                        </p>
+                        {/* The sponsor plaque, set into the front steps. */}
+                        <div className="layer sponsor-lockup plaque">
+                          <span className="plaque__dot plaque__dot--tl" />
+                          <span className="plaque__dot plaque__dot--tr" />
+                          <span className="plaque__dot plaque__dot--bl" />
+                          <span className="plaque__dot plaque__dot--br" />
+                          <p className="lockup">
+                            <span className="lockup__text">
+                              Brought to you by
+                            </span>
+                            <span className="lockup__logos">
+                              <Image
+                                className="lockup__klaviyo"
+                                src="/hero/lg/klaviyo.svg"
+                                alt="Klaviyo"
+                                width={74}
+                                height={22}
+                                unoptimized
+                                style={{ width: "auto" }}
+                              />
+                            </span>
+                          </p>
+                          <p className="plaque__address">{site.venueAddress}</p>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -17,6 +17,7 @@ export const site: Site = {
   // TODO(content): bump the campaign if MLH sends a newer season badge.
   mlhBadgeUrl:
     "https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white",
+  venueAddress: "125 Summer Street, Floor 6, Boston, MA 02111",
   contactEmail: "core@hackbeanpot.com",
   socials: [
     {
