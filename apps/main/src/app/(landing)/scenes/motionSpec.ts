@@ -90,7 +90,8 @@ export const TESTIMONIALS: SceneSpec = {
  * build: title, project frame and description fade in beside the arch.
  */
 export const PROJECTS: SceneSpec = {
-  scrollLength: 300,
+  // Longer than the prototype's 300 so the fly-in pan isn't rushed.
+  scrollLength: 500,
   exitColor: "#6f5f9c",
   pinned: true,
 };

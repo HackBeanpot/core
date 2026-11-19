@@ -34,6 +34,15 @@ const WIDE = "(min-width: 640px)";
 const PLAYED_BUILD_HOLD = 120;
 /** Ease of a `buildSeconds` build as it plays (and plays back). */
 const PLAYED_BUILD_EASE = "power1.out";
+/** Quiet time after the last scroll before settling onto the nearest scene. */
+const SNAP_IDLE_MS = 160;
+/**
+ * The glide onto a scene's resting point: `SNAP_SECONDS_PER_100VH` per screen
+ * of distance, clamped, so a long snap doesn't rush a scrubbed transition
+ * (e.g. the Projects fly-in).
+ */
+const SNAP_SECONDS_PER_100VH = 1.4;
+const SNAP_SECONDS = { min: 0.5, max: 1.4 };
 
 /** Where one scene sits on the master timeline. All values are in vh. */
 interface SceneRange {
@@ -467,6 +476,50 @@ function Stage({
       window.removeEventListener("hashchange", onHashChange);
     };
   }, [layout, scenes, scrollToScene]);
+
+  // Settle on a scene. Rests are only ~150vh apart, so a flick's momentum
+  // easily stops mid-transition; once scrolling goes quiet between two
+  // rests, glide to the nearer one. Only over the pinned stage and into
+  // the unpinned scene's rest (FAQ and the footer scroll freely), and only
+  // with Lenis (none with reduced motion or on SM).
+  useEffect(() => {
+    if (!lenis) return;
+    const rests = layout.ranges.map((r) => r.restAt);
+    const lastRest = rests[rests.length - 1] ?? 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const settle = () => {
+      const st = trigger.current;
+      if (!st || lenis.isScrolling) return;
+      const vh = vhPx();
+      const pos = (lenis.scroll - st.start) / vh;
+      if (pos <= 0 || pos >= lastRest) return;
+      const target = rests.reduce((best, r) =>
+        Math.abs(r - pos) < Math.abs(best - pos) ? r : best,
+      );
+      if (Math.abs(target - pos) * vh < 2) return;
+      // The glide's own scroll events keep this from re-running until it
+      // lands, and any wheel or key input cancels it (Lenis' default).
+      lenis.scrollTo(Math.ceil(st.start + target * vh), {
+        duration: gsap.utils.clamp(
+          SNAP_SECONDS.min,
+          SNAP_SECONDS.max,
+          (Math.abs(target - pos) / 100) * SNAP_SECONDS_PER_100VH,
+        ),
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+      });
+    };
+
+    const onScroll = () => {
+      clearTimeout(timer);
+      timer = setTimeout(settle, SNAP_IDLE_MS);
+    };
+    const off = lenis.on("scroll", onScroll);
+    return () => {
+      clearTimeout(timer);
+      off();
+    };
+  }, [lenis, layout]);
 
   // SM has no master trigger to deep link from, and the browser's own jump
   // targets the hidden LG/MD element.

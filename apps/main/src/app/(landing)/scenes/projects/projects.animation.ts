@@ -37,7 +37,7 @@ const CEILING_FADE = { start: 0.7, duration: 0.2 };
 
 const FOREGROUND = '[data-anim="projects-title"], [data-anim="projects-card"]';
 /** The foreground's fade in `build`, in seconds. */
-const REVEAL = { delay: 0.4, duration: 0.8 };
+const REVEAL = { delay: 0.6, duration: 1.2 };
 
 export const projectsAnimation: SceneAnimation = {
   id: "projects",
