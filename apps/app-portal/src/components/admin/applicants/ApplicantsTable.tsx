@@ -12,6 +12,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import { Toaster } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,6 +25,8 @@ import {
 } from "@/components/ui/table";
 import type { ApplicantSummary } from "@/lib/applicants/types";
 import { Input } from "@/components/ui/input";
+
+import { DeleteApplicantButton } from "./DeleteApplicantButton";
 
 interface ApplicantsTableProps {
   rows?: ApplicantSummary[];
@@ -46,7 +49,12 @@ const columns: ColumnDef<ApplicantSummary>[] = [
         Name <ArrowUpDown className="ml-2 h-3 w-3" />
       </Button>
     ),
-    cell: ({ row }) => row.original.name ?? "—",
+    // Long names wrap instead of stretching the column.
+    cell: ({ row }) => (
+      <div className="min-w-32 max-w-64 whitespace-normal break-words">
+        {row.original.name ?? "—"}
+      </div>
+    ),
   },
   {
     accessorKey: "email",
@@ -58,6 +66,11 @@ const columns: ColumnDef<ApplicantSummary>[] = [
       >
         Email <ArrowUpDown className="ml-2 h-3 w-3" />
       </Button>
+    ),
+    cell: ({ row }) => (
+      <div className="min-w-40 max-w-72 whitespace-normal break-all">
+        {row.original.email}
+      </div>
     ),
   },
   {
@@ -85,6 +98,16 @@ const columns: ColumnDef<ApplicantSummary>[] = [
       row.original.appSubmissionTime
         ? new Date(row.original.appSubmissionTime).toLocaleDateString()
         : "—",
+  },
+  {
+    id: "actions",
+    header: () => <span className="sr-only">Actions</span>,
+    cell: ({ row }) => (
+      <DeleteApplicantButton
+        applicantId={row.original.id}
+        label={row.original.name ?? row.original.email}
+      />
+    ),
   },
 ];
 
@@ -176,7 +199,7 @@ export function ApplicantsTable({
             {table.getHeaderGroups().map((hg) => (
               <TableRow key={hg.id}>
                 {hg.headers.map((header) => (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="whitespace-nowrap">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -223,7 +246,7 @@ export function ApplicantsTable({
                   }}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="whitespace-nowrap">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),
@@ -278,6 +301,7 @@ export function ApplicantsTable({
           Next
         </Button>
       </div>
+      <Toaster />
     </div>
   );
 }

@@ -1,35 +1,24 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/auth/guards";
-import { getApplicantCursor, getApplicantName } from "@/lib/applicants/service";
-import { toCsv, responseField, type CsvColumn } from "@/lib/applicants/csv";
-import { APPLICATION_SECTIONS } from "@/lib/application/questions";
-import type { ApplicantDoc } from "@/lib/applicants/types";
+import { getFormConfig } from "@/lib/admin/form-config-service";
+import { toCsv } from "@/lib/applicants/csv";
+import { applicationExportColumns } from "@/lib/applicants/export";
+import { parseApplicantQuery } from "@/lib/applicants/params";
+import { CURRENT_SEASON } from "@/lib/applicants/season";
+import { getApplicantCursor } from "@/lib/applicants/service";
 
 export const dynamic = "force-dynamic"; // per-request stream — never statically rendered or cached
 
-const QUESTION_COLUMNS: CsvColumn<ApplicantDoc>[] =
-  APPLICATION_SECTIONS.flatMap((section) =>
-    section.questions.map((q) => ({
-      header: q.label,
-      value: (doc: ApplicantDoc) =>
-        responseField(doc.applicationResponses, q.id),
-    })),
-  );
-
-const COLUMNS: CsvColumn<ApplicantDoc>[] = [
-  { header: "Email", value: (d) => d.email },
-  {
-    header: "Name",
-    value: (d) => getApplicantName(d.applicationResponses) ?? "",
-  },
-  { header: "Status", value: (d) => d.applicationStatus },
-  { header: "Decision", value: (d) => d.decisionStatus ?? "" },
-  { header: "RSVP", value: (d) => d.rsvpStatus },
-  ...QUESTION_COLUMNS,
-];
-
-export async function GET() {
+/**
+ * Exports the applicants that match the admin list's filters (season defaults to the
+ * current one), with one column per question on the live form.
+ *
+ *   ?format=csv  (default) streams a CSV download.
+ *   ?format=json returns { headers, rows } so the admin page can copy it as a table
+ *                that pastes straight into Google Sheets.
+ */
+export async function GET(req: NextRequest) {
   try {
     await requireAdmin();
   } catch {
@@ -38,13 +27,35 @@ export async function GET() {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const cursor = await getApplicantCursor();
-  const stream = toCsv(cursor, COLUMNS);
+  const url = new URL(req.url);
+  const parsed = parseApplicantQuery(url.searchParams);
+  if (!parsed.ok) {
+    return NextResponse.json({ error: parsed.error }, { status: 400 });
+  }
+  const { filters } = parsed.value;
+
+  const formConfig = await getFormConfig();
+  const columns = applicationExportColumns(formConfig.sections, url.origin);
+  const cursor = await getApplicantCursor(filters);
+
+  if (url.searchParams.get("format") === "json") {
+    const rows: string[][] = [];
+    for await (const doc of cursor) {
+      rows.push(columns.map((c) => c.value(doc)));
+    }
+    return NextResponse.json({ headers: columns.map((c) => c.header), rows });
+  }
+
+  const stream = toCsv(cursor, columns);
   const date = new Date().toISOString().slice(0, 10);
+  const season =
+    (filters.season ?? "current") === "current"
+      ? CURRENT_SEASON
+      : filters.season;
   return new NextResponse(stream, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": `attachment; filename="applications-${date}.csv"`,
+      "Content-Disposition": `attachment; filename="applications-${season}-${date}.csv"`,
     },
   });
 }

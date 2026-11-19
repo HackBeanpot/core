@@ -17,8 +17,17 @@ import {
   DECISION_STATUSES,
   RSVP_STATUSES,
 } from "@/lib/types/user";
+import { CURRENT_SEASON, type SeasonFilter } from "@/lib/applicants/season";
 
 const ALL = "all";
+// The URL omits `season` for the current season, which is also the server default.
+const CURRENT = "current";
+
+const SEASON_OPTIONS: { value: SeasonFilter; label: string }[] = [
+  { value: "current", label: `${CURRENT_SEASON} season` },
+  { value: "past", label: "Past seasons" },
+  { value: "all", label: "All seasons" },
+];
 const SEARCH_DEBOUNCE_MS = 300;
 
 export function ApplicantsFilters() {
@@ -49,6 +58,7 @@ export function ApplicantsFilters() {
     });
   };
 
+  const season = searchParams.get("season") ?? CURRENT;
   const status = searchParams.get("status") ?? ALL;
   const decision = searchParams.get("decision") ?? ALL;
   const rsvp = searchParams.get("rsvp") ?? ALL;
@@ -73,8 +83,24 @@ export function ApplicantsFilters() {
     return () => clearTimeout(timeout);
   }, [searchInput, urlQuery, writeParams]);
 
+  const setSeason = (value: string) => {
+    writeParams((p) => {
+      if (value === CURRENT) {
+        p.delete("season");
+      } else {
+        p.set("season", value);
+      }
+      p.delete("page");
+    });
+  };
+
+  // "Clear filters" also resets the season back to the current one.
   const hasActiveFilters =
-    searchInput !== "" || status !== ALL || decision !== ALL || rsvp !== ALL;
+    searchInput !== "" ||
+    status !== ALL ||
+    decision !== ALL ||
+    rsvp !== ALL ||
+    season !== CURRENT;
 
   const clearFilters = () => {
     setSearchInput("");
@@ -83,6 +109,7 @@ export function ApplicantsFilters() {
       p.delete("status");
       p.delete("decision");
       p.delete("rsvp");
+      p.delete("season");
       p.delete("page");
     });
   };
@@ -95,6 +122,18 @@ export function ApplicantsFilters() {
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
+      <Select value={season} onValueChange={setSeason}>
+        <SelectTrigger className="w-48" aria-label="Season">
+          <SelectValue placeholder="Season" />
+        </SelectTrigger>
+        <SelectContent>
+          {SEASON_OPTIONS.map((o) => (
+            <SelectItem key={o.value} value={o.value}>
+              {o.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
       <Select value={status} onValueChange={(v) => setParam("status", v)}>
         <SelectTrigger className="w-48">
           <SelectValue placeholder="Status" />

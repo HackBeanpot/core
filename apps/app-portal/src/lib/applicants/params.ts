@@ -5,6 +5,7 @@ import {
   DECISION_STATUSES,
   RSVP_STATUSES,
 } from "@/lib/types/user";
+import { SEASON_FILTERS } from "./season";
 import { SORT_FIELDS } from "./types";
 import type { ApplicantListParams } from "./types";
 
@@ -16,13 +17,14 @@ const querySchema = z.object({
   status: z.enum(APPLICATION_STATUSES).optional(),
   decision: z.enum(DECISION_STATUSES).optional(),
   rsvp: z.enum(RSVP_STATUSES).optional(),
+  season: z.enum(SEASON_FILTERS).default("current"),
   search: z.string().trim().min(1).optional(),
 });
 
 const schemaDefaults = querySchema.parse({});
 
 export const DEFAULT_LIST_PARAMS: ApplicantListParams = {
-  filters: {},
+  filters: { season: schemaDefaults.season },
   sortBy: schemaDefaults.sortBy,
   sortDir: schemaDefaults.sortDir,
   page: schemaDefaults.page,
@@ -45,6 +47,7 @@ export function parseApplicantQuery(
     "status",
     "decision",
     "rsvp",
+    "season",
     "search",
   ] as const) {
     const v = searchParams.get(key);
@@ -69,6 +72,7 @@ export function parseApplicantQuery(
         applicationStatus: d.status,
         decisionStatus: d.decision,
         rsvpStatus: d.rsvp,
+        season: d.season,
         search: d.search,
       },
       sortBy: d.sortBy,

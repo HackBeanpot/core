@@ -1,5 +1,6 @@
 import type { Filter } from "mongodb";
 
+import { buildSeasonQuery } from "./season";
 import type { ApplicantDoc, ApplicantFilters } from "./types";
 
 /** Escape regex metacharacters so user input is matched literally. */
@@ -9,8 +10,8 @@ function escapeRegex(input: string): string {
 
 /**
  * Translate filter inputs into a Mongo filter. Status filters use plain
- * equality against enum values and `search` matches
- * email or name case-insensitively.
+ * equality against enum values, `search` matches email or name
+ * case-insensitively, and `season` (default "current") limits it to one season.
  */
 export function buildApplicantQuery(
   filters: ApplicantFilters,
@@ -34,6 +35,12 @@ export function buildApplicantQuery(
       { "applicationResponses.first_name": rx },
       { "applicationResponses.last_name": rx },
     ];
+  }
+
+  const seasonQuery = buildSeasonQuery(filters.season ?? "current");
+  if (seasonQuery) {
+    // `$and` so the season's own `$or` doesn't collide with the search `$or`.
+    query.$and = [seasonQuery];
   }
 
   return query;

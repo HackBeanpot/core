@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/auth/guards";
 import { getApplicantCursor, getApplicantName } from "@/lib/applicants/service";
 import { toCsv, responseField, type CsvColumn } from "@/lib/applicants/csv";
+import { parseApplicantQuery } from "@/lib/applicants/params";
 import type { ApplicantDoc } from "@/lib/applicants/types";
 
 export const dynamic = "force-dynamic"; // per-request stream — never statically rendered or cached
@@ -40,7 +41,8 @@ const COLUMNS: CsvColumn<ApplicantDoc>[] = [
   },
 ];
 
-export async function GET() {
+// Uses the admin list's filters, so the season defaults to the current one.
+export async function GET(req: NextRequest) {
   try {
     await requireAdmin();
   } catch {
@@ -49,7 +51,12 @@ export async function GET() {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const cursor = await getApplicantCursor();
+  const parsed = parseApplicantQuery(new URL(req.url).searchParams);
+  if (!parsed.ok) {
+    return NextResponse.json({ error: parsed.error }, { status: 400 });
+  }
+
+  const cursor = await getApplicantCursor(parsed.value.filters);
   const stream = toCsv(cursor, COLUMNS);
   const date = new Date().toISOString().slice(0, 10);
   return new NextResponse(stream, {

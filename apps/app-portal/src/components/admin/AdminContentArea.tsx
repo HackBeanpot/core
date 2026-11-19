@@ -17,14 +17,17 @@ export default function AdminContentArea({
 }): JSX.Element {
   const { isMobile } = useDevice();
 
+  // `min-w-0` stops this flex item from growing to fit wide content (like the
+  // applicants table) and pushing past the viewport. Without it, the table's own
+  // horizontal scroll container never activates.
   return (
-    <div className={`flex flex-1 flex-col ${isMobile ? "" : "ml-64"}`}>
+    <div className={`flex min-w-0 flex-1 flex-col ${isMobile ? "" : "ml-64"}`}>
       <header className="flex h-16 items-center justify-between border-b bg-white px-6">
         <h1 className="text-xl font-semibold">Admin Portal</h1>
         <UserMenu />
       </header>
 
-      <main className="flex-1 p-6">{children}</main>
+      <main className="min-w-0 flex-1 p-6">{children}</main>
     </div>
   );
 }

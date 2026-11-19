@@ -49,11 +49,13 @@ export default function ApplicantsPage({
 }) {
   return (
     <div className="space-y-6 p-6">
-      <header className="flex items-center justify-between">
+      <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold">Applicants</h1>
         </div>
-        <ExportButtons />
+        <Suspense fallback={<div className="h-10" />}>
+          <ExportButtons />
+        </Suspense>
       </header>
       <Suspense fallback={<div className="h-10" />}>
         <ApplicantsFilters />
