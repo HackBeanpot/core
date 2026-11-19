@@ -57,7 +57,7 @@ export function MobileHero() {
         >
           <Image
             src={HERO_SM.badge.src}
-            alt="Major League Hacking 2025 Season official member event"
+            alt={site.mlhBadgeAlt}
             fill
             unoptimized
             className="object-cover"

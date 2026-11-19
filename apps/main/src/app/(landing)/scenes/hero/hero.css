@@ -69,7 +69,7 @@
   height: calc(982 * var(--hu));
   transform: translate(-50%, -50%)
     translate(
-      calc(var(--hero-md) * 23.1 * var(--hero-frame)),
+      calc(var(--hero-md) * 1.5 * var(--hero-frame)),
       calc(var(--hero-md) * -42.8 * var(--hero-frame))
     );
 }
@@ -94,7 +94,7 @@
 
 /* The intro's starting framing (INTRO_FRAME_START in hero.animation.ts). */
 [data-scene="hero"] .scene-fg-intro {
-  transform: translate(19.8864%, 24.7458%) scale(0.58338);
+  transform: translate(20.8117%, 24.7458%) scale(0.58338);
 }
 
 /* Tailwind's preflight caps images at 100% of their parent. */
@@ -199,7 +199,9 @@
   width: calc(119 * var(--mu));
   height: calc(119 * var(--mu));
   opacity: 0;
-  filter: drop-shadow(0 0 calc(14 * var(--hu)) rgba(225, 232, 255, 0.18));
+  /* --hud-fade: scroll fade (hero.animation.ts); the intro owns `opacity`. */
+  filter: drop-shadow(0 0 calc(14 * var(--hu)) rgba(225, 232, 255, 0.18))
+    opacity(var(--hud-fade, 1));
   will-change: transform, opacity;
 }
 
@@ -210,7 +212,7 @@
   left: calc((184.5 - 59.5 * var(--moon-s)) * var(--hu));
   width: calc(119 * var(--mu));
   height: calc(119 * var(--mu));
-  opacity: 0.85;
+  opacity: calc(0.85 * var(--hud-fade, 1));
 }
 
 [data-scene="hero"] .mlh-banner-mask {
