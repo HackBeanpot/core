@@ -107,7 +107,8 @@ function Img({ src, box }: { src: string; box: { w: number; h: number } }) {
 /**
  * Our Values (MS-205). The Figma annotation: hovering a pillar moves the
  * spotlight onto it and raises it, and everything else drops to 80%.
- * Exploration is lit by default, as in the frame.
+ * Exploration is lit by default, as in the frame. The spotlight stays on the
+ * last hovered pillar when the pointer moves between pillars or leaves.
  *
  * Hover styles live on inner wrappers so they never fight the `data-anim`
  * transforms that `values.animation.ts` puts on the outer ones.
@@ -117,10 +118,11 @@ export function ValuesScene() {
   const bp = useArtboardBreakpoint(artboardRef);
   const layout = LAYOUT[bp];
   const pos = positions[bp];
-  // Hovered column, if any. Exploration is lit when nothing is hovered, as
-  // in the Figma frame, but only a hovered column lifts.
+  // The lit column: Exploration until a column is hovered, then whichever
+  // was hovered last (it doesn't snap back in the gaps or on leaving).
+  const [active, setActive] = useState(0);
+  // Only the column under the pointer lifts.
   const [hovered, setHovered] = useState<number | null>(null);
-  const active = hovered ?? 0;
 
   const { beam } = layout;
   const spread =
@@ -179,7 +181,7 @@ export function ValuesScene() {
             </Typography>
           </div>
 
-          <div onPointerLeave={() => setHovered(null)}>
+          <div>
             {values.map((value, i) => {
               const slug = SLUGS[i];
               const col = layout.columns[i];
@@ -193,7 +195,11 @@ export function ValuesScene() {
                     top: u(col.y),
                     width: u(COLUMN_WIDTH),
                   }}
-                  onPointerEnter={() => setHovered(i)}
+                  onPointerEnter={() => {
+                    setActive(i);
+                    setHovered(i);
+                  }}
+                  onPointerLeave={() => setHovered((h) => (h === i ? null : h))}
                 >
                   <div
                     className={`flex flex-col items-center ${transition}`}

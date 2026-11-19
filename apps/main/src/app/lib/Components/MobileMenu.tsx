@@ -86,142 +86,154 @@ const MobileMenu = ({ id, activeSection, onClose }: MobileMenuProps) => {
       aria-modal="true"
       aria-label="Menu"
       onKeyDown={handleKeyDown}
-      className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden bg-gradient-to-b from-[#15173b] to-[#060825]"
+      className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden overscroll-contain bg-[#060825]"
     >
-      {/* Decorative art, anchored to the bottom of the 402×874 frame */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
-        <Image
-          src="/header/mobile-menu/dinosaur.svg"
-          alt=""
-          width={648}
-          height={648}
-          className="absolute bottom-[-123px] left-[51px] max-w-none"
-        />
-        <Image
-          src="/header/mobile-menu/circular-glow.svg"
-          alt=""
-          width={37.2059}
-          height={37.2058}
-          className="absolute bottom-[77px] left-[163.13px] max-w-none mix-blend-overlay"
-        />
-        <Image
-          src="/header/mobile-menu/sparkle.svg"
-          alt=""
-          width={11.8227}
-          height={10.9555}
-          className="absolute bottom-[91.3px] left-[175.54px] max-w-none -scale-x-100"
-        />
-        <Image
-          src="/header/mobile-menu/dune.svg"
-          alt=""
-          width={932}
-          height={946.34}
-          className="absolute bottom-[-463.34px] left-[-390px] max-w-none"
-        />
-      </div>
-
-      <div className="relative flex items-center justify-between p-5">
-        <a
-          href="#"
-          onClick={closeAfterNavigate}
-          aria-label="HackBeanpot home"
-          className={clsx(
-            itemStyles,
-            "flex items-center gap-2 normal-case text-white",
-          )}
+      {/*
+       * At least one screen tall, and as tall as the links when they don't
+       * fit (short phones, Safari's toolbars), so the art and gradient
+       * stay anchored to the bottom of the content instead of the first
+       * screenful.
+       */}
+      <div className="relative flex min-h-full flex-col bg-gradient-to-b from-[#15173b] to-[#060825]">
+        {/* Decorative art, anchored to the bottom of the 402×874 frame */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 overflow-hidden"
         >
           <Image
-            src="/header/mobile-menu/logo-mark.svg"
+            src="/header/mobile-menu/dinosaur.svg"
             alt=""
-            width={28}
-            height={28}
+            width={648}
+            height={648}
+            className="absolute bottom-[-123px] left-[51px] max-w-none"
           />
-          HackBeanpot
-        </a>
-        <button
-          ref={closeButtonRef}
-          type="button"
-          aria-label="Close menu"
-          onClick={() => onClose({ restoreFocus: true })}
-          className="size-10 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
-        >
           <Image
-            src="/header/mobile-menu/close.svg"
+            src="/header/mobile-menu/circular-glow.svg"
             alt=""
-            width={40}
-            height={40}
+            width={37.2059}
+            height={37.2058}
+            className="absolute bottom-[77px] left-[163.13px] max-w-none mix-blend-overlay"
           />
-        </button>
-      </div>
+          <Image
+            src="/header/mobile-menu/sparkle.svg"
+            alt=""
+            width={11.8227}
+            height={10.9555}
+            className="absolute bottom-[91.3px] left-[175.54px] max-w-none -scale-x-100"
+          />
+          <Image
+            src="/header/mobile-menu/dune.svg"
+            alt=""
+            width={932}
+            height={946.34}
+            className="absolute bottom-[-463.34px] left-[-390px] max-w-none"
+          />
+        </div>
 
-      <nav aria-label="Sections" className="relative px-5 pb-10 pt-[17px]">
-        <ul className="flex flex-col items-start gap-5">
-          {headerTabs.map(({ label, id: tabId }) => {
-            const active = activeSection === tabId;
-            return (
-              <li key={tabId}>
-                <a
-                  href={`#${tabId}`}
-                  onClick={closeAfterNavigate}
-                  aria-current={active ? "true" : undefined}
-                  className={clsx(
-                    itemStyles,
-                    "flex flex-col gap-1",
-                    active ? "text-white" : "text-white/75 hover:text-white",
-                  )}
-                >
-                  {label}
-                  {active && (
-                    <span aria-hidden className="relative h-0 w-full">
-                      <Image
-                        src="/header/mobile-menu/underline.svg"
-                        alt=""
-                        width={91}
-                        height={3}
-                        className="absolute inset-x-0 -top-[3px] h-[3px] w-full max-w-none"
-                      />
-                    </span>
-                  )}
-                </a>
-              </li>
-            );
-          })}
-          <li>
-            <a
-              href={site.sponsorUsHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => onClose({ restoreFocus: false })}
-              className={clsx(itemStyles, "text-white/75 hover:text-white")}
-            >
-              Sponsor us
-            </a>
-          </li>
-          <li>
-            {site.applicationUrl ? (
+        <div className="relative flex items-center justify-between p-5">
+          <a
+            href="#"
+            onClick={closeAfterNavigate}
+            aria-label="HackBeanpot home"
+            className={clsx(
+              itemStyles,
+              "flex items-center gap-2 normal-case text-white",
+            )}
+          >
+            <Image
+              src="/header/mobile-menu/logo-mark.svg"
+              alt=""
+              width={28}
+              height={28}
+            />
+            HackBeanpot
+          </a>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            aria-label="Close menu"
+            onClick={() => onClose({ restoreFocus: true })}
+            className="size-10 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+          >
+            <Image
+              src="/header/mobile-menu/close.svg"
+              alt=""
+              width={40}
+              height={40}
+            />
+          </button>
+        </div>
+
+        {/* Gaps shrink on short screens so the whole list fits without scrolling where it can. */}
+        <nav
+          aria-label="Sections"
+          className="relative px-5 pb-[clamp(16px,5svh,40px)] pt-[clamp(0px,2svh,17px)]"
+        >
+          <ul className="flex flex-col items-start gap-[clamp(6px,2.3svh,20px)]">
+            {headerTabs.map(({ label, id: tabId }) => {
+              const active = activeSection === tabId;
+              return (
+                <li key={tabId}>
+                  <a
+                    href={`#${tabId}`}
+                    onClick={closeAfterNavigate}
+                    aria-current={active ? "true" : undefined}
+                    className={clsx(
+                      itemStyles,
+                      "flex flex-col gap-1",
+                      active ? "text-white" : "text-white/75 hover:text-white",
+                    )}
+                  >
+                    {label}
+                    {active && (
+                      <span aria-hidden className="relative h-0 w-full">
+                        <Image
+                          src="/header/mobile-menu/underline.svg"
+                          alt=""
+                          width={91}
+                          height={3}
+                          className="absolute inset-x-0 -top-[3px] h-[3px] w-full max-w-none"
+                        />
+                      </span>
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+            <li>
               <a
-                href={site.applicationUrl}
+                href={site.sponsorUsHref}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => onClose({ restoreFocus: false })}
                 className={clsx(itemStyles, "text-white/75 hover:text-white")}
               >
-                Apply
+                Sponsor us
               </a>
-            ) : (
-              <button
-                type="button"
-                onClick={showApplicationsClosed}
-                className={clsx(itemStyles, "text-white/75 hover:text-white")}
-              >
-                Apply
-              </button>
-            )}
-          </li>
-        </ul>
-      </nav>
+            </li>
+            <li>
+              {site.applicationUrl ? (
+                <a
+                  href={site.applicationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={clsx(itemStyles, "text-white/75 hover:text-white")}
+                >
+                  Apply
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={showApplicationsClosed}
+                  className={clsx(itemStyles, "text-white/75 hover:text-white")}
+                >
+                  Apply
+                </button>
+              )}
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };
