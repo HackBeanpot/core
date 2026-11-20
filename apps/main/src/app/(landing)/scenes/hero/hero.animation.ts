@@ -38,14 +38,14 @@ type Frame = { x: number; y: number; scale: number };
 
 /** The camera at the start of the intro: what you see on first paint. Mirrored in `hero.css`. */
 export const INTRO_FRAME_START: Frame = {
-  x: 300.683,
+  x: 314.673,
   y: 243.004,
   scale: 0.58338,
 };
 /** Where the intro settles; the scroll camera starts here. */
-export const INTRO_FRAME: Frame = { x: 148.911, y: 160.338, scale: 0.77784 };
+export const INTRO_FRAME: Frame = { x: 167.564, y: 160.338, scale: 0.77784 };
 /** Figma's Zoom frame (`5597:12280`): the door crop the scroll passes through. */
-const DOOR_CROP: Frame = { x: -867.415, y: -642.753, scale: 2.1194 };
+const DOOR_CROP: Frame = { x: -847.326, y: -642.753, scale: 2.1194 };
 /** Final scale of the plunge, enough for the doorway to fill any viewport. */
 const PLUNGE_SCALE = 30;
 const FOCUS_DOOR = { x: 755.75, y: 600 };
@@ -167,7 +167,7 @@ function rebuildLayer(el: HTMLElement | null) {
  * the resting framing (0.78x) the tight one is enough, and the scroll
  * camera only zooms in from there.
  */
-const CLIP_TIGHT = { x: -212, y: -226, w: 1985, h: 1303 };
+const CLIP_TIGHT = { x: -220, y: -226, w: 1993, h: 1303 };
 const clipVars = (c: typeof CLIP_TIGHT) => ({
   "--clip-x": c.x,
   "--clip-y": c.y,
@@ -245,6 +245,14 @@ export const heroAnimation: SceneAnimation = {
         },
         onReverseComplete: () => setHeroNav({ diving: false }),
       },
+      0.15 / T_END,
+    );
+    // The moon and MLH badge fade with them (via `--hud-fade` in hero.css,
+    // since the intro owns the moon's `opacity`).
+    tl.fromTo(
+      q(root, '[data-anim="hero-bg"]'),
+      { "--hud-fade": 1 },
+      { "--hud-fade": 0, duration: 1.1 / T_END, ease: "power1.in" },
       0.15 / T_END,
     );
     // The doorway is full bleed by T ~9.97; then hand off on the exit color.

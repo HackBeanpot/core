@@ -126,8 +126,8 @@ export function HeroScene() {
                       <span className="mlh-banner__strap" />
                       <Image
                         className="mlh-banner__badge"
-                        src="/hero/lg/mlhBadge.webp"
-                        alt="Major League Hacking 2025 Season official member event"
+                        src={site.mlhBadgeSrc}
+                        alt={site.mlhBadgeAlt}
                         width={81.47}
                         height={143.48}
                         unoptimized

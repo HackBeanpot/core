@@ -13,10 +13,11 @@ export const site: Site = {
   sponsorshipPacketUrl: SPONSORSHIP_PACKET_URL,
   // The landing Sponsors section (swap for the packet URL if the directors prefer).
   sponsorUsHref: SPONSORSHIP_PACKET_URL,
-  // MLH trust-badge link, matching the "2025 Season" badge art.
-  // TODO(content): bump the campaign if MLH sends a newer season badge.
   mlhBadgeUrl:
-    "https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white",
+    "https://www.mlh.com/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2027-season&utm_content=white",
+  mlhBadgeSrc:
+    "https://logged-assets.s3.amazonaws.com/trust-badge/2027/mlh-trust-badge-2027-white.svg",
+  mlhBadgeAlt: "Major League Hacking 2027 Hackathon Season",
   venueAddress: "125 Summer Street, Floor 6, Boston, MA 02111",
   contactEmail: "core@hackbeanpot.com",
   socials: [

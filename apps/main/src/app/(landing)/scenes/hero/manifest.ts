@@ -22,6 +22,8 @@
  * (sky + moon + scene; title, tagline, logos and badge stay live on top).
  */
 
+import { site } from "../../../lib/content/site";
+
 export const HERO_STATES = ["day", "dusk", "night", "title", "zoom"] as const;
 export type HeroState = (typeof HERO_STATES)[number];
 
@@ -407,11 +409,10 @@ export const HERO_LAYERS = {
   beamRight: ground("beamRight", only(["title", "zoom"])),
   bushes1: ground("bushes1"),
   stairsFront: ground("stairsFront"),
-  /** Raster from MLH (flagged to Cole). Not in Zoom. */
   mlhBadge: {
     kind: "image",
-    src: "/hero/lg/mlhBadge.webp",
-    alt: "Major League Hacking 2025 Season official member event",
+    src: site.mlhBadgeSrc, //from MLH hosted server
+    alt: site.mlhBadgeAlt,
     rect: { x: 1279, y: -5, w: 116, h: 204.318 },
     group: "ui",
     states: states({}, only(["night", "title"]), "ui"),
@@ -610,7 +611,7 @@ export const HERO_SM = {
     rect: { x: 232.7, y: 260, w: 76.5, h: 22.65 },
   },
   badge: {
-    src: "/hero/lg/mlhBadge.webp",
+    src: site.mlhBadgeSrc,
     rect: { x: 15, y: -2, w: 82.4, h: 146.4 },
   },
 } as const;
