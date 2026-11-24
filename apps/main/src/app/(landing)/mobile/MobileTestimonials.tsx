@@ -57,6 +57,10 @@ const SPARKLES = {
   ],
 };
 
+/** Title's top, matching the other SM sections; the art's top-right and left sparkles move down with it. */
+const TITLE_TOP = 98;
+const TITLE_SHIFT = `calc(${TITLE_TOP}px - ${sm(20)})`;
+
 /** Card (Frame 5687:1242): 362.59px column, centered; its top sits at y 102. */
 const CARD = { top: 102, w: 362.59, gap: 32, quoteGap: 13, arrowGap: 9 };
 const MEDALLION_W = 285;
@@ -196,11 +200,13 @@ export function MobileTestimonials({
             style={smBox(ARTBOARD_BOX)}
           />
         </FromBottom>
-        <Sparkles items={SPARKLES.topRight} />
+        <div className="absolute inset-x-0" style={{ top: TITLE_SHIFT }}>
+          <Sparkles items={SPARKLES.topRight} />
+        </div>
         <Fog fog={fogTopLeft} />
       </div>
 
-      <div className="relative px-5" style={{ paddingTop: sm(20) }}>
+      <div className="relative px-5" style={{ paddingTop: TITLE_TOP }}>
         <div id="testimonials-title-sm">
           <Typography variant="sectionTitle" as="h2">
             {testimonialsSection.title}
@@ -288,7 +294,9 @@ export function MobileTestimonials({
       </div>
 
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <Sparkles items={SPARKLES.left} />
+        <div className="absolute inset-x-0" style={{ top: TITLE_SHIFT }}>
+          <Sparkles items={SPARKLES.left} />
+        </div>
         <FromBottom>
           <Art
             src="/testimonials/sm/footprints.svg"

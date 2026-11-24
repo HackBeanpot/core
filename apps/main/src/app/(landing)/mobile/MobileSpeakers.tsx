@@ -40,6 +40,9 @@ const PLATE_TOP = 497;
 /** The bio (5615:26383) starts at y 654, below the art. */
 const BIO_TOP = 654;
 
+/** Title's artboard y; the curtain spacer above it pushes the art down so it lands 98px from the top, like the other SM sections. */
+const TITLE_Y = 20;
+
 /** Static decorative SVG. */
 function Art({ src, style }: { src: string; style: React.CSSProperties }) {
   return (
@@ -98,6 +101,12 @@ export function MobileSpeakers() {
     >
       <div ref={swipeRef}>
         <CarouselRegion label="Speakers" onPrev={prev} onNext={next}>
+          {/* Extends the curtain's top color upward */}
+          <div
+            aria-hidden
+            className="bg-[#71120F]"
+            style={{ height: `calc(98px - ${sm(TITLE_Y)})` }}
+          />
           {/* Art, in Figma's layer order: scene, photo, name plate, curtain, title */}
           <div className="relative" style={{ height: sm(BIO_TOP) }}>
             <Art src="/speakers/sm/scene.svg" style={smBox(ARTBOARD_BOX)} />
@@ -187,7 +196,7 @@ export function MobileSpeakers() {
             <div
               id="speakers-title-sm"
               className="absolute inset-x-0"
-              style={{ top: sm(20) }}
+              style={{ top: sm(TITLE_Y) }}
             >
               <Typography variant="sectionTitle" as="h2">
                 {speakersSection.title}

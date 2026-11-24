@@ -45,7 +45,7 @@ export function MobileSponsors({
     <section
       data-sm-scene="sponsors"
       aria-labelledby="sponsors-title-sm"
-      className="scroll-mt-20 relative overflow-hidden bg-[#3a2f52]"
+      className="scroll-mt-20 relative min-h-[874px] overflow-hidden bg-[#3a2f52]"
     >
       <Image
         src={background.src}
@@ -56,7 +56,7 @@ export function MobileSponsors({
         className="pointer-events-none select-none object-cover object-top"
       />
 
-      <div className="relative mx-auto flex w-[min(355px,calc(100%-32px))] flex-col items-center pb-[23px] pt-[84px]">
+      <div className="relative mx-auto flex w-[min(355px,calc(100%-40px))] flex-col items-center pb-[23px] pt-[98px]">
         <Typography variant="sectionTitle" as="h2">
           <span id="sponsors-title-sm">{sponsorsSection.title}</span>
         </Typography>
