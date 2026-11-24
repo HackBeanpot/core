@@ -60,7 +60,7 @@ export function MobileProjects({
         className="pointer-events-none select-none object-cover object-right-bottom"
       />
 
-      <div className="relative mx-auto flex w-[min(358px,calc(100%-44px))] flex-col pb-[182px] pt-[20px]">
+      <div className="relative mx-auto flex w-[min(358px,calc(100%-44px))] flex-col pb-[182px] pt-[98px]">
         <Typography variant="sectionTitle" as="h2">
           <span id="projects-title-sm">{projectsSection.title}</span>
         </Typography>

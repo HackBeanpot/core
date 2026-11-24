@@ -161,7 +161,7 @@ export function MobileTeam() {
       }}
     >
       <h2
-        className={clsx(typographyVariants.sectionTitle, "mt-[55px] uppercase")}
+        className={clsx(typographyVariants.sectionTitle, "mt-[98px] uppercase")}
         style={{ lineHeight: "normal" }}
       >
         {teamSection.title}

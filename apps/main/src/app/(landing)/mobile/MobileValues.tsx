@@ -42,7 +42,7 @@ export function MobileValues() {
           }}
         />
 
-        <div className="absolute top-[270px] left-0 z-20 w-full px-6 text-center">
+        <div className="absolute top-[270px] left-0 z-20 w-full px-5 text-center">
           <Typography variant="cardTitle" as="h3">
             {values[0].title}
           </Typography>
@@ -67,7 +67,7 @@ export function MobileValues() {
           }}
         />
 
-        <div className="absolute top-[590px] left-0 z-20 w-full px-6 text-center">
+        <div className="absolute top-[590px] left-0 z-20 w-full px-5 text-center">
           <Typography variant="cardTitle" as="h3">
             {values[1].title}
           </Typography>
@@ -92,7 +92,7 @@ export function MobileValues() {
           }}
         />
 
-        <div className="absolute top-[882px] left-0 z-20 w-full px-6 text-center">
+        <div className="absolute top-[882px] left-0 z-20 w-full px-5 text-center">
           <Typography variant="cardTitle" as="h3">
             {values[2].title}
           </Typography>

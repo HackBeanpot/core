@@ -3,6 +3,10 @@ import decor from "../../../../public/about/sm/decor.svg";
 import { about } from "../../lib/content/about";
 import PictureFrame from "../../lib/Components/museum/PictureFrame";
 import { Typography } from "../../lib/Components/museum/Typography";
+import { sm, smUnitVar } from "./smUnits";
+
+/** Room kept below the text for the candles and their glow (artboard px). */
+const DECOR_CLEARANCE = 270;
 
 const BACKGROUND = "linear-gradient(180deg, #15173b 0%, #060825 100%)";
 
@@ -15,15 +19,22 @@ export function MobileAboutUS() {
       className="scroll-mt-20 relative w-full"
       style={{ background: BACKGROUND }}
     >
-      <div className="relative aspect-[402/874] w-full overflow-hidden">
+      {/* At least the frame's height; longer content grows it, with the decor pinned to the bottom. */}
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ ...smUnitVar, minHeight: sm(874) }}
+      >
         <img
           src={decor.src}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full"
+          className="pointer-events-none absolute bottom-0 left-0 z-0 h-auto w-full"
         />
 
-        <div className="relative z-10 flex h-full w-full flex-col items-center px-4 pt-4">
+        <div
+          className="relative z-10 flex w-full flex-col items-center px-5 pt-[98px]"
+          style={{ paddingBottom: sm(DECOR_CLEARANCE) }}
+        >
           <div data-anim="about-frame" className="relative z-10 w-full">
             <PictureFrame
               variant="copperRect"
